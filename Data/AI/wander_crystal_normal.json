@@ -1,0 +1,58 @@
+﻿{
+"Version": "0.7.21.0",
+"Object": {
+"$type": "RogueEssence.Data.AITactic, RogueEssence",
+"Name": {
+"DefaultText": "Normal Crystal Wander",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Searches for Crystals",
+"ID": "wander_crystal_normal",
+"Assignable": false,
+"Plans": [
+{
+"$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
+"stairIds": [
+"heal_crystal",
+"attack_crystal",
+"defense_crystal"
+],
+"IQ": 4,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
+"$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
+"AttackPattern": 2,
+"PositionPattern": 1,
+"IQ": 100,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 4
+},
+{
+"$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
+"IQ": 228,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
+"$type": "PMDC.Dungeon.ExplorePlan, PMDC",
+"IQ": 228,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
+"$type": "PMDC.Dungeon.WaitPlan, PMDC",
+"IQ": 228,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+}
+]
+}
+}

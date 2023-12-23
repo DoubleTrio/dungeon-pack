@@ -1,0 +1,72 @@
+﻿{
+"Version": "0.7.21.0",
+"Object": {
+"$type": "RogueEssence.Data.AITactic, RogueEssence",
+"Name": {
+"DefaultText": "Smart Wander",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"ID": "wander_crystal_smart",
+"Assignable": false,
+"Plans": [
+{
+"$type": "PMDC.Dungeon.PreBuffPlan, PMDC",
+"FirstMoveStatus": "last_used_move_slot",
+"IQ": 108,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
+"$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
+"AttackPattern": 4,
+"PositionPattern": 2,
+"IQ": 108,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 4
+},
+{
+"$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
+"IQ": 236,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
+"$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
+"stairIds": [
+"stairs_back_down",
+"stairs_back_up",
+"stairs_exit_down",
+"stairs_exit_up",
+"stairs_go_up",
+"stairs_go_down",
+"heal_crystal",
+"attack_crystal",
+"defense_crystal"
+],
+"IQ": 12,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
+"$type": "PMDC.Dungeon.ExplorePlan, PMDC",
+"IQ": 236,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
+"$type": "PMDC.Dungeon.WaitPlan, PMDC",
+"IQ": 236,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+}
+]
+}
+}

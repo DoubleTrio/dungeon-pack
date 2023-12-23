@@ -1,0 +1,30 @@
+﻿{
+"Version": "0.7.21.0",
+"Object": {
+"$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"wonder_room": {
+"Name": {
+"DefaultText": "Wonder Room",
+"LocalTexts": {
+"fr": "Zone Étrange",
+"de": "Wunderraum",
+"es": "Zona Extraña",
+"it": "Mirabilzona",
+"zh-hans": "奇妙空间"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"shimmering": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+}
+}
+}

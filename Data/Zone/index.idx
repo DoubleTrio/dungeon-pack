@@ -1,0 +1,63 @@
+﻿{
+"Version": "0.7.21.0",
+"Object": {
+"$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"wishmaker_cave": {
+"$type": "RogueEssence.Data.ZoneEntrySummary, RogueEssence",
+"NoEXP": true,
+"Level": 35,
+"LevelCap": true,
+"KeepSkills": true,
+"TeamRestrict": true,
+"TeamSize": 2,
+"MoneyRestrict": true,
+"BagRestrict": -1,
+"BagSize": 16,
+"Rescues": 2,
+"CountedFloors": 30,
+"Rogue": 2,
+"Grounds": [],
+"Maps": [
+[
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+29
+]
+],
+"Name": {
+"DefaultText": "Wishmaker Cave",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+}
+}
+}
