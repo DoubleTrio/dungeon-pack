@@ -8,7 +8,7 @@
 "Level": 35,
 "LevelCap": true,
 "KeepSkills": true,
-"TeamRestrict": true,
+"TeamRestrict": false,
 "TeamSize": 2,
 "MoneyRestrict": true,
 "BagRestrict": -1,

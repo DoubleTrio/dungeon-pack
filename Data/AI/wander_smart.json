@@ -3,52 +3,48 @@
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Normal Crystal Wander",
+"DefaultText": "Smart Wander",
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "Searches for Crystals",
-"ID": "wander_crystal_normal",
+"Comment": "",
+"ID": "wander_smart",
 "Assignable": false,
 "Plans": [
 {
+"$type": "PMDC.Dungeon.PreBuffPlan, PMDC",
+"FirstMoveStatus": "last_used_move_slot",
+"IQ": 108,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0
+},
+{
 "$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
-"AttackPattern": 2,
-"PositionPattern": 1,
-"IQ": 100,
+"AttackPattern": 4,
+"PositionPattern": 2,
+"IQ": 108,
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 4
 },
 {
 "$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
-"IQ": 228,
-"AttackRange": 0,
-"StatusRange": 0,
-"SelfStatusRange": 0
-},
-{
-"$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
-"StairIds": [
-"heal_crystal",
-"attack_crystal",
-"defense_crystal"
-],
-"IQ": 4,
+"IQ": 236,
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0
 },
 {
 "$type": "PMDC.Dungeon.ExplorePlan, PMDC",
-"IQ": 228,
+"IQ": 236,
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0
 },
 {
 "$type": "PMDC.Dungeon.WaitPlan, PMDC",
-"IQ": 228,
+"IQ": 236,
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0

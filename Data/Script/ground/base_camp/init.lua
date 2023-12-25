@@ -76,6 +76,8 @@ function base_camp.PrepareFirstTimeVisit()
   
 end
 
+SV.base_camp.FerryUnlocked = true
+GAME:UnlockDungeon("wishmakers_cave")
 --------------------------------------------------
 -- Map Begin Functions
 --------------------------------------------------
@@ -319,6 +321,9 @@ function base_camp.Ferry_Action(obj, activator)
   local ferry = CH('Lapras')
   UI:SetSpeaker(ferry)
   GAME:UnlockDungeon('wishmaker_cave')
+  -- GROUND:AnimateInDirection(activator, "Trip", Direction.Down, Direction.Down, 4, 1, 2)
+  -- GROUND:CharSetAction(activator, RogueEssence.Ground.PoseGroundAction(activator.Position, activator.Direction, RogueEssence.Content.GraphicsManager.GetAnimIndex("Trip")))
+  -- RogueEssence.Ground.FrameGroundAction(activator.CharLoc, Dir8.Down, "Trip", "")
   if not SV.base_camp.FerryIntroduced then
     UI:WaitShowDialogue(STRINGS:Format(MapStrings['Ferry_Line_001']))
 	SV.base_camp.FerryIntroduced = true
@@ -328,6 +333,7 @@ function base_camp.Ferry_Action(obj, activator)
   local ground_entrances = {}
   base_camp.ShowFerryMenu(dungeon_entrances,ground_entrances)
 end
+
 
 function base_camp.ShowFerryMenu(dungeon_entrances, ground_entrances)
   

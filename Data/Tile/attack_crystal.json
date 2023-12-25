@@ -173,6 +173,9 @@
 "AnimOverride": 0
 }
 },
+"Message": {
+"Key": "MSG_TILE_CHECK"
+},
 "OneTime": false
 }
 },

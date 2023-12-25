@@ -64,6 +64,30 @@
   <data name="MSG_SHIMMERING_END" xml:space="preserve">
     <value>The shimmering stopped.</value>
     <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_EFFECT_CLEAR_BODY" xml:space="preserve">
+    <value>All Pokémon are protected from stat drops!</value>
+    <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_EFFECT_CRITICAL" xml:space="preserve">
+    <value>All moves have a higher critical rate chance!</value>
+    <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_EFFECT_RANGE" xml:space="preserve">
+    <value>All moves have increased range!</value>
+    <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_EFFECT_PERFECT_ACCURACY" xml:space="preserve">
+    <value>All moves are guranteed to hit!</value>
+    <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_EFFECT_SERENE" xml:space="preserve">
+    <value>All moves have their additional effect chance boosted!</value>
+    <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_EFFECT_STATUS" xml:space="preserve">
+    <value>All Pokémon are protected from status conditions!</value>
+    <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_CRYSTAL_PROTECT" xml:space="preserve">
+    <value>{0} was protected by a mysterious power!</value>
+    <comment></comment>  </data>
+  <data name="MSG_SHIMMERING_CRYSTAL_STAT_DROP" xml:space="preserve">
+    <value>A mysterious power prevented {0}'s {2} from dropping!</value>
+    <comment></comment>  </data>
   <data name="MSG_CRYSTAL_DEFENSE_NO_MORE" xml:space="preserve">
     <value>{0} can't carry more Defense Crystals!</value>
     <comment></comment>  </data>

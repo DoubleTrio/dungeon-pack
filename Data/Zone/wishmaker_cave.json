@@ -12,7 +12,7 @@
 "Level": 35,
 "LevelCap": true,
 "KeepSkills": true,
-"TeamRestrict": true,
+"TeamRestrict": false,
 "TeamSize": 2,
 "MoneyRestrict": true,
 "BagRestrict": -1,
@@ -40,20 +40,6 @@
 "TileSight": 0,
 "CharSight": 1,
 "ClampCamera": false
-}
-},
-{
-"Key": {
-"str": [
--6
-]
-},
-"Value": {
-"$type": "PMDC.LevelGen.DefaultMapStatusStep`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], PMDC",
-"SetterID": "default_weather",
-"DefaultMapStatus": [
-"shimmering"
-]
 }
 },
 {
@@ -1286,7 +1272,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "defense_crystal",
+"ID": "crystal_glow",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -76503,7 +76489,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "defense_crystal",
+"ID": "crystal_glow",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -142459,6 +142445,93 @@
 "type": "PMDC.Dungeon.ShopModGenState"
 }
 ]
+},
+{
+"$type": "RogueEssence.LevelGen.ScriptZoneStep, RogueEssence",
+"Script": "ShimmeringZoneStep",
+"ArgTable": "{}"
+},
+{
+"$type": "RogueEssence.LevelGen.SpreadRoomZoneStep, RogueEssence",
+"Spawns": [
+{
+"Spawn": {
+"GridOption": {
+"$type": "RogueEssence.LevelGen.RoomGenLoadMap`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueEssence",
+"RoomTerrain": {
+"$type": "RogueEssence.Dungeon.Tile, RogueEssence",
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 0,
+"Y": 0
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+"PreventChanges": 3,
+"MapID": "crystal_wish_room"
+},
+"ListOption": {
+"$type": "RogueElements.RoomGenDefault`1[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence]], RogueElements"
+},
+"Filters": [
+{
+"$type": "RogueElements.RoomFilterComponent, RogueElements",
+"Negate": true,
+"Components": [
+{
+"$type": "RogueEssence.LevelGen.ImmutableRoom, RogueEssence"
+}
+]
+},
+{
+"$type": "PMDC.LevelGen.RoomFilterConnectivity, PMDC",
+"Connection": 1
+}
+]
+},
+"Rate": 10
+}
+],
+"PriorityGrid": {
+"str": [
+-4,
+1
+]
+},
+"PriorityList": {
+"str": [
+-2,
+2
+]
+},
+"SpreadPlan": {
+"$type": "RogueEssence.LevelGen.SpreadPlanQuota, RogueEssence",
+"Quota": {
+"$type": "RogueElements.RandRange, RogueElements",
+"Min": 1,
+"Max": 2
+},
+"Replaceable": false,
+"FloorRange": {
+"Min": 0,
+"Max": 1
+}
+},
+"ModStates": []
 }
 ],
 "IsRelevant": true,

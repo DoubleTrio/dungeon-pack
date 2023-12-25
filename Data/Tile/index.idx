@@ -2,6 +2,15 @@
 "Version": "0.7.21.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"sign": {
+"Name": {
+"DefaultText": "Sign",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
 "defense_crystal": {
 "Name": {
 "DefaultText": "Defense Crystal",
@@ -23,6 +32,24 @@
 "heal_crystal": {
 "Name": {
 "DefaultText": "Heal Crystal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"wish_crystal": {
+"Name": {
+"DefaultText": "Wish Crystal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"crystal_glow": {
+"Name": {
+"DefaultText": "Crystal Glow",
 "LocalTexts": {}
 },
 "Released": true,

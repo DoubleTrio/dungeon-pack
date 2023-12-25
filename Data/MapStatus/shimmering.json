@@ -44,9 +44,6 @@
 "DefaultHidden": false,
 "StatusStates": [
 {
-"$type": "RogueEssence.Dungeon.MapWeatherState, RogueEssence"
-},
-{
 "$type": "RogueEssence.Dungeon.MapCountDownState, RogueEssence",
 "Counter": 50
 },

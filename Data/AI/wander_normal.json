@@ -12,18 +12,6 @@
 "Assignable": false,
 "Plans": [
 {
-"$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
-"stairIds": [
-"heal_crystal",
-"attack_crystal",
-"defense_crystal"
-],
-"IQ": 4,
-"AttackRange": 0,
-"StatusRange": 0,
-"SelfStatusRange": 0
-},
-{
 "$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
 "AttackPattern": 2,
 "PositionPattern": 1,
