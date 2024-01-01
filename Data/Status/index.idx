@@ -22,7 +22,7 @@
 },
 "crystal_heal": {
 "Name": {
-"DefaultText": "Crystal Heal",
+"DefaultText": "Crystal Drain",
 "LocalTexts": {}
 },
 "Released": true,

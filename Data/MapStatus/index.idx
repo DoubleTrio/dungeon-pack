@@ -23,7 +23,61 @@
 "LocalTexts": {}
 },
 "Released": true,
+"Comment": "Perfect accuracy",
+"SortOrder": 0
+},
+"crystal_moment": {
+"Name": {
+"DefaultText": "Crystal Moment",
+"LocalTexts": {}
+},
+"Released": true,
 "Comment": "",
+"SortOrder": 0
+},
+"shimmering2": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Shimmering but with the added range.",
+"SortOrder": 0
+},
+"shimmering3": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Crit Chance",
+"SortOrder": 0
+},
+"shimmering4": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Status condtions",
+"SortOrder": 0
+},
+"shimmering5": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Serene Grace",
+"SortOrder": 0
+},
+"shimmering6": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Stat drops",
 "SortOrder": 0
 }
 }

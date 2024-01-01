@@ -4,17 +4,17 @@
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "wishmaker_cave": {
 "$type": "RogueEssence.Data.ZoneEntrySummary, RogueEssence",
-"NoEXP": true,
-"Level": 35,
+"NoEXP": false,
+"Level": 10,
 "LevelCap": true,
 "KeepSkills": true,
 "TeamRestrict": false,
 "TeamSize": 2,
 "MoneyRestrict": true,
 "BagRestrict": -1,
-"BagSize": 16,
+"BagSize": 24,
 "Rescues": 2,
-"CountedFloors": 30,
+"CountedFloors": 27,
 "Rogue": 2,
 "Grounds": [],
 "Maps": [
@@ -45,10 +45,7 @@
 23,
 24,
 25,
-26,
-27,
-28,
-29
+26
 ]
 ],
 "Name": {

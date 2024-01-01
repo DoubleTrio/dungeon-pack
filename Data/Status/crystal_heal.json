@@ -3,11 +3,11 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "Crystal Heal",
+"DefaultText": "Crystal Drain",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "",
+"DefaultText": "The user drains the HP of the enemy through attacks",
 "LocalTexts": {}
 },
 "Released": true,

@@ -37,47 +37,31 @@ end
 
 function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, args)
   
+  SV.Wishmaker = {}
+  SV.Wishmaker.TotalWishesPerFloor = 2
   -- 75% chance of shimmering
   local low = 0
   local high = 4 
+  local active_effect = RogueEssence.Data.ActiveEffect()
   local is_shimmering = _DATA.Save.Rand:Next(low, high) ~= 0
-
-  if is_shimmering then
-    local shimmering_status = LUA_ENGINE:MakeGenericType(DefaultMapStatusStepType, { MapGenContextType }, { "default_weather", "shimmering" })
-    local priority = RogueElements.Priority(-6)
-    queue:Enqueue(priority, shimmering_status)
-    local active_effect = RogueEssence.Data.ActiveEffect()
-
+  print(tostring( GAME:GetCurrentFloor()).. "HERE")
+  print(tostring(zoneContext))
+  print(tostring(DUNGEON:DungeonCurrentFloor()))
+  local is_beginning = zoneContext.CurrentID < 2
+  -- print(GAME:GetCurrentFloor())
+  if (is_shimmering or zoneContext.CurrentID == 2) and not is_beginning then
     local SHIMMERING_EVENTS = { 
-      -- {
-      --   effect = function ()
-      --     active_effect.OnActions:Add(-1, PMDC.Dungeon.AddRangeEvent(1))
-      --   end,
-      --   string_key = "MSG_SHIMMERING_EFFECT_RANGE"
-      -- },
-      -- {
-      --   effect = function ()
-      --     active_effect.OnActions:Add(-1, PMDC.Dungeon.SureShotEvent())
-      --   end,
-      --   string_key = "MSG_SHIMMERING_EFFECT_PERFECT_ACCURACY"
-      -- },
       {
         effect = function ()
-          local stats = LUA_ENGINE:MakeGenericType( ListType, { StatType }, { })
-          -- Shadow_Force_Hit_Light
-          -- Screen_Sparkle_RSE
-          --Last_Resort_Back
-          local string_key =  RogueEssence.StringKey("MSG_SHIMMERING_CRYSTAL_STAT_DROP")
-          local status_event = CreateShimmeringStatusEvent()
-          active_effect.BeforeStatusAdds:Add(0, PMDC.Dungeon.StatChangeCheck(stats, string_key, true, false, false, status_event))
+          active_effect.OnActions:Add(-1, PMDC.Dungeon.SureShotEvent())
         end,
-        string_key = "MSG_SHIMMERING_EFFECT_CLEAR_BODY"
+        string_key = "MSG_SHIMMERING_EFFECT_PERFECT_ACCURACY"
       },
       {
         effect = function ()
-          active_effect.OnActions:Add(-1, PMDC.Dungeon.BoostAdditionalEvent())
+          -- active_effect.OnActions:Add(-1, PMDC.Dungeon.AddRangeEvent(1))
         end,
-        string_key = "MSG_SHIMMERING_EFFECT_SERENE"
+        string_key = "MSG_SHIMMERING_EFFECT_RANGE"
       },
       {
         effect = function ()
@@ -94,18 +78,40 @@ function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, a
         end,
         string_key = "MSG_SHIMMERING_EFFECT_STATUS"
       },
+      {
+        effect = function ()
+          active_effect.OnActions:Add(-1, PMDC.Dungeon.BoostAdditionalEvent())
+        end,
+        string_key = "MSG_SHIMMERING_EFFECT_SERENE"
+      },
+      {
+        effect = function ()
+          local stats = LUA_ENGINE:MakeGenericType( ListType, { StatType }, { })
+          -- Shadow_Force_Hit_Light Screen_Sparkle_RSE, Last_Resort_Back
+          local string_key =  RogueEssence.StringKey("MSG_SHIMMERING_CRYSTAL_STAT_DROP")
+          local status_event = CreateShimmeringStatusEvent()
+          active_effect.BeforeStatusAdds:Add(0, PMDC.Dungeon.StatChangeCheck(stats, string_key, true, false, false, status_event))
+        end,
+        string_key = "MSG_SHIMMERING_EFFECT_CLEAR_BODY"
+      },
      }
-    local res = _DATA.Save.Rand:Next(#SHIMMERING_EVENTS)
-    local ev = SHIMMERING_EVENTS[res + 1]
+   
+    local index = _DATA.Save.Rand:Next(#SHIMMERING_EVENTS)
+    local shimmer_selection = "shimmering"
+    if index + 1 > 1 then
+      shimmer_selection = "shimmering" .. (index + 1)
+    end
+
+    local shimmering_status = LUA_ENGINE:MakeGenericType(DefaultMapStatusStepType, { MapGenContextType }, { "default_weather", shimmer_selection })
+    local priority = RogueElements.Priority(-6)
+    queue:Enqueue(priority, shimmering_status)
+    local ev = SHIMMERING_EVENTS[index + 1]
     ev.effect()
-    -- print(tostring(ev) .. "HERE")
-  
     active_effect.OnMapStarts:Add(1, RogueEssence.Dungeon.SingleCharScriptEvent("LogShimmeringEvent", Serpent.line({ StringKey = ev.string_key })))
   
     local dest_note = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { active_effect })
     local priority = RogueElements.Priority(1)
     queue:Enqueue(priority, dest_note)
-
   end
 end
 

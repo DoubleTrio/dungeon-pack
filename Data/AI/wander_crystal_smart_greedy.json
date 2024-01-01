@@ -8,7 +8,7 @@
 },
 "Released": true,
 "Comment": "Searches for Crystals",
-"ID": "wander_crystal_normal",
+"ID": "wander_crystal_smart_greedy",
 "Assignable": false,
 "Plans": [
 {

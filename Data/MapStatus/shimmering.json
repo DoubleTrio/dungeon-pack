@@ -7,11 +7,11 @@
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "All Pokémon moves are positively affected!",
+"DefaultText": "All moves have perfect accuracy!",
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "",
+"Comment": "Perfect accuracy",
 "CarryOver": false,
 "Emitter": {
 "$type": "RogueEssence.Content.ScreenRainEmitter, RogueEssence",

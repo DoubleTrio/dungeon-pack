@@ -2,6 +2,17 @@
 "Version": "0.7.21.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"thief": {
+"$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
+"Assignable": false,
+"Name": {
+"DefaultText": "Thief",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
 "wander_normal": {
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
@@ -50,22 +61,33 @@
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
 "Name": {
-"DefaultText": "",
+"DefaultText": "Normal Crystal Wander",
 "LocalTexts": {}
 },
-"Released": false,
-"Comment": "",
+"Released": true,
+"Comment": "Searches for Crystals",
 "SortOrder": 0
 },
 "wander_crystal_smart_greedy": {
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
 "Name": {
-"DefaultText": "",
+"DefaultText": "Normal Crystal Wander",
 "LocalTexts": {}
 },
-"Released": false,
-"Comment": "",
+"Released": true,
+"Comment": "Searches for Crystals",
+"SortOrder": 0
+},
+"thief_crystal": {
+"$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
+"Assignable": false,
+"Name": {
+"DefaultText": "Thief",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Thief Crystal",
 "SortOrder": 0
 }
 }

@@ -38,17 +38,11 @@
 {
 "$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
 "StairIds": [
-"stairs_back_down",
-"stairs_back_up",
-"stairs_exit_down",
-"stairs_exit_up",
-"stairs_go_up",
-"stairs_go_down",
 "heal_crystal",
 "attack_crystal",
 "defense_crystal"
 ],
-"IQ": 12,
+"IQ": 236,
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0
