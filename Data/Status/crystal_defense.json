@@ -7,7 +7,7 @@
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "The Pokémon will take less damage from oncoming attacks for several hits",
+"DefaultText": "The Pokémon will take less damage from oncoming attacks for several hits. The more Defense Crystal, the less damage the Pokémon will take.   ",
 "LocalTexts": {}
 },
 "Released": true,
@@ -29,7 +29,7 @@
 },
 {
 "$type": "RogueEssence.Dungeon.CountDownState, RogueEssence",
-"Counter": 3
+"Counter": 5
 }
 ],
 "OnSkillChanges": [],

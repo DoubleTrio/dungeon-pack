@@ -14,7 +14,7 @@
 "Comment": "",
 "Anim": {
 "AnimIndex": "Wish_Crystal",
-"FrameTime": 1,
+"FrameTime": 12,
 "StartFrame": -1,
 "EndFrame": -1,
 "AnimDir": -1,
@@ -47,6 +47,19 @@
 }
 }
 ],
-"InteractWithTiles": []
+"InteractWithTiles": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "ItemWishEvent",
+"ArgTable": "{}"
+}
+}
+]
 }
 }

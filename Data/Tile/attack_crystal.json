@@ -16,7 +16,7 @@
 "AnimIndex": "Attack_Crystal",
 "FrameTime": 12,
 "StartFrame": 0,
-"EndFrame": 3,
+"EndFrame": 4,
 "AnimDir": -1,
 "Alpha": 255,
 "AnimFlip": 0
@@ -29,8 +29,8 @@
 "BlockItem": true,
 "StepType": 3,
 "MinimapIcon": {
-"X": 0,
-"Y": 2
+"X": 2,
+"Y": 1
 },
 "MinimapColor": "255, 255, 0, 255",
 "LandedOnTiles": [

@@ -3,17 +3,17 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "Crystal Drain",
+"DefaultText": "Drain Crystal",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "The user drains the HP of the enemy through attacks",
+"DefaultText": "The Pokémon will restore its HP by a fraction damage taken by the target. The more Drain Crystal, the more HP the Pokémon will heal.",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
 "MenuName": true,
-"CarryOver": false,
+"CarryOver": true,
 "Emoticon": "Heal_Crystal_Up",
 "DropEmoticon": "Heal_Crystal_Up",
 "FreeEmote": "",
@@ -29,7 +29,7 @@
 },
 {
 "$type": "RogueEssence.Dungeon.CountDownState, RogueEssence",
-"Counter": 3
+"Counter": 5
 }
 ],
 "OnSkillChanges": [],

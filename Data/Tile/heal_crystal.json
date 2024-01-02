@@ -3,7 +3,7 @@
 "Object": {
 "$type": "RogueEssence.Data.TileData, RogueEssence",
 "Name": {
-"DefaultText": "Heal Crystal",
+"DefaultText": "Drain Crystal",
 "LocalTexts": {}
 },
 "Desc": {
@@ -29,8 +29,8 @@
 "BlockItem": true,
 "StepType": 3,
 "MinimapIcon": {
-"X": 0,
-"Y": 2
+"X": 2,
+"Y": 1
 },
 "MinimapColor": "255, 255, 0, 255",
 "LandedOnTiles": [

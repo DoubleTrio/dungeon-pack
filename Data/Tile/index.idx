@@ -31,7 +31,7 @@
 },
 "heal_crystal": {
 "Name": {
-"DefaultText": "Heal Crystal",
+"DefaultText": "Drain Crystal",
 "LocalTexts": {}
 },
 "Released": true,

@@ -1167,5 +1167,3 @@ function COMMON.EndDayCycle()
 	
   COMMON.UpdateDayEndVars()
 end
-
-print("HERE")

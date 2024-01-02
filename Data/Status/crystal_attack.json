@@ -7,7 +7,7 @@
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "The Pokémon will deal more damage",
+"DefaultText": "The Pokémon will deal more damage for the next several hits. The more Attack Crystal, the more damage the Pokémon will deal.   ",
 "LocalTexts": {}
 },
 "Released": true,
@@ -29,7 +29,7 @@
 },
 {
 "$type": "RogueEssence.Dungeon.CountDownState, RogueEssence",
-"Counter": 3
+"Counter": 5
 }
 ],
 "OnSkillChanges": [],
