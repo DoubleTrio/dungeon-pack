@@ -108,7 +108,7 @@ weavile,thief_crystal,,ice_punch,thief2,night_slash,agility,36,37,22,25
 crobat,wander_normal,,haze,cross_poison,brave_bird,,40,41,23,26
 electivire,wander_normal,,thunder_punch,cross_chop,discharge,light_screen,38,39,23,26
 farigiraf,wander_normal,sap_sipper,trick_room,dazzling_gleam,hyper_voice,future_sight,40,41,23,28
-glimmora,wander_normal,corrosion,toxic_spikes,rock_slide,,,40,41,23,26
+glimmora,wander_normal,corrosion,toxic_spikes,rock_slide,toxic,,40,41,23,26
 hatterene,wander_normal,healer,psychic,draining_kiss,heal_pulse,,38,39,23,26
 milotic,wander_normal,marvel_scale,hydro_pump,recover,ice_beam,dragon_tail,38,39,23,26
 reuniclus,wander_normal,,psychic,recover,ally_switch,reflect,38,39,23,26

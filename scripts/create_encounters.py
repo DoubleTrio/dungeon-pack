@@ -192,7 +192,7 @@ if __name__ == "__main__":
         ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 40, 41, 22, 27),
         ("tentacruel", "wander_normal", "liquid_ooze", ["haze", "sludge_wave", "water_pulse", "aqua_ring"], 40, 41, 22, 25),
         ("crobat", "wander_normal", "", ["haze", "cross_poison", "brave_bird"], 40, 41, 22, 25),
-        ("glimmora", "wander_normal", "corrosion", ["toxic_spikes", "rock_slide"], 40, 41, 22, 25),
+        ("glimmora", "wander_normal", "corrosion", ["toxic_spikes", "rock_slide", "toxic"], 40, 41, 22, 25),
 
         #25
         ("aggron", "wander_normal", "rock_head", ["metal_burst", "autotomize", "head_smash", "iron_head"], 41, 42, 24, 26),

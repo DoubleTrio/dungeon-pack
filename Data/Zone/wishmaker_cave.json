@@ -1,4 +1,4 @@
-{
+﻿{
   "Version": "0.7.21.0",
   "Object": {
     "$type": "RogueEssence.Data.ZoneData, RogueEssence",
@@ -44888,7 +44888,8 @@
                     },
                     "SpecifiedSkills": [
                       "toxic_spikes",
-                      "rock_slide"
+                      "rock_slide",
+                      "toxic"
                     ],
                     "Intrinsic": "corrosion",
                     "Tactic": "wander_normal",
@@ -44896,7 +44897,7 @@
                     "SpawnFeatures": [
                       {
                         "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-                        "StartAt": 2,
+                        "StartAt": 3,
                         "Remove": false
                       },
                       {
