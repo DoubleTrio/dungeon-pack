@@ -115,11 +115,11 @@ if __name__ == "__main__":
         ("lunatone", "wander_normal", "levitate", ["moonblast", "moonlight", "hypnosis"], 29, 30, 15, 18),
         ("swoobat", "wander_normal", "", ["air_cutter", "imprison"], 29, 30, 15, 18),
         ("chatot", "wander_normal", "", ["chatter", "round", "mimic"], 29, 30, 15, 18),
-        ("spinda", "wander_normal", "tangled_feet", ["focus_punch", "teeter_dance"], 29, 30, 15, 18),
+        ("spinda", "wander_normal", "own_tempo", ["focus_punch", "teeter_dance", "hyper_voice"], 29, 30, 15, 18),
         ("relicanth", "wander_normal", "", ["dive", "ancient_power"], 29, 30, 15, 18),
         ("nosepass", "wander_normal", "sturdy", ["power_gem", "discharge"], 29, 30, 15, 18),
         ("tinkatuff", "thief_crystal", "mold_breaker", ["thief2", "fake_out", "play_rough"], 29, 30, 15, 18),
-        ("rhydon", "wander_normal", "rock_head", ["scary_face", "drill_run"], 29, 30, 15, 18),
+        ("rhydon", "wander_normal", "rock_head", ["scary_face", "drill_run", "rock_blast"], 29, 30, 15, 18),
         ("girafarig", "wander_normal", "inner_focus", ["nasty_plot", "baton_pass", "agility", "stomp"],  29, 30, 15, 18),
 
         #17
@@ -183,10 +183,10 @@ if __name__ == "__main__":
 
         #23
         ("milotic", "wander_normal", "marvel_scale", ["hydro_pump", "recover", "ice_beam", "dragon_tail"], 38, 39, 22, 25),
-        ("reuniclus", "wander_normal", "", ["psychic", "recover", "ally_switch"], 38, 39, 22, 25),
-        ("hatterene", "wander_normal", "healer", ["psybeam", "draining_kiss", "heal_pulse"], 38, 39, 22, 25),
+        ("reuniclus", "wander_normal", "", ["psychic", "recover", "ally_switch", "reflect"], 38, 39, 22, 25),
+        ("hatterene", "wander_normal", "healer", ["psychic", "draining_kiss", "heal_pulse"], 38, 39, 22, 25),
         ("electivire", "wander_normal", "", ["thunder_punch", "cross_chop", "discharge", "light_screen"], 38, 39, 22, 25),
-        ("swalot", "wander_normal", "liquid_ooze", ["sludge_bomb", "stockpile", "spit_up", "swallow"], 38, 39, 22, 25),
+        ("swalot", "wander_normal", "liquid_ooze", ["sludge_bomb", "stockpile", "body_slam", "swallow"], 38, 39, 22, 25),
 
         #24
         ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 40, 41, 22, 27),
@@ -375,11 +375,14 @@ if __name__ == "__main__":
     ]
 
     def create_monster_house(mon_name):
+        form = 0
+        if mon_name == "raichu":
+            form = 1
         base = {
             "Spawn": {
                 "BaseForm": {
                     "Species": mon_name,
-                    "Form": 0,
+                    "Form": form,
                     "Skin": "",
                     "Gender": -1
                 },
@@ -463,12 +466,15 @@ if __name__ == "__main__":
 
     def create_mon(mon):
         name, tactic, ability, moves, min_lev, max_lev, min_floor, max_floor = mon[0], mon[1], mon[2], mon[3], mon[4], mon[5], mon[6], mon[7]
+        form = 0
+        if name == "raichu":
+            form = 1
         base_structure = {
             "Spawn": {
                 "Spawn": {
                     "BaseForm": {
                         "Species": name,
-                        "Form": 0,
+                        "Form": form,
                         "Skin": "",
                         "Gender": -1
                     },
@@ -513,7 +519,7 @@ if __name__ == "__main__":
             present.add(name)
             print(str(mon) + ",")
 
-    with open('../Data/Zone/wishmaker_cave.json', 'r', encoding='utf-8-sig') as file:
+    with open('Data/Zone/wishmaker_cave.json', 'r', encoding='utf-8-sig') as file:
         data = json.load(file)
 
     data['Object']['Segments'][0]["ZoneSteps"][4]["Spawns"] = result

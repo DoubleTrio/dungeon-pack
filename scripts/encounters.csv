@@ -32,7 +32,7 @@ morelull,retreater,,sleep_powder,leech_seed,,,22,23,9,11
 aron,wander_normal,rock_head,metal_claw,dig,,,22,23,10,12
 tinkatink,wander_normal,mold_breaker,baby_doll_eyes,metal_claw,covet2,,22,23,10,13
 clauncher,wander_normal,mega_launcher,aqua_jet,vice_grip,,,23,24,11,14
-impidimp,thief_crystal,pickpocket,torment,foul_play,play_rough,,22,23,11,15
+impidimp,wander_crystal_normal_greedy,pickpocket,torment,foul_play,play_rough,,22,23,11,15
 kirlia,wander_normal,telepathy,magical_leaf,heal_pulse,lucky_chant,,23,24,11,14
 luvdisc,wander_normal,,wish,water_pulse,round,,23,24,11,15
 mareanie,wander_normal,limber,acid_spray,,,,22,23,11,14
@@ -58,9 +58,9 @@ loudred,wander_normal,,uproar,stomp,round,,29,30,16,19
 lunatone,wander_normal,levitate,moonblast,moonlight,hypnosis,,29,30,16,19
 nosepass,wander_normal,sturdy,power_gem,discharge,,,29,30,16,19
 relicanth,wander_normal,,dive,ancient_power,,,29,30,16,19
-rhydon,wander_normal,rock_head,scary_face,drill_run,,,29,30,16,19
+rhydon,wander_normal,rock_head,scary_face,drill_run,rock_blast,,29,30,16,19
 solrock,wander_normal,levitate,psyshock,rock_slide,stealth_rock,,29,30,16,19
-spinda,wander_normal,tangled_feet,focus_punch,teeter_dance,,,29,30,16,19
+spinda,wander_normal,own_tempo,focus_punch,teeter_dance,hyper_voice,,29,30,16,19
 swoobat,wander_normal,,air_cutter,imprison,,,29,30,16,19
 tinkatuff,thief_crystal,mold_breaker,thief2,fake_out,play_rough,,29,30,16,19
 espeon,wander_normal,magic_bounce,dazzling_gleam,psybeam,wish,,30,31,17,20
@@ -109,10 +109,10 @@ crobat,wander_normal,,haze,cross_poison,brave_bird,,40,41,23,26
 electivire,wander_normal,,thunder_punch,cross_chop,discharge,light_screen,38,39,23,26
 farigiraf,wander_normal,sap_sipper,trick_room,dazzling_gleam,hyper_voice,future_sight,40,41,23,28
 glimmora,wander_normal,corrosion,toxic_spikes,rock_slide,,,40,41,23,26
-hatterene,wander_normal,healer,psybeam,draining_kiss,heal_pulse,,38,39,23,26
+hatterene,wander_normal,healer,psychic,draining_kiss,heal_pulse,,38,39,23,26
 milotic,wander_normal,marvel_scale,hydro_pump,recover,ice_beam,dragon_tail,38,39,23,26
-reuniclus,wander_normal,,psychic,recover,ally_switch,,38,39,23,26
-swalot,wander_normal,liquid_ooze,sludge_bomb,stockpile,spit_up,swallow,38,39,23,26
+reuniclus,wander_normal,,psychic,recover,ally_switch,reflect,38,39,23,26
+swalot,wander_normal,liquid_ooze,sludge_bomb,stockpile,body_slam,swallow,38,39,23,26
 tentacruel,wander_normal,liquid_ooze,haze,sludge_wave,water_pulse,aqua_ring,40,41,23,26
 aggron,wander_normal,rock_head,metal_burst,autotomize,head_smash,iron_head,41,42,25,27
 honchkrow,wander_crystal_normal,,pursuit,night_slash,wing_attack,taunt,41,42,25,27
