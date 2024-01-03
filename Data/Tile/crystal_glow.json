@@ -29,7 +29,7 @@
 "BlockItem": true,
 "StepType": 1,
 "MinimapIcon": {
-"X": 2,
+"X": 1,
 "Y": 2
 },
 "MinimapColor": "255, 165, 0, 255",

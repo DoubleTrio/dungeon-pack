@@ -1,5 +1,7 @@
 require 'common'
 
+GAME:UnlockDungeon("wishmakers_cave")
+
 local base_camp = {}
 local MapStrings = {}
 --------------------------------------------------
@@ -76,8 +78,6 @@ function base_camp.PrepareFirstTimeVisit()
   
 end
 
-SV.base_camp.FerryUnlocked = true
-GAME:UnlockDungeon("wishmakers_cave")
 --------------------------------------------------
 -- Map Begin Functions
 --------------------------------------------------

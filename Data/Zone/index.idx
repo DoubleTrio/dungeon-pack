@@ -11,7 +11,7 @@
 "TeamRestrict": false,
 "TeamSize": 2,
 "MoneyRestrict": true,
-"BagRestrict": -1,
+"BagRestrict": 2,
 "BagSize": 24,
 "Rescues": 2,
 "CountedFloors": 27,

@@ -1,0 +1,44 @@
+﻿{
+"Version": "0.7.21.0",
+"Object": {
+"$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"thief2": {
+"Name": {
+"DefaultText": "Thief",
+"LocalTexts": {
+"fr": "Larcin",
+"de": "Raub",
+"es": "Ladrón",
+"it": "Furto",
+"ko": "도둑질",
+"ja": "どろぼう",
+"ja-jp": "どろぼう",
+"zh-hans": "小偷",
+"zh-hant": "小偷"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 168
+},
+"covet2": {
+"Name": {
+"DefaultText": "Covet",
+"LocalTexts": {
+"fr": "Implore",
+"de": "Bezirzer",
+"es": "Antojo",
+"it": "Supplica",
+"ko": "탐내다",
+"ja": "ほしがる",
+"ja-jp": "ほしがる",
+"zh-hans": "渴望",
+"zh-hant": "渴望"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 343
+}
+}
+}

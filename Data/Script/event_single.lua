@@ -14,17 +14,17 @@ SINGLE_CHAR_SCRIPT = {}
 
 local WISH_TABLE = {
   {
-    Min = 7,
+    Min = 9,
     Max = 14,
     Items = {
-      { Item = "money", Amount = 50, Weight = 23 },
+      { Item = "money", Amount = 150, Weight = 20 },
       { Item = "money", Amount = 200, Weight = 15 },
       { Item = "money", Amount = 300, Weight = 15 },
       { Item = "money", Amount = 400, Weight = 15 },
-      { Item = "loot_pearl", Amount = 1, Weight = 10 },
-      { Item = "loot_pearl", Amount = 2, Weight = 10 },
+      { Item = "loot_pearl", Amount = 1, Weight = 11 },
+      { Item = "loot_pearl", Amount = 2, Weight = 11 },
       { Item = "loot_pearl", Amount = 3, Weight = 10 },
-      { Item = "loot_nugget", Amount = 1, Weight = 2 }
+      { Item = "loot_nugget", Amount = 1, Weight = 3 }
     },
   },
   {
@@ -43,7 +43,7 @@ local WISH_TABLE = {
       { Item = "berry_salac", Amount = 1, Weight = 3 },
       { Item = "berry_micle", Amount = 1, Weight = 3 },
       { Item = "berry_ganlon", Amount = 1, Weight = 3 },
-      { Item = "berry_emigma", Amount = 1, Weight = 3 },
+      { Item = "berry_enigma", Amount = 1, Weight = 3 },
       { Item = "berry_lum", Amount = 1, Weight = 10 },
       { Item = "food_apple", Amount = 1, Weight = 18 },
       { Item = "food_apple_big", Amount = 1, Weight = 6 },
@@ -54,7 +54,7 @@ local WISH_TABLE = {
     },
   },
   {
-    Min = 10,
+    Min = 11,
     Max = 15,
     Items = {
       { Item = "seed_ban", Amount = 1, Weight = 7 },
@@ -276,6 +276,24 @@ local WISH_TABLE = {
       { Item = "tm_x_scissor", Amount = 1, Weight = 1 },
     },
   },
+	{
+		Min = 7,
+		Max = 9,
+		Items = {
+			{ Item = "apricorn_big", Amount = 1, Weight = 3 },
+			{ Item = "apricorn_black", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_blue", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_brown", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_green", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_plain", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_purple", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_red", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_white", Amount = 1, Weight = 2 },
+			{ Item = "apricorn_yellow", Amount = 1, Weight = 2 },
+			{ Item = "medicine_amber_tear", Amount = 1, Weight = 7 },
+			{ Item = "machine_assembly_box", Amount = 1, Weight = 4 },
+		},
+	}
 }
 
 function ResetEffectTile(owner)
@@ -343,18 +361,18 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
   local base_loc = owner.TileLoc
   local entries = {
     {item = "wish_gem", weight = 450},
-    {item = "loot_nugget", weight = 20},
-    {item = "loot_pearl", weight = 75},
-    {item = "evo_fire_stone", weight = 5},
-    {item = "evo_water_stone", weight = 5},
-    {item = "evo_thunder_stone", weight = 5},
-    {item = "evo_leaf_stone", weight = 5},
-    {item = "evo_ice_stone", weight = 5}, -- 25
-    {item = "evo_moon_stone", weight = 5}, -- 35
-    {item = "evo_dusk_stone", weight = 5}, -- 40
-    {item = "evo_dawn_stone", weight = 5}, -- 45
-    {item = "evo_shiny_stone", weight = 5}, -- 55
-    {item = "", weight = 405},
+    -- {item = "loot_nugget", weight = 20},
+    -- {item = "loot_pearl", weight = 75},
+    -- {item = "evo_fire_stone", weight = 5},
+    -- {item = "evo_water_stone", weight = 5},
+    -- {item = "evo_thunder_stone", weight = 5},
+    -- {item = "evo_leaf_stone", weight = 5},
+    -- {item = "evo_ice_stone", weight = 5}, -- 25
+    -- {item = "evo_moon_stone", weight = 5}, -- 35
+    -- {item = "evo_dusk_stone", weight = 5}, -- 40
+    -- {item = "evo_dawn_stone", weight = 5}, -- 45
+    -- {item = "evo_shiny_stone", weight = 5}, -- 55
+    -- {item = "", weight = 405},
     -- {item = "nugget", weight = 5},
   }
   GAME:WaitFrames(10)
@@ -365,9 +383,9 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
   
   local item = PickByWeights(entries)
   
-  if DUNGEON:DungeonCurrentFloor() == 1 then
-    item = "wish_gem"
-  end
+  -- if DUNGEON:DungeonCurrentFloor() == 1 then
+  --   item = "wish_gem"
+  -- end
 
   if item ~= "" then
     local inv_item =  RogueEssence.Dungeon.InvItem(item, false, 1)
@@ -412,7 +430,6 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
 
   function checkOp(test_loc)
     local test_tile = _ZONE.CurrentMap:GetTile(test_loc)
-    print(tostring(test_tile.Data:GetData().BlockType == RogueEssence.Data.TerrainData.Mobility.Passable) .. "HERE " .. tostring(test_loc))
     if test_tile ~= nil and not _ZONE.CurrentMap:TileBlocked(test_loc) and test_tile.Data:GetData().BlockType == RogueEssence.Data.TerrainData.Mobility.Passable and (test_tile.Effect.ID == nil or test_tile.Effect.ID == "") then
       local item_count = _ZONE.CurrentMap.Items.Count
       for item_idx = 0, item_count - 1, 1 do
@@ -477,8 +494,7 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
 	-- UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_LOCK_GUILD_OPEN"):ToLocal(), context.User:GetDisplayName(true)))
 	-- TASK:WaitTask(owner:InteractWithTile(context))
 	-- print(tostring(_DATA.CurrentReplay) .. "CheckingCurrentReplay")
-  if RogueEssence.Data.DataManager.CurrentReplay == nil then
-		print("IN_REPLAY")
+  if _DATA.CurrentReplay == nil then
     local chara = context.User
     UI:ResetSpeaker()
     DUNGEON:CharSetAction(chara, RogueEssence.Dungeon.CharAnimPose(chara.CharLoc, chara.CharDir, 0, -1))
@@ -497,14 +513,20 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
     if result then
       local slot = GAME:FindPlayerItem("wish_gem", true, true) 
 
-      if slot:IsValid() and SV.Wishmaker.TotalWishesPerFloor > 0 then        
-        local end_choice = 5
-        local wish_choices = {"Money", "Food", "Items", "Power", "Don't know"}    
+			-- if slot:IsValid() and SV.Wishmaker.TotalWishesPerFloor > 0 then  
+      if slot:IsValid() then        
+        local end_choice = 6
+        local wish_choices = {"Money", "Food", "Items", "Power", "Friends", "Don't know"}    
         UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
         UI:WaitForChoice()
         choice = UI:ChoiceResult()
-        if choice ~= 5 then
-          SV.Wishmaker.TotalWishesPerFloor = SV.Wishmaker.TotalWishesPerFloor - 1
+        if choice ~= 6 then
+					if slot.IsEquipped then
+						GAME:TakePlayerEquippedItem(slot.Slot)
+					else
+						GAME:TakePlayerBagItem(slot.Slot)
+					end
+          -- SV.Wishmaker.TotalWishesPerFloor = SV.Wishmaker.TotalWishesPerFloor - 1
           GAME:WaitFrames(50)
           SOUND:PlayBattleSE("_UNK_EVT_044");
           GAME:WaitFrames(10)

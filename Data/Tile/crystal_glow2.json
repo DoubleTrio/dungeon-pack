@@ -1,0 +1,63 @@
+﻿{
+"Version": "0.7.21.0",
+"Object": {
+"$type": "RogueEssence.Data.TileData, RogueEssence",
+"Name": {
+"DefaultText": "Crystal Glow",
+"LocalTexts": {}
+},
+"Desc": {
+"DefaultText": "A shiny glow, indicating that an item is hidden there!",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"Anim": {
+"AnimIndex": "Crystal_Glow2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"Offset": {
+"X": 0,
+"Y": 0
+},
+"Layer": 0,
+"BlockItem": true,
+"StepType": 1,
+"MinimapIcon": {
+"X": 1,
+"Y": 2
+},
+"MinimapColor": "255, 165, 0, 255",
+"LandedOnTiles": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.TriggerUnderfootEvent, PMDC"
+}
+}
+],
+"InteractWithTiles": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "CrystalGlowEvent",
+"ArgTable": "{}"
+}
+}
+]
+}
+}
