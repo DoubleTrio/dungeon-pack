@@ -66,20 +66,24 @@ function BATTLE_SCRIPT.CrystalHealCountdownRemove(owner, ownerChar, context, arg
   local stack = context.User:GetStatusEffect(status)
   local dmg = context:GetContextStateInt(luanet.ctype(DamageDealtType), 0)
 
-  local hp_drain_event = PMDC.Dungeon.HPDrainEvent(2)
-  -- local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
-  -- mock_context.User = context.User
+  local crystal_stack = stack.StatusStates:Get(luanet.ctype(StackType))
+
+  local drain_denom = 3
+  if crystal_stack.Stack == 2 then
+    drain_denom = 2
+  elseif crystal_stack.Stack == 3 then
+    drain_denom = 1
+  end
+
+  local hp_drain_event = PMDC.Dungeon.HPDrainEvent(drain_denom)
   TASK:WaitTask(hp_drain_event:Apply(owner, ownerChar, context))
 
-
-  if stack ~= nil then
-    local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
-    if context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill or context.ActionType == RogueEssence.Dungeon.BattleActionType.Item and dmg > 0 then
-      s.Counter = s.Counter - 1
-    end
-    if s.Counter <= 0 then
-      TASK:WaitTask(context.User:RemoveStatusEffect(status, true))
-    end
+  local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
+  if context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill or context.ActionType == RogueEssence.Dungeon.BattleActionType.Item and dmg > 0 then
+    s.Counter = s.Counter - 1
+  end
+  if s.Counter <= 0 then
+    TASK:WaitTask(context.User:RemoveStatusEffect(status, true))
   end
 end
 

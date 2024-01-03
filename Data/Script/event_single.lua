@@ -516,7 +516,7 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
 			-- if slot:IsValid() and SV.Wishmaker.TotalWishesPerFloor > 0 then  
       if slot:IsValid() then        
         local end_choice = 6
-        local wish_choices = {"Money", "Food", "Items", "Power", "Friends", "Don't know"}    
+        local wish_choices = {"Money", "Food", "Items", "Power", "Allies", "Don't know"}    
         UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
         UI:WaitForChoice()
         choice = UI:ChoiceResult()
