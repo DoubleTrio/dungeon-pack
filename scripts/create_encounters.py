@@ -166,7 +166,7 @@ if __name__ == "__main__":
         ("klefki", "wander_normal", "prankster", ["torment", "spikes", "imprison"], 35, 36, 20, 23),
         ("tinkaton", "wander_crystal_normal", "mold_breaker", ["play_rough", "thief2", "fake_out", "metal_claw"], 35, 36, 20, 23),
         ("chimecho", "wander_normal", "", ["yawn", "healing_wish", "gravity", "safeguard"], 35, 36, 20, 24),
-        ("bronzong", "retreater", "", ["imprison", "gyro_ball", "safeguard", "gravity"], 35, 36, 20, 23),
+        ("bronzong", "retreater", "", ["imprison", "gyro_ball", "trick_room", "gravity"], 35, 36, 20, 23),
         ("sylveon", "wander_crystal_normal", "", ["calm_mind", "fairy_wind", "helping_hand", "wish"], 35, 36, 20, 23),
         ("rhyperior", "wander_normal", "", ["drill_run", "rock_polish", "rock_slide"], 35, 36, 20, 24),
 
@@ -187,12 +187,13 @@ if __name__ == "__main__":
         ("hatterene", "wander_normal", "healer", ["psychic", "draining_kiss", "heal_pulse"], 38, 39, 22, 25),
         ("electivire", "wander_normal", "", ["thunder_punch", "cross_chop", "discharge", "light_screen"], 38, 39, 22, 25),
         ("swalot", "wander_normal", "liquid_ooze", ["sludge_bomb", "stockpile", "body_slam", "swallow"], 38, 39, 22, 25),
+        ("togekiss", "wander_normal", "serene_grace", ["air_slash", "aura_sphere", "heat_wave"], 38, 39, 22, 25),
 
         #24
-        ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 40, 41, 22, 27),
-        ("tentacruel", "wander_normal", "liquid_ooze", ["haze", "sludge_wave", "water_pulse", "aqua_ring"], 40, 41, 22, 25),
-        ("crobat", "wander_normal", "", ["haze", "cross_poison", "brave_bird"], 40, 41, 22, 25),
-        ("glimmora", "wander_normal", "corrosion", ["toxic_spikes", "rock_slide", "toxic"], 40, 41, 22, 25),
+        ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 40, 41, 23, 26),
+        ("tentacruel", "wander_normal", "liquid_ooze", ["haze", "sludge_wave", "water_pulse", "aqua_ring"], 40, 41, 23, 26),
+        ("crobat", "wander_normal", "", ["haze", "cross_poison", "brave_bird"], 40, 41, 23, 26),
+        ("glimmora", "wander_normal", "corrosion", ["toxic_spikes", "rock_slide", "toxic"], 40, 41, 23, 26),
 
         #25
         ("aggron", "wander_normal", "rock_head", ["metal_burst", "autotomize", "head_smash", "iron_head"], 41, 42, 24, 26),

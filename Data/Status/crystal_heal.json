@@ -38,22 +38,7 @@
 "OnPickups": [],
 "BeforeStatusAdds": [],
 "BeforeStatusAddings": [],
-"OnStatusAdds": [
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "PMDC.Dungeon.StatusLogStackEvent, PMDC",
-"Message": {
-"Key": "MSG_CRYSTAL_HEAL"
-},
-"Delay": true
-}
-}
-],
+"OnStatusAdds": [],
 "OnStatusRemoves": [],
 "OnMapStatusAdds": [],
 "OnMapStatusRemoves": [],
@@ -134,7 +119,22 @@
 }
 ],
 "BeforeStatusAddings": [],
-"OnStatusAdds": [],
+"OnStatusAdds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusLogStackEvent, PMDC",
+"Message": {
+"Key": "MSG_CRYSTAL_HEAL"
+},
+"Delay": true
+}
+}
+],
 "OnStatusRemoves": [
 {
 "Key": {
