@@ -33513,7 +33513,7 @@
                   "$type": "RogueElements.InitGridPlanStep`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements",
                   "CellWidth": 10,
                   "CellHeight": 10,
-                  "CellX": 6,
+                  "CellX": 7,
                   "CellY": 5,
                   "CellWall": 1,
                   "Wrap": false
@@ -33528,12 +33528,12 @@
                 "Value": {
                   "$type": "RogueElements.GridPathCircle`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements",
                   "CircleRoomRatio": {
-                    "Min": 70,
-                    "Max": 71
+                    "Min": 100,
+                    "Max": 101
                   },
                   "Paths": {
-                    "Min": 4,
-                    "Max": 7
+                    "Min": 10,
+                    "Max": 11
                   },
                   "GenericRooms": {
                     "$type": "RogueElements.SpawnList`1[[RogueElements.RoomGen`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements]], RogueElements",
@@ -34070,8 +34070,8 @@
                       },
                       "AmountSpawner": {
                         "$type": "RogueElements.RandRange, RogueElements",
-                        "Min": 2,
-                        "Max": 4
+                        "Min": 4,
+                        "Max": 5
                       }
                     }
                   }
@@ -34260,7 +34260,7 @@
                   "$type": "RogueElements.InitGridPlanStep`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements",
                   "CellWidth": 10,
                   "CellHeight": 10,
-                  "CellX": 6,
+                  "CellX": 7,
                   "CellY": 5,
                   "CellWall": 1,
                   "Wrap": false
@@ -34275,12 +34275,12 @@
                 "Value": {
                   "$type": "RogueElements.GridPathCircle`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements",
                   "CircleRoomRatio": {
-                    "Min": 70,
-                    "Max": 71
+                    "Min": 100,
+                    "Max": 101
                   },
                   "Paths": {
-                    "Min": 4,
-                    "Max": 7
+                    "Min": 10,
+                    "Max": 11
                   },
                   "GenericRooms": {
                     "$type": "RogueElements.SpawnList`1[[RogueElements.RoomGen`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements]], RogueElements",
@@ -34699,8 +34699,8 @@
                       },
                       "AmountSpawner": {
                         "$type": "RogueElements.RandRange, RogueElements",
-                        "Min": 2,
-                        "Max": 4
+                        "Min": 4,
+                        "Max": 5
                       }
                     }
                   }
@@ -34817,8 +34817,8 @@
                       },
                       "AmountSpawner": {
                         "$type": "RogueElements.RandRange, RogueElements",
-                        "Min": 2,
-                        "Max": 4
+                        "Min": 4,
+                        "Max": 5
                       }
                     }
                   }

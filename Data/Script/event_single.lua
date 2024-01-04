@@ -17,14 +17,14 @@ local WISH_TABLE = {
     Min = 9,
     Max = 14,
     Items = {
-      { Item = "money", Amount = 150, Weight = 20 },
+      { Item = "money", Amount = 150, Weight = 15 },
       { Item = "money", Amount = 200, Weight = 15 },
       { Item = "money", Amount = 300, Weight = 15 },
       { Item = "money", Amount = 400, Weight = 15 },
-      { Item = "loot_pearl", Amount = 1, Weight = 11 },
-      { Item = "loot_pearl", Amount = 2, Weight = 11 },
-      { Item = "loot_pearl", Amount = 3, Weight = 10 },
-      { Item = "loot_nugget", Amount = 1, Weight = 3 }
+      { Item = "loot_pearl", Amount = 1, Weight = 12 },
+      { Item = "loot_pearl", Amount = 2, Weight = 12 },
+      { Item = "loot_pearl", Amount = 3, Weight = 12 },
+      { Item = "loot_nugget", Amount = 1, Weight = 4 }
     },
   },
   {
@@ -70,8 +70,6 @@ local WISH_TABLE = {
       { Item = "herb_white", Amount = 1, Weight = 2 },
       { Item = "herb_mental", Amount = 1, Weight = 2 },
       { Item = "herb_power", Amount = 1, Weight = 2 },
-      { Item = "held_flame_orb", Amount = 1, Weight = 2 },
-      { Item = "held_toxic_orb", Amount = 1, Weight = 2 },
       { Item = "orb_all_dodge", Amount = 1, Weight = 2 },
       { Item = "orb_all_protect", Amount = 1, Weight = 2 },
       { Item = "orb_cleanse", Amount = 1, Weight = 2 },
@@ -130,7 +128,6 @@ local WISH_TABLE = {
       { Item = "gummi_brown", Amount = 1, Weight = 3 },
       { Item = "gummi_clear", Amount = 1, Weight = 3 },
       { Item = "gummi_gold", Amount = 1, Weight = 3 },
-      { Item = "seed_joy", Amount = 1, Weight = 3 },
       { Item = "gummi_grass", Amount = 1, Weight = 3 },
       { Item = "gummi_green", Amount = 1, Weight = 3 },
       { Item = "gummi_magenta", Amount = 1, Weight = 3 },
@@ -280,6 +277,60 @@ local WISH_TABLE = {
 		Min = 7,
 		Max = 9,
 		Items = {
+			{ Item = "held_flame_orb", Amount = 1, Weight = 2 },
+			{ Item = "held_toxic_orb", Amount = 1, Weight = 2 },
+      { Item = "held_assault_vest", Amount = 1, Weight = 2 },
+			{ Item = "held_big_root", Amount = 1, Weight = 2 },
+      { Item = "held_black_belt", Amount = 1, Weight = 2 },
+			{ Item = "held_black_sludge", Amount = 1, Weight = 2 },
+			{ Item = "held_choice_band", Amount = 1, Weight = 2 },
+			{ Item = "held_choice_scarf", Amount = 1, Weight = 2 },
+			{ Item = "held_choice_specs", Amount = 1, Weight = 2 },
+			{ Item = "held_defense_scarf", Amount = 1, Weight = 2 },
+			{ Item = "held_expert_belt", Amount = 1, Weight = 2 },
+			{ Item = "held_pass_scarf", Amount = 1, Weight = 2 },
+			{ Item = "held_mobile_scarf", Amount = 1, Weight = 2 },
+			{ Item = "held_metronome", Amount = 1, Weight = 2 },
+			{ Item = "held_wide_lens", Amount = 1, Weight = 2 },
+			{ Item = "held_x_ray_specs", Amount = 1, Weight = 4 },
+			{ Item = "held_twist_band", Amount = 1, Weight = 2 },
+			{ Item = "held_trap_scarf", Amount = 1, Weight = 2 },
+			{ Item = "held_sticky_barb", Amount = 1, Weight = 2 },
+			{ Item = "held_power_band", Amount = 1, Weight = 2 },
+			{ Item = "held_pierce_band", Amount = 1, Weight = 2 },
+			{ Item = "held_reunion_cape", Amount = 1, Weight = 2 },
+			{ Item = "held_scope_lens", Amount = 1, Weight = 2 },
+			{ Item = "held_shed_shell", Amount = 1, Weight = 2 },
+			{ Item = "held_shell_bell", Amount = 1, Weight = 2 },
+			{ Item = "held_life_orb", Amount = 1, Weight = 2 },
+			{ Item = "held_iron_ball", Amount = 1, Weight = 2 },
+			{ Item = "held_goggle_specs", Amount = 1, Weight = 2 },
+			{ Item = "held_friend_bow", Amount = 1, Weight = 1 },
+			{ Item = "held_heal_ribbon", Amount = 1, Weight = 2 },
+			{ Item = "held_blank_plate", Amount = 1, Weight = 1},
+			{ Item = "held_draco_plate", Amount = 1, Weight = 1},
+			{ Item = "held_dread_plate", Amount = 1, Weight = 1},
+			{ Item = "held_earth_plate", Amount = 1, Weight = 1},
+			{ Item = "held_fist_plate", Amount = 1, Weight = 1},
+			{ Item = "held_flame_plate", Amount = 1, Weight = 1},
+			{ Item = "held_icicle_plate", Amount = 1, Weight = 1},
+			{ Item = "held_insect_plate", Amount = 1, Weight = 1},
+			{ Item = "held_iron_plate", Amount = 1, Weight = 1},
+			{ Item = "held_meadow_plate", Amount = 1, Weight = 1},
+			{ Item = "held_mind_plate", Amount = 1, Weight = 1},
+			{ Item = "held_pixie_plate", Amount = 1, Weight = 1},
+			{ Item = "held_sky_plate", Amount = 1, Weight = 1},
+			{ Item = "held_splash_plate", Amount = 1, Weight = 1},
+			{ Item = "held_spooky_plate", Amount = 1, Weight = 1},
+			{ Item = "held_stone_plate", Amount = 1, Weight = 1},
+			{ Item = "held_toxic_plate", Amount = 1, Weight = 1},
+			{ Item = "held_zap_plate", Amount = 1, Weight = 1},
+		}
+	},
+	{
+		Min = 7,
+		Max = 9,
+		Items = {
 			{ Item = "apricorn_big", Amount = 1, Weight = 3 },
 			{ Item = "apricorn_black", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_blue", Amount = 1, Weight = 2 },
@@ -290,7 +341,7 @@ local WISH_TABLE = {
 			{ Item = "apricorn_red", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_white", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_yellow", Amount = 1, Weight = 2 },
-			{ Item = "medicine_amber_tear", Amount = 1, Weight = 7 },
+			{ Item = "medicine_amber_tear", Amount = 1, Weight = 8 },
 			{ Item = "machine_assembly_box", Amount = 1, Weight = 4 },
 		},
 	}
@@ -496,6 +547,10 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
 	-- print(tostring(_DATA.CurrentReplay) .. "CheckingCurrentReplay")
   if _DATA.CurrentReplay == nil then
     local chara = context.User
+		if chara.CharDir ~= Direction.Up then
+			return
+		end
+
     UI:ResetSpeaker()
     DUNGEON:CharSetAction(chara, RogueEssence.Dungeon.CharAnimPose(chara.CharLoc, chara.CharDir, 0, -1))
     local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
@@ -515,12 +570,12 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
 
 			-- if slot:IsValid() and SV.Wishmaker.TotalWishesPerFloor > 0 then  
       if slot:IsValid() then        
-        local end_choice = 6
-        local wish_choices = {"Money", "Food", "Items", "Power", "Allies", "Don't know"}    
+        local end_choice = 7
+        local wish_choices = {"Money", "Food", "Items", "Power", "Equipment", "Allies", "Don't know"}    
         UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
         UI:WaitForChoice()
         choice = UI:ChoiceResult()
-        if choice ~= 6 then
+        if choice ~= 7 then
 					if slot.IsEquipped then
 						GAME:TakePlayerEquippedItem(slot.Slot)
 					else
