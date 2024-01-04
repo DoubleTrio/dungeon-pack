@@ -38,7 +38,22 @@
 "OnPickups": [],
 "BeforeStatusAdds": [],
 "BeforeStatusAddings": [],
-"OnStatusAdds": [],
+"OnStatusAdds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusLogStackEvent, PMDC",
+"Message": {
+"Key": "MSG_CRYSTAL_DEFENSE"
+},
+"Delay": true
+}
+}
+],
 "OnStatusRemoves": [],
 "OnMapStatusAdds": [],
 "OnMapStatusRemoves": [],

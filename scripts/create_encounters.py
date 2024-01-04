@@ -97,7 +97,7 @@ if __name__ == "__main__":
         #14
         ("swoobat", "wander_normal", "", ["air_cutter", "imprison"], 26, 27, 13, 15),
         ("onix", "wander_normal", "", ["bind", "rage", "rock_tomb"], 26, 27, 13, 15),
-        ("togetic", "wander_normal", "", ["double_team", "baton_pass", "after_you", "ancient_power"], 27, 28, 13, 15),
+        ("togetic", "wander_crystal_normal", "", ["double_team", "baton_pass", "after_you", "ancient_power"], 27, 28, 13, 15),
         ("sableye", "wander_crystal_normal_greedy", "prankster", ["punishment", "taunt", "shadow_claw"], 27, 28, 13, 16),
 
 
@@ -120,7 +120,7 @@ if __name__ == "__main__":
         ("nosepass", "wander_normal", "sturdy", ["power_gem", "discharge"], 29, 30, 15, 18),
         ("tinkatuff", "thief_crystal", "mold_breaker", ["thief2", "fake_out", "play_rough"], 29, 30, 15, 18),
         ("rhydon", "wander_normal", "rock_head", ["scary_face", "drill_run", "rock_blast"], 29, 30, 15, 18),
-        ("girafarig", "wander_normal", "inner_focus", ["nasty_plot", "baton_pass", "agility", "stomp"],  29, 30, 15, 18),
+        ("girafarig", "wander_crystal_normal", "inner_focus", ["nasty_plot", "baton_pass", "agility", "stomp"],  29, 30, 15, 18),
 
         #17
         ("wigglytuff", "wander_normal", "friend_guard", ["round", "wish", "disable", "endeavor"], 31, 32, 16, 19),
@@ -151,7 +151,7 @@ if __name__ == "__main__":
 
         #20
         ("togedemaru", "wander_normal", "iron_barbs", ["zing_zap", "tickle"], 33, 34, 19, 21),
-        ("ledian", "wander_normal", "", ["encore", "baton_pass", "wish", "silver_wind"], 35, 36, 19, 22),
+        ("ledian", "wander_crystal_normal", "", ["encore", "baton_pass", "wish", "silver_wind"], 35, 36, 19, 22),
         ("porygon2", "wander_normal", "", ["conversion_2", "recover", "psybeam", "charge_beam"], 33, 36, 19, 21),
 
 
@@ -171,7 +171,7 @@ if __name__ == "__main__":
         ("rhyperior", "wander_normal", "", ["drill_run", "rock_polish", "rock_slide"], 35, 36, 20, 24),
 
         #22
-        ("mr_mime", "wander_normal", "",["baton_pass", "calm_mind", "telekinesis"], 40, 41, 21, 25),
+        ("mr_mime", "wander_crystal_normal", "",["baton_pass", "calm_mind", "telekinesis"], 40, 41, 21, 25),
         ("dugtrio", "wander_normal", "arena_trap", ["sucker_punch", "bulldoze", "earth_power"], 36, 37, 21, 24),
         ("gardevoir", "wander_normal", "telepathy", ["wish", "moonblast", "psyshock"], 36, 37, 21, 24),
         ("weavile", "thief_crystal", "", ["ice_punch", "thief2", "night_slash", "agility"], 36, 37, 21, 24),

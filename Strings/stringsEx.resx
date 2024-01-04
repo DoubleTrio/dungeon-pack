@@ -106,6 +106,15 @@
   <data name="MSG_CRYSTAL_HEAL_END" xml:space="preserve">
     <value>{0}'s Drain Crystal's power wore off!</value>
     <comment></comment>  </data>
+  <data name="MSG_CRYSTAL_ATTACK" xml:space="preserve">
+    <value>{0}'s Attack Crystal power rose to {1}!</value>
+    <comment></comment>  </data>
+  <data name="MSG_CRYSTAL_DEFENSE" xml:space="preserve">
+    <value>{0}'s Defense Crystal power rose to {1}!</value>
+    <comment></comment>  </data>
+  <data name="MSG_CRYSTAL_HEAL" xml:space="preserve">
+    <value>{0}'s Drain Crystal power rose to {1}!</value>
+    <comment></comment>  </data>
   <data name="MSG_GLOW_FOUND_ITEM" xml:space="preserve">
     <value>{0} found a {1}!</value>
     <comment></comment>  

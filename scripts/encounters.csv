@@ -48,12 +48,12 @@ volbeat,wander_normal,swarm,dazzling_gleam,bug_buzz,round,helping_hand,25,26,13,
 onix,wander_normal,,bind,rage,rock_tomb,,26,27,14,16
 sableye,wander_crystal_normal_greedy,prankster,punishment,taunt,shadow_claw,,27,28,14,17
 swoobat,wander_normal,,air_cutter,imprison,,,26,27,14,16
-togetic,wander_normal,,double_team,baton_pass,after_you,ancient_power,27,28,14,16
+togetic,wander_crystal_normal,,double_team,baton_pass,after_you,ancient_power,27,28,14,16
 bronzor,wander_normal,levitate,psywave,stored_power,,,29,30,15,16
 rhyhorn,wander_normal,rock_head,rock_blast,bulldoze,,,27,28,15,16
 skarmory,wander_normal,sturdy,spikes,metal_claw,,,27,28,15,17
 chatot,wander_normal,,chatter,round,mimic,,29,30,16,19
-girafarig,wander_normal,inner_focus,nasty_plot,baton_pass,agility,stomp,29,30,16,19
+girafarig,wander_crystal_normal,inner_focus,nasty_plot,baton_pass,agility,stomp,29,30,16,19
 loudred,wander_normal,,uproar,stomp,round,,29,30,16,19
 lunatone,wander_normal,levitate,moonblast,moonlight,hypnosis,,29,30,16,19
 nosepass,wander_normal,sturdy,power_gem,discharge,,,29,30,16,19
@@ -80,7 +80,7 @@ audino,wander_normal,healer,healing_wish,after_you,helping_hand,round,32,33,19,2
 golbat,wander_normal,,haze,wing_attack,giga_drain,,31,32,19,21
 lairon,wander_normal,rock_head,autotomize,iron_head,rock_slide,,32,33,19,21
 shelgon,wander_normal,rock_head,dragon_breath,scary_face,thrash,,32,33,19,21
-ledian,wander_normal,,encore,baton_pass,wish,silver_wind,35,36,20,23
+ledian,wander_crystal_normal,,encore,baton_pass,wish,silver_wind,35,36,20,23
 mawile,wander_crystal_normal,,iron_head,play_rough,metal_burst,,32,33,20,21
 porygon2,wander_normal,,conversion_2,recover,psybeam,charge_beam,33,36,20,22
 sliggoo,wander_normal,gooey,dragon_breath,acid_spray,,,32,33,20,21
@@ -102,7 +102,7 @@ claydol,wander_normal,,heal_block,teleport,extrasensory,explosion,36,37,22,25
 dugtrio,wander_normal,arena_trap,sucker_punch,bulldoze,earth_power,,36,37,22,25
 gardevoir,wander_normal,telepathy,wish,moonblast,psyshock,,36,37,22,25
 gothitelle,wander_normal,shadow_tag,calm_mind,stored_power,shadow_ball,,36,37,22,25
-mr_mime,wander_normal,,baton_pass,calm_mind,telekinesis,,40,41,22,26
+mr_mime,wander_crystal_normal,,baton_pass,calm_mind,telekinesis,,40,41,22,26
 raichu,wander_normal,,psychic,thunderbolt,round,,36,37,22,25
 weavile,thief_crystal,,ice_punch,thief2,night_slash,agility,36,37,22,25
 crobat,wander_normal,,haze,cross_poison,brave_bird,,40,41,23,26
