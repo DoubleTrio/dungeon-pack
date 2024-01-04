@@ -27,7 +27,7 @@ if __name__ == "__main__":
         ("swinub", "wander_normal", "", ["mud_bomb"], 14, 15, 3, 5),
 
         #5
-        ("nickit", "thief_crystal", "stakeout", ["thief"], 16, 17, 4, 5),
+        ("nickit", "thief_crystal", "stakeout", ["thief2"], 16, 17, 4, 5),
 
         #by 14, 16
         #6

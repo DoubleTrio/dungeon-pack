@@ -2,6 +2,7 @@ BATTLE_SCRIPT = {}
 
 StackType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
+TotalDamageDealtType = luanet.import_type('PMDC.Dungeon.TotalDamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 
 function BATTLE_SCRIPT.CrystalDefenseCountdownRemove(owner, ownerChar, context, args)
@@ -23,7 +24,7 @@ end
 function BATTLE_SCRIPT.CrystalAttackCountdownRemove(owner, ownerChar, context, args)
   local status = owner.ID
   local stack = context.User:GetStatusEffect(status)
-  local dmg = context:GetContextStateInt(luanet.ctype(DamageDealtType), 0)
+  local dmg = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
   if stack ~= nil then
     local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
     if (context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill or context.ActionType == RogueEssence.Dungeon.BattleActionType.Item) and dmg > 0 then
@@ -38,9 +39,8 @@ end
 function BATTLE_SCRIPT.CrystalHealCountdownRemove(owner, ownerChar, context, args)
   local status = owner.ID
   local stack = context.User:GetStatusEffect(status)
-  local dmg = context:GetContextStateInt(luanet.ctype(DamageDealtType), 0)
-
   local crystal_stack = stack.StatusStates:Get(luanet.ctype(StackType))
+  local dmg = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
 
   local drain_denom = 3
   if crystal_stack.Stack == 2 then
