@@ -17,3 +17,4 @@ A mod that adds more dungeons to base PMDO. Currently, 1 additional dungeon is i
 
 ## Graphic Resources
 - **[Crystal Graphics / Base](https://craftpix.net/freebies/top-down-crystals-pixel-art/)**
+- **[Miles Farber](https://www.youtube.com/@danirbumusic/videos)** - **[Item Assets](https://github.com/MilesFarber/ItemAsset)**
