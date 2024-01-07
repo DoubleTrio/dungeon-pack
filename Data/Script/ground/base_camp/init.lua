@@ -1,7 +1,9 @@
 require 'common'
 
 GAME:UnlockDungeon("wishmakers_cave")
-
+GAME:UnlockDungeon("lava_floe_island")
+SV.guildmaster_summit.GameComplete = true
+SV.base_camp.CenterStatueDate = "1"
 local base_camp = {}
 local MapStrings = {}
 --------------------------------------------------

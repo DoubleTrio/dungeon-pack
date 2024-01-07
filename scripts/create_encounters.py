@@ -73,7 +73,7 @@ if __name__ == "__main__":
         ("sneasel", "wander_crystal_normal", "", ["taunt", "icy_wind", "fury_swipes"], 23, 24, 10, 13),
         ("kirlia", "wander_normal", "telepathy", ["magical_leaf", "heal_pulse", "lucky_chant"], 23, 24, 10, 13),
         ("mareanie", "wander_normal", "limber", ["acid_spray"], 22, 23, 10, 13),
-        ("impidimp", "wander_crystal_normal_greedy", "pickpocket", ["torment", "foul_play", "play_rough"], 22, 23, 10, 14),
+        ("impidimp", "thief_crystal", "pickpocket2", ["torment", "foul_play", "play_rough"], 22, 23, 10, 14),
 
         #12
         ("porygon", "wander_crystal_normal", "analytic", ["conversion", "signal_beam", "charge_beam"], 24, 25, 11, 14),

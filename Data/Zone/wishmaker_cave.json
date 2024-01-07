@@ -1,4 +1,4 @@
-{
+﻿{
 "Version": "0.7.21.0",
 "Object": {
 "$type": "RogueEssence.Data.ZoneData, RogueEssence",
@@ -41837,8 +41837,8 @@
 "foul_play",
 "play_rough"
 ],
-"Intrinsic": "pickpocket",
-"Tactic": "wander_crystal_normal_greedy",
+"Intrinsic": "pickpocket2",
+"Tactic": "thief",
 "SpawnConditions": [],
 "SpawnFeatures": [
 {

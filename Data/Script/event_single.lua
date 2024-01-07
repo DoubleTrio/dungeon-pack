@@ -17,14 +17,14 @@ local WISH_TABLE = {
     Min = 9,
     Max = 14,
     Items = {
-      { Item = "money", Amount = 150, Weight = 15 },
+      { Item = "money", Amount = 150, Weight = 16 },
       { Item = "money", Amount = 200, Weight = 15 },
       { Item = "money", Amount = 300, Weight = 15 },
       { Item = "money", Amount = 400, Weight = 15 },
       { Item = "loot_pearl", Amount = 1, Weight = 12 },
       { Item = "loot_pearl", Amount = 2, Weight = 12 },
       { Item = "loot_pearl", Amount = 3, Weight = 12 },
-      { Item = "loot_nugget", Amount = 1, Weight = 4 }
+      { Item = "loot_nugget", Amount = 1, Weight = 3 }
     },
   },
   {
@@ -117,8 +117,8 @@ local WISH_TABLE = {
     }
   },
   {
-    Min = 7,
-    Max = 10,
+    Min = 8,
+    Max = 9,
     Items = {
       { Item = "machine_recall_box", Amount = 1, Weight = 10 },
       { Item = "seed_joy", Amount = 1, Weight = 15 },
@@ -535,110 +535,97 @@ end
 
 
 function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
-	print("ITEM_WISH_EVENT")
+	local chara = context.User
+	UI:ResetSpeaker()
+	DUNGEON:CharSetAction(chara, RogueEssence.Dungeon.CharAnimPose(chara.CharLoc, chara.CharDir, 0, -1))
+	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
+	crystal_moment_status:LoadFromData()
+	TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+
+	_ZONE.CurrentMap.HideMinimap = true
+	local curr_song = RogueEssence.GameManager.Instance.Song;
+	SOUND:StopBGM()
+	UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The world around you holds their breath, as the crystal shines brightly.")
+	UI:ChoiceMenuYesNo("Would you like to make a wish?", false)
+	UI:WaitForChoice()
+	local result = UI:ChoiceResult()
+	if result then
+		local slot = GAME:FindPlayerItem("wish_gem", true, true) 
+		if slot:IsValid() then        
+			local end_choice = 7
+			local wish_choices = {"Money", "Food", "Items", "Power", "Equipment", "Allies", "Don't know"}    
+			UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
+			UI:WaitForChoice()
+			choice = UI:ChoiceResult()
+			if choice ~= 7 then
+				if slot.IsEquipped then
+					GAME:TakePlayerEquippedItem(slot.Slot)
+				else
+					GAME:TakePlayerBagItem(slot.Slot)
+				end
+				GAME:WaitFrames(50)
+				SOUND:PlayBattleSE("_UNK_EVT_044");
+				GAME:WaitFrames(10)
+				GAME:FadeOut(true, 40)
+				-- SOUND:PlayBattleSE("_UNK_EVT_091");
+				-- SOUND:PlayBattleSE("_UNK_EVT_096");
+				SOUND:PlayBattleSE("EVT_EP_Regi_Permission");
+				-- SOUND:PlayBattleSE("EVT_Dimenstional_Scream");
+				-- SOUND:PlayBattleSE("EVT_Fade_White");
+				-- SOUND:PlayBattleSE("EVT_Evolution_Start");
+				TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+				-- SOUND:PlayBattleSE("_UNK_EVT_074");
+				-- SOUND:PlayBattleSE("_UNK_EVT_084");
+							-- SOUND:PlayBattleSE("_UNK_EVT_087");
+				local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Last_Resort_Front", 4), 1)
+
+				-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10);
+				emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left);
+				_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw);
+				GAME:FadeIn(60)
+				GAME:WaitFrames(80)
+				local arguments = {}
+				local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
+				local item_table = WISH_TABLE[choice]
+				arguments.MinAmount = item_table.Min
+				arguments.MaxAmount = item_table.Max
+				local items = item_table.Items
+				for _, value in ipairs(items) do
+					local item_name = value.Item
+					if item_name == "money" then
+						Items:Add(RogueEssence.Dungeon.MapItem.CreateMoney(value.Amount), value.Weight)
+					else
+						Items:Add(RogueEssence.Dungeon.MapItem(item_name, value.Amount), value.Weight)
+					end
+				end
+				arguments.Items = Items
+				SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+				GAME:WaitFrames(20)
+			end
+		else
+			UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
+		end
+	end
+	UI:WaitShowDialogue("The crystal became dimmer.")
+	
+	TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+	SOUND:PlayBGM(curr_song, true, 0)
+	GAME:WaitFrames(20)
+
+	_ZONE.CurrentMap.HideMinimap = false
+	GAME:WaitFrames(20)
+	local stand_anim =  RogueEssence.Dungeon.CharAnimNone(context.User.CharLoc, context.User.CharDir)
+	stand_anim.MajorAnim = true
+	TASK:WaitTask(context.User:StartAnim(stand_anim))
 end
 
--- THIS EVENT CURRENTLY BREAKS FOR REPLAYS
 function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
-	-- UI:ResetSpeaker()
-	-- UI:WaitShowDialogue("HI")
-	-- UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_LOCK_GUILD_OPEN"):ToLocal(), context.User:GetDisplayName(true)))
-	-- TASK:WaitTask(owner:InteractWithTile(context))
-	-- print(tostring(_DATA.CurrentReplay) .. "CheckingCurrentReplay")
-  if _DATA.CurrentReplay == nil then
     local chara = context.User
-		if chara.CharDir ~= Direction.Up then
-			return
+		if chara.CharDir ~= Direction.Up or chara ~= _DUNGEON.ActiveTeam.Leader then
+			return 
 		end
 
-    UI:ResetSpeaker()
-    DUNGEON:CharSetAction(chara, RogueEssence.Dungeon.CharAnimPose(chara.CharLoc, chara.CharDir, 0, -1))
-    local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
-    crystal_moment_status:LoadFromData()
-    TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
-
-    _ZONE.CurrentMap.HideMinimap = true
-    local curr_song = RogueEssence.GameManager.Instance.Song;
-    SOUND:StopBGM()
-    UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The world around you holds their breath, as the crystal shines brightly.")
-    -- local msg = STRINGS:FormatKey("DLG_TRY_AGAIN_ASK");
-    UI:ChoiceMenuYesNo("Would you like to make a wish?", false)
-    UI:WaitForChoice()
-    local result = UI:ChoiceResult()
-    if result then
-      local slot = GAME:FindPlayerItem("wish_gem", true, true) 
-
-			-- if slot:IsValid() and SV.Wishmaker.TotalWishesPerFloor > 0 then  
-      if slot:IsValid() then        
-        local end_choice = 7
-        local wish_choices = {"Money", "Food", "Items", "Power", "Equipment", "Allies", "Don't know"}    
-        UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
-        UI:WaitForChoice()
-        choice = UI:ChoiceResult()
-        if choice ~= 7 then
-					if slot.IsEquipped then
-						GAME:TakePlayerEquippedItem(slot.Slot)
-					else
-						GAME:TakePlayerBagItem(slot.Slot)
-					end
-          -- SV.Wishmaker.TotalWishesPerFloor = SV.Wishmaker.TotalWishesPerFloor - 1
-          GAME:WaitFrames(50)
-          SOUND:PlayBattleSE("_UNK_EVT_044");
-          GAME:WaitFrames(10)
-          GAME:FadeOut(true, 40)
-          -- SOUND:PlayBattleSE("_UNK_EVT_091");
-          -- SOUND:PlayBattleSE("_UNK_EVT_096");
-          SOUND:PlayBattleSE("EVT_EP_Regi_Permission");
-          -- SOUND:PlayBattleSE("EVT_Dimenstional_Scream");
-          -- SOUND:PlayBattleSE("EVT_Fade_White");
-          -- SOUND:PlayBattleSE("EVT_Evolution_Start");
-          TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
-          -- SOUND:PlayBattleSE("_UNK_EVT_074");
-          -- SOUND:PlayBattleSE("_UNK_EVT_084");
-                -- SOUND:PlayBattleSE("_UNK_EVT_087");
-          local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Last_Resort_Front", 4), 1)
-
-          -- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10);
-          emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left);
-          _DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw);
-          GAME:FadeIn(60)
-          GAME:WaitFrames(80)
-          local arguments = {}
-          local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
-          local item_table = WISH_TABLE[choice]
-          arguments.MinAmount = item_table.Min
-          arguments.MaxAmount = item_table.Max
-          local items = item_table.Items
-          for _, value in ipairs(items) do
-            local item_name = value.Item
-            if item_name == "money" then
-              Items:Add(RogueEssence.Dungeon.MapItem.CreateMoney(value.Amount), value.Weight)
-            else
-              Items:Add(RogueEssence.Dungeon.MapItem(item_name, value.Amount), value.Weight)
-            end
-          end
-          arguments.Items = Items
-          SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-          GAME:WaitFrames(20)
-        end
-      else
-        UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
-      end
-    end
-    UI:WaitShowDialogue("The crystal became dimmer.")
-    
-    TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
-    SOUND:PlayBGM(curr_song, true, 0)
-    GAME:WaitFrames(20)
-
-    _ZONE.CurrentMap.HideMinimap = false
-    GAME:WaitFrames(20)
-    local stand_anim =  RogueEssence.Dungeon.CharAnimNone(context.User.CharLoc, context.User.CharDir)
-    stand_anim.MajorAnim = true
-    TASK:WaitTask(context.User:StartAnim(stand_anim))
-	else
-		-- TODO - FIGURE OUT UI STUFF
-	end
+		_DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
 end
 
 function PickByWeights(entries)
@@ -832,14 +819,17 @@ function SINGLE_CHAR_SCRIPT.SleepingCalderaSummonHeatran(owner, ownerChar, conte
 end
 
 function SINGLE_CHAR_SCRIPT.GuildBlock(owner, ownerChar, context, args)
+  
   if not SV.guildmaster_summit.GameComplete then
     UI:ResetSpeaker()
     UI:SetAutoFinish(true)
     UI:WaitShowDialogue(RogueEssence.StringKey("DLG_LOCK_GUILD"):ToLocal())
   else
+    
     UI:ResetSpeaker()
     UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_LOCK_GUILD_OPEN"):ToLocal(), context.User:GetDisplayName(true)))
-    TASK:WaitTask(owner:InteractWithTile(context))
+	
+	_DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
   end
 end
 
@@ -2000,3 +1990,4 @@ function SINGLE_CHAR_SCRIPT.TileTestChange(owner, ownerChar, context, args)
 	  SINGLE_CHAR_SCRIPT.SetTileData("test_dungeon_wall", "test_dungeon_floor", "test_dungeon_secondary")
 	end
 end
+

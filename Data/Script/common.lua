@@ -135,8 +135,19 @@ end
 
 function COMMON.ShowDestinationMenu(dungeon_entrances, ground_entrances)
   
-  --check for unlock of dungeons
   local open_dests = {}
+  --check for unlock of grounds
+  for ii = 1,#ground_entrances,1 do
+    if ground_entrances[ii].Flag then
+	  local ground_id = ground_entrances[ii].Zone
+	  local zone_summary = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Zone]:Get(ground_id)
+	  local ground = _DATA:GetGround(zone_summary.Grounds[ground_entrances[ii].ID])
+	  local ground_name = ground:GetColoredName()
+      table.insert(open_dests, { Name=ground_name, Dest=RogueEssence.Dungeon.ZoneLoc(ground_id, -1, ground_entrances[ii].ID, ground_entrances[ii].Entry) })
+	end
+  end
+  
+  --check for unlock of dungeons
   for ii = 1,#dungeon_entrances,1 do
     if GAME:DungeonUnlocked(dungeon_entrances[ii]) then
 	local zone_summary = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Zone]:Get(dungeon_entrances[ii])
@@ -149,17 +160,6 @@ function COMMON.ShowDestinationMenu(dungeon_entrances, ground_entrances)
 		end
         table.insert(open_dests, { Name=zone_name, Dest=RogueEssence.Dungeon.ZoneLoc(dungeon_entrances[ii], 0, 0, 0) })
 	  end
-	end
-  end
-  
-  --check for unlock of grounds
-  for ii = 1,#ground_entrances,1 do
-    if ground_entrances[ii].Flag then
-	  local ground_id = ground_entrances[ii].Zone
-	  local zone_summary = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Zone]:Get(ground_id)
-	  local ground = _DATA:GetGround(zone_summary.Grounds[ground_entrances[ii].ID])
-	  local ground_name = ground:GetColoredName()
-      table.insert(open_dests, { Name=ground_name, Dest=RogueEssence.Dungeon.ZoneLoc(ground_id, -1, ground_entrances[ii].ID, ground_entrances[ii].Entry) })
 	end
   end
   
@@ -306,6 +306,45 @@ function COMMON.GiftItemFull(player, receive_item, fanfare, force_storage)
   UI:ImportSpeakerSettings(orig_settings)
 end
 
+-- useful for counting the number of multiple items carried by the player at the same time
+function COMMON.GetPlayerItemsCount(item_id_list, check_storage)
+    local item_count_list = {}
+    for _, item_id in item_id_list do item_count_list[item_id] = 0 end
+
+    for i=0, GAME:GetPlayerBagCount()-1, 1 do
+        local item = GAME:GetPlayerBagItem(i)
+        if item_count_list[item.ID] then
+            local amount = 1
+            if _DATA:GetItem(item.ID).MaxStack >0 then amount = item.Amount end
+            item_count_list[item.ID] = item_count_list[item.ID] + amount
+        end
+    end
+    if not check_storage then return item_count_list end
+
+    for key in pairs(item_count_list) do
+        item_count_list[key] = item_count_list[key] + GAME:GetPlayerStorageItemCount(key)
+    end
+    return item_count_list
+end
+
+-- counts the number of a specific item carried by the player
+function COMMON.GetPlayerItemCount(item_id, check_storage)
+    local item_count = 0
+
+    for i=0, GAME:GetPlayerBagCount()-1, 1 do
+        local item = GAME:GetPlayerBagItem(i)
+        if item.ID == item_id then
+            local amount = 1
+            if _DATA:GetItem(item.ID).MaxStack >0 then amount = item.Amount end
+            item_count = item_count + amount
+        end
+    end
+    if not check_storage then return item_count end
+
+    item_count = item_count + GAME:GetPlayerStorageItemCount(item_id)
+    return item_count
+end
+
 function COMMON.GiftKeyItem(player, item_name)
   local orig_settings = UI:ExportSpeakerSettings()
   SOUND:PlayFanfare("Fanfare/Treasure")
@@ -393,6 +432,48 @@ function COMMON.LearnMoveFlow(member, move, replace_msg)
 		end
 	end
 	return false
+end
+
+function COMMON.GetTutorableMoves(member, tutor_moves)
+	
+	local valid_moves = {}
+	local playerMonId = member.BaseForm
+	
+	while playerMonId ~= nil do
+		local mon = _DATA:GetMonster(playerMonId.Species)
+		local form = mon.Forms[playerMonId.Form]
+	  
+		--for each shared skill
+		for move_idx = 0, form.SharedSkills.Count - 1, 1 do
+			local move = form.SharedSkills[move_idx].Skill
+			local already_learned = member:HasBaseSkill(move)
+			if not already_learned and tutor_moves[move] ~= nil then
+				--check if the move tutor list contains it as nonspecial
+				if not tutor_moves[move].Special then
+					valid_moves[move] = tutor_moves[move]
+				end
+			end
+		end
+		--for each secret skill
+		for move_idx = 0, form.SecretSkills.Count - 1, 1 do
+			local move = form.SecretSkills[move_idx].Skill
+			local already_learned = member:HasBaseSkill(move)
+			if not already_learned and tutor_moves[move] ~= nil then
+				--check if the move tutor list contains it as special
+				if tutor_moves[move].Special then
+					valid_moves[move] = tutor_moves[move]
+				end
+			end
+		end
+		
+		if mon.PromoteFrom ~= "" then
+		  playerMonId = RogueEssence.Dungeon.MonsterID(mon.PromoteFrom, form.PromoteForm, "normal", Gender.Genderless)
+		else
+		  playerMonId = nil
+		end
+	end
+  
+  return valid_moves
 end
 
 function COMMON.ClearPlayerPrices()
@@ -1047,6 +1128,27 @@ function COMMON.FindMissionEscort(missionId)
   return escort
 end
 
+function COMMON.TakeMissionItem(quest)
+
+    local item_slot = GAME:FindPlayerItem(quest.TargetItem.ID, true, true)
+	if not item_slot:IsValid() then
+		--do nothing
+	elseif item_slot.IsEquipped then
+		GAME:TakePlayerEquippedItem(item_slot.Slot)
+		quest.Complete = COMMON.MISSION_COMPLETE
+	else
+		GAME:TakePlayerBagItem(item_slot.Slot)
+		quest.Complete = COMMON.MISSION_COMPLETE
+	end
+end
+
+function COMMON.CompleteMission(questname)
+  local quest = SV.missions.Missions[questname]
+  quest.Complete = COMMON.MISSION_ARCHIVED
+  SV.missions.FinishedMissions[questname] = quest
+  SV.missions.Missions[questname] = nil
+end
+
 function COMMON.EndDungeonDay(result, zoneId, structureId, mapId, entryId)
   COMMON.EndDayCycle()
   GAME:EndDungeonRun(result, zoneId, structureId, mapId, entryId, true, true)
@@ -1082,6 +1184,7 @@ function COMMON.EndDayCycle()
   --reshuffle items
 
   SV.adventure.Thief = false
+  SV.adventure.Tutors = { }
   SV.base_shop = { }
   
   math.randomseed(GAME:GetDailySeed())
