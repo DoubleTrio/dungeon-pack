@@ -31,8 +31,7 @@ local WISH_TABLE = {
     Min = 9,
     Max = 12,
     Items = {
-      { Item = "food_grimy", Amount = 1, Weight = 2 },
-      { Item = "berry_leppa", Amount = 1, Weight = 12 },
+      { Item = "berry_leppa", Amount = 1, Weight = 13 },
       { Item = "berry_sitrus", Amount = 1, Weight = 8 },
       { Item = "berry_oran", Amount = 1, Weight = 8 },
       { Item = "berry_apicot", Amount = 1, Weight = 3 },
@@ -45,7 +44,7 @@ local WISH_TABLE = {
       { Item = "berry_ganlon", Amount = 1, Weight = 3 },
       { Item = "berry_enigma", Amount = 1, Weight = 3 },
       { Item = "berry_lum", Amount = 1, Weight = 10 },
-      { Item = "food_apple", Amount = 1, Weight = 18 },
+      { Item = "food_apple", Amount = 1, Weight = 19 },
       { Item = "food_apple_big", Amount = 1, Weight = 6 },
       { Item = "food_apple_huge", Amount = 1, Weight = 3 },
       { Item = "food_apple_golden", Amount = 1, Weight = 1 },
@@ -63,7 +62,7 @@ local WISH_TABLE = {
       { Item = "seed_pure", Amount = 1, Weight = 2 },
       { Item = "seed_blast", Amount = 1, Weight = 2 },
       { Item = "seed_ice", Amount = 1, Weight = 2 },
-      { Item = "seed_reviver", Amount = 1, Weight = 12 },
+      { Item = "seed_reviver", Amount = 1, Weight = 16 },
       { Item = "seed_warp", Amount = 1, Weight = 2 },
       { Item = "seed_doom", Amount = 1, Weight = 2 },
       { Item = "seed_ice", Amount = 1, Weight = 2 },
@@ -140,7 +139,7 @@ local WISH_TABLE = {
       { Item = "gummi_sky", Amount = 1, Weight = 3 },
       { Item = "gummi_white", Amount = 1, Weight = 3 },
       { Item = "gummi_yellow", Amount = 1, Weight = 3 },
-      { Item = "gummi_wonder", Amount = 1, Weight = 3 },
+      { Item = "gummi_wonder", Amount = 1, Weight = 5 },
       { Item = "boost_calcium", Amount = 1, Weight = 4 },
       { Item = "boost_carbos", Amount = 1, Weight = 4 },
       { Item = "boost_hp_up", Amount = 1, Weight = 4 },
@@ -282,7 +281,6 @@ local WISH_TABLE = {
       { Item = "held_assault_vest", Amount = 1, Weight = 2 },
 			{ Item = "held_big_root", Amount = 1, Weight = 2 },
       { Item = "held_black_belt", Amount = 1, Weight = 2 },
-			{ Item = "held_black_sludge", Amount = 1, Weight = 2 },
 			{ Item = "held_choice_band", Amount = 1, Weight = 2 },
 			{ Item = "held_choice_scarf", Amount = 1, Weight = 2 },
 			{ Item = "held_choice_specs", Amount = 1, Weight = 2 },
@@ -328,10 +326,10 @@ local WISH_TABLE = {
 		}
 	},
 	{
-		Min = 7,
+		Min = 8,
 		Max = 9,
 		Items = {
-			{ Item = "apricorn_big", Amount = 1, Weight = 3 },
+			{ Item = "apricorn_big", Amount = 1, Weight = 4 },
 			{ Item = "apricorn_black", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_blue", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_brown", Amount = 1, Weight = 2 },
@@ -341,7 +339,7 @@ local WISH_TABLE = {
 			{ Item = "apricorn_red", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_white", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_yellow", Amount = 1, Weight = 2 },
-			{ Item = "medicine_amber_tear", Amount = 1, Weight = 8 },
+			{ Item = "medicine_amber_tear", Amount = 1, Weight = 9 },
 			{ Item = "machine_assembly_box", Amount = 1, Weight = 4 },
 		},
 	}
@@ -553,7 +551,7 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 		local slot = GAME:FindPlayerItem("wish_gem", true, true) 
 		if slot:IsValid() then        
 			local end_choice = 7
-			local wish_choices = {"Money", "Food", "Items", "Power", "Equipment", "Allies", "Don't know"}    
+			local wish_choices = {"Money", "Food", "Items", "Power", "Equipment", "Recruitment", "Don't know"}    
 			UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
 			UI:WaitForChoice()
 			choice = UI:ChoiceResult()

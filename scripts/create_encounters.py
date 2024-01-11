@@ -95,10 +95,10 @@ if __name__ == "__main__":
         # ("duosion", "wander_normal", "", ["light_screen", "psyshock"], 70, 36, 0, 1),
 
         #14
-        ("swoobat", "wander_normal", "", ["air_cutter", "imprison"], 26, 27, 13, 15),
+        ("swoobat", "wander_normal", "", ["air_cutter", "imprison", "attract"], 26, 27, 13, 15),
         ("onix", "wander_normal", "", ["bind", "rage", "rock_tomb"], 26, 27, 13, 15),
         ("togetic", "wander_crystal_normal", "", ["double_team", "baton_pass", "after_you", "ancient_power"], 27, 28, 13, 15),
-        ("sableye", "wander_crystal_normal_greedy", "prankster", ["punishment", "taunt", "shadow_claw"], 27, 28, 13, 16),
+        ("sableye", "wander_crystal_normal_greedy", "prankster", ["punishment", "taunt", "torment"], 27, 28, 13, 16),
 
 
         #15, 27. 29
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         # ("klefki", "wander_normal", "prankster", ["torment", "spikes", "imprison"], 28, 29, 14, 16),
         ("skarmory", "wander_normal", "sturdy", ["spikes", "metal_claw"], 27, 28, 14, 16),
         ("rhyhorn", "wander_normal", "rock_head", ["rock_blast", "bulldoze"], 27, 28, 14, 15),
-        ("bronzor", "wander_normal", "levitate", ["psywave", "stored_power"], 29, 30, 14, 15),
+        ("bronzor", "wander_normal", "levitate", ["psywave", "stored_power", "safeguard"], 29, 30, 14, 15),
 
 
         #16, 27. 29
@@ -157,56 +157,55 @@ if __name__ == "__main__":
 
         # FINAL SECTION
         #21
-        ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 35, 36, 20, 23),
+        ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice"], 35, 36, 20, 23),
         ("exploud", "wander_normal", "", ["hyper_voice", "rest", "sleep_talk", "boomburst"], 35, 36, 20, 23),
-        ("thievul", "thief_crystal", "stakeout", ["hone_claws", "foul_play", "tail_slap", "thief2"], 35, 36, 20, 23),
+        ("thievul", "thief_crystal", "stakeout", ["foul_play", "snarl", "thief2"], 35, 36, 20, 23),
         ("carbink", "turret", "", ["power_gem", "moonblast", "stone_edge", "trick_room"], 35, 36, 20, 23),
-        ("milotic", "wander_normal", "marvel_scale", ["water_pulse", "recover", "icy_wind"], 35, 36, 20, 23),
         ("delcatty", "wander_normal", "cute_charm", ["assist", "wish", "fake_out", "covet2"], 35, 36, 20, 24),
         ("klefki", "wander_normal", "prankster", ["torment", "spikes", "imprison"], 35, 36, 20, 23),
-        ("tinkaton", "wander_crystal_normal", "mold_breaker", ["play_rough", "thief2", "fake_out", "metal_claw"], 35, 36, 20, 23),
+        ("tinkaton", "wander_crystal_normal", "mold_breaker", ["play_rough", "flatter", "fake_out", "metal_claw"], 35, 36, 20, 23),
         ("chimecho", "wander_normal", "", ["yawn", "healing_wish", "gravity", "safeguard"], 35, 36, 20, 24),
         ("bronzong", "retreater", "", ["imprison", "gyro_ball", "trick_room", "gravity"], 35, 36, 20, 23),
         ("sylveon", "wander_crystal_normal", "", ["calm_mind", "fairy_wind", "helping_hand", "wish"], 35, 36, 20, 23),
-        ("rhyperior", "wander_normal", "", ["drill_run", "rock_polish", "rock_slide"], 35, 36, 20, 24),
+        ("rhyperior", "wander_normal", "", ["drill_run", "rock_polish", "curse"], 35, 36, 20, 24),
+        ("togekiss", "wander_normal", "serene_grace", ["follow_me", "wish", "growl", "thunder_wave"], 35, 46, 20, 23),
 
         #22
         ("mr_mime", "wander_crystal_normal", "",["baton_pass", "calm_mind", "telekinesis"], 40, 41, 21, 25),
-        ("dugtrio", "wander_normal", "arena_trap", ["sucker_punch", "bulldoze", "earth_power"], 36, 37, 21, 24),
+        ("dugtrio", "wander_normal", "arena_trap", ["sucker_punch", "sand_tomb", "earth_power"], 36, 37, 21, 24),
         ("gardevoir", "wander_normal", "telepathy", ["wish", "moonblast", "psyshock"], 36, 37, 21, 24),
-        ("weavile", "thief_crystal", "", ["ice_punch", "thief2", "night_slash", "agility"], 36, 37, 21, 24),
+        ("weavile", "thief_crystal", "", ["ice_punch", "thief2", "embargo", "agility"], 36, 37, 21, 24),
         ("azumarill", "wander_normal", "pure_power", ["belly_drum", "aqua_tail", "play_rough"], 36, 37, 21, 24),
         ("raichu", "wander_normal", "", ["psychic", "thunderbolt", "round"], 36, 37, 21, 24), # alolan
         # ("mr_mime", "wander_normal", "", ["wide_guard", "mimic", "safeguard", "reflect"], 36, 37, 21, 24),
-        ("gothitelle", "wander_normal", "shadow_tag", ["calm_mind", "stored_power", "shadow_ball"], 36, 37, 21, 24),
+        ("gothitelle", "wander_normal", "shadow_tag", ["calm_mind", "charm", "shadow_ball"], 36, 37, 21, 24),
         ("claydol", "wander_normal", "", ["heal_block", "teleport", "extrasensory", "explosion"], 36, 37, 21, 24),
 
         #23
-        ("milotic", "wander_normal", "marvel_scale", ["hydro_pump", "recover", "ice_beam", "dragon_tail"], 38, 39, 22, 25),
+        ("milotic", "wander_normal", "cute_charm", ["water_pulse", "recover", "icy_wind", "dragon_tail"], 38, 39, 22, 25),
         ("reuniclus", "wander_normal", "", ["psychic", "recover", "ally_switch", "reflect"], 38, 39, 22, 25),
-        ("hatterene", "wander_normal", "healer", ["psychic", "draining_kiss", "heal_pulse"], 38, 39, 22, 25),
-        ("electivire", "wander_normal", "", ["thunder_punch", "cross_chop", "discharge", "light_screen"], 38, 39, 22, 25),
+        ("hatterene", "wander_normal", "healer", ["substitute", "draining_kiss", "heal_pulse", "charm"], 38, 39, 22, 25),
+        ("electivire", "wander_normal", "", ["thunder_punch", "cross_chop", "thunder_wave", "ice_punch"], 38, 39, 22, 25),
         ("swalot", "wander_normal", "liquid_ooze", ["sludge_bomb", "stockpile", "body_slam", "swallow"], 38, 39, 22, 25),
-        ("togekiss", "wander_normal", "serene_grace", ["air_slash", "aura_sphere", "heat_wave"], 38, 39, 22, 25),
 
         #24
         ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 40, 41, 23, 26),
-        ("tentacruel", "wander_normal", "liquid_ooze", ["haze", "sludge_wave", "water_pulse", "aqua_ring"], 40, 41, 23, 26),
-        ("crobat", "wander_normal", "", ["haze", "cross_poison", "brave_bird"], 40, 41, 23, 26),
+        ("tentacruel", "wander_normal", "liquid_ooze", ["haze", "sludge_wave", "water_pulse"], 40, 41, 23, 26),
+        ("crobat", "wander_normal", "", ["venom_drench", "cross_poison", "brave_bird"], 40, 41, 23, 26),
         ("glimmora", "wander_normal", "corrosion", ["toxic_spikes", "rock_slide", "toxic"], 40, 41, 23, 26),
-
+        ("togekiss", "wander_normal", "serene_grace", ["air_slash", "aura_sphere", "heat_wave"], 40, 41, 23, 26),
         #25
-        ("aggron", "wander_normal", "rock_head", ["metal_burst", "autotomize", "head_smash", "iron_head"], 41, 42, 24, 26),
+        ("aggron", "wander_normal", "rock_head", ["metal_burst", "autotomize", "screech", "iron_head"], 41, 42, 24, 26),
         ("houndoom", "wander_normal", "", ["dark_pulse", "nasty_plot", "flamethrower"], 41, 42, 24, 26),
         ("honchkrow", "wander_crystal_normal", "", ["pursuit", "night_slash", "wing_attack", "taunt"], 41, 42, 24, 26),
-        ("porygon_z", "wander_normal", "", ["tri_attack", "thunder", "conversion", "conversion_2"], 42, 43, 24, 27),
+        ("porygon_z", "wander_normal", "", ["tri_attack", "thunder", "conversion", "conversion_2"], 41, 42, 24, 27),
+        ("medicham", "wander_normal", "pure_power", ["jump_kick", "drain_punch", "foresight", "psycho_cut"], 41, 42, 24, 27),
 
         #26
         ("metagross", "wander_crystal_normal", "", ["agility", "meteor_mash", "zen_headbutt"], 42, 43, 25, 27),
         ("noivern", "wander_normal", "telepathy", ["boomburst", "dragon_pulse", "tailwind"], 42, 43, 25, 27),
         ("goodra", "wander_normal", "gooey", ["draco_meteor", "muddy_water", "power_whip"], 42, 43, 25, 27),
         ("clawitzer", "wander_normal", "mega_launcher", ["aura_sphere", "water_pulse", "dark_pulse"], 42, 43, 25, 27),
-        ("medicham", "wander_normal", "pure_power", ["jump_kick", "drain_punch", "ice_punch", "psycho_cut"], 42, 43, 25, 27),
 
 
         # 27
@@ -518,7 +517,6 @@ if __name__ == "__main__":
         if (min_lev < 50):
             result.append(create_mon(mon))
             present.add(name)
-            print(str(mon) + ",")
 
     with open('Data/Zone/wishmaker_cave.json', 'r', encoding='utf-8-sig') as file:
         data = json.load(file)
