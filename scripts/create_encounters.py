@@ -16,7 +16,6 @@ if __name__ == "__main__":
 
         #3
         ("houndour", "wander_normal", '', ["ember", "smog", "leer"], 12, 13, 2, 5),
-        ("beldum", "wander_normal", '', ["take_down"], 12, 13, 2, 5),
         ("hatenna", "wander_normal", "healer", ["play_nice", "life_dew"], 13, 14, 2, 6),
         # ("hatenna", "wander_normal", "healer", ["play_nice", "aromatic_mist"], 11, 12, 0, 1),
 
@@ -25,6 +24,7 @@ if __name__ == "__main__":
         ("noibat", "wander_normal", "telepathy", ["double_team", "gust"], 15, 16, 3, 7),
         ("zubat", "wander_normal", "", ["poison_fang"], 14, 15, 3, 5),
         ("swinub", "wander_normal", "", ["mud_bomb"], 14, 15, 3, 5),
+        ("beldum", "wander_normal", '', ["take_down"], 13, 14, 3, 6),
 
         #5
         ("nickit", "thief_crystal", "stakeout", ["thief2"], 16, 17, 4, 5),
@@ -168,7 +168,6 @@ if __name__ == "__main__":
         ("chimecho", "wander_normal", "", ["yawn", "healing_wish", "gravity", "safeguard"], 35, 36, 20, 24),
         ("bronzong", "retreater", "", ["imprison", "gyro_ball", "trick_room", "gravity"], 35, 36, 20, 23),
         ("sylveon", "wander_crystal_normal", "", ["calm_mind", "fairy_wind", "helping_hand", "wish"], 35, 36, 20, 23),
-        ("rhyperior", "wander_normal", "", ["drill_run", "rock_polish", "curse"], 35, 36, 20, 24),
         ("togekiss", "wander_normal", "serene_grace", ["follow_me", "wish", "growl", "thunder_wave"], 35, 46, 20, 23),
 
         #22
@@ -188,6 +187,7 @@ if __name__ == "__main__":
         ("hatterene", "wander_normal", "healer", ["substitute", "draining_kiss", "heal_pulse", "charm"], 38, 39, 22, 25),
         ("electivire", "wander_normal", "", ["thunder_punch", "cross_chop", "thunder_wave", "ice_punch"], 38, 39, 22, 25),
         ("swalot", "wander_normal", "liquid_ooze", ["sludge_bomb", "stockpile", "body_slam", "swallow"], 38, 39, 22, 25),
+        ("rhyperior", "wander_normal", "", ["drill_run", "rock_polish", "rock_slide"], 37, 38, 22, 25),
 
         #24
         ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 40, 41, 23, 26),

@@ -61524,7 +61524,7 @@
 "$type": "RogueEssence.LevelGen.SpreadPlanSpaced, RogueEssence",
 "FloorSpacing": {
 "Min": 4,
-"Max": 5
+"Max": 6
 },
 "FloorRange": {
 "Min": 0,
