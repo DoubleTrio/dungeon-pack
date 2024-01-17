@@ -1,4 +1,4 @@
-﻿{
+{
 "Version": "0.7.23.0",
 "Object": {
 "$type": "RogueEssence.Data.ZoneData, RogueEssence",
@@ -45196,7 +45196,8 @@
 "SpecifiedSkills": [
 "venom_drench",
 "cross_poison",
-"brave_bird"
+"brave_bird",
+"quick_guard"
 ],
 "Intrinsic": "infiltrator",
 "Tactic": "wander_normal",
@@ -45204,7 +45205,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 4,
 "Remove": false
 },
 {
@@ -45437,7 +45438,6 @@
 },
 "SpecifiedSkills": [
 "pursuit",
-"night_slash",
 "wing_attack",
 "foul_play"
 ],
@@ -45447,7 +45447,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -58968,6 +58968,3102 @@
 "Rate": 10,
 "Range": {
 "Min": 7,
+"Max": 27
+}
+}
+],
+"Mobs": [
+{
+"Spawn": {
+"BaseForm": {
+"Species": "cleffa",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "clefairy",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "clefable",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "hatenna",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "hattrem",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "hatterene",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "zubat",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "golbat",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "crobat",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "vulpix",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "ninetales",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "tinkatink",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "tinkatuff",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "tinkaton",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "ledian",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "vulpix",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "beldum",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "metang",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "pichu",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "pikachu",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "raichu",
+"Form": 1,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "togepi",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "togetic",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "togekiss",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "mawile",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "baltoy",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "claydol",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "gulpin",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "swalot",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "kecleon",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "swinub",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "piloswine",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "minun",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "plusle",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "ralts",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "kirlia",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "gardevoir",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "gallade",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "azurill",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "marill",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "azumarill",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "baltoy",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "claydol",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "woobat",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "swoobat",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "illumise",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "volbeat",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "bagon",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "shelgon",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "jigglypuff",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "wigglytuff",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "mime_jr",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "mr_mime",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "aron",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "lairon",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "aggron",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "elekid",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "electabuzz",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "electivire",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "sneasel",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "weavile",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "nickit",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "thievul",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "eevee",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "morelull",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "girafarig",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "tentacool",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "tentacruel",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "dunsparce",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "skitty",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "delcatty",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "houndour",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "houndoom",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "whismur",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "loudred",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "exploud",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "solosis",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "duosion",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "reuniclus",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "luvdisc",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "clauncher",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "clawitzer",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "meditite",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "medicham",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "bronzor",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "rhyhorn",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "rhydon",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "nosepass",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "probopass",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "chingling",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "chimecho",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
 "Max": 27
 }
 }

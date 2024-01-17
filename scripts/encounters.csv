@@ -114,13 +114,13 @@ reuniclus,wander_normal,,psychic,recover,ally_switch,reflect,38,39,23,26
 rhyperior,wander_normal,,drill_run,rock_polish,rock_slide,,37,38,23,26
 swalot,wander_normal,liquid_ooze,sludge_bomb,stockpile,body_slam,swallow,38,39,23,26
 clefable,wander_normal,friend_guard,moonblast,thunder_wave,wish,encore,40,41,24,27
-crobat,wander_normal,infiltrator,venom_drench,cross_poison,brave_bird,,40,41,24,27
+crobat,wander_normal,infiltrator,venom_drench,cross_poison,brave_bird,quick_guard,40,41,24,27
 farigiraf,wander_normal,sap_sipper,trick_room,dazzling_gleam,hyper_voice,future_sight,40,41,24,27
 glimmora,wander_normal,corrosion,toxic_spikes,rock_slide,toxic,,40,41,24,27
 tentacruel,wander_normal,liquid_ooze,haze,sludge_wave,water_pulse,,40,41,24,27
 togekiss,wander_normal,serene_grace,air_slash,aura_sphere,heat_wave,,40,41,24,27
 aggron,wander_normal,rock_head,metal_burst,autotomize,screech,iron_head,41,42,25,27
-honchkrow,wander_crystal_normal,,pursuit,night_slash,wing_attack,foul_play,41,42,25,27
+honchkrow,wander_crystal_normal,,pursuit,wing_attack,foul_play,,41,42,25,27
 houndoom,wander_normal,,dark_pulse,nasty_plot,flamethrower,,41,42,25,27
 medicham,wander_normal,pure_power,high_jump_kick,drain_punch,foresight,psycho_cut,41,42,25,28
 porygon_z,wander_normal,,tri_attack,shock_wave,conversion,conversion_2,41,42,25,28
