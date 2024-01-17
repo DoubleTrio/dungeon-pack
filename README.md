@@ -1,4 +1,4 @@
-# more-dungeons
+# trios-dungeon-pack
 A mod that adds more dungeons to base PMDO. Currently, 1 additional dungeon is included!
 
 ## Dungeons

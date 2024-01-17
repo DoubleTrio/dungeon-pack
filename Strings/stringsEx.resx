@@ -74,7 +74,7 @@
     <value>All moves have increased range!</value>
     <comment></comment>  </data>
   <data name="MSG_SHIMMERING_EFFECT_PERFECT_ACCURACY" xml:space="preserve">
-    <value>All moves are guranteed to hit!</value>
+    <value>All moves are guaranteed to hit!</value>
     <comment></comment>  </data>
   <data name="MSG_SHIMMERING_EFFECT_SERENE" xml:space="preserve">
     <value>All moves have their additional effect chance boosted!</value>
@@ -121,6 +121,30 @@
   </data>
   <data name="MSG_GLOW_FOUND_NO_ITEM" xml:space="preserve">
     <value>{0} didn't find an item!</value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK1" xml:space="preserve">
+    <value>[emote=Inspired]Wow![pause=20] Wishmaker Cave is so beautiful![br][emote=Normal]Sometimes, I feel something stirring within me as I look at the crystals. </value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK2" xml:space="preserve">
+    <value>I could have sworn I saw something shiny on the ground earlier.[br][emote=Worried]I wish I could remember where I last saw it...</value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK3" xml:space="preserve">
+    <value>Heh.[pause=0] These crystals can't hide from old Zangoose.[br][emote=Normal]Hidden from the plain eye, but I always check. </value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK4" xml:space="preserve">
+    <value>[emote=Pain]Ughh, those Tentacools are nasty, [pause=20]very nasty.[br][emote=Pain]I don't know why,[pause=20] but I feel absolutely horrible after fighting one.</value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK5" xml:space="preserve">
+    <value>Huh,[pause=20] I noticed some Pokémon here actively seek crystals to become more powerful.[br]I think it's best to use their power immediately the moment you find them.</value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK6" xml:space="preserve">
+    <value>Rumors has it,[pause=10] something rests within the depths of this cave.[br]...[pause=30]Waiting to be awaken by explorers who can hold their wishes until the very end. </value>
     <comment></comment>  
   </data>
 </root>

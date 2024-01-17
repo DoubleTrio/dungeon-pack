@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.7.23.0",
 "Object": {
 "$type": "RogueEssence.Dungeon.Map, RogueEssence",
 "Name": {
@@ -123,11 +123,6 @@
 0,
 0,
 0,
-0
-],
-[
-0,
-0,
 0,
 0,
 0
@@ -137,6 +132,17 @@
 0,
 0,
 0,
+0,
+0,
+0
+],
+[
+0,
+0,
+0,
+0,
+0,
+0,
 0
 ],
 [
@@ -144,9 +150,31 @@
 0,
 0,
 0,
+0,
+0,
 0
 ],
 [
+0,
+0,
+0,
+0,
+0,
+0,
+0
+],
+[
+0,
+0,
+0,
+0,
+0,
+0,
+0
+],
+[
+0,
+0,
 0,
 0,
 0,
@@ -190,26 +218,6 @@
 "Associates": [],
 "Layers": [],
 "NeighborCode": -1
-}
-],
-[
-{
-"AutoTileset": "",
-"Associates": [],
-"Layers": [],
-"NeighborCode": -1
-},
-{
-"AutoTileset": "",
-"Associates": [],
-"Layers": [],
-"NeighborCode": -1
-},
-{
-"AutoTileset": "",
-"Associates": [],
-"Layers": [],
-"NeighborCode": -1
 },
 {
 "AutoTileset": "",
@@ -254,6 +262,62 @@
 "Associates": [],
 "Layers": [],
 "NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+}
+],
+[
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
 }
 ],
 [
@@ -286,9 +350,121 @@
 "Associates": [],
 "Layers": [],
 "NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
 }
 ],
 [
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+}
+],
+[
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+}
+],
+[
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+{
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
 {
 "AutoTileset": "",
 "Associates": [],
@@ -335,9 +511,9 @@
 [
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 511
@@ -357,12 +533,12 @@
 },
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 767
+"NeighborCode": 127
 },
 "StableTex": false
 },
@@ -379,12 +555,12 @@
 },
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 255
+"NeighborCode": 38
 },
 "StableTex": false
 },
@@ -406,7 +582,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 767
+"NeighborCode": 10
 },
 "StableTex": false
 },
@@ -423,12 +599,12 @@
 },
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 767
+"NeighborCode": 19
 },
 "StableTex": false
 },
@@ -442,17 +618,61 @@
 "Owner": 0,
 "TileStates": []
 }
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 191
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 0,
+"Y": 5
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 0,
+"Y": 6
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
 }
 ],
 [
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 511
+"NeighborCode": 127
 },
 "StableTex": false
 },
@@ -469,12 +689,12 @@
 },
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 255
+"NeighborCode": 38
 },
 "StableTex": false
 },
@@ -496,7 +716,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 511
+"NeighborCode": 137
 },
 "StableTex": false
 },
@@ -518,7 +738,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 511
+"NeighborCode": 207
 },
 "StableTex": false
 },
@@ -540,7 +760,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 511
+"NeighborCode": 76
 },
 "StableTex": false
 },
@@ -554,17 +774,61 @@
 "Owner": 0,
 "TileStates": []
 }
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 19
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 1,
+"Y": 5
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 191
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 1,
+"Y": 6
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
 }
 ],
 [
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 767
+"NeighborCode": 38
 },
 "StableTex": false
 },
@@ -586,7 +850,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 255
+"NeighborCode": 137
 },
 "StableTex": false
 },
@@ -594,6 +858,184 @@
 "TileLoc": {
 "X": 2,
 "Y": 1
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 223
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 2,
+"Y": 2
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 511
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 2,
+"Y": 3
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 239
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 2,
+"Y": 4
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 76
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 2,
+"Y": 5
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 19
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 2,
+"Y": 6
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+}
+],
+[
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 5
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 3,
+"Y": 0
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 159
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 3,
+"Y": 1
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 3,
+"Y": 2
 },
 "ID": "wish_crystal",
 "Revealed": true,
@@ -614,98 +1056,8 @@
 },
 "Effect": {
 "TileLoc": {
-"X": 2,
-"Y": 2
-},
-"ID": "",
-"Revealed": false,
-"Owner": 0,
-"TileStates": []
-}
-},
-{
-"Data": {
-"ID": "floor",
-"TileTex": {
-"AutoTileset": "lapis_cave_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 767
-},
-"StableTex": false
-},
-"Effect": {
-"TileLoc": {
-"X": 2,
+"X": 3,
 "Y": 3
-},
-"ID": "",
-"Revealed": false,
-"Owner": 0,
-"TileStates": []
-}
-},
-{
-"Data": {
-"ID": "floor",
-"TileTex": {
-"AutoTileset": "lapis_cave_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-"StableTex": false
-},
-"Effect": {
-"TileLoc": {
-"X": 2,
-"Y": 4
-},
-"ID": "",
-"Revealed": false,
-"Owner": 0,
-"TileStates": []
-}
-}
-],
-[
-{
-"Data": {
-"ID": "floor",
-"TileTex": {
-"AutoTileset": "lapis_cave_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-"StableTex": false
-},
-"Effect": {
-"TileLoc": {
-"X": 3,
-"Y": 0
-},
-"ID": "",
-"Revealed": false,
-"Owner": 0,
-"TileStates": []
-}
-},
-{
-"Data": {
-"ID": "floor",
-"TileTex": {
-"AutoTileset": "lapis_cave_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-"StableTex": false
-},
-"Effect": {
-"TileLoc": {
-"X": 3,
-"Y": 1
 },
 "ID": "",
 "Revealed": false,
@@ -727,51 +1079,51 @@
 "Effect": {
 "TileLoc": {
 "X": 3,
-"Y": 2
-},
-"ID": "",
-"Revealed": false,
-"Owner": 0,
-"TileStates": []
-}
-},
-{
-"Data": {
-"ID": "floor",
-"TileTex": {
-"AutoTileset": "lapis_cave_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-"StableTex": false
-},
-"Effect": {
-"TileLoc": {
-"X": 3,
-"Y": 3
-},
-"ID": "",
-"Revealed": false,
-"Owner": 0,
-"TileStates": []
-}
-},
-{
-"Data": {
-"ID": "floor",
-"TileTex": {
-"AutoTileset": "lapis_cave_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-"StableTex": false
-},
-"Effect": {
-"TileLoc": {
-"X": 3,
 "Y": 4
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 111
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 3,
+"Y": 5
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 5
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 3,
+"Y": 6
 },
 "ID": "",
 "Revealed": false,
@@ -783,12 +1135,12 @@
 [
 {
 "Data": {
-"ID": "floor",
+"ID": "wall",
 "TileTex": {
-"AutoTileset": "lapis_cave_floor",
+"AutoTileset": "lapis_cave_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 255
+"NeighborCode": 76
 },
 "StableTex": false
 },
@@ -810,7 +1162,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 767
+"NeighborCode": 19
 },
 "StableTex": false
 },
@@ -832,7 +1184,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 255
+"NeighborCode": 191
 },
 "StableTex": false
 },
@@ -876,7 +1228,7 @@
 "AutoTileset": "lapis_cave_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 511
+"NeighborCode": 127
 },
 "StableTex": false
 },
@@ -884,6 +1236,362 @@
 "TileLoc": {
 "X": 4,
 "Y": 4
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 38
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 4,
+"Y": 5
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 137
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 4,
+"Y": 6
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+}
+],
+[
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 239
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 5,
+"Y": 0
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 76
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 5,
+"Y": 1
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 19
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 5,
+"Y": 2
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 63
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 5,
+"Y": 3
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 38
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 5,
+"Y": 4
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 137
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 5,
+"Y": 5
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 223
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 5,
+"Y": 6
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+}
+],
+[
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 6,
+"Y": 0
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 239
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 6,
+"Y": 1
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 76
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 6,
+"Y": 2
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "lapis_cave_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 10
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 6,
+"Y": 3
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 137
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 6,
+"Y": 4
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 223
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 6,
+"Y": 5
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+{
+"Data": {
+"ID": "wall",
+"TileTex": {
+"AutoTileset": "lapis_cave_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 511
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 6,
+"Y": 6
 },
 "ID": "",
 "Revealed": false,

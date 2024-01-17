@@ -1,9 +1,9 @@
 <Header>
-  <Name>More Dungeons</Name>
+  <Name>[color=#00FFFF]Trio's Dungeon Pack[color]</Name>
   <Author>Trio-</Author>
-  <Description>A mod that aims to add more various dungeon to the base game!</Description>
-  <Namespace>more_dungeons</Namespace>
-  <UUID>742D9D00-1978-4ECC-BE64-DEE0414E3F16</UUID>
+  <Description>A mod that aims to add more dungeons to the base game!</Description>
+  <Namespace>trios_dungeon_pack</Namespace>
+  <UUID>37EB426F-2E99-4BBB-A125-99893CCE1D45</UUID>
   <Version>0.1</Version>
   <ModType>Mod</ModType>
   <Relationships />

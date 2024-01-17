@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.7.23.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "crystal_attack": {
@@ -23,6 +23,15 @@
 "crystal_heal": {
 "Name": {
 "DefaultText": "Drain Crystal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"no_heal": {
+"Name": {
+"DefaultText": "No Heal",
 "LocalTexts": {}
 },
 "Released": true,

@@ -1,6 +1,3 @@
-
-BATTLE_SCRIPT = {}
-
 StackStateType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
@@ -10,6 +7,46 @@ MapItemType = luanet.import_type('RogueEssence.Dungeon.MapItem')
 SpawnListType =  luanet.import_type('RogueElements.SpawnList`1')
 
 SINGLE_CHAR_SCRIPT = {}
+
+
+function SINGLE_CHAR_SCRIPT.HalfHpNpcEvent(owner, ownerChar, context, args)
+  local chara = context.User
+	if chara ~= nil then
+		local tbl = LTBL(chara)
+		if tbl.NPC then
+			chara.HP = 5
+		end
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.WishExitEvent(owner, ownerChar, context, args)
+  local chara = context.User
+  local tile = _ZONE.CurrentMap.Tiles[chara.CharLoc.X][chara.CharLoc.Y]
+	print(tostring(chara.MemberTeam == _DUNGEON.ActiveTeam.Leader))
+  if tile.Effect ~= "" and context.User.CharDir == Direction.Down and chara == _DUNGEON.ActiveTeam.Leader and chara ==_DUNGEON.FocusedCharacter then
+    _DUNGEON:QueueTrap(context.User.CharLoc);
+  end
+end
+
+
+function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, args)
+	GAME:WaitFrames(10)
+  UI:ResetSpeaker()
+  UI:ChoiceMenuYesNo(STRINGS:FormatKey("DLG_ASK_EXIT_DUNGEON"), false)
+  UI:WaitForChoice()
+  ch = UI:ChoiceResult()
+  if ch then
+    SOUND:FadeOutBGM()
+    GAME:FadeOut(false, 30)
+    GAME:WaitFrames(120)
+    
+    -- if GAME:InRogueMode() then
+    --   GAME:AddToPlayerMoneyBank(100000)
+    -- end
+
+    COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+	end
+end
 
 
 local WISH_TABLE = {
@@ -34,17 +71,17 @@ local WISH_TABLE = {
       { Item = "berry_leppa", Amount = 1, Weight = 13 },
       { Item = "berry_sitrus", Amount = 1, Weight = 8 },
       { Item = "berry_oran", Amount = 1, Weight = 8 },
+			{ Item = "berry_lum", Amount = 1, Weight = 8 },
       { Item = "berry_apicot", Amount = 1, Weight = 3 },
       { Item = "berry_jaboca", Amount = 1, Weight = 3 },
       { Item = "berry_liechi", Amount = 1, Weight = 3 },
       { Item = "berry_starf", Amount = 1, Weight = 3 },
       { Item = "berry_petaya", Amount = 1, Weight = 3 },
       { Item = "berry_salac", Amount = 1, Weight = 3 },
-      { Item = "berry_micle", Amount = 1, Weight = 3 },
       { Item = "berry_ganlon", Amount = 1, Weight = 3 },
       { Item = "berry_enigma", Amount = 1, Weight = 3 },
-      { Item = "berry_lum", Amount = 1, Weight = 10 },
-      { Item = "food_apple", Amount = 1, Weight = 19 },
+			{ Item = "berry_micle", Amount = 1, Weight = 2 },
+      { Item = "food_apple", Amount = 1, Weight = 23 },
       { Item = "food_apple_big", Amount = 1, Weight = 6 },
       { Item = "food_apple_huge", Amount = 1, Weight = 3 },
       { Item = "food_apple_golden", Amount = 1, Weight = 1 },
@@ -53,16 +90,28 @@ local WISH_TABLE = {
     },
   },
   {
-    Min = 11,
+    Min = 12,
     Max = 15,
     Items = {
+			{ Item = "berry_leppa", Amount = 1, Weight = 18 },
+      { Item = "berry_sitrus", Amount = 1, Weight = 5 },
+      { Item = "berry_oran", Amount = 1, Weight = 5 },
+      { Item = "berry_apicot", Amount = 1, Weight = 2 },
+      { Item = "berry_jaboca", Amount = 1, Weight = 2 },
+      { Item = "berry_liechi", Amount = 1, Weight = 2 },
+      { Item = "berry_starf", Amount = 1, Weight = 2 },
+      { Item = "berry_petaya", Amount = 1, Weight = 2 },
+      { Item = "berry_salac", Amount = 1, Weight = 2 },
+      { Item = "berry_ganlon", Amount = 1, Weight = 2 },
+      { Item = "berry_enigma", Amount = 1, Weight = 2 },
+			{ Item = "berry_micle", Amount = 1, Weight = 2 },
       { Item = "seed_ban", Amount = 1, Weight = 7 },
       { Item = "seed_joy", Amount = 1, Weight = 7 },
       { Item = "seed_decoy", Amount = 1, Weight = 2 },
       { Item = "seed_pure", Amount = 1, Weight = 2 },
       { Item = "seed_blast", Amount = 1, Weight = 2 },
       { Item = "seed_ice", Amount = 1, Weight = 2 },
-      { Item = "seed_reviver", Amount = 1, Weight = 16 },
+      { Item = "seed_reviver", Amount = 1, Weight = 18 },
       { Item = "seed_warp", Amount = 1, Weight = 2 },
       { Item = "seed_doom", Amount = 1, Weight = 2 },
       { Item = "seed_ice", Amount = 1, Weight = 2 },
@@ -116,29 +165,29 @@ local WISH_TABLE = {
     }
   },
   {
-    Min = 8,
-    Max = 9,
+    Min = 9,
+    Max = 10,
     Items = {
       { Item = "machine_recall_box", Amount = 1, Weight = 10 },
-      { Item = "seed_joy", Amount = 1, Weight = 15 },
+      { Item = "seed_joy", Amount = 1, Weight = 20 },
       { Item = "seed_golden", Amount = 1, Weight = 2 },
-      { Item = "gummi_black", Amount = 1, Weight = 3 },
-      { Item = "gummi_blue", Amount = 1, Weight = 3 },
-      { Item = "gummi_brown", Amount = 1, Weight = 3 },
-      { Item = "gummi_clear", Amount = 1, Weight = 3 },
-      { Item = "gummi_gold", Amount = 1, Weight = 3 },
-      { Item = "gummi_grass", Amount = 1, Weight = 3 },
-      { Item = "gummi_green", Amount = 1, Weight = 3 },
-      { Item = "gummi_magenta", Amount = 1, Weight = 3 },
-      { Item = "gummi_orange", Amount = 1, Weight = 3 },
-      { Item = "gummi_pink", Amount = 1, Weight = 3 },
-      { Item = "gummi_purple", Amount = 1, Weight = 3 },
-      { Item = "gummi_red", Amount = 1, Weight = 3 },
-      { Item = "gummi_royal", Amount = 1, Weight = 3 },
-      { Item = "gummi_silver", Amount = 1, Weight = 3 },
-      { Item = "gummi_sky", Amount = 1, Weight = 3 },
-      { Item = "gummi_white", Amount = 1, Weight = 3 },
-      { Item = "gummi_yellow", Amount = 1, Weight = 3 },
+      { Item = "gummi_black", Amount = 1, Weight = 4 },
+      { Item = "gummi_blue", Amount = 1, Weight = 4 },
+      { Item = "gummi_brown", Amount = 1, Weight = 4 },
+      { Item = "gummi_clear", Amount = 1, Weight = 4 },
+      { Item = "gummi_gold", Amount = 1, Weight = 4 },
+      { Item = "gummi_grass", Amount = 1, Weight = 4 },
+      { Item = "gummi_green", Amount = 1, Weight = 4 },
+      { Item = "gummi_magenta", Amount = 1, Weight = 4 },
+      { Item = "gummi_orange", Amount = 1, Weight = 4 },
+      { Item = "gummi_pink", Amount = 1, Weight = 4 },
+      { Item = "gummi_purple", Amount = 1, Weight = 4 },
+      { Item = "gummi_red", Amount = 1, Weight = 4 },
+      { Item = "gummi_royal", Amount = 1, Weight = 4 },
+      { Item = "gummi_silver", Amount = 1, Weight = 4 },
+      { Item = "gummi_sky", Amount = 1, Weight = 4 },
+      { Item = "gummi_white", Amount = 1, Weight = 4 },
+      { Item = "gummi_yellow", Amount = 1, Weight = 4 },
       { Item = "gummi_wonder", Amount = 1, Weight = 5 },
       { Item = "boost_calcium", Amount = 1, Weight = 4 },
       { Item = "boost_carbos", Amount = 1, Weight = 4 },
@@ -290,6 +339,7 @@ local WISH_TABLE = {
 			{ Item = "held_mobile_scarf", Amount = 1, Weight = 2 },
 			{ Item = "held_metronome", Amount = 1, Weight = 2 },
 			{ Item = "held_wide_lens", Amount = 1, Weight = 2 },
+			{ Item = "held_zinc_band", Amount = 1, Weight = 2 },
 			{ Item = "held_x_ray_specs", Amount = 1, Weight = 4 },
 			{ Item = "held_twist_band", Amount = 1, Weight = 2 },
 			{ Item = "held_trap_scarf", Amount = 1, Weight = 2 },
@@ -303,7 +353,7 @@ local WISH_TABLE = {
 			{ Item = "held_life_orb", Amount = 1, Weight = 2 },
 			{ Item = "held_iron_ball", Amount = 1, Weight = 2 },
 			{ Item = "held_goggle_specs", Amount = 1, Weight = 2 },
-			{ Item = "held_friend_bow", Amount = 1, Weight = 1 },
+			{ Item = "held_friend_bow", Amount = 1, Weight = 2 },
 			{ Item = "held_heal_ribbon", Amount = 1, Weight = 2 },
 			{ Item = "held_blank_plate", Amount = 1, Weight = 1},
 			{ Item = "held_draco_plate", Amount = 1, Weight = 1},
@@ -326,8 +376,8 @@ local WISH_TABLE = {
 		}
 	},
 	{
-		Min = 8,
-		Max = 9,
+		Min = 7,
+		Max = 8,
 		Items = {
 			{ Item = "apricorn_big", Amount = 1, Weight = 4 },
 			{ Item = "apricorn_black", Amount = 1, Weight = 2 },
@@ -431,10 +481,6 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
   GAME:WaitFrames(10)
   
   local item = PickByWeights(entries)
-  
-  -- if DUNGEON:DungeonCurrentFloor() == 1 then
-  --   item = "wish_gem"
-  -- end
 
   if item ~= "" then
     local inv_item =  RogueEssence.Dungeon.InvItem(item, false, 1)
@@ -463,8 +509,8 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
   -- if sound == nil then sound = false end
   local min_amount = 5
   local max_amount = 9
-  local max_range_width = 2
-  local max_range_height = 2
+  local max_range_width = 3
+  local max_range_height = 3
   local effect_tile = owner
   local x_offset = 0
   local y_offset = 1
@@ -551,7 +597,7 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 		local slot = GAME:FindPlayerItem("wish_gem", true, true) 
 		if slot:IsValid() then        
 			local end_choice = 7
-			local wish_choices = {"Money", "Food", "Items", "Power", "Equipment", "Recruitment", "Don't know"}    
+			local wish_choices = {"Money", "Food", "Utility", "Power", "Equipment", "Recruitment", "Don't know"}    
 			UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
 			UI:WaitForChoice()
 			choice = UI:ChoiceResult()
@@ -625,6 +671,36 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
 
 		_DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
 end
+
+function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, context, args)
+	local chara = context.User
+	if chara == nil then
+		return
+	end
+	chara.StatusEffects:Clear();
+	chara.ProxyAtk = -1;
+	chara.ProxyDef = -1;
+	chara.ProxyMAtk = -1;
+	chara.ProxyMDef = -1;
+	chara.ProxySpeed = -1
+	chara:FullRestore()
+end
+
+
+function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, context, args)
+	local chara = context.User
+	if chara == nil then
+		return
+	end
+	chara.StatusEffects:Clear();
+	chara.ProxyAtk = -1;
+	chara.ProxyDef = -1;
+	chara.ProxyMAtk = -1;
+	chara.ProxyMDef = -1;
+	chara.ProxySpeed = -1
+	chara:FullRestore()
+end
+
 
 function PickByWeights(entries)
   local total_weight = 0

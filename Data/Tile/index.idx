@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.7.23.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "defense_crystal": {
@@ -50,6 +50,24 @@
 "crystal_glow2": {
 "Name": {
 "DefaultText": "Crystal Glow",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"wish_exit": {
+"Name": {
+"DefaultText": "Wish Exit",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"wish_center": {
+"Name": {
+"DefaultText": "Wish Center",
 "LocalTexts": {}
 },
 "Released": true,
