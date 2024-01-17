@@ -14,7 +14,7 @@ if __name__ == "__main__":
         ("diglett", "wander_normal", "arena_trap", ["astonish", "sand_attack"], 11, 12, 1, 4),
 
         #3
-        ("houndour", "wander_normal", '', ["ember", "leer"], 12, 13, 2, 5),
+        ('togepi', 'wander_dumb', 'super_luck', ['metronome'], 12, 13, 2, 5),
         ("hatenna", "wander_normal", "healer", ["play_nice", "life_dew"], 13, 14, 2, 6),
         ('whismur', 'wander_normal', 'rattled', ['echoed_voice', 'round'], 12, 13, 2, 6),
         # ("hatenna", "wander_normal", "healer", ["play_nice", "aromatic_mist"], 11, 12, 0, 1),
@@ -22,7 +22,7 @@ if __name__ == "__main__":
         # ("spinda", "wander_normal", "tangled_feet", ["supersonic", "teeter_dance"], 12, 13, 0, 1),
         #4
         ("zubat", "wander_normal", "", ["poison_fang"], 14, 15, 3, 6),
-        ('togepi', 'wander_dumb', 'super_luck', ['metronome'], 14, 15, 3, 6),
+        ("houndour", "wander_normal", '', ["ember", "leer"], 14, 15, 3, 6),
 
         #5
         ("noibat", "wander_normal", "telepathy", ["double_team", "gust"], 15, 16, 4, 7),
@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
         #7, 17, 19
         ("chingling", "wander_normal", "", ["wish", "wrap", "ally_switch"], 18, 19, 6, 9),
-        ("nickit", "thief_crystal", "stakeout", ["thief2"], 17, 18, 6, 10), # ADD HIGHER WEIGHT
+        ("nickit", "thief", "stakeout", ["thief2"], 17, 18, 6, 10), # ADD HIGHER WEIGHT
         # ("morelull", "retreater", "", ["sleep_powder", "leech_seed"], 17, 18, 6, 1),
         ("gothita", "wander_normal", "competitive", ["confusion", "fake_tears"], 18, 19, 6, 9),
         ("swinub", "wander_normal", "", ["mud_bomb"], 17, 18, 6, 9),
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         ("jigglypuff", "wander_normal", "friend_guard", ["baton_pass", "defense_curl", "round"], 20, 21, 7, 11),
         ("mime_jr", "wander_normal", "technician", ["mimic", "stored_power"], 21, 22, 7, 10),
         # ("chingling", "wander_normal", "", ["wish", "wrap", "ally_switch"], 70, 36, 0, 1),
-        ("marill", "wander_normal", "", ["rollout", "aqua_ring", "mud_slap"], 20, 21, 7, 10),
+        ("marill", "wander_normal", "pure_power", ["rollout", "aqua_ring", "mud_slap"], 20, 21, 7, 10),
         ("gulpin", "wander_normal", "liquid_ooze", ["sludge", "yawn"], 19, 20, 7, 10),
         ("beldum", "wander_normal", '', ["take_down"], 19, 20, 7, 10),
 
@@ -109,7 +109,7 @@ if __name__ == "__main__":
         # ("golbat", "wander_normal", "", ["mean_look", "venoshock"], 70, 36, 0, 1),
         # ("klefki", "wander_normal", "prankster", ["torment", "spikes", "imprison"], 28, 29, 14, 16),
         ("skarmory", "wander_normal", "sturdy", ["spikes", "metal_claw"], 27, 28, 14, 16),
-        ("bronzor", "wander_normal", "levitate", ["psywave", "stored_power", "safeguard"], 29, 30, 14, 15),
+        ("bronzor", "wander_normal", "levitate", ["psywave", "stored_power", "safeguard"], 29, 30, 14, 16),
 
 
         #16, 27. 29
@@ -163,7 +163,7 @@ if __name__ == "__main__":
         #21
         ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice"], 35, 36, 20, 23),
         ("exploud", "wander_normal", "", ["hyper_voice", "rest", "sleep_talk", "boomburst"], 35, 36, 20, 23),
-        ("thievul", "thief_crystal", "stakeout", ["foul_play", "snarl", "thief2"], 35, 36, 20, 25),
+        ("thievul", "thief_crystal", "stakeout", ["foul_play", "thief2", "agility"], 35, 36, 20, 25),
         ("carbink", "turret", "", ["power_gem", "moonblast", "stone_edge", "trick_room"], 35, 36, 20, 25),
         ("delcatty", "wander_normal", "cute_charm", ["assist", "wish", "fake_out", "covet2"], 35, 36, 20, 24),
         ("klefki", "wander_normal", "prankster", ["torment", "spikes", "imprison"], 35, 36, 20, 23),
@@ -195,7 +195,7 @@ if __name__ == "__main__":
         #24
         ("farigiraf", "wander_normal", "sap_sipper", ["trick_room", "dazzling_gleam", "hyper_voice", "future_sight"], 40, 41, 23, 26),
         ("tentacruel", "wander_normal", "liquid_ooze", ["haze", "sludge_wave", "water_pulse"], 40, 41, 23, 26),
-        ("crobat", "wander_normal", "infiltrator", ["venom_drench", "cross_poison", "brave_bird"], 40, 41, 23, 26),
+        ("crobat", "wander_normal", "infiltrator", ["venom_drench", "cross_poison", "brave_bird", "quick_guard"], 40, 41, 23, 26),
         ("glimmora", "wander_normal", "corrosion", ["toxic_spikes", "rock_slide", "toxic"], 40, 41, 23, 26),
         ("togekiss", "wander_normal", "serene_grace", ["air_slash", "aura_sphere", "heat_wave"], 40, 41, 23, 26),
         ("clefable", "wander_normal", "friend_guard", ["moonblast", "thunder_wave", "wish", "encore"], 40, 41, 23, 26),
@@ -203,7 +203,7 @@ if __name__ == "__main__":
         #25
         ("aggron", "wander_normal", "rock_head", ["metal_burst", "autotomize", "screech", "iron_head"], 41, 42, 24, 26),
         ("houndoom", "wander_normal", "", ["dark_pulse", "nasty_plot", "flamethrower"], 41, 42, 24, 26),
-        ("honchkrow", "wander_crystal_normal", "", ["pursuit", "night_slash", "wing_attack", "foul_play"], 41, 42, 24, 26),
+        ("honchkrow", "wander_crystal_normal", "", ["pursuit", "wing_attack", "foul_play"], 41, 42, 24, 26),
         ("porygon_z", "wander_normal", "", ["tri_attack", "shock_wave", "conversion", "conversion_2"], 41, 42, 24, 27),
         ("medicham", "wander_normal", "pure_power", ["high_jump_kick", "drain_punch", "foresight", "psycho_cut"], 41, 42, 24, 27),
 
@@ -265,6 +265,7 @@ if __name__ == "__main__":
         "vulpix", "ninetales",
         "tinkatink", "tinkatuff", "tinkaton",
         "ledian",
+        "vulpix",
         "beldum", "metang",
         "pichu", "pikachu", "raichu",
         "togepi", "togetic", "togekiss",

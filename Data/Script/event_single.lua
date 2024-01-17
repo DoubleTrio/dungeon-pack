@@ -66,7 +66,7 @@ local WISH_TABLE = {
   },
   {
     Min = 9,
-    Max = 12,
+    Max = 10,
     Items = {
       { Item = "berry_leppa", Amount = 1, Weight = 13 },
       { Item = "berry_sitrus", Amount = 1, Weight = 8 },
@@ -90,10 +90,10 @@ local WISH_TABLE = {
     },
   },
   {
-    Min = 12,
-    Max = 15,
+    Min = 10,
+    Max = 11,
     Items = {
-			{ Item = "berry_leppa", Amount = 1, Weight = 18 },
+			{ Item = "berry_leppa", Amount = 1, Weight = 14 },
       { Item = "berry_sitrus", Amount = 1, Weight = 5 },
       { Item = "berry_oran", Amount = 1, Weight = 5 },
       { Item = "berry_apicot", Amount = 1, Weight = 2 },
@@ -165,8 +165,8 @@ local WISH_TABLE = {
     }
   },
   {
-    Min = 9,
-    Max = 10,
+    Min = 10,
+    Max = 11,
     Items = {
       { Item = "machine_recall_box", Amount = 1, Weight = 10 },
       { Item = "seed_joy", Amount = 1, Weight = 20 },
@@ -322,8 +322,8 @@ local WISH_TABLE = {
     },
   },
 	{
-		Min = 7,
-		Max = 9,
+		Min = 6,
+		Max = 7,
 		Items = {
 			{ Item = "held_flame_orb", Amount = 1, Weight = 2 },
 			{ Item = "held_toxic_orb", Amount = 1, Weight = 2 },
@@ -340,7 +340,7 @@ local WISH_TABLE = {
 			{ Item = "held_metronome", Amount = 1, Weight = 2 },
 			{ Item = "held_wide_lens", Amount = 1, Weight = 2 },
 			{ Item = "held_zinc_band", Amount = 1, Weight = 2 },
-			{ Item = "held_x_ray_specs", Amount = 1, Weight = 4 },
+			{ Item = "held_x_ray_specs", Amount = 1, Weight = 2 },
 			{ Item = "held_twist_band", Amount = 1, Weight = 2 },
 			{ Item = "held_trap_scarf", Amount = 1, Weight = 2 },
 			{ Item = "held_sticky_barb", Amount = 1, Weight = 2 },
@@ -376,8 +376,8 @@ local WISH_TABLE = {
 		}
 	},
 	{
-		Min = 7,
-		Max = 8,
+		Min = 6,
+		Max = 7,
 		Items = {
 			{ Item = "apricorn_big", Amount = 1, Weight = 4 },
 			{ Item = "apricorn_black", Amount = 1, Weight = 2 },

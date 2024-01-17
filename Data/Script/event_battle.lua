@@ -5,7 +5,7 @@ DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
 TotalDamageDealtType = luanet.import_type('PMDC.Dungeon.TotalDamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 
--- pachirisu, dragonair, quilava, oshawott, zangoose, corviknight, dedenne, zigzagoon, ribombee
+-- pachirisu, dragonair, quilava, oshawott, zangoose, zigzagoon, ribombee
 -- 
 -- B3F Oshawott: Wow! Wishmaker Cave is so beautiful! Sometimes, I feel something stirring within me as I look at the crystals. 
 -- B6F Zigzagoon: I could have sworn I saw something shiny on the ground earlier. I wish I could remember where I last saw it...
@@ -13,11 +13,6 @@ CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 -- B11F Ribombee: Ughh, those Tentacools are nasty, very nasty. I feel absolutely drained from them!
 -- B12F Quilava: Huh, I noticed some Pokémon here actively seek crystals to become more powerful. I think it's best to use their power immediately the moment you find them.
 -- B17F Dragonair: Rumors has it, something rests within the depths of this cave. ...Waiting to be awaken by worthy explorers who held on to some of their hopes and wishes until the end. 
-
-function BATTLE_SCRIPT.WishCaveNPCEvent()
-  UI:WaitShowDialogue("HI THERE")
-  
-end
 
 function BATTLE_SCRIPT.CrystalDefenseCountdownRemove(owner, ownerChar, context, args)
   local status = owner.ID

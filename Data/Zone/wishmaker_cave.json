@@ -1059,7 +1059,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -3004,7 +3004,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -4908,7 +4908,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -6812,7 +6812,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -8762,7 +8762,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -9854,7 +9854,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -10659,7 +10659,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -11464,7 +11464,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -12269,7 +12269,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -13074,7 +13074,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -19942,7 +19942,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -22223,7 +22223,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -24390,7 +24390,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -26557,7 +26557,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -28724,7 +28724,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -30039,7 +30039,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -30786,7 +30786,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -31533,7 +31533,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -32280,7 +32280,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -33027,7 +33027,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -33774,7 +33774,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []
@@ -34521,7 +34521,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "stairs_go_up",
+"ID": "stairs_go_down",
 "Revealed": true,
 "Owner": 0,
 "TileStates": [
@@ -40756,44 +40756,6 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "togepi",
-"Form": 0,
-"Skin": "",
-"Gender": -1
-},
-"Level": {
-"Min": 10,
-"Max": 11
-},
-"SpecifiedSkills": [
-"metronome"
-],
-"Intrinsic": "super_luck",
-"Tactic": "wander_dumb",
-"SpawnConditions": [],
-"SpawnFeatures": [
-{
-"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 1,
-"Remove": false
-},
-{
-"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-}
-]
-},
-"Role": 0
-},
-"Rate": 10,
-"Range": {
-"Min": 0,
-"Max": 3
-}
-},
-{
-"Spawn": {
-"Spawn": {
-"BaseForm": {
 "Species": "diglett",
 "Form": 0,
 "Skin": "",
@@ -40950,7 +40912,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "houndour",
+"Species": "togepi",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -40960,16 +40922,15 @@
 "Max": 13
 },
 "SpecifiedSkills": [
-"ember",
-"leer"
+"metronome"
 ],
-"Intrinsic": "",
-"Tactic": "wander_normal",
+"Intrinsic": "super_luck",
+"Tactic": "wander_dumb",
 "SpawnConditions": [],
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 2,
+"StartAt": 1,
 "Remove": false
 },
 {
@@ -41028,17 +40989,18 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "swinub",
+"Species": "houndour",
 "Form": 0,
 "Skin": "",
 "Gender": -1
 },
 "Level": {
-"Min": 13,
-"Max": 14
+"Min": 14,
+"Max": 15
 },
 "SpecifiedSkills": [
-"mud_bomb"
+"ember",
+"leer"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
@@ -41046,7 +41008,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 1,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -41059,7 +41021,7 @@
 "Rate": 10,
 "Range": {
 "Min": 3,
-"Max": 5
+"Max": 6
 }
 },
 {
@@ -41470,7 +41432,7 @@
 "thief2"
 ],
 "Intrinsic": "stakeout",
-"Tactic": "thief_crystal",
+"Tactic": "thief",
 "SpawnConditions": [],
 "SpawnFeatures": [
 {
@@ -41489,6 +41451,44 @@
 "Range": {
 "Min": 6,
 "Max": 10
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "swinub",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 17,
+"Max": 18
+},
+"SpecifiedSkills": [
+"mud_bomb"
+],
+"Intrinsic": "",
+"Tactic": "wander_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 0
+},
+"Rate": 10,
+"Range": {
+"Min": 6,
+"Max": 9
 }
 },
 {
@@ -41626,7 +41626,7 @@
 "aqua_ring",
 "mud_slap"
 ],
-"Intrinsic": "",
+"Intrinsic": "pure_power",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
@@ -42718,7 +42718,7 @@
 "Rate": 10,
 "Range": {
 "Min": 14,
-"Max": 15
+"Max": 16
 }
 },
 {
@@ -43980,8 +43980,7 @@
 },
 "SpecifiedSkills": [
 "iron_head",
-"play_rough",
-"metal_burst"
+"play_rough"
 ],
 "Intrinsic": "",
 "Tactic": "wander_crystal_normal",
@@ -43989,7 +43988,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -44056,8 +44055,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 31,
-"Max": 32
+"Min": 30,
+"Max": 31
 },
 "SpecifiedSkills": [
 "dragon_breath",
@@ -44466,8 +44465,8 @@
 },
 "SpecifiedSkills": [
 "foul_play",
-"snarl",
-"thief2"
+"thief2",
+"agility"
 ],
 "Intrinsic": "stakeout",
 "Tactic": "thief_crystal",
@@ -49021,7 +49020,41 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "clefablehatenna",
+"Species": "clefable",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "hatenna",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -49396,6 +49429,40 @@
 "Spawn": {
 "BaseForm": {
 "Species": "ledian",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "vulpix",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -55312,7 +55379,41 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "clefablehatenna",
+"Species": "clefable",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "hatenna",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -55687,6 +55788,40 @@
 "Spawn": {
 "BaseForm": {
 "Species": "ledian",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 1,
+"Max": 1
+},
+"SpecifiedSkills": [],
+"Intrinsic": "",
+"Tactic": "wander_smart",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+"StartFromID": 0,
+"AddNumerator": 4,
+"AddDenominator": 3
+}
+]
+},
+"Rate": 10,
+"Range": {
+"Min": 0,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"BaseForm": {
+"Species": "vulpix",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -63209,8 +63344,8 @@
 "$type": "RogueEssence.LevelGen.SpreadPlanQuota, RogueEssence",
 "Quota": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 2,
-"Max": 4
+"Min": 1,
+"Max": 3
 },
 "Replaceable": false,
 "FloorRange": {
@@ -63291,7 +63426,7 @@
 "$type": "RogueEssence.LevelGen.SpreadPlanQuota, RogueEssence",
 "Quota": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 3,
+"Min": 2,
 "Max": 4
 },
 "Replaceable": false,
@@ -63380,7 +63515,7 @@
 "X": 0,
 "Y": 0
 },
-"ID": "crystal_glow2",
+"ID": "crystal_glow",
 "Revealed": true,
 "Owner": 0,
 "TileStates": []

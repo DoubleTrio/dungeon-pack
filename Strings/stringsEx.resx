@@ -124,7 +124,7 @@
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK1" xml:space="preserve">
-    <value>[emote=Inspired]Wow![pause=20] Wishmaker Cave is so beautiful![br][emote=Normal]Sometimes, I feel something stirring within me as I look at the crystals. </value>
+    <value>[emote=Inspired]Wow![pause=20] Wishmaker Cave is so beautiful![br][emote=Normal]Sometimes, I feel something stirring in me every time I look at the crystals.</value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK2" xml:space="preserve">
