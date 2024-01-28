@@ -5,6 +5,7 @@ DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
 TotalDamageDealtType = luanet.import_type('PMDC.Dungeon.TotalDamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 
+TaintedDrainType = luanet.import_type('PMDC.Dungeon.TaintedDrain')
 -- pachirisu, dragonair, quilava, oshawott, zangoose, zigzagoon, ribombee
 -- 
 -- B3F Oshawott: Wow! Wishmaker Cave is so beautiful! Sometimes, I feel something stirring within me as I look at the crystals. 
@@ -13,7 +14,50 @@ CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 -- B11F Ribombee: Ughh, those Tentacools are nasty, very nasty. I feel absolutely drained from them!
 -- B12F Quilava: Huh, I noticed some Pokémon here actively seek crystals to become more powerful. I think it's best to use their power immediately the moment you find them.
 -- B17F Dragonair: Rumors has it, something rests within the depths of this cave. ...Waiting to be awaken by worthy explorers who held on to some of their hopes and wishes until the end. 
+-- B19F Staryu: [emote=happy]Like a star.[pause=10].[pause=10].[pause=10]  Until the end.[pause=10].[pause=10].[pause=10]
+-- B19F Staryu: {0} more.[pause=10] Like a star.
+-- One last wish for Wishmaker powered by how many Wish Gems you have. Jirachi for 5. 0 use the original Wish Gem
 
+function BATTLE_SCRIPT.WishmakerGemCountDialogue(owner, ownerChar, context, args)
+  -- if _DATA.CurrentReplay == nil then
+  UI:SetSpeaker(context.Target)
+
+  local wish_gem_count = COMMON.CountInvItemID("wish_gem")
+
+  context.Target.CharDir = context.User.CharDir:Reverse()
+  
+  local old_dir = context.Target.CharDir
+  -- local target = context.Target
+  -- UI:WaitShowDialogue()
+  if wish_gem_count > 5 then
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("WISHMAKER_NPC_TALK7.2"):ToLocal()))
+  elseif wish_gem_count == 5 then
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("WISHMAKER_NPC_TALK7.1"):ToLocal(), wish_gem_count))
+  else
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("WISHMAKER_NPC_TALK7.0"):ToLocal(), 5 - wish_gem_count))
+  end
+
+  context.Target.CharDir = old_dir
+
+  context.CancelState.Cancel = true
+    
+  -- end
+end
+
+-- if (DataManager.Instance.CurrentReplay == null)
+-- {
+--     if (HideSpeaker)
+--         yield return CoroutineManager.Instance.StartCoroutine(MenuManager.Instance.SetDialogue(Message.ToLocal()));
+--     else
+--     {
+--         Dir8 oldDir = context.Target.CharDir;
+--         context.Target.CharDir = context.User.CharDir.Reverse();
+--         Character target = context.Target;
+--         yield return CoroutineManager.Instance.StartCoroutine(MenuManager.Instance.SetDialogue(target.Appearance, target.GetDisplayName(true), Emote, true, Message.ToLocal()));
+--         context.Target.CharDir = oldDir;
+--     }
+--     context.CancelState.Cancel = true;
+-- }
 function BATTLE_SCRIPT.CrystalDefenseCountdownRemove(owner, ownerChar, context, args)
   local status = owner.ID
   local stack = context.Target:GetStatusEffect(status)
@@ -45,21 +89,42 @@ function BATTLE_SCRIPT.CrystalAttackCountdownRemove(owner, ownerChar, context, a
   end
 end
 
+function BATTLE_SCRIPT.CustomHpDrainEvent(owner, ownerChar, context, args)
+  local numer = args.Numerator
+  local denom = args.Denominator
+  local dmg_done = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
+  if dmg_done > 0 then
+    local tainted_drain = context.GlobalContextStates:GetWithDefault(luanet.ctype(TaintedDrainType))
+    if tainted_drain ~= nil then
+      SOUND:PlayBattleSE("DUN_Toxic")
+      _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(RogueEssence.StringKey("MSG_LIQUID_OOZE"):ToLocal(), context.User:GetDisplayName(false)))
+      TASK:WaitTask(context.User:InflictDamage(math.max(1, (dmg_done * numer * 2) / denom )))
+    else
+      TASK:WaitTask(context.User:RestoreHP(math.max(1, dmg_done * numer) / denom ))
+    end
+  end
+end
+
 function BATTLE_SCRIPT.CrystalHealCountdownRemove(owner, ownerChar, context, args)
   local status = owner.ID
   local stack = context.User:GetStatusEffect(status)
   local crystal_stack = stack.StatusStates:Get(luanet.ctype(StackType))
   local dmg = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
 
-  local drain_denom = 3
+  local drain_num = 1
+  local drain_denom = 2
   if crystal_stack.Stack == 2 then
-    drain_denom = 2
+    drain_num = 3
+    drain_denom = 4
   elseif crystal_stack.Stack == 3 then
+    -- drain_num = 1
     drain_denom = 1
+    
   end
 
-  local hp_drain_event = PMDC.Dungeon.HPDrainEvent(drain_denom)
-  TASK:WaitTask(hp_drain_event:Apply(owner, ownerChar, context))
+  BATTLE_SCRIPT.CustomHpDrainEvent(owner, ownerChar, context, { Numerator = drain_num, Denominator = drain_denom })
+  -- local hp_drain_event = PMDC.Dungeon.HPDrainEvent(drain_denom)
+  -- TASK:WaitTask(hp_drain_event:Apply(owner, ownerChar, context))
 
   local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
   if (context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill or context.ActionType == RogueEssence.Dungeon.BattleActionType.Item) and dmg > 0 then
@@ -69,7 +134,6 @@ function BATTLE_SCRIPT.CrystalHealCountdownRemove(owner, ownerChar, context, arg
     TASK:WaitTask(context.User:RemoveStatusEffect(status, true))
   end
 end
-
 
 function BATTLE_SCRIPT.Test(owner, ownerChar, context, args)
   PrintInfo("Test")
@@ -343,7 +407,7 @@ function BATTLE_SCRIPT.EscortInteractPet(owner, ownerChar, context, args)
 end
 
 
-function BATTLE_SCRIPT.RescueReached(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.SidequestRescueReached(owner, ownerChar, context, args)
 
   context.CancelState.Cancel = true
   
@@ -377,7 +441,7 @@ function BATTLE_SCRIPT.RescueReached(owner, ownerChar, context, args)
 end
 
 
-function BATTLE_SCRIPT.EscortRescueReached(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.SidequestEscortReached(owner, ownerChar, context, args)
   
   context.CancelState.Cancel = true
   
@@ -409,7 +473,7 @@ function BATTLE_SCRIPT.EscortRescueReached(owner, ownerChar, context, args)
   end
 end
 
-function BATTLE_SCRIPT.EscortOutReached(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.SidequestEscortOutReached(owner, ownerChar, context, args)
   
   local tbl = LTBL(context.Target)
   
@@ -499,6 +563,9 @@ function BATTLE_SCRIPT.PairTalk(owner, ownerChar, context, args)
   
   context.Target.CharDir = oldDir
 end
+
+
+StackType = luanet.import_type('RogueEssence.Dungeon.StackState')
 
 function BATTLE_SCRIPT.AccuracyTalk(owner, ownerChar, context, args)
   context.CancelState.Cancel = true

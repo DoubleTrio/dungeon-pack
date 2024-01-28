@@ -1,15 +1,26 @@
 Changelog:
 
-This version overall makes Wishmaker Cave a more fair, enjoyable (but extremely tough) experience by fixing overtuned parts and makes necessary resources more available
+Wish Crystal at Jirachi, 
+add a guranteed wish crystal at the end
+P
+
+
+This version overall makes Wishmaker Cave a more fair, enjoyable (but still extremely tough) experience by fixing overtuned parts and makes necessary resources more available more consistently
 
 Wishmaker Cave:
-- 4 items can be carried instead of 2 for story mode.
 - More Leppa berries and Apples are more guaranteed to spawn throughout the dungeon
-- More Wish Gems are guaranteed to appear at later floors
-- Some enemies were a bit overtuned and had their movesets and levels slightly nerfed. This should make progressing the beginning floors easier
-- Crystal Drain will now heal the following: 1/2, 3/4, 1/1 for the damage dealt
+  - To compensate, the Wish Crystal has been nerfed slightly across the board with the amount of items
+- An additional Wish Gem is guaranteed to appear at later floors
+- Some enemies were a bit overtuned and had their movesets and levels slightly nerfed. This should make progressing the beginning floors a bit easier
+- Crystal Drain will now heal with the following stacks:
+  - Stack 1: 1/2 (from 1/3)
+  - Stack 2: 3/4 (from 1/2)
+  - Stack 3: 1/1
+- The amount of damage taken from Liquid Ooze with the Drain Crystal has been slightly reduced
 - The Wish Crystal room has been slightly changed up
-- A new room has been added for completing the dungeon! Jirachi can be unlocked by collecting 3 Wish Gems
+- A new floor has been added for reaching the end!
 - Dungeon tileset has been changed to better suit the theme
+- Some NPCs have been added to story mode
 - Fixed several typos
+- Made Wish Crystal choices more clear
 

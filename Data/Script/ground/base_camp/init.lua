@@ -1,6 +1,7 @@
 require 'common'
 
-GAME:UnlockDungeon("wishmakers_cave")
+
+
 local base_camp = {}
 local MapStrings = {}
 --------------------------------------------------
@@ -33,9 +34,9 @@ function base_camp.Enter(map)
     GROUND:Unhide("Statue_Right")
   end
   
-  if not SV.base_camp.FerryUnlocked then
-    GROUND:Hide("Lapras")
-    GROUND:Hide("Ferry")
+  if SV.base_camp.FerryUnlocked then
+    GROUND:Unhide("Lapras")
+    GROUND:Unhide("Ferry")
   end
   
   if not SV.base_camp.IntroComplete then
@@ -51,6 +52,9 @@ function base_camp.Enter(map)
     SV.base_camp.ExpositionComplete = true
   else
     base_camp.SetupNpcs()
+	
+	base_camp.CheckMissions()
+	
     GAME:FadeIn(20)
   end
   
@@ -66,10 +70,6 @@ function base_camp.PrepareFirstTimeVisit()
   GROUND:Hide("Assembly")
   GROUND:Hide("Storage")
   GROUND:Hide("North_Exit")
-  GROUND:Hide("Noctowl")
-  GROUND:Hide("NPC_Entrance")
-  GROUND:Hide("NPC_Range")
-  GROUND:Hide("NPC_Coast")
   GROUND:Unhide("East_LogPile")
   GROUND:Unhide("West_LogPile")
   GROUND:Unhide("First_North_Exit")
@@ -81,9 +81,46 @@ end
 -- Map Begin Functions
 --------------------------------------------------
 function base_camp.SetupNpcs()
+  GROUND:Unhide("Noctowl")
   GROUND:Unhide("NPC_Coast")
-  GROUND:Unhide("NPC_Range")
   GROUND:Unhide("NPC_Entrance")
+  
+  --Noctowl: 64, 252
+  --Luxio: 104, 252
+  if not SV.family.Sister and SV.family.SisterActiveDays >= 3 then
+	local noctowl = CH('Noctowl')
+	local entrance = CH('NPC_Entrance')
+	GROUND:TeleportTo(noctowl, 64, 252, Direction.Right)
+	GROUND:TeleportTo(entrance, 104, 252, Direction.Left)
+  end
+  
+  --Wingull: 344, 264
+  if not SV.family.Mother and SV.family.MotherActiveDays >= 3 then
+	local coast = CH('NPC_Coast')
+	GROUND:TeleportTo(coast, 232, 456, Direction.Down)
+  end
+  
+  if SV.team_catch.Status == 1 then
+    GROUND:Unhide("NPC_Catch_1")
+	GROUND:Unhide("NPC_Catch_2")
+  elseif SV.team_catch.Status == 4 then
+    -- TODO cycling
+  end
+  
+  if SV.team_kidnapped.Status == 0 then
+    GROUND:Unhide("NPC_Unlucky")
+  elseif SV.team_kidnapped.Status == 6 then
+    -- TODO cycling
+  end
+  
+  if SV.team_steel.DaysSinceArgue >= 2 and not SV.team_steel.Rescued then
+    GROUND:Unhide("NPC_Steel_1")
+	local questname = "QuestSteel"
+    local quest = SV.missions.Missions[questname]
+	if quest ~= nil and quest.Complete == COMMON.MISSION_COMPLETE then
+	  GROUND:Unhide("NPC_Steel_2")
+	end
+  end
   
   if SV.guildmaster_summit.GameComplete then
     local noctowl = CH('Noctowl')
@@ -91,11 +128,33 @@ function base_camp.SetupNpcs()
   end
 end
 
-function base_camp.BeginExposition()  
 
-  local noctowl = CH('Noctowl')
+function base_camp.CheckMissions()
   local player = CH('PLAYER')
   
+  local quest = SV.missions.Missions["EscortMother"]
+  if quest ~= nil then
+    if quest.Complete == COMMON.MISSION_COMPLETE then
+	
+      --spawn her	  
+      
+      GAME:FadeIn(20)
+      UI:WaitShowDialogue("Escort mission state: Complete.")
+      
+      --she walks off to sunflora
+      UI:WaitShowDialogue("The mother drops something as she runs off.")
+      
+      SV.magnagate.Cards = SV.magnagate.Cards + 1
+	  SV.family.Mother = true
+      COMMON.GiftKeyItem(player, RogueEssence.StringKey("ITEM_KEY_CARD_WATER"):ToLocal())
+	  COMMON.CompleteMission("EscortMother")
+	  
+    end
+  end
+end
+
+function base_camp.BeginExposition()  
+
 	-- move founder to team if not in party
 	-- get party
 	local party_table = GAME:GetPlayerPartyTable()
@@ -137,6 +196,10 @@ function base_camp.BeginExposition()
 	-- update team
     COMMON.RespawnAllies()
 	
+	
+  local noctowl = CH('Noctowl')
+  local player = CH('PLAYER')
+  
 	
     GAME:CutsceneMode(true)
     UI:SetSpeaker(STRINGS:Format("\\uE040"), true, "", -1, "", RogueEssence.Data.Gender.Unknown)
@@ -231,6 +294,9 @@ end
 function base_camp.RewardDialogue()
   
   GAME:CutsceneMode(true)
+  
+  GROUND:Unhide("Noctowl")
+  
   local player = CH('PLAYER')
   local noctowl = CH('Noctowl')
     
@@ -319,20 +385,20 @@ function base_camp.Ferry_Action(obj, activator)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
   local ferry = CH('Lapras')
   UI:SetSpeaker(ferry)
-  GAME:UnlockDungeon('wishmaker_cave')
-  -- GROUND:AnimateInDirection(activator, "Trip", Direction.Down, Direction.Down, 4, 1, 2)
-  -- GROUND:CharSetAction(activator, RogueEssence.Ground.PoseGroundAction(activator.Position, activator.Direction, RogueEssence.Content.GraphicsManager.GetAnimIndex("Trip")))
-  -- RogueEssence.Ground.FrameGroundAction(activator.CharLoc, Dir8.Down, "Trip", "")
   if not SV.base_camp.FerryIntroduced then
     UI:WaitShowDialogue(STRINGS:Format(MapStrings['Ferry_Line_001']))
 	SV.base_camp.FerryIntroduced = true
   end
-
+  GAME:UnlockDungeon('wishmaker_cave')
   local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
   local ground_entrances = {}
-  base_camp.ShowFerryMenu(dungeon_entrances,ground_entrances)
+  
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Ferry_Line_002']))
+  
+  COMMON.ShowDestinationMenu(dungeon_entrances,ground_entrances, true,
+  ferry,
+  STRINGS:Format(MapStrings['Ferry_Line_003']))
 end
-
 
 function base_camp.ShowFerryMenu(dungeon_entrances, ground_entrances)
   
@@ -366,7 +432,7 @@ function base_camp.ShowFerryMenu(dungeon_entrances, ground_entrances)
   
   local dest = RogueEssence.Dungeon.ZoneLoc.Invalid
   
-    UI:WaitShowDialogue(STRINGS:Format(MapStrings['Ferry_Line_002']))
+    
     UI:DestinationMenu(open_dests)
 	UI:WaitForChoice()
 	dest = UI:ChoiceResult()
@@ -452,24 +518,169 @@ function base_camp.Noctowl_Action(chara, activator)
 end
 
 
+function base_camp.NPC_Catch_1_Action(chara, activator)
+  DEBUG.EnableDbgCoro()
+  
+  base_camp.Catch_Action()
+end
+
+function base_camp.NPC_Catch_2_Action(chara, activator)
+  DEBUG.EnableDbgCoro()
+  base_camp.Catch_Action()
+  
+end
+
+function base_camp.Catch_Action()
+  DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+  
+  local catch1 = CH('NPC_Catch_1')
+  local catch2 = CH('NPC_Catch_2')
+  local player = CH('PLAYER')
+  local itemAnim = nil
+  
+  GROUND:CharTurnToChar(player, catch1)
+  UI:SetSpeaker(catch1)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Catch_Line_001']))
+  SOUND:PlayBattleSE("DUN_Throw_Start")
+  GROUND:CharSetAnim(catch1, "Rotate", false)
+  GAME:WaitFrames(18)
+  SOUND:PlayBattleSE("DUN_Throw_Arc")
+  itemAnim = RogueEssence.Content.ItemAnim(catch1.Bounds.Center, catch2.Bounds.Center, "Rock_Gray", 48, 1)
+  GROUND:PlayVFXAnim(itemAnim, RogueEssence.Content.DrawLayer.Normal)
+  
+  GROUND:CharTurnToChar(player, catch2)
+  GAME:WaitFrames(RogueEssence.Content.ItemAnim.ITEM_ACTION_TIME)
+	
+  SOUND:PlayBattleSE("DUN_Equip")
+  UI:SetSpeaker(catch2)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Catch_Line_002']))
+  SOUND:PlayBattleSE("DUN_Throw_Start")
+  GROUND:CharSetAnim(catch2, "Rotate", false)
+  GAME:WaitFrames(18)
+  SOUND:PlayBattleSE("DUN_Throw_Arc")
+  itemAnim = RogueEssence.Content.ItemAnim(catch2.Bounds.Center, catch1.Bounds.Center, "Rock_Gray", 48, 1)
+  GROUND:PlayVFXAnim(itemAnim, RogueEssence.Content.DrawLayer.Normal)
+  
+  GROUND:CharTurnToChar(player, catch1)
+  GAME:WaitFrames(RogueEssence.Content.ItemAnim.ITEM_ACTION_TIME)
+  
+  SOUND:PlayBattleSE("DUN_Equip")
+  
+  SV.team_catch.SpokenTo = true
+end
+
+function base_camp.NPC_Steel_1_Action(chara, activator)
+
+  local player = CH('PLAYER')
+  
+  local questname = "QuestSteel"
+  local quest = SV.missions.Missions[questname]
+	
+  
+  if quest == nil then
+    UI:SetSpeaker(chara)
+    GROUND:CharTurnToChar(chara,player)
+	UI:WaitShowDialogue(STRINGS:Format(MapStrings['Steel_Line_001']))
+	
+	COMMON.CreateMission(questname,
+	{ Complete = COMMON.MISSION_INCOMPLETE, Type = COMMON.MISSION_TYPE_RESCUE,
+      DestZone = "guildmaster_trail", DestSegment = 0, DestFloor = 14,
+      FloorUnknown = false,
+      TargetSpecies = RogueEssence.Dungeon.MonsterID("scizor", 0, "normal", Gender.Male),
+      ClientSpecies = RogueEssence.Dungeon.MonsterID("steelix", 0, "normal", Gender.Male) }
+	  )
+	
+  elseif quest.Complete == COMMON.MISSION_INCOMPLETE then
+    UI:SetSpeaker(chara)
+    GROUND:CharTurnToChar(chara,player)
+	UI:WaitShowDialogue(STRINGS:Format(MapStrings['Steel_Line_002']))
+  else
+    base_camp.Steel_Complete()
+  end
+  
+  
+end
+
+function base_camp.NPC_Steel_2_Action(chara, activator)
+  if not SV.team_steel.Rescued then
+    base_camp.Steel_Complete()
+  end
+end
+
+function base_camp.Steel_Complete()
+  local steel1 = CH('NPC_Steel_1')
+  local steel2 = CH('NPC_Steel_2')
+  local player = CH('PLAYER')
+  
+  GROUND:CharTurnToChar(steel1,player)
+  GROUND:CharTurnToChar(steel2,player)
+  
+  UI:SetSpeaker(steel1)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Steel_Complete_Line_001']))
+  
+  local receive_item = RogueEssence.Dungeon.InvItem("xcl_element_steel_silk")
+  COMMON.GiftItem(player, receive_item)
+  
+  UI:SetSpeaker(steel2)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Steel_Complete_Line_002']))
+  GROUND:Hide("NPC_Steel_1")
+  GROUND:Hide("NPC_Steel_2")
+  
+  COMMON.CompleteMission("QuestSteel")
+  
+  SV.team_steel.Rescued = true
+end
+
+
 function base_camp.NPC_Entrance_Action(chara, activator)
+
+  if not SV.family.Sister and SV.family.SisterActiveDays >= 3 then
+  local noctowl = CH('Noctowl')
+  
+  UI:SetSpeaker(chara)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Hint_Sister_Line_001']))
+  
+  UI:SetSpeaker(noctowl)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Hint_Sister_Line_002']))
+  
+  UI:SetSpeaker(chara)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Hint_Sister_Line_003']))
+  
+  UI:SetSpeaker(noctowl)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Hint_Sister_Line_004']))
+  
+  UI:SetSpeaker(chara)
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Hint_Sister_Line_005']))
+  else
+  
   GROUND:CharTurnToChar(chara,CH('PLAYER'))
   UI:SetSpeaker(chara)
 
   UI:WaitShowDialogue(STRINGS:Format(MapStrings['Warn_Line_001']))
   UI:WaitShowDialogue(STRINGS:Format(MapStrings['Warn_Line_002']))
   UI:WaitShowDialogue(STRINGS:Format(MapStrings['Warn_Line_003']))
+  
+  end
 end
 
 function base_camp.NPC_Coast_Action(chara, activator)
+
   GROUND:CharTurnToChar(chara,CH('PLAYER'))
   UI:SetSpeaker(chara)
 
+  if not SV.family.Mother and SV.family.MotherActiveDays >= 3 then
+  
+    UI:WaitShowDialogue(STRINGS:Format(MapStrings['Hint_Mother_Line_001']))
+	
+  else
+
   UI:WaitShowDialogue(STRINGS:Format(MapStrings['Outside_Line_001']))
+  
+  end
   GROUND:EntTurn(chara, Direction.Down)
 end
 
-function base_camp.NPC_Range_Action(chara, activator)
+function base_camp.NPC_Unlucky_Action(chara, activator)
   GROUND:CharTurnToChar(chara,CH('PLAYER'))
   UI:SetSpeaker(chara)
   UI:SetSpeakerEmotion("Worried")
@@ -478,9 +689,14 @@ function base_camp.NPC_Range_Action(chara, activator)
   SOUND:PlayBattleSE("EVT_Emote_Sweating")
   GROUND:CharSetEmote(chara, "sweating", 1)
   GAME:WaitFrames(30)
-  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Range_Line_001']))
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Unlucky_Line_001']))
   UI:SetSpeakerEmotion("Sad")
-  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Range_Line_002']))
+  UI:WaitShowDialogue(STRINGS:Format(MapStrings['Unlucky_Line_002']))
+  
+  
+  if SV.Experimental then
+    SV.team_kidnapped.SpokenTo = true
+  end
 end
 
 function base_camp.Statue_Center_Action(obj, activator)
@@ -490,6 +706,7 @@ function base_camp.Statue_Center_Action(obj, activator)
   UI:SetCenter(true)
   UI:WaitShowDialogue(STRINGS:Format(MapStrings['Statue_Center_Text'], SV.base_camp.CenterStatueDate, GAME:GetTeamName()))
   UI:SetAutoFinish(false)
+  UI:ResetSpeaker()
 end
 
 function base_camp.Statue_Left_Action(obj, activator)
@@ -499,6 +716,7 @@ function base_camp.Statue_Left_Action(obj, activator)
   UI:SetCenter(true)
   UI:WaitShowDialogue(STRINGS:Format(MapStrings['Statue_Left_Text'], SV.base_camp.LeftStatueDate, GAME:GetTeamName()))
   UI:SetAutoFinish(false)
+  UI:ResetSpeaker()
 end
 
 function base_camp.Statue_Right_Action(obj, activator)
@@ -508,6 +726,7 @@ function base_camp.Statue_Right_Action(obj, activator)
   UI:SetCenter(true)
   UI:WaitShowDialogue(STRINGS:Format(MapStrings['Statue_Right_Text'], SV.base_camp.RightStatueDate, GAME:GetTeamName()))
   UI:SetAutoFinish(false)
+  UI:ResetSpeaker()
 end
 
 function base_camp.Teammate1_Action(chara, activator)
@@ -526,7 +745,14 @@ function base_camp.Teammate3_Action(chara, activator)
 end
 
 function base_camp.SisterReminderActive()
-  if SV.family.Sister == 0 and SV.family.SisterActiveDays > 2 then
+  if SV.family.Sister == false and SV.family.SisterActiveDays > 2 then
+    return true
+  end
+  return false
+end
+
+function base_camp.MotherReminderActive()
+  if SV.family.Mother == false and SV.family.MotherActiveDays > 2 then
     return true
   end
   return false

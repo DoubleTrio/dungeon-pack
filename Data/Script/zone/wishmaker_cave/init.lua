@@ -33,17 +33,17 @@ end
 function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
   PrintInfo("=>> ExitSegment_wishmaker_cave result "..tostring(result).." segment "..tostring(segmentID))
-  COMMON.ExitDungeonMissionCheck(result, zone.ID, segmentID)
-  if rescue == true then
-    COMMON.EndRescue(zone, result, segmentID)
+  local exited = COMMON.ExitDungeonMissionCheck(result, rescue, zone.ID, segmentID)
+  if exited == true then
+    -- nothing
   elseif result ~= RogueEssence.Data.GameProgress.ResultType.Cleared then
     COMMON.EndDungeonDay(result, SV.checkpoint.Zone, SV.checkpoint.Segment, SV.checkpoint.Map, SV.checkpoint.Entry)
   else
     -- if segmentID == 0 then
-    --   COMMON.UnlockWithFanfare('castaway_cave', true)
+    --   COMMON.UnlockWithFanfare('', true)
     --   COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
     -- elseif segmentID == 1 then
-    --   COMMON.UnlockWithFanfare('inscribed_cave', true)
+    --   COMMON.UnlockWithFanfare('', true)
     --   COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
     -- else
     --   PrintInfo("No exit procedure found!")

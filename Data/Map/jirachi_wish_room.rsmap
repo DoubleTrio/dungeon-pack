@@ -17045,6 +17045,67 @@
 "Dir": 4
 }
 ],
-"Items": []
+"Items": [
+{
+"IsMoney": false,
+"Cursed": false,
+"Value": "wish_gem",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 0,
+"TileLoc": {
+"X": 8,
+"Y": 9
+}
+},
+{
+"IsMoney": false,
+"Cursed": false,
+"Value": "wish_gem",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 0,
+"TileLoc": {
+"X": 12,
+"Y": 9
+}
+},
+{
+"IsMoney": false,
+"Cursed": false,
+"Value": "wish_gem",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 0,
+"TileLoc": {
+"X": 9,
+"Y": 11
+}
+},
+{
+"IsMoney": false,
+"Cursed": false,
+"Value": "wish_gem",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 0,
+"TileLoc": {
+"X": 11,
+"Y": 11
+}
+},
+{
+"IsMoney": false,
+"Cursed": false,
+"Value": "wish_gem",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 0,
+"TileLoc": {
+"X": 10,
+"Y": 7
+}
+}
+]
 }
 }

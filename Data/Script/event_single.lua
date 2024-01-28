@@ -1,3 +1,5 @@
+require 'common'
+
 StackStateType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
@@ -8,8 +10,11 @@ SpawnListType =  luanet.import_type('RogueElements.SpawnList`1')
 
 SINGLE_CHAR_SCRIPT = {}
 
+-- amount > 0 && DataManager.Instance.Save.ActiveTeam.GetInvCount() < DataManager.Instance.Save.ActiveTeam.GetMaxInvSlots(ZoneManager.Instance.CurrentZone)
+-- Temporarily Increase MaxZoneInventory Size and BagSize 
+-- OR all items has been sent to the storage
 
-function SINGLE_CHAR_SCRIPT.HalfHpNpcEvent(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.LowHpNpcEvent(owner, ownerChar, context, args)
   local chara = context.User
 	if chara ~= nil then
 		local tbl = LTBL(chara)
@@ -19,12 +24,41 @@ function SINGLE_CHAR_SCRIPT.HalfHpNpcEvent(owner, ownerChar, context, args)
 	end
 end
 
+function SINGLE_CHAR_SCRIPT.WishCenterEvent(owner, ownerChar, context, args)
+	local chara = context.User
+	if chara == _DUNGEON.ActiveTeam.Leader and chara == _DUNGEON.FocusedCharacter then
+		_DUNGEON:QueueTrap(context.User.CharLoc)
+	end
+end
+
+-- table.concat({"a", "b", "c"}, ",") --> "a,b,c"
+-- 1, 2, 3, 4, 5. Wishmaker can be awaken.
+function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, args)
+	local bag_count = GAME:GetPlayerBagCount()
+  local wish_gem_count = COMMON.CountInvItemID("wish_gem")
+	-- Fwahh! 
+	-- Exclaimation~ Where... am 
+	print("Wish Gem Count: " .. tostring(wish_gem_count))
+
+
+	GAME:WaitFrames(10)
+  UI:ResetSpeaker()
+
+	UI:ChoiceMenuYesNo("Your Wish Gems are reacting from your treasure bag! Would you like to use them?", false)
+  UI:WaitForChoice()
+  ch = UI:ChoiceResult()
+  if ch then
+	end
+
+	-- ...[pause=0]
+	-- Spawn Jirachi
+end
+
 function SINGLE_CHAR_SCRIPT.WishExitEvent(owner, ownerChar, context, args)
   local chara = context.User
   local tile = _ZONE.CurrentMap.Tiles[chara.CharLoc.X][chara.CharLoc.Y]
-	print(tostring(chara.MemberTeam == _DUNGEON.ActiveTeam.Leader))
-  if tile.Effect ~= "" and context.User.CharDir == Direction.Down and chara == _DUNGEON.ActiveTeam.Leader and chara ==_DUNGEON.FocusedCharacter then
-    _DUNGEON:QueueTrap(context.User.CharLoc);
+  if tile.Effect ~= "" and (context.User.CharDir == Direction.Down) and chara == _DUNGEON.ActiveTeam.Leader and chara ==_DUNGEON.FocusedCharacter then
+    _DUNGEON:QueueTrap(context.User.CharLoc)
   end
 end
 
@@ -43,7 +77,6 @@ function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, arg
     -- if GAME:InRogueMode() then
     --   GAME:AddToPlayerMoneyBank(100000)
     -- end
-
     COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
 	end
 end
@@ -65,10 +98,10 @@ local WISH_TABLE = {
     },
   },
   {
-    Min = 9,
+    Min = 8,
     Max = 10,
     Items = {
-      { Item = "berry_leppa", Amount = 1, Weight = 13 },
+      { Item = "berry_leppa", Amount = 1, Weight = 10 },
       { Item = "berry_sitrus", Amount = 1, Weight = 8 },
       { Item = "berry_oran", Amount = 1, Weight = 8 },
 			{ Item = "berry_lum", Amount = 1, Weight = 8 },
@@ -81,7 +114,7 @@ local WISH_TABLE = {
       { Item = "berry_ganlon", Amount = 1, Weight = 3 },
       { Item = "berry_enigma", Amount = 1, Weight = 3 },
 			{ Item = "berry_micle", Amount = 1, Weight = 2 },
-      { Item = "food_apple", Amount = 1, Weight = 23 },
+      { Item = "food_apple", Amount = 1, Weight = 28 },
       { Item = "food_apple_big", Amount = 1, Weight = 6 },
       { Item = "food_apple_huge", Amount = 1, Weight = 3 },
       { Item = "food_apple_golden", Amount = 1, Weight = 1 },
@@ -90,8 +123,8 @@ local WISH_TABLE = {
     },
   },
   {
-    Min = 10,
-    Max = 11,
+    Min = 8,
+    Max = 9,
     Items = {
 			{ Item = "berry_leppa", Amount = 1, Weight = 14 },
       { Item = "berry_sitrus", Amount = 1, Weight = 5 },
@@ -165,12 +198,12 @@ local WISH_TABLE = {
     }
   },
   {
-    Min = 10,
-    Max = 11,
+    Min = 9,
+    Max = 10,
     Items = {
-      { Item = "machine_recall_box", Amount = 1, Weight = 10 },
-      { Item = "seed_joy", Amount = 1, Weight = 20 },
-      { Item = "seed_golden", Amount = 1, Weight = 2 },
+      { Item = "machine_recall_box", Amount = 1, Weight = 15 },
+      { Item = "seed_joy", Amount = 1, Weight = 30 },
+      { Item = "seed_golden", Amount = 1, Weight = 3 },
       { Item = "gummi_black", Amount = 1, Weight = 4 },
       { Item = "gummi_blue", Amount = 1, Weight = 4 },
       { Item = "gummi_brown", Amount = 1, Weight = 4 },
@@ -189,12 +222,12 @@ local WISH_TABLE = {
       { Item = "gummi_white", Amount = 1, Weight = 4 },
       { Item = "gummi_yellow", Amount = 1, Weight = 4 },
       { Item = "gummi_wonder", Amount = 1, Weight = 5 },
-      { Item = "boost_calcium", Amount = 1, Weight = 4 },
-      { Item = "boost_carbos", Amount = 1, Weight = 4 },
-      { Item = "boost_hp_up", Amount = 1, Weight = 4 },
-      { Item = "boost_iron", Amount = 1, Weight = 4 },
-      { Item = "boost_nectar", Amount = 1, Weight = 4 },
-      { Item = "boost_zinc", Amount = 1, Weight = 4 },
+      { Item = "boost_calcium", Amount = 1, Weight = 6 },
+      { Item = "boost_carbos", Amount = 1, Weight = 6 },
+      { Item = "boost_hp_up", Amount = 1, Weight = 6 },
+      { Item = "boost_iron", Amount = 1, Weight = 6 },
+      { Item = "boost_nectar", Amount = 1, Weight = 6 },
+      { Item = "boost_zinc", Amount = 1, Weight = 6 },
       { Item = "tm_acrobatics", Amount = 1, Weight = 1 },
       { Item = "tm_aerial_ace", Amount = 1, Weight = 1 },
       { Item = "tm_attract", Amount = 1, Weight = 1 },
@@ -322,7 +355,7 @@ local WISH_TABLE = {
     },
   },
 	{
-		Min = 6,
+		Min = 5,
 		Max = 7,
 		Items = {
 			{ Item = "held_flame_orb", Amount = 1, Weight = 2 },
@@ -584,7 +617,9 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 	DUNGEON:CharSetAction(chara, RogueEssence.Dungeon.CharAnimPose(chara.CharLoc, chara.CharDir, 0, -1))
 	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
 	crystal_moment_status:LoadFromData()
-	TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+	if _DATA.CurrentReplay == nil then
+		TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+	end
 
 	_ZONE.CurrentMap.HideMinimap = true
 	local curr_song = RogueEssence.GameManager.Instance.Song;
@@ -652,7 +687,11 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 	end
 	UI:WaitShowDialogue("The crystal became dimmer.")
 	
-	TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+
+	if _DATA.CurrentReplay == nil then
+		TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+		-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+	end
 	SOUND:PlayBGM(curr_song, true, 0)
 	GAME:WaitFrames(20)
 
@@ -718,12 +757,6 @@ function PickByWeights(entries)
     end
   end
 end
-
-
-function SINGLE_CHAR_SCRIPT.Test(owner, ownerChar, context, args)
-  PrintInfo("Test")
-end
-
 
 function SINGLE_CHAR_SCRIPT.CastawayCaveAltMusic(owner, ownerChar, context, args)
   if context.User ~= nil then
@@ -1086,7 +1119,7 @@ function SINGLE_CHAR_SCRIPT.DestinationFloor(owner, ownerChar, context, args)
 end
 
 
-function SINGLE_CHAR_SCRIPT.OutlawFloor(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.SidequestOutlawFloor(owner, ownerChar, context, args)
   if context.User ~= nil then
     return
   end
@@ -2064,4 +2097,3 @@ function SINGLE_CHAR_SCRIPT.TileTestChange(owner, ownerChar, context, args)
 	  SINGLE_CHAR_SCRIPT.SetTileData("test_dungeon_wall", "test_dungeon_floor", "test_dungeon_secondary")
 	end
 end
-
