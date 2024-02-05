@@ -46,7 +46,7 @@ function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, a
   -- print(tostring(DUNGEON:DungeonCurrentFloor()))
   local is_beginning = zoneContext.CurrentID < 2
   -- print(GAME:GetCurrentFloor())
-  if (is_shimmering or zoneContext.CurrentID == 2) and not is_beginning then
+  if (is_shimmering or zoneContext.CurrentID == 2 or zoneContext.CurrentID >= 20) and not is_beginning then
     local SHIMMERING_EVENTS = { 
       {
         effect = function ()
@@ -138,6 +138,15 @@ function ZONE_GEN_SCRIPT.SpawnStoryNpc(zoneContext, context, queue, seed, args)
       Emote = 0
     },
     {
+      Species = "smeargle",
+      -- SpawnFeatures = {},
+      Floor = 8,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK8")),
+      Statuses = {},
+      Level = 18,
+      Emote = 0
+    },
+    {
       Species = "zangoose",
       -- SpawnFeatures = {},
       Floor = 10,
@@ -207,8 +216,9 @@ function ZONE_GEN_SCRIPT.SpawnStoryNpc(zoneContext, context, queue, seed, args)
       post_mob.Level = RogueElements.RandRange(entry.Level)
       post_mob.Tactic = "slow_patrol_land"
       local dialogue = entry.Dialogue
+
       -- local dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey(entry.Dialogue))
-      -- dialogue.Emote = RogueEssence.Content.EmoteStyle(entry.Emote)
+      dialogue.Emote = RogueEssence.Content.EmoteStyle(entry.Emote)
 
       post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnInteractable(dialogue))
       post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable(Serpent.line({ NPC = true })))

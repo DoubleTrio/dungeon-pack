@@ -87,9 +87,9 @@ if __name__ == "__main__":
 
         #13
         ("volbeat", "wander_normal", "swarm", ["dazzling_gleam", "bug_buzz", "round", "helping_hand"], 25, 26, 12, 15),
-        ("illumise", "wander_normal", "prankster", ["wish", "encore", "covet2", "struggle_bug"], 26, 27, 12, 15),
+        ("illumise", "wander_normal", "prankster", ["wish", "encore", "attract", "struggle_bug"], 26, 27, 12, 15),
         ("emolga", "wander_normal", "static", ["volt_switch", "acrobatics"], 25, 26, 12, 15),
-        ("dunsparce", "wander_normal", "serene_grace", ["take_down", "pursuit", "yawn"], 25, 26, 12, 15),
+        ("dunsparce", "wander_normal", "serene_grace", ["take_down", "pursuit", "yawn", "screech"], 25, 26, 12, 15),
         # ("audino", "wander_normal", "", ["healing_wish", "after_you", "heal_bell"], 70, 36, 0, 1),
 
         # ("togetic", "wander_normal", "super_luck", ["nasty_plot", "baton_pass", "after_you"], 70, 36, 0, 1),
@@ -108,12 +108,12 @@ if __name__ == "__main__":
         # ("golbat", "wander_normal", "", ["mean_look", "venoshock"], 70, 36, 0, 1),
         # ("klefki", "wander_normal", "prankster", ["torment", "spikes", "imprison"], 28, 29, 14, 16),
         ("skarmory", "wander_normal", "sturdy", ["spikes", "metal_claw"], 27, 28, 14, 16),
-        ("bronzor", "wander_normal", "levitate", ["psywave", "stored_power", "safeguard"], 29, 30, 14, 16),
+        ("bronzor", "wander_normal", "levitate", ["psywave", "imprison", "safeguard"], 29, 30, 14, 16),
 
 
         #16, 27. 29
         ("loudred", "wander_normal", "", ["uproar", "stomp", "round"], 29, 30, 15, 18),
-        ("solrock", "wander_normal", "levitate", ["psyshock", "rock_slide", "stealth_rock"], 29, 30, 15, 18),
+        ("solrock", "wander_normal", "levitate", ["psyshock", "rock_slide", "substitute"], 29, 30, 15, 18),
         ("lunatone", "wander_normal", "levitate", ["moonblast", "moonlight", "hypnosis", "embargo"], 29, 30, 15, 18),
         ("swoobat", "wander_normal", "unaware", ["air_cutter", "imprison"], 29, 30, 15, 18),
         ("chatot", "wander_normal", "tangled_feet", ["chatter", "round", "mimic"], 28, 29, 15, 18),
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         ("metang", "wander_normal", "clear_body", ["take_down", "zen_headbutt", "magnet_rise"], 30, 31, 16, 19),
         ("umbreon", "wander_normal", "synchronize", ["wish", "mean_look", "snarl"], 30, 31, 16, 19),
         ("gothorita", "wander_normal", "competitive", ["future_sight", "charm", "psych_up"], 31, 32, 16, 19),
-        ("persian", "wander_crystal_normal_greedy", "limber", ["fake_out", "fury_swipes", "hyper_voice", "thief2"], 31, 32, 16, 19),
+        ("persian", "wander_crystal_normal_greedy", "limber", ["fake_out", "fury_swipes", "hyper_voice"], 31, 32, 16, 19),
         ("mr_mime", "wander_normal", "soundproof", ["wide_guard", "round", "safeguard", "light_screen"], 31, 32, 16, 19),
         ("rhydon", "wander_normal", "rock_head", ["scary_face", "drill_run", "rock_blast"], 30, 31, 16, 19),
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
         #20
         ("togedemaru", "wander_normal", "iron_barbs", ["zing_zap", "tickle", "nuzzle"], 34, 35, 19, 21),
         ("ledian", "wander_crystal_normal", "swarm", ["encore", "baton_pass", "wish", "silver_wind"], 35, 36, 19, 22),
-        ("porygon2", "wander_crystal_normal", "download", ["conversion_2", "recover", "psybeam", "charge_beam"], 32, 33, 19, 21),
+        ("porygon2", "wander_crystal_normal", "download", ["conversion_2", "recover", "psybeam", "charge_beam"], 32, 33, 19, 22),
 
 
         # FINAL SECTION
@@ -167,7 +167,7 @@ if __name__ == "__main__":
         ("delcatty", "wander_normal", "cute_charm", ["assist", "wish", "fake_out", "covet2"], 35, 36, 20, 24),
         ("klefki", "wander_normal", "prankster", ["torment", "spikes", "imprison"], 35, 36, 20, 24),
         ("tinkaton", "wander_crystal_normal", "mold_breaker", ["play_rough", "metal_sound", "fake_out", "metal_claw"], 35, 36, 20, 23),
-        ("chimecho", "wander_normal", "", ["yawn", "healing_wish", "gravity", "safeguard"], 38, 39, 20, 24),
+        ("chimecho", "wander_normal", "", ["yawn", "healing_wish", "safeguard", "wrap"], 38, 39, 20, 24),
         ("bronzong", "retreater", "", ["imprison", "gyro_ball", "trick_room", "metal_sound"], 35, 36, 20, 23),
         ("sylveon", "wander_crystal_normal", "cute_charm", ["calm_mind", "fairy_wind", "helping_hand", "wish"], 35, 36, 20, 23),
         ("togekiss", "wander_normal", "serene_grace", ["follow_me", "wish", "growl", "thunder_wave"], 35, 36, 20, 23),
@@ -186,7 +186,7 @@ if __name__ == "__main__":
         #23
         ("milotic", "wander_normal", "", ["water_pulse", "recover", "icy_wind", "dragon_tail"], 38, 39, 22, 25),
         ("reuniclus", "wander_normal", "magic_guard", ["psychic", "recover", "psych_up", "reflect"], 38, 39, 22, 25),
-        ("hatterene", "wander_normal", "healer", ["psychic", "draining_kiss", "heal_pulse", "charm"], 38, 39, 22, 25),
+        ("hatterene", "wander_normal", "healer", ["psychic", "draining_kiss", "heal_pulse"], 38, 39, 22, 25),
         ("electivire", "wander_normal", "vital_spirit", ["thunder_punch", "brick_break", "discharge", "ice_punch"], 38, 39, 22, 25),
         ("swalot", "wander_normal", "liquid_ooze", ["sludge_bomb", "stockpile", "body_slam", "swallow"], 38, 39, 22, 25),
         ("rhyperior", "wander_normal", "", ["drill_run", "rock_polish", "rock_slide"], 37, 38, 22, 25),
@@ -207,7 +207,7 @@ if __name__ == "__main__":
         ("medicham", "wander_normal", "pure_power", ["high_jump_kick", "drain_punch", "endure", "psycho_cut"], 41, 42, 24, 27),
 
         #26
-        ("metagross", "wander_crystal_normal", "clear_body", ["agility", "meteor_mash", "zen_headbutt", "psych_up"], 42, 43, 25, 27),
+        ("metagross", "wander_crystal_normal", "clear_body", ["agility", "meteor_mash", "zen_headbutt"], 42, 43, 25, 27),
         ("noivern", "wander_normal", "infiltrator", ["boomburst", "dragon_pulse", "tailwind"], 43, 44, 25, 27),
         ("goodra", "wander_normal", "gooey", ["draco_meteor", "muddy_water", "power_whip"], 43, 44, 25, 27),
         ("clawitzer", "wander_normal", "mega_launcher", ["aura_sphere", "water_pulse", "dark_pulse"], 44, 45, 25, 27),

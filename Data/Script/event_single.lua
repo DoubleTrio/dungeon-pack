@@ -1,4 +1,5 @@
 require 'common'
+require 'wish_table'
 
 StackStateType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
@@ -10,10 +11,189 @@ SpawnListType =  luanet.import_type('RogueElements.SpawnList`1')
 
 SINGLE_CHAR_SCRIPT = {}
 
--- amount > 0 && DataManager.Instance.Save.ActiveTeam.GetInvCount() < DataManager.Instance.Save.ActiveTeam.GetMaxInvSlots(ZoneManager.Instance.CurrentZone)
--- Temporarily Increase MaxZoneInventory Size and BagSize 
--- OR all items has been sent to the storage
+function SINGLE_CHAR_SCRIPT.WishGemCheckEvent(owner, ownerChar, context, args)
+	-- print("WishGemCheckEvent")
+	-- 8, 9  (left) | 10, 7 (top) | 12, 9 (right) | 9, 11 (bottom left) | 11, 11 (bot right)
+	-- local corner_tiles = {
+	-- 	{ X = 8, Y = 9 },
+	-- 	{ X = 10, Y = 7 },
+	-- 	{ X = 12, Y = 9 },
+	-- 	{ X = 9, Y = 11 },
+	-- 	{ X = 11, Y = 11 },
+	-- }
 
+	-- print(tostring(_ZONE.CurrentMap.Decorations.Count))
+	local corner_tiles2 = {
+		C8x9 = {
+			LayerName = "LeftCorner",
+			Index = 2
+		},
+		C10x7 = {
+			LayerName = "TopCorner",
+			Index = 1
+		},
+		C12x9 = {
+			LayerName = "RightCorner",
+			Index = 3
+		},
+		C9x11 = {
+			LayerName = "BottomLeftCorner",
+			Index = 4
+		},
+		C11x11 = {
+			LayerName = "BottomRightCorner",
+			Index = 5
+		},
+	}
+
+	local layer_count = 6
+	for idx = 1, _ZONE.CurrentMap.Decorations.Count - 1, 1 do
+		local layer = _ZONE.CurrentMap.Decorations[idx]
+		layer.Visible = false
+	end
+
+	local item_count = _ZONE.CurrentMap.Items.Count
+	for item_idx = 0, item_count - 1, 1 do
+		local map_item = _ZONE.CurrentMap.Items[item_idx]
+		-- print(tostring(map_item))
+		local x = map_item.TileLoc.X
+		local y = map_item.TileLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles2[key]
+		if value ~= nil and map_item.Value == "wish_gem" then
+			local layer = _ZONE.CurrentMap.Decorations[value.Index]
+			-- print(tostring(layer.Name))
+			-- print(tostring(layer.Visible))
+			layer.Visible = true
+			-- print(tostring(layer))
+			-- print(tostring(layer.Name))
+			-- print(tostring(layer.Visible))
+			-- print(layer)
+		end
+		-- local tile = _ZONE.CurrentMap.Tiles[map_item.TileLoc.X][map_item.TileLoc.Y]
+	end
+	-- for _, tile in ipairs(corner_tiles) do
+	-- 	local tile = _ZONE.CurrentMap.Tiles[tile.x][tile.y]
+	-- end
+
+
+	-- local tile = _ZONE.CurrentMap.Tiles[map_item.TileLoc.X][map_item.TileLoc.Y]
+end
+
+-- public static IEnumerator<YieldInstruction> TryLearnSkill(Character player, string skillIndex, VertChoiceMenu.OnChooseSlot learnAction, Action passAction)
+-- {
+-- 		int totalSkills = 0;
+-- 		for (int ii = 0; ii < player.BaseSkills.Count; ii++)
+-- 		{
+-- 				if (player.BaseSkills[ii].SkillNum == skillIndex)
+-- 				{
+-- 						passAction();
+-- 						yield break;
+-- 				}
+-- 				if (!String.IsNullOrEmpty(player.BaseSkills[ii].SkillNum))
+-- 						totalSkills++;
+-- 		}
+-- 		if (totalSkills < CharData.MAX_SKILL_SLOTS)
+-- 				learnAction(totalSkills);
+-- 		else
+-- 		{
+-- 				//yield return CoroutinesManager.Instance.StartCoroutine(MenuManager.Instance.SetDialogue(Text.FormatKey("DLG_SKILL_FULL", player.Name, DataManager.Instance.GetSkill(skillIndex).Name.ToLocal())));
+-- 				//yield return CoroutinesManager.Instance.StartCoroutine(MenuManager.Instance.ProcessMenuCoroutine(createLearnQuestion(player, skillIndex, learnAction, passAction)));
+-- 				//NOTE: There is a very subtle problem that can happen if the code below were to be replaced with the commented code above.
+-- 				//this error can only happen when this function is called from an action already in free mode
+-- 				//it will appear as though the first line did not run, when in fact the first dialogue menu was buried due to the way free mode mechanics work
+-- 				//more research will be needed on how to solve this issue
+
+-- 				yield return CoroutineManager.Instance.StartCoroutine(MenuManager.Instance.SetDialogue(() => { MenuManager.Instance.AddMenu(createLearnQuestion(player, skillIndex, learnAction, passAction), false); },
+-- 						Text.FormatKey("DLG_SKILL_FULL", player.GetDisplayName(false), DataManager.Instance.GetSkill(skillIndex).GetIconName())));
+-- 		}
+-- }
+
+
+
+-- // <summary>
+--     /// Event that teaches the user the move in the item's ItemIDState
+--     /// </summary>
+--     [Serializable]
+--     public class TMEvent : BattleEvent
+--     {
+--         public override GameEvent Clone() { return new TMEvent(); }
+--         public override IEnumerator<YieldInstruction> Apply(GameEventOwner owner, Character ownerChar, BattleContext context)
+--         {
+--             BaseMonsterForm entry = DataManager.Instance.GetMonster(context.User.BaseForm.Species).Forms[context.User.BaseForm.Form];
+--             ItemData item = DataManager.Instance.GetItem(owner.GetID());
+--             string moveIndex = "";
+--             ItemIDState state = item.ItemStates.GetWithDefault<ItemIDState>();
+--             if (state != null)
+--                 moveIndex = state.ID;
+
+--             if (!entry.CanLearnSkill(moveIndex))
+--             {
+--                 context.CancelState.Cancel = true;
+--                 DungeonScene.Instance.LogMsg(Text.FormatGrammar(new StringKey("MSG_CANT_LEARN_SKILL").ToLocal(), context.User.GetDisplayName(false)));
+--                 yield break;
+--             }
+
+
+--             if (DataManager.Instance.CurrentReplay != null) // this block of code will never evaluate to true AND have UI read back -1 (cancel) at the same time
+--             {
+--                 MoveLearnContext learn = new MoveLearnContext();
+--                 learn.MoveLearn = moveIndex;
+--                 learn.ReplaceSlot = DataManager.Instance.CurrentReplay.ReadUI();
+--                 context.ContextStates.Set(learn);
+--             }
+--             else
+--             {
+--                 yield return CoroutineManager.Instance.StartCoroutine(DungeonScene.TryLearnSkill(context.User, moveIndex,
+--                 (int slot) =>
+--                 {
+--                     MoveLearnContext learn = new MoveLearnContext();
+--                     learn.MoveLearn = moveIndex;
+--                     learn.ReplaceSlot = slot;
+--                     context.ContextStates.Set(learn);
+--                 },
+--                 () => { context.CancelState.Cancel = true; }));
+
+--                 if (!context.CancelState.Cancel)
+--                 {
+--                     int slot = -1;
+--                     MoveLearnContext learn = context.ContextStates.GetWithDefault<MoveLearnContext>();
+--                     if (learn != null)
+--                         slot = learn.ReplaceSlot;
+--                     DataManager.Instance.LogUIPlay(slot);
+--                 }
+--             }
+--         }
+
+--     }
+
+
+-- public void LearnIntrinsic(string intrinsicNum, int slot = -1)
+-- {
+-- 		if (slot == -1)
+-- 		{
+-- 				for (int ii = 0; ii < MAX_INTRINSIC_SLOTS; ii++)
+-- 				{
+-- 						if (String.IsNullOrEmpty(BaseIntrinsics[ii]))
+-- 						{
+-- 								slot = ii;
+-- 								break;
+-- 						}
+-- 				}
+-- 		}
+
+-- 		if (slot == -1)
+-- 				throw new Exception("No more room for intrinsics!");
+
+-- 		BaseIntrinsics[slot] = intrinsicNum;
+-- 		for (int ii = Intrinsics.Count - 1; ii >= 0; ii--)
+-- 		{
+-- 				if (Intrinsics[ii].BackRef == slot)
+-- 						Intrinsics[ii].Element = new Intrinsic(BaseIntrinsics[slot]);
+-- 		}
+
+-- 		RefreshTraits();
+-- }
 function SINGLE_CHAR_SCRIPT.LowHpNpcEvent(owner, ownerChar, context, args)
   local chara = context.User
 	if chara ~= nil then
@@ -39,6 +219,10 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 	-- Fwahh! 
 	-- Exclaimation~ Where... am 
 	print("Wish Gem Count: " .. tostring(wish_gem_count))
+	-- CHECK THE TILESTATE
+	-- DRAW GLOW LINES TO THE VENTER OF THE STAR
+	-- Your inventory 
+	-- 8, 9  (left) | 10, 7 (top) | 12, 9 (right) | 9, 11 (bot left) | 11, 11 (bot right)
 
 
 	GAME:WaitFrames(10)
@@ -64,9 +248,18 @@ end
 
 
 function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, args)
-	GAME:WaitFrames(10)
+	local delay = args.Delay
+	-- print(tostring(args))
+	-- print(tostring(args.MaxStack))
+	for key, value in pairs(args) do
+		print(key, value)
+	end
+	-- TODO: FIGURE WHY ARGS ISN'T WORKING IN INTERACT TILES
+	if delay == nil then delay = 1 end
+	-- print(tostring(delay))
+	GAME:WaitFrames(delay)
   UI:ResetSpeaker()
-  UI:ChoiceMenuYesNo(STRINGS:FormatKey("DLG_ASK_EXIT_DUNGEON"), false)
+  UI:ChoiceMenuYesNo(STRINGS:FormatKey("DLG_ASK_EXIT_DUNGEON"), true)
   UI:WaitForChoice()
   ch = UI:ChoiceResult()
   if ch then
@@ -81,353 +274,6 @@ function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, arg
 	end
 end
 
-
-local WISH_TABLE = {
-  {
-    Min = 9,
-    Max = 14,
-    Items = {
-      { Item = "money", Amount = 150, Weight = 16 },
-      { Item = "money", Amount = 200, Weight = 15 },
-      { Item = "money", Amount = 300, Weight = 15 },
-      { Item = "money", Amount = 400, Weight = 15 },
-      { Item = "loot_pearl", Amount = 1, Weight = 12 },
-      { Item = "loot_pearl", Amount = 2, Weight = 12 },
-      { Item = "loot_pearl", Amount = 3, Weight = 12 },
-      { Item = "loot_nugget", Amount = 1, Weight = 3 }
-    },
-  },
-  {
-    Min = 8,
-    Max = 10,
-    Items = {
-      { Item = "berry_leppa", Amount = 1, Weight = 10 },
-      { Item = "berry_sitrus", Amount = 1, Weight = 8 },
-      { Item = "berry_oran", Amount = 1, Weight = 8 },
-			{ Item = "berry_lum", Amount = 1, Weight = 8 },
-      { Item = "berry_apicot", Amount = 1, Weight = 3 },
-      { Item = "berry_jaboca", Amount = 1, Weight = 3 },
-      { Item = "berry_liechi", Amount = 1, Weight = 3 },
-      { Item = "berry_starf", Amount = 1, Weight = 3 },
-      { Item = "berry_petaya", Amount = 1, Weight = 3 },
-      { Item = "berry_salac", Amount = 1, Weight = 3 },
-      { Item = "berry_ganlon", Amount = 1, Weight = 3 },
-      { Item = "berry_enigma", Amount = 1, Weight = 3 },
-			{ Item = "berry_micle", Amount = 1, Weight = 2 },
-      { Item = "food_apple", Amount = 1, Weight = 28 },
-      { Item = "food_apple_big", Amount = 1, Weight = 6 },
-      { Item = "food_apple_huge", Amount = 1, Weight = 3 },
-      { Item = "food_apple_golden", Amount = 1, Weight = 1 },
-      { Item = "food_banana", Amount = 1, Weight = 3 },
-      { Item = "food_banana_big", Amount = 1, Weight = 1 }
-    },
-  },
-  {
-    Min = 8,
-    Max = 9,
-    Items = {
-			{ Item = "berry_leppa", Amount = 1, Weight = 14 },
-      { Item = "berry_sitrus", Amount = 1, Weight = 5 },
-      { Item = "berry_oran", Amount = 1, Weight = 5 },
-      { Item = "berry_apicot", Amount = 1, Weight = 2 },
-      { Item = "berry_jaboca", Amount = 1, Weight = 2 },
-      { Item = "berry_liechi", Amount = 1, Weight = 2 },
-      { Item = "berry_starf", Amount = 1, Weight = 2 },
-      { Item = "berry_petaya", Amount = 1, Weight = 2 },
-      { Item = "berry_salac", Amount = 1, Weight = 2 },
-      { Item = "berry_ganlon", Amount = 1, Weight = 2 },
-      { Item = "berry_enigma", Amount = 1, Weight = 2 },
-			{ Item = "berry_micle", Amount = 1, Weight = 2 },
-      { Item = "seed_ban", Amount = 1, Weight = 7 },
-      { Item = "seed_joy", Amount = 1, Weight = 7 },
-      { Item = "seed_decoy", Amount = 1, Weight = 2 },
-      { Item = "seed_pure", Amount = 1, Weight = 2 },
-      { Item = "seed_blast", Amount = 1, Weight = 2 },
-      { Item = "seed_ice", Amount = 1, Weight = 2 },
-      { Item = "seed_reviver", Amount = 1, Weight = 18 },
-      { Item = "seed_warp", Amount = 1, Weight = 2 },
-      { Item = "seed_doom", Amount = 1, Weight = 2 },
-      { Item = "seed_ice", Amount = 1, Weight = 2 },
-      { Item = "herb_white", Amount = 1, Weight = 2 },
-      { Item = "herb_mental", Amount = 1, Weight = 2 },
-      { Item = "herb_power", Amount = 1, Weight = 2 },
-      { Item = "orb_all_dodge", Amount = 1, Weight = 2 },
-      { Item = "orb_all_protect", Amount = 1, Weight = 2 },
-      { Item = "orb_cleanse", Amount = 1, Weight = 2 },
-      { Item = "orb_devolve", Amount = 1, Weight = 2 },
-      { Item = "orb_fill_in", Amount = 1, Weight = 2 },
-      { Item = "orb_endure", Amount = 1, Weight = 2 },
-      { Item = "orb_foe_hold", Amount = 1, Weight = 2 },
-      { Item = "orb_foe_seal", Amount = 1, Weight = 2 },
-      { Item = "orb_freeze", Amount = 1, Weight = 2 },
-      { Item = "orb_halving", Amount = 1, Weight = 2 },
-      { Item = "orb_itemizer", Amount = 1, Weight = 2 },
-      { Item = "orb_luminous", Amount = 1, Weight = 2 },
-      { Item = "orb_mobile", Amount = 1, Weight = 2 },
-      { Item = "orb_mirror", Amount = 1, Weight = 2 },
-      { Item = "orb_spurn", Amount = 1, Weight = 2 },
-      { Item = "orb_slumber", Amount = 1, Weight = 2 },
-      { Item = "orb_petrify", Amount = 1, Weight = 2 },
-      { Item = "orb_totter", Amount = 1, Weight = 2 },
-      { Item = "orb_invisify", Amount = 1, Weight = 2 },
-      { Item = "orb_totter", Amount = 1, Weight = 2 },
-      { Item = "orb_stayaway", Amount = 1, Weight = 2 },
-      { Item = "machine_recall_box", Amount = 1, Weight = 2 },
-      { Item = "machine_ability_capsule", Amount = 1, Weight = 2 },
-      { Item = "medicine_elixir", Amount = 1, Weight = 2 },
-      { Item = "medicine_full_heal", Amount = 1, Weight = 2 },
-      { Item = "medicine_max_elixir", Amount = 1, Weight = 2 },
-      { Item = "medicine_max_potion", Amount = 1, Weight = 2 },
-      { Item = "medicine_potion", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_accuracy", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_attack", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_defense", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_sp_atk", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_sp_atk", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_speed", Amount = 1, Weight = 2 },
-      { Item = "ammo_cacnea_spike", Amount = 3, Weight = 3 },
-      { Item = "ammo_corsola_twig", Amount = 3, Weight = 3 },
-      { Item = "ammo_geo_pebble", Amount = 3, Weight = 3 },
-      { Item = "ammo_golden_thorn", Amount = 3, Weight = 3 },
-      { Item = "ammo_gravelerock", Amount = 3, Weight = 3 },
-      { Item = "ammo_iron_thorn", Amount = 3, Weight = 3 },
-      { Item = "ammo_rare_fossil", Amount = 3, Weight = 3 },
-      { Item = "ammo_silver_spike", Amount = 3, Weight = 3 },
-      { Item = "ammo_stick", Amount = 3, Weight = 3 },
-      { Item = "ammo_iron_thorn", Amount = 3, Weight = 3 },
-    }
-  },
-  {
-    Min = 9,
-    Max = 10,
-    Items = {
-      { Item = "machine_recall_box", Amount = 1, Weight = 15 },
-      { Item = "seed_joy", Amount = 1, Weight = 30 },
-      { Item = "seed_golden", Amount = 1, Weight = 3 },
-      { Item = "gummi_black", Amount = 1, Weight = 4 },
-      { Item = "gummi_blue", Amount = 1, Weight = 4 },
-      { Item = "gummi_brown", Amount = 1, Weight = 4 },
-      { Item = "gummi_clear", Amount = 1, Weight = 4 },
-      { Item = "gummi_gold", Amount = 1, Weight = 4 },
-      { Item = "gummi_grass", Amount = 1, Weight = 4 },
-      { Item = "gummi_green", Amount = 1, Weight = 4 },
-      { Item = "gummi_magenta", Amount = 1, Weight = 4 },
-      { Item = "gummi_orange", Amount = 1, Weight = 4 },
-      { Item = "gummi_pink", Amount = 1, Weight = 4 },
-      { Item = "gummi_purple", Amount = 1, Weight = 4 },
-      { Item = "gummi_red", Amount = 1, Weight = 4 },
-      { Item = "gummi_royal", Amount = 1, Weight = 4 },
-      { Item = "gummi_silver", Amount = 1, Weight = 4 },
-      { Item = "gummi_sky", Amount = 1, Weight = 4 },
-      { Item = "gummi_white", Amount = 1, Weight = 4 },
-      { Item = "gummi_yellow", Amount = 1, Weight = 4 },
-      { Item = "gummi_wonder", Amount = 1, Weight = 5 },
-      { Item = "boost_calcium", Amount = 1, Weight = 6 },
-      { Item = "boost_carbos", Amount = 1, Weight = 6 },
-      { Item = "boost_hp_up", Amount = 1, Weight = 6 },
-      { Item = "boost_iron", Amount = 1, Weight = 6 },
-      { Item = "boost_nectar", Amount = 1, Weight = 6 },
-      { Item = "boost_zinc", Amount = 1, Weight = 6 },
-      { Item = "tm_acrobatics", Amount = 1, Weight = 1 },
-      { Item = "tm_aerial_ace", Amount = 1, Weight = 1 },
-      { Item = "tm_attract", Amount = 1, Weight = 1 },
-      { Item = "tm_avalanche", Amount = 1, Weight = 1 },
-      { Item = "tm_blizzard", Amount = 1, Weight = 1 },
-      { Item = "tm_brick_break", Amount = 1, Weight = 1 },
-      { Item = "tm_brine", Amount = 1, Weight = 1 },
-      { Item = "tm_bulk_up", Amount = 1, Weight = 1 },
-      { Item = "tm_bulldoze", Amount = 1, Weight = 1 },
-      { Item = "tm_bullet_seed", Amount = 1, Weight = 1 },
-      { Item = "tm_calm_mind", Amount = 1, Weight = 1 },
-      { Item = "tm_captivate", Amount = 1, Weight = 1 },
-      { Item = "tm_charge_beam", Amount = 1, Weight = 1 },
-      { Item = "tm_cut", Amount = 1, Weight = 1 },
-      { Item = "tm_dark_pulse", Amount = 1, Weight = 1 },
-      { Item = "tm_dazzling_gleam", Amount = 1, Weight = 1 },
-      { Item = "tm_defog", Amount = 1, Weight = 1 },
-      { Item = "tm_dig", Amount = 1, Weight = 1 },
-      { Item = "tm_dive", Amount = 1, Weight = 1 },
-      { Item = "tm_double_team", Amount = 1, Weight = 1 },
-      { Item = "tm_dragon_claw", Amount = 1, Weight = 1 },
-      { Item = "tm_dragon_pulse", Amount = 1, Weight = 1 },
-      { Item = "tm_dragon_tail", Amount = 1, Weight = 1 },
-      { Item = "tm_drain_punch", Amount = 1, Weight = 1 },
-      { Item = "tm_dream_eater", Amount = 1, Weight = 1 },
-      { Item = "tm_earthquake", Amount = 1, Weight = 1 },
-      { Item = "tm_echoed_voice", Amount = 1, Weight = 1 },
-      { Item = "tm_embargo", Amount = 1, Weight = 1 },
-      { Item = "tm_endure", Amount = 1, Weight = 1 },
-      { Item = "tm_energy_ball", Amount = 1, Weight = 1 },
-      { Item = "tm_explosion", Amount = 1, Weight = 1 },
-      { Item = "tm_facade", Amount = 1, Weight = 1 },
-      { Item = "tm_false_swipe", Amount = 1, Weight = 1 },
-      { Item = "tm_fire_blast", Amount = 1, Weight = 1 },
-      { Item = "tm_flame_charge", Amount = 1, Weight = 1 },
-      { Item = "tm_flamethrower", Amount = 1, Weight = 1 },
-      { Item = "tm_flash", Amount = 1, Weight = 1 },
-      { Item = "tm_flash_cannon", Amount = 1, Weight = 1 },
-      { Item = "tm_fling", Amount = 1, Weight = 1 },
-      { Item = "tm_fly", Amount = 1, Weight = 1 },
-      { Item = "tm_focus_blast", Amount = 1, Weight = 1 },
-      { Item = "tm_focus_punch", Amount = 1, Weight = 1 },
-      { Item = "tm_frost_breath", Amount = 1, Weight = 1 },
-      { Item = "tm_frustration", Amount = 1, Weight = 1 },
-      { Item = "tm_giga_drain", Amount = 1, Weight = 1 },
-      { Item = "tm_giga_impact", Amount = 1, Weight = 1 },
-      { Item = "tm_grass_knot", Amount = 1, Weight = 1 },
-      { Item = "tm_gyro_ball", Amount = 1, Weight = 1 },
-      { Item = "tm_hail", Amount = 1, Weight = 1 },
-      { Item = "tm_hidden_power", Amount = 1, Weight = 1 },
-      { Item = "tm_hone_claws", Amount = 1, Weight = 1 },
-      { Item = "tm_hyper_beam", Amount = 1, Weight = 1 },
-      { Item = "tm_ice_beam", Amount = 1, Weight = 1 },
-      { Item = "tm_incinerate", Amount = 1, Weight = 1 },
-      { Item = "tm_infestation", Amount = 1, Weight = 1 },
-      { Item = "tm_iron_tail", Amount = 1, Weight = 1 },
-      { Item = "tm_light_screen", Amount = 1, Weight = 1 },
-      { Item = "tm_low_sweep", Amount = 1, Weight = 1 },
-      { Item = "tm_natural_gift", Amount = 1, Weight = 1 },
-      { Item = "tm_nature_power", Amount = 1, Weight = 1 },
-      { Item = "tm_overheat", Amount = 1, Weight = 1 },
-      { Item = "tm_payback", Amount = 1, Weight = 1 },
-      { Item = "tm_pluck", Amount = 1, Weight = 1 },
-      { Item = "tm_poison_jab", Amount = 1, Weight = 1 },
-      { Item = "tm_power_up_punch", Amount = 1, Weight = 1 },
-      { Item = "tm_protect", Amount = 1, Weight = 1 },
-      { Item = "tm_psych_up", Amount = 1, Weight = 1 },
-      { Item = "tm_psychic", Amount = 1, Weight = 1 },
-      { Item = "tm_psyshock", Amount = 1, Weight = 1 },
-      { Item = "tm_quash", Amount = 1, Weight = 1 },
-      { Item = "tm_rain_dance", Amount = 1, Weight = 1 },
-      { Item = "tm_recycle", Amount = 1, Weight = 1 },
-      { Item = "tm_reflect", Amount = 1, Weight = 1 },
-      { Item = "tm_rest", Amount = 1, Weight = 1 },
-      { Item = "tm_retaliate", Amount = 1, Weight = 1 },
-      { Item = "tm_return", Amount = 1, Weight = 1 },
-      { Item = "tm_roar", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_climb", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_polish", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_slide", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_smash", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_tomb", Amount = 1, Weight = 1 },
-      { Item = "tm_roost", Amount = 1, Weight = 1 },
-      { Item = "tm_round", Amount = 1, Weight = 1 },
-      { Item = "tm_safeguard", Amount = 1, Weight = 1 },
-      { Item = "tm_sandstorm", Amount = 1, Weight = 1 },
-      { Item = "tm_scald", Amount = 1, Weight = 1 },
-      { Item = "tm_secret_power", Amount = 1, Weight = 1 },
-      { Item = "tm_shadow_ball", Amount = 1, Weight = 1 },
-      { Item = "tm_shadow_claw", Amount = 1, Weight = 1 },
-      { Item = "tm_shock_wave", Amount = 1, Weight = 1 },
-      { Item = "tm_silver_wind", Amount = 1, Weight = 1 },
-      { Item = "tm_sky_drop", Amount = 1, Weight = 1 },
-      { Item = "tm_sludge_bomb", Amount = 1, Weight = 1 },
-      { Item = "tm_sludge_wave", Amount = 1, Weight = 1 },
-      { Item = "tm_smack_down", Amount = 1, Weight = 1 },
-      { Item = "tm_snarl", Amount = 1, Weight = 1 },
-      { Item = "tm_snatch", Amount = 1, Weight = 1 },
-      { Item = "tm_steel_wing", Amount = 1, Weight = 1 },
-      { Item = "tm_stone_edge", Amount = 1, Weight = 1 },
-      { Item = "tm_strength", Amount = 1, Weight = 1 },
-      { Item = "tm_struggle_bug", Amount = 1, Weight = 1 },
-      { Item = "tm_substitute", Amount = 1, Weight = 1 },
-      { Item = "tm_sunny_day", Amount = 1, Weight = 1 },
-      { Item = "tm_surf", Amount = 1, Weight = 1 },
-      { Item = "tm_swagger", Amount = 1, Weight = 1 },
-      { Item = "tm_swords_dance", Amount = 1, Weight = 1 },
-      { Item = "tm_taunt", Amount = 1, Weight = 1 },
-      { Item = "tm_telekinesis", Amount = 1, Weight = 1 },
-      { Item = "tm_thief", Amount = 1, Weight = 1 },
-      { Item = "tm_thunder", Amount = 1, Weight = 1 },
-      { Item = "tm_thunder_wave", Amount = 1, Weight = 1 },
-      { Item = "tm_thunderbolt", Amount = 1, Weight = 1 },
-      { Item = "tm_torment", Amount = 1, Weight = 1 },
-      { Item = "tm_u_turn", Amount = 1, Weight = 1 },
-      { Item = "tm_venoshock", Amount = 1, Weight = 1 },
-      { Item = "tm_volt_switch", Amount = 1, Weight = 1 },
-      { Item = "tm_water_pulse", Amount = 1, Weight = 1 },
-      { Item = "tm_waterfall", Amount = 1, Weight = 1 },
-      { Item = "tm_whirlpool", Amount = 1, Weight = 1 },
-      { Item = "tm_wild_charge", Amount = 1, Weight = 1 },
-      { Item = "tm_will_o_wisp", Amount = 1, Weight = 1 },
-      { Item = "tm_work_up", Amount = 1, Weight = 1 },
-      { Item = "tm_x_scissor", Amount = 1, Weight = 1 },
-    },
-  },
-	{
-		Min = 5,
-		Max = 7,
-		Items = {
-			{ Item = "held_flame_orb", Amount = 1, Weight = 2 },
-			{ Item = "held_toxic_orb", Amount = 1, Weight = 2 },
-      { Item = "held_assault_vest", Amount = 1, Weight = 2 },
-			{ Item = "held_big_root", Amount = 1, Weight = 2 },
-      { Item = "held_black_belt", Amount = 1, Weight = 2 },
-			{ Item = "held_choice_band", Amount = 1, Weight = 2 },
-			{ Item = "held_choice_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_choice_specs", Amount = 1, Weight = 2 },
-			{ Item = "held_defense_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_expert_belt", Amount = 1, Weight = 2 },
-			{ Item = "held_pass_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_mobile_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_metronome", Amount = 1, Weight = 2 },
-			{ Item = "held_wide_lens", Amount = 1, Weight = 2 },
-			{ Item = "held_zinc_band", Amount = 1, Weight = 2 },
-			{ Item = "held_x_ray_specs", Amount = 1, Weight = 2 },
-			{ Item = "held_twist_band", Amount = 1, Weight = 2 },
-			{ Item = "held_trap_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_sticky_barb", Amount = 1, Weight = 2 },
-			{ Item = "held_power_band", Amount = 1, Weight = 2 },
-			{ Item = "held_pierce_band", Amount = 1, Weight = 2 },
-			{ Item = "held_reunion_cape", Amount = 1, Weight = 2 },
-			{ Item = "held_scope_lens", Amount = 1, Weight = 2 },
-			{ Item = "held_shed_shell", Amount = 1, Weight = 2 },
-			{ Item = "held_shell_bell", Amount = 1, Weight = 2 },
-			{ Item = "held_life_orb", Amount = 1, Weight = 2 },
-			{ Item = "held_iron_ball", Amount = 1, Weight = 2 },
-			{ Item = "held_goggle_specs", Amount = 1, Weight = 2 },
-			{ Item = "held_friend_bow", Amount = 1, Weight = 2 },
-			{ Item = "held_heal_ribbon", Amount = 1, Weight = 2 },
-			{ Item = "held_blank_plate", Amount = 1, Weight = 1},
-			{ Item = "held_draco_plate", Amount = 1, Weight = 1},
-			{ Item = "held_dread_plate", Amount = 1, Weight = 1},
-			{ Item = "held_earth_plate", Amount = 1, Weight = 1},
-			{ Item = "held_fist_plate", Amount = 1, Weight = 1},
-			{ Item = "held_flame_plate", Amount = 1, Weight = 1},
-			{ Item = "held_icicle_plate", Amount = 1, Weight = 1},
-			{ Item = "held_insect_plate", Amount = 1, Weight = 1},
-			{ Item = "held_iron_plate", Amount = 1, Weight = 1},
-			{ Item = "held_meadow_plate", Amount = 1, Weight = 1},
-			{ Item = "held_mind_plate", Amount = 1, Weight = 1},
-			{ Item = "held_pixie_plate", Amount = 1, Weight = 1},
-			{ Item = "held_sky_plate", Amount = 1, Weight = 1},
-			{ Item = "held_splash_plate", Amount = 1, Weight = 1},
-			{ Item = "held_spooky_plate", Amount = 1, Weight = 1},
-			{ Item = "held_stone_plate", Amount = 1, Weight = 1},
-			{ Item = "held_toxic_plate", Amount = 1, Weight = 1},
-			{ Item = "held_zap_plate", Amount = 1, Weight = 1},
-		}
-	},
-	{
-		Min = 6,
-		Max = 7,
-		Items = {
-			{ Item = "apricorn_big", Amount = 1, Weight = 4 },
-			{ Item = "apricorn_black", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_blue", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_brown", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_green", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_plain", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_purple", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_red", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_white", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_yellow", Amount = 1, Weight = 2 },
-			{ Item = "medicine_amber_tear", Amount = 1, Weight = 9 },
-			{ Item = "machine_assembly_box", Amount = 1, Weight = 4 },
-		},
-	}
-}
-
 function ResetEffectTile(owner)
   local effect_tile = owner
   local base_loc = effect_tile.TileLoc
@@ -440,6 +286,7 @@ end
 function SINGLE_CHAR_SCRIPT.CrystalStatusCheck(owner, ownerChar, context, args)
   local status = args.Status
   local max_stack = args.MaxStack
+	-- print(tostringmax_stack)
   local string_key = args.StringKey
   local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(status, false, false, 1)
   local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
@@ -492,7 +339,7 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
 
   local base_loc = owner.TileLoc
   local entries = {
-    {item = "wish_gem", weight = 450},
+    { Item = "wish_gem", Weight = 450, Amount = 1 },
     -- {item = "loot_nugget", weight = 20},
     -- {item = "loot_pearl", weight = 75},
     -- {item = "evo_fire_stone", weight = 5},
@@ -513,22 +360,22 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
   SOUND:PlayBattleSE("DUN_Dig")
   GAME:WaitFrames(10)
   
-  local item = PickByWeights(entries)
+  local entry = PickByWeights(entries)
 
-  if item ~= "" then
-    local inv_item =  RogueEssence.Dungeon.InvItem(item, false, 1)
+  if entry.Item ~= "" then
+    local inv_item =  RogueEssence.Dungeon.InvItem(entry.Item, false, entry.Amount)
     local map_item = RogueEssence.Dungeon.MapItem(inv_item)
     map_item.TileLoc = owner.TileLoc
     local start_loc = base_loc * RogueEssence.Content.GraphicsManager.TileSize - RogueElements.Loc(-RogueEssence.Content.GraphicsManager.TileSize / 2, -20)
     local end_loc = base_loc * RogueEssence.Content.GraphicsManager.TileSize - RogueElements.Loc(-RogueEssence.Content.GraphicsManager.TileSize / 2, -10)
-    local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10);
+    local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(entry.Item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
     _DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Normal)
     
     GAME:WaitFrames(10)
     local msg = RogueEssence.StringKey("MSG_GLOW_FOUND_ITEM"):ToLocal()
     _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg, context.User:GetDisplayName(true), inv_item:GetDisplayName()))
     GAME:WaitFrames(10)
-    _ZONE.CurrentMap.Items:Add(map_item);
+    _ZONE.CurrentMap.Items:Add(map_item)
   else
     local msg = RogueEssence.StringKey("MSG_GLOW_FOUND_NO_ITEM"):ToLocal()
     _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg, context.User:GetDisplayName(true)))
@@ -549,6 +396,8 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
   local y_offset = 1
   local base_loc = effect_tile.TileLoc + RogueElements.Loc(x_offset, y_offset)
   local Items = args.Items
+	local Guaranteed = args.Guaranteed
+	-- print(tostring(Guaranteed))
   if type(args.MinAmount) == "number" then min_amount = args.MinAmount end
   if type(args.MaxAmount) == "number" then max_amount = args.MaxAmount end
   if type(args.MaxRangeWidth) == "number" then max_range_width = args.MaxRangeWidth end
@@ -583,6 +432,37 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
 
   local amount = _DATA.Save.Rand:Next(min_amount, max_amount)
 
+
+	for _, entries in ipairs(Guaranteed) do
+		if free_tiles.Count == 0 then
+      break
+    end
+		local entry = PickByWeights(entries)
+		local item_name = entry.Item
+		local item
+		if item_name == "money" then
+			item = RogueEssence.Dungeon.MapItem.CreateMoney(entry.Amount)
+		else
+			item = RogueEssence.Dungeon.MapItem(item_name, entry.Amount)
+		end
+
+		local rand_index = _DATA.Save.Rand:Next(free_tiles.Count)
+    local item_target_loc = free_tiles[rand_index]
+    item.TileLoc = _ZONE.CurrentMap:WrapLoc(item_target_loc)
+    free_tiles:RemoveAt(rand_index)
+		local offset = RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2)
+    local sprite
+    if item.IsMoney then
+      sprite = RogueEssence.Content.GraphicsManager.MoneySprite
+    else
+      sprite = _DATA:GetItem(item.Value).Sprite
+    end
+    local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60)
+    _DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Bottom)
+    GAME:WaitFrames(5)
+    _ZONE.CurrentMap.Items:Add(item)
+	end
+
   for ii = 0, amount - 1, 1 do
     if free_tiles.Count == 0 then
       break
@@ -590,7 +470,7 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
 
     local spawn_index = Items:PickIndex(_ZONE.CurrentMap.Rand)
     local item = RogueEssence.Dungeon.MapItem(Items:GetSpawn(spawn_index))
-    local rand_index = _DATA.Save.Rand:Next(free_tiles.Count);
+    local rand_index = _DATA.Save.Rand:Next(free_tiles.Count)
     local item_target_loc = free_tiles[rand_index]
     item.TileLoc = _ZONE.CurrentMap:WrapLoc(item_target_loc)
     spawn_items:Add(item)
@@ -602,10 +482,10 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
     else
       sprite = _DATA:GetItem(item.Value).Sprite
     end
-    local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60);
+    local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60)
     _DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Bottom)
     GAME:WaitFrames(5)
-    _ZONE.CurrentMap.Items:Add(spawn_items[ii]);
+    _ZONE.CurrentMap.Items:Add(spawn_items[ii])
   end
 end
 
@@ -622,7 +502,7 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 	end
 
 	_ZONE.CurrentMap.HideMinimap = true
-	local curr_song = RogueEssence.GameManager.Instance.Song;
+	local curr_song = RogueEssence.GameManager.Instance.Song
 	SOUND:StopBGM()
 	UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The world around you holds their breath, as the crystal shines brightly.")
 	UI:ChoiceMenuYesNo("Would you like to make a wish?", false)
@@ -643,31 +523,32 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 					GAME:TakePlayerBagItem(slot.Slot)
 				end
 				GAME:WaitFrames(50)
-				SOUND:PlayBattleSE("_UNK_EVT_044");
+				SOUND:PlayBattleSE("_UNK_EVT_044")
 				GAME:WaitFrames(10)
 				GAME:FadeOut(true, 40)
-				-- SOUND:PlayBattleSE("_UNK_EVT_091");
-				-- SOUND:PlayBattleSE("_UNK_EVT_096");
-				SOUND:PlayBattleSE("EVT_EP_Regi_Permission");
-				-- SOUND:PlayBattleSE("EVT_Dimenstional_Scream");
-				-- SOUND:PlayBattleSE("EVT_Fade_White");
-				-- SOUND:PlayBattleSE("EVT_Evolution_Start");
+				-- SOUND:PlayBattleSE("_UNK_EVT_091")
+				-- SOUND:PlayBattleSE("_UNK_EVT_096")
+				SOUND:PlayBattleSE("EVT_EP_Regi_Permission")
+				-- SOUND:PlayBattleSE("EVT_Dimenstional_Scream")
+				-- SOUND:PlayBattleSE("EVT_Fade_White")
+				-- SOUND:PlayBattleSE("EVT_Evolution_Start")
 				TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
-				-- SOUND:PlayBattleSE("_UNK_EVT_074");
-				-- SOUND:PlayBattleSE("_UNK_EVT_084");
-							-- SOUND:PlayBattleSE("_UNK_EVT_087");
+				-- SOUND:PlayBattleSE("_UNK_EVT_074")
+				-- SOUND:PlayBattleSE("_UNK_EVT_084")
+							-- SOUND:PlayBattleSE("_UNK_EVT_087")
 				local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Last_Resort_Front", 4), 1)
 
-				-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10);
-				emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left);
-				_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw);
+				-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
+				emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left)
+				_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
 				GAME:FadeIn(60)
 				GAME:WaitFrames(80)
 				local arguments = {}
 				local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
-				local item_table = WISH_TABLE[choice]
+				local item_table = DUNGEON_WISH_TABLE[choice]
 				arguments.MinAmount = item_table.Min
 				arguments.MaxAmount = item_table.Max
+				arguments.Guaranteed = item_table.Guaranteed
 				local items = item_table.Items
 				for _, value in ipairs(items) do
 					local item_name = value.Item
@@ -716,44 +597,28 @@ function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, contex
 	if chara == nil then
 		return
 	end
-	chara.StatusEffects:Clear();
-	chara.ProxyAtk = -1;
-	chara.ProxyDef = -1;
-	chara.ProxyMAtk = -1;
-	chara.ProxyMDef = -1;
+	chara.StatusEffects:Clear()
+	chara.ProxyAtk = -1
+	chara.ProxyDef = -1
+	chara.ProxyMAtk = -1
+	chara.ProxyMDef = -1
 	chara.ProxySpeed = -1
 	chara:FullRestore()
 end
-
-
-function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, context, args)
-	local chara = context.User
-	if chara == nil then
-		return
-	end
-	chara.StatusEffects:Clear();
-	chara.ProxyAtk = -1;
-	chara.ProxyDef = -1;
-	chara.ProxyMAtk = -1;
-	chara.ProxyMDef = -1;
-	chara.ProxySpeed = -1
-	chara:FullRestore()
-end
-
 
 function PickByWeights(entries)
   local total_weight = 0
   
   for _, entry in ipairs(entries) do
-    total_weight = total_weight + entry.weight
+    total_weight = total_weight + entry.Weight
   end
   
   local rand_val = GAME.Rand:NextDouble() * total_weight
   local cummul_weight = 0
   for _, entry in ipairs(entries) do
-    cummul_weight = cummul_weight + entry.weight
+    cummul_weight = cummul_weight + entry.Weight
     if rand_val <= cummul_weight then
-      return entry.item
+      return entry
     end
   end
 end
@@ -874,7 +739,7 @@ function SINGLE_CHAR_SCRIPT.SleepingCalderaSummonHeatran(owner, ownerChar, conte
     return
   end
   
-  -- spawn heatran- try 10 times; not guaranteed but not crucial
+  -- spawn heatran- try 10 times not guaranteed but not crucial
   local origin = _DUNGEON.ActiveTeam.Leader.CharLoc
   for ii = 1, 10, 1 do
     local testLoc = RogueElements.Loc(_DATA.Save.Rand:Next(origin.X - 7, origin.X + 7 + 1), _DATA.Save.Rand:Next(origin.Y - 4, origin.Y + 4 + 1))
@@ -888,7 +753,7 @@ function SINGLE_CHAR_SCRIPT.SleepingCalderaSummonHeatran(owner, ownerChar, conte
 	  local new_team = RogueEssence.Dungeon.MonsterTeam()
 	  local mob_data = RogueEssence.Dungeon.CharData()
 	  mob_data.BaseForm = RogueEssence.Dungeon.MonsterID("heatran", 0, "normal", Gender.Male)
-	  mob_data.Level = 40;
+	  mob_data.Level = 40
 	  mob_data.BaseSkills[0] = RogueEssence.Dungeon.SlotSkill("magma_storm")
 	  mob_data.BaseSkills[1] = RogueEssence.Dungeon.SlotSkill("iron_head")
 	  mob_data.BaseSkills[2] = RogueEssence.Dungeon.SlotSkill("scary_face")

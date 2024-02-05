@@ -3,7 +3,7 @@
 "Object": {
 "$type": "RogueEssence.Data.TileData, RogueEssence",
 "Name": {
-"DefaultText": "Wish Exit",
+"DefaultText": "Wish Exit Wall",
 "LocalTexts": {}
 },
 "Desc": {
@@ -14,7 +14,7 @@
 "Comment": "",
 "Anim": {
 "AnimIndex": "",
-"FrameTime": 1,
+"FrameTime": -1,
 "StartFrame": -1,
 "EndFrame": -1,
 "AnimDir": -1,
@@ -25,14 +25,14 @@
 "X": 0,
 "Y": 0
 },
-"Layer": 0,
-"BlockItem": false,
-"StepType": 1,
+"Layer": 1,
+"BlockItem": true,
+"StepType": 5,
 "MinimapIcon": {
-"X": 2,
+"X": 1,
 "Y": 2
 },
-"MinimapColor": "200, 200, 200, 252",
+"MinimapColor": "0, 0, 0, 255",
 "LandedOnTiles": [
 {
 "Key": {
@@ -57,7 +57,7 @@
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
 "Script": "WishExitInteractEvent",
-"ArgTable": "{}"
+"ArgTable": "{ Delay = 10 }"
 }
 }
 ]

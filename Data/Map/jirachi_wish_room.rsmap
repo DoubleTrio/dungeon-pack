@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.23.0",
+"Version": "0.7.24.0",
 "Object": {
 "$type": "RogueEssence.Dungeon.Map, RogueEssence",
 "Name": {
@@ -98,7 +98,7 @@
 },
 "BGAnim": {
 "AnimIndex": "",
-"FrameTime": 1,
+"FrameTime": 10,
 "StartFrame": -1,
 "EndFrame": -1,
 "AnimDir": -1,
@@ -8207,10 +8207,3038 @@
 ],
 "Decorations": [
 {
-"Name": "New Deco",
+"Name": "Sparkles",
 "Layer": 0,
 "Visible": true,
-"Anims": []
+"Anims": [
+{
+"MapLoc": {
+"X": 99,
+"Y": 99
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 86,
+"Y": 68
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 76,
+"Y": 129
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 146,
+"Y": 39
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 48,
+"Y": 162
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 28,
+"Y": 222
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 69,
+"Y": 311
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 201,
+"Y": 179
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 183,
+"Y": 193
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 193,
+"Y": 205
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 152,
+"Y": 101
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 208,
+"Y": 72
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 229,
+"Y": 97
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 251,
+"Y": 40
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 333,
+"Y": 58
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 313,
+"Y": 110
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 380,
+"Y": 112
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 371,
+"Y": 149
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 408,
+"Y": 188
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 127,
+"Y": 70
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 176,
+"Y": 27
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 373,
+"Y": 74
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 113,
+"Y": 121
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 88,
+"Y": 160
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 174,
+"Y": 248
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 318,
+"Y": 229
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 270,
+"Y": 159
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 184,
+"Y": 301
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 316,
+"Y": 279
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 345,
+"Y": 178
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 204,
+"Y": 122
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 146,
+"Y": 136
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 289,
+"Y": 85
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 125,
+"Y": 163
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 112,
+"Y": 206
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 177,
+"Y": 274
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 415,
+"Y": 123
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 439,
+"Y": 174
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 61,
+"Y": 182
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 63,
+"Y": 232
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 96,
+"Y": 257
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 385,
+"Y": 223
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 435,
+"Y": 255
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 327,
+"Y": 351
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 350,
+"Y": 325
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 363,
+"Y": 279
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 388,
+"Y": 303
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 387,
+"Y": 279
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 105,
+"Y": 297
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 153,
+"Y": 323
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 132,
+"Y": 255
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 299,
+"Y": 289
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 315,
+"Y": 296
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 201,
+"Y": 28
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 254,
+"Y": 25
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 305,
+"Y": 27
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 370,
+"Y": 40
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 399,
+"Y": 75
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 346,
+"Y": 109
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 168,
+"Y": 117
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 164,
+"Y": 154
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 133,
+"Y": 199
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 382,
+"Y": 253
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 384,
+"Y": 185
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 137,
+"Y": 286
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 184,
+"Y": 336
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 272,
+"Y": 367
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 199,
+"Y": 357
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 60,
+"Y": 252
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 34,
+"Y": 276
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 85,
+"Y": 295
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 84,
+"Y": 348
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 126,
+"Y": 375
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 153,
+"Y": 418
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 202,
+"Y": 407
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 276,
+"Y": 395
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 341,
+"Y": 386
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 351,
+"Y": 364
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 390,
+"Y": 362
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 421,
+"Y": 274
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 437,
+"Y": 317
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 416,
+"Y": 221
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 65,
+"Y": 276
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 156,
+"Y": 303
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 313,
+"Y": 184
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 325,
+"Y": 193
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 222,
+"Y": 307
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 181,
+"Y": 398
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 227,
+"Y": 398
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 299,
+"Y": 415
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 419,
+"Y": 343
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 417,
+"Y": 105
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 395,
+"Y": 55
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 346,
+"Y": 39
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 125,
+"Y": 49
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 109,
+"Y": 39
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 105,
+"Y": 362
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 118,
+"Y": 393
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 47,
+"Y": 293
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 155,
+"Y": 390
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 187,
+"Y": 421
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 236,
+"Y": 411
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 270,
+"Y": 418
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 323,
+"Y": 406
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 371,
+"Y": 369
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 348,
+"Y": 407
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 385,
+"Y": 388
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 413,
+"Y": 312
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 361,
+"Y": 305
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 428,
+"Y": 291
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 439,
+"Y": 218
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 227,
+"Y": 172
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 300,
+"Y": 196
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 145,
+"Y": 224
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 227,
+"Y": 372
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 171,
+"Y": 354
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 197,
+"Y": 374
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 299,
+"Y": 372
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 387,
+"Y": 333
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 376,
+"Y": 325
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 374,
+"Y": 348
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 155,
+"Y": 345
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 134,
+"Y": 318
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 292,
+"Y": 125
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 257,
+"Y": 122
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 275,
+"Y": 332
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 164,
+"Y": 327
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 8,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 419,
+"Y": 79
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 435,
+"Y": 143
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 457,
+"Y": 196
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 461,
+"Y": 242
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 458,
+"Y": 278
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 452,
+"Y": 308
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 439,
+"Y": 343
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 414,
+"Y": 366
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 370,
+"Y": 399
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 309,
+"Y": 430
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 249,
+"Y": 433
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 219,
+"Y": 423
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 137,
+"Y": 405
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 84,
+"Y": 379
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 55,
+"Y": 342
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 74,
+"Y": 323
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 46,
+"Y": 206
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 74,
+"Y": 102
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 50,
+"Y": 123
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 430,
+"Y": 113
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 29,
+"Y": 143
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 26,
+"Y": 249
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 26,
+"Y": 181
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 204,
+"Y": 435
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 332,
+"Y": 336
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 334,
+"Y": 239
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 341,
+"Y": 251
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 346,
+"Y": 152
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 256,
+"Y": 83
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 272,
+"Y": 109
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 243,
+"Y": 79
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 284,
+"Y": 66
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 330,
+"Y": 76
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 202,
+"Y": 90
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 356,
+"Y": 136
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 174,
+"Y": 85
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 362,
+"Y": 51
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 186,
+"Y": 56
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 164,
+"Y": 432
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 183,
+"Y": 193
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 299,
+"Y": 289
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 444,
+"Y": 128
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 430,
+"Y": 159
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 457,
+"Y": 164
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 434,
+"Y": 197
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 459,
+"Y": 224
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 444,
+"Y": 242
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 10,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 443,
+"Y": 275
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 397,
+"Y": 99
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 417,
+"Y": 146
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 337,
+"Y": 421
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles2",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 395,
+"Y": 378
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 463,
+"Y": 263
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 460,
+"Y": 139
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+},
+{
+"MapLoc": {
+"X": 63,
+"Y": 149
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "MiniWishSparkles1",
+"FrameTime": 12,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+}
+]
+},
+{
+"Name": "TopCorner",
+"Layer": 0,
+"Visible": true,
+"Anims": [
+{
+"MapLoc": {
+"X": 242,
+"Y": 169
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishGemCornerGlow2",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+}
+]
+},
+{
+"Name": "LeftCorner",
+"Layer": 0,
+"Visible": true,
+"Anims": [
+{
+"MapLoc": {
+"X": 194,
+"Y": 217
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishGemCornerGlow2",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+}
+]
+},
+{
+"Name": "RightCorner",
+"Layer": 0,
+"Visible": true,
+"Anims": [
+{
+"MapLoc": {
+"X": 290,
+"Y": 217
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishGemCornerGlow2",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+}
+]
+},
+{
+"Name": "BottomLeftCorner",
+"Layer": 0,
+"Visible": true,
+"Anims": [
+{
+"MapLoc": {
+"X": 218,
+"Y": 265
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishGemCornerGlow2",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+}
+]
+},
+{
+"Name": "BottomRightCorner",
+"Layer": 0,
+"Visible": true,
+"Anims": [
+{
+"MapLoc": {
+"X": 266,
+"Y": 265
+},
+"ObjectAnim": {
+"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
+"AnimIndex": "WishGemCornerGlow2",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": 0,
+"Alpha": 255,
+"AnimFlip": 0
+}
+}
+]
 }
 ],
 "Tiles": [
@@ -11789,8 +14817,8 @@
 "X": 8,
 "Y": 9
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_corner",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }
@@ -12253,8 +15281,8 @@
 "X": 9,
 "Y": 11
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_corner",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }
@@ -12341,8 +15369,8 @@
 "X": 9,
 "Y": 15
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_exit_wall",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }
@@ -12585,8 +15613,8 @@
 "X": 10,
 "Y": 7
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_corner",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }
@@ -12761,8 +15789,8 @@
 "X": 10,
 "Y": 15
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_exit_wall",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }
@@ -13093,8 +16121,8 @@
 "X": 11,
 "Y": 11
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_corner",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }
@@ -13181,8 +16209,8 @@
 "X": 11,
 "Y": 15
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_exit_wall",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }
@@ -13469,8 +16497,8 @@
 "X": 12,
 "Y": 9
 },
-"ID": "",
-"Revealed": false,
+"ID": "wish_corner",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }

@@ -145,7 +145,8 @@
   </data>
   <data name="WISHMAKER_NPC_TALK6" xml:space="preserve">
     <value>Rumors has it,[pause=10] something rests within the depths of this cave.[br]...Waiting to be awaken by explorers who hold their wishes until the very end. </value>
-    <comment></comment>  
+    <comment></comment> 
+  </data> 
   <data name="WISHMAKER_NPC_TALK7.0" xml:space="preserve">
     <value>{0} more[pause=10].[pause=10].[pause=10].[pause=10] Like a star.</value>
     <comment></comment>  
@@ -156,6 +157,10 @@
   </data>
   <data name="WISHMAKER_NPC_TALK7.2" xml:space="preserve">
     <value>[emote=Happy]More than a star[pause=10].[pause=10].[pause=10].[pause=10]  Until the end.[pause=10].[pause=10].[pause=10]</value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK8" xml:space="preserve">
+    <value>One arduous journey.[pause=0] The collective power of gems.[pause=0] And one single wish.[pause=0][br][emote=Happy]My masterpiece will soon be finished!</value>
     <comment></comment>  
   </data>
   <data name="TALK_SHOP_0003" xml:space="preserve">

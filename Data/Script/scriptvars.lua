@@ -1,5 +1,7 @@
 SV.Wishmaker = {
   TotalWishesPerFloor = 2,
+  RecruitedJirachi = false,
+  MadeWish = false
 }
 
 SV.Services =
