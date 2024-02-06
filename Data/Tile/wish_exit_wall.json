@@ -42,7 +42,7 @@
 },
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "WishExitEvent",
+"Script": "AskExitEvent",
 "ArgTable": "{}"
 }
 }
@@ -57,7 +57,7 @@
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
 "Script": "WishExitInteractEvent",
-"ArgTable": "{ Delay = 10 }"
+"ArgTable": "{ Delay = 0 }"
 }
 }
 ]

@@ -214,25 +214,60 @@ end
 -- table.concat({"a", "b", "c"}, ",") --> "a,b,c"
 -- 1, 2, 3, 4, 5. Wishmaker can be awaken.
 function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, args)
-	local bag_count = GAME:GetPlayerBagCount()
-  local wish_gem_count = COMMON.CountInvItemID("wish_gem")
 	-- Fwahh! 
 	-- Exclaimation~ Where... am 
-	print("Wish Gem Count: " .. tostring(wish_gem_count))
 	-- CHECK THE TILESTATE
 	-- DRAW GLOW LINES TO THE VENTER OF THE STAR
 	-- Your inventory 
 	-- 8, 9  (left) | 10, 7 (top) | 12, 9 (right) | 9, 11 (bot left) | 11, 11 (bot right)
-
-
-	GAME:WaitFrames(10)
-  UI:ResetSpeaker()
-
-	UI:ChoiceMenuYesNo("Your Wish Gems are reacting from your treasure bag! Would you like to use them?", false)
-  UI:WaitForChoice()
-  ch = UI:ChoiceResult()
-  if ch then
+	local chara = context.User
+	UI:ResetSpeaker()
+	GAME:WaitFrames(20)
+	_ZONE.CurrentMap.Decorations[0].Layer = RogueEssence.Content.DrawLayer.Top
+	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+		if member.Dead == false then
+			member.CharDir = Direction.Up
+			DUNGEON:CharSetAction(member, RogueEssence.Dungeon.CharAnimPose(member.CharLoc, member.CharDir, 0, -1))
+			GAME:WaitFrames(20)
+		end
 	end
+	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
+	
+	crystal_moment_status:LoadFromData()
+	if _DATA.CurrentReplay == nil then
+		TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+	end
+
+	_ZONE.CurrentMap.HideMinimap = true
+	local curr_song = RogueEssence.GameManager.Instance.Song
+	SOUND:StopBGM()
+	UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The world around you holds their breath, as the crystal shines brightly.")
+	UI:ChoiceMenuYesNo("Would you like to make a wish?", false)
+	UI:WaitForChoice()
+	local result = UI:ChoiceResult()
+	if result then
+	end
+
+	if _DATA.CurrentReplay == nil then
+		TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+		-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+	end
+	SOUND:PlayBGM(curr_song, true, 0)
+	GAME:WaitFrames(20)
+
+	_ZONE.CurrentMap.HideMinimap = false
+	GAME:WaitFrames(20)
+
+
+	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+		if member.Dead == false then
+			local stand_anim =  RogueEssence.Dungeon.CharAnimNone(member.CharLoc, member.CharDir)
+			stand_anim.MajorAnim = true
+			TASK:WaitTask(member:StartAnim(stand_anim))
+		end
+	end
+
+	_ZONE.CurrentMap.Decorations[0].Layer = RogueEssence.Content.DrawLayer.Bottom
 
 	-- ...[pause=0]
 	-- Spawn Jirachi
@@ -249,14 +284,8 @@ end
 
 function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, args)
 	local delay = args.Delay
-	-- print(tostring(args))
-	-- print(tostring(args.MaxStack))
-	for key, value in pairs(args) do
-		print(key, value)
-	end
-	-- TODO: FIGURE WHY ARGS ISN'T WORKING IN INTERACT TILES
-	if delay == nil then delay = 1 end
-	-- print(tostring(delay))
+	if delay == nil then delay = 10 end
+
 	GAME:WaitFrames(delay)
   UI:ResetSpeaker()
   UI:ChoiceMenuYesNo(STRINGS:FormatKey("DLG_ASK_EXIT_DUNGEON"), true)
@@ -590,6 +619,15 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
 		end
 
 		_DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
+end
+
+function SINGLE_CHAR_SCRIPT.AskExitEvent(owner, ownerChar, context, args)
+	local chara = context.User
+	if chara ~= _DUNGEON.ActiveTeam.Leader then
+		return 
+	end
+
+	_DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
 end
 
 function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, context, args)
