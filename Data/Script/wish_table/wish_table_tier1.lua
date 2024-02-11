@@ -1,40 +1,35 @@
-DUNGEON_WISH_TABLE = {
+FINAL_WISH_TABLE_TIER_1 = {
   {
-    Min = 8,
-    Max = 13,
+    Category = "Money",
+    Min = 22,
+    Max = 22,
 		Guaranteed = {
       {
         { Item = "loot_pearl", Amount = 3, Weight = 60 },
         { Item = "loot_nugget", Amount = 1, Weight = 40 }
       },
       {
-        { Item = "loot_pearl", Amount = 1, Weight = 1 },
-        { Item = "loot_pearl", Amount = 2, Weight = 1 },
         { Item = "loot_pearl", Amount = 3, Weight = 1 },
       }
     },
     Items = {
-      { Item = "money", Amount = 200, Weight = 15 },
-      { Item = "money", Amount = 300, Weight = 15 },
       { Item = "money", Amount = 400, Weight = 15 },
       { Item = "money", Amount = 500, Weight = 15 },
+      { Item = "money", Amount = 600, Weight = 15 },
       { Item = "loot_pearl", Amount = 1, Weight = 10 },
       { Item = "loot_pearl", Amount = 2, Weight = 10 },
       { Item = "loot_pearl", Amount = 3, Weight = 10 },
     },
   },
   {
-    Min = 6,
-    Max = 7,
-		Guaranteed = { 
-			{ 
-				{ Item = "food_apple", Amount = 1, Weight = 10 } 
-			},
-			{ 
-				{ Item = "food_apple", Amount = 1, Weight = 10 },
-				{ Item = "berry_leppa", Amount = 1, Weight = 10 } 
-			},
-		},
+    Category = "Food",
+    Min = 9,
+    Max = 9,
+		Guaranteed = {
+      {
+        { Item = "food_banana", Amount = 1, Weight = 1 },
+      }
+    },
     Items = {
       { Item = "berry_leppa", Amount = 1, Weight = 6 },
       { Item = "berry_sitrus", Amount = 1, Weight = 8 },
@@ -58,12 +53,18 @@ DUNGEON_WISH_TABLE = {
     },
   },
   {
-    Min = 5,
+    Category = "Utility",
+    Min = 6,
     Max = 6,
 		Guaranteed = { 
 			{ 
 				{ Item = "seed_reviver", Amount = 1, Weight = 10 },
-				{ Item = "berry_leppa", Amount = 1, Weight = 10 } 
+			},
+      { 
+				{ Item = "seed_reviver", Amount = 1, Weight = 10 },
+			},
+      { 
+				{ Item = "berry_leppa", Amount = 1, Weight = 10 },
 			},
 			{
 				{ Item = "medicine_full_heal", Amount = 1, Weight = 1 },
@@ -77,33 +78,11 @@ DUNGEON_WISH_TABLE = {
 				{ Item = "medicine_x_sp_atk", Amount = 1, Weight = 1 },
 				{ Item = "medicine_x_speed", Amount = 1, Weight = 1 },
 			},
-			{
-				{ Item = "seed_ban", Amount = 1, Weight = 2 },
-				{ Item = "seed_joy", Amount = 1, Weight = 2 },
-				{ Item = "seed_decoy", Amount = 1, Weight = 2 },
-				{ Item = "seed_pure", Amount = 1, Weight = 2 },
-				{ Item = "seed_blast", Amount = 1, Weight = 2 },
-				{ Item = "seed_ice", Amount = 1, Weight = 2 },
-				{ Item = "seed_reviver", Amount = 1, Weight = 2 },
-				{ Item = "seed_warp", Amount = 1, Weight = 2 },
-				{ Item = "seed_doom", Amount = 1, Weight = 2 },
-				{ Item = "seed_ice", Amount = 1, Weight = 2 },
-			},
-			{
-				{ Item = "ammo_geo_pebble", Amount = 3, Weight = 3 },
-				{ Item = "ammo_golden_thorn", Amount = 3, Weight = 3 },
-				{ Item = "ammo_gravelerock", Amount = 3, Weight = 3 },
-				{ Item = "ammo_iron_thorn", Amount = 3, Weight = 3 },
-				{ Item = "ammo_rare_fossil", Amount = 3, Weight = 3 },
-				{ Item = "ammo_silver_spike", Amount = 3, Weight = 3 },
-				{ Item = "ammo_stick", Amount = 3, Weight = 3 },
-				{ Item = "ammo_iron_thorn", Amount = 3, Weight = 3 },
-			},
       {
         { Item = "machine_recall_box", Amount = 1, Weight = 2 },
         { Item = "machine_assembly_box", Amount = 1, Weight = 2 },
         { Item = "machine_ability_capsule", Amount = 1, Weight = 2 },
-      }
+      },
 		},
     Items = {
 			{ Item = "berry_leppa", Amount = 1, Weight = 5 },
@@ -179,30 +158,17 @@ DUNGEON_WISH_TABLE = {
     }
   },
   {
-    Min = 6,
+    Category = "Power",
+    Min = 7,
     Max = 7,
 		Guaranteed = { 
 			{ 
 				{ Item = "seed_joy", Amount = 1, Weight = 1 },
 			},
 			{ 
-				{ Item = "gummi_black", Amount = 1, Weight = 1 },
-				{ Item = "gummi_blue", Amount = 1, Weight = 1 },
-				{ Item = "gummi_brown", Amount = 1, Weight = 1 },
-				{ Item = "gummi_clear", Amount = 1, Weight = 1 },
-				{ Item = "gummi_gold", Amount = 1, Weight = 1 },
-				{ Item = "gummi_grass", Amount = 1, Weight = 1 },
-				{ Item = "gummi_green", Amount = 1, Weight = 1 },
-				{ Item = "gummi_magenta", Amount = 1, Weight = 1 },
-				{ Item = "gummi_orange", Amount = 1, Weight = 1 },
-				{ Item = "gummi_pink", Amount = 1, Weight = 1 },
-				{ Item = "gummi_purple", Amount = 1, Weight = 1 },
-				{ Item = "gummi_red", Amount = 1, Weight = 1 },
-				{ Item = "gummi_royal", Amount = 1, Weight = 1 },
-				{ Item = "gummi_silver", Amount = 1, Weight = 1 },
-				{ Item = "gummi_sky", Amount = 1, Weight = 1 },
-				{ Item = "gummi_white", Amount = 1, Weight = 1 },
-				{ Item = "gummi_yellow", Amount = 1, Weight = 1 },
+				{ Item = "gummi_wonder", Amount = 1, Weight = 1 },
+			},
+      { 
 				{ Item = "gummi_wonder", Amount = 1, Weight = 1 },
 			},
 			{
@@ -369,8 +335,9 @@ DUNGEON_WISH_TABLE = {
     },
   },
 	{
-		Min = 4,
-		Max = 6,
+    Category = "Equipment",
+		Min = 7,
+		Max = 7,
 		Guaranteed = {},
 		Items = {
 			{ Item = "held_flame_orb", Amount = 1, Weight = 2 },
@@ -424,23 +391,15 @@ DUNGEON_WISH_TABLE = {
 		}
 	},
 	{
-		Min = 4,
-		Max = 5,
+		Min = 6,
+		Max = 6,
+    Category = "Recruitment",
 		Guaranteed = { 
 			{ 
-				{ Item = "medicine_amber_tear", Amount = 1, Weight = 1 },
+				{ Item = "medicine_amber_tear", Amount = 2, Weight = 1 },
 			},
       {
         { Item = "apricorn_big", Amount = 1, Weight = 2 },
-        { Item = "apricorn_black", Amount = 1, Weight = 2 },
-        { Item = "apricorn_blue", Amount = 1, Weight = 2 },
-        { Item = "apricorn_brown", Amount = 1, Weight = 2 },
-        { Item = "apricorn_green", Amount = 1, Weight = 2 },
-        { Item = "apricorn_plain", Amount = 1, Weight = 2 },
-        { Item = "apricorn_purple", Amount = 1, Weight = 2 },
-        { Item = "apricorn_red", Amount = 1, Weight = 2 },
-        { Item = "apricorn_white", Amount = 1, Weight = 2 },
-        { Item = "apricorn_yellow", Amount = 1, Weight = 2 },
       }
 		},
 		Items = {
@@ -459,5 +418,3 @@ DUNGEON_WISH_TABLE = {
 		},
 	}
 }
-
-FINAL_WISH_TABLE = {}

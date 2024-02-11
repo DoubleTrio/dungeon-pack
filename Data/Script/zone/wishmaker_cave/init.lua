@@ -16,6 +16,7 @@ local wishmaker_cave = {}
 --Engine callback function
 function wishmaker_cave.Init(zone)
     DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+    SV.Wishmaker.MadeWish = false
     PrintInfo("=>> Init_wishmaker_cave")
       
 end

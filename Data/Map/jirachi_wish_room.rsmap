@@ -8325,40 +8325,8 @@
 },
 {
 "MapLoc": {
-"X": 201,
-"Y": 179
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "MiniWishSparkles2",
-"FrameTime": 8,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
 "X": 183,
 "Y": 193
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "MiniWishSparkles2",
-"FrameTime": 8,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
-"X": 193,
-"Y": 205
 },
 "ObjectAnim": {
 "$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
@@ -8620,22 +8588,6 @@
 "$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
 "AnimIndex": "WishSparkles1",
 "FrameTime": 8,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
-"X": 270,
-"Y": 159
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "WishSparkles1",
-"FrameTime": 10,
 "StartFrame": -1,
 "EndFrame": -1,
 "AnimDir": 0,
@@ -9557,22 +9509,6 @@
 },
 {
 "MapLoc": {
-"X": 313,
-"Y": 184
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "MiniWishSparkles2",
-"FrameTime": 8,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
 "X": 325,
 "Y": 193
 },
@@ -9989,38 +9925,6 @@
 },
 {
 "MapLoc": {
-"X": 227,
-"Y": 172
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "WishSparkles2",
-"FrameTime": 10,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
-"X": 300,
-"Y": 196
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "WishSparkles1",
-"FrameTime": 8,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
 "X": 145,
 "Y": 224
 },
@@ -10188,22 +10092,6 @@
 "$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
 "AnimIndex": "WishSparkles2",
 "FrameTime": 10,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
-"X": 257,
-"Y": 122
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "WishSparkles2",
-"FrameTime": 8,
 "StartFrame": -1,
 "EndFrame": -1,
 "AnimDir": 0,
@@ -10700,22 +10588,6 @@
 "$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
 "AnimIndex": "WishSparkles1",
 "FrameTime": 12,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
-"X": 272,
-"Y": 109
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "MiniWishSparkles2",
-"FrameTime": 10,
 "StartFrame": -1,
 "EndFrame": -1,
 "AnimDir": 0,

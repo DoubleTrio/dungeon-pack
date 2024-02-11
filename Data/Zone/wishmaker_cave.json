@@ -16,7 +16,7 @@
 "TeamRestrict": false,
 "TeamSize": 2,
 "MoneyRestrict": true,
-"BagRestrict": 4,
+"BagRestrict": 2,
 "BagSize": 24,
 "Persistent": false,
 "Rescues": 2,
@@ -50296,7 +50296,7 @@
 "Amount": 0,
 "Price": 0
 },
-"Rate": 1,
+"Rate": 10,
 "Range": {
 "Min": 0,
 "Max": 21
@@ -50313,6 +50313,20 @@
 "Rate": 10,
 "Range": {
 "Min": 0,
+"Max": 21
+}
+},
+{
+"Spawn": {
+"ID": "evo_prism_scale",
+"Cursed": false,
+"HiddenValue": "",
+"Amount": 0,
+"Price": 0
+},
+"Rate": 10,
+"Range": {
+"Min": 9,
 "Max": 21
 }
 }
@@ -56242,7 +56256,7 @@
 "Spawn": {
 "IsMoney": false,
 "Cursed": false,
-"Value": "evo_metal_coat",
+"Value": "held_metal_coat",
 "HiddenValue": "",
 "Amount": 0,
 "Price": 0,
@@ -62620,7 +62634,7 @@
 "Spawn": {
 "IsMoney": false,
 "Cursed": false,
-"Value": "evo_metal_coat",
+"Value": "held_metal_coat",
 "HiddenValue": "",
 "Amount": 0,
 "Price": 0,
@@ -70346,6 +70360,51 @@
 "Spawn": {
 "IsMoney": false,
 "Cursed": false,
+"Value": "evo_protector",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 2500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
+"Value": "evo_link_cable",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 3500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
+"Value": "evo_electirizer",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 3500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
 "Value": "seed_ban",
 "HiddenValue": "",
 "Amount": 0,
@@ -71361,6 +71420,51 @@
 "HiddenValue": "",
 "Amount": 0,
 "Price": 2500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
+"Value": "evo_protector",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 2500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
+"Value": "evo_link_cable",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 3500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
+"Value": "evo_electirizer",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 3500,
 "TileLoc": {
 "X": 0,
 "Y": 0
@@ -72398,6 +72502,51 @@
 "Spawn": {
 "IsMoney": false,
 "Cursed": false,
+"Value": "evo_protector",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 2500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
+"Value": "evo_link_cable",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 3500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
+"Value": "evo_electirizer",
+"HiddenValue": "",
+"Amount": 0,
+"Price": 3500,
+"TileLoc": {
+"X": 0,
+"Y": 0
+}
+},
+"Rate": 50
+},
+{
+"Spawn": {
+"IsMoney": false,
+"Cursed": false,
 "Value": "seed_ban",
 "HiddenValue": "",
 "Amount": 0,
@@ -73401,12 +73550,12 @@
 {
 "Key": {
 "str": [
-0
+10
 ]
 },
 "Value": {
 "$type": "RogueEssence.Dungeon.ItemScriptEvent, RogueEssence",
-"Script": "PlaceGemEvent",
+"Script": "WishItemPickupEvent",
 "ArgTable": "{}"
 }
 }
@@ -73430,7 +73579,7 @@
 {
 "Key": {
 "str": [
--10
+-20
 ]
 },
 "Value": {
@@ -73451,6 +73600,18 @@
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
 "Script": "WishGemCheckEvent",
+"ArgTable": "{}"
+}
+},
+{
+"Key": {
+"str": [
+30
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "LogTempItemEvent",
 "ArgTable": "{}"
 }
 }

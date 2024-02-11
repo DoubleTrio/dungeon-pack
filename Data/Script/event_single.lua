@@ -1,5 +1,5 @@
 require 'common'
-require 'wish_table'
+require 'wish_table.wish_table'
 
 StackStateType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
@@ -10,6 +10,193 @@ MapItemType = luanet.import_type('RogueEssence.Dungeon.MapItem')
 SpawnListType =  luanet.import_type('RogueElements.SpawnList`1')
 
 SINGLE_CHAR_SCRIPT = {}
+
+
+local function JoinTeamWithFanfareAssembly(recruit, from_dungeon)
+  local orig_settings = UI:ExportSpeakerSettings()
+  
+  if from_dungeon then
+    recruit.MetAt = _ZONE.CurrentMap:GetColoredName()
+  else
+    recruit.MetAt = _ZONE.CurrentGround:GetColoredName()
+  end
+  recruit.MetLoc = RogueEssence.Dungeon.ZoneLoc(_ZONE.CurrentZoneID, _ZONE.CurrentMapID)
+  
+  _DATA.Save.ActiveTeam.Assembly:Add(recruit)
+  SOUND:PlayFanfare("Fanfare/JoinTeam")
+  _DATA.Save:RegisterMonster(recruit.BaseForm.Species)
+  _DATA.Save:RogueUnlockMonster(recruit.BaseForm.Species)
+	
+  UI:ResetSpeaker(false)
+  UI:SetCenter(true)
+  
+  if _DATA.Save.ActiveTeam.Name ~= "" then
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_RECRUIT"):ToLocal(), recruit:GetDisplayName(true), _DATA.Save.ActiveTeam.Name))
+  else
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_RECRUIT_ANY"):ToLocal(), recruit:GetDisplayName(true)))
+  end
+  
+  UI:ImportSpeakerSettings(orig_settings)
+end
+
+local function GetWishTier()
+	local corner_tiles = {
+		C8x9 = true,
+		C10x7 = true,
+		C12x9 = true,
+		C9x11 = true,
+		C11x11 = true,
+	}
+
+	local wish_tier = 1
+	local item_count = _ZONE.CurrentMap.Items.Count
+	for item_idx = 0, item_count - 1, 1 do
+		local map_item = _ZONE.CurrentMap.Items[item_idx]
+		local x = map_item.TileLoc.X
+		local y = map_item.TileLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles[key]
+		if value ~= nil and map_item.Value == "wish_gem" then
+			wish_tier = wish_tier + 1
+		end
+	end
+
+	return wish_tier
+end
+
+local function WishCenterAnimStart(query_order, corner_tiles, corner_layer_map) 
+
+	local item_count = _ZONE.CurrentMap.Items.Count
+	for item_idx = 0, item_count - 1, 1 do
+		local map_item = _ZONE.CurrentMap.Items[item_idx]
+		local x = map_item.TileLoc.X
+		local y = map_item.TileLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles[key]
+		if value ~= nil and map_item.Value == "wish_gem" then
+			corner_tiles[key] = map_item.TileLoc
+		end
+	end
+
+	GAME:WaitFrames(80)
+	for _, v in ipairs(query_order) do
+		local tile = corner_tiles[v]
+		if tile then
+			local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+			local layer_index = corner_layer_map[v]
+			_ZONE.CurrentMap.Decorations[layer_index].Visible = false
+
+			local copy = _DATA.SendHomeFX
+			copy.Sound = "_UNK_EVT_029"
+			--  "DUN_Wish"
+			GAME:WaitFrames(20)
+			TASK:WaitTask(_DUNGEON:ProcessBattleFX(tile, tile, Direction.Down, copy))
+
+			-- local item_count = _ZONE.CurrentMap.Items.Count
+			-- print(tostring(item_count) .. "ITEM COUNT")
+			-- for item_idx = 0, item_count - 1, 1 do
+			-- 	print(tostring("CHECK"), item_idx)
+			-- 	local map_item = _ZONE.CurrentMap.Items[item_idx]
+			-- 	local x = map_item.TileLoc.X
+			-- 	local y = map_item.TileLoc.Y
+			-- 	local key = string.format("C%dx%d", x, y)
+			-- 	local value = corner_tiles[key]
+			-- 	if key == v then
+			-- 		_ZONE.CurrentMap.Items:RemoveAt(item_idx)
+			-- 		goto skip_to_next
+			-- 	end
+			-- end
+			-- ::skip_to_next::
+			
+		end
+	end
+
+	GAME:WaitFrames(40)
+	SOUND:PlayBattleSE("_UNK_EVT_044")
+	GAME:WaitFrames(10)
+	GAME:FadeOut(true, 40)
+	GAME:WaitFrames(50)
+
+	
+	for _, v in ipairs(query_order) do
+		local tile = corner_tiles[v]
+		if tile then
+			local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+			-- GAME:WaitFrames(10)
+			t.Effect = RogueEssence.Dungeon.EffectTile("tile_mystery_portal", true)
+			-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(tile, tile, Direction.Down, copy))
+		end
+	end
+
+	GAME:WaitFrames(40)
+	GAME:FadeIn(60)
+	GAME:WaitFrames(40)
+	return corner_tiles
+end
+
+local function WishCenterAnimEnd(owner, query_order, corner_tiles)
+	local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Miracle_Eye_Glow", 12), 1)
+	
+
+	SOUND:PlayBattleSE("_UNK_EVT_072")
+	
+	GAME:WaitFrames(15)
+	-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
+	emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left)
+	_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
+
+	GAME:WaitFrames(30)
+
+	GAME:WaitFrames(50)
+	SOUND:PlayBattleSE("_UNK_EVT_074")
+	GAME:FadeOut(true, 40)
+	GAME:WaitFrames(50)
+	for _, v in ipairs(query_order) do
+		local tile = corner_tiles[v]
+		-- print(tostring(tile))
+		if tile then
+			local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+			t.Effect = RogueEssence.Dungeon.EffectTile(t.Effect.TileLoc)
+		end
+	end
+
+	GAME:WaitFrames(40)
+	GAME:FadeIn(60)
+	GAME:WaitFrames(80) 
+
+end
+
+local function IsCharOnWishSpot()
+	local corner_tiles = {
+		C8x9 = true,
+		C10x7 = true,
+		C12x9 = true,
+		C9x11 = true,
+		C11x11 = true,
+	}
+
+	local chars = _DATA.Save.ActiveTeam.Players
+	for i = 0, chars.Count-1, 1 do
+		local char = chars[i]
+		local x = char.CharLoc.X
+		local y = char.CharLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		-- local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles[key]
+		if value ~= nil then
+			return true
+		end
+	end
+
+	return false
+end
+
+function SINGLE_CHAR_SCRIPT.LogTempItemEvent(owner, ownerChar, context, args)
+	if SV.Wishmaker.TempItemString ~= nil then
+		-- _DUNGEON:LogMsg("The " .. SV.Wishmaker.TempItemString .. " was sent to the storage!")
+		SV.Wishmaker.TempItemString = nil
+	end
+end
 
 function SINGLE_CHAR_SCRIPT.WishGemCheckEvent(owner, ownerChar, context, args)
 	-- print("WishGemCheckEvent")
@@ -22,8 +209,7 @@ function SINGLE_CHAR_SCRIPT.WishGemCheckEvent(owner, ownerChar, context, args)
 	-- 	{ X = 11, Y = 11 },
 	-- }
 
-	-- print(tostring(_ZONE.CurrentMap.Decorations.Count))
-	local corner_tiles2 = {
+	local corner_tiles = {
 		C8x9 = {
 			LayerName = "LeftCorner",
 			Index = 2
@@ -55,29 +241,15 @@ function SINGLE_CHAR_SCRIPT.WishGemCheckEvent(owner, ownerChar, context, args)
 	local item_count = _ZONE.CurrentMap.Items.Count
 	for item_idx = 0, item_count - 1, 1 do
 		local map_item = _ZONE.CurrentMap.Items[item_idx]
-		-- print(tostring(map_item))
 		local x = map_item.TileLoc.X
 		local y = map_item.TileLoc.Y
 		local key = string.format("C%dx%d", x, y)
-		local value = corner_tiles2[key]
+		local value = corner_tiles[key]
 		if value ~= nil and map_item.Value == "wish_gem" then
 			local layer = _ZONE.CurrentMap.Decorations[value.Index]
-			-- print(tostring(layer.Name))
-			-- print(tostring(layer.Visible))
 			layer.Visible = true
-			-- print(tostring(layer))
-			-- print(tostring(layer.Name))
-			-- print(tostring(layer.Visible))
-			-- print(layer)
 		end
-		-- local tile = _ZONE.CurrentMap.Tiles[map_item.TileLoc.X][map_item.TileLoc.Y]
 	end
-	-- for _, tile in ipairs(corner_tiles) do
-	-- 	local tile = _ZONE.CurrentMap.Tiles[tile.x][tile.y]
-	-- end
-
-
-	-- local tile = _ZONE.CurrentMap.Tiles[map_item.TileLoc.X][map_item.TileLoc.Y]
 end
 
 -- public static IEnumerator<YieldInstruction> TryLearnSkill(Character player, string skillIndex, VertChoiceMenu.OnChooseSlot learnAction, Action passAction)
@@ -194,6 +366,66 @@ end
 
 -- 		RefreshTraits();
 -- }
+
+
+--[[
+	    public class CharAnimDrop : StaticCharAnimation
+    {
+        const int MAX_TILE_HEIGHT = 8;
+        public const int ANIM_TIME = 12;
+        protected override int FrameMethod(List<CharAnimFrame> frames)
+        {
+            return CharSheet.TrueFrame(frames, ActionTime.Ticks, false);
+        }
+        public override bool ActionPassed { get { return ActionDone; } }
+        public override bool ActionDone { get { return ActionTime >= ANIM_TIME; } }
+
+        protected override int AnimFrameType { get { return animOverride > -1 ? animOverride : 0; } }
+
+        public int animOverride;
+
+        public CharAnimDrop() { }
+
+        public CharAnimDrop(int anim)
+        {
+            this.animOverride = anim;
+        }
+
+        protected override void UpdateFrameInternal()
+        {
+            MapLoc = VisualLoc * GraphicsManager.TileSize;
+            LocHeight = MAX_TILE_HEIGHT * GraphicsManager.TileSize-(int)ActionTime.FractionOf(MAX_TILE_HEIGHT * GraphicsManager.TileSize, ANIM_TIME);
+        }
+    }
+
+    public class CharAnimFly : StaticCharAnimation
+    {
+        const int MAX_TILE_HEIGHT = 8;
+        public const int ANIM_TIME = 24;
+        protected override int FrameMethod(List<CharAnimFrame> frames)
+        {
+            return CharSheet.TrueFrame(frames, ActionTime.Ticks, false);
+        }
+        public override bool ActionPassed { get { return ActionTime >= ANIM_TIME - 1; } }
+        public override bool ActionDone { get { return ActionTime >= ANIM_TIME; } }
+        protected override int AnimFrameType { get { return animOverride > -1 ? animOverride : GraphicsManager.ChargeAction; } }
+
+        public int animOverride;
+
+        public CharAnimFly() { }
+
+        public CharAnimFly(int anim)
+        {
+            this.animOverride = anim;
+        }
+
+        protected override void UpdateFrameInternal()
+        {
+            MapLoc = VisualLoc * GraphicsManager.TileSize;
+            LocHeight = (int)ActionTime.FractionOf(MAX_TILE_HEIGHT * GraphicsManager.TileSize, ANIM_TIME);
+        }
+    }
+]]
 function SINGLE_CHAR_SCRIPT.LowHpNpcEvent(owner, ownerChar, context, args)
   local chara = context.User
 	if chara ~= nil then
@@ -213,17 +445,14 @@ end
 
 -- table.concat({"a", "b", "c"}, ",") --> "a,b,c"
 -- 1, 2, 3, 4, 5. Wishmaker can be awaken.
-function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, args)	
 	-- Fwahh! 
 	-- Exclaimation~ Where... am 
 	-- CHECK THE TILESTATE
-	-- DRAW GLOW LINES TO THE VENTER OF THE STAR
-	-- Your inventory 
 	-- 8, 9  (left) | 10, 7 (top) | 12, 9 (right) | 9, 11 (bot left) | 11, 11 (bot right)
-	local chara = context.User
 	UI:ResetSpeaker()
 	GAME:WaitFrames(20)
-	_ZONE.CurrentMap.Decorations[0].Layer = RogueEssence.Content.DrawLayer.Top
+
 	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
 		if member.Dead == false then
 			member.CharDir = Direction.Up
@@ -231,6 +460,23 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 			GAME:WaitFrames(20)
 		end
 	end
+
+	if SV.Wishmaker.RecruitedJirachi and SV.Wishmaker.MadeWish then
+		UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
+		return
+	end
+
+	if SV.Wishmaker.MadeWish then
+		UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
+		UI:WaitShowDialogue("Wishmaker awaits for next time.")
+		-- goto end_wish
+		-- UI:WaitShowDialogue("...[pause=0]Seems that no m")
+		return
+	end
+
+	local chara = context.User
+
+	_ZONE.CurrentMap.Decorations[0].Layer = RogueEssence.Content.DrawLayer.Top
 	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
 	
 	crystal_moment_status:LoadFromData()
@@ -241,11 +487,295 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 	_ZONE.CurrentMap.HideMinimap = true
 	local curr_song = RogueEssence.GameManager.Instance.Song
 	SOUND:StopBGM()
-	UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The world around you holds their breath, as the crystal shines brightly.")
+	UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The stars around you shine more brightly than ever.")
 	UI:ChoiceMenuYesNo("Would you like to make a wish?", false)
 	UI:WaitForChoice()
 	local result = UI:ChoiceResult()
 	if result then
+		
+		if not SV.Wishmaker.MadeWish and not IsCharOnWishSpot() then
+			local wish_tier = GetWishTier()
+			local wish_table = FINAL_WISH_TABLE[wish_tier]
+			local wish_choices = map(wish_table, function(item) return item.Category end)
+
+			if not SV.Wishmaker.RecruitedJirachi then
+				table.insert(wish_choices, 1, STRINGS:Format("\\uE10C") .. "Wishmaker")
+			end
+			table.insert(wish_choices, "Don't know")
+
+			-- print(tostring(wish_choices))
+			-- print(tostring(#wish_choices))
+			-- print(wish_choices[1] .. "Check")
+			-- print(wish_choices[2] .. "Check")
+			-- local wish_choices = {"Money", "Food", "Utility", "Power", "Equipment", "Recruitment", "Don't know"}    
+			local end_choice = #wish_choices
+			UI:BeginChoiceMenu("What is your final wish?", wish_choices, 1, end_choice)
+			UI:WaitForChoice()
+			choice = UI:ChoiceResult()
+			if choice ~= end_choice then
+				local corner_tiles = {
+					C10x7 = false,
+					C8x9 = false,
+					C9x11 = false,
+					C11x11 = false,
+					C12x9 = false,
+				}
+
+				local layer_map = {
+					C8x9 = 2,
+					C10x7 = 1,
+					C12x9 = 3,
+					C9x11 = 4,
+					C11x11 = 5,
+				}
+
+				local query_order = { "C10x7", "C8x9", "C9x11", "C11x11", "C12x9" }
+				-- print(tostring(choice))
+				-- print(tostring(wish_choices[choice]))
+				-- print(tostring(wish_choices[choice]:find("Wishmaker")))
+				if not SV.Wishmaker.RecruitedJirachi and choice == 1 then
+					if wish_tier == 6 then
+						WishCenterAnimStart(query_order, corner_tiles, layer_map)
+						-- SV.Wishmaker.RecruitedJirachi = true
+						-- SV.Wishmaker.MadeWish = true
+						-- for _, v in ipairs(query_order) do
+						-- 	local tile = corner_tiles[v]
+						-- 	-- print(tostring(tile))
+						-- 	if tile then
+						-- 		local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+						-- 		t.Effect = RogueEssence.Dungeon.EffectTile(t.Effect.TileLoc)
+						-- 	end
+						-- end
+	
+						UI:WaitShowDialogue("...")
+
+						
+
+						local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Miracle_Eye_Glow", 12), 1)
+	
+
+						SOUND:PlayBattleSE("_UNK_EVT_072")
+						
+						GAME:WaitFrames(15)
+						-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
+						emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left)
+						_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
+					
+						GAME:WaitFrames(30)
+					
+						GAME:WaitFrames(50)
+						SOUND:PlayBattleSE("_UNK_EVT_074")
+						GAME:FadeOut(true, 40)
+						GAME:WaitFrames(50)
+						for _, v in ipairs(query_order) do
+							local tile = corner_tiles[v]
+							-- print(tostring(tile))
+							if tile then
+								local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+								t.Effect = RogueEssence.Dungeon.EffectTile(t.Effect.TileLoc)
+							end
+						end
+					
+						GAME:WaitFrames(40)
+						local dead_count = 0
+						for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+							if member.Dead then
+								dead_count = dead_count + 1
+							end
+						end
+
+						if dead_count == 0 then
+							for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+								if member == _DUNGEON.ActiveTeam.Leader then
+									member.CharLoc = RogueElements.Loc(9, 9)
+								else
+									member.CharLoc = RogueElements.Loc(11, 9)
+								end
+							end
+						end
+						if dead_count == 1 then
+							for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+								if not member.Dead then
+									member.CharLoc = RogueElements.Loc(10, 9)
+								end
+							end
+						end
+						
+						TASK:WaitTask(_DUNGEON:MoveCamera(RogueElements.Loc(10 * 24, 7 * 24) + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), 1))
+
+						GAME:FadeIn(60)
+						GAME:WaitFrames(80) 
+					
+
+						-- WishCenterAnimEnd(owner, query_order, corner_tiles)
+						GAME:WaitFrames(40)
+
+						--C9x9 -- LEFT
+						--C10x9 -- CENTER
+						--C11x9 -- RIGHT
+
+						GAME:FadeIn(60)
+
+
+
+						-- CharAnimJump jumpTo = new CharAnimJump();
+            -- jumpTo.FromLoc = character.CharLoc;
+            -- jumpTo.CharDir = character.CharDir;
+            -- jumpTo.ToLoc = endLoc;
+
+            -- jumpTo.MajorAnim = true;
+            -- yield return CoroutineManager.Instance.StartCoroutine(character.StartAnim(jumpTo));
+
+
+
+
+						-- GAME:WaitFrames(80)
+
+						-- MonsterTeam team = new MonsterTeam();
+						-- Character mob = mobs[ii].Spawn(team, ZoneManager.Instance.CurrentMap);
+						-- int randIndex = DataManager.Instance.Save.Rand.Next(freeTiles.Count);
+						-- mob.CharLoc = freeTiles[randIndex];
+						-- ZoneManager.Instance.CurrentMap.MapTeams.Add(team);
+						-- mob.RefreshTraits();
+
+						-- CharAnimDrop dropAnim = new CharAnimDrop();
+						-- dropAnim.CharLoc = mob.CharLoc;
+						-- dropAnim.CharDir = mob.CharDir;
+						-- yield return CoroutineManager.Instance.StartCoroutine(mob.StartAnim(dropAnim));
+						-- freeTiles.RemoveAt(randIndex);
+
+						-- mob.Tactic.Initialize(mob);
+
+
+						-- UI:SetSpeaker()
+						UI:WaitShowDialogue("Jirachi dialogue here")
+						local mon_id = RogueEssence.Dungeon.MonsterID("jirachi", 0, "normal", Gender.Genderless)
+						local recruit = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, 50, "", 0)
+						local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("AllyInteract")
+						recruit.ActionEvents:Add(talk_evt)
+						-- JoinTeamWithFanfareAssembly(recruit, true)
+						-- SV.Wishmaker.RecruitedJirachi = true
+
+						UI:WaitShowDialogue("Don't worry about this cave.")
+  
+						SOUND:FadeOutBGM()
+						GAME:FadeOut(false, 30)
+						GAME:WaitFrames(90)
+						COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+					else
+						UI:WaitShowDialogue("...[pause=0]Wishmaker cannot appear right now.")
+					end
+				else
+
+					corner_tiles = WishCenterAnimStart(query_order, corner_tiles, layer_map)
+					-- SV.Wishmaker.MadeWish = true
+					
+
+					-- #F8F800
+					-- #00F8F8
+					-- UI:WaitShowVoiceOver("[speed=0.2].............", -1)
+					-- UI:WaitShowVoiceOver("[speed=0.2]Yaaaaawn.[pause=30] So sleeeeeeepy.", -1)
+					-- UI:WaitShowVoiceOver("[speed=0.1]...Oh! Some explorers!", -1)
+					if not SV.Wishmaker.RecruitedJirachi then
+						-- UI:WaitShowDialogue("You fell")
+						UI:WaitShowVoiceOver("[speed=0.2]I will make your [speed=0.05]wish [speed=0.2]come true.", -1, 75, 200)
+
+					else
+						UI:ResetSpeaker(false)
+						UI:SetCenter(true)
+						UI:WaitShowDialogue("The stars resonated with your wish.")
+						UI:ResetSpeaker()
+						-- UI:WaitShowVoiceOver("Your error", -1, 75, 200)
+						-- UI:WaitShowDialogue("The stars resonated")
+					end
+
+					WishCenterAnimEnd(owner, query_order, corner_tiles)
+					GAME:WaitFrames(40)
+					GAME:FadeIn(60)
+					GAME:WaitFrames(80)
+
+					local index = choice
+
+					if not SV.Wishmaker.RecruitedJirachi then
+						index = index - 1
+					end
+					
+					local item_table = wish_table[index]
+					local arguments = {}
+					arguments.MinAmount = item_table.Min
+					arguments.MaxAmount = item_table.Max
+					arguments.Guaranteed = item_table.Guaranteed
+					arguments.Items = item_table.Items
+					arguments.MaxRangeWidth = 5
+					arguments.MaxRangeHeight = 4
+					arguments.OffsetX = 0
+					arguments.OffsetY = 0
+					SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+					GAME:WaitFrames(80)
+					if not SV.Wishmaker.RecruitedJirachi then
+						-- UI:WaitShowDialogue("You fell")
+						-- UI:WaitShowVoiceOver("[speed=0.2]Fwaaaaaaah.", -1, 75, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]All the items you collect will be sent to your storage.", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]Fwaaaaaaah. So sleeeeepy.", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]Goodnight.", -1, -1, 200)
+					else
+						UI:ResetSpeaker()
+						SOUND:PlayFanfare("Fanfare/Note")
+						UI:WaitShowDialogue("Note:[pause=0] All items collected will be sent to your storage!")
+					end
+					-- UI:WaitShowDialogue("...[pause=0]Fwahh...[pause=50] Your wish is my command")
+					-- UI:WaitShowDialogue(".........")
+					-- UI:WaitShowDialogue("...Phewwwwwwww")
+					-- UI:WaitShowDialogue("So sleepy... Yaaaaaaawn")
+					-- UI:WaitShowDialogue("Whooooo is it")
+					
+					-- UI:WaitShowDialogue("Whooooo's therrrre? Yaaaaaawn..")
+					-- UI:WaitShowDialogue("Fwaaaaahhhhhh... I'm... I'm... sleepy")
+					-- UI:WaitShowDialogue("I'm Jirachi. Yaaaaaawn")
+					-- "Mmm-hmm... That's right..."
+					-- "Speaking of... Whooooo are yoooooou? Yaaaawn..."
+					-- "Whaaat."
+					-- "Yep, it'sssssss true. Yaaaaawn"
+					-- "But right now, I'm pretty sleeeepy, so I can't really help you. Sorry"
+
+
+					-- GAME:WaitFrames(50)
+
+					-- SOUND:PlayBattleSE("_UNK_EVT_091")
+					-- SOUND:PlayBattleSE("_UNK_EVT_096")
+					-------
+					--SOUND:PlayBattleSE("EVT_EP_Regi_Permission")
+					------
+
+
+					-- SOUND:PlayBattleSE("EVT_Dimenstional_Scream")
+					-- SOUND:PlayBattleSE("EVT_Fade_White")
+					-- SOUND:PlayBattleSE("EVT_Evolution_Start")
+					-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+					-- SOUND:PlayBattleSE("_UNK_EVT_074")
+					-- SOUND:PlayBattleSE("_UNK_EVT_084")
+								-- SOUND:PlayBattleSE("_UNK_EVT_087")
+					-- local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Last_Resort_Front", 4), 1)
+	
+					
+					-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
+					-- emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left)
+					-- _DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
+
+					-- GAME:WaitFrames(80)
+	
+					-- for _, value in ipairs(corner_tiles) do
+					-- 	if value then
+					-- 		TASK:WaitTask(_DUNGEON:ProcessBattleFX(value, value, Direction.Down, _DATA.SendHomeFX))
+					-- 	end
+					-- end
+
+				end
+			end
+		else
+			UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
+		end
+		
 	end
 
 	if _DATA.CurrentReplay == nil then
@@ -341,12 +871,8 @@ function SINGLE_CHAR_SCRIPT.LogShimmeringEvent(owner, ownerChar, context, args)
   if context.User ~= nil then
     return
   end
-  -- SOUND:PlayFanfare("Fanfare/Note")
-  -- UI:ResetSpeaker()
-  -- UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_DESTINATION"):ToLocal()))
   local msg = RogueEssence.StringKey(args.StringKey):ToLocal()
   _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg))
-  -- UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_DESTINATION"):ToLocal()))
 end
 -- local new_context = RogueEssence.Dungeon.SingleCharContext(target)
 -- TASK:WaitTask(monster_event:Apply(owner, ownerChar, new_context))
@@ -368,23 +894,10 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
 
   local base_loc = owner.TileLoc
   local entries = {
-    { Item = "wish_gem", Weight = 450, Amount = 1 },
-    -- {item = "loot_nugget", weight = 20},
-    -- {item = "loot_pearl", weight = 75},
-    -- {item = "evo_fire_stone", weight = 5},
-    -- {item = "evo_water_stone", weight = 5},
-    -- {item = "evo_thunder_stone", weight = 5},
-    -- {item = "evo_leaf_stone", weight = 5},
-    -- {item = "evo_ice_stone", weight = 5}, -- 25
-    -- {item = "evo_moon_stone", weight = 5}, -- 35
-    -- {item = "evo_dusk_stone", weight = 5}, -- 40
-    -- {item = "evo_dawn_stone", weight = 5}, -- 45
-    -- {item = "evo_shiny_stone", weight = 5}, -- 55
-    -- {item = "", weight = 405},
-    -- {item = "nugget", weight = 5},
+    { Item = "wish_gem", Weight = 1, Amount = 1 },
   }
   GAME:WaitFrames(10)
-  local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dig", 3))
+  local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.ObjAnimData("Dig", 3))
   DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
   SOUND:PlayBattleSE("DUN_Dig")
   GAME:WaitFrames(10)
@@ -424,15 +937,17 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
   local x_offset = 0
   local y_offset = 1
   local base_loc = effect_tile.TileLoc + RogueElements.Loc(x_offset, y_offset)
-  local Items = args.Items
+
+	print(tostring(base_loc) .. "HEREEEEEEE")
+	local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
 	local Guaranteed = args.Guaranteed
 	-- print(tostring(Guaranteed))
   if type(args.MinAmount) == "number" then min_amount = args.MinAmount end
   if type(args.MaxAmount) == "number" then max_amount = args.MaxAmount end
   if type(args.MaxRangeWidth) == "number" then max_range_width = args.MaxRangeWidth end
   if type(args.MaxRangeHeight) == "number" then max_range_height = args.MaxRangeHeight end
-  if type(args.xOffset) == "number" then x_offset = args.xOffset end
-  if type(args.yOffset) == "number" then y_offset = args.yOffset end
+  if type(args.OffsetX) == "number" then x_offset = args.OffsetX end
+  if type(args.OffsetY) == "number" then y_offset = args.OffsetY end
 
   function checkOp(test_loc)
     local test_tile = _ZONE.CurrentMap:GetTile(test_loc)
@@ -449,6 +964,14 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
     return false
 	end
 
+	for _, value in ipairs(args.Items) do
+		local item_name = value.Item
+		if item_name == "money" then
+			Items:Add(RogueEssence.Dungeon.MapItem.CreateMoney(value.Amount), value.Weight)
+		else
+			Items:Add(RogueEssence.Dungeon.MapItem(item_name, value.Amount), value.Weight)
+		end
+	end
 
   local loc_x = base_loc.X
   local loc_y = base_loc.Y
@@ -539,13 +1062,19 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 	local result = UI:ChoiceResult()
 	if result then
 		local slot = GAME:FindPlayerItem("wish_gem", true, true) 
-		if slot:IsValid() then        
-			local end_choice = 7
-			local wish_choices = {"Money", "Food", "Utility", "Power", "Equipment", "Recruitment", "Don't know"}    
+		if slot:IsValid() then
+			local wish_choices = map(DUNGEON_WISH_TABLE, function(item) return item.Category end)
+			table.insert(wish_choices, "Don't know")
+			-- print(tostring(wish_choices))
+			-- print(tostring(#wish_choices))
+			-- print(wish_choices[1] .. "Check")
+			-- print(wish_choices[2] .. "Check")
+			-- local wish_choices = {"Money", "Food", "Utility", "Power", "Equipment", "Recruitment", "Don't know"}    
+			local end_choice = #wish_choices
 			UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
 			UI:WaitForChoice()
 			choice = UI:ChoiceResult()
-			if choice ~= 7 then
+			if choice ~= end_choice then
 				if slot.IsEquipped then
 					GAME:TakePlayerEquippedItem(slot.Slot)
 				else
@@ -572,29 +1101,22 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 				_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
 				GAME:FadeIn(60)
 				GAME:WaitFrames(80)
-				local arguments = {}
-				local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
+
+
 				local item_table = DUNGEON_WISH_TABLE[choice]
+				local arguments = {}
 				arguments.MinAmount = item_table.Min
 				arguments.MaxAmount = item_table.Max
 				arguments.Guaranteed = item_table.Guaranteed
-				local items = item_table.Items
-				for _, value in ipairs(items) do
-					local item_name = value.Item
-					if item_name == "money" then
-						Items:Add(RogueEssence.Dungeon.MapItem.CreateMoney(value.Amount), value.Weight)
-					else
-						Items:Add(RogueEssence.Dungeon.MapItem(item_name, value.Amount), value.Weight)
-					end
-				end
-				arguments.Items = Items
+				arguments.Items = item_table.Items
 				SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-				GAME:WaitFrames(20)
+				GAME:WaitFrames(60)
 			end
 		else
 			UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
 		end
 	end
+	-- GAME:WaitFrames(5)
 	UI:WaitShowDialogue("The crystal became dimmer.")
 	
 

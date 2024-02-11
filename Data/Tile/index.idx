@@ -91,6 +91,24 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"tile_mystery_portal": {
+"Name": {
+"DefaultText": "Mystery Portal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"tile_no_item": {
+"Name": {
+"DefaultText": "No Item Tile",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }
