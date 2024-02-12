@@ -15,6 +15,7 @@ ITEM_SCRIPT = {}
 -- public void TakePlayerBagItem(int slot, bool takeAll = false)
 
 function ITEM_SCRIPT.WishItemPickupEvent(owner, ownerChar, context, args)
+  -- print(tostring)
   if not SV.Wishmaker.MadeWish then
     return
   end

@@ -1,6 +1,7 @@
 require 'common'
 
-
+COMMON.UnlockWithFanfare("lava_floe_island", false)
+SV.base_camp.FerryUnlocked = true
 
 local base_camp = {}
 local MapStrings = {}

@@ -482,6 +482,30 @@ DUNGEON_WISH_TABLE = {
 			{ Item = "held_zap_plate", Amount = 1, Weight = 1},
 		}
 	},
+  {
+    Category = "Evolution",
+		Min = 5,
+		Max = 5,
+		Guaranteed = {},
+		Items = {
+      { Item = "evo_dawn_stone", Amount = 1, Weight = 3},
+			{ Item = "evo_dusk_stone", Amount = 1, Weight = 3},
+			{ Item = "evo_electirizer", Amount = 1, Weight = 3},
+			{ Item = "evo_fire_stone", Amount = 1, Weight = 3},
+			{ Item = "evo_harmony_scarf", Amount = 1, Weight = 1},
+			{ Item = "evo_ice_stone", Amount = 1, Weight = 3},
+      { Item = "evo_leaf_stone", Amount = 1, Weight = 3},
+      { Item = "evo_link_cable", Amount = 1, Weight = 3},
+      { Item = "evo_lunar_ribbon", Amount = 1, Weight = 3},
+      { Item = "evo_moon_stone", Amount = 1, Weight = 3},
+      { Item = "evo_prism_scale", Amount = 1, Weight = 3},
+      { Item = "evo_protector", Amount = 1, Weight = 3},
+      { Item = "evo_shiny_stone", Amount = 1, Weight = 3},
+      { Item = "evo_sun_ribbon", Amount = 1, Weight = 3},
+      { Item = "evo_thunder_stone", Amount = 1, Weight = 3},
+      { Item = "evo_water_stone", Amount = 1, Weight = 3},
+    }
+	},
 	{
 		Min = 5,
 		Max = 5,

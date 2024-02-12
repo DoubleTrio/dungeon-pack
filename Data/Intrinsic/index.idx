@@ -1,15 +1,25 @@
 ﻿{
-"Version": "0.7.22.0",
+"Version": "0.7.24.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "pickpocket2": {
 "Name": {
-"DefaultText": "",
-"LocalTexts": {}
+"DefaultText": "Pickpocket",
+"LocalTexts": {
+"fr": "Pickpocket",
+"de": "Langfinger",
+"es": "Hurto",
+"it": "Arraffalesto",
+"ko": "나쁜손버릇",
+"ja": "わるいてぐせ",
+"ja-jp": "わるいてぐせ",
+"zh-hans": "顺手牵羊",
+"zh-hant": "順手牽羊"
+}
 },
-"Released": false,
+"Released": true,
 "Comment": "",
-"SortOrder": 0
+"SortOrder": 124
 }
 }
 }

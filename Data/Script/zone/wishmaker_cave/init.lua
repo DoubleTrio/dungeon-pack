@@ -29,12 +29,55 @@ function wishmaker_cave.EnterSegment(zone, rescuing, segmentID, mapID)
   end
 end
 
+local function ReplaceMoves(chara, move_map)
+  for move_idx = 0, 3 do
+    local curr_move = chara.BaseSkills[move_idx].SkillNum
+    local new_move = move_map[curr_move]
+    if new_move ~= nil then
+      GAME:SetCharacterSkill(chara, new_move, move_idx)
+    end
+  end
+end
+
+local function ReplaceAbility(chara, ability_map)
+  local ability = chara.BaseIntrinsics[0]
+  local new_ability = ability_map[ability]
+  if new_ability ~= nil then
+    chara.BaseIntrinsics[0] = new_ability
+  end
+end
+
+local function RemoveModdedActions()
+  local move_map = {
+    thief2 = "thief",
+    covet2 = "covet"
+  }
+  local ability_map = {
+    pickpocket2 = "pickpocket"
+  }
+
+  local player_count = _DUNGEON.ActiveTeam.Players.Count
+  for player_idx = 0, player_count-1, 1 do
+    local player = _DUNGEON.ActiveTeam.Players[player_idx]
+    ReplaceMoves(player, move_map)
+    ReplaceAbility(player, ability_map)
+  end
+  local assemblyCount = GAME:GetPlayerAssemblyCount()
+  for assembly_idx = 0,assemblyCount - 1,1 do
+    local player = GAME:GetPlayerAssemblyMember(assembly_idx)
+    ReplaceMoves(player, move_map)
+    ReplaceAbility(player, ability_map)
+  end
+end
+
 ---wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
 --Engine callback function
 function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
   PrintInfo("=>> ExitSegment_wishmaker_cave result "..tostring(result).." segment "..tostring(segmentID))
   local exited = COMMON.ExitDungeonMissionCheck(result, rescue, zone.ID, segmentID)
+
+  RemoveModdedActions()
   if exited == true then
     -- nothing
   elseif result ~= RogueEssence.Data.GameProgress.ResultType.Cleared then
