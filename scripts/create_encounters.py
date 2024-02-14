@@ -123,6 +123,7 @@ if __name__ == "__main__":
         ("tinkatuff", "thief_crystal", "mold_breaker", ["thief2", "fake_out", "play_rough"], 29, 30, 15, 18),
         ("clefairy", "wander_normal", "friend_guard", ["follow_me", "wish", "copycat", "minimize"], 29, 30, 15, 18),
         ("girafarig", "wander_crystal_normal", "inner_focus", ["nasty_plot", "baton_pass", "agility", "stomp"],  29, 30, 15, 18),
+        ("impidimp", "thief_crystal", "pickpocket2", ["fake_out", "parting_shot"], 29, 30, 15, 18),
 
         #17
         ("wigglytuff", "wander_normal", "friend_guard", ["round", "wish", "disable", "endeavor"], 31, 32, 16, 19),
@@ -140,7 +141,7 @@ if __name__ == "__main__":
         ("golbat", "wander_normal", "infiltrator", ["haze", "wing_attack", "giga_drain"], 31, 32, 18, 20),
         ("hattrem", "wander_normal", "healer", ["life_dew", "dazzling_gleam", "aromatic_mist", "confusion"], 31, 32, 17, 20),
         ("duosion", "wander_normal", "magic_guard", ["reflect", "pain_split", "psybeam"], 31, 32, 17, 20),
-        ("murkrow", "wander_crystal_normal", "", ["pursuit", "foul_play", "taunt"], 31, 32, 17, 20),
+        ("murkrow", "wander_crystal_normal", "super_luck", ["pursuit", "foul_play", "taunt"], 31, 32, 17, 20),
         ("electabuzz", "wander_normal", "", ["thunder_punch", "low_kick", "screech"], 31, 32, 17, 20),
         ("mawile", "wander_crystal_normal", "", ["iron_head", "play_rough"], 32, 33, 17, 20),
 

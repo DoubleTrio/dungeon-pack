@@ -23,6 +23,172 @@
 "Rogue": 3,
 "Segments": [
 {
+"$type": "RogueEssence.LevelGen.SingularSegment, RogueEssence",
+"BaseFloor": {
+"$type": "RogueEssence.LevelGen.LoadGen, RogueEssence",
+"GenSteps": [
+{
+"Key": {
+"str": [
+-7
+]
+},
+"Value": {
+"$type": "RogueEssence.LevelGen.MappedRoomStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], RogueEssence",
+"MapID": "jirachi_wish_room"
+}
+},
+{
+"Key": {
+"str": [
+-7
+]
+},
+"Value": {
+"$type": "RogueEssence.LevelGen.MapEffectStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], RogueEssence",
+"Effect": {
+"UniversalStates": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeExplosions": [],
+"BeforeHits": [],
+"OnHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"ElementEffects": [],
+"OnEquips": [],
+"OnPickups": [
+{
+"Key": {
+"str": [
+50
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.ItemScriptEvent, RogueEssence",
+"Script": "WishItemPickupEvent",
+"ArgTable": "{}"
+}
+}
+],
+"BeforeStatusAdds": [],
+"OnStatusAdds": [],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [
+{
+"Key": {
+"str": [
+-20
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "RemoveStatusSingleCharEvent",
+"ArgTable": "{}"
+}
+},
+{
+"Key": {
+"str": [
+-10
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.RevealAllEvent, PMDC"
+}
+}
+],
+"OnTurnStarts": [],
+"OnTurnEnds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "WishGemCheckEvent",
+"ArgTable": "{}"
+}
+},
+{
+"Key": {
+"str": [
+30
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "LogTempItemEvent",
+"ArgTable": "{}"
+}
+}
+],
+"OnMapTurnEnds": [],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"OnMapRefresh": [],
+"ModifyHPs": [],
+"RestoreHPs": [],
+"InitActionData": []
+}
+}
+},
+{
+"Key": {
+"str": [
+-6
+]
+},
+"Value": {
+"$type": "RogueEssence.LevelGen.MapNameIDStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], RogueEssence",
+"Name": {
+"DefaultText": "Wishmaker Depths",
+"LocalTexts": {}
+},
+"IDOffset": 0
+}
+},
+{
+"Key": {
+"str": [
+-6
+]
+},
+"Value": {
+"$type": "PMDC.LevelGen.MapTitleDropStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], PMDC",
+"DropPriority": {
+"str": [
+-15
+]
+}
+}
+},
+{
+"Key": {
+"str": [
+-6
+]
+},
+"Value": {
+"$type": "PMDC.LevelGen.MapTimeLimitStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], PMDC",
+"TimeLimit": 600
+}
+}
+],
+"Comment": ""
+},
+"FloorSpan": -1,
+"ZoneSteps": [],
+"IsRelevant": false,
+"Comment": ""
+},
+{
 "$type": "RogueEssence.LevelGen.LayeredSegment, RogueEssence",
 "Floors": [
 {
@@ -73508,172 +73674,6 @@
 }
 ],
 "IsRelevant": true,
-"Comment": ""
-},
-{
-"$type": "RogueEssence.LevelGen.SingularSegment, RogueEssence",
-"BaseFloor": {
-"$type": "RogueEssence.LevelGen.LoadGen, RogueEssence",
-"GenSteps": [
-{
-"Key": {
-"str": [
--7
-]
-},
-"Value": {
-"$type": "RogueEssence.LevelGen.MappedRoomStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], RogueEssence",
-"MapID": "jirachi_wish_room"
-}
-},
-{
-"Key": {
-"str": [
--7
-]
-},
-"Value": {
-"$type": "RogueEssence.LevelGen.MapEffectStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], RogueEssence",
-"Effect": {
-"UniversalStates": [],
-"BeforeTryActions": [],
-"BeforeActions": [],
-"OnActions": [],
-"BeforeExplosions": [],
-"BeforeHits": [],
-"OnHits": [],
-"OnHitTiles": [],
-"AfterActions": [],
-"ElementEffects": [],
-"OnEquips": [],
-"OnPickups": [
-{
-"Key": {
-"str": [
-10
-]
-},
-"Value": {
-"$type": "RogueEssence.Dungeon.ItemScriptEvent, RogueEssence",
-"Script": "WishItemPickupEvent",
-"ArgTable": "{}"
-}
-}
-],
-"BeforeStatusAdds": [],
-"OnStatusAdds": [],
-"OnStatusRemoves": [],
-"OnMapStatusAdds": [],
-"OnMapStatusRemoves": [],
-"OnMapStarts": [
-{
-"Key": {
-"str": [
--10
-]
-},
-"Value": {
-"$type": "PMDC.Dungeon.RevealAllEvent, PMDC"
-}
-},
-{
-"Key": {
-"str": [
--20
-]
-},
-"Value": {
-"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "RemoveStatusSingleCharEvent",
-"ArgTable": "{}"
-}
-}
-],
-"OnTurnStarts": [],
-"OnTurnEnds": [
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "WishGemCheckEvent",
-"ArgTable": "{}"
-}
-},
-{
-"Key": {
-"str": [
-30
-]
-},
-"Value": {
-"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "LogTempItemEvent",
-"ArgTable": "{}"
-}
-}
-],
-"OnMapTurnEnds": [],
-"OnWalks": [],
-"OnDeaths": [],
-"OnRefresh": [],
-"OnMapRefresh": [],
-"ModifyHPs": [],
-"RestoreHPs": [],
-"InitActionData": []
-}
-}
-},
-{
-"Key": {
-"str": [
--6
-]
-},
-"Value": {
-"$type": "RogueEssence.LevelGen.MapNameIDStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], RogueEssence",
-"Name": {
-"DefaultText": "Wishmaker Depths",
-"LocalTexts": {}
-},
-"IDOffset": 0
-}
-},
-{
-"Key": {
-"str": [
--6
-]
-},
-"Value": {
-"$type": "PMDC.LevelGen.MapTitleDropStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], PMDC",
-"DropPriority": {
-"str": [
--15
-]
-}
-}
-},
-{
-"Key": {
-"str": [
--6
-]
-},
-"Value": {
-"$type": "PMDC.LevelGen.MapTimeLimitStep`1[[RogueEssence.LevelGen.MapLoadContext, RogueEssence]], PMDC",
-"TimeLimit": 600
-}
-}
-],
-"Comment": ""
-},
-"FloorSpan": -1,
-"ZoneSteps": [],
-"IsRelevant": false,
 "Comment": ""
 }
 ],

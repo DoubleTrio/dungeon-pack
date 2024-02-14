@@ -2,7 +2,8 @@ SV.Wishmaker = {
   TotalWishesPerFloor = 2,
   RecruitedJirachi = false,
   MadeWish = false,
-  TempItemString = nil
+  TempItemString = nil,
+  BonusScore = 0
 }
 
 SV.Services =

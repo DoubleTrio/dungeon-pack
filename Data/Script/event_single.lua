@@ -84,7 +84,6 @@ local function WishCenterAnimStart(query_order, corner_tiles, corner_layer_map)
 		if tile then
 			local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
 			local layer_index = corner_layer_map[v]
-			_ZONE.CurrentMap.Decorations[layer_index].Visible = false
 
 			local copy = _DATA.SendHomeFX
 			copy.Sound = "_UNK_EVT_029"
@@ -103,6 +102,7 @@ local function WishCenterAnimStart(query_order, corner_tiles, corner_layer_map)
 				end
 			end
 			::skip_to_next::
+			_ZONE.CurrentMap.Decorations[layer_index].Visible = false
 		end
 	end
 
@@ -278,9 +278,9 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
 	
 	crystal_moment_status:LoadFromData()
-	if _DATA.CurrentReplay == nil then
-		TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
-	end
+	-- if _DATA.CurrentReplay == nil then
+	TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+	-- end
 
 	_ZONE.CurrentMap.HideMinimap = true
 	local curr_song = RogueEssence.GameManager.Instance.Song
@@ -408,11 +408,17 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						SOUND:PlayBattleSE("_UNK_EVT_072")
 						TASK:WaitTask(jirachi:StartAnim(poseAction))
 						GAME:WaitFrames(200)
+						-- if _DATA.CurrentReplay == nil then
+						TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+						GAME:WaitFrames(60)
+							-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+						-- end
+
 						local poseAction2 = RogueEssence.Dungeon.CharAnimPose(jirachi.CharLoc, jirachi.CharDir, 82, 0)
 						TASK:WaitTask(jirachi:StartAnim(poseAction2))
 						UI:SetSpeaker(jirachi)
 						GAME:WaitFrames(60)
-						UI:SetSpeakerEmotion("Special0")
+						UI:SetSpeakerEmotion("Sigh")
 						UI:WaitShowDialogue("[speed=0.2]Yaaaaaaawn... So tired...")
 						local poseAction3 = RogueEssence.Dungeon.CharAnimPose(jirachi.CharLoc, jirachi.CharDir, 50, 0)
 						TASK:WaitTask(jirachi:StartAnim(poseAction3))
@@ -431,7 +437,7 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						UI:WaitShowDialogue(STRINGS:Format("It's been so long since I have seen anyone around here..."))
 						-- DUNGEON:CharSetEmote(jirachi, "glowing", 4)
 						UI:SetSpeakerEmotion("Happy")
-						UI:WaitShowDialogue(STRINGS:Format("I'm {0}.[pause=0] A[emote=Normal]s you may have noticed,[pause=30] it takes a lot for me to wake up.", jirachiName))
+						UI:WaitShowDialogue(STRINGS:Format("I'm {0}.[pause=0] A[emote=Normal]s you may have noticed,[pause=30] it takes a lot for me to wake up.", base_name))
 						UI:SetSpeakerEmotion("Normal")
 						UI:WaitShowDialogue("I'm happy to see that despite everything you could have wished for[speed=0.2]...")
 						UI:SetSpeakerEmotion("Happy")
@@ -541,7 +547,9 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 					else
 						UI:ResetSpeaker()
 						SOUND:PlayFanfare("Fanfare/Note")
+						UI:SetCenter(true)
 						UI:WaitShowDialogue("Note:[pause=0] All items collected will be sent to your storage!")
+						UI:ResetSpeaker()
 					end
 				end
 			end
@@ -741,6 +749,8 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
 		if item_name == "money" then
 			Items:Add(RogueEssence.Dungeon.MapItem.CreateMoney(value.Amount), value.Weight)
 		else
+			-- print(tostring(_DATA:GetItem(item_name).Price))
+			-- _DATA:GetItem(item_name).Price * value.Amount
 			Items:Add(RogueEssence.Dungeon.MapItem(item_name, value.Amount), value.Weight)
 		end
 	end

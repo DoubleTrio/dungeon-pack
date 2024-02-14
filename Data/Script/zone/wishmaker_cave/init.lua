@@ -17,6 +17,7 @@ local wishmaker_cave = {}
 function wishmaker_cave.Init(zone)
     DEBUG.EnableDbgCoro() --Enable debugging this coroutine
     SV.Wishmaker.MadeWish = false
+    SV.Wishmaker.BonusScore = 0
     PrintInfo("=>> Init_wishmaker_cave")
       
 end

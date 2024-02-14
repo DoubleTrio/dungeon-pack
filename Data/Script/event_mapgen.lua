@@ -33,19 +33,12 @@ local function CreateShimmeringStatusEvent()
 end
 
 function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, args)
-  
-  SV.Wishmaker = {}
-  SV.Wishmaker.TotalWishesPerFloor = 2
   -- 75% chance of shimmering
   local low = 0
   local high = 4 
   local active_effect = RogueEssence.Data.ActiveEffect()
   local is_shimmering = _DATA.Save.Rand:Next(low, high) ~= 0
-  -- print(tostring( GAME:GetCurrentFloor()).. "HERE")
-  -- print(tostring(zoneContext))
-  -- print(tostring(DUNGEON:DungeonCurrentFloor()))
   local is_beginning = zoneContext.CurrentID < 2
-  -- print(GAME:GetCurrentFloor())
   if (is_shimmering or zoneContext.CurrentID == 2 or zoneContext.CurrentID >= 20) and not is_beginning then
     local SHIMMERING_EVENTS = { 
       {
