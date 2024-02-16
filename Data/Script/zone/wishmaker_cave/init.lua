@@ -79,10 +79,12 @@ function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
   local exited = COMMON.ExitDungeonMissionCheck(result, rescue, zone.ID, segmentID)
 
   RemoveModdedActions()
+  GAME:AddToPlayerMoney(SV.Wishmaker.BonusScore)
+  
   if exited == true then
     -- nothing
   elseif result ~= RogueEssence.Data.GameProgress.ResultType.Cleared then
-    COMMON.EndDungeonDay(result, SV.checkpoint.Zone, SV.checkpoint.Segment, SV.checkpoint.Map, SV.checkpoint.Entry)
+    COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
   else
     -- if segmentID == 0 then
     --   COMMON.UnlockWithFanfare('', true)
@@ -92,10 +94,15 @@ function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
     --   COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
     -- else
     --   PrintInfo("No exit procedure found!")
-	  COMMON.EndDungeonDay(result, SV.checkpoint.Zone, SV.checkpoint.Segment, SV.checkpoint.Map, SV.checkpoint.Entry)
+    COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+	  -- COMMON.EndDungeonDay(result, SV.checkpoint.Zone, SV.checkpoint.Segment, SV.checkpoint.Map, SV.checkpoint.Entry)
     -- end
   end
 
+  if GAME:InRogueMode() and SV.Wishmaker.RecruitedJirachi then
+    GAME:RemoveFromPlayerMoneyBank(75000)
+  end
+  GAME:RemoveFromPlayerMoney(SV.Wishmaker.BonusScore)
 end
 
 ---wishmaker_cave.Rescued(zone, name, mail)

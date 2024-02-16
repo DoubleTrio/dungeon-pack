@@ -274,6 +274,8 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 
 	local chara = context.User
 
+	local recruited = false
+
 	_ZONE.CurrentMap.Decorations[0].Layer = RogueEssence.Content.DrawLayer.Top
 	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
 	
@@ -326,6 +328,12 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						WishCenterAnimStart(query_order, corner_tiles, layer_map)
 						SV.Wishmaker.RecruitedJirachi = true
 						SV.Wishmaker.MadeWish = true
+						recruited = true
+
+						-- Bonus points for recruiting Jirachi
+						if GAME:InRogueMode() then
+							GAME:AddToPlayerMoneyBank(75000)
+						end
 						-----------------
 						UI:WaitShowVoiceOver("[speed=0.2].............", -1, -1, 200)
 						UI:WaitShowVoiceOver("[speed=0.1]Fwaaaaaaah...[pause=30] I...[pause=40] I...[pause=40] have been called upon?", -1, -1, 200)
@@ -367,10 +375,14 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 
 						if dead_count == 0 then
 							for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-								if member == _DUNGEON.ActiveTeam.Leader then
-									member.CharLoc = RogueElements.Loc(9, 9)
+								if _DATA.Save.ActiveTeam.Players.Count == 1 then
+									member.CharLoc = RogueElements.Loc(10, 9)
 								else
-									member.CharLoc = RogueElements.Loc(11, 9)
+									if member == _DUNGEON.ActiveTeam.Leader then
+										member.CharLoc = RogueElements.Loc(9, 9)
+									else
+										member.CharLoc = RogueElements.Loc(11, 9)
+									end
 								end
 							end
 						end
@@ -500,7 +512,8 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						SOUND:FadeOutBGM()
 						GAME:FadeOut(false, 30)
 						GAME:WaitFrames(90)
-						COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+						TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Cleared))
+						-- COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
 					else		
 						UI:ResetSpeaker(false)
 						UI:SetCenter(true)
@@ -567,7 +580,10 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 		TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
 		-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
 	end
-	SOUND:PlayBGM(curr_song, true, 0)
+	
+	if not recruited then
+		SOUND:PlayBGM(curr_song, true, 0)
+	end
 	GAME:WaitFrames(20)
 
 	_ZONE.CurrentMap.HideMinimap = false
@@ -610,7 +626,8 @@ function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, arg
     -- if GAME:InRogueMode() then
     --   GAME:AddToPlayerMoneyBank(100000)
     -- end
-    COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+		TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Escaped))
+    -- COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
 	end
 end
 

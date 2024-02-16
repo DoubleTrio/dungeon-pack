@@ -15,12 +15,11 @@ ITEM_SCRIPT = {}
 -- public void TakePlayerBagItem(int slot, bool takeAll = false)
 
 function ITEM_SCRIPT.WishItemPickupEvent(owner, ownerChar, context, args)
-  local amount = context.Item.Amount
-  print(tostring(context.Item.Value) .. "PRICE")
-  print(tostring(context.Item.Price) .. "PRICE")
-  print(tostring(amount) .. "amount")
-  print()
-  -- print(tostring)
+
+  if not GAME:InRogueMode() then
+    SV.Wishmaker.BonusScore = SV.Wishmaker.BonusScore + context.Item:GetSellValue()
+  end
+
   if not SV.Wishmaker.MadeWish then
     return
   end
