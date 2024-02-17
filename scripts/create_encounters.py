@@ -1,6 +1,12 @@
 import json
 import csv
 
+# TODO Add Rates and Roles
+# 0 - Normal 
+# 1 - Support
+# 2 - Leader
+# 3 - Loner
+
 if __name__ == "__main__":
     mons = [
         ('eevee', 'wander_normal', 'adaptability', ['baby_doll_eyes', 'round'], 10, 11, 0, 4),
@@ -66,23 +72,24 @@ if __name__ == "__main__":
         # 21, 23
         ("tinkatink", "wander_normal", "mold_breaker", ["baby_doll_eyes", "metal_claw", "covet2"], 22, 23, 9, 12),
         ("aron", "wander_normal", "rock_head", ["metal_claw", "dig"], 22, 23, 9, 11),
+        ("marill", "wander_normal", "thick_fat", ["rollout", "aqua_ring", "mud_slap"], 22, 23, 9, 12),
         # ("sneasel", "wander_crystal_normal", "", ["taunt", "icy_wind", "fury_swipes"], 70, 36, 0, 1),
 
         #11
         ("luvdisc", "wander_normal", "", ["wish", "water_pulse", "round"], 23, 24, 10, 14),
         ("tentacool", "wander_normal", "liquid_ooze", ["acid", "water_gun"], 23, 24, 10, 13),
         ("sneasel", "wander_crystal_normal", "", ["taunt", "icy_wind", "fury_swipes"], 23, 24, 10, 13),
-        ("kirlia", "wander_normal", "telepathy", ["magical_leaf", "heal_pulse", "lucky_chant"], 23, 24, 10, 13),
+        ("kirlia", "wander_normal", "telepathy", ["magical_leaf", "heal_pulse", "lucky_chant", "teleport"], 23, 24, 10, 13),
         ("mareanie", "wander_normal", "limber", ["acid_spray"], 22, 23, 10, 13),
         ("impidimp", "thief_crystal", "pickpocket2", ["torment", "foul_play", "play_rough"], 22, 23, 10, 14),
 
         #12
         ("porygon", "wander_crystal_normal", "", ["conversion", "signal_beam", "charge_beam"], 22, 23, 11, 14),
-        ("feebas", "wander_normal", "", ["scald", "splash", "tackle", "flail"], 22, 23, 11, 14),
+        ("feebas", "wander_normal", "", ["scald", "flail"], 22, 23, 11, 14),
         # ("chinchou", "wander_normal", "", ["volt_switch", "supersonic", "dazzling_gleam"], 22, 23, 11, 14),
         # ("vulpix", "wander_normal", "flash_fire", ["ember", "imprison"], 24, 25, 11, 14),
         ("baltoy", "wander_normal", "", ["mud_slap", "rock_tomb", "cosmic_power", "imprison"], 24, 25, 11, 14),
-        ("marill", "wander_normal", "thick_fat", ["rollout", "aqua_ring", "mud_slap"], 24, 25, 11, 14),
+
         # ("bronzor", "wander_normal", "", ["imprison", "psywave"], 70, 36, 0, 1),
 
         #13
@@ -139,7 +146,7 @@ if __name__ == "__main__":
         ("plusle", "wander_normal", "plus", ["shock_wave", "helping_hand", "wish", "agility"], 31, 32, 17, 20),
         ("minun", "wander_crystal_normal", "minus", ["electroweb", "thunder_wave", "baton_pass", "copycat"], 31, 32, 17, 20),
         ("golbat", "wander_normal", "infiltrator", ["haze", "wing_attack", "giga_drain"], 31, 32, 18, 20),
-        ("hattrem", "wander_normal", "healer", ["life_dew", "dazzling_gleam", "aromatic_mist", "confusion"], 31, 32, 17, 20),
+        ("hattrem", "wander_normal", "healer", ["life_dew", "dazzling_gleam", "aromatic_mist", "mystical_fire"], 31, 32, 17, 20),
         ("duosion", "wander_normal", "magic_guard", ["reflect", "pain_split", "psybeam"], 31, 32, 17, 20),
         ("murkrow", "wander_crystal_normal", "super_luck", ["pursuit", "foul_play", "taunt"], 31, 32, 17, 20),
         ("electabuzz", "wander_normal", "", ["thunder_punch", "low_kick", "screech"], 31, 32, 17, 20),

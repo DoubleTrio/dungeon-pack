@@ -21900,8 +21900,8 @@
 "OrderComplexity": 4,
 "OrderSoftness": 4,
 "WaterPercent": {
-"Min": 50,
-"Max": 51
+"Min": 20,
+"Max": 21
 },
 "Bowl": true,
 "Terrain": {
@@ -23487,8 +23487,8 @@
 "OrderComplexity": 4,
 "OrderSoftness": 4,
 "WaterPercent": {
-"Min": 50,
-"Max": 51
+"Min": 20,
+"Max": 21
 },
 "Bowl": true,
 "Terrain": {
@@ -55641,7 +55641,7 @@
 "Rate": 12,
 "Range": {
 "Min": 0,
-"Max": 30
+"Max": 28
 }
 },
 {
@@ -55665,7 +55665,7 @@
 "Rate": 6,
 "Range": {
 "Min": 15,
-"Max": 30
+"Max": 28
 }
 },
 {
@@ -55673,15 +55673,15 @@
 "Rate": 3,
 "Range": {
 "Min": 15,
-"Max": 30
+"Max": 28
 }
 },
 {
 "Spawn": 3,
-"Rate": 4,
+"Rate": 5,
 "Range": {
 "Min": 24,
-"Max": 30
+"Max": 28
 }
 }
 ],
