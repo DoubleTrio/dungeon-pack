@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.7.25.0",
 "Object": {
 "$type": "RogueEssence.Data.TileData, RogueEssence",
 "Name": {
@@ -32,7 +32,7 @@
 "X": 1,
 "Y": 2
 },
-"MinimapColor": "255, 165, 0, 255",
+"MinimapColor": "255, 165, 0, 0",
 "LandedOnTiles": [
 {
 "Key": {

@@ -21,7 +21,6 @@ MAP_STATUS_SCRIPT = {}
 -- public void TakePlayerBagItem(int slot, bool takeAll = false)
 
 function ITEM_SCRIPT.WishItemPickupEvent(owner, ownerChar, context, args)
-
   if not GAME:InRogueMode() then
     SV.Wishmaker.BonusScore = SV.Wishmaker.BonusScore + context.Item:GetSellValue()
   end
@@ -99,8 +98,6 @@ function MAP_STATUS_SCRIPT.SetShopkeeperHostile(owner, ownerChar, character, sta
   -- force everyone to skip their turn for this entire session
   _DUNGEON:SkipRemainingTurns()
 end
-
-ITEM_SCRIPT = {}
 
 function ITEM_SCRIPT.Test(owner, ownerChar, context, args)
   PrintInfo("Test")

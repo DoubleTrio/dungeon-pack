@@ -1,14 +1,31 @@
 require 'wish_table.wish_table_tier0'
 require 'wish_table.wish_table_tier1'
+require 'wish_table.wish_table_tier2'
+require 'wish_table.wish_table_tier3'
+require 'wish_table.wish_table_tier4'
+require 'wish_table.wish_table_tier5'
 require 'wish_table.wish_table_dungeon'
 
 FINAL_WISH_TABLE = {
+  FINAL_WISH_TABLE_TIER_0,
   FINAL_WISH_TABLE_TIER_1,
+  FINAL_WISH_TABLE_TIER_2,
+  FINAL_WISH_TABLE_TIER_3,
+  FINAL_WISH_TABLE_TIER_4,
+  FINAL_WISH_TABLE_TIER_5,
+}
+
+local all_wish_tables = {
+  DUNGEON_WISH_TABLE,
+  FINAL_WISH_TABLE_TIER_0,
   FINAL_WISH_TABLE_TIER_1,
-  FINAL_WISH_TABLE_TIER_1,
-  FINAL_WISH_TABLE_TIER_1,
-  FINAL_WISH_TABLE_TIER_1,
-  FINAL_WISH_TABLE_TIER_1
+  FINAL_WISH_TABLE_TIER_2,
+  FINAL_WISH_TABLE_TIER_3,
+  FINAL_WISH_TABLE_TIER_4,
+  FINAL_WISH_TABLE_TIER_5,
+  -- FINAL_WISH_TABLE_TIER_1,
+  -- FINAL_WISH_TABLE_TIER_1,
+  -- FINAL_WISH_TABLE_TIER_1
 }
 --[[
 TIER 0:
@@ -70,6 +87,14 @@ function ExpectedValue(tb)
   local mid = (tb.Min + tb.Max) * 0.5
   local expected_value = 0
 
+  if tb.AlwaysSpawn ~= nil then
+    for _, item_name in ipairs(tb.AlwaysSpawn) do
+      local item_entry = _DATA:GetItem(item_name)
+      local price = item_entry.Price
+      expected_value = expected_value + price
+    end
+  end
+
   for _, guaurantee_entries in ipairs(tb.Guaranteed) do
     -- FIRST SUM THE WEIGHTS...
     local total_weight = 0
@@ -127,20 +152,19 @@ function ExpectedValue(tb)
   return expected_value
 end
 
-
-print("DUNGEON_WISH_TABLE")
-for _, wish_entry in ipairs(DUNGEON_WISH_TABLE) do
-  ExpectedValue(wish_entry)
-end
-
-
-print("DUNGEON_WISH_TABLE_TIER1")
-for _, wish_entry in ipairs(FINAL_WISH_TABLE_TIER_1) do
-  ExpectedValue(wish_entry)
-end
-
-
--- print("===========TIER 0==========")
--- for _, wish_entry in ipairs(FINAL_WISH_TABLE_TIER_0) do
+-- local arr_name = { "wish_table_dungeon", "wish_table_tier0", "wish_table_tier1", "wish_table_tier2", "wish_table_tier3", "wish_table_tier4", "wish_table_tier5"}
+-- for i, wish_table in ipairs(all_wish_tables) do
+--   print("============================")
+--   print(arr_name[i])
+--   print("============================")
+--   print()
+--   for _, wish_entry in ipairs(wish_table) do
+--     -- if wish_entry.Category == "Power" then
+--       ExpectedValue(wish_entry)
+--     -- end
+--   end
+-- end
+-- all_wish_tables
+-- for _, wish_entry in ipairs(DUNGEON_WISH_TABLE) do
 --   ExpectedValue(wish_entry)
 -- end

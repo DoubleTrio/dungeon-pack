@@ -66,6 +66,19 @@ end
 
 local function WishCenterAnimStart(query_order, corner_tiles, corner_layer_map) 
 
+	-- C8x9 = true,
+	-- C10x7 = true,
+	-- C12x9 = true,
+	-- C9x11 = true,
+	-- C11x11 = true,
+	local locations = {
+		{ X = 8, Y = 9 },
+		{ X = 10, Y = 7 },
+		{ X = 12, Y = 9 },
+		{ X = 9, Y = 11 },
+		{ X = 11, Y = 11 }
+	}
+
 	local item_count = _ZONE.CurrentMap.Items.Count
 	for item_idx = 0, item_count - 1, 1 do
 		local map_item = _ZONE.CurrentMap.Items[item_idx]
@@ -76,6 +89,11 @@ local function WishCenterAnimStart(query_order, corner_tiles, corner_layer_map)
 		if value ~= nil and map_item.Value == "wish_gem" then
 			corner_tiles[key] = map_item.TileLoc
 		end
+	end
+
+	for _, t in ipairs(locations) do
+		local tile = _ZONE.CurrentMap.Tiles[t.X][t.Y]
+		tile.Effect = RogueEssence.Dungeon.EffectTile(tile.Effect.TileLoc)
 	end
 
 	GAME:WaitFrames(80)
@@ -332,7 +350,7 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 
 						-- Bonus points for recruiting Jirachi
 						if GAME:InRogueMode() then
-							GAME:AddToPlayerMoneyBank(75000)
+							GAME:AddToPlayerMoneyBank(100000)
 						end
 						-----------------
 						UI:WaitShowVoiceOver("[speed=0.2].............", -1, -1, 200)
@@ -489,6 +507,8 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						local recruit = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, 50, "", 0)
 						local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("AllyInteract")
 						recruit.ActionEvents:Add(talk_evt)
+						local player_tbl = LTBL(recruit)
+						player_tbl.Wishmaker = true
 						JoinTeamWithFanfareAssembly(recruit, true)
 						GAME:WaitFrames(20)
 						-- SV.Wishmaker.RecruitedJirachi = true
@@ -544,6 +564,7 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 					arguments.MinAmount = item_table.Min
 					arguments.MaxAmount = item_table.Max
 					arguments.Guaranteed = item_table.Guaranteed
+					arguments.AlwaysSpawn = item_table.AlwaysSpawn
 					arguments.Items = item_table.Items
 					arguments.MaxRangeWidth = 8
 					arguments.MaxRangeHeight = 5
@@ -601,9 +622,20 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 end
 
 function SINGLE_CHAR_SCRIPT.WishExitEvent(owner, ownerChar, context, args)
+	local function InArray(value, array)
+		for index = 1, #array do
+			if array[index] == value then
+				return true
+			end
+		end
+
+		return false -- We could ommit this part, as nil is like false
+	end
+
   local chara = context.User
   local tile = _ZONE.CurrentMap.Tiles[chara.CharLoc.X][chara.CharLoc.Y]
-  if tile.Effect ~= "" and (context.User.CharDir == Direction.Down) and chara == _DUNGEON.ActiveTeam.Leader and chara ==_DUNGEON.FocusedCharacter then
+	local valid_dirs = { Direction.Down, Direction.DownLeft, Direction.DownRight }
+  if tile.Effect ~= "" and chara == _DUNGEON.ActiveTeam.Leader and InArray(chara.CharDir, valid_dirs) and chara == _DUNGEON.FocusedCharacter then
     _DUNGEON:QueueTrap(context.User.CharLoc)
   end
 end
@@ -695,7 +727,7 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
     { Item = "wish_gem", Weight = 1, Amount = 1 },
   }
   GAME:WaitFrames(10)
-  local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.ObjAnimData("Dig", 3))
+	local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dig", 3), 1)
   DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
   SOUND:PlayBattleSE("DUN_Dig")
   GAME:WaitFrames(10)
@@ -736,6 +768,7 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
   local y_offset = 1
 	local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
 	local Guaranteed = args.Guaranteed
+	local AlwaysSpawn = args.AlwaysSpawn
 	-- print(tostring(Guaranteed))
   if type(args.MinAmount) == "number" then min_amount = args.MinAmount end
   if type(args.MaxAmount) == "number" then max_amount = args.MaxAmount end
@@ -784,6 +817,29 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
   local amount = _DATA.Save.Rand:Next(min_amount, max_amount)
 
 
+	if AlwaysSpawn ~= nil then
+		for _, item_name in ipairs(AlwaysSpawn) do
+			if free_tiles.Count == 0 then
+				break
+			end
+			local item = RogueEssence.Dungeon.MapItem(item_name, 1)
+			local rand_index = _DATA.Save.Rand:Next(free_tiles.Count)
+			local item_target_loc = free_tiles[rand_index]
+			item.TileLoc = _ZONE.CurrentMap:WrapLoc(item_target_loc)
+			free_tiles:RemoveAt(rand_index)
+			local offset = RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2)
+			local sprite
+			if item.IsMoney then
+				sprite = RogueEssence.Content.GraphicsManager.MoneySprite
+			else
+				sprite = _DATA:GetItem(item.Value).Sprite
+			end
+			local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60)
+			_DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Bottom)
+			GAME:WaitFrames(5)
+			_ZONE.CurrentMap.Items:Add(item)
+		end	
+	end
 	for _, entries in ipairs(Guaranteed) do
 		if free_tiles.Count == 0 then
       break
@@ -864,11 +920,6 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 		if slot:IsValid() then
 			local wish_choices = map(DUNGEON_WISH_TABLE, function(item) return item.Category end)
 			table.insert(wish_choices, "Don't know")
-			-- print(tostring(wish_choices))
-			-- print(tostring(#wish_choices))
-			-- print(wish_choices[1] .. "Check")
-			-- print(wish_choices[2] .. "Check")
-			-- local wish_choices = {"Money", "Food", "Utility", "Power", "Equipment", "Recruitment", "Don't know"}    
 			local end_choice = #wish_choices
 			UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
 			UI:WaitForChoice()

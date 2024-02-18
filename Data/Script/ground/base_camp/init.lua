@@ -1,7 +1,7 @@
 require 'common'
 
-COMMON.UnlockWithFanfare("lava_floe_island", false)
-SV.base_camp.FerryUnlocked = true
+-- COMMON.UnlockWithFanfare("lava_floe_island", false)
+-- SV.base_camp.FerryUnlocked = true
 
 local base_camp = {}
 local MapStrings = {}
@@ -732,17 +732,17 @@ end
 
 function base_camp.Teammate1_Action(chara, activator)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
-  COMMON.GroundInteract(activator, chara, true)
+  COMMON.GroundInteract(activator, chara)
 end
 
 function base_camp.Teammate2_Action(chara, activator)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
-  COMMON.GroundInteract(activator, chara, true)
+  COMMON.GroundInteract(activator, chara)
 end
 
 function base_camp.Teammate3_Action(chara, activator)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
-  COMMON.GroundInteract(activator, chara, true)
+  COMMON.GroundInteract(activator, chara)
 end
 
 function base_camp.SisterReminderActive()

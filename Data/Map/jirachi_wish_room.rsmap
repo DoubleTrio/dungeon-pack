@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.24.0",
+"Version": "0.7.25.0",
 "Object": {
 "$type": "RogueEssence.Dungeon.Map, RogueEssence",
 "Name": {
@@ -11000,7 +11000,7 @@
 {
 "Name": "TopCorner",
 "Layer": 0,
-"Visible": true,
+"Visible": false,
 "Anims": [
 {
 "MapLoc": {
@@ -11023,7 +11023,7 @@
 {
 "Name": "LeftCorner",
 "Layer": 0,
-"Visible": true,
+"Visible": false,
 "Anims": [
 {
 "MapLoc": {
@@ -11046,7 +11046,7 @@
 {
 "Name": "RightCorner",
 "Layer": 0,
-"Visible": true,
+"Visible": false,
 "Anims": [
 {
 "MapLoc": {
@@ -11069,7 +11069,7 @@
 {
 "Name": "BottomLeftCorner",
 "Layer": 0,
-"Visible": true,
+"Visible": false,
 "Anims": [
 {
 "MapLoc": {
@@ -11092,7 +11092,7 @@
 {
 "Name": "BottomRightCorner",
 "Layer": 0,
-"Visible": true,
+"Visible": false,
 "Anims": [
 {
 "MapLoc": {
@@ -19945,67 +19945,6 @@
 "Dir": 4
 }
 ],
-"Items": [
-{
-"IsMoney": false,
-"Cursed": false,
-"Value": "wish_gem",
-"HiddenValue": "",
-"Amount": 0,
-"Price": 0,
-"TileLoc": {
-"X": 8,
-"Y": 9
-}
-},
-{
-"IsMoney": false,
-"Cursed": false,
-"Value": "wish_gem",
-"HiddenValue": "",
-"Amount": 0,
-"Price": 0,
-"TileLoc": {
-"X": 12,
-"Y": 9
-}
-},
-{
-"IsMoney": false,
-"Cursed": false,
-"Value": "wish_gem",
-"HiddenValue": "",
-"Amount": 0,
-"Price": 0,
-"TileLoc": {
-"X": 9,
-"Y": 11
-}
-},
-{
-"IsMoney": false,
-"Cursed": false,
-"Value": "wish_gem",
-"HiddenValue": "",
-"Amount": 0,
-"Price": 0,
-"TileLoc": {
-"X": 11,
-"Y": 11
-}
-},
-{
-"IsMoney": false,
-"Cursed": false,
-"Value": "wish_gem",
-"HiddenValue": "",
-"Amount": 0,
-"Price": 0,
-"TileLoc": {
-"X": 10,
-"Y": 7
-}
-}
-]
+"Items": []
 }
 }

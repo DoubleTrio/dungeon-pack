@@ -9,11 +9,12 @@ Wishmaker Cave:
 - A new Pokémon has taken role as shopkeeper
 - Wish Crystal has been slightly nerfed across the board with the amount of items
   - However, to compensate, Leppa berries and Apples are more guaranteed to spawn throughout the dungeon
-- Some enemies were a bit overtuned and had their movesets tweaked. This should make progressing the beginning floors a bit easier
+- Fixed an issue with essential items not spawning between floors 6 - 15
+- In the beginning, some enemies were a bit overtuned and had their movesets tweaked. This should make progressing the beginning floors a bit easier
 - Enemies now fit PMDO's new level curve
-- New enemy encounters added to Wishmaker
+- New enemy encounters added + switched up enemy movesets
 - Enemies now have "Roles" assigned to them rather than all being "Normal"
-- Wish Crystals will now guarantee certain items depending on the category. Ex: Food will always give at least one Apple, recruitment will always give 2 Apricorns
+- Wish Crystals will now guarantee certain items depending on the category. Ex: Food will always give at least one Apple, recruitment will always give at least 2 Apricorns
 - Added Evolution option to Wish Crystal
 - Wish Crystal choices are more clear
 - Additional Wish Gems are guaranteed to appear at later floors
@@ -27,5 +28,4 @@ Wishmaker Cave:
 - Dungeon tileset has been changed to better suit the ending area
 - Added evolution items to the dungeon that were not previously available to certain species
 - Fixed several typos
-- Fixed an issue with items not appearing in shop
 - Fixed a bug in replays not turning back on the lights
