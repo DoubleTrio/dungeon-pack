@@ -16,6 +16,7 @@ PresetMultiRandType = luanet.import_type('RogueElements.PresetMultiRand`1')
 PresetPickerType = luanet.import_type('RogueElements.PresetPicker`1')
 MapItemType = luanet.import_type('RogueEssence.Dungeon.MapItem')
 
+StatusEffectType = luanet.import_type('RogueEssence.Dungeon.StatusEffect')
 
 DefaultMapStatusStepType = luanet.import_type('PMDC.LevelGen.DefaultMapStatusStep`1')
 
@@ -24,9 +25,19 @@ BadStatusStateType = luanet.import_type('PMDC.Dungeon.BadStatusState')
 ListType = luanet.import_type('System.Collections.Generic.List`1')
 StatType = luanet.import_type('RogueEssence.Data.Stat')
 
-function ZONE_GEN_SCRIPT.Test(zoneContext, context, queue, seed, args)
-  PrintInfo("Test")
-end
+PresetMultiTeamSpawnerType = luanet.import_type('RogueEssence.LevelGen.PresetMultiTeamSpawner`1')
+PlaceRandomMobsStepType = luanet.import_type('RogueEssence.LevelGen.PlaceRandomMobsStep`1')
+PlaceEntranceMobsStepType = luanet.import_type('RogueEssence.LevelGen.PlaceNearSpawnableMobsStep`2')
+MapEffectStepType = luanet.import_type('RogueEssence.LevelGen.MapEffectStep`1')
+MapGenContextType = luanet.import_type('RogueEssence.LevelGen.ListMapGenContext')
+EntranceType = luanet.import_type('RogueEssence.LevelGen.MapGenEntrance')
+
+RandomRoomSpawnStepType = luanet.import_type('RogueElements.RandomRoomSpawnStep`2')
+PickerSpawnType = luanet.import_type('RogueElements.PickerSpawner`2')
+PresetMultiRandType = luanet.import_type('RogueElements.PresetMultiRand`1')
+PresetPickerType = luanet.import_type('RogueElements.PresetPicker`1')
+MapItemType = luanet.import_type('RogueEssence.Dungeon.MapItem')
+
 
 local function CreateShimmeringStatusEvent()
   local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Shadow_Force_Hit_Light", 10))
@@ -36,20 +47,13 @@ local function CreateShimmeringStatusEvent()
 end
 
 function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, args)
-  
-  SV.Wishmaker = {}
-  SV.Wishmaker.TotalWishesPerFloor = 2
   -- 75% chance of shimmering
   local low = 0
   local high = 4 
   local active_effect = RogueEssence.Data.ActiveEffect()
   local is_shimmering = _DATA.Save.Rand:Next(low, high) ~= 0
-  -- print(tostring( GAME:GetCurrentFloor()).. "HERE")
-  -- print(tostring(zoneContext))
-  -- print(tostring(DUNGEON:DungeonCurrentFloor()))
   local is_beginning = zoneContext.CurrentID < 2
-  -- print(GAME:GetCurrentFloor())
-  if (is_shimmering or zoneContext.CurrentID == 2) and not is_beginning then
+  if (is_shimmering or zoneContext.CurrentID == 2 or zoneContext.CurrentID >= 20) and not is_beginning then
     local SHIMMERING_EVENTS = { 
       {
         effect = function ()
@@ -115,32 +119,298 @@ function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, a
   end
 end
 
+function ZONE_GEN_SCRIPT.SpawnStoryNpc(zoneContext, context, queue, seed, args)
+  if GAME:InRogueMode() then
+    return
+  end
+  
+  local SPAWNS = { 
+    {
+      Species = "oshawott",
+      -- SpawnFeatures = {},
+      Floor = 3,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK1")),
 
+      Statuses = {},
+      Level = 14,
+      Emote = 0
+    },
+    {
+      Species = "zigzagoon",
+      -- SpawnFeatures = {},
+      Floor = 6,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK2")),
+      Statuses = {},
+      Level = 18,
+      Emote = 0
+    },
+    {
+      Species = "smeargle",
+      -- SpawnFeatures = {},
+      Floor = 8,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK8")),
+      Statuses = {},
+      Level = 18,
+      Emote = 0
+    },
+    {
+      Species = "zangoose",
+      -- SpawnFeatures = {},
+      Floor = 10,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK3")),
+      Statuses = {
+        "crystal_defense",
+        "crystal_attack"
+      },
+      Level = 23,
+      Emote = 0
+    },
+    {
+      Species = "ribombee",
+      -- SpawnFeatures = {},
+      Floor = 11,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK4")),
+      Statuses = {
+        "crystal_heal",
+        "no_heal"
+      },
+      Level = 25,
+      Emote = 2
+    },
+    {
+      Species = "quilava",
+      -- SpawnFeatures = {},
+      Floor = 12,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK5")),
+      Statuses = {},
+      Level = 23,
+      Emote = 0
+    },
+    {
+      Species = "dragonair",
+      -- SpawnFeatures = {},
+      Floor = 17,
+      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK6")),
+      Statuses = {},
+      Level = 35,
+      Emote = 0
+    },
+    {
+      Species = "staryu",
+      -- SpawnFeatures = {},
+      Floor = 19,
+      Dialogue = RogueEssence.Dungeon.BattleScriptEvent("WishmakerGemCountDialogue"),
+      Statuses = {},
+      Level = 50,
+      Emote = 0
+    },
+  }
+  -- local post_mob = RogueEssence.LevelGen.MobSpawn()
+  -- print(tostring(zoneContext.CurrentID))
+  local curr_floor = zoneContext.CurrentID
+  for _, entry in ipairs(SPAWNS) do
+    if curr_floor + 1 == entry.Floor then
+      local specificTeam = RogueEssence.LevelGen.SpecificTeamSpawner()
+      specificTeam.Explorer = true
+      local post_mob = RogueEssence.LevelGen.MobSpawn()
+      	  
+      local mon = _DATA:GetMonster(entry.Species)
+      local form = mon.Forms[0]
+      --set the correct possible gender
+      local gender = form:RollGender(_DATA.Save.Rand)
+      
+      post_mob.BaseForm = RogueEssence.Dungeon.MonsterID(entry.Species, 0, "normal", gender)
+      post_mob.Level = RogueElements.RandRange(entry.Level)
+      post_mob.Tactic = "slow_patrol_land"
+      local dialogue = entry.Dialogue
 
-function ZONE_GEN_SCRIPT.Test(zoneContext, context, queue, seed, args)
-  PrintInfo("Test")
+      -- local dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey(entry.Dialogue))
+      if entry.Species ~= "staryu" then
+        dialogue.Emote = RogueEssence.Content.EmoteStyle(entry.Emote)
+      end
+
+      post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnInteractable(dialogue))
+      post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable(Serpent.line({ NPC = true })))
+      for _, status in ipairs(entry.Statuses) do
+        local Status = LUA_ENGINE:MakeGenericType(SpawnListType, { StatusEffectType }, { })
+        Status:Add(RogueEssence.Dungeon.StatusEffect(status), 10)
+        local mob_spawn_status = RogueEssence.LevelGen.MobSpawnStatus()
+        mob_spawn_status.Statuses = Status
+        post_mob.SpawnFeatures:Add(mob_spawn_status)
+      end
+      specificTeam.Spawns:Add(post_mob)
+      local picker = LUA_ENGINE:MakeGenericType(PresetMultiTeamSpawnerType, { MapGenContextType }, { })
+      picker.Spawns:Add(specificTeam)
+      local mobPlacement = LUA_ENGINE:MakeGenericType(PlaceRandomMobsStepType, { MapGenContextType }, { picker })
+      mobPlacement.Ally = true
+      mobPlacement.Filters:Add(PMDC.LevelGen.RoomFilterConnectivity(PMDC.LevelGen.ConnectivityRoom.Connectivity.Main))
+      mobPlacement.ClumpFactor = 20
+      -- Priority 5.2.1 is for NPC spawning in PMDO, but any dev can choose to roll with their own standard of priority.
+      local priority = RogueElements.Priority(5, 2, 1)
+      queue:Enqueue(priority, mobPlacement)
+    end
+  end
 end
 
-PresetMultiTeamSpawnerType = luanet.import_type('RogueEssence.LevelGen.PresetMultiTeamSpawner`1')
-PlaceRandomMobsStepType = luanet.import_type('RogueEssence.LevelGen.PlaceRandomMobsStep`1')
-PlaceEntranceMobsStepType = luanet.import_type('RogueEssence.LevelGen.PlaceNearSpawnableMobsStep`2')
-MapEffectStepType = luanet.import_type('RogueEssence.LevelGen.MapEffectStep`1')
-MapGenContextType = luanet.import_type('RogueEssence.LevelGen.ListMapGenContext')
-EntranceType = luanet.import_type('RogueEssence.LevelGen.MapGenEntrance')
 
-RandomRoomSpawnStepType = luanet.import_type('RogueElements.RandomRoomSpawnStep`2')
-PickerSpawnType = luanet.import_type('RogueElements.PickerSpawner`2')
-PresetMultiRandType = luanet.import_type('RogueElements.PresetMultiRand`1')
-PresetPickerType = luanet.import_type('RogueElements.PresetPicker`1')
-MapItemType = luanet.import_type('RogueEssence.Dungeon.MapItem')
+function ZONE_GEN_SCRIPT.GenerateMissionFromSV(zoneContext, context, queue, seed, args)
+  
+  if not SV.MissionsEnabled then
+    return
+  end
+  
+  SV.DestinationFloorNotified = false
+  SV.MonsterHouseMessageNotified = false
+  SV.OutlawDefeated = false
+  SV.OutlawGoonsDefeated = false
+  SV.OutlawItemPickedUp = false
+  --local partner = GAME:GetPlayerPartyMember(1)
+  --local tbl = LTBL(partner)
+  --tbl.MissionNumber = nil
+  --tbl.MissionType = nil
+  --tbl.EscortMissionNum = nil
 
+  local curMission = nil
+  local missionType = nil
+  local missionNum = nil
+  local escortMissionNum = nil
+  local destinationFloor = false
+  local outlawFloor = false
+  local escortDeathEvent = false
+  local activeEffect = RogueEssence.Data.ActiveEffect()
 
+  for _, name in ipairs(COMMON.GetSortedKeys(SV.TakenBoard)) do
+    mission = SV.TakenBoard[name]
+    if mission.Taken and mission.Completion == COMMON.MISSION_INCOMPLETE and zoneContext.CurrentZone == mission.Zone and mission.BackReference ~= COMMON.FLEE_BACKREFERENCE then
+      if mission.Type == COMMON.MISSION_TYPE_ESCORT or mission.Type == COMMON.MISSION_TYPE_EXPLORATION then
+        PrintInfo("Adding escort death event...")
+        escortDeathEvent = true
+        escortMissionNum = name
+      end
+      if zoneContext.CurrentSegment == mission.Segment and zoneContext.CurrentID + 1 == mission.Floor then
+        curMission = mission
+        missionNum = name
+        missionType = mission.Type
+        PrintInfo("Spawning Mission Goal")
+        local outlaw_arr = {
+          COMMON.MISSION_TYPE_OUTLAW,
+          COMMON.MISSION_TYPE_OUTLAW_ITEM,
+          COMMON.MISSION_TYPE_OUTLAW_FLEE,
+          COMMON.MISSION_TYPE_OUTLAW_MONSTER_HOUSE
+        }
+
+        if COMMON.TableContains(outlaw_arr, mission.Type) then -- outlaw
+          outlawFloor = true
+        else
+          if mission.Type == COMMON.MISSION_TYPE_RESCUE or mission.Type == COMMON.MISSION_TYPE_DELIVERY or mission.Type == COMMON.MISSION_TYPE_ESCORT then
+            local specificTeam = RogueEssence.LevelGen.SpecificTeamSpawner()
+            local post_mob = RogueEssence.LevelGen.MobSpawn()
+            post_mob.BaseForm = RogueEssence.Dungeon.MonsterID(mission.Target, 0, "normal", COMMON.NumToGender(mission.TargetGender))
+            post_mob.Tactic = "slow_wander"
+            post_mob.Level = RogueElements.RandRange(50)
+            if mission.Type == COMMON.MISSION_TYPE_RESCUE or mission.Type == COMMON.MISSION_TYPE_DELIVERY then -- rescue
+              local dialogue = RogueEssence.Dungeon.BattleScriptEvent("RescueReached")
+              post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnInteractable(dialogue))
+              post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable('{ Mission = '..name..' }'))
+            elseif mission.Type == COMMON.MISSION_TYPE_ESCORT then -- escort
+              local dialogue = RogueEssence.Dungeon.BattleScriptEvent("EscortReached")
+              post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnInteractable(dialogue))
+              post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable('{ Mission = '..name..' }'))
+            end
+            specificTeam.Spawns:Add(post_mob)
+            PrintInfo("Creating Spawn")
+            local picker = LUA_ENGINE:MakeGenericType(PresetMultiTeamSpawnerType, { MapGenContextType }, { })
+            picker.Spawns:Add(specificTeam)
+            PrintInfo("Creating Step")
+            local mobPlacement = LUA_ENGINE:MakeGenericType(PlaceRandomMobsStepType, { MapGenContextType }, { picker })
+            PrintInfo("Setting everything else")
+
+            mobPlacement.Ally = true
+            mobPlacement.Filters:Add(PMDC.LevelGen.RoomFilterConnectivity(PMDC.LevelGen.ConnectivityRoom.Connectivity.Main))
+            mobPlacement.ClumpFactor = 20
+            PrintInfo("Enqueueing")
+            -- Priority 5.2.1 is for NPC spawning in PMDO, but any dev can choose to roll with their own standard of priority.
+            local priority = RogueElements.Priority(5, 2, 1)
+            queue:Enqueue(priority, mobPlacement)
+          elseif mission.Type == COMMON.MISSION_TYPE_LOST_ITEM then
+            local lost_item = RogueEssence.Dungeon.MapItem(mission.Item)
+            PrintInfo("Spawning Lost Item "..lost_item.Value)
+            local preset_picker = LUA_ENGINE:MakeGenericType(PresetPickerType, { MapItemType }, { lost_item })
+            local multi_preset_picker = LUA_ENGINE:MakeGenericType(PresetMultiRandType, { MapItemType }, { preset_picker })
+            local picker_spawner = LUA_ENGINE:MakeGenericType(PickerSpawnType, {  MapGenContextType, MapItemType }, { multi_preset_picker })
+            local random_room_spawn = LUA_ENGINE:MakeGenericType(RandomRoomSpawnStepType, { MapGenContextType, MapItemType }, { })
+            random_room_spawn.Spawn = picker_spawner
+            random_room_spawn.Filters:Add(PMDC.LevelGen.RoomFilterConnectivity(PMDC.LevelGen.ConnectivityRoom.Connectivity.Main))
+            local priority = RogueElements.Priority(5, 2, 1)
+            queue:Enqueue(priority, random_room_spawn)
+          end
+          destinationFloor = true
+        end
+      end
+    end
+  end
+  if missionNum ~= nil then
+    --tbl.MissionNumber = missionNum
+  end
+  if escortDeathEvent then
+    --tbl.EscortMissionNum = escortMissionNum
+    activeEffect.OnDeaths:Add(6, RogueEssence.Dungeon.SingleCharScriptEvent("MissionGuestCheck", '{ Mission = '..escortMissionNum..' }'))
+  end
+  if destinationFloor then
+    -- add destination floor notification
+    activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("DestinationFloor", '{ Mission = '..missionNum..' }'))
+    
+    if missionType == COMMON.MISSION_TYPE_EXPLORATION and curMission ~= nil then --Exploration
+      local escort = COMMON.FindMissionEscort(missionNum)
+      local clientName = curMission.Client
+      if escort ~= nil then
+        PrintInfo("Client name: "..clientName)
+        curMission.Completion = 1
+        activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("ExplorationReached", '{  Mission = '..escortMissionNum..' }'))
+      end
+    elseif missionType == COMMON.MISSION_TYPE_LOST_ITEM then
+      activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("MissionItemPickup", '{ Mission = '..missionNum..' }'))
+    end
+
+    local npcMissions = { COMMON.MISSION_TYPE_DELIVERY, COMMON.MISSION_TYPE_ESCORT, COMMON.MISSION_TYPE_RESCUE }
+    if COMMON.TableContains(npcMissions, missionType) then
+      activeEffect.OnMapTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("MobilityEndTurn", '{ Mission = '..missionNum..' }'))
+    end
+    --tbl.MissionType = COMMON.MISSION_BOARD_MISSION
+  end
+  if outlawFloor then
+    activeEffect.OnDeaths:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OnOutlawDeath", '{ Mission = '..missionNum..' }'))
+    if missionType == COMMON.MISSION_TYPE_OUTLAW then
+      activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OutlawCheck", '{ Mission = '..missionNum..' }'))
+    elseif missionType == COMMON.MISSION_TYPE_OUTLAW_FLEE then
+      activeEffect.OnMapTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OutlawFleeStairsCheck", '{ Mission = '..missionNum..' }'))
+      activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OutlawCheck", '{ Mission = '..missionNum..' }'))
+    elseif missionType == COMMON.MISSION_TYPE_OUTLAW_ITEM then
+      activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("OutlawItemPickup", '{ Mission = '..missionNum..' }'))
+      activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OutlawItemCheck", '{ Mission = '..missionNum..' }'))
+    elseif missionType == COMMON.MISSION_TYPE_OUTLAW_MONSTER_HOUSE then
+      activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OnMonsterHouseOutlawCheck", '{ Mission = '..missionNum..' }'))
+    end
+
+    activeEffect.OnMapStarts:Add(-11, RogueEssence.Dungeon.SingleCharScriptEvent("SpawnOutlaw", '{ Mission = '..missionNum..' }'))
+    activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OutlawFloor", '{ Mission = '..missionNum..' }'))
+    --tbl.MissionType = COMMON.MISSION_BOARD_MISSION 
+  end
+
+  local destNote = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { activeEffect })
+  local priority = RogueElements.Priority(-6)
+  queue:Enqueue(priority, destNote)
+end
+
+--This method is for spawning main game sidequests
 function ZONE_GEN_SCRIPT.SpawnMissionNpcFromSV(zoneContext, context, queue, seed, args)
   -- choose a the floor to spawn it on
   local destinationFloor = false
   local outlawFloor = false
   local outlawSilent = false
-  for name, mission in pairs(SV.missions.Missions) do
+
+  for _, name in ipairs(COMMON.GetSortedKeys(SV.missions.Missions)) do
+    mission = SV.missions.Missions[name]
     if mission.Complete == COMMON.MISSION_INCOMPLETE and zoneContext.CurrentZone == mission.DestZone
 	  and zoneContext.CurrentSegment == mission.DestSegment and zoneContext.CurrentID == mission.DestFloor then
       local specificTeam = RogueEssence.LevelGen.SpecificTeamSpawner()
@@ -235,17 +505,17 @@ function ZONE_GEN_SCRIPT.SpawnMissionNpcFromSV(zoneContext, context, queue, seed
         post_mob.Tactic = "slow_patrol"
         if mission.Type == COMMON.MISSION_TYPE_RESCUE then -- rescue
             post_mob.Level = RogueElements.RandRange(_ZONE.CurrentZone.Level - 5)
-          local dialogue = RogueEssence.Dungeon.BattleScriptEvent("RescueReached")
+          local dialogue = RogueEssence.Dungeon.BattleScriptEvent("SidequestRescueReached")
             post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnInteractable(dialogue))
             post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable(Serpent.line({ Mission = name })))
           elseif mission.Type == COMMON.MISSION_TYPE_ESCORT then -- escort
             post_mob.Level = RogueElements.RandRange(_ZONE.CurrentZone.Level - 5)
-          local dialogue = RogueEssence.Dungeon.BattleScriptEvent("EscortRescueReached")
+          local dialogue = RogueEssence.Dungeon.BattleScriptEvent("SidequestEscortReached")
             post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnInteractable(dialogue))
             post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable(Serpent.line({ Mission = name })))
           elseif mission.Type == COMMON.MISSION_TYPE_ESCORT_OUT then -- escort
             post_mob.Level = RogueElements.RandRange(_ZONE.CurrentZone.Level // 2)
-          local dialogue = RogueEssence.Dungeon.BattleScriptEvent("EscortOutReached", Serpent.line(mission.EscortTable))
+          local dialogue = RogueEssence.Dungeon.BattleScriptEvent("SidequestEscortOutReached", Serpent.line(mission.EscortTable))
             post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnInteractable(dialogue))
             post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnMovesOff(0))
             post_mob.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable(Serpent.line({ Escort = name })))
@@ -279,7 +549,7 @@ function ZONE_GEN_SCRIPT.SpawnMissionNpcFromSV(zoneContext, context, queue, seed
   if outlawFloor then
     -- add destination floor notification
     local activeEffect = RogueEssence.Data.ActiveEffect()
-    activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("OutlawFloor", Serpent.line({ Silent = outlawSilent })))
+    activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("SidequestOutlawFloor", Serpent.line({ Silent = outlawSilent })))
 	local destNote = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { activeEffect })
 	local priority = RogueElements.Priority(-6)
 	queue:Enqueue(priority, destNote)
@@ -320,7 +590,10 @@ function FLOOR_GEN_SCRIPT.SpawnRandomTutor(map, args)
   
   local valid_moves = {}
   --iterate through all tutor moves
-  for move_idx, skill in pairs(COMMON.TUTOR) do
+
+  for _, move_idx in ipairs(COMMON.GetSortedKeys(COMMON.TUTOR)) do
+    skill = COMMON.TUTOR[move_idx]
+	
 	--Were they already encountered in this adventure?  skip
 	if SV.adventure.Tutors[move_idx] ~= nil then
 	  goto continue
@@ -369,7 +642,7 @@ function FLOOR_GEN_SCRIPT.SpawnRandomTutor(map, args)
 	--do they not match the types provided?  skip
 	local has_element = false
 	local skill_data = _DATA:GetSkill(move_idx)
-	for _, element_id in pairs(args.Elements) do
+	for _, element_id in ipairs(args.Elements) do
 	  --check to see if the skill is of the correct element
 	  if skill_data.Data.Element == element_id then
 	    has_element = true
@@ -391,6 +664,7 @@ function FLOOR_GEN_SCRIPT.SpawnRandomTutor(map, args)
   if #valid_moves > 0 then
 	  --choose a random move out of the valid ones
 	  local rand_idx = map.Rand:Next(#valid_moves) + 1
+	  
 	  --set the tutor id
 	  local tutor_move = valid_moves[rand_idx]
 	  

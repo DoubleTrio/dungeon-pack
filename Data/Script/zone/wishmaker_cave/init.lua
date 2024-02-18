@@ -9,6 +9,49 @@ require 'common'
 -- Package name
 local wishmaker_cave = {}
 
+local function ReplaceMoves(chara, move_map)
+  for move_idx = 0, 3 do
+    local curr_move = chara.BaseSkills[move_idx].SkillNum
+    local new_move = move_map[curr_move]
+    if new_move ~= nil then
+      GAME:SetCharacterSkill(chara, new_move, move_idx)
+    end
+  end
+end
+
+local function ReplaceMon(chara, mon_map)
+  local name = chara.BaseForm.Species
+  local new_name = mon_map[name]
+  if new_name ~= nil then
+    chara:Promote(RogueEssence.Dungeon.MonsterID(new_name, chara.BaseForm.Form, chara.BaseForm.Skin, chara.BaseForm.Gender))
+  end
+end
+
+local function ReplaceAbility(chara, ability_map)
+  local ability = chara.BaseIntrinsics[0]
+  local new_ability = ability_map[ability]
+  if new_ability ~= nil then
+    chara.BaseIntrinsics[0] = new_ability
+  end
+end
+
+local function AdjustModdedActions(move_map, ability_map, mon_map)
+  local player_count = _DATA.Save.ActiveTeam.Players.Count
+  for player_idx = 0, player_count - 1, 1 do
+    local player = _DATA.Save.ActiveTeam.Players[player_idx]
+    ReplaceMoves(player, move_map)
+    ReplaceAbility(player, ability_map)
+    ReplaceMon(player, mon_map)
+  end
+
+  local assemblyCount = GAME:GetPlayerAssemblyCount()
+  for assembly_idx = 0,assemblyCount - 1, 1 do
+    local player = GAME:GetPlayerAssemblyMember(assembly_idx)
+    ReplaceMoves(player, move_map)
+    ReplaceAbility(player, ability_map)
+    ReplaceMon(player, mon_map)
+  end
+end
 -------------------------------
 -- Zone Callbacks
 -------------------------------
@@ -16,6 +59,8 @@ local wishmaker_cave = {}
 --Engine callback function
 function wishmaker_cave.Init(zone)
     DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+    SV.Wishmaker.MadeWish = false
+    SV.Wishmaker.BonusScore = 0
     PrintInfo("=>> Init_wishmaker_cave")
       
 end
@@ -23,8 +68,14 @@ end
 ---wishmaker_cave.EnterSegment(zone, rescuing, segmentID, mapID)
 --Engine callback function
 function wishmaker_cave.EnterSegment(zone, rescuing, segmentID, mapID)
+
+  local mon_map = {
+    eevee = "eevee2"
+  }
+
   if rescuing ~= true then
     COMMON.BeginDungeon(zone.ID, segmentID, mapID)
+    AdjustModdedActions({}, {}, mon_map)
   end
 end
 
@@ -33,24 +84,45 @@ end
 function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
   PrintInfo("=>> ExitSegment_wishmaker_cave result "..tostring(result).." segment "..tostring(segmentID))
-  COMMON.ExitDungeonMissionCheck(result, zone.ID, segmentID)
-  if rescue == true then
-    COMMON.EndRescue(zone, result, segmentID)
+  local exited = COMMON.ExitDungeonMissionCheck(result, rescue, zone.ID, segmentID)
+
+  local move_map = {
+    thief2 = "thief",
+    covet2 = "covet"
+  }
+  local ability_map = {
+    pickpocket2 = "pickpocket"
+  }
+
+  local mon_map = {
+    eevee2 = "eevee"
+  }
+
+  AdjustModdedActions(move_map, ability_map, mon_map)
+  GAME:AddToPlayerMoney(SV.Wishmaker.BonusScore)
+  
+  if exited == true then
+    -- nothing
   elseif result ~= RogueEssence.Data.GameProgress.ResultType.Cleared then
-    COMMON.EndDungeonDay(result, SV.checkpoint.Zone, SV.checkpoint.Segment, SV.checkpoint.Map, SV.checkpoint.Entry)
+    COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
   else
-    -- if segmentID == 0 then
-    --   COMMON.UnlockWithFanfare('castaway_cave', true)
-    --   COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
-    -- elseif segmentID == 1 then
-    --   COMMON.UnlockWithFanfare('inscribed_cave', true)
-    --   COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
-    -- else
-    --   PrintInfo("No exit procedure found!")
-	  COMMON.EndDungeonDay(result, SV.checkpoint.Zone, SV.checkpoint.Segment, SV.checkpoint.Map, SV.checkpoint.Entry)
-    -- end
+    if segmentID == 0 then
+      -- COMMON.UnlockWithFanfare('', true)
+      COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
+      -- COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
+    elseif segmentID == 1 then
+      -- COMMON.UnlockWithFanfare('', true)
+      COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+    else
+      PrintInfo("No exit procedure found!")
+      COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
+    end
   end
 
+  if GAME:InRogueMode() and SV.Wishmaker.RecruitedJirachi then
+    GAME:RemoveFromPlayerMoneyBank(100000)
+  end
+  GAME:RemoveFromPlayerMoney(SV.Wishmaker.BonusScore)
 end
 
 ---wishmaker_cave.Rescued(zone, name, mail)

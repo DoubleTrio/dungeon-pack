@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.23.0",
+"Version": "0.7.25.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "wishmaker_cave": {
@@ -11,7 +11,8 @@
 "TeamRestrict": false,
 "TeamSize": 2,
 "MoneyRestrict": true,
-"BagRestrict": 4,
+"BagRestrict": 2,
+"KeepTreasure": true,
 "BagSize": 24,
 "Rescues": 2,
 "CountedFloors": 27,

@@ -1,3 +1,6 @@
+require 'common'
+require 'wish_table.wish_table'
+
 StackStateType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
@@ -9,7 +12,244 @@ SpawnListType =  luanet.import_type('RogueElements.SpawnList`1')
 SINGLE_CHAR_SCRIPT = {}
 
 
-function SINGLE_CHAR_SCRIPT.HalfHpNpcEvent(owner, ownerChar, context, args)
+local function JoinTeamWithFanfareAssembly(recruit, from_dungeon)
+  local orig_settings = UI:ExportSpeakerSettings()
+  
+  if from_dungeon then
+    recruit.MetAt = _ZONE.CurrentMap:GetColoredName()
+  else
+    recruit.MetAt = _ZONE.CurrentGround:GetColoredName()
+  end
+  recruit.MetLoc = RogueEssence.Dungeon.ZoneLoc(_ZONE.CurrentZoneID, _ZONE.CurrentMapID)
+  
+  _DATA.Save.ActiveTeam.Assembly:Add(recruit)
+  SOUND:PlayFanfare("Fanfare/JoinTeam")
+  _DATA.Save:RegisterMonster(recruit.BaseForm.Species)
+  _DATA.Save:RogueUnlockMonster(recruit.BaseForm.Species)
+	
+  UI:ResetSpeaker(false)
+  UI:SetCenter(true)
+  
+  if _DATA.Save.ActiveTeam.Name ~= "" then
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_RECRUIT"):ToLocal(), recruit:GetDisplayName(true), _DATA.Save.ActiveTeam.Name))
+  else
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_RECRUIT_ANY"):ToLocal(), recruit:GetDisplayName(true)))
+  end
+  
+  UI:ImportSpeakerSettings(orig_settings)
+end
+
+local function GetWishTier()
+	local corner_tiles = {
+		C8x9 = true,
+		C10x7 = true,
+		C12x9 = true,
+		C9x11 = true,
+		C11x11 = true,
+	}
+
+	local wish_tier = 1
+	local item_count = _ZONE.CurrentMap.Items.Count
+	for item_idx = 0, item_count - 1, 1 do
+		local map_item = _ZONE.CurrentMap.Items[item_idx]
+		local x = map_item.TileLoc.X
+		local y = map_item.TileLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles[key]
+		if value ~= nil and map_item.Value == "wish_gem" then
+			wish_tier = wish_tier + 1
+		end
+	end
+
+	return wish_tier
+end
+
+local function WishCenterAnimStart(query_order, corner_tiles, corner_layer_map) 
+
+	-- C8x9 = true,
+	-- C10x7 = true,
+	-- C12x9 = true,
+	-- C9x11 = true,
+	-- C11x11 = true,
+	local locations = {
+		{ X = 8, Y = 9 },
+		{ X = 10, Y = 7 },
+		{ X = 12, Y = 9 },
+		{ X = 9, Y = 11 },
+		{ X = 11, Y = 11 }
+	}
+
+	local item_count = _ZONE.CurrentMap.Items.Count
+	for item_idx = 0, item_count - 1, 1 do
+		local map_item = _ZONE.CurrentMap.Items[item_idx]
+		local x = map_item.TileLoc.X
+		local y = map_item.TileLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles[key]
+		if value ~= nil and map_item.Value == "wish_gem" then
+			corner_tiles[key] = map_item.TileLoc
+		end
+	end
+
+	for _, t in ipairs(locations) do
+		local tile = _ZONE.CurrentMap.Tiles[t.X][t.Y]
+		tile.Effect = RogueEssence.Dungeon.EffectTile(tile.Effect.TileLoc)
+	end
+
+	GAME:WaitFrames(80)
+	for _, v in ipairs(query_order) do
+		local tile = corner_tiles[v]
+		if tile then
+			local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+			local layer_index = corner_layer_map[v]
+
+			local copy = _DATA.SendHomeFX
+			copy.Sound = "_UNK_EVT_029"
+			GAME:WaitFrames(20)
+			TASK:WaitTask(_DUNGEON:ProcessBattleFX(tile, tile, Direction.Down, copy))
+			local item_count = _ZONE.CurrentMap.Items.Count
+			for item_idx = 0, item_count - 1, 1 do
+				local map_item = _ZONE.CurrentMap.Items[item_idx]
+				local x = map_item.TileLoc.X
+				local y = map_item.TileLoc.Y
+				local key = string.format("C%dx%d", x, y)
+				local value = corner_tiles[key]
+				if key == v then
+					_ZONE.CurrentMap.Items:RemoveAt(item_idx)
+					goto skip_to_next
+				end
+			end
+			::skip_to_next::
+			_ZONE.CurrentMap.Decorations[layer_index].Visible = false
+		end
+	end
+
+	GAME:WaitFrames(40)
+	SOUND:PlayBattleSE("_UNK_EVT_044")
+	GAME:WaitFrames(10)
+	GAME:FadeOut(true, 40)
+	GAME:WaitFrames(50)
+	for _, v in ipairs(query_order) do
+		local tile = corner_tiles[v]
+		if tile then
+			local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+			t.Effect = RogueEssence.Dungeon.EffectTile("tile_mystery_portal", true)
+		end
+	end
+	GAME:WaitFrames(40)
+	GAME:FadeIn(60)
+	GAME:WaitFrames(40)
+	return corner_tiles
+end
+
+local function WishCenterAnimEnd(owner, query_order, corner_tiles)
+	local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Miracle_Eye_Glow", 12), 1)
+	
+	SOUND:PlayBattleSE("_UNK_EVT_072")
+	
+	GAME:WaitFrames(15)
+	-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
+	emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left)
+	_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
+
+	GAME:WaitFrames(30)
+
+	GAME:WaitFrames(50)
+	SOUND:PlayBattleSE("_UNK_EVT_074")
+	GAME:FadeOut(true, 40)
+	GAME:WaitFrames(50)
+	for _, v in ipairs(query_order) do
+		local tile = corner_tiles[v]
+		-- print(tostring(tile))
+		if tile then
+			local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+			t.Effect = RogueEssence.Dungeon.EffectTile(t.Effect.TileLoc)
+		end
+	end
+
+	GAME:WaitFrames(40)
+	GAME:FadeIn(60)
+	GAME:WaitFrames(80) 
+
+end
+
+local function IsCharOnWishSpot()
+	local corner_tiles = {
+		C8x9 = true,
+		C10x7 = true,
+		C12x9 = true,
+		C9x11 = true,
+		C11x11 = true,
+	}
+
+	local chars = _DATA.Save.ActiveTeam.Players
+	for i = 0, chars.Count-1, 1 do
+		local char = chars[i]
+		local x = char.CharLoc.X
+		local y = char.CharLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		-- local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles[key]
+		if value ~= nil then
+			return true
+		end
+	end
+
+	return false
+end
+
+function SINGLE_CHAR_SCRIPT.LogTempItemEvent(owner, ownerChar, context, args)
+	if SV.Wishmaker.TempItemString ~= nil then
+		-- _DUNGEON:LogMsg("The " .. SV.Wishmaker.TempItemString .. " was sent to the storage!")
+		SV.Wishmaker.TempItemString = nil
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.WishGemCheckEvent(owner, ownerChar, context, args)
+	local corner_tiles = {
+		C8x9 = {
+			LayerName = "LeftCorner",
+			Index = 2
+		},
+		C10x7 = {
+			LayerName = "TopCorner",
+			Index = 1
+		},
+		C12x9 = {
+			LayerName = "RightCorner",
+			Index = 3
+		},
+		C9x11 = {
+			LayerName = "BottomLeftCorner",
+			Index = 4
+		},
+		C11x11 = {
+			LayerName = "BottomRightCorner",
+			Index = 5
+		},
+	}
+
+	local layer_count = 6
+	for idx = 1, _ZONE.CurrentMap.Decorations.Count - 1, 1 do
+		local layer = _ZONE.CurrentMap.Decorations[idx]
+		layer.Visible = false
+	end
+
+	local item_count = _ZONE.CurrentMap.Items.Count
+	for item_idx = 0, item_count - 1, 1 do
+		local map_item = _ZONE.CurrentMap.Items[item_idx]
+		local x = map_item.TileLoc.X
+		local y = map_item.TileLoc.Y
+		local key = string.format("C%dx%d", x, y)
+		local value = corner_tiles[key]
+		if value ~= nil and map_item.Value == "wish_gem" then
+			local layer = _ZONE.CurrentMap.Decorations[value.Index]
+			layer.Visible = true
+		end
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.LowHpNpcEvent(owner, ownerChar, context, args)
   local chara = context.User
 	if chara ~= nil then
 		local tbl = LTBL(chara)
@@ -19,20 +259,395 @@ function SINGLE_CHAR_SCRIPT.HalfHpNpcEvent(owner, ownerChar, context, args)
 	end
 end
 
+function SINGLE_CHAR_SCRIPT.WishCenterEvent(owner, ownerChar, context, args)
+	local chara = context.User
+	if chara == _DUNGEON.ActiveTeam.Leader and chara == _DUNGEON.FocusedCharacter then
+		_DUNGEON:QueueTrap(context.User.CharLoc)
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, args)	
+
+	GAME:WaitFrames(50)
+	UI:ResetSpeaker()
+	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+		if member.Dead == false then
+			member.CharDir = Direction.Up
+			DUNGEON:CharSetAction(member, RogueEssence.Dungeon.CharAnimPose(member.CharLoc, member.CharDir, 0, -1))
+			GAME:WaitFrames(20)
+		end
+	end
+
+
+	if SV.Wishmaker.RecruitedJirachi and SV.Wishmaker.MadeWish then
+		UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
+		return
+	end
+
+	if SV.Wishmaker.MadeWish then
+		UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
+		UI:WaitShowDialogue("Wishmaker awaits.")
+		return
+	end
+
+	local chara = context.User
+
+	local recruited = false
+
+	_ZONE.CurrentMap.Decorations[0].Layer = RogueEssence.Content.DrawLayer.Top
+	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
+	
+	crystal_moment_status:LoadFromData()
+	-- if _DATA.CurrentReplay == nil then
+	TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+	-- end
+
+	_ZONE.CurrentMap.HideMinimap = true
+	local curr_song = RogueEssence.GameManager.Instance.Song
+	SOUND:StopBGM()
+	UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The stars around you shine more brightly than ever.")
+	UI:ChoiceMenuYesNo("Would you like to make a wish?", false)
+	UI:WaitForChoice()
+	local result = UI:ChoiceResult()
+	if result then
+		
+		if not SV.Wishmaker.MadeWish and not IsCharOnWishSpot() then
+			local wish_tier = GetWishTier()
+			local wish_table = FINAL_WISH_TABLE[wish_tier]
+			local wish_choices = map(wish_table, function(item) return item.Category end)
+
+			if not SV.Wishmaker.RecruitedJirachi then
+				table.insert(wish_choices, 1, STRINGS:Format("\\uE10C") .. " A new friend")
+			end
+			table.insert(wish_choices, "Don't know")
+			local end_choice = #wish_choices
+			UI:BeginChoiceMenu("What is your final wish?", wish_choices, 1, end_choice)
+			UI:WaitForChoice()
+			choice = UI:ChoiceResult()
+			if choice ~= end_choice then
+				local corner_tiles = {
+					C10x7 = false,
+					C8x9 = false,
+					C9x11 = false,
+					C11x11 = false,
+					C12x9 = false,
+				}
+
+				local layer_map = {
+					C8x9 = 2,
+					C10x7 = 1,
+					C12x9 = 3,
+					C9x11 = 4,
+					C11x11 = 5,
+				}
+				local query_order = { "C10x7", "C8x9", "C9x11", "C11x11", "C12x9" }
+				if not SV.Wishmaker.RecruitedJirachi and choice == 1 then
+					if wish_tier == 6 then
+						WishCenterAnimStart(query_order, corner_tiles, layer_map)
+						SV.Wishmaker.RecruitedJirachi = true
+						SV.Wishmaker.MadeWish = true
+						recruited = true
+
+						-- Bonus points for recruiting Jirachi
+						if GAME:InRogueMode() then
+							GAME:AddToPlayerMoneyBank(100000)
+						end
+						-----------------
+						UI:WaitShowVoiceOver("[speed=0.2].............", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.1]Fwaaaaaaah...[pause=30] I...[pause=40] I...[pause=40] have been called upon?", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]...I'm a bit sleeeeepy.", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]But I am almost awake.", -1, -1, 200)
+						---------------
+						local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Miracle_Eye_Glow", 12), 1)
+	
+
+						SOUND:PlayBattleSE("_UNK_EVT_072")
+						
+						GAME:WaitFrames(15)
+						-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
+						emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left)
+						_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
+					
+						GAME:WaitFrames(30)
+					
+						GAME:WaitFrames(50)
+						SOUND:PlayBattleSE("_UNK_EVT_074")
+						GAME:FadeOut(true, 40)
+						GAME:WaitFrames(50)
+						for _, v in ipairs(query_order) do
+							local tile = corner_tiles[v]
+							-- print(tostring(tile))
+							if tile then
+								local t = _ZONE.CurrentMap.Tiles[tile.X][tile.Y]
+								t.Effect = RogueEssence.Dungeon.EffectTile(t.Effect.TileLoc)
+							end
+						end
+					
+						GAME:WaitFrames(40)
+						local dead_count = 0
+						for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+							if member.Dead then
+								dead_count = dead_count + 1
+							end
+						end
+
+						if dead_count == 0 then
+							for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+								if _DATA.Save.ActiveTeam.Players.Count == 1 then
+									member.CharLoc = RogueElements.Loc(10, 9)
+								else
+									if member == _DUNGEON.ActiveTeam.Leader then
+										member.CharLoc = RogueElements.Loc(9, 9)
+									else
+										member.CharLoc = RogueElements.Loc(11, 9)
+									end
+								end
+							end
+						end
+						if dead_count == 1 then
+							for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+								if not member.Dead then
+									member.CharLoc = RogueElements.Loc(10, 9)
+								end
+							end
+						end
+						
+						TASK:WaitTask(_DUNGEON:MoveCamera(RogueElements.Loc(10 * 24, 9 * 24) + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), 1))
+						GAME:FadeIn(60)
+						GAME:WaitFrames(80) 
+
+						TASK:WaitTask(_DUNGEON:MoveCamera(RogueElements.Loc(10 * 24, 7 * 24 - 8) + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), 100))
+						local new_team = RogueEssence.Dungeon.MonsterTeam()
+						local mob_data = RogueEssence.Dungeon.CharData(true)
+						local base_form_idx = 0
+						local form = _DATA:GetMonster("jirachi").Forms[base_form_idx]
+						mob_data.BaseForm = RogueEssence.Dungeon.MonsterID("jirachi", base_form_idx, "normal", Gender.Unknown)
+						mob_data.Level = 50
+						local ability = form:RollIntrinsic(RogueElements.MathUtils.Rand, 3)
+						mob_data.BaseIntrinsics[0] = ability
+						local jirachi = RogueEssence.Dungeon.Character(mob_data)
+						jirachi.Tactic = _DATA:GetAITactic("boss")
+						jirachi.CharLoc =  RogueElements.Loc(10, 7)
+						jirachi.CharDir = Direction.Down
+						new_team.Players:Add(jirachi)
+						_ZONE.CurrentMap.AllyTeams:Add(new_team)
+						local base_name = RogueEssence.Data.DataManager.Instance.DataIndices[RogueEssence.Data.DataManager.DataType.Monster]:Get(jirachi.BaseForm.Species).Name:ToLocal()
+						GAME:SetCharacterNickname(jirachi, base_name)
+						local jirachiName = _DATA:GetMonster(jirachi.BaseForm.Species):GetColoredName()
+						local poseAction = RogueEssence.Dungeon.CharAnimPose(jirachi.CharLoc, jirachi.CharDir, 84, 0)
+						SOUND:PlayBattleSE("_UNK_EVT_072")
+						TASK:WaitTask(jirachi:StartAnim(poseAction))
+						GAME:WaitFrames(200)
+						-- if _DATA.CurrentReplay == nil then
+						TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+						GAME:WaitFrames(60)
+							-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+						-- end
+
+						local poseAction2 = RogueEssence.Dungeon.CharAnimPose(jirachi.CharLoc, jirachi.CharDir, 82, 0)
+						TASK:WaitTask(jirachi:StartAnim(poseAction2))
+						UI:SetSpeaker(jirachi)
+						GAME:WaitFrames(60)
+						UI:SetSpeakerEmotion("Sigh")
+						UI:WaitShowDialogue("[speed=0.2]Yaaaaaaawn... So tired...")
+						local poseAction3 = RogueEssence.Dungeon.CharAnimPose(jirachi.CharLoc, jirachi.CharDir, 50, 0)
+						TASK:WaitTask(jirachi:StartAnim(poseAction3))
+						GAME:WaitFrames(40)
+						SOUND:PlayBattleSE("_UNK_EVT_087")
+						GAME:WaitFrames(100)
+						local stand_anim =  RogueEssence.Dungeon.CharAnimNone(jirachi.CharLoc, jirachi.CharDir)
+						stand_anim.MajorAnim = true
+						TASK:WaitTask(jirachi:StartAnim(stand_anim))
+						GAME:WaitFrames(50)
+						UI:SetSpeakerEmotion("Normal")
+						DUNGEON:CharSetEmote(jirachi, "exclaim", 1)
+						SOUND:PlayBattleSE("EVT_Emote_Exclaim_2")
+						GAME:WaitFrames(20)
+						UI:WaitShowDialogue("Hah![pause=0] All right,[pause=30] I'm fully awake. So,[pause=20] so[pause=20] awake.", { Emote })
+						UI:WaitShowDialogue(STRINGS:Format("It's been so long since I have seen anyone around here..."))
+						-- DUNGEON:CharSetEmote(jirachi, "glowing", 4)
+						UI:SetSpeakerEmotion("Happy")
+						UI:WaitShowDialogue(STRINGS:Format("I'm {0}.[pause=0] A[emote=Normal]s you may have noticed,[pause=30] it takes a lot for me to wake up.", base_name))
+						UI:SetSpeakerEmotion("Normal")
+						UI:WaitShowDialogue("I'm happy to see that despite everything you could have wished for[speed=0.2]...")
+						UI:SetSpeakerEmotion("Happy")
+						UI:WaitShowDialogue("...You wished to see me!")
+						GAME:WaitFrames(20)
+						UI:SetSpeakerEmotion("Normal")
+						UI:WaitShowDialogue("So you're an exploration team,[pause=40] right?")
+						for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+							if not member.Dead then
+								local walk_action = RogueEssence.Dungeon.CharAnimPose(member.CharLoc, member.CharDir, 2, 0)
+								-- TASK:WaitTask(jirachi:StartAnim(poseAction3))
+								DUNGEON:CharSetAction(member, walk_action)
+								-- local stand_anim =  RogueEssence.Dungeon.CharAnimNone(member.CharLoc, member.CharDir)
+								-- stand_anim.MajorAnim = true
+								-- TASK:WaitTask(member:StartAnim(stand_anim))
+							end
+						end
+						GAME:WaitFrames(60)
+						for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+							if member.Dead == false then
+								member.CharDir = Direction.Up
+								DUNGEON:CharSetAction(member, RogueEssence.Dungeon.CharAnimPose(member.CharLoc, member.CharDir, 0, -1))
+								GAME:WaitFrames(20)
+							end
+						end
+						GAME:WaitFrames(30)
+						UI:SetSpeakerEmotion("Happy")
+						UI:WaitShowDialogue(STRINGS:Format("Ah,[pause=20] {0}[speed=0.2]...", _DATA.Save.ActiveTeam.Name))
+						UI:SetSpeakerEmotion("Normal")
+						UI:WaitShowDialogue("Then,[pause=20] I wish to join your team and accompany in your explorations.")	
+						UI:WaitShowDialogue("Though...[speed=0.2]")
+						UI:SetSpeakerEmotion("Happy")
+						DUNGEON:CharSetEmote(jirachi, "glowing", 4)
+						UI:WaitShowDialogue("I hope you don't mind me being very tired every now and then.")	
+						GAME:WaitFrames(60)
+						local mon_id = RogueEssence.Dungeon.MonsterID("jirachi", 0, "normal", Gender.Genderless)
+						local recruit = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, 50, "", 0)
+						local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("AllyInteract")
+						recruit.ActionEvents:Add(talk_evt)
+						local player_tbl = LTBL(recruit)
+						player_tbl.Wishmaker = true
+						JoinTeamWithFanfareAssembly(recruit, true)
+						GAME:WaitFrames(20)
+						-- SV.Wishmaker.RecruitedJirachi = true
+
+						UI:SetSpeakerEmotion("Normal")
+						UI:WaitShowDialogue(STRINGS:Format("As for Wishmaker Cave itself..."))
+						UI:WaitShowDialogue("I sense that the area here is content and will continue to grant wishes in my place.")
+						UI:SetSpeakerEmotion("Happy")
+						DUNGEON:CharSetEmote(jirachi, "glowing", 4)
+						UI:WaitShowDialogue("So,[pause=20] no worries! \u{266A}")	
+						UI:SetSpeakerEmotion("Normal")
+						UI:WaitShowDialogue("[speed=0.2]......")
+						UI:WaitShowDialogue("[speed=0.2]I am feeling a bit sleepy though...")	
+						local poseAction4 = RogueEssence.Dungeon.CharAnimPose(jirachi.CharLoc, jirachi.CharDir, 82, 0)
+						TASK:WaitTask(jirachi:StartAnim(poseAction4))
+						GAME:WaitFrames(70)
+						UI:SetSpeakerEmotion("Sigh")
+						UI:WaitShowDialogue("[speed=0.2]Goodnight...")	
+						GAME:WaitFrames(100)
+  
+						SOUND:FadeOutBGM()
+						GAME:FadeOut(false, 30)
+						GAME:WaitFrames(90)
+						TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Cleared))
+						-- COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+					else		
+						UI:ResetSpeaker(false)
+						UI:SetCenter(true)
+						UI:WaitShowDialogue("[speed=0.09]............")	
+						UI:ResetSpeaker(true)
+						UI:WaitShowDialogue("...[pause=0]Wishmaker cannot be awoken right now.")
+					end
+				else
+
+					corner_tiles = WishCenterAnimStart(query_order, corner_tiles, layer_map)
+					SV.Wishmaker.MadeWish = true
+					if not SV.Wishmaker.RecruitedJirachi then
+						UI:WaitShowVoiceOver("[speed=0.1].............", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]ZZZzzz...[pause=40] I will make your [speed=0.05]wish [speed=0.2]come true....", -1, -1, 200)
+					else
+						UI:ResetSpeaker(false)
+						UI:SetCenter(true)
+						UI:WaitShowDialogue("The stars resonated with your wish.")
+						UI:ResetSpeaker()
+					end
+					WishCenterAnimEnd(owner, query_order, corner_tiles)
+					local index = choice
+					if not SV.Wishmaker.RecruitedJirachi then
+						index = index - 1
+					end
+					local item_table = wish_table[index]
+					local arguments = {}
+					arguments.MinAmount = item_table.Min
+					arguments.MaxAmount = item_table.Max
+					arguments.Guaranteed = item_table.Guaranteed
+					arguments.AlwaysSpawn = item_table.AlwaysSpawn
+					arguments.Items = item_table.Items
+					arguments.MaxRangeWidth = 8
+					arguments.MaxRangeHeight = 5
+					arguments.OffsetX = 2
+					arguments.OffsetY = -1
+					SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+					GAME:WaitFrames(80)
+					if not SV.Wishmaker.RecruitedJirachi then
+						-- UI:WaitShowDialogue("You fell")
+						-- UI:WaitShowVoiceOver("[speed=0.2]Fwaaaaaaah.", -1, 75, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]ZZZzzz...[pause=30] All the items you collect will be sent to your storage.", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]ZZZzzz...[pause=30] So sleeeeepy.", -1, -1, 200)
+						UI:WaitShowVoiceOver("[speed=0.2]Goodnight.[pause=20] ZZZzz...", -1, -1, 200)
+					else
+						UI:ResetSpeaker()
+						SOUND:PlayFanfare("Fanfare/Note")
+						UI:SetCenter(true)
+						UI:WaitShowDialogue("Note:[pause=0] All items collected will be sent to your storage!")
+						UI:ResetSpeaker()
+					end
+				end
+			end
+		else
+			UI:ResetSpeaker(false)
+			UI:SetCenter(true)
+			UI:WaitShowDialogue("[speed=0.09]............")	
+			UI:ResetSpeaker()
+			UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
+		end
+		
+	end
+
+	if _DATA.CurrentReplay == nil then
+		TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+		-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+	end
+	
+	if not recruited then
+		SOUND:PlayBGM(curr_song, true, 0)
+	end
+	GAME:WaitFrames(20)
+
+	_ZONE.CurrentMap.HideMinimap = false
+	GAME:WaitFrames(20)
+
+
+	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+		if member.Dead == false then
+			local stand_anim =  RogueEssence.Dungeon.CharAnimNone(member.CharLoc, member.CharDir)
+			stand_anim.MajorAnim = true
+			TASK:WaitTask(member:StartAnim(stand_anim))
+		end
+	end
+	_ZONE.CurrentMap.Decorations[0].Layer = RogueEssence.Content.DrawLayer.Bottom
+end
+
 function SINGLE_CHAR_SCRIPT.WishExitEvent(owner, ownerChar, context, args)
+	local function InArray(value, array)
+		for index = 1, #array do
+			if array[index] == value then
+				return true
+			end
+		end
+
+		return false -- We could ommit this part, as nil is like false
+	end
+
   local chara = context.User
   local tile = _ZONE.CurrentMap.Tiles[chara.CharLoc.X][chara.CharLoc.Y]
-	print(tostring(chara.MemberTeam == _DUNGEON.ActiveTeam.Leader))
-  if tile.Effect ~= "" and context.User.CharDir == Direction.Down and chara == _DUNGEON.ActiveTeam.Leader and chara ==_DUNGEON.FocusedCharacter then
-    _DUNGEON:QueueTrap(context.User.CharLoc);
+	local valid_dirs = { Direction.Down, Direction.DownLeft, Direction.DownRight }
+  if tile.Effect ~= "" and chara == _DUNGEON.ActiveTeam.Leader and InArray(chara.CharDir, valid_dirs) and chara == _DUNGEON.FocusedCharacter then
+    _DUNGEON:QueueTrap(context.User.CharLoc)
   end
 end
 
 
 function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, args)
-	GAME:WaitFrames(10)
+	local delay = args.Delay
+	if delay == nil then delay = 10 end
+
+	GAME:WaitFrames(delay)
   UI:ResetSpeaker()
-  UI:ChoiceMenuYesNo(STRINGS:FormatKey("DLG_ASK_EXIT_DUNGEON"), false)
+  UI:ChoiceMenuYesNo(STRINGS:FormatKey("DLG_ASK_EXIT_DUNGEON"), true)
   UI:WaitForChoice()
   ch = UI:ChoiceResult()
   if ch then
@@ -43,357 +658,10 @@ function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, arg
     -- if GAME:InRogueMode() then
     --   GAME:AddToPlayerMoneyBank(100000)
     -- end
-
-    COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+		TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Escaped))
+    -- COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
 	end
 end
-
-
-local WISH_TABLE = {
-  {
-    Min = 9,
-    Max = 14,
-    Items = {
-      { Item = "money", Amount = 150, Weight = 16 },
-      { Item = "money", Amount = 200, Weight = 15 },
-      { Item = "money", Amount = 300, Weight = 15 },
-      { Item = "money", Amount = 400, Weight = 15 },
-      { Item = "loot_pearl", Amount = 1, Weight = 12 },
-      { Item = "loot_pearl", Amount = 2, Weight = 12 },
-      { Item = "loot_pearl", Amount = 3, Weight = 12 },
-      { Item = "loot_nugget", Amount = 1, Weight = 3 }
-    },
-  },
-  {
-    Min = 9,
-    Max = 10,
-    Items = {
-      { Item = "berry_leppa", Amount = 1, Weight = 13 },
-      { Item = "berry_sitrus", Amount = 1, Weight = 8 },
-      { Item = "berry_oran", Amount = 1, Weight = 8 },
-			{ Item = "berry_lum", Amount = 1, Weight = 8 },
-      { Item = "berry_apicot", Amount = 1, Weight = 3 },
-      { Item = "berry_jaboca", Amount = 1, Weight = 3 },
-      { Item = "berry_liechi", Amount = 1, Weight = 3 },
-      { Item = "berry_starf", Amount = 1, Weight = 3 },
-      { Item = "berry_petaya", Amount = 1, Weight = 3 },
-      { Item = "berry_salac", Amount = 1, Weight = 3 },
-      { Item = "berry_ganlon", Amount = 1, Weight = 3 },
-      { Item = "berry_enigma", Amount = 1, Weight = 3 },
-			{ Item = "berry_micle", Amount = 1, Weight = 2 },
-      { Item = "food_apple", Amount = 1, Weight = 23 },
-      { Item = "food_apple_big", Amount = 1, Weight = 6 },
-      { Item = "food_apple_huge", Amount = 1, Weight = 3 },
-      { Item = "food_apple_golden", Amount = 1, Weight = 1 },
-      { Item = "food_banana", Amount = 1, Weight = 3 },
-      { Item = "food_banana_big", Amount = 1, Weight = 1 }
-    },
-  },
-  {
-    Min = 10,
-    Max = 11,
-    Items = {
-			{ Item = "berry_leppa", Amount = 1, Weight = 14 },
-      { Item = "berry_sitrus", Amount = 1, Weight = 5 },
-      { Item = "berry_oran", Amount = 1, Weight = 5 },
-      { Item = "berry_apicot", Amount = 1, Weight = 2 },
-      { Item = "berry_jaboca", Amount = 1, Weight = 2 },
-      { Item = "berry_liechi", Amount = 1, Weight = 2 },
-      { Item = "berry_starf", Amount = 1, Weight = 2 },
-      { Item = "berry_petaya", Amount = 1, Weight = 2 },
-      { Item = "berry_salac", Amount = 1, Weight = 2 },
-      { Item = "berry_ganlon", Amount = 1, Weight = 2 },
-      { Item = "berry_enigma", Amount = 1, Weight = 2 },
-			{ Item = "berry_micle", Amount = 1, Weight = 2 },
-      { Item = "seed_ban", Amount = 1, Weight = 7 },
-      { Item = "seed_joy", Amount = 1, Weight = 7 },
-      { Item = "seed_decoy", Amount = 1, Weight = 2 },
-      { Item = "seed_pure", Amount = 1, Weight = 2 },
-      { Item = "seed_blast", Amount = 1, Weight = 2 },
-      { Item = "seed_ice", Amount = 1, Weight = 2 },
-      { Item = "seed_reviver", Amount = 1, Weight = 18 },
-      { Item = "seed_warp", Amount = 1, Weight = 2 },
-      { Item = "seed_doom", Amount = 1, Weight = 2 },
-      { Item = "seed_ice", Amount = 1, Weight = 2 },
-      { Item = "herb_white", Amount = 1, Weight = 2 },
-      { Item = "herb_mental", Amount = 1, Weight = 2 },
-      { Item = "herb_power", Amount = 1, Weight = 2 },
-      { Item = "orb_all_dodge", Amount = 1, Weight = 2 },
-      { Item = "orb_all_protect", Amount = 1, Weight = 2 },
-      { Item = "orb_cleanse", Amount = 1, Weight = 2 },
-      { Item = "orb_devolve", Amount = 1, Weight = 2 },
-      { Item = "orb_fill_in", Amount = 1, Weight = 2 },
-      { Item = "orb_endure", Amount = 1, Weight = 2 },
-      { Item = "orb_foe_hold", Amount = 1, Weight = 2 },
-      { Item = "orb_foe_seal", Amount = 1, Weight = 2 },
-      { Item = "orb_freeze", Amount = 1, Weight = 2 },
-      { Item = "orb_halving", Amount = 1, Weight = 2 },
-      { Item = "orb_itemizer", Amount = 1, Weight = 2 },
-      { Item = "orb_luminous", Amount = 1, Weight = 2 },
-      { Item = "orb_mobile", Amount = 1, Weight = 2 },
-      { Item = "orb_mirror", Amount = 1, Weight = 2 },
-      { Item = "orb_spurn", Amount = 1, Weight = 2 },
-      { Item = "orb_slumber", Amount = 1, Weight = 2 },
-      { Item = "orb_petrify", Amount = 1, Weight = 2 },
-      { Item = "orb_totter", Amount = 1, Weight = 2 },
-      { Item = "orb_invisify", Amount = 1, Weight = 2 },
-      { Item = "orb_totter", Amount = 1, Weight = 2 },
-      { Item = "orb_stayaway", Amount = 1, Weight = 2 },
-      { Item = "machine_recall_box", Amount = 1, Weight = 2 },
-      { Item = "machine_ability_capsule", Amount = 1, Weight = 2 },
-      { Item = "medicine_elixir", Amount = 1, Weight = 2 },
-      { Item = "medicine_full_heal", Amount = 1, Weight = 2 },
-      { Item = "medicine_max_elixir", Amount = 1, Weight = 2 },
-      { Item = "medicine_max_potion", Amount = 1, Weight = 2 },
-      { Item = "medicine_potion", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_accuracy", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_attack", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_defense", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_sp_atk", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_sp_atk", Amount = 1, Weight = 2 },
-      { Item = "medicine_x_speed", Amount = 1, Weight = 2 },
-      { Item = "ammo_cacnea_spike", Amount = 3, Weight = 3 },
-      { Item = "ammo_corsola_twig", Amount = 3, Weight = 3 },
-      { Item = "ammo_geo_pebble", Amount = 3, Weight = 3 },
-      { Item = "ammo_golden_thorn", Amount = 3, Weight = 3 },
-      { Item = "ammo_gravelerock", Amount = 3, Weight = 3 },
-      { Item = "ammo_iron_thorn", Amount = 3, Weight = 3 },
-      { Item = "ammo_rare_fossil", Amount = 3, Weight = 3 },
-      { Item = "ammo_silver_spike", Amount = 3, Weight = 3 },
-      { Item = "ammo_stick", Amount = 3, Weight = 3 },
-      { Item = "ammo_iron_thorn", Amount = 3, Weight = 3 },
-    }
-  },
-  {
-    Min = 10,
-    Max = 11,
-    Items = {
-      { Item = "machine_recall_box", Amount = 1, Weight = 10 },
-      { Item = "seed_joy", Amount = 1, Weight = 20 },
-      { Item = "seed_golden", Amount = 1, Weight = 2 },
-      { Item = "gummi_black", Amount = 1, Weight = 4 },
-      { Item = "gummi_blue", Amount = 1, Weight = 4 },
-      { Item = "gummi_brown", Amount = 1, Weight = 4 },
-      { Item = "gummi_clear", Amount = 1, Weight = 4 },
-      { Item = "gummi_gold", Amount = 1, Weight = 4 },
-      { Item = "gummi_grass", Amount = 1, Weight = 4 },
-      { Item = "gummi_green", Amount = 1, Weight = 4 },
-      { Item = "gummi_magenta", Amount = 1, Weight = 4 },
-      { Item = "gummi_orange", Amount = 1, Weight = 4 },
-      { Item = "gummi_pink", Amount = 1, Weight = 4 },
-      { Item = "gummi_purple", Amount = 1, Weight = 4 },
-      { Item = "gummi_red", Amount = 1, Weight = 4 },
-      { Item = "gummi_royal", Amount = 1, Weight = 4 },
-      { Item = "gummi_silver", Amount = 1, Weight = 4 },
-      { Item = "gummi_sky", Amount = 1, Weight = 4 },
-      { Item = "gummi_white", Amount = 1, Weight = 4 },
-      { Item = "gummi_yellow", Amount = 1, Weight = 4 },
-      { Item = "gummi_wonder", Amount = 1, Weight = 5 },
-      { Item = "boost_calcium", Amount = 1, Weight = 4 },
-      { Item = "boost_carbos", Amount = 1, Weight = 4 },
-      { Item = "boost_hp_up", Amount = 1, Weight = 4 },
-      { Item = "boost_iron", Amount = 1, Weight = 4 },
-      { Item = "boost_nectar", Amount = 1, Weight = 4 },
-      { Item = "boost_zinc", Amount = 1, Weight = 4 },
-      { Item = "tm_acrobatics", Amount = 1, Weight = 1 },
-      { Item = "tm_aerial_ace", Amount = 1, Weight = 1 },
-      { Item = "tm_attract", Amount = 1, Weight = 1 },
-      { Item = "tm_avalanche", Amount = 1, Weight = 1 },
-      { Item = "tm_blizzard", Amount = 1, Weight = 1 },
-      { Item = "tm_brick_break", Amount = 1, Weight = 1 },
-      { Item = "tm_brine", Amount = 1, Weight = 1 },
-      { Item = "tm_bulk_up", Amount = 1, Weight = 1 },
-      { Item = "tm_bulldoze", Amount = 1, Weight = 1 },
-      { Item = "tm_bullet_seed", Amount = 1, Weight = 1 },
-      { Item = "tm_calm_mind", Amount = 1, Weight = 1 },
-      { Item = "tm_captivate", Amount = 1, Weight = 1 },
-      { Item = "tm_charge_beam", Amount = 1, Weight = 1 },
-      { Item = "tm_cut", Amount = 1, Weight = 1 },
-      { Item = "tm_dark_pulse", Amount = 1, Weight = 1 },
-      { Item = "tm_dazzling_gleam", Amount = 1, Weight = 1 },
-      { Item = "tm_defog", Amount = 1, Weight = 1 },
-      { Item = "tm_dig", Amount = 1, Weight = 1 },
-      { Item = "tm_dive", Amount = 1, Weight = 1 },
-      { Item = "tm_double_team", Amount = 1, Weight = 1 },
-      { Item = "tm_dragon_claw", Amount = 1, Weight = 1 },
-      { Item = "tm_dragon_pulse", Amount = 1, Weight = 1 },
-      { Item = "tm_dragon_tail", Amount = 1, Weight = 1 },
-      { Item = "tm_drain_punch", Amount = 1, Weight = 1 },
-      { Item = "tm_dream_eater", Amount = 1, Weight = 1 },
-      { Item = "tm_earthquake", Amount = 1, Weight = 1 },
-      { Item = "tm_echoed_voice", Amount = 1, Weight = 1 },
-      { Item = "tm_embargo", Amount = 1, Weight = 1 },
-      { Item = "tm_endure", Amount = 1, Weight = 1 },
-      { Item = "tm_energy_ball", Amount = 1, Weight = 1 },
-      { Item = "tm_explosion", Amount = 1, Weight = 1 },
-      { Item = "tm_facade", Amount = 1, Weight = 1 },
-      { Item = "tm_false_swipe", Amount = 1, Weight = 1 },
-      { Item = "tm_fire_blast", Amount = 1, Weight = 1 },
-      { Item = "tm_flame_charge", Amount = 1, Weight = 1 },
-      { Item = "tm_flamethrower", Amount = 1, Weight = 1 },
-      { Item = "tm_flash", Amount = 1, Weight = 1 },
-      { Item = "tm_flash_cannon", Amount = 1, Weight = 1 },
-      { Item = "tm_fling", Amount = 1, Weight = 1 },
-      { Item = "tm_fly", Amount = 1, Weight = 1 },
-      { Item = "tm_focus_blast", Amount = 1, Weight = 1 },
-      { Item = "tm_focus_punch", Amount = 1, Weight = 1 },
-      { Item = "tm_frost_breath", Amount = 1, Weight = 1 },
-      { Item = "tm_frustration", Amount = 1, Weight = 1 },
-      { Item = "tm_giga_drain", Amount = 1, Weight = 1 },
-      { Item = "tm_giga_impact", Amount = 1, Weight = 1 },
-      { Item = "tm_grass_knot", Amount = 1, Weight = 1 },
-      { Item = "tm_gyro_ball", Amount = 1, Weight = 1 },
-      { Item = "tm_hail", Amount = 1, Weight = 1 },
-      { Item = "tm_hidden_power", Amount = 1, Weight = 1 },
-      { Item = "tm_hone_claws", Amount = 1, Weight = 1 },
-      { Item = "tm_hyper_beam", Amount = 1, Weight = 1 },
-      { Item = "tm_ice_beam", Amount = 1, Weight = 1 },
-      { Item = "tm_incinerate", Amount = 1, Weight = 1 },
-      { Item = "tm_infestation", Amount = 1, Weight = 1 },
-      { Item = "tm_iron_tail", Amount = 1, Weight = 1 },
-      { Item = "tm_light_screen", Amount = 1, Weight = 1 },
-      { Item = "tm_low_sweep", Amount = 1, Weight = 1 },
-      { Item = "tm_natural_gift", Amount = 1, Weight = 1 },
-      { Item = "tm_nature_power", Amount = 1, Weight = 1 },
-      { Item = "tm_overheat", Amount = 1, Weight = 1 },
-      { Item = "tm_payback", Amount = 1, Weight = 1 },
-      { Item = "tm_pluck", Amount = 1, Weight = 1 },
-      { Item = "tm_poison_jab", Amount = 1, Weight = 1 },
-      { Item = "tm_power_up_punch", Amount = 1, Weight = 1 },
-      { Item = "tm_protect", Amount = 1, Weight = 1 },
-      { Item = "tm_psych_up", Amount = 1, Weight = 1 },
-      { Item = "tm_psychic", Amount = 1, Weight = 1 },
-      { Item = "tm_psyshock", Amount = 1, Weight = 1 },
-      { Item = "tm_quash", Amount = 1, Weight = 1 },
-      { Item = "tm_rain_dance", Amount = 1, Weight = 1 },
-      { Item = "tm_recycle", Amount = 1, Weight = 1 },
-      { Item = "tm_reflect", Amount = 1, Weight = 1 },
-      { Item = "tm_rest", Amount = 1, Weight = 1 },
-      { Item = "tm_retaliate", Amount = 1, Weight = 1 },
-      { Item = "tm_return", Amount = 1, Weight = 1 },
-      { Item = "tm_roar", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_climb", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_polish", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_slide", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_smash", Amount = 1, Weight = 1 },
-      { Item = "tm_rock_tomb", Amount = 1, Weight = 1 },
-      { Item = "tm_roost", Amount = 1, Weight = 1 },
-      { Item = "tm_round", Amount = 1, Weight = 1 },
-      { Item = "tm_safeguard", Amount = 1, Weight = 1 },
-      { Item = "tm_sandstorm", Amount = 1, Weight = 1 },
-      { Item = "tm_scald", Amount = 1, Weight = 1 },
-      { Item = "tm_secret_power", Amount = 1, Weight = 1 },
-      { Item = "tm_shadow_ball", Amount = 1, Weight = 1 },
-      { Item = "tm_shadow_claw", Amount = 1, Weight = 1 },
-      { Item = "tm_shock_wave", Amount = 1, Weight = 1 },
-      { Item = "tm_silver_wind", Amount = 1, Weight = 1 },
-      { Item = "tm_sky_drop", Amount = 1, Weight = 1 },
-      { Item = "tm_sludge_bomb", Amount = 1, Weight = 1 },
-      { Item = "tm_sludge_wave", Amount = 1, Weight = 1 },
-      { Item = "tm_smack_down", Amount = 1, Weight = 1 },
-      { Item = "tm_snarl", Amount = 1, Weight = 1 },
-      { Item = "tm_snatch", Amount = 1, Weight = 1 },
-      { Item = "tm_steel_wing", Amount = 1, Weight = 1 },
-      { Item = "tm_stone_edge", Amount = 1, Weight = 1 },
-      { Item = "tm_strength", Amount = 1, Weight = 1 },
-      { Item = "tm_struggle_bug", Amount = 1, Weight = 1 },
-      { Item = "tm_substitute", Amount = 1, Weight = 1 },
-      { Item = "tm_sunny_day", Amount = 1, Weight = 1 },
-      { Item = "tm_surf", Amount = 1, Weight = 1 },
-      { Item = "tm_swagger", Amount = 1, Weight = 1 },
-      { Item = "tm_swords_dance", Amount = 1, Weight = 1 },
-      { Item = "tm_taunt", Amount = 1, Weight = 1 },
-      { Item = "tm_telekinesis", Amount = 1, Weight = 1 },
-      { Item = "tm_thief", Amount = 1, Weight = 1 },
-      { Item = "tm_thunder", Amount = 1, Weight = 1 },
-      { Item = "tm_thunder_wave", Amount = 1, Weight = 1 },
-      { Item = "tm_thunderbolt", Amount = 1, Weight = 1 },
-      { Item = "tm_torment", Amount = 1, Weight = 1 },
-      { Item = "tm_u_turn", Amount = 1, Weight = 1 },
-      { Item = "tm_venoshock", Amount = 1, Weight = 1 },
-      { Item = "tm_volt_switch", Amount = 1, Weight = 1 },
-      { Item = "tm_water_pulse", Amount = 1, Weight = 1 },
-      { Item = "tm_waterfall", Amount = 1, Weight = 1 },
-      { Item = "tm_whirlpool", Amount = 1, Weight = 1 },
-      { Item = "tm_wild_charge", Amount = 1, Weight = 1 },
-      { Item = "tm_will_o_wisp", Amount = 1, Weight = 1 },
-      { Item = "tm_work_up", Amount = 1, Weight = 1 },
-      { Item = "tm_x_scissor", Amount = 1, Weight = 1 },
-    },
-  },
-	{
-		Min = 6,
-		Max = 7,
-		Items = {
-			{ Item = "held_flame_orb", Amount = 1, Weight = 2 },
-			{ Item = "held_toxic_orb", Amount = 1, Weight = 2 },
-      { Item = "held_assault_vest", Amount = 1, Weight = 2 },
-			{ Item = "held_big_root", Amount = 1, Weight = 2 },
-      { Item = "held_black_belt", Amount = 1, Weight = 2 },
-			{ Item = "held_choice_band", Amount = 1, Weight = 2 },
-			{ Item = "held_choice_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_choice_specs", Amount = 1, Weight = 2 },
-			{ Item = "held_defense_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_expert_belt", Amount = 1, Weight = 2 },
-			{ Item = "held_pass_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_mobile_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_metronome", Amount = 1, Weight = 2 },
-			{ Item = "held_wide_lens", Amount = 1, Weight = 2 },
-			{ Item = "held_zinc_band", Amount = 1, Weight = 2 },
-			{ Item = "held_x_ray_specs", Amount = 1, Weight = 2 },
-			{ Item = "held_twist_band", Amount = 1, Weight = 2 },
-			{ Item = "held_trap_scarf", Amount = 1, Weight = 2 },
-			{ Item = "held_sticky_barb", Amount = 1, Weight = 2 },
-			{ Item = "held_power_band", Amount = 1, Weight = 2 },
-			{ Item = "held_pierce_band", Amount = 1, Weight = 2 },
-			{ Item = "held_reunion_cape", Amount = 1, Weight = 2 },
-			{ Item = "held_scope_lens", Amount = 1, Weight = 2 },
-			{ Item = "held_shed_shell", Amount = 1, Weight = 2 },
-			{ Item = "held_shell_bell", Amount = 1, Weight = 2 },
-			{ Item = "held_life_orb", Amount = 1, Weight = 2 },
-			{ Item = "held_iron_ball", Amount = 1, Weight = 2 },
-			{ Item = "held_goggle_specs", Amount = 1, Weight = 2 },
-			{ Item = "held_friend_bow", Amount = 1, Weight = 2 },
-			{ Item = "held_heal_ribbon", Amount = 1, Weight = 2 },
-			{ Item = "held_blank_plate", Amount = 1, Weight = 1},
-			{ Item = "held_draco_plate", Amount = 1, Weight = 1},
-			{ Item = "held_dread_plate", Amount = 1, Weight = 1},
-			{ Item = "held_earth_plate", Amount = 1, Weight = 1},
-			{ Item = "held_fist_plate", Amount = 1, Weight = 1},
-			{ Item = "held_flame_plate", Amount = 1, Weight = 1},
-			{ Item = "held_icicle_plate", Amount = 1, Weight = 1},
-			{ Item = "held_insect_plate", Amount = 1, Weight = 1},
-			{ Item = "held_iron_plate", Amount = 1, Weight = 1},
-			{ Item = "held_meadow_plate", Amount = 1, Weight = 1},
-			{ Item = "held_mind_plate", Amount = 1, Weight = 1},
-			{ Item = "held_pixie_plate", Amount = 1, Weight = 1},
-			{ Item = "held_sky_plate", Amount = 1, Weight = 1},
-			{ Item = "held_splash_plate", Amount = 1, Weight = 1},
-			{ Item = "held_spooky_plate", Amount = 1, Weight = 1},
-			{ Item = "held_stone_plate", Amount = 1, Weight = 1},
-			{ Item = "held_toxic_plate", Amount = 1, Weight = 1},
-			{ Item = "held_zap_plate", Amount = 1, Weight = 1},
-		}
-	},
-	{
-		Min = 6,
-		Max = 7,
-		Items = {
-			{ Item = "apricorn_big", Amount = 1, Weight = 4 },
-			{ Item = "apricorn_black", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_blue", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_brown", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_green", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_plain", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_purple", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_red", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_white", Amount = 1, Weight = 2 },
-			{ Item = "apricorn_yellow", Amount = 1, Weight = 2 },
-			{ Item = "medicine_amber_tear", Amount = 1, Weight = 9 },
-			{ Item = "machine_assembly_box", Amount = 1, Weight = 4 },
-		},
-	}
-}
 
 function ResetEffectTile(owner)
   local effect_tile = owner
@@ -407,6 +675,7 @@ end
 function SINGLE_CHAR_SCRIPT.CrystalStatusCheck(owner, ownerChar, context, args)
   local status = args.Status
   local max_stack = args.MaxStack
+	-- print(tostringmax_stack)
   local string_key = args.StringKey
   local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(status, false, false, 1)
   local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
@@ -432,12 +701,8 @@ function SINGLE_CHAR_SCRIPT.LogShimmeringEvent(owner, ownerChar, context, args)
   if context.User ~= nil then
     return
   end
-  -- SOUND:PlayFanfare("Fanfare/Note")
-  -- UI:ResetSpeaker()
-  -- UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_DESTINATION"):ToLocal()))
   local msg = RogueEssence.StringKey(args.StringKey):ToLocal()
   _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg))
-  -- UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_DESTINATION"):ToLocal()))
 end
 -- local new_context = RogueEssence.Dungeon.SingleCharContext(target)
 -- TASK:WaitTask(monster_event:Apply(owner, ownerChar, new_context))
@@ -459,43 +724,30 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
 
   local base_loc = owner.TileLoc
   local entries = {
-    {item = "wish_gem", weight = 450},
-    -- {item = "loot_nugget", weight = 20},
-    -- {item = "loot_pearl", weight = 75},
-    -- {item = "evo_fire_stone", weight = 5},
-    -- {item = "evo_water_stone", weight = 5},
-    -- {item = "evo_thunder_stone", weight = 5},
-    -- {item = "evo_leaf_stone", weight = 5},
-    -- {item = "evo_ice_stone", weight = 5}, -- 25
-    -- {item = "evo_moon_stone", weight = 5}, -- 35
-    -- {item = "evo_dusk_stone", weight = 5}, -- 40
-    -- {item = "evo_dawn_stone", weight = 5}, -- 45
-    -- {item = "evo_shiny_stone", weight = 5}, -- 55
-    -- {item = "", weight = 405},
-    -- {item = "nugget", weight = 5},
+    { Item = "wish_gem", Weight = 1, Amount = 1 },
   }
   GAME:WaitFrames(10)
-  local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dig", 3))
+	local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dig", 3), 1)
   DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
   SOUND:PlayBattleSE("DUN_Dig")
   GAME:WaitFrames(10)
   
-  local item = PickByWeights(entries)
+  local entry = PickByWeights(entries)
 
-  if item ~= "" then
-    local inv_item =  RogueEssence.Dungeon.InvItem(item, false, 1)
+  if entry.Item ~= "" then
+    local inv_item =  RogueEssence.Dungeon.InvItem(entry.Item, false, entry.Amount)
     local map_item = RogueEssence.Dungeon.MapItem(inv_item)
     map_item.TileLoc = owner.TileLoc
     local start_loc = base_loc * RogueEssence.Content.GraphicsManager.TileSize - RogueElements.Loc(-RogueEssence.Content.GraphicsManager.TileSize / 2, -20)
     local end_loc = base_loc * RogueEssence.Content.GraphicsManager.TileSize - RogueElements.Loc(-RogueEssence.Content.GraphicsManager.TileSize / 2, -10)
-    local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10);
+    local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(entry.Item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
     _DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Normal)
     
     GAME:WaitFrames(10)
     local msg = RogueEssence.StringKey("MSG_GLOW_FOUND_ITEM"):ToLocal()
     _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg, context.User:GetDisplayName(true), inv_item:GetDisplayName()))
     GAME:WaitFrames(10)
-    _ZONE.CurrentMap.Items:Add(map_item);
+    _ZONE.CurrentMap.Items:Add(map_item)
   else
     local msg = RogueEssence.StringKey("MSG_GLOW_FOUND_NO_ITEM"):ToLocal()
     _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg, context.User:GetDisplayName(true)))
@@ -514,14 +766,18 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
   local effect_tile = owner
   local x_offset = 0
   local y_offset = 1
-  local base_loc = effect_tile.TileLoc + RogueElements.Loc(x_offset, y_offset)
-  local Items = args.Items
+	local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
+	local Guaranteed = args.Guaranteed
+	local AlwaysSpawn = args.AlwaysSpawn
+	-- print(tostring(Guaranteed))
   if type(args.MinAmount) == "number" then min_amount = args.MinAmount end
   if type(args.MaxAmount) == "number" then max_amount = args.MaxAmount end
   if type(args.MaxRangeWidth) == "number" then max_range_width = args.MaxRangeWidth end
   if type(args.MaxRangeHeight) == "number" then max_range_height = args.MaxRangeHeight end
-  if type(args.xOffset) == "number" then x_offset = args.xOffset end
-  if type(args.yOffset) == "number" then y_offset = args.yOffset end
+  if type(args.OffsetX) == "number" then x_offset = args.OffsetX end
+  if type(args.OffsetY) == "number" then y_offset = args.OffsetY end
+
+	local base_loc = effect_tile.TileLoc + RogueElements.Loc(x_offset, y_offset)
 
   function checkOp(test_loc)
     local test_tile = _ZONE.CurrentMap:GetTile(test_loc)
@@ -538,6 +794,16 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
     return false
 	end
 
+	for _, value in ipairs(args.Items) do
+		local item_name = value.Item
+		if item_name == "money" then
+			Items:Add(RogueEssence.Dungeon.MapItem.CreateMoney(value.Amount), value.Weight)
+		else
+			-- print(tostring(_DATA:GetItem(item_name).Price))
+			-- _DATA:GetItem(item_name).Price * value.Amount
+			Items:Add(RogueEssence.Dungeon.MapItem(item_name, value.Amount), value.Weight)
+		end
+	end
 
   local loc_x = base_loc.X
   local loc_y = base_loc.Y
@@ -550,6 +816,60 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
 
   local amount = _DATA.Save.Rand:Next(min_amount, max_amount)
 
+
+	if AlwaysSpawn ~= nil then
+		for _, item_name in ipairs(AlwaysSpawn) do
+			if free_tiles.Count == 0 then
+				break
+			end
+			local item = RogueEssence.Dungeon.MapItem(item_name, 1)
+			local rand_index = _DATA.Save.Rand:Next(free_tiles.Count)
+			local item_target_loc = free_tiles[rand_index]
+			item.TileLoc = _ZONE.CurrentMap:WrapLoc(item_target_loc)
+			free_tiles:RemoveAt(rand_index)
+			local offset = RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2)
+			local sprite
+			if item.IsMoney then
+				sprite = RogueEssence.Content.GraphicsManager.MoneySprite
+			else
+				sprite = _DATA:GetItem(item.Value).Sprite
+			end
+			local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60)
+			_DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Bottom)
+			GAME:WaitFrames(5)
+			_ZONE.CurrentMap.Items:Add(item)
+		end	
+	end
+	for _, entries in ipairs(Guaranteed) do
+		if free_tiles.Count == 0 then
+      break
+    end
+		local entry = PickByWeights(entries)
+		local item_name = entry.Item
+		local item
+		if item_name == "money" then
+			item = RogueEssence.Dungeon.MapItem.CreateMoney(entry.Amount)
+		else
+			item = RogueEssence.Dungeon.MapItem(item_name, entry.Amount)
+		end
+
+		local rand_index = _DATA.Save.Rand:Next(free_tiles.Count)
+    local item_target_loc = free_tiles[rand_index]
+    item.TileLoc = _ZONE.CurrentMap:WrapLoc(item_target_loc)
+    free_tiles:RemoveAt(rand_index)
+		local offset = RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2)
+    local sprite
+    if item.IsMoney then
+      sprite = RogueEssence.Content.GraphicsManager.MoneySprite
+    else
+      sprite = _DATA:GetItem(item.Value).Sprite
+    end
+    local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60)
+    _DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Bottom)
+    GAME:WaitFrames(5)
+    _ZONE.CurrentMap.Items:Add(item)
+	end
+
   for ii = 0, amount - 1, 1 do
     if free_tiles.Count == 0 then
       break
@@ -557,7 +877,7 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
 
     local spawn_index = Items:PickIndex(_ZONE.CurrentMap.Rand)
     local item = RogueEssence.Dungeon.MapItem(Items:GetSpawn(spawn_index))
-    local rand_index = _DATA.Save.Rand:Next(free_tiles.Count);
+    local rand_index = _DATA.Save.Rand:Next(free_tiles.Count)
     local item_target_loc = free_tiles[rand_index]
     item.TileLoc = _ZONE.CurrentMap:WrapLoc(item_target_loc)
     spawn_items:Add(item)
@@ -569,10 +889,10 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
     else
       sprite = _DATA:GetItem(item.Value).Sprite
     end
-    local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60);
+    local item_anim = RogueEssence.Content.ItemAnim(item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset - RogueElements.Loc(0, 200), item_target_loc * RogueEssence.Content.GraphicsManager.TileSize + offset, sprite, RogueEssence.Content.GraphicsManager.TileSize * 2, 60)
     _DUNGEON:CreateAnim(item_anim, RogueEssence.Content.DrawLayer.Bottom)
     GAME:WaitFrames(5)
-    _ZONE.CurrentMap.Items:Add(spawn_items[ii]);
+    _ZONE.CurrentMap.Items:Add(spawn_items[ii])
   end
 end
 
@@ -584,10 +904,12 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 	DUNGEON:CharSetAction(chara, RogueEssence.Dungeon.CharAnimPose(chara.CharLoc, chara.CharDir, 0, -1))
 	local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
 	crystal_moment_status:LoadFromData()
-	TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+	if _DATA.CurrentReplay == nil then
+		TASK:WaitTask(_DUNGEON:AddMapStatus(crystal_moment_status))
+	end
 
 	_ZONE.CurrentMap.HideMinimap = true
-	local curr_song = RogueEssence.GameManager.Instance.Song;
+	local curr_song = RogueEssence.GameManager.Instance.Song
 	SOUND:StopBGM()
 	UI:WaitShowDialogue("...[pause=0]Time momentarily pauses.[pause=0] The world around you holds their breath, as the crystal shines brightly.")
 	UI:ChoiceMenuYesNo("Would you like to make a wish?", false)
@@ -595,64 +917,63 @@ function SINGLE_CHAR_SCRIPT.ItemWishEvent(owner, ownerChar, context, args)
 	local result = UI:ChoiceResult()
 	if result then
 		local slot = GAME:FindPlayerItem("wish_gem", true, true) 
-		if slot:IsValid() then        
-			local end_choice = 7
-			local wish_choices = {"Money", "Food", "Utility", "Power", "Equipment", "Recruitment", "Don't know"}    
+		if slot:IsValid() then
+			local wish_choices = map(DUNGEON_WISH_TABLE, function(item) return item.Category end)
+			table.insert(wish_choices, "Don't know")
+			local end_choice = #wish_choices
 			UI:BeginChoiceMenu("What do you desire?", wish_choices, 1, end_choice)
 			UI:WaitForChoice()
 			choice = UI:ChoiceResult()
-			if choice ~= 7 then
+			if choice ~= end_choice then
 				if slot.IsEquipped then
 					GAME:TakePlayerEquippedItem(slot.Slot)
 				else
 					GAME:TakePlayerBagItem(slot.Slot)
 				end
 				GAME:WaitFrames(50)
-				SOUND:PlayBattleSE("_UNK_EVT_044");
+				SOUND:PlayBattleSE("_UNK_EVT_044")
 				GAME:WaitFrames(10)
 				GAME:FadeOut(true, 40)
-				-- SOUND:PlayBattleSE("_UNK_EVT_091");
-				-- SOUND:PlayBattleSE("_UNK_EVT_096");
-				SOUND:PlayBattleSE("EVT_EP_Regi_Permission");
-				-- SOUND:PlayBattleSE("EVT_Dimenstional_Scream");
-				-- SOUND:PlayBattleSE("EVT_Fade_White");
-				-- SOUND:PlayBattleSE("EVT_Evolution_Start");
+				-- SOUND:PlayBattleSE("_UNK_EVT_091")
+				-- SOUND:PlayBattleSE("_UNK_EVT_096")
+				SOUND:PlayBattleSE("EVT_EP_Regi_Permission")
+				-- SOUND:PlayBattleSE("EVT_Dimenstional_Scream")
+				-- SOUND:PlayBattleSE("EVT_Fade_White")
+				-- SOUND:PlayBattleSE("EVT_Evolution_Start")
 				TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
-				-- SOUND:PlayBattleSE("_UNK_EVT_074");
-				-- SOUND:PlayBattleSE("_UNK_EVT_084");
-							-- SOUND:PlayBattleSE("_UNK_EVT_087");
+				-- SOUND:PlayBattleSE("_UNK_EVT_074")
+				-- SOUND:PlayBattleSE("_UNK_EVT_084")
+							-- SOUND:PlayBattleSE("_UNK_EVT_087")
 				local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Last_Resort_Front", 4), 1)
 
-				-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10);
-				emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left);
-				_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw);
+				-- local item_anim = RogueEssence.Content.ItemAnim(start_loc, end_loc, _DATA:GetItem(item).Sprite, RogueEssence.Content.GraphicsManager.TileSize / 2, 10)
+				emitter:SetupEmit(owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), owner.TileLoc * RogueEssence.Content.GraphicsManager.TileSize + RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2), Direction.Left)
+				_DUNGEON:CreateAnim(emitter, DrawLayer.NoDraw)
 				GAME:FadeIn(60)
 				GAME:WaitFrames(80)
+
+
+				local item_table = DUNGEON_WISH_TABLE[choice]
 				local arguments = {}
-				local Items = LUA_ENGINE:MakeGenericType(SpawnListType, { MapItemType }, { })
-				local item_table = WISH_TABLE[choice]
 				arguments.MinAmount = item_table.Min
 				arguments.MaxAmount = item_table.Max
-				local items = item_table.Items
-				for _, value in ipairs(items) do
-					local item_name = value.Item
-					if item_name == "money" then
-						Items:Add(RogueEssence.Dungeon.MapItem.CreateMoney(value.Amount), value.Weight)
-					else
-						Items:Add(RogueEssence.Dungeon.MapItem(item_name, value.Amount), value.Weight)
-					end
-				end
-				arguments.Items = Items
+				arguments.Guaranteed = item_table.Guaranteed
+				arguments.Items = item_table.Items
 				SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-				GAME:WaitFrames(20)
+				GAME:WaitFrames(60)
 			end
 		else
 			UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
 		end
 	end
+	-- GAME:WaitFrames(5)
 	UI:WaitShowDialogue("The crystal became dimmer.")
 	
-	TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+
+	if _DATA.CurrentReplay == nil then
+		TASK:WaitTask(_DUNGEON:RemoveMapStatus("crystal_moment", false))
+		-- TASK:WaitTask(_DUNGEON:ProcessBattleFX(context.User, context.User, _DATA.SendHomeFX))
+	end
 	SOUND:PlayBGM(curr_song, true, 0)
 	GAME:WaitFrames(20)
 
@@ -672,54 +993,45 @@ function SINGLE_CHAR_SCRIPT.AskWishEvent(owner, ownerChar, context, args)
 		_DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
 end
 
-function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.AskExitEvent(owner, ownerChar, context, args)
 	local chara = context.User
-	if chara == nil then
-		return
+	if chara ~= _DUNGEON.ActiveTeam.Leader then
+		return 
 	end
-	chara.StatusEffects:Clear();
-	chara.ProxyAtk = -1;
-	chara.ProxyDef = -1;
-	chara.ProxyMAtk = -1;
-	chara.ProxyMDef = -1;
-	chara.ProxySpeed = -1
-	chara:FullRestore()
-end
 
+	_DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
+end
 
 function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, context, args)
 	local chara = context.User
 	if chara == nil then
 		return
 	end
-	chara.StatusEffects:Clear();
-	chara.ProxyAtk = -1;
-	chara.ProxyDef = -1;
-	chara.ProxyMAtk = -1;
-	chara.ProxyMDef = -1;
+	chara.StatusEffects:Clear()
+	chara.ProxyAtk = -1
+	chara.ProxyDef = -1
+	chara.ProxyMAtk = -1
+	chara.ProxyMDef = -1
 	chara.ProxySpeed = -1
 	chara:FullRestore()
 end
-
 
 function PickByWeights(entries)
   local total_weight = 0
   
   for _, entry in ipairs(entries) do
-    total_weight = total_weight + entry.weight
+    total_weight = total_weight + entry.Weight
   end
   
   local rand_val = GAME.Rand:NextDouble() * total_weight
   local cummul_weight = 0
   for _, entry in ipairs(entries) do
-    cummul_weight = cummul_weight + entry.weight
+    cummul_weight = cummul_weight + entry.Weight
     if rand_val <= cummul_weight then
-      return entry.item
+      return entry
     end
   end
 end
-
-
 function SINGLE_CHAR_SCRIPT.Test(owner, ownerChar, context, args)
   PrintInfo("Test")
 end
@@ -968,6 +1280,39 @@ function SINGLE_CHAR_SCRIPT.ThiefCheck(owner, ownerChar, context, args)
   end
 end
 
+function SINGLE_CHAR_SCRIPT.ExplorationReached(owner, ownerChar, context, args)
+	local index = args.Mission
+	local mission = SV.TakenBoard[index]
+	local escort = COMMON.FindMissionEscort(index)
+	local escortName = _DATA:GetMonster(mission.Client):GetColoredName()
+	PrintInfo("Exploration reached at index "..index.." !")
+	if escort ~= nil and escortName ~= nil then
+		UI:ResetSpeaker()
+		SV.TemporaryFlags.MissionCompleted = true
+		UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MISSION_EXPLORATION_REACHED"):ToLocal(), escortName))
+		SV.TemporaryFlags.PriorMapSetting = _DUNGEON.ShowMap
+		_DUNGEON.ShowMap = _DUNGEON.MinimapState.None
+		GAME:WaitFrames(20)
+		UI:SetSpeaker(escort)
+		UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MISSION_EXPLORATION_THANKS"):ToLocal()))
+		GAME:WaitFrames(20)
+		UI:ResetSpeaker()
+		UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MISSION_EXPLORATION_DEPART"):ToLocal(), escortName))
+		GAME:WaitFrames(20)
+
+		--Set max team size to 4 as the guest is no longer "taking" up a party slot
+		RogueEssence.Dungeon.ExplorerTeam.MAX_TEAM_SLOTS = 4
+
+		-- warp out
+		TASK:WaitTask(_DUNGEON:ProcessBattleFX(escort, escort, _DATA.SendHomeFX))
+		_DUNGEON:RemoveChar(escort)
+		_ZONE.CurrentMap.DisplacedChars:Remove(escort)
+
+		GAME:WaitFrames(50)
+		COMMON.AskMissionWarpOut()
+	end
+end
+
 function SINGLE_CHAR_SCRIPT.ShopCheckout(owner, ownerChar, context, args)
   local baseLoc = _DUNGEON.ActiveTeam.Leader.CharLoc
   local tile = _ZONE.CurrentMap.Tiles[baseLoc.X][baseLoc.Y]
@@ -986,7 +1331,7 @@ function SINGLE_CHAR_SCRIPT.ShopCheckout(owner, ownerChar, context, args)
 		  -- check to see if the shopkeeper can see the player and warp there
 		  local near_mat = false
 		  local dirs = { Direction.Down, Direction.DownLeft, Direction.Left, Direction.UpLeft, Direction.Up, Direction.UpRight, Direction.Right, Direction.DownRight }
-		  for idx, dir in pairs(dirs) do
+		  for idx, dir in ipairs(dirs) do
             if COMMON.ShopTileCheck(baseLoc, dir) then
 		      near_mat = true
 		    end
@@ -1085,8 +1430,7 @@ function SINGLE_CHAR_SCRIPT.DestinationFloor(owner, ownerChar, context, args)
   UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_DESTINATION"):ToLocal()))
 end
 
-
-function SINGLE_CHAR_SCRIPT.OutlawFloor(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.SidequestOutlawFloor(owner, ownerChar, context, args)
   if context.User ~= nil then
     return
   end
@@ -1120,7 +1464,9 @@ end
 function SINGLE_CHAR_SCRIPT.OutlawClearCheck(owner, ownerChar, context, args)
   -- check for no outlaw in the mission list
   remaining_outlaw = false
-  for name, mission in pairs(SV.missions.Missions) do
+
+  for _, name in ipairs(COMMON.GetSortedKeys(SV.missions.Missions)) do
+    mission = SV.missions.Missions[name]
     if mission.Complete == COMMON.MISSION_INCOMPLETE and _ZONE.CurrentZoneID == mission.DestZone
 	  and _ZONE.CurrentMapID.Segment == mission.DestSegment and _ZONE.CurrentMapID.ID == mission.DestFloor then
 	  local found_outlaw = COMMON.FindNpcWithTable(true, "Mission", name)
@@ -1151,6 +1497,426 @@ function SINGLE_CHAR_SCRIPT.OutlawClearCheck(owner, ownerChar, context, args)
     local checkClearStatus = "outlaw_clear_check" -- outlaw clear check
 	TASK:WaitTask(_DUNGEON:RemoveMapStatus(checkClearStatus))
   end
+end
+
+
+function SpawnOutlaw(origin, radius, mission_num)
+	local mission = SV.TakenBoard[mission_num]
+	local max_boost = 128
+	local top_left = RogueElements.Loc(origin.X - radius, origin.Y - radius)
+	local bottom_right =  RogueElements.Loc(origin.X + radius, origin.Y + radius)
+
+	local rect_area = RogueElements.Loc(1)
+	local rect_area2 = RogueElements.Loc(3)
+	function checkBlock(loc)
+
+		local result = _ZONE.CurrentMap:TileBlocked(loc)
+		return result
+	end
+
+	function checkDiagBlock(loc)
+		return true
+	end
+
+	local spawn_candidates = {}
+	for x = top_left.X, bottom_right.X, 1 do
+		for y = top_left.Y, bottom_right.Y, 1 do
+			local testLoc = RogueElements.Loc(x, y)
+			--local is_choke_point = RogueElements.Grid.IsChokePoint(testLoc - rect_area, rect_area2, testLoc, checkBlock, checkDiagBlock)
+			local tile_block = _ZONE.CurrentMap:TileBlocked(testLoc)
+			local char_at = _ZONE.CurrentMap:GetCharAtLoc(testLoc)
+
+			--don't spawn the outlaw directly next to the player or their teammates
+			local next_to_player_units = false
+			for i = 1, GAME:GetPlayerPartyCount(), 1 do
+				local party_member = GAME:GetPlayerPartyMember(i-1)
+				if math.abs(party_member.CharLoc.X - x) <= 1 and math.abs(party_member.CharLoc.Y - y) <= 1 then
+					next_to_player_units = true
+					break
+				end
+			end
+
+			--guests too!
+			for i = 1, GAME:GetPlayerGuestCount(), 1 do
+				local party_member = GAME:GetPlayerGuestMember(i-1)
+				if math.abs(party_member.CharLoc.X - x) <= 1 and math.abs(party_member.CharLoc.Y - y) <= 1 then
+					next_to_player_units = true
+					break
+				end
+			end
+
+			if tile_block == false and char_at == nil and not next_to_player_units then
+				table.insert(spawn_candidates, testLoc)
+			end
+		end
+	end
+
+	if #spawn_candidates < 1 then
+		PrintInfo("Error: Outlaw couldn't spawn for current floor, not enough spawn candidates.")
+		return
+	end
+
+	local spawn_loc = spawn_candidates[_DATA.Save.Rand:Next(1, #spawn_candidates)]
+	local new_team = RogueEssence.Dungeon.MonsterTeam()
+	local mob_data = RogueEssence.Dungeon.CharData(true)
+	local base_form_idx = 0
+	local form = _DATA:GetMonster(mission.Target).Forms[base_form_idx]
+	-- local gender = form:RollGender(RogueElements.MathUtils.Rand)
+	mob_data.BaseForm = RogueEssence.Dungeon.MonsterID(mission.Target, base_form_idx, "normal", COMMON.NumToGender(mission.TargetGender))
+	mob_data.Level = math.floor(SV.ExpectedLevel[mission.Zone] * 1.15)
+	local ability = form:RollIntrinsic(RogueElements.MathUtils.Rand, 3)
+	mob_data.BaseIntrinsics[0] = ability
+	local new_mob = RogueEssence.Dungeon.Character(mob_data)
+	--Old move learning logic
+	--StringType = luanet.import_type('System.String')
+	--local extra_moves = LUA_ENGINE:MakeGenericType(ListType, { StringType }, { })
+	--local final_skills = form:RollLatestSkills(new_mob.Level, extra_moves)
+
+	--for i = 0, final_skills.Count - 1, 1 do
+	--	local skill = final_skills[i]
+	--	new_mob:LearnSkill(skill, true)
+	--end
+
+
+	--TODO: Add logic to make sure outlaw has at least one decent attacking move based on their level.
+	--<skilldata>.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical
+	--Pick 4 moves at random in the mon's level up table at that point. 
+	--certain moves are blacklisted due to snaids.
+	local skill_candidates = {}
+	local skill_blacklist = {'teleport', 'gullotine', 'sheer_cold', 'horn_drill', 'fissure', 'memento',
+							 'healing_wish', 'lunar_dance', 'self_destruct', 'explosion', 'final_gambit', 'perish_song',
+							 'dragon_rage'}
+
+	--print("Outlaw level is!: " .. tostring(mob_data.Level))
+	--generate the skill candidate list based on level and the blacklist
+	for i = 0,  _DATA:GetMonster(new_mob.BaseForm.Species).Forms[new_mob.BaseForm.Form].LevelSkills.Count - 1, 1 do
+		local skill =_DATA:GetMonster(new_mob.BaseForm.Species).Forms[new_mob.BaseForm.Form].LevelSkills[i].Skill
+		if _DATA:GetMonster(new_mob.BaseForm.Species).Forms[new_mob.BaseForm.Form].LevelSkills[i].Level <= new_mob.Level and not COMMON.InArray(skill, skill_blacklist) then
+			--print("new skill candidate!: " .. skill)
+			table.insert(skill_candidates, skill)
+		end
+	end
+
+	--learn as many skills as we can from the candidate list.
+	local learn_count = 0
+	while learn_count < 4 and #skill_candidates > 0 do
+		local randval = _DATA.Save.Rand:Next(1, #skill_candidates)
+		local learned_skill = skill_candidates[randval]
+		new_mob:LearnSkill(learned_skill, true)
+		learn_count = learn_count + 1
+		--print("Outlaw learned " .. learned_skill)
+		table.remove(skill_candidates, randval)
+	end
+
+
+	local tactic = nil
+	if mission.Type == COMMON.MISSION_TYPE_OUTLAW_FLEE then
+		local speedMin = math.floor(SV.ExpectedLevel[mission.Zone] / 1.5)
+		local speedMax = math.floor(SV.ExpectedLevel[mission.Zone] * 1.5)
+		new_mob.SpeedBonus = math.min(_DATA.Save.Rand:Next(speedMin, speedMax), 50)
+		tactic = _DATA:GetAITactic("super_flee_stairs")
+	else
+		tactic = _DATA:GetAITactic("boss")
+	end
+
+	if mission.Type == COMMON.MISSION_TYPE_OUTLAW_ITEM then
+		new_mob.EquippedItem = RogueEssence.Dungeon.InvItem(mission.Item)
+	end
+
+	new_mob.MaxHPBonus = math.min(SV.ExpectedLevel[mission.Zone] * 2, max_boost);
+	new_mob.HP = new_mob.MaxHP;
+	new_mob.Unrecruitable = true
+	new_mob.Tactic = tactic
+	new_mob.CharLoc = spawn_loc
+	new_team.Players:Add(new_mob)
+
+	tbl = LTBL(new_mob)
+	tbl.Mission = mission_num
+
+	_ZONE.CurrentMap.MapTeams:Add(new_team)
+	new_mob:RefreshTraits()
+	_ZONE.CurrentMap:UpdateExploration(new_mob)
+
+	local base_name = RogueEssence.Data.DataManager.Instance.DataIndices[RogueEssence.Data.DataManager.DataType.Monster]:Get(new_mob.BaseForm.Species).Name:ToLocal()
+	GAME:SetCharacterNickname(new_mob, base_name)
+	return new_mob
+end
+
+
+function SINGLE_CHAR_SCRIPT.OutlawFloor(owner, ownerChar, context, args)
+	local outlaw = context.User
+	local tbl = LTBL(outlaw)
+	if tbl ~= nil and tbl.Mission then
+		local mission_num = args.Mission
+		local mission = SV.TakenBoard[mission_num]
+		outlaw.Nickname = RogueEssence.Dungeon.CharData.GetFullFormName( RogueEssence.Dungeon.MonsterID(mission.Target, 0, "normal", COMMON.NumToGender(mission.TargetGender)))
+		SOUND:PlayBGM("C07. Outlaw.ogg", true, 20)
+		UI:ResetSpeaker()
+		DUNGEON:CharTurnToChar(outlaw, GAME:GetPlayerPartyMember(0))
+		COMMON.TeamTurnTo(outlaw)
+		UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW"):ToLocal()))
+
+		if mission.Type == COMMON.MISSION_TYPE_OUTLAW_FLEE then
+			GAME:WaitFrames(20)
+			UI:SetSpeaker(outlaw)
+			UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW_FLEE"):ToLocal()))
+			local leaderDir = _DUNGEON.ActiveTeam.Leader.CharDir
+			outlaw.CharDir = leaderDir
+		elseif mission.Type == COMMON.MISSION_TYPE_OUTLAW_MONSTER_HOUSE then
+			GAME:WaitFrames(20)
+			UI:SetSpeaker(outlaw)
+			UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW_TRAP"):ToLocal()))
+			SOUND:FadeOutBGM(20)
+			GAME:WaitFrames(20)
+
+			-- ===========Monster house spawning logic============
+			local rect_area = RogueElements.Loc(1)
+			local rect_area2 = RogueElements.Loc(3)
+
+			function checkBlock(loc)
+				local result = _ZONE.CurrentMap:TileBlocked(loc)
+				return result
+			end
+
+			function checkDiagBlock(loc)
+				return true
+			end
+			
+			local goon_spawn_radius = 5
+
+			local origin = _DUNGEON.ActiveTeam.Leader.CharLoc
+
+			local leftmost_x = math.maxinteger
+			local rightmost_x = math.mininteger
+
+			local downmost_y = math.mininteger
+			local upmost_y = math.maxinteger
+
+
+			local topLeft = RogueElements.Loc(origin.X - goon_spawn_radius, origin.Y - goon_spawn_radius)
+			local bottomRight =  RogueElements.Loc(origin.X + goon_spawn_radius, origin.Y + goon_spawn_radius)
+
+			PrintInfo("Spawning monster house with top left "..topLeft.X..", "..topLeft.Y.." and bottom right "..bottomRight.X..", "..bottomRight.Y)
+			
+			local valid_tile_total = 0
+			for x = math.max(topLeft.X, 0), math.min(bottomRight.X, _ZONE.CurrentMap.Width - 1), 1 do
+				for y = math.max(topLeft.Y, 0), math.min(bottomRight.Y, _ZONE.CurrentMap.Height - 1), 1 do
+					local testLoc = RogueElements.Loc(x,y)
+					--local is_choke_point = RogueElements.Grid.IsChokePoint(testLoc - rect_area, rect_area2, testLoc, checkBlock, checkDiagBlock)
+					local tile_block = _ZONE.CurrentMap:TileBlocked(testLoc)
+					local char_at = _ZONE.CurrentMap:GetCharAtLoc(testLoc)
+
+					if tile_block == false and char_at == nil then
+						valid_tile_total = valid_tile_total + 1
+						leftmost_x = math.min(testLoc.X, leftmost_x)
+						rightmost_x = math.max(testLoc.X, rightmost_x)
+						downmost_y = math.max(testLoc.Y, downmost_y)
+						upmost_y = math.min(testLoc.Y, upmost_y)
+					end
+				end
+			end
+
+			local house_event = PMDC.Dungeon.MonsterHouseMapEvent();
+			
+			local tl = RogueElements.Loc(leftmost_x - 1, upmost_y - 1)
+			local br =  RogueElements.Loc(rightmost_x + 1, downmost_y + 1)
+
+			local bounds = RogueElements.Rect.FromPoints(tl, br)
+			house_event.Bounds = bounds
+
+			local min_goons = math.floor(valid_tile_total / 5)
+			local max_goons = math.floor(valid_tile_total / 4)
+			local total_goons = _DATA.Save.Rand:Next(min_goons, max_goons)
+
+			local all_spawns = LUA_ENGINE:MakeGenericType( ListType, { MobSpawnType }, { })
+			for i = 0,  _ZONE.CurrentMap.TeamSpawns.Count - 1, 1 do
+				local possible_spawns = _ZONE.CurrentMap.TeamSpawns:GetSpawn(i):GetPossibleSpawns()
+				for j = 0, possible_spawns.Count - 1, 1 do
+					local spawn = possible_spawns:GetSpawn(j):Copy()
+					all_spawns:Add(spawn)
+				end
+			end
+
+			for _ = 1, total_goons, 1 do
+				local randint = _DATA.Save.Rand:Next(0, all_spawns.Count)
+				local spawn = all_spawns[randint]
+				spawn.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnLuaTable('{ Goon = '..mission_num..' }'))
+				spawn.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnUnrecruitable())
+				house_event.Mobs:Add(spawn)
+			end
+			local charaContext = RogueEssence.Dungeon.SingleCharContext(_DUNGEON.ActiveTeam.Leader)
+			TASK:WaitTask(house_event:Apply(owner, ownerChar, charaContext))
+			GAME:WaitFrames(20)
+		else
+			--to prevent accidental button mashing making you waste your turn
+			GAME:WaitFrames(20)
+		end
+	end
+end
+
+
+function SINGLE_CHAR_SCRIPT.OnOutlawDeath(owner, ownerChar, context, args)
+	local mission_num = args.Mission
+	local tbl = LTBL(context.User)
+	if tbl.Mission then
+		SV.OutlawDefeated = true
+		local curr_mission = SV.TakenBoard[mission_num]
+		if curr_mission.Type == COMMON.MISSION_TYPE_OUTLAW_ITEM then
+			SOUND:PlayBGM(_ZONE.CurrentMap.Music, true)
+		end
+	end
+
+	tbl.Mission = nil
+	tbl.Goon = nil
+
+	local found_goon = COMMON.FindNpcWithTable(true, "Goon", mission_num)
+	if not found_goon then
+		SV.OutlawGoonsDefeated = true
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.OnMonsterHouseOutlawCheck(owner, ownerChar, context, args)
+	local mission_number = args.Mission
+	local curr_mission = SV.TakenBoard[mission_number]
+	local outlaw_name = _DATA:GetMonster(curr_mission.Target):GetColoredName()
+
+	if curr_mission.Completion == COMMON.MISSION_INCOMPLETE then
+		local found_outlaw = COMMON.FindNpcWithTable(true, "Mission", mission_number)
+		local found_goon = COMMON.FindNpcWithTable(true, "Goon", mission_number)
+		--print("found outlaw = " .. tostring(found_outlaw) .. ", found_goon = " .. tostring(found_goon))
+		if not SV.MonsterHouseMessageNotified then
+			if found_goon and not found_outlaw then
+				GAME:WaitFrames(20)
+				UI:ResetSpeaker()
+				UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW_BOSS_DEFEATED"):ToLocal(), outlaw_name))
+				SV.MonsterHouseMessageNotified = true
+			end
+			if not found_goon and found_outlaw then
+				GAME:WaitFrames(40)
+				UI:SetSpeaker(found_outlaw)
+				UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW_MINIONS_DEFEATED"):ToLocal()))
+				SV.MonsterHouseMessageNotified = true
+			end
+		end
+
+		if not (found_goon or found_outlaw) then
+			SOUND:PlayBGM(_ZONE.CurrentMap.Music, true)
+			SV.TemporaryFlags.MissionCompleted = true
+			curr_mission.Completion = 1
+			GAME:WaitFrames(20)
+			UI:ResetSpeaker()
+			UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW_HOUSE_DEFEATED"):ToLocal(), outlaw_name))
+			SV.TemporaryFlags.PriorMapSetting = _DUNGEON.ShowMap
+			_DUNGEON.ShowMap = _DUNGEON.MinimapState.None
+			COMMON.AskMissionWarpOut()
+		end
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.SpawnOutlaw(owner, ownerChar, context, args)
+	if context.User == GAME:GetPlayerPartyMember(0) then
+		local mission_num = args.Mission
+		local curr_mission = SV.TakenBoard[mission_num]
+		if curr_mission.Completion == COMMON.MISSION_INCOMPLETE then
+			local origin = _DATA.Save.ActiveTeam.Leader.CharLoc
+			local radius = 3
+			SpawnOutlaw(origin, radius, mission_num)
+		end
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.OutlawCheck(owner, ownerChar, context, args)
+	local mission_num = args.Mission
+	local curr_mission = SV.TakenBoard[mission_num]
+	if curr_mission.Completion == COMMON.MISSION_INCOMPLETE then
+		if SV.OutlawDefeated then
+			local curr_mission = SV.TakenBoard[mission_num]
+			local outlaw_name = _DATA:GetMonster(curr_mission.Target):GetColoredName()
+			SOUND:PlayBGM(_ZONE.CurrentMap.Music, true)
+			SV.TemporaryFlags.MissionCompleted = true
+			curr_mission.Completion = 1
+			GAME:WaitFrames(50)
+			UI:ResetSpeaker()
+			UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW_DEFEATED"):ToLocal(), outlaw_name))
+			--Clear but remember minimap state
+			SV.TemporaryFlags.PriorMapSetting = _DUNGEON.ShowMap
+			_DUNGEON.ShowMap = _DUNGEON.MinimapState.None
+			COMMON.AskMissionWarpOut()
+		end
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.OutlawItemCheck(owner, ownerChar, context, args)
+	local mission_num = args.Mission
+	local curr_mission = SV.TakenBoard[mission_num]
+	if curr_mission.Completion == COMMON.MISSION_INCOMPLETE then
+		if SV.OutlawDefeated and SV.OutlawItemPickedUp then
+			SV.TemporaryFlags.MissionCompleted = true
+			curr_mission.Completion = 1
+			local item_name =  RogueEssence.Dungeon.InvItem(curr_mission.Item):GetDisplayName()
+			SOUND:PlayBGM(_ZONE.CurrentMap.Music, true)
+			GAME:WaitFrames(50)
+			UI:ResetSpeaker()
+			UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("DLG_MISSION_OUTLAW_ITEM_RETRIEVED"):ToLocal(), item_name))
+			--Clear but remember minimap state
+			SV.TemporaryFlags.PriorMapSetting = _DUNGEON.ShowMap
+			_DUNGEON.ShowMap = _DUNGEON.MinimapState.None
+			COMMON.AskMissionWarpOut()
+		end
+	end
+end
+
+function SINGLE_CHAR_SCRIPT.OutlawFleeStairsCheck(owner, ownerChar, context, args)
+	local stairs_arr = {
+		"stairs_back_down", "stairs_back_up", "stairs_exit_down",
+		"stairs_exit_up", "stairs_go_up", "stairs_go_down"
+	}
+
+	local mission_num = args.Mission
+	local curr_mission = SV.TakenBoard[mission_num]
+	local found_outlaw = COMMON.FindNpcWithTable(true, "Mission", mission_num)
+
+	if found_outlaw then
+		local targetName = found_outlaw:GetDisplayName(true)
+		local map = _ZONE.CurrentMap;
+		local charLoc = found_outlaw.CharLoc
+		local tile = map:GetTile(charLoc)
+		local tile_effect_id = tile.Effect.ID
+		if tile and COMMON.TableContains(stairs_arr, tile_effect_id) then
+			GAME:WaitFrames(20)
+			_DUNGEON:RemoveChar(found_outlaw)
+			GAME:WaitFrames(20)
+			UI:ResetSpeaker()
+			UI:WaitShowDialogue(targetName .. " escaped...")
+			curr_mission.BackReference = COMMON.FLEE_BACKREFERENCE
+			SOUND:PlayBGM(_ZONE.CurrentMap.Music, true)
+			GAME:WaitFrames(20)
+		end
+	end
+end
+
+
+
+
+function SINGLE_CHAR_SCRIPT.MissionGuestCheck(owner, ownerChar, context, args)
+
+	if not context.User.Dead then
+		return
+	end
+
+	local tbl = LTBL(context.User)
+
+	if tbl ~= nil and tbl.Escort ~= nil then
+		local targetName = _DATA:GetMonster(context.User.BaseForm.Species):GetColoredName()
+		UI:ResetSpeaker()
+		UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MISSION_ESCORT_FAINTED"):ToLocal(), targetName))
+		GAME:WaitFrames(40)
+		--Set max team size to 4 as the guest is no longer "taking" up a party slot
+		RogueEssence.Dungeon.ExplorerTeam.MAX_TEAM_SLOTS = 4
+		COMMON.WarpOut()
+		GAME:WaitFrames(80)
+		TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Failed))
+	end
 end
 
 
@@ -2064,4 +2830,3 @@ function SINGLE_CHAR_SCRIPT.TileTestChange(owner, ownerChar, context, args)
 	  SINGLE_CHAR_SCRIPT.SetTileData("test_dungeon_wall", "test_dungeon_floor", "test_dungeon_secondary")
 	end
 end
-

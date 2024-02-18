@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.23.0",
+"Version": "0.7.25.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "defense_crystal": {
@@ -68,6 +68,42 @@
 "wish_center": {
 "Name": {
 "DefaultText": "Wish Center",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"wish_corner": {
+"Name": {
+"DefaultText": "Wish Corner",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"wish_exit_wall": {
+"Name": {
+"DefaultText": "Wish Exit Wall",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"tile_mystery_portal": {
+"Name": {
+"DefaultText": "Mystery Portal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"tile_no_item": {
+"Name": {
+"DefaultText": "No Item Tile",
 "LocalTexts": {}
 },
 "Released": true,

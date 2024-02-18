@@ -1,0 +1,39 @@
+﻿{
+"Version": "0.7.24.0",
+"Object": {
+"$type": "RogueEssence.Data.TileData, RogueEssence",
+"Name": {
+"DefaultText": "No Item Tile",
+"LocalTexts": {}
+},
+"Desc": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"Anim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"Offset": {
+"X": 0,
+"Y": 0
+},
+"Layer": 0,
+"BlockItem": true,
+"StepType": 0,
+"MinimapIcon": {
+"X": 0,
+"Y": 0
+},
+"MinimapColor": "0, 0, 0, 0",
+"LandedOnTiles": [],
+"InteractWithTiles": []
+}
+}

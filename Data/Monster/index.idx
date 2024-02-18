@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.7.25.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "farigiraf": {
@@ -37,6 +37,46 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 981
+},
+"eevee2": {
+"$type": "RogueEssence.Data.MonsterEntrySummary, RogueEssence",
+"Forms": [
+{
+"Name": {
+"DefaultText": "Eevee",
+"LocalTexts": {
+"ja": "イーブイ",
+"ko": "이브이",
+"zh-hant": "伊布",
+"fr": "Évoli",
+"de": "Evoli",
+"es": "Eevee",
+"it": "Eevee",
+"ja-jp": "イーブイ",
+"zh-hans": "伊布"
+}
+},
+"Released": true,
+"Temporary": false
+}
+],
+"Name": {
+"DefaultText": "Eevee",
+"LocalTexts": {
+"ja": "イーブイ",
+"ko": "이브이",
+"zh-hant": "伊布",
+"fr": "Évoli",
+"de": "Evoli",
+"es": "Eevee",
+"it": "Eevee",
+"ja-jp": "イーブイ",
+"zh-hans": "伊布"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 133
 }
 }
 }

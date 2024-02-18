@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.23.0",
+"Version": "0.7.24.0",
 "Object": {
 "$type": "RogueEssence.Dungeon.Map, RogueEssence",
 "Name": {
@@ -1059,8 +1059,8 @@
 "X": 3,
 "Y": 3
 },
-"ID": "",
-"Revealed": false,
+"ID": "tile_no_item",
+"Revealed": true,
 "Owner": 0,
 "TileStates": []
 }

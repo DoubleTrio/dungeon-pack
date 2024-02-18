@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.7.24.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "thief": {
@@ -88,6 +88,17 @@
 },
 "Released": true,
 "Comment": "Thief Crystal",
+"SortOrder": 0
+},
+"slow_patrol_land": {
+"$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
+"Assignable": false,
+"Name": {
+"DefaultText": "Slow Patrol Land",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
 "SortOrder": 0
 }
 }

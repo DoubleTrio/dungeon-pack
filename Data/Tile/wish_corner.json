@@ -1,0 +1,39 @@
+﻿{
+"Version": "0.7.24.0",
+"Object": {
+"$type": "RogueEssence.Data.TileData, RogueEssence",
+"Name": {
+"DefaultText": "Wish Corner",
+"LocalTexts": {}
+},
+"Desc": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"Anim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"Offset": {
+"X": 0,
+"Y": 0
+},
+"Layer": 0,
+"BlockItem": false,
+"StepType": 1,
+"MinimapIcon": {
+"X": 2,
+"Y": 0
+},
+"MinimapColor": "255, 255, 0, 255",
+"LandedOnTiles": [],
+"InteractWithTiles": []
+}
+}

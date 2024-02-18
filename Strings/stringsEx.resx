@@ -124,15 +124,15 @@
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK1" xml:space="preserve">
-    <value>[emote=Inspired]Wow![pause=20] Wishmaker Cave is so beautiful![br][emote=Normal]Sometimes, I feel something stirring in me every time I look at the crystals.</value>
+    <value>[emote=Inspired]Wow![pause=20] Wishmaker Cave is so beautiful![br][emote=Normal]Sometimes, I feel something stirring in me when I look at the crystals.</value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK2" xml:space="preserve">
-    <value>I could have sworn I saw something shiny on the ground earlier.[br][emote=Worried]I wish I could remember where I last saw it...</value>
+    <value>I could have sworn I saw something shiny in the ground earlier.[br][emote=Worried]I wish I could remember where I last saw it...</value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK3" xml:space="preserve">
-    <value>Heh.[pause=0] These crystals can't hide from old Zangoose.[br][emote=Normal]Hidden from the plain eye, but I always check. </value>
+    <value>Heh.[pause=0] These crystals can't hide from old Zangoose.[br][emote=Normal]Hidden from the plain eye, I know they're hidden.... </value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK4" xml:space="preserve">
@@ -144,7 +144,59 @@
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK6" xml:space="preserve">
-    <value>Rumors has it,[pause=10] something rests within the depths of this cave.[br]...[pause=30]Waiting to be awaken by explorers who can hold their wishes until the very end. </value>
+    <value>Rumors has it,[pause=10] something rests within the depths of this cave.[br]...Waiting to be awaken by explorers who hold their wishes until the very end. </value>
+    <comment></comment> 
+  </data> 
+  <data name="WISHMAKER_NPC_TALK7.0" xml:space="preserve">
+    <value>{0} more[pause=10].[pause=10].[pause=10].[pause=10] Like a star.</value>
     <comment></comment>  
   </data>
+  <data name="WISHMAKER_NPC_TALK7.1" xml:space="preserve">
+    <value>[emote=Happy]Like a star[pause=10].[pause=10].[pause=10].[pause=10]  Until the end.[pause=10].[pause=10].[pause=10]</value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK7.2" xml:space="preserve">
+    <value>[emote=Happy]More than a star[pause=10].[pause=10].[pause=10].[pause=10]  Until the end.[pause=10].[pause=10].[pause=10]</value>
+    <comment></comment>  
+  </data>
+  <data name="WISHMAKER_NPC_TALK8" xml:space="preserve">
+    <value>One arduous journey.[pause=0] The collective star power of gems.[pause=0] And one single wish.[pause=0][br][emote=Happy]My masterpiece will soon be finished!</value>
+    <comment></comment>  
+  </data>
+  <data name="TALK_SHOP_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10][emote=happy]</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_END_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10][emote=happy]Best wishes.</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_PAY_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10]Total is {0}.[pause=10]\nDeal?</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_PAY_DONE_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10][emote=happy]Thank you.</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_PAY_REFUSE_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10]</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_PAY_SHORT_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10]Need more money.</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_SELL_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10]I give {0}.[pause=10]\nAgree?</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_SELL_DONE_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10][emote=happy]Thank you. [pause=10]Best wishes.</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_START_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10][emote=happy]Welcome.</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_SUSPECT_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10][emote=sad]Sorry.[pause=10] Thieves are bad.</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_THIEF_0003" xml:space="preserve">
+    <value>Disappointing.</value>
+    <comment></comment>  </data>
+  <data name="TALK_SHOP_THIEF_RETURN_0003" xml:space="preserve">
+    <value>.[pause=10].[pause=10].[pause=10][emote=sad]Not again.</value>
+    <comment></comment>  </data>
 </root>
