@@ -50440,7 +50440,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee",
+"Species": "eevee2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -60841,7 +60841,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee",
+"Species": "eevee2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -67185,7 +67185,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee",
+"Species": "eevee2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -70816,7 +70816,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee",
+"Species": "eevee2",
 "Form": 0,
 "Skin": "",
 "Gender": -1

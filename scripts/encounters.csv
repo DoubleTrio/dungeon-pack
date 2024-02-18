@@ -1,6 +1,6 @@
 Name,Tactic,Ablity,Move 1,Move 2,Move 3,Move 4,Min Lev,Max Lev,Min Floor,Max Floor,Role,Rate
 cleffa,wander_normal,friend_guard,covet,mimic,,,10,11,1,4,Normal,10
-eevee,wander_normal,adaptability,baby_doll_eyes,round,,,10,11,1,5,Normal,10
+eevee2,wander_normal,adaptability,baby_doll_eyes,round,,,10,11,1,5,Normal,10
 skitty,wander_normal,cute_charm,fake_out,copycat,,,10,11,1,5,Normal,10
 diglett,wander_normal,arena_trap,astonish,sand_attack,,,12,13,2,5,Normal,10
 goomy,wander_normal,,water_gun,absorb,,,11,12,2,5,Normal,10
