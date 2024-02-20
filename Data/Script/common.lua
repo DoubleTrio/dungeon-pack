@@ -1,6 +1,6 @@
 function map(tbl, f)
   local t = {}
-  for k,v in pairs(tbl) do
+  for k,v in ipairs(tbl) do
       t[k] = f(v)
   end
   return t
