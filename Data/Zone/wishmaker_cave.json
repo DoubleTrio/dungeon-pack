@@ -72,30 +72,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -106,30 +106,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -140,30 +140,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -174,30 +174,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -208,30 +208,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -242,30 +242,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -276,30 +276,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -331,30 +331,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -365,30 +365,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -399,30 +399,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -433,30 +433,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -467,30 +467,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -501,30 +501,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -535,30 +535,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -583,30 +583,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -617,30 +617,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -651,30 +651,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -685,30 +685,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -719,30 +719,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -753,30 +753,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -787,30 +787,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -2017,30 +2017,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2051,30 +2051,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2085,30 +2085,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2119,30 +2119,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2153,30 +2153,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2187,30 +2187,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2221,30 +2221,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -2276,30 +2276,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2310,30 +2310,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2344,30 +2344,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2378,30 +2378,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2412,30 +2412,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2446,30 +2446,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2480,30 +2480,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -2528,30 +2528,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2562,30 +2562,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2596,30 +2596,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2630,30 +2630,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2664,30 +2664,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2698,30 +2698,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -2732,30 +2732,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -3921,30 +3921,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -3955,30 +3955,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -3989,30 +3989,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4023,30 +4023,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4057,30 +4057,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4091,30 +4091,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4125,30 +4125,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -4180,30 +4180,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4214,30 +4214,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4248,30 +4248,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4282,30 +4282,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4316,30 +4316,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4350,30 +4350,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4384,30 +4384,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -4432,30 +4432,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4466,30 +4466,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4500,30 +4500,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4534,30 +4534,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4568,30 +4568,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4602,30 +4602,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -4636,30 +4636,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -5825,30 +5825,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -5859,30 +5859,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -5893,30 +5893,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -5927,30 +5927,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -5961,30 +5961,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -5995,30 +5995,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6029,30 +6029,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -6084,30 +6084,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6118,30 +6118,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6152,30 +6152,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6186,30 +6186,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6220,30 +6220,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6254,30 +6254,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6288,30 +6288,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -6336,30 +6336,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6370,30 +6370,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6404,30 +6404,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6438,30 +6438,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6472,30 +6472,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6506,30 +6506,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -6540,30 +6540,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -7775,30 +7775,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -7809,30 +7809,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -7843,30 +7843,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -7877,30 +7877,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -7911,30 +7911,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -7945,30 +7945,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -7979,30 +7979,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -8034,30 +8034,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8068,30 +8068,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8102,30 +8102,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8136,30 +8136,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8170,30 +8170,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8204,30 +8204,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8238,30 +8238,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -8286,30 +8286,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8320,30 +8320,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8354,30 +8354,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8388,30 +8388,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8422,30 +8422,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8456,30 +8456,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -8490,30 +8490,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 20,
-  "Max": 20
+"Min": 20,
+"Max": 20
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -24502,30 +24502,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24536,30 +24536,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24570,30 +24570,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24604,30 +24604,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24638,30 +24638,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24672,30 +24672,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24706,30 +24706,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -24761,30 +24761,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24795,30 +24795,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24829,30 +24829,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24863,30 +24863,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24897,30 +24897,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24931,30 +24931,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -24965,30 +24965,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -25013,30 +25013,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -25047,30 +25047,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -25081,30 +25081,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -25115,30 +25115,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -25149,30 +25149,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -25183,30 +25183,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -25217,30 +25217,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -26783,30 +26783,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -26817,30 +26817,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -26851,30 +26851,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -26885,30 +26885,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -26919,30 +26919,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -26953,30 +26953,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -26987,30 +26987,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -27042,30 +27042,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27076,30 +27076,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27110,30 +27110,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27144,30 +27144,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27178,30 +27178,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27212,30 +27212,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27246,30 +27246,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -27294,30 +27294,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27328,30 +27328,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27362,30 +27362,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27396,30 +27396,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27430,30 +27430,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27464,30 +27464,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -27498,30 +27498,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -28950,30 +28950,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -28984,30 +28984,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29018,30 +29018,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29052,30 +29052,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29086,30 +29086,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29120,30 +29120,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29154,30 +29154,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -29209,30 +29209,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29243,30 +29243,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29277,30 +29277,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29311,30 +29311,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29345,30 +29345,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29379,30 +29379,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29413,30 +29413,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -29461,30 +29461,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29495,30 +29495,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29529,30 +29529,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29563,30 +29563,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29597,30 +29597,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29631,30 +29631,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -29665,30 +29665,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -31117,30 +31117,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31151,30 +31151,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31185,30 +31185,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31219,30 +31219,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31253,30 +31253,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31287,30 +31287,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31321,30 +31321,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -31376,30 +31376,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31410,30 +31410,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31444,30 +31444,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31478,30 +31478,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31512,30 +31512,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31546,30 +31546,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31580,30 +31580,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -31628,30 +31628,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31662,30 +31662,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31696,30 +31696,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31730,30 +31730,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31764,30 +31764,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31798,30 +31798,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -31832,30 +31832,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -33284,30 +33284,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33318,30 +33318,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33352,30 +33352,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33386,30 +33386,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33420,30 +33420,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33454,30 +33454,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33488,30 +33488,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -33543,30 +33543,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33577,30 +33577,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33611,30 +33611,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33645,30 +33645,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33679,30 +33679,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33713,30 +33713,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33747,30 +33747,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -33795,30 +33795,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33829,30 +33829,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33863,30 +33863,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33897,30 +33897,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33931,30 +33931,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33965,30 +33965,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 },
@@ -33999,30 +33999,30 @@
 },
 "Item2": {
 "BaseForm": {
-  "Species": "ditto",
-  "Form": 0,
-  "Skin": "",
-  "Gender": -1
+"Species": "ditto",
+"Form": 0,
+"Skin": "",
+"Gender": -1
 },
 "Level": {
-  "Min": 40,
-  "Max": 40
+"Min": 40,
+"Max": 40
 },
 "SpecifiedSkills": [
-  "transform"
+"transform"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
-  {
-    "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-  },
-  {
-    "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-    "StartAt": 1,
-    "Remove": false
-  }
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 1,
+"Remove": false
+}
 ]
 }
 }
@@ -51226,8 +51226,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 17,
-"Max": 18
+"Min": 18,
+"Max": 19
 },
 "SpecifiedSkills": [
 "mud_bomb"
@@ -51463,6 +51463,7 @@
 "Max": 22
 },
 "SpecifiedSkills": [
+"wish",
 "focus_energy",
 "scary_face",
 "ember"
@@ -51473,7 +51474,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 4,
 "Remove": false
 },
 {
@@ -53338,8 +53339,8 @@
 "SpecifiedSkills": [
 "wish",
 "mean_look",
-"screech",
-"feint_attack"
+"feint_attack",
+"sand_attack"
 ],
 "Intrinsic": "synchronize",
 "Tactic": "wander_normal",
@@ -53680,7 +53681,7 @@
 },
 "Role": 1
 },
-"Rate": 10,
+"Rate": 8,
 "Range": {
 "Min": 17,
 "Max": 20
@@ -53702,8 +53703,8 @@
 "SpecifiedSkills": [
 "healing_wish",
 "after_you",
-"helping_hand",
-"simple_beam"
+"simple_beam",
+"round"
 ],
 "Intrinsic": "healer",
 "Tactic": "wander_normal",
@@ -53822,7 +53823,8 @@
 },
 "SpecifiedSkills": [
 "icicle_crash",
-"mud_slap"
+"mud_slap",
+"body_slam"
 ],
 "Intrinsic": "oblivious",
 "Tactic": "wander_normal",
@@ -53830,7 +53832,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 2,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -53985,7 +53987,7 @@
 "psybeam",
 "charge_beam"
 ],
-"Intrinsic": "download",
+"Intrinsic": "trace",
 "Tactic": "wander_crystal_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
@@ -54345,7 +54347,7 @@
 "Max": 44
 },
 "SpecifiedSkills": [
-"iron_tail",
+"double_edge",
 "smack_down",
 "curse"
 ],
@@ -54385,7 +54387,6 @@
 "Max": 45
 },
 "SpecifiedSkills": [
-"calm_mind",
 "fairy_wind",
 "helping_hand",
 "wish"
@@ -54396,7 +54397,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -54526,7 +54527,7 @@
 }
 ]
 },
-"Role": 0
+"Role": 1
 },
 "Rate": 10,
 "Range": {
@@ -54792,13 +54793,13 @@
 "Max": 46
 },
 "SpecifiedSkills": [
-"ice_punch",
+"avalanche",
 "thief2",
 "embargo",
 "agility"
 ],
 "Intrinsic": "pressure",
-"Tactic": "thief_crystal",
+"Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
 {
@@ -55112,8 +55113,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 48,
-"Max": 49
+"Min": 49,
+"Max": 50
 },
 "SpecifiedSkills": [
 "venom_drench",
@@ -55153,8 +55154,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 48,
-"Max": 49
+"Min": 49,
+"Max": 50
 },
 "SpecifiedSkills": [
 "trick_room",
@@ -55194,8 +55195,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 47,
-"Max": 48
+"Min": 49,
+"Max": 49
 },
 "SpecifiedSkills": [
 "toxic_spikes",
@@ -55234,8 +55235,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 48,
-"Max": 49
+"Min": 49,
+"Max": 50
 },
 "SpecifiedSkills": [
 "haze",
@@ -55274,8 +55275,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 47,
-"Max": 48
+"Min": 49,
+"Max": 50
 },
 "SpecifiedSkills": [
 "air_slash",
@@ -55314,8 +55315,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 49,
-"Max": 50
+"Min": 51,
+"Max": 52
 },
 "SpecifiedSkills": [
 "autotomize",
@@ -55354,8 +55355,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 49,
-"Max": 50
+"Min": 51,
+"Max": 52
 },
 "SpecifiedSkills": [
 "embargo",
@@ -55395,8 +55396,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 49,
-"Max": 50
+"Min": 52,
+"Max": 53
 },
 "SpecifiedSkills": [
 "dark_pulse",
@@ -55435,8 +55436,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 49,
-"Max": 50
+"Min": 51,
+"Max": 52
 },
 "SpecifiedSkills": [
 "high_jump_kick",
@@ -55476,8 +55477,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 48,
-"Max": 49
+"Min": 50,
+"Max": 51
 },
 "SpecifiedSkills": [
 "tri_attack",
@@ -55504,6 +55505,208 @@
 "Rate": 7,
 "Range": {
 "Min": 24,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "clawitzer",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 54,
+"Max": 55
+},
+"SpecifiedSkills": [
+"aura_sphere",
+"water_pulse",
+"dark_pulse",
+"dragon_pulse"
+],
+"Intrinsic": "mega_launcher",
+"Tactic": "wander_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 4,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 0
+},
+"Rate": 10,
+"Range": {
+"Min": 25,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "goodra",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 52,
+"Max": 53
+},
+"SpecifiedSkills": [
+"draco_meteor",
+"muddy_water",
+"power_whip",
+"acid_spray"
+],
+"Intrinsic": "gooey",
+"Tactic": "wander_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 4,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 0
+},
+"Rate": 10,
+"Range": {
+"Min": 25,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "metagross",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 53,
+"Max": 54
+},
+"SpecifiedSkills": [
+"agility",
+"meteor_mash",
+"zen_headbutt"
+],
+"Intrinsic": "clear_body",
+"Tactic": "wander_crystal_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 3,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 0
+},
+"Rate": 10,
+"Range": {
+"Min": 25,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "noivern",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 55,
+"Max": 56
+},
+"SpecifiedSkills": [
+"boomburst",
+"dragon_pulse",
+"tailwind"
+],
+"Intrinsic": "infiltrator",
+"Tactic": "wander_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 3,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 1
+},
+"Rate": 10,
+"Range": {
+"Min": 25,
+"Max": 27
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "salamence",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 53,
+"Max": 54
+},
+"SpecifiedSkills": [
+"dragon_rush",
+"fly",
+"fire_fang"
+],
+"Intrinsic": "intimidate",
+"Tactic": "wander_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 3,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 2
+},
+"Rate": 10,
+"Range": {
+"Min": 25,
 "Max": 27
 }
 }
@@ -60841,7 +61044,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee2",
+"Species": "eevee",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -67185,7 +67388,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee2",
+"Species": "eevee",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -70816,7 +71019,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee2",
+"Species": "eevee",
 "Form": 0,
 "Skin": "",
 "Gender": -1
