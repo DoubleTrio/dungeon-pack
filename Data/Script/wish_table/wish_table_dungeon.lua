@@ -26,21 +26,52 @@ DUNGEON_WISH_TABLE = {
   },
   {
     Category = "Food",
-    Min = 5,
-    Max = 5,
+    Min = 4,
+    Max = 4,
 		Guaranteed = {
 			{
 				{ Item = "food_apple", Amount = 1, Weight = 10 } 
 			},
 			{
 				{ Item = "food_apple", Amount = 1, Weight = 10 },
-				{ Item = "berry_leppa", Amount = 1, Weight = 10 } 
 			},
+      {
+        { Item = "berry_leppa", Amount = 1, Weight = 8 },
+      },
       {
 				{ Item = "berry_lum", Amount = 1, Weight = 10 },
 				{ Item = "berry_oran", Amount = 1, Weight = 10 },
-        { Item = "berry_sitrus", Amount = 1, Weight = 10 } 
+        { Item = "berry_sitrus", Amount = 1, Weight = 10 }
 			},
+      {
+        { Item = "berry_apicot", Amount = 1, Weight = 2 },
+        { Item = "berry_jaboca", Amount = 1, Weight = 2 },
+        { Item = "berry_liechi", Amount = 1, Weight = 2 },
+        { Item = "berry_starf", Amount = 1, Weight = 2 },
+        { Item = "berry_petaya", Amount = 1, Weight = 2 },
+        { Item = "berry_salac", Amount = 1, Weight = 2 },
+        { Item = "berry_ganlon", Amount = 1, Weight = 2 },
+        { Item = "berry_enigma", Amount = 1, Weight = 2 },
+        { Item = "berry_micle", Amount = 1, Weight = 2 },
+        { Item = "berry_rowap", Amount = 1, Weight = 2 },
+        { Item = "berry_petaya", Amount = 1, Weight = 2 },
+      },
+      {
+        { Item = "berry_coba", Amount = 1, Weight = 1 },
+        { Item = "berry_colbur", Amount = 1, Weight = 1 },
+        { Item = "berry_haban", Amount = 1, Weight = 1 },
+        { Item = "berry_kasib", Amount = 1, Weight = 1 },
+        { Item = "berry_kebia", Amount = 1, Weight = 1 },
+        { Item = "berry_occa", Amount = 1, Weight = 1 },
+        { Item = "berry_passho", Amount = 1, Weight = 1 },
+        { Item = "berry_payapa", Amount = 1, Weight = 1 },
+        { Item = "berry_rindo", Amount = 1, Weight = 1 },
+        { Item = "berry_roseli", Amount = 1, Weight = 1 },
+        { Item = "berry_shuca", Amount = 1, Weight = 1 },
+        { Item = "berry_tanga", Amount = 1, Weight = 1 },
+        { Item = "berry_wacan", Amount = 1, Weight = 1 },
+        { Item = "berry_yache", Amount = 1, Weight = 1 },
+      }
 		},
     Items = {
       { Item = "berry_leppa", Amount = 1, Weight = 8 },
@@ -57,33 +88,33 @@ DUNGEON_WISH_TABLE = {
       { Item = "berry_enigma", Amount = 1, Weight = 2 },
 			{ Item = "berry_micle", Amount = 1, Weight = 2 },
       { Item = "berry_rowap", Amount = 1, Weight = 2 },
-
-      { Item = "berry_babiri", Amount = 1, Weight = 2 },
-      { Item = "berry_charti", Amount = 1, Weight = 2 },
-      { Item = "berry_chilan", Amount = 1, Weight = 2 },
-      { Item = "berry_chople", Amount = 1, Weight = 2 },
-      { Item = "berry_coba", Amount = 1, Weight = 2 },
-      { Item = "berry_colbur", Amount = 1, Weight = 2 },
-      { Item = "berry_haban", Amount = 1, Weight = 2 },
-      { Item = "berry_kasib", Amount = 1, Weight = 2 },
-      { Item = "berry_kebia", Amount = 1, Weight = 2 },
-      { Item = "berry_occa", Amount = 1, Weight = 2 },
-      { Item = "berry_passho", Amount = 1, Weight = 2 },
-      { Item = "berry_payapa", Amount = 1, Weight = 2 },
       { Item = "berry_petaya", Amount = 1, Weight = 2 },
-      { Item = "berry_rindo", Amount = 1, Weight = 2 },
-      { Item = "berry_roseli", Amount = 1, Weight = 2 },
-      { Item = "berry_shuca", Amount = 1, Weight = 2 },
-      { Item = "berry_tanga", Amount = 1, Weight = 2 },
-      { Item = "berry_wacan", Amount = 1, Weight = 2 },
-      { Item = "berry_yache", Amount = 1, Weight = 2 },
 
-      { Item = "food_apple", Amount = 1, Weight = 25 },
+      { Item = "berry_babiri", Amount = 1, Weight = 1 },
+      { Item = "berry_charti", Amount = 1, Weight = 1 },
+      { Item = "berry_chilan", Amount = 1, Weight = 1 },
+      { Item = "berry_chople", Amount = 1, Weight = 1 },
+      { Item = "berry_coba", Amount = 1, Weight = 1 },
+      { Item = "berry_colbur", Amount = 1, Weight = 1 },
+      { Item = "berry_haban", Amount = 1, Weight = 1 },
+      { Item = "berry_kasib", Amount = 1, Weight = 1 },
+      { Item = "berry_kebia", Amount = 1, Weight = 1 },
+      { Item = "berry_occa", Amount = 1, Weight = 1 },
+      { Item = "berry_passho", Amount = 1, Weight = 1 },
+      { Item = "berry_payapa", Amount = 1, Weight = 1 },
+      { Item = "berry_rindo", Amount = 1, Weight = 1 },
+      { Item = "berry_roseli", Amount = 1, Weight = 1 },
+      { Item = "berry_shuca", Amount = 1, Weight = 1 },
+      { Item = "berry_tanga", Amount = 1, Weight = 1 },
+      { Item = "berry_wacan", Amount = 1, Weight = 1 },
+      { Item = "berry_yache", Amount = 1, Weight = 1 },
+
+      { Item = "food_apple", Amount = 1, Weight = 15 },
       { Item = "food_apple_big", Amount = 1, Weight = 9 },
       { Item = "food_apple_huge", Amount = 1, Weight = 5 },
-      { Item = "food_apple_perfect", Amount = 1, Weight = 1 },
-      { Item = "food_banana", Amount = 1, Weight = 3 },
-      { Item = "food_banana_big", Amount = 1, Weight = 1 }
+      { Item = "food_apple_perfect", Amount = 1, Weight = 2 },
+      { Item = "food_banana", Amount = 1, Weight = 4 },
+      { Item = "food_banana_big", Amount = 1, Weight = 2 }
     },
   },
   {
@@ -92,6 +123,8 @@ DUNGEON_WISH_TABLE = {
     Max = 5,
 		Guaranteed = { 
 			{ 
+        { Item = "seed_pure", Amount = 1, Weight = 10 },
+        { Item = "seed_ban", Amount = 1, Weight = 10 },
 				{ Item = "seed_reviver", Amount = 1, Weight = 10 },
 				{ Item = "berry_leppa", Amount = 1, Weight = 10 } 
 			},
@@ -551,7 +584,7 @@ DUNGEON_WISH_TABLE = {
       }
 		},
 		Items = {
-			{ Item = "apricorn_big", Amount = 1, Weight = 3 },
+			{ Item = "apricorn_big", Amount = 1, Weight = 4 },
 			{ Item = "apricorn_black", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_blue", Amount = 1, Weight = 2 },
 			{ Item = "apricorn_brown", Amount = 1, Weight = 2 },

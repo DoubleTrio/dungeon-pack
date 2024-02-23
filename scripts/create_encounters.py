@@ -48,7 +48,7 @@ if __name__ == "__main__":
         ('chingling', 'wander_normal', '', ['wish', 'wrap', 'ally_switch'], 18, 19, 6, 9, SUPPORT, 10),
         ('nickit', 'thief', 'stakeout', ['thief2'], 18, 19, 6, 10, 0, 10),
         ('gothita', 'wander_normal', 'competitive', ['confusion', 'fake_tears'], 18, 19, 6, 9, 0, 10),
-        ('swinub', 'wander_normal', '', ['mud_bomb'], 17, 18, 6, 9, 0, 10),
+        ('swinub', 'wander_normal', '', ['mud_bomb'], 18, 19, 6, 9, 0, 10),
         
         #8
         ('jigglypuff', 'wander_normal', 'friend_guard', ['baton_pass', 'defense_curl', 'round'], 20, 21, 7, 11, SUPPORT, 10),
@@ -59,7 +59,7 @@ if __name__ == "__main__":
         
         #9
         ('morelull', 'retreater', '', ['sleep_powder', 'leech_seed'], 22, 23, 8, 10, SUPPORT, 10),
-        ('bagon', 'wander_normal', 'rock_head', ['focus_energy', 'scary_face', 'ember'], 21, 22, 8, 10, 0, 10),
+        ('bagon', 'wander_normal', 'rock_head', ['wish', 'focus_energy', 'scary_face', 'ember'], 21, 22, 8, 10, 0, 10),
         ('meditite', 'wander_normal', 'pure_power', ['fake_out', 'force_palm'], 21, 22, 8, 10, 0, 10),
         ('elekid', 'wander_normal', '', ['thunder_punch', 'leer'], 21, 22, 8, 10, 0, 10),
         ('ferroseed', 'wander_normal', '', ['leech_seed', 'tackle'], 21, 22, 8, 10, SUPPORT, 10),
@@ -118,14 +118,14 @@ if __name__ == "__main__":
         ('wigglytuff', 'wander_normal', 'friend_guard', ['round', 'wish', 'disable', 'endeavor'], 34, 35, 16, 19, SUPPORT, 10),
         ('espeon', 'wander_normal', 'magic_bounce', ['dazzling_gleam', 'psybeam', 'wish'], 34, 35, 16, 19, 0, 10),
         ('metang', 'wander_normal', 'clear_body', ['take_down', 'zen_headbutt', 'magnet_rise'], 34, 35, 16, 19, 0, 10),
-        ('umbreon', 'wander_normal', 'synchronize', ['wish', 'mean_look', 'screech', 'feint_attack'], 34, 35, 16, 19, 0, 10),
+        ('umbreon', 'wander_normal', 'synchronize', ['wish', 'mean_look', 'feint_attack', 'sand_attack'], 34, 35, 16, 19, 0, 10),
         ('gothorita', 'wander_normal', 'competitive', ['future_sight', 'charm', 'mean_look'], 35, 36, 16, 19, 0, 10),
         ('persian', 'wander_crystal_normal_greedy', 'limber', ['fake_out', 'fury_swipes', 'hyper_voice'], 34, 35, 16, 19, LEADER, 10),
         ('mr_mime', 'wander_normal', 'soundproof', ['safeguard', 'round', 'encore', 'reflect'], 36, 37, 16, 19, SUPPORT, 10),
         ('rhydon', 'wander_normal', 'rock_head', ['scary_face', 'drill_run', 'rock_blast'], 34, 35, 16, 19, LONER, 10),
         
         #18
-        ('plusle', 'wander_normal', 'plus', ['shock_wave', 'helping_hand', 'wish', 'agility'], 37, 38, 17, 20, SUPPORT, 10),
+        ('plusle', 'wander_normal', 'plus', ['shock_wave', 'helping_hand', 'wish', 'agility'], 37, 38, 17, 20, SUPPORT, 8),
         ('minun', 'wander_crystal_normal', 'minus', ['electroweb', 'thunder_wave', 'baton_pass', 'copycat'], 37, 38, 17, 20, SUPPORT, 10),
         ('golbat', 'wander_normal', 'infiltrator', ['haze', 'wing_attack', 'giga_drain'], 38, 39, 18, 20, LEADER, 10),
         ('hattrem', 'wander_normal', 'healer', ['life_dew', 'dazzling_gleam', 'aromatic_mist', 'mystical_fire'], 37, 38, 17, 20, SUPPORT, 10),
@@ -137,13 +137,13 @@ if __name__ == "__main__":
         #19
         ('shelgon', 'wander_normal', 'rock_head', ['dragon_breath', 'scary_face', 'thrash'], 39, 40, 18, 20, 0, 10),
         ('sliggoo', 'wander_normal', 'gooey', ['dragon_breath', 'acid_spray'], 36, 37, 18, 20, 0, 10),
-        ('audino', 'wander_normal', 'healer', ['healing_wish', 'after_you', 'helping_hand', 'simple_beam'], 40, 41, 18, 22, SUPPORT, 10),
+        ('audino', 'wander_normal', 'healer', ['healing_wish', 'after_you', 'simple_beam', 'round'], 40, 41, 18, 22, SUPPORT, 10),
         ('lairon', 'wander_normal', 'rock_head', ['autotomize', 'iron_head', 'rock_slide'], 36, 37, 18, 20, 0, 10),
-        ('piloswine', 'wander_normal', 'oblivious', ['icicle_crash', 'mud_slap'], 39, 40, 18, 20, 0, 10),
+        ('piloswine', 'wander_normal', 'oblivious', ['icicle_crash', 'mud_slap', 'body_slam'], 39, 40, 18, 20, 0, 10),
         
         #20
         ('ledian', 'wander_crystal_normal', 'swarm', ['encore', 'baton_pass', 'wish', 'silver_wind'], 43, 44, 19, 22, 0, 10),
-        ('porygon2', 'wander_crystal_normal', 'download', ['conversion_2', 'recover', 'psybeam', 'charge_beam'], 42, 43, 19, 22, LONER, 10),
+        ('porygon2', 'wander_crystal_normal', 'trace', ['conversion_2', 'recover', 'psybeam', 'charge_beam'], 42, 43, 19, 22, LONER, 10),
         
         #21
         ('farigiraf', 'wander_normal', 'sap_sipper', ['trick_room', 'dazzling_gleam', 'hyper_voice'], 44, 45, 20, 23, 0, 10),
@@ -155,15 +155,15 @@ if __name__ == "__main__":
         ('tinkaton', 'wander_crystal_normal', 'mold_breaker', ['play_rough', 'metal_sound', 'fake_out', 'metal_claw'], 45, 46, 20, 23, 0, 10),
         ('chimecho', 'wander_normal', '', ['yawn', 'healing_wish', 'safeguard', 'wrap'], 45, 46, 20, 24, SUPPORT, 10),
         ('raichu', 'wander_normal', '', ['psychic', 'thunderbolt', 'round'], 42, 43, 20, 24, 0, 10),
-        ('sylveon', 'wander_crystal_normal', 'cute_charm', ['calm_mind', 'fairy_wind', 'helping_hand', 'wish'], 44, 45, 20, 23, SUPPORT, 10),
-        ('togekiss', 'wander_normal', 'serene_grace', ['follow_me', 'wish', 'growl', 'thunder_wave'], 44, 45, 20, 23, 0, 10),
-        ('steelix', 'wander_normal', 'rock_head', ['iron_tail', 'smack_down', 'curse'], 43, 44, 20, 23, 0, 10),
+        ('sylveon', 'wander_crystal_normal', 'cute_charm', ['fairy_wind', 'helping_hand', 'wish'], 44, 45, 20, 23, SUPPORT, 10),
+        ('togekiss', 'wander_normal', 'serene_grace', ['follow_me', 'wish', 'growl', 'thunder_wave'], 44, 45, 20, 23, SUPPORT, 10),
+        ('steelix', 'wander_normal', 'rock_head', ['double_edge', 'smack_down', 'curse'], 43, 44, 20, 23, 0, 10),
         
         #22
         ('mr_mime', 'wander_crystal_normal', 'soundproof', ['baton_pass', 'calm_mind', 'telekinesis', 'power_swap'], 45, 46, 21, 25, SUPPORT, 10),
         ('dugtrio', 'wander_normal', 'arena_trap', ['sucker_punch', 'sand_tomb', 'earth_power'], 45, 46, 21, 24, 0, 10),
         ('gardevoir', 'wander_normal', 'telepathy', ['wish', 'moonblast', 'psyshock', "teleport"], 45, 46, 21, 24, 0, 10),
-        ('weavile', 'thief_crystal', 'pressure', ['ice_punch', 'thief2', 'embargo', 'agility'], 45, 46, 21, 24, LEADER, 10),
+        ('weavile', 'wander_normal', 'pressure', ['avalanche', 'thief2', 'embargo', 'agility'], 45, 46, 21, 24, LEADER, 10),
         ('azumarill', 'wander_normal', 'pure_power', ['belly_drum', 'aqua_tail', 'play_rough'], 45, 46, 21, 24, 0, 10),
         ('gothitelle', 'wander_normal', 'shadow_tag', ['mean_look', 'fake_tears', 'shadow_ball', 'embargo'], 45, 46, 21, 24, 0, 10),
         ('bronzong', 'retreater', '', ['imprison', 'gyro_ball', 'trick_room', 'metal_sound'], 45, 46, 20, 23, SUPPORT, 10),
@@ -178,26 +178,26 @@ if __name__ == "__main__":
         ('rhyperior', 'wander_normal', '', ['drill_run', 'rock_polish', 'stone_edge'], 46, 47, 22, 25, 0, 10),
         
         #24
-        ('farigiraf', 'wander_crystal_normal', 'sap_sipper', ['trick_room', 'dazzling_gleam', 'hyper_voice', 'future_sight'], 48, 49, 23, 26, LEADER, 10),
-        ('tentacruel', 'wander_normal', 'liquid_ooze', ['haze', 'sludge_wave', 'water_pulse'], 48, 49, 23, 26, 0, 10),
-        ('crobat', 'wander_normal', 'infiltrator', ['venom_drench', 'cross_poison', 'brave_bird', 'quick_guard'], 48, 49, 23, 26, SUPPORT, 10),
-        ('glimmora', 'wander_normal', 'corrosion', ['toxic_spikes', 'rock_slide', 'toxic'], 47, 48, 23, 26, LONER, 10),
-        ('togekiss', 'wander_normal', 'serene_grace', ['air_slash', 'aura_sphere', 'heat_wave'], 47, 48, 23, 26, 0, 10),
+        ('farigiraf', 'wander_crystal_normal', 'sap_sipper', ['trick_room', 'dazzling_gleam', 'hyper_voice', 'future_sight'], 49, 50, 23, 26, LEADER, 10),
+        ('tentacruel', 'wander_normal', 'liquid_ooze', ['haze', 'sludge_wave', 'water_pulse'], 49, 50, 23, 26, 0, 10),
+        ('crobat', 'wander_normal', 'infiltrator', ['venom_drench', 'cross_poison', 'brave_bird', 'quick_guard'], 49, 50, 23, 26, SUPPORT, 10),
+        ('glimmora', 'wander_normal', 'corrosion', ['toxic_spikes', 'rock_slide', 'toxic'], 49, 49, 23, 26, LONER, 10),
+        ('togekiss', 'wander_normal', 'serene_grace', ['air_slash', 'aura_sphere', 'heat_wave'], 49, 50, 23, 26, 0, 10),
         ('clefable', 'wander_normal', 'unaware', ['moonblast', 'ice_beam', 'wish', 'cosmic_power'], 45, 46, 23, 26, SUPPORT, 10),
         
         #25
-        ('aggron', 'wander_normal', 'rock_head', ['autotomize', 'head_smash', 'iron_head'], 49, 50, 24, 26, 0, 10),
-        ('houndoom', 'wander_normal', 'flash_fire', ['dark_pulse', 'nasty_plot', 'overheat'], 49, 50, 24, 26, 0, 10),
-        ('honchkrow', 'wander_crystal_normal', '', ['embargo', 'haze', 'swagger', 'night_slash'], 49, 50, 24, 26, SUPPORT, 10),
-        ('porygon_z', 'wander_crystal_normal', 'download', ['tri_attack', 'thunder', 'conversion', 'conversion_2'], 48, 49, 24, 27, LONER, 7),
-        ('medicham', 'wander_normal', 'pure_power', ['high_jump_kick', 'drain_punch', 'endure', 'psycho_cut'], 49, 50, 24, 27, LEADER, 10),
+        ('aggron', 'wander_normal', 'rock_head', ['autotomize', 'head_smash', 'iron_head'], 51, 52, 24, 26, 0, 10),
+        ('houndoom', 'wander_normal', 'flash_fire', ['dark_pulse', 'nasty_plot', 'overheat'], 52, 53, 24, 26, 0, 10),
+        ('honchkrow', 'wander_crystal_normal', '', ['embargo', 'haze', 'swagger', 'night_slash'], 51, 52, 24, 26, SUPPORT, 10),
+        ('porygon_z', 'wander_crystal_normal', 'download', ['tri_attack', 'thunder', 'conversion', 'conversion_2'], 50, 51, 24, 27, LONER, 7),
+        ('medicham', 'wander_normal', 'pure_power', ['high_jump_kick', 'drain_punch', 'endure', 'psycho_cut'], 51, 52, 24, 27, LEADER, 10),
         
         #26
-        ('metagross', 'wander_crystal_normal', 'clear_body', ['agility', 'meteor_mash', 'zen_headbutt'], 50, 41, 25, 27, 0, 10),
-        ('noivern', 'wander_normal', 'infiltrator', ['boomburst', 'dragon_pulse', 'tailwind'], 52, 53, 25, 27, SUPPORT, 10),
-        ('goodra', 'wander_normal', 'gooey', ['draco_meteor', 'muddy_water', 'power_whip'], 50, 51, 25, 27, 0, 10),
-        ('clawitzer', 'wander_normal', 'mega_launcher', ['aura_sphere', 'water_pulse', 'dark_pulse', 'dragon_pulse'], 51, 52, 25, 27, 0, 10),
-        ('salamence', 'wander_normal', 'intimidate', ["dragon_rush", "fly", "fire_fang"], 51, 52, 25, 27, LEADER, 10),
+        ('metagross', 'wander_crystal_normal', 'clear_body', ['agility', 'meteor_mash', 'zen_headbutt'], 53, 54, 25, 27, 0, 10),
+        ('noivern', 'wander_normal', 'infiltrator', ['boomburst', 'dragon_pulse', 'tailwind'], 55, 56, 25, 27, SUPPORT, 10),
+        ('goodra', 'wander_normal', 'gooey', ['draco_meteor', 'muddy_water', 'power_whip', 'acid_spray'], 52, 53, 25, 27, 0, 10),
+        ('clawitzer', 'wander_normal', 'mega_launcher', ['aura_sphere', 'water_pulse', 'dark_pulse', 'dragon_pulse'], 54, 55, 25, 27, 0, 10),
+        ('salamence', 'wander_normal', 'intimidate', ["dragon_rush", "fly", "fire_fang"], 53, 54, 25, 27, LEADER, 10),
     ]
 
     def create_monster_house(mon_name):
@@ -339,7 +339,7 @@ if __name__ == "__main__":
     for mon in mons:
         name = mon[0]
         min_lev = mon[4]
-        if (min_lev < 50):
+        if (min_lev < 60):
             result.append(create_mon(mon))
 
     with open('../Data/Zone/wishmaker_cave.json', 'r', encoding='utf-8-sig') as file:
