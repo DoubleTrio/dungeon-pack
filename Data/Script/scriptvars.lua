@@ -1,5 +1,4 @@
 SV.Wishmaker = {
-  TotalWishesPerFloor = 2,
   RecruitedJirachi = false,
   MadeWish = false,
   TempItemString = nil,
