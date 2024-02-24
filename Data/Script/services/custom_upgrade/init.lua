@@ -37,6 +37,14 @@ end
 ---------------------------------------------------------------]]
 function CustomUpgrade:OnUpgrade()
   assert(self, 'CustomUpgrade:OnUpgrade() : self is null!')
+  if SV.Wishmaker == nil then
+    SV.Wishmaker = {
+      RecruitedJirachi = false,
+      MadeWish = false,
+      TempItemString = nil,
+      BonusScore = 0
+    }
+  end
   if SV.Wishmaker.RecruitedJirachi == nil then SV.Wishmaker.RecruitedJirachi = false end
   if SV.Wishmaker.MadeWish == nil then SV.Wishmaker.MadeWish = false end
 end
