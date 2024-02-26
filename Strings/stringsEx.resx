@@ -160,7 +160,7 @@
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK8" xml:space="preserve">
-    <value>One arduous journey.[pause=0] The collective star power of gems.[pause=0] And one single wish.[pause=0][br][emote=Happy]My masterpiece will soon be finished!</value>
+    <value>One arduous journey.[pause=0] The collective star power of gems.[pause=0] And one single wish.[br][emote=Happy]My masterpiece will soon be finished!</value>
     <comment></comment>  
   </data>
   <data name="TALK_SHOP_0003" xml:space="preserve">
