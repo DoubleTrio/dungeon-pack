@@ -1023,7 +1023,8 @@ function PickByWeights(entries)
     total_weight = total_weight + entry.Weight
   end
   
-  local rand_val = GAME.Rand:NextDouble() * total_weight
+	local rand_val = _DATA.Save.Rand:NextDouble() * total_weight
+
   local cummul_weight = 0
   for _, entry in ipairs(entries) do
     cummul_weight = cummul_weight + entry.Weight
