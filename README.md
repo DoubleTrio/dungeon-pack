@@ -8,7 +8,7 @@ A mod that adds more dungeons to base PMDO. Currently, 1 additional dungeon is i
 ## Installation
 
 - Install the latest version of [PMDO](https://github.com/audinowho/PMDODump/releases)
-- Move the `dungeon_pack` folder into `{PMDO}/MODS`
+- Move the `trios-dungeon-pack` folder into `{PMDO}/MODS`
 - Enable the `Trio's Dungeon Pack` mod through the `Mod` menu in game
 - Enjoy! Do note that some dungeons in this mod might have unlock requirements which can be found in [here](https://github.com/DoubleTrio/more-dungeons/blob/main/unlock_requirements.txt)
 
