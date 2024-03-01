@@ -159,12 +159,12 @@ end
 --   print("============================")
 --   print()
 --   for _, wish_entry in ipairs(wish_table) do
---     -- if wish_entry.Category == "Power" then
+--     if wish_entry.Category == "Money" then
 --       ExpectedValue(wish_entry)
---     -- end
+--     end
 --   end
 -- end
--- all_wish_tables
+-- -- all_wish_tables
 -- for _, wish_entry in ipairs(DUNGEON_WISH_TABLE) do
 --   ExpectedValue(wish_entry)
 -- end

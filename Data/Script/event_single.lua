@@ -31,7 +31,7 @@ local function JoinTeamWithFanfareAssembly(recruit, from_dungeon)
   UI:SetCenter(true)
   
   if _DATA.Save.ActiveTeam.Name ~= "" then
-    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_RECRUIT"):ToLocal(), recruit:GetDisplayName(true), _DATA.Save.ActiveTeam.Name))
+    UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_RECRUIT"):ToLocal(), recruit:GetDisplayName(true), GAME:GetTeamName()))
   else
     UI:WaitShowDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_RECRUIT_ANY"):ToLocal(), recruit:GetDisplayName(true)))
   end
@@ -286,7 +286,7 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 
 	if SV.Wishmaker.MadeWish then
 		UI:WaitShowDialogue("...[pause=0]" .. context.User:GetDisplayName(true) .. " cannot make a wish right now.")
-		UI:WaitShowDialogue("Wishmaker awaits.")
+		UI:WaitShowDialogue("Wishmaker awaits for next time.")
 		return
 	end
 
@@ -454,7 +454,7 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						TASK:WaitTask(jirachi:StartAnim(poseAction3))
 						GAME:WaitFrames(40)
 						SOUND:PlayBattleSE("_UNK_EVT_087")
-						GAME:WaitFrames(100)
+						GAME:WaitFrames(80)
 						local stand_anim =  RogueEssence.Dungeon.CharAnimNone(jirachi.CharLoc, jirachi.CharDir)
 						stand_anim.MajorAnim = true
 						TASK:WaitTask(jirachi:StartAnim(stand_anim))
@@ -464,10 +464,10 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						SOUND:PlayBattleSE("EVT_Emote_Exclaim_2")
 						GAME:WaitFrames(20)
 						UI:WaitShowDialogue("Hah![pause=0] All right,[pause=30] I'm fully awake. So,[pause=20] so[pause=20] awake.", { Emote })
-						UI:WaitShowDialogue(STRINGS:Format("It's been so long since I have seen anyone around here..."))
+						UI:WaitShowDialogue(STRINGS:Format("It's been so long since I've seen anyone around here..."))
 						-- DUNGEON:CharSetEmote(jirachi, "glowing", 4)
 						UI:SetSpeakerEmotion("Happy")
-						UI:WaitShowDialogue(STRINGS:Format("I'm {0}.[pause=0] A[emote=Normal]s you may have noticed,[pause=30] it takes a lot for me to wake up.", base_name))
+						UI:WaitShowDialogue(STRINGS:Format("I'm [color=#00F8F8]{0}[color].[pause=0] A[emote=Normal]s you may have noticed,[pause=30] it takes a lot for me to wake up.", base_name))
 						UI:SetSpeakerEmotion("Normal")
 						UI:WaitShowDialogue("I'm happy to see that despite everything you could have wished for[speed=0.2]...")
 						UI:SetSpeakerEmotion("Happy")
@@ -495,7 +495,9 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						end
 						GAME:WaitFrames(30)
 						UI:SetSpeakerEmotion("Happy")
-						UI:WaitShowDialogue(STRINGS:Format("Ah,[pause=20] {0}[speed=0.2]...", _DATA.Save.ActiveTeam.Name))
+						UI:WaitShowDialogue(STRINGS:Format("Ah,[pause=20] {0}[speed=0.2]...", GAME:GetTeamName()))
+						DUNGEON:CharSetEmote(jirachi, "glowing", 4)
+						UI:WaitShowDialogue("You must be an amazing team if you made it through all the way here!")
 						UI:SetSpeakerEmotion("Normal")
 						UI:WaitShowDialogue("Then,[pause=20] I wish to join your team and accompany in your explorations.")	
 						UI:WaitShowDialogue("Though...[speed=0.2]")
@@ -513,9 +515,10 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						GAME:WaitFrames(20)
 						-- SV.Wishmaker.RecruitedJirachi = true
 
+						local zone = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Zone]:Get("wishmaker_cave")
 						UI:SetSpeakerEmotion("Normal")
-						UI:WaitShowDialogue(STRINGS:Format("As for Wishmaker Cave itself..."))
-						UI:WaitShowDialogue("I sense that the area here is content and will continue to grant wishes in my place.")
+						UI:WaitShowDialogue(STRINGS:Format("As for " .. zone:GetColoredName() .. " itself[pause=10].[pause=10].[pause=10]."))
+						UI:WaitShowDialogue("I sense that the area here is content[pause=10].[pause=10].[pause=10].[pause=20] and will continue to grant wishes in my place.")
 						UI:SetSpeakerEmotion("Happy")
 						DUNGEON:CharSetEmote(jirachi, "glowing", 4)
 						UI:WaitShowDialogue("So,[pause=20] no worries! \u{266A}")	
@@ -530,7 +533,7 @@ function SINGLE_CHAR_SCRIPT.WishCenterInteractEvent(owner, ownerChar, context, a
 						GAME:WaitFrames(100)
   
 						SOUND:FadeOutBGM()
-						GAME:FadeOut(false, 30)
+						GAME:FadeOut(false, 70)
 						GAME:WaitFrames(90)
 						TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Cleared))
 						-- COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
@@ -654,12 +657,7 @@ function SINGLE_CHAR_SCRIPT.WishExitInteractEvent(owner, ownerChar, context, arg
     SOUND:FadeOutBGM()
     GAME:FadeOut(false, 30)
     GAME:WaitFrames(120)
-    
-    -- if GAME:InRogueMode() then
-    --   GAME:AddToPlayerMoneyBank(100000)
-    -- end
-		TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Escaped))
-    -- COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Cleared, 'guildmaster_island', -1, 1, 0)
+		TASK:WaitTask(_GAME:EndSegment(RogueEssence.Data.GameProgress.ResultType.Cleared))
 	end
 end
 

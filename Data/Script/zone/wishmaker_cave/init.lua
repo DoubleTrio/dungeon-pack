@@ -70,7 +70,11 @@ end
 function wishmaker_cave.EnterSegment(zone, rescuing, segmentID, mapID)
 
   local mon_map = {
-    eevee = "eevee2"
+    eevee = "eevee2",
+    zubat = "zubat2",
+    golbat = "golbat2",
+    woobat = "woobat2",
+    chingling = "chingling2",
   }
 
   if rescuing ~= true then
@@ -95,7 +99,11 @@ function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
   }
 
   local mon_map = {
-    eevee2 = "eevee"
+    eevee2 = "eevee",
+    zubat2 = "zubat",
+    golbat2 = "golbat",
+    woobat2 = "woobat",
+    chingling2 = "chingling",
   }
 
   AdjustModdedActions(move_map, ability_map, mon_map)

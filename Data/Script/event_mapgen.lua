@@ -120,91 +120,124 @@ function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, a
 end
 
 function ZONE_GEN_SCRIPT.SpawnStoryNpc(zoneContext, context, queue, seed, args)
-  if GAME:InRogueMode() then
-    return
-  end
-  
-  local SPAWNS = { 
-    {
-      Species = "oshawott",
-      -- SpawnFeatures = {},
-      Floor = 3,
-      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK1")),
 
-      Statuses = {},
-      Level = 14,
-      Emote = 0
-    },
-    {
-      Species = "zigzagoon",
-      -- SpawnFeatures = {},
-      Floor = 6,
-      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK2")),
-      Statuses = {},
-      Level = 18,
-      Emote = 0
-    },
-    {
-      Species = "smeargle",
-      -- SpawnFeatures = {},
-      Floor = 8,
-      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK8")),
-      Statuses = {},
-      Level = 18,
-      Emote = 0
-    },
-    {
-      Species = "zangoose",
-      -- SpawnFeatures = {},
-      Floor = 10,
-      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK3")),
-      Statuses = {
-        "crystal_defense",
-        "crystal_attack"
+  local SPAWNS
+
+  if GAME:InRogueMode() then
+    SPAWNS = {
+      {
+        Species = "staryu",
+        -- SpawnFeatures = {},
+        Floor = 10,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK10")),
+        Statuses = {},
+        Level = 50,
+        Emote = 0
       },
-      Level = 23,
-      Emote = 0
-    },
-    {
-      Species = "ribombee",
-      -- SpawnFeatures = {},
-      Floor = 11,
-      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK4")),
-      Statuses = {
-        "crystal_heal",
-        "no_heal"
+      {
+        Species = "staryu",
+        -- SpawnFeatures = {},
+        Floor = 20,
+        Dialogue = RogueEssence.Dungeon.BattleScriptEvent("WishmakerGemCountDialogue"),
+        Statuses = {},
+        Level = 50,
+        Emote = 0
       },
-      Level = 25,
-      Emote = 2
-    },
-    {
-      Species = "quilava",
-      -- SpawnFeatures = {},
-      Floor = 12,
-      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK5")),
-      Statuses = {},
-      Level = 23,
-      Emote = 0
-    },
-    {
-      Species = "dragonair",
-      -- SpawnFeatures = {},
-      Floor = 17,
-      Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK6")),
-      Statuses = {},
-      Level = 35,
-      Emote = 0
-    },
-    {
-      Species = "staryu",
-      -- SpawnFeatures = {},
-      Floor = 19,
-      Dialogue = RogueEssence.Dungeon.BattleScriptEvent("WishmakerGemCountDialogue"),
-      Statuses = {},
-      Level = 50,
-      Emote = 0
-    },
-  }
+    }
+  else 
+    SPAWNS =  { 
+      {
+        Species = "oshawott",
+        -- SpawnFeatures = {},
+        Floor = 3,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK1")),
+  
+        Statuses = {},
+        Level = 14,
+        Emote = 0
+      },
+      {
+        Species = "zigzagoon",
+        -- SpawnFeatures = {},
+        Floor = 6,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK2")),
+        Statuses = {},
+        Level = 16,
+        Emote = 0
+      },
+      {
+        Species = "smeargle",
+        -- SpawnFeatures = {},
+        Floor = 8,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK8")),
+        Statuses = {},
+        Level = 20,
+        Emote = 0
+      },
+      {
+        Species = "zangoose",
+        -- SpawnFeatures = {},
+        Floor = 10,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK3")),
+        Statuses = {
+          "crystal_defense",
+          "crystal_attack"
+        },
+        Level = 25,
+        Emote = 0
+      },
+      {
+        Species = "ribombee",
+        -- SpawnFeatures = {},
+        Floor = 11,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK4")),
+        Statuses = {
+          "crystal_heal",
+          "no_heal"
+        },
+        Level = 27,
+        Emote = 2
+      },
+      {
+        Species = "quilava",
+        -- SpawnFeatures = {},
+        Floor = 12,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK5")),
+        Statuses = {},
+        Level = 28,
+        Emote = 0
+      },
+      {
+        Species = "dragonair",
+        -- SpawnFeatures = {},
+        Floor = 13,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK6")),
+        Statuses = {},
+        Level = 30,
+        Emote = 0
+      },
+      {
+        Species = "staryu",
+        -- SpawnFeatures = {},
+        Floor = 16,
+        Dialogue = RogueEssence.Dungeon.BattleScriptEvent("WishmakerGemCountDialogue"),
+        Statuses = {},
+        Level = 50,
+        Emote = 0
+      },
+      {
+        Species = "xatu",
+        -- SpawnFeatures = {},
+        Floor = 20,
+        Dialogue = PMDC.Dungeon.NpcDialogueBattleEvent(RogueEssence.StringKey("WISHMAKER_NPC_TALK9")),
+        Statuses = {},
+        Level = 55,
+        Emote = 0
+      },
+    }
+  end
+  -- 
+  -- local SPAWNS =
   -- local post_mob = RogueEssence.LevelGen.MobSpawn()
   -- print(tostring(zoneContext.CurrentID))
   local curr_floor = zoneContext.CurrentID

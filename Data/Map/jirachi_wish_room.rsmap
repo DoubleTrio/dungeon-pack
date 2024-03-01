@@ -8581,22 +8581,6 @@
 },
 {
 "MapLoc": {
-"X": 318,
-"Y": 229
-},
-"ObjectAnim": {
-"$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "WishSparkles1",
-"FrameTime": 8,
-"StartFrame": -1,
-"EndFrame": -1,
-"AnimDir": 0,
-"Alpha": 255,
-"AnimFlip": 0
-}
-},
-{
-"MapLoc": {
 "X": 184,
 "Y": 301
 },

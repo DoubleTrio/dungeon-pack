@@ -22,6 +22,7 @@ FINAL_WISH_TABLE_TIER_0 = {
       { Item = "loot_pearl", Amount = 1, Weight = 10 },
       { Item = "loot_pearl", Amount = 2, Weight = 10 },
       { Item = "loot_pearl", Amount = 3, Weight = 10 },
+      { Item = "loot_nugget", Amount = 1, Weight = 5 },
     },
   },
   {
@@ -231,7 +232,7 @@ FINAL_WISH_TABLE_TIER_0 = {
     Max = 8,
 		Guaranteed = { 
 			{ 
-				{ Item = "seed_joy", Amount = 1, Weight = 1 },
+				{ Item = "seed_golden", Amount = 1, Weight = 1 },
 			},
 			{ 
 				{ Item = "gummi_black", Amount = 1, Weight = 1 },

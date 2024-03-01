@@ -19,6 +19,7 @@ FINAL_WISH_TABLE_TIER_4 = {
       { Item = "loot_pearl", Amount = 5, Weight = 15 },
       { Item = "loot_pearl", Amount = 6, Weight = 10 },
       { Item = "loot_pearl", Amount = 7, Weight = 10 },
+      { Item = "loot_nugget", Amount = 1, Weight = 10 },
     },
   },
   {
