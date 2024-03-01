@@ -56,7 +56,7 @@ swoobat,wander_normal,unaware,air_cutter,imprison,,,29,30,14,16,Normal,10
 togetic,wander_crystal_normal,,baton_pass,after_you,ancient_power,,28,29,14,16,Support,10
 bronzor,wander_normal,levitate,psywave,imprison,heal_block,,31,32,15,17,Support,10
 skarmory,wander_normal,sturdy,spikes,metal_claw,,,30,31,15,18,Loner,10
-chatot,wander_normal,tangled_feet,chatter,round,mimic,,31,32,16,19,Loner,10
+chatot,wander_normal,tangled_feet,chatter,round,mimic,,32,33,16,19,Loner,10
 clefairy,wander_normal,friend_guard,follow_me,wish,copycat,minimize,31,32,16,19,Support,10
 girafarig,wander_crystal_normal,inner_focus,nasty_plot,baton_pass,agility,stomp,32,33,16,19,Support,10
 impidimp,thief_crystal,pickpocket2,fake_out,parting_shot,,,32,33,16,20,Normal,10
@@ -65,7 +65,7 @@ lunatone,wander_normal,levitate,moonblast,moonlight,embargo,,31,32,16,19,Support
 nosepass,wander_normal,sturdy,power_gem,discharge,,,29,30,16,19,Loner,10
 relicanth,wander_normal,,dive,ancient_power,,,32,33,16,19,Loner,10
 solrock,wander_normal,levitate,psyshock,rock_slide,substitute,,30,31,16,19,Normal,10
-spinda,wander_normal,,focus_punch,teeter_dance,hyper_voice,,32,33,16,19,Normal,10
+spinda,wander_normal,,focus_punch,teeter_dance,hyper_voice,,34,35,16,19,Normal,10
 swoobat,wander_normal,unaware,air_cutter,imprison,,,31,32,16,19,Normal,10
 tinkatuff,thief_crystal,mold_breaker,thief2,fake_out,play_rough,,33,34,16,19,Leader,10
 espeon,wander_normal,magic_bounce,dazzling_gleam,psybeam,wish,,34,35,17,20,Normal,10
@@ -130,7 +130,7 @@ houndoom,wander_normal,flash_fire,dark_pulse,nasty_plot,overheat,,51,52,25,27,No
 medicham,wander_normal,pure_power,high_jump_kick,drain_punch,endure,psycho_cut,50,51,25,28,Leader,10
 porygon_z,wander_crystal_normal,download,tri_attack,thunderbolt,conversion,conversion_2,49,50,25,28,Loner,7
 clawitzer,wander_normal,mega_launcher,aura_sphere,water_pulse,dark_pulse,dragon_pulse,52,53,26,28,Normal,10
-goodra,wander_normal,gooey,draco_meteor,muddy_water,power_whip,,51,50,26,28,Normal,10
+goodra,wander_normal,gooey,draco_meteor,muddy_water,power_whip,,52,53,26,28,Normal,10
 metagross,wander_crystal_normal,clear_body,agility,meteor_mash,zen_headbutt,,52,53,26,28,Normal,10
 noivern,wander_normal,infiltrator,boomburst,dragon_pulse,tailwind,,53,54,26,28,Support,10
 salamence,wander_normal,intimidate,dragon_rush,fly,fire_fang,,52,53,26,28,Leader,10

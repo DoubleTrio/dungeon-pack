@@ -52650,8 +52650,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 31,
-"Max": 32
+"Min": 32,
+"Max": 33
 },
 "SpecifiedSkills": [
 "chatter",
@@ -53009,8 +53009,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 32,
-"Max": 33
+"Min": 34,
+"Max": 35
 },
 "SpecifiedSkills": [
 "focus_punch",
@@ -55632,8 +55632,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 51,
-"Max": 50
+"Min": 52,
+"Max": 53
 },
 "SpecifiedSkills": [
 "draco_meteor",

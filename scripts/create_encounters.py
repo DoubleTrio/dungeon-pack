@@ -106,8 +106,8 @@ if __name__ == "__main__":
         ('solrock', 'wander_normal', 'levitate', ['psyshock', 'rock_slide', 'substitute'], 30, 31, 15, 18, 0, 10),
         ('lunatone', 'wander_normal', 'levitate', ['moonblast', 'moonlight', 'embargo'], 31, 32, 15, 18, SUPPORT, 10),
         ('swoobat', 'wander_normal', 'unaware', ['air_cutter', 'imprison'], 31, 32, 15, 18, 0, 10),
-        ('chatot', 'wander_normal', 'tangled_feet', ['chatter', 'round', 'mimic'], 31, 32, 15, 18, LONER, 10),
-        ('spinda', 'wander_normal', '', ['focus_punch', 'teeter_dance', 'hyper_voice'], 32, 33, 15, 18, 0, 10),
+        ('chatot', 'wander_normal', 'tangled_feet', ['chatter', 'round', 'mimic'], 32, 33, 15, 18, LONER, 10),
+        ('spinda', 'wander_normal', '', ['focus_punch', 'teeter_dance', 'hyper_voice'], 34, 35, 15, 18, 0, 10),
         ('relicanth', 'wander_normal', '', ['dive', 'ancient_power'], 32, 33, 15, 18, LONER, 10),
         ('nosepass', 'wander_normal', 'sturdy', ['power_gem', 'discharge'], 29, 30, 15, 18, LONER, 10),
         ('tinkatuff', 'thief_crystal', 'mold_breaker', ['thief2', 'fake_out', 'play_rough'], 33, 34, 15, 18, LEADER, 10),
@@ -197,7 +197,7 @@ if __name__ == "__main__":
         #26
         ('metagross', 'wander_crystal_normal', 'clear_body', ['agility', 'meteor_mash', 'zen_headbutt'], 52, 53, 25, 27, 0, 10),
         ('noivern', 'wander_normal', 'infiltrator', ['boomburst', 'dragon_pulse', 'tailwind'], 53, 54, 25, 27, SUPPORT, 10),
-        ('goodra', 'wander_normal', 'gooey', ['draco_meteor', 'muddy_water', 'power_whip'], 51, 50, 25, 27, 0, 10),
+        ('goodra', 'wander_normal', 'gooey', ['draco_meteor', 'muddy_water', 'power_whip'], 52, 53, 25, 27, 0, 10),
         ('clawitzer', 'wander_normal', 'mega_launcher', ['aura_sphere', 'water_pulse', 'dark_pulse', 'dragon_pulse'], 52, 53, 25, 27, 0, 10),
         ('salamence', 'wander_normal', 'intimidate', ["dragon_rush", "fly", "fire_fang"], 52, 53, 25, 27, LEADER, 10),
     ]
