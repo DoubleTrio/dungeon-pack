@@ -107,7 +107,22 @@ function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
   }
 
   AdjustModdedActions(move_map, ability_map, mon_map)
+  
+  if GAME:InRogueMode() then
+    SV.Wishmaker.BonusScore = SV.Wishmaker.BonusScore - _DATA.Save.ActiveTeam:GetStorageValue()
+  end
+  local final_score = nil
+  if GAME:InRogueMode()  then
+    final_score = GAME:GetPlayerMoney() + _DATA.Save.ActiveTeam:GetStorageValue() + SV.Wishmaker.BonusScore +  _DATA.Save.ActiveTeam:GetInvValue()
+  else
+    final_score = GAME:GetPlayerMoney() + SV.Wishmaker.BonusScore + _DATA.Save.ActiveTeam:GetInvValue()
+  end
+
   GAME:AddToPlayerMoney(SV.Wishmaker.BonusScore)
+
+  print("=======================================================")
+  print("================= FINAL SCORE IS " .. final_score .. " ================")
+  print("=======================================================")
   
   if exited == true then
     -- nothing
@@ -126,6 +141,10 @@ function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
       COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
     end
   end
+
+  print("=======================================================")
+  print("================= FINAL SCORE IS " .. final_score .. " ================")
+  print("=======================================================")
 
   if GAME:InRogueMode() and SV.Wishmaker.RecruitedJirachi then
     GAME:RemoveFromPlayerMoneyBank(100000)

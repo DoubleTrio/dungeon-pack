@@ -21,16 +21,14 @@ MAP_STATUS_SCRIPT = {}
 -- public void TakePlayerBagItem(int slot, bool takeAll = false)
 
 function ITEM_SCRIPT.WishItemPickupEvent(owner, ownerChar, context, args)
-  if not GAME:InRogueMode() then
-    SV.Wishmaker.BonusScore = SV.Wishmaker.BonusScore + context.Item:GetSellValue()
-  end
-
   if not SV.Wishmaker.MadeWish then
     return
   end
   if context.Item.IsMoney then
     return
   end
+  
+	SV.Wishmaker.BonusScore = SV.Wishmaker.BonusScore + context.Item:GetSellValue()
 
   local amount = context.Item.Amount
   if amount == 0 then
