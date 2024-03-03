@@ -1,4 +1,4 @@
-{
+﻿{
 "Version": "0.7.25.0",
 "Object": {
 "$type": "RogueEssence.Data.ZoneData, RogueEssence",
@@ -53618,7 +53618,8 @@
 },
 "SpecifiedSkills": [
 "iron_head",
-"play_rough"
+"play_rough",
+"vice_grip"
 ],
 "Intrinsic": "",
 "Tactic": "wander_crystal_normal",
@@ -53626,7 +53627,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 2,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -54505,7 +54506,8 @@
 "SpecifiedSkills": [
 "foul_play",
 "thief2",
-"agility"
+"agility",
+"taunt"
 ],
 "Intrinsic": "stakeout",
 "Tactic": "thief_crystal",
@@ -54513,7 +54515,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 4,
 "Remove": false
 },
 {
@@ -54545,7 +54547,8 @@
 "SpecifiedSkills": [
 "fling",
 "fake_out",
-"metal_claw"
+"metal_claw",
+"play_rough"
 ],
 "Intrinsic": "mold_breaker",
 "Tactic": "wander_crystal_normal",
@@ -54553,7 +54556,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 4,
 "Remove": false
 },
 {
@@ -54750,7 +54753,7 @@
 "psyshock",
 "teleport"
 ],
-"Intrinsic": "telepathy",
+"Intrinsic": "",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
@@ -54787,7 +54790,7 @@
 },
 "SpecifiedSkills": [
 "mean_look",
-"fake_tears",
+"calm_mind",
 "shadow_ball",
 "embargo"
 ],
@@ -54952,7 +54955,7 @@
 "heal_pulse",
 "aromatic_mist"
 ],
-"Intrinsic": "healer",
+"Intrinsic": "magic_bounce",
 "Tactic": "wander_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
@@ -55428,8 +55431,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 50,
-"Max": 51
+"Min": 51,
+"Max": 52
 },
 "SpecifiedSkills": [
 "embargo",
@@ -55437,7 +55440,7 @@
 "swagger",
 "night_slash"
 ],
-"Intrinsic": "",
+"Intrinsic": "super_luck",
 "Tactic": "wander_crystal_normal",
 "SpawnConditions": [],
 "SpawnFeatures": [
@@ -55591,8 +55594,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 52,
-"Max": 53
+"Min": 53,
+"Max": 54
 },
 "SpecifiedSkills": [
 "aura_sphere",
@@ -55712,8 +55715,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 53,
-"Max": 54
+"Min": 54,
+"Max": 55
 },
 "SpecifiedSkills": [
 "boomburst",
@@ -55752,8 +55755,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 52,
-"Max": 53
+"Min": 53,
+"Max": 54
 },
 "SpecifiedSkills": [
 "dragon_rush",
