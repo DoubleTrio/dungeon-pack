@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.7.25.0",
 "Object": {
 "$type": "RogueEssence.Data.TileData, RogueEssence",
 "Name": {
@@ -13,7 +13,7 @@
 "Released": true,
 "Comment": "",
 "Anim": {
-"AnimIndex": "Crystal_Glow2",
+"AnimIndex": "Crystal_Glow",
 "FrameTime": 10,
 "StartFrame": -1,
 "EndFrame": -1,
@@ -29,10 +29,10 @@
 "BlockItem": true,
 "StepType": 1,
 "MinimapIcon": {
-"X": 1,
-"Y": 2
+"X": 2,
+"Y": 0
 },
-"MinimapColor": "255, 165, 0, 255",
+"MinimapColor": "255, 125, 235, 255",
 "LandedOnTiles": [
 {
 "Key": {

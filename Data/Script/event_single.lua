@@ -670,6 +670,28 @@ function ResetEffectTile(owner)
   end
 end
 
+function SINGLE_CHAR_SCRIPT.RevealGems(owner, ownerChar, context, args)
+	local count = 0
+  if _DATA.CurrentReplay ~= nil then
+    if context.User ~= nil then
+			return
+		else
+			local map = _ZONE.CurrentMap
+      for xx = 0, map.Width - 1, 1 do
+        for yy = 0, map.Height - 1, 1 do
+          local loc = RogueElements.Loc(xx, yy)
+          local tl = map:GetTile(loc)
+          if tl.Effect.ID == "crystal_glow" then
+						count = count + 1
+            tl.Effect.ID = "crystal_glow2"
+          end
+        end
+      end
+			_DUNGEON:LogMsg("Secret Count: " .. count)
+    end
+  end
+end
+
 function SINGLE_CHAR_SCRIPT.CrystalStatusCheck(owner, ownerChar, context, args)
   local status = args.Status
   local max_stack = args.MaxStack

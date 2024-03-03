@@ -112,11 +112,12 @@ function ZONE_GEN_SCRIPT.ShimmeringZoneStep(zoneContext, context, queue, seed, a
     local ev = SHIMMERING_EVENTS[index + 1]
     ev.effect()
     active_effect.OnMapStarts:Add(1, RogueEssence.Dungeon.SingleCharScriptEvent("LogShimmeringEvent", Serpent.line({ StringKey = ev.string_key })))
-  
-    local dest_note = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { active_effect })
-    local priority = RogueElements.Priority(1)
-    queue:Enqueue(priority, dest_note)
   end
+
+  local dest_note = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { active_effect })
+  local priority = RogueElements.Priority(1)
+  active_effect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("RevealGems", Serpent.line({})))
+  queue:Enqueue(priority, dest_note)
 end
 
 function ZONE_GEN_SCRIPT.SpawnStoryNpc(zoneContext, context, queue, seed, args)
