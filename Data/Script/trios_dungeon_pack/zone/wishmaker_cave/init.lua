@@ -108,17 +108,14 @@ function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
 
   AdjustModdedActions(move_map, ability_map, mon_map)
   
-  if GAME:InRogueMode() then
-    SV.Wishmaker.BonusScore = SV.Wishmaker.BonusScore - _DATA.Save.ActiveTeam:GetStorageValue()
-  end
+
   local final_score = nil
   if GAME:InRogueMode()  then
-    final_score = GAME:GetPlayerMoney() + _DATA.Save.ActiveTeam:GetStorageValue() + SV.Wishmaker.BonusScore +  _DATA.Save.ActiveTeam:GetInvValue()
+    final_score = GAME:GetPlayerMoney() + _DATA.Save.ActiveTeam:GetStorageValue() + _DATA.Save.ActiveTeam:GetInvValue()
   else
     final_score = GAME:GetPlayerMoney() + SV.Wishmaker.BonusScore + _DATA.Save.ActiveTeam:GetInvValue()
+    GAME:AddToPlayerMoney(SV.Wishmaker.BonusScore)
   end
-
-  GAME:AddToPlayerMoney(SV.Wishmaker.BonusScore)
 
   print("=======================================================")
   print("================= FINAL SCORE IS " .. final_score .. " ================")
@@ -141,10 +138,6 @@ function wishmaker_cave.ExitSegment(zone, result, rescue, segmentID, mapID)
       COMMON.EndDungeonDay(result, 'guildmaster_island', -1, 1, 0)
     end
   end
-
-  print("=======================================================")
-  print("================= FINAL SCORE IS " .. final_score .. " ================")
-  print("=======================================================")
 
   if SV.Wishmaker.RemoveBonusMoney then
     if GAME:InRogueMode() then
