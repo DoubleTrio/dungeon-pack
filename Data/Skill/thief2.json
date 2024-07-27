@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.24.0",
+"Version": "0.8.2.0",
 "Object": {
 "$type": "RogueEssence.Data.SkillData, RogueEssence",
 "Name": {
@@ -25,7 +25,7 @@
 "zh-hans": "攻击的同时盗取对手的道具。"
 }
 },
-"Released": true,
+"Released": false,
 "Comment": "",
 "IndexNum": 168,
 "BaseCharges": 20,

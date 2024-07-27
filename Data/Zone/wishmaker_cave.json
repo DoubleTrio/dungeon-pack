@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.25.0",
+"Version": "0.8.2.0",
 "Object": {
 "$type": "RogueEssence.Data.ZoneData, RogueEssence",
 "Name": {
@@ -979,6 +979,63 @@
 {
 "Key": {
 "str": [
+-4
+]
+},
+"Value": {
+"$type": "RogueElements.SetGridSpecialRoomStep`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements",
+"Rooms": {
+"$type": "RogueElements.PresetPicker`1[[RogueElements.RoomGen`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueElements]], RogueElements",
+"ToSpawn": {
+"$type": "RogueEssence.LevelGen.RoomGenLoadMap`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueEssence",
+"RoomTerrain": {
+"$type": "RogueEssence.Dungeon.Tile, RogueEssence",
+"Data": {
+"ID": "floor",
+"TileTex": {
+"AutoTileset": "",
+"Associates": [],
+"Layers": [],
+"NeighborCode": -1
+},
+"StableTex": false
+},
+"Effect": {
+"TileLoc": {
+"X": 0,
+"Y": 0
+},
+"ID": "",
+"Revealed": false,
+"Owner": 0,
+"TileStates": []
+}
+},
+"PreventChanges": 3,
+"MapID": "crystal_wish_room"
+}
+},
+"Filters": [
+{
+"$type": "RogueElements.RoomFilterComponent, RogueElements",
+"Negate": true,
+"Components": [
+{
+"$type": "RogueEssence.LevelGen.ImmutableRoom, RogueEssence"
+}
+]
+}
+],
+"RoomComponents": [
+{
+"$type": "RogueEssence.LevelGen.ImmutableRoom, RogueEssence"
+}
+]
+}
+},
+{
+"Key": {
+"str": [
 -3
 ]
 },
@@ -1078,6 +1135,15 @@
 "Components": [
 {
 "$type": "PMDC.LevelGen.BossRoom, PMDC"
+}
+]
+},
+{
+"$type": "RogueElements.RoomFilterComponent, RogueElements",
+"Negate": true,
+"Components": [
+{
+"$type": "RogueEssence.LevelGen.ImmutableRoom, RogueEssence"
 }
 ]
 }
@@ -1326,47 +1392,6 @@
 "Amount": {
 "Min": 3,
 "Max": 5
-}
-}
-}
-},
-{
-"Key": {
-"str": [
-6,
-1
-]
-},
-"Value": {
-"$type": "RogueElements.RandomRoomSpawnStep`2[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.Dungeon.MapItem, RogueEssence]], RogueElements",
-"IncludeHalls": false,
-"Filters": [
-{
-"$type": "PMDC.LevelGen.RoomFilterConnectivity, PMDC",
-"Connection": 1
-}
-],
-"Spawn": {
-"$type": "RogueElements.PickerSpawner`2[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.Dungeon.MapItem, RogueEssence]], RogueElements",
-"Picker": {
-"$type": "RogueElements.PresetMultiRand`1[[RogueEssence.Dungeon.MapItem, RogueEssence]], RogueElements",
-"ToSpawn": [
-{
-"$type": "RogueElements.PresetPicker`1[[RogueEssence.Dungeon.MapItem, RogueEssence]], RogueElements",
-"ToSpawn": {
-"IsMoney": false,
-"Cursed": false,
-"Value": "apricorn_plain",
-"HiddenValue": "",
-"Amount": 0,
-"Price": 0,
-"TileLoc": {
-"X": 0,
-"Y": 0
-}
-}
-}
-]
 }
 }
 }
@@ -1926,6 +1951,39 @@
 "$type": "RogueElements.RandRange, RogueElements",
 "Min": 6,
 "Max": 10
+}
+}
+}
+}
+},
+{
+"Key": {
+"str": [
+6,
+1
+]
+},
+"Value": {
+"$type": "RogueEssence.LevelGen.NearSpawnableSpawnStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.Dungeon.InvItem, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence]], RogueEssence",
+"SuccessPercent": 100,
+"Filters": [],
+"Spawn": {
+"$type": "RogueElements.PickerSpawner`2[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.Dungeon.InvItem, RogueEssence]], RogueElements",
+"Picker": {
+"$type": "RogueElements.LoopedRand`1[[RogueEssence.Dungeon.InvItem, RogueEssence]], RogueElements",
+"Spawner": {
+"$type": "RogueElements.PresetPicker`1[[RogueEssence.Dungeon.InvItem, RogueEssence]], RogueElements",
+"ToSpawn": {
+"ID": "apricorn_plain",
+"Cursed": false,
+"HiddenValue": "",
+"Amount": 0,
+"Price": 0
+}
+},
+"AmountSpawner": {
+"$type": "RogueElements.PresetPicker`1[[System.Int32, System.Private.CoreLib]], RogueElements",
+"ToSpawn": 1
 }
 }
 }
@@ -25810,7 +25868,7 @@
 },
 "AmountSpawner": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 3,
+"Min": 4,
 "Max": 5
 }
 }
@@ -28018,7 +28076,7 @@
 },
 "AmountSpawner": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 3,
+"Min": 4,
 "Max": 5
 }
 }
@@ -30185,7 +30243,7 @@
 },
 "AmountSpawner": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 3,
+"Min": 4,
 "Max": 5
 }
 }
@@ -32352,7 +32410,7 @@
 },
 "AmountSpawner": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 3,
+"Min": 4,
 "Max": 5
 }
 }
@@ -34519,7 +34577,7 @@
 },
 "AmountSpawner": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 3,
+"Min": 4,
 "Max": 5
 }
 }
@@ -42485,7 +42543,7 @@
 },
 "AmountSpawner": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 4,
+"Min": 5,
 "Max": 6
 }
 }
@@ -43832,7 +43890,7 @@
 },
 "AmountSpawner": {
 "$type": "RogueElements.RandRange, RogueElements",
-"Min": 4,
+"Min": 5,
 "Max": 6
 }
 }
@@ -50831,7 +50889,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "zubat2",
+"Species": "zubat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -51104,7 +51162,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "woobat2",
+"Species": "woobat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -51182,7 +51240,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "chingling2",
+"Species": "chingling",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -51363,7 +51421,7 @@
 }
 ]
 },
-"Role": 2
+"Role": 0
 },
 "Rate": 10,
 "Range": {
@@ -51562,6 +51620,45 @@
 ]
 },
 "Role": 0
+},
+"Rate": 10,
+"Range": {
+"Min": 8,
+"Max": 10
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "bronzor",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 21,
+"Max": 22
+},
+"SpecifiedSkills": [
+"psywave",
+"heal_block"
+],
+"Intrinsic": "levitate",
+"Tactic": "wander_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 2,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 1
 },
 "Rate": 10,
 "Range": {
@@ -51888,47 +51985,6 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "kirlia",
-"Form": 0,
-"Skin": "",
-"Gender": -1
-},
-"Level": {
-"Min": 24,
-"Max": 25
-},
-"SpecifiedSkills": [
-"magical_leaf",
-"heal_pulse",
-"lucky_chant",
-"teleport"
-],
-"Intrinsic": "telepathy",
-"Tactic": "wander_normal",
-"SpawnConditions": [],
-"SpawnFeatures": [
-{
-"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
-"Remove": false
-},
-{
-"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-}
-]
-},
-"Role": 1
-},
-"Rate": 10,
-"Range": {
-"Min": 10,
-"Max": 13
-}
-},
-{
-"Spawn": {
-"Spawn": {
-"BaseForm": {
 "Species": "luvdisc",
 "Form": 0,
 "Skin": "",
@@ -52096,7 +52152,6 @@
 "Max": 27
 },
 "SpecifiedSkills": [
-"mud_slap",
 "rock_tomb",
 "cosmic_power",
 "imprison"
@@ -52107,7 +52162,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -52133,8 +52188,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 25,
-"Max": 26
+"Min": 27,
+"Max": 28
 },
 "SpecifiedSkills": [
 "scald",
@@ -52155,6 +52210,46 @@
 ]
 },
 "Role": 0
+},
+"Rate": 10,
+"Range": {
+"Min": 11,
+"Max": 14
+}
+},
+{
+"Spawn": {
+"Spawn": {
+"BaseForm": {
+"Species": "kirlia",
+"Form": 0,
+"Skin": "",
+"Gender": -1
+},
+"Level": {
+"Min": 26,
+"Max": 27
+},
+"SpecifiedSkills": [
+"dazzling_gleam",
+"heal_pulse",
+"trick"
+],
+"Intrinsic": "telepathy",
+"Tactic": "wander_normal",
+"SpawnConditions": [],
+"SpawnFeatures": [
+{
+"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+"StartAt": 3,
+"Remove": false
+},
+{
+"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+}
+]
+},
+"Role": 1
 },
 "Rate": 10,
 "Range": {
@@ -52252,8 +52347,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 26,
-"Max": 27
+"Min": 25,
+"Max": 26
 },
 "SpecifiedSkills": [
 "volt_switch",
@@ -52291,13 +52386,12 @@
 "Gender": -1
 },
 "Level": {
-"Min": 27,
-"Max": 28
+"Min": 25,
+"Max": 26
 },
 "SpecifiedSkills": [
 "wish",
-"encore",
-"attract",
+"helping_hand",
 "struggle_bug"
 ],
 "Intrinsic": "prankster",
@@ -52306,7 +52400,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -52336,10 +52430,8 @@
 "Max": 28
 },
 "SpecifiedSkills": [
-"dazzling_gleam",
-"bug_buzz",
-"round",
-"helping_hand"
+"giga_drain",
+"bug_buzz"
 ],
 "Intrinsic": "swarm",
 "Tactic": "wander_normal",
@@ -52347,7 +52439,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -52446,46 +52538,6 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "sableye",
-"Form": 0,
-"Skin": "",
-"Gender": -1
-},
-"Level": {
-"Min": 29,
-"Max": 30
-},
-"SpecifiedSkills": [
-"punishment",
-"taunt",
-"torment"
-],
-"Intrinsic": "prankster",
-"Tactic": "wander_crystal_normal_greedy",
-"SpawnConditions": [],
-"SpawnFeatures": [
-{
-"$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
-"Remove": false
-},
-{
-"$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-}
-]
-},
-"Role": 3
-},
-"Rate": 10,
-"Range": {
-"Min": 13,
-"Max": 16
-}
-},
-{
-"Spawn": {
-"Spawn": {
-"BaseForm": {
 "Species": "swoobat",
 "Form": 0,
 "Skin": "",
@@ -52536,8 +52588,8 @@
 },
 "SpecifiedSkills": [
 "baton_pass",
-"after_you",
-"ancient_power"
+"ancient_power",
+"double_team"
 ],
 "Intrinsic": "",
 "Tactic": "wander_crystal_normal",
@@ -52565,27 +52617,26 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "bronzor",
+"Species": "sableye",
 "Form": 0,
 "Skin": "",
 "Gender": -1
 },
 "Level": {
-"Min": 31,
-"Max": 32
+"Min": 30,
+"Max": 31
 },
 "SpecifiedSkills": [
-"psywave",
-"imprison",
-"heal_block"
+"punishment",
+"taunt"
 ],
-"Intrinsic": "levitate",
-"Tactic": "wander_normal",
+"Intrinsic": "prankster",
+"Tactic": "wander_crystal_normal_greedy",
 "SpawnConditions": [],
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -52593,12 +52644,12 @@
 }
 ]
 },
-"Role": 1
+"Role": 3
 },
 "Rate": 10,
 "Range": {
 "Min": 14,
-"Max": 16
+"Max": 17
 }
 },
 {
@@ -52611,8 +52662,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 30,
-"Max": 31
+"Min": 28,
+"Max": 29
 },
 "SpecifiedSkills": [
 "spikes",
@@ -52856,8 +52907,7 @@
 },
 "SpecifiedSkills": [
 "moonblast",
-"moonlight",
-"embargo"
+"moonlight"
 ],
 "Intrinsic": "levitate",
 "Tactic": "wander_normal",
@@ -52865,7 +52915,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -52930,8 +52980,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 32,
-"Max": 33
+"Min": 30,
+"Max": 31
 },
 "SpecifiedSkills": [
 "dive",
@@ -53072,7 +53122,7 @@
 },
 "Role": 0
 },
-"Rate": 10,
+"Rate": 6,
 "Range": {
 "Min": 15,
 "Max": 18
@@ -53088,8 +53138,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 33,
-"Max": 34
+"Min": 32,
+"Max": 33
 },
 "SpecifiedSkills": [
 "thief2",
@@ -53173,7 +53223,6 @@
 },
 "SpecifiedSkills": [
 "future_sight",
-"charm",
 "mean_look"
 ],
 "Intrinsic": "competitive",
@@ -53182,7 +53231,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -53213,8 +53262,7 @@
 },
 "SpecifiedSkills": [
 "take_down",
-"zen_headbutt",
-"magnet_rise"
+"zen_headbutt"
 ],
 "Intrinsic": "clear_body",
 "Tactic": "wander_normal",
@@ -53222,7 +53270,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -53394,7 +53442,7 @@
 },
 "Role": 1
 },
-"Rate": 10,
+"Rate": 5,
 "Range": {
 "Min": 16,
 "Max": 19
@@ -53415,8 +53463,7 @@
 },
 "SpecifiedSkills": [
 "wish",
-"mean_look",
-"feint_attack",
+"snarl",
 "sand_attack"
 ],
 "Intrinsic": "synchronize",
@@ -53425,7 +53472,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -53577,7 +53624,6 @@
 },
 "SpecifiedSkills": [
 "life_dew",
-"dazzling_gleam",
 "aromatic_mist",
 "mystical_fire"
 ],
@@ -53587,7 +53633,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -53653,14 +53699,14 @@
 "Gender": -1
 },
 "Level": {
-"Min": 37,
-"Max": 38
+"Min": 36,
+"Max": 37
 },
 "SpecifiedSkills": [
 "electroweb",
-"thunder_wave",
 "baton_pass",
-"copycat"
+"copycat",
+"wish"
 ],
 "Intrinsic": "minus",
 "Tactic": "wander_crystal_normal",
@@ -53734,13 +53780,12 @@
 "Gender": -1
 },
 "Level": {
-"Min": 37,
-"Max": 38
+"Min": 36,
+"Max": 37
 },
 "SpecifiedSkills": [
 "shock_wave",
-"helping_hand",
-"wish",
+"nuzzle",
 "agility"
 ],
 "Intrinsic": "plus",
@@ -53749,7 +53794,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -53810,14 +53855,14 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "golbat2",
+"Species": "golbat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
 },
 "Level": {
-"Min": 38,
-"Max": 39
+"Min": 37,
+"Max": 38
 },
 "SpecifiedSkills": [
 "haze",
@@ -54019,7 +54064,6 @@
 "Max": 44
 },
 "SpecifiedSkills": [
-"encore",
 "baton_pass",
 "wish",
 "silver_wind"
@@ -54030,7 +54074,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -54345,7 +54389,6 @@
 "Max": 45
 },
 "SpecifiedSkills": [
-"torment",
 "spikes",
 "imprison"
 ],
@@ -54355,7 +54398,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -54385,8 +54428,8 @@
 "Max": 42
 },
 "SpecifiedSkills": [
-"psychic",
-"thunderbolt"
+"thunderbolt",
+"psychic"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
@@ -54420,13 +54463,13 @@
 "Gender": -1
 },
 "Level": {
-"Min": 42,
-"Max": 43
+"Min": 43,
+"Max": 44
 },
 "SpecifiedSkills": [
-"double_edge",
 "smack_down",
-"curse"
+"block",
+"stealth_rock"
 ],
 "Intrinsic": "rock_head",
 "Tactic": "wander_normal",
@@ -54465,8 +54508,7 @@
 },
 "SpecifiedSkills": [
 "fairy_wind",
-"helping_hand",
-"wish"
+"helping_hand"
 ],
 "Intrinsic": "cute_charm",
 "Tactic": "wander_crystal_normal",
@@ -54474,7 +54516,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 3,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -54541,14 +54583,13 @@
 "Gender": -1
 },
 "Level": {
-"Min": 45,
-"Max": 46
+"Min": 41,
+"Max": 42
 },
 "SpecifiedSkills": [
-"fling",
 "fake_out",
-"metal_claw",
-"play_rough"
+"gigaton_hammer",
+"fling"
 ],
 "Intrinsic": "mold_breaker",
 "Tactic": "wander_crystal_normal",
@@ -54556,7 +54597,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -54588,7 +54629,6 @@
 "SpecifiedSkills": [
 "follow_me",
 "wish",
-"thunder_wave",
 "foresight"
 ],
 "Intrinsic": "serene_grace",
@@ -54597,7 +54637,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -54663,13 +54703,12 @@
 "Gender": -1
 },
 "Level": {
-"Min": 45,
-"Max": 46
+"Min": 46,
+"Max": 47
 },
 "SpecifiedSkills": [
 "heal_block",
 "teleport",
-"extrasensory",
 "explosion"
 ],
 "Intrinsic": "",
@@ -54678,7 +54717,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -54750,8 +54789,7 @@
 "SpecifiedSkills": [
 "wish",
 "moonblast",
-"psyshock",
-"teleport"
+"psyshock"
 ],
 "Intrinsic": "",
 "Tactic": "wander_normal",
@@ -54759,7 +54797,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -54790,9 +54828,7 @@
 },
 "SpecifiedSkills": [
 "mean_look",
-"calm_mind",
-"shadow_ball",
-"embargo"
+"shadow_ball"
 ],
 "Intrinsic": "shadow_tag",
 "Tactic": "wander_normal",
@@ -54800,7 +54836,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -54866,14 +54902,12 @@
 "Gender": -1
 },
 "Level": {
-"Min": 45,
-"Max": 46
+"Min": 44,
+"Max": 45
 },
 "SpecifiedSkills": [
-"avalanche",
-"night_slash",
 "embargo",
-"agility"
+"night_slash"
 ],
 "Intrinsic": "pressure",
 "Tactic": "wander_crystal_normal",
@@ -54881,7 +54915,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 2,
 "Remove": false
 },
 {
@@ -54889,7 +54923,7 @@
 }
 ]
 },
-"Role": 2
+"Role": 3
 },
 "Rate": 10,
 "Range": {
@@ -55068,8 +55102,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 46,
-"Max": 47
+"Min": 45,
+"Max": 46
 },
 "SpecifiedSkills": [
 "drill_run",
@@ -55154,7 +55188,6 @@
 },
 "SpecifiedSkills": [
 "moonblast",
-"ice_beam",
 "wish",
 "cosmic_power"
 ],
@@ -55164,7 +55197,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -55435,7 +55468,6 @@
 "Max": 52
 },
 "SpecifiedSkills": [
-"embargo",
 "haze",
 "swagger",
 "night_slash"
@@ -55446,7 +55478,7 @@
 "SpawnFeatures": [
 {
 "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-"StartAt": 4,
+"StartAt": 3,
 "Remove": false
 },
 {
@@ -55553,8 +55585,8 @@
 "Gender": -1
 },
 "Level": {
-"Min": 49,
-"Max": 50
+"Min": 48,
+"Max": 49
 },
 "SpecifiedSkills": [
 "tri_attack",
@@ -59215,7 +59247,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "zubat2",
+"Species": "zubat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -59249,7 +59281,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "golbat2",
+"Species": "golbat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -60507,7 +60539,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "woobat2",
+"Species": "woobat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -62105,7 +62137,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "chingling2",
+"Species": "chingling",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -65729,7 +65761,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "zubat2",
+"Species": "zubat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -65763,7 +65795,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "golbat2",
+"Species": "golbat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -67021,7 +67053,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "woobat2",
+"Species": "woobat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -68619,7 +68651,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "chingling2",
+"Species": "chingling",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -69530,7 +69562,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "zubat2",
+"Species": "zubat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -69564,7 +69596,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "golbat2",
+"Species": "golbat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -70822,7 +70854,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "woobat2",
+"Species": "woobat",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -72420,7 +72452,7 @@
 {
 "Spawn": {
 "BaseForm": {
-"Species": "chingling2",
+"Species": "chingling",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -72659,7 +72691,7 @@
 "Max": 7
 },
 "FloorRange": {
-"Min": 15,
+"Min": 16,
 "Max": 27
 }
 },
@@ -72940,7 +72972,7 @@
 "Max": 7
 },
 "FloorRange": {
-"Min": 15,
+"Min": 16,
 "Max": 27
 }
 },
@@ -72995,7 +73027,7 @@
 "Max": 7
 },
 "FloorRange": {
-"Min": 1,
+"Min": 16,
 "Max": 27
 }
 },
@@ -73162,7 +73194,7 @@
 "Max": 12
 },
 "FloorRange": {
-"Min": 1,
+"Min": 16,
 "Max": 27
 }
 },
@@ -73277,7 +73309,7 @@
 },
 "Replaceable": false,
 "FloorRange": {
-"Min": 1,
+"Min": 16,
 "Max": 27
 }
 },
@@ -73535,7 +73567,7 @@
 "Max": 7
 },
 "FloorRange": {
-"Min": 1,
+"Min": 16,
 "Max": 21
 }
 },
@@ -74604,7 +74636,7 @@
 "Replaceable": false,
 "FloorRange": {
 "Min": 0,
-"Max": 25
+"Max": 5
 }
 },
 "ModStates": []
@@ -74654,8 +74686,8 @@
 "SpreadPlan": {
 "$type": "RogueEssence.LevelGen.SpreadPlanSpaced, RogueEssence",
 "FloorSpacing": {
-"Min": 2,
-"Max": 4
+"Min": 3,
+"Max": 5
 },
 "FloorRange": {
 "Min": 1,
@@ -75480,7 +75512,7 @@
 "SpecialRatio": 100,
 "Amount": {
 "Min": 3,
-"Max": 6
+"Max": 5
 }
 },
 "Rate": 60
@@ -75741,7 +75773,7 @@
 "Rate": 30,
 "Range": {
 "Min": 2,
-"Max": 6
+"Max": 5
 }
 },
 {
@@ -76599,7 +76631,7 @@
 "SpecialRatio": 100,
 "Amount": {
 "Min": 3,
-"Max": 6
+"Max": 5
 }
 },
 "Rate": 60
@@ -77986,88 +78018,6 @@
 "FloorRange": {
 "Min": 5,
 "Max": 27
-}
-},
-"ModStates": []
-},
-{
-"$type": "RogueEssence.LevelGen.SpreadRoomZoneStep, RogueEssence",
-"Spawns": [
-{
-"Spawn": {
-"GridOption": {
-"$type": "RogueEssence.LevelGen.RoomGenLoadMap`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueEssence",
-"RoomTerrain": {
-"$type": "RogueEssence.Dungeon.Tile, RogueEssence",
-"Data": {
-"ID": "floor",
-"TileTex": {
-"AutoTileset": "",
-"Associates": [],
-"Layers": [],
-"NeighborCode": -1
-},
-"StableTex": false
-},
-"Effect": {
-"TileLoc": {
-"X": 0,
-"Y": 0
-},
-"ID": "",
-"Revealed": false,
-"Owner": 0,
-"TileStates": []
-}
-},
-"PreventChanges": 3,
-"MapID": "crystal_wish_room"
-},
-"ListOption": {
-"$type": "RogueElements.RoomGenDefault`1[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence]], RogueElements"
-},
-"Filters": [
-{
-"$type": "RogueElements.RoomFilterComponent, RogueElements",
-"Negate": true,
-"Components": [
-{
-"$type": "RogueEssence.LevelGen.ImmutableRoom, RogueEssence"
-}
-]
-},
-{
-"$type": "PMDC.LevelGen.RoomFilterConnectivity, PMDC",
-"Connection": 1
-}
-]
-},
-"Rate": 100
-}
-],
-"PriorityGrid": {
-"str": [
--4,
-1
-]
-},
-"PriorityList": {
-"str": [
--2,
-2
-]
-},
-"SpreadPlan": {
-"$type": "RogueEssence.LevelGen.SpreadPlanQuota, RogueEssence",
-"Quota": {
-"$type": "RogueElements.RandRange, RogueElements",
-"Min": 1,
-"Max": 2
-},
-"Replaceable": false,
-"FloorRange": {
-"Min": 0,
-"Max": 1
 }
 },
 "ModStates": []

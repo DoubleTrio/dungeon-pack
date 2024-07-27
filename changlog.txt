@@ -1,8 +1,29 @@
 
 Changelog:
 
-This version overall makes Wishmaker Cave a more fair, enjoyable (but still extremely tough) experience by fixing overtuned parts and makes necessary resources more available. The dungeon is still subject to change with more feedback
 
+Wishmaker Cave has been further nerfed, and also now works on v0.8.2 on PMDO!
+
+0.2.5 Changes
+- Updated code to account breaking mod changes in PMDO v0.8.2
+
+Wishmaker Cave
+- Plain Apricorn is guaranteed to spawn next to the player on the 1st floor
+- Monster houses should (most likely) function now
+- Evolution area appears every 3-4 floors (was 2-3 floors)
+- Nerfed a bunch of enemies by a few levels + reduced the movesets of several Pokemon
+- Notable Enemy Changes
+  - Tinkaton now has Gigaton Hammer in exchange for Play Rough
+  - Plusle and Minun no longer have Helping Hand
+  - Kirlia now has Dazzling Gleam and Trick in exchange for Magical Leaf and confusion
+  - Weavile now has Embargo in exchange for Agility
+  - Porygon-Z now has Thunderbolt in exchange for Thunder
+  - Removed Wish on Sylveon
+  - Steelix now has Stealth Rock and Block in exchange for Curse & Double-Edge  
+  - (Updated from PMDO v0.8.1) Hitbox for Psychock is now a cross instead of a single area. This affects Gardevoir and Solrock
+  - (Updated from PMDO v0.8.1) Fixed a bug where certain Pokemon wouldn't use status moves
+
+0.2.4 Changes
 Wishmaker Cave:
 - A NEW special floor has been added for reaching the end of the dungeon!
 - New visitors have been added in story mode and offer some tips and information about the dungeon

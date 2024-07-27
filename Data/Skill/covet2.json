@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.8.2.0",
 "Object": {
 "$type": "RogueEssence.Data.SkillData, RogueEssence",
 "Name": {
@@ -25,7 +25,7 @@
 "zh-hans": "可爱地乞求从对手那里获得道具。"
 }
 },
-"Released": true,
+"Released": false,
 "Comment": "",
 "IndexNum": 343,
 "BaseCharges": 20,

@@ -124,7 +124,7 @@
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK1" xml:space="preserve">
-    <value>[emote=Inspired]Wow![pause=20] Wishmaker Cave is so beautiful![br][emote=Normal]Sometimes, I feel something stirring in me when I look at the crystals.</value>
+    <value>[emote=Inspired]Wow![pause=20] [color=#FFC663]Wishmaker Cave[color] is so beautiful![br][emote=Normal]Sometimes, I feel something stirring in me when I look at the crystals.</value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK2" xml:space="preserve">
@@ -132,11 +132,11 @@
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK3" xml:space="preserve">
-    <value>Heh.[pause=0] These crystals can't hide from old Zangoose.[br][emote=Normal]Hidden from the plain eye, I know they're hidden.... </value>
+    <value>Heh.[pause=0] These crystals can't hide from old [color=#00F8F8]Zangoose[color].[br][emote=Normal]Hidden from the plain eye, I know they're hidden.... </value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK4" xml:space="preserve">
-    <value>[emote=Pain]Ughh, those Tentacools are nasty, [pause=20]very nasty.[br][emote=Pain]I don't know why,[pause=20] but I feel absolutely horrible after fighting one.</value>
+    <value>[emote=Pain]Ughh, those [color=#00F8F8]Tentacools[color] are nasty, [pause=20]very nasty.[br][emote=Pain]I don't know why,[pause=20] but I feel absolutely horrible after fighting one.</value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK5" xml:space="preserve">
@@ -148,11 +148,11 @@
     <comment></comment> 
   </data> 
   <data name="WISHMAKER_NPC_TALK7.0" xml:space="preserve">
-    <value>{0} more[pause=10].[pause=10].[pause=10].[pause=10] Like a star[pause=10].[pause=10].[pause=10].[pause=10]\nFor Wishmaker.</value>
+    <value>{0} more[pause=10].[pause=10].[pause=10].[pause=10] Like a star[pause=10].[pause=10].[pause=10].[pause=10]\nFor [color=#F8F800]Wishmaker[color].</value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK7.1" xml:space="preserve">
-    <value>[emote=Happy]Like a star[pause=10].[pause=10].[pause=10].[pause=10] Hold until the end.[pause=10].[pause=10].[pause=20]\nFor Wishmaker.</value>
+    <value>[emote=Happy]Like a star[pause=10].[pause=10].[pause=10].[pause=10] Hold until the end.[pause=10].[pause=10].[pause=20]\nFor [color=#F8F800]Wishmaker[color].</value>
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK8" xml:space="preserve">
@@ -164,7 +164,7 @@
     <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK10" xml:space="preserve">
-    <value>[pause=10].[pause=10].[pause=10].[pause=10]Hold your wishes until the end.[pause=0]\nFor Wishmaker.</value>
+    <value>[pause=10].[pause=10].[pause=10].[pause=10]Hold your wishes until the end.[pause=0]\nFor [color=#F8F800]Wishmaker[color].</value>
     <comment></comment>  
   </data>
   <data name="TALK_SHOP_0003" xml:space="preserve">

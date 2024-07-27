@@ -1,7 +1,26 @@
 ﻿{
-"Version": "0.7.24.0",
+"Version": "0.8.2.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"conversion_2": {
+"Name": {
+"DefaultText": "Conversion 2",
+"LocalTexts": {
+"fr": "Conversion 2",
+"de": "Umwandlung2",
+"es": "Conversión2",
+"it": "Conversione2",
+"ko": "텍스처2",
+"ja": "テクスチャー２",
+"ja-jp": "テクスチャー２",
+"zh-hans": "纹理2",
+"zh-hant": "紋理２"
+}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 176
+},
 "thief2": {
 "Name": {
 "DefaultText": "Thief",
@@ -17,7 +36,7 @@
 "zh-hant": "小偷"
 }
 },
-"Released": true,
+"Released": false,
 "Comment": "",
 "SortOrder": 168
 },
@@ -36,7 +55,7 @@
 "zh-hant": "渴望"
 }
 },
-"Released": true,
+"Released": false,
 "Comment": "",
 "SortOrder": 343
 }
