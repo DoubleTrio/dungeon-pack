@@ -1,20 +1,41 @@
 ﻿{
-"Version": "0.7.21.0",
+"Version": "0.8.8.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
-"wonder_room": {
+"shimmering5": {
 "Name": {
-"DefaultText": "Wonder Room",
-"LocalTexts": {
-"fr": "Zone Étrange",
-"de": "Wunderraum",
-"es": "Zona Extraña",
-"it": "Mirabilzona",
-"zh-hans": "奇妙空间"
-}
+"DefaultText": "Shimmering",
+"LocalTexts": {}
 },
 "Released": true,
-"Comment": "",
+"Comment": "Serene Grace",
+"SortOrder": 0
+},
+"shimmering4": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Status condtions",
+"SortOrder": 0
+},
+"shimmering3": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Crit Chance",
+"SortOrder": 0
+},
+"shimmering2": {
+"Name": {
+"DefaultText": "Shimmering",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "Shimmering but with the added range.",
 "SortOrder": 0
 },
 "shimmering": {
@@ -33,42 +54,6 @@
 },
 "Released": true,
 "Comment": "",
-"SortOrder": 0
-},
-"shimmering2": {
-"Name": {
-"DefaultText": "Shimmering",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "Shimmering but with the added range.",
-"SortOrder": 0
-},
-"shimmering3": {
-"Name": {
-"DefaultText": "Shimmering",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "Crit Chance",
-"SortOrder": 0
-},
-"shimmering4": {
-"Name": {
-"DefaultText": "Shimmering",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "Status condtions",
-"SortOrder": 0
-},
-"shimmering5": {
-"Name": {
-"DefaultText": "Shimmering",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "Serene Grace",
 "SortOrder": 0
 },
 "shimmering6": {

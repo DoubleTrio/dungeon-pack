@@ -1,34 +1,7 @@
 ﻿{
-"Version": "0.7.25.0",
+"Version": "0.8.8.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
-"defense_crystal": {
-"Name": {
-"DefaultText": "Defense Crystal",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "",
-"SortOrder": 0
-},
-"attack_crystal": {
-"Name": {
-"DefaultText": "Attack Crystal",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "",
-"SortOrder": 0
-},
-"heal_crystal": {
-"Name": {
-"DefaultText": "Drain Crystal",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "",
-"SortOrder": 0
-},
 "wish_crystal": {
 "Name": {
 "DefaultText": "Wish Crystal",
@@ -41,33 +14,6 @@
 "crystal_glow": {
 "Name": {
 "DefaultText": "Crystal Glow",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "",
-"SortOrder": 0
-},
-"crystal_glow2": {
-"Name": {
-"DefaultText": "Crystal Glow",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "",
-"SortOrder": 0
-},
-"wish_exit": {
-"Name": {
-"DefaultText": "Wish Exit",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "",
-"SortOrder": 0
-},
-"wish_center": {
-"Name": {
-"DefaultText": "Wish Center",
 "LocalTexts": {}
 },
 "Released": true,
@@ -92,9 +38,27 @@
 "Comment": "",
 "SortOrder": 0
 },
-"tile_mystery_portal": {
+"wish_center": {
 "Name": {
-"DefaultText": "Mystery Portal",
+"DefaultText": "Wish Center",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"heal_crystal": {
+"Name": {
+"DefaultText": "Drain Crystal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"attack_crystal": {
+"Name": {
+"DefaultText": "Attack Crystal",
 "LocalTexts": {}
 },
 "Released": true,
@@ -104,6 +68,33 @@
 "tile_no_item": {
 "Name": {
 "DefaultText": "No Item Tile",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"wish_exit": {
+"Name": {
+"DefaultText": "Wish Exit",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"crystal_glow2": {
+"Name": {
+"DefaultText": "Crystal Glow",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"defense_crystal": {
+"Name": {
+"DefaultText": "Defense Crystal",
 "LocalTexts": {}
 },
 "Released": true,

@@ -1,19 +1,10 @@
 ﻿{
-"Version": "0.7.23.0",
+"Version": "0.8.8.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
-"crystal_attack": {
+"no_heal": {
 "Name": {
-"DefaultText": "Attack Crystal",
-"LocalTexts": {}
-},
-"Released": true,
-"Comment": "",
-"SortOrder": 0
-},
-"crystal_defense": {
-"Name": {
-"DefaultText": "Defense Crystal",
+"DefaultText": "No Heal",
 "LocalTexts": {}
 },
 "Released": true,
@@ -29,9 +20,18 @@
 "Comment": "",
 "SortOrder": 0
 },
-"no_heal": {
+"crystal_attack": {
 "Name": {
-"DefaultText": "No Heal",
+"DefaultText": "Attack Crystal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"crystal_defense": {
+"Name": {
+"DefaultText": "Defense Crystal",
 "LocalTexts": {}
 },
 "Released": true,

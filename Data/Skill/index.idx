@@ -1,46 +1,24 @@
 ﻿{
-"Version": "0.8.2.0",
+"Version": "0.8.8.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
-"conversion_2": {
-"Name": {
-"DefaultText": "Conversion 2",
-"LocalTexts": {
-"fr": "Conversion 2",
-"de": "Umwandlung2",
-"es": "Conversión2",
-"it": "Conversione2",
-"ko": "텍스처2",
-"ja": "テクスチャー２",
-"ja-jp": "テクスチャー２",
-"zh-hans": "纹理2",
-"zh-hant": "紋理２"
-}
-},
-"Released": false,
-"Comment": "",
-"SortOrder": 176
-},
-"thief2": {
-"Name": {
-"DefaultText": "Thief",
-"LocalTexts": {
-"fr": "Larcin",
-"de": "Raub",
-"es": "Ladrón",
-"it": "Furto",
-"ko": "도둑질",
-"ja": "どろぼう",
-"ja-jp": "どろぼう",
-"zh-hans": "小偷",
-"zh-hant": "小偷"
-}
-},
-"Released": false,
-"Comment": "",
-"SortOrder": 168
-},
 "covet2": {
+"$type": "RogueEssence.Data.SkillDataSummary, RogueEssence",
+"Element": "normal",
+"Category": 3,
+"BasePower": -1,
+"BaseCharges": 20,
+"HitRate": 80,
+"RangeDescription": "Foe in 3-Tile Arc",
+"Description": {
+"DefaultText": "The user cutely begs to obtain an item from the foe.",
+"LocalTexts": {
+"de": "Bittet charmant um das getragene Item des Zieles und stiehlt es dann.",
+"it": "Il Pokémon si avvicina al bersaglio con fare accattivante e gli ruba uno strumento.",
+"ko": "귀엽게 애교 부리며 상대에게 다가가 도구를 뺏는다.",
+"zh-hans": "可爱地乞求从对手那里获得道具。"
+}
+},
 "Name": {
 "DefaultText": "Covet",
 "LocalTexts": {
@@ -58,6 +36,41 @@
 "Released": false,
 "Comment": "",
 "SortOrder": 343
+},
+"thief2": {
+"$type": "RogueEssence.Data.SkillDataSummary, RogueEssence",
+"Element": "dark",
+"Category": 1,
+"BasePower": 40,
+"BaseCharges": 20,
+"HitRate": 100,
+"RangeDescription": "Foe in 2-Tile Dash",
+"Description": {
+"DefaultText": "The user attacks and steals the target's held item simultaneously.",
+"LocalTexts": {
+"de": "Stiehlt das Item des Zieles während des Angriffs.",
+"it": "Il Pokémon attacca e ruba lo strumento tenuto dal bersaglio.",
+"ko": "공격과 동시에 지닌 물건을 훔친다.",
+"zh-hans": "攻击的同时盗取对手的道具。"
+}
+},
+"Name": {
+"DefaultText": "Thief",
+"LocalTexts": {
+"fr": "Larcin",
+"de": "Raub",
+"es": "Ladrón",
+"it": "Furto",
+"ko": "도둑질",
+"ja": "どろぼう",
+"ja-jp": "どろぼう",
+"zh-hans": "小偷",
+"zh-hant": "小偷"
+}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 168
 }
 }
 }
