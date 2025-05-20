@@ -14,6 +14,7 @@ function base_camp.Init(map)
 end
 
 function base_camp.Ferry_Action(obj, activator)
+  GAME:UnlockDungeon('wishmaker_cave')
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
   local ferry = CH('Lapras')
   UI:SetSpeaker(ferry)
@@ -21,8 +22,7 @@ function base_camp.Ferry_Action(obj, activator)
     UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Ferry_Line_001']))
 	SV.base_camp.FerryIntroduced = true
   end
-  GAME:UnlockDungeon('wishmaker_cave')
-  local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
+  local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'eon_island', 'uncharted_waters', 'inscribed_cave', 'prism_isles' }
   local ground_entrances = {}
   
   UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Ferry_Line_002']))
