@@ -1,13 +1,13 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.9.0",
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Normal Crystal Wander",
+"DefaultText": "Normal Greedy Crystal Wander",
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "Searches for Crystals",
+"Comment": "",
 "ID": "wander_crystal_normal_greedy",
 "Assignable": false,
 "Plans": [

@@ -14,7 +14,7 @@ if __name__ == "__main__":
         
 
         #1
-        ('eevee2', 'wander_normal', 'adaptability', ['baby_doll_eyes', 'round'], 10, 11, 0, 4, 0, 10),
+        ('eevee', 'wander_normal', 'adaptability', ['baby_doll_eyes', 'round'], 10, 11, 0, 4, 0, 10),
         ('skitty', 'wander_normal', 'wonder_skin', ['fake_out', 'copycat'], 10, 11, 0, 4, 0, 10),
         ('cleffa', 'wander_normal', 'friend_guard', ['covet', 'mimic'], 10, 11, 0, 3, 0, 10),
         

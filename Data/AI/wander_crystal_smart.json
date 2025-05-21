@@ -1,9 +1,9 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.9.0",
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Smart Wander",
+"DefaultText": "Smart Crystal Wander",
 "LocalTexts": {}
 },
 "Released": true,

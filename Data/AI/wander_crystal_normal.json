@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.9.0",
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
@@ -7,7 +7,7 @@
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "Searches for Crystals",
+"Comment": "",
 "ID": "wander_crystal_normal",
 "Assignable": false,
 "Plans": [
