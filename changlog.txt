@@ -2,8 +2,9 @@
 Changelog:
 
 
-Wishmaker Cave has been further nerfed, and also now works on v0.8.2 on PMDO!
-
+0.2.8 Changes
+- Updated code to account breaking mod changes in PMDO v0.8.11
+ 
 0.2.5 Changes
 - Updated code to account breaking mod changes in PMDO v0.8.2
 
