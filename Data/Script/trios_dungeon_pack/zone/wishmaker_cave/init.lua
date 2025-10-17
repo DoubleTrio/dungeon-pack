@@ -68,7 +68,6 @@ end
 ---wishmaker_cave.EnterSegment(zone, rescuing, segmentID, mapID)
 --Engine callback function
 function wishmaker_cave.EnterSegment(zone, rescuing, segmentID, mapID)
-
   local mon_map = {
     eevee = "eevee2",
     zubat = "zubat2",
@@ -77,9 +76,17 @@ function wishmaker_cave.EnterSegment(zone, rescuing, segmentID, mapID)
     chingling = "chingling2",
   }
 
+  local move_map = {
+    thief = "thief2",
+    covet = "covet2"
+  }
+  local ability_map = {
+    pickpocket = "pickpocket2"
+  }
+
   if rescuing ~= true then
     COMMON.BeginDungeon(zone.ID, segmentID, mapID)
-    AdjustModdedActions({}, {}, mon_map)
+    AdjustModdedActions(move_map, ability_map, mon_map)
   end
 end
 

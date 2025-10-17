@@ -4,8 +4,8 @@
   <Description>A mod that aims to add more dungeons to the base game!</Description>
   <Namespace>trios_dungeon_pack</Namespace>
   <UUID>37EB426F-2E99-4BBB-A125-99893CCE1D45</UUID>
-  <Version>0.2.5.1</Version>
-  <GameVersion>0.8.3</GameVersion>
+  <Version>0.2.8</Version>
+  <GameVersion>0.8.11</GameVersion>
   <ModType>Mod</ModType>
   <Relationships />
 </Header>

@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "RogueEssence.Data.ZoneData, RogueEssence",
 "Name": {
@@ -1097,6 +1097,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -1278,7 +1279,30 @@
 "WaterTileset": "crystal_cave_1_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "normal"
+"GroundElement": "normal",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -3044,6 +3068,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -3216,7 +3241,30 @@
 "WaterTileset": "crystal_cave_1_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "normal"
+"GroundElement": "normal",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -4949,6 +4997,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -5121,7 +5170,30 @@
 "WaterTileset": "crystal_cave_1_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "normal"
+"GroundElement": "normal",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -6854,6 +6926,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -7026,7 +7099,30 @@
 "WaterTileset": "crystal_cave_1_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "normal"
+"GroundElement": "normal",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -8805,6 +8901,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -8977,7 +9074,30 @@
 "WaterTileset": "crystal_cave_1_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "normal"
+"GroundElement": "normal",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -9898,6 +10018,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -11264,6 +11385,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -12630,6 +12752,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -13996,6 +14119,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -15362,6 +15486,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -16818,6 +16943,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -18406,6 +18532,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -19994,6 +20121,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -21582,6 +21710,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -23170,6 +23299,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.ListMapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -25596,6 +25726,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -25841,7 +25972,30 @@
 "WaterTileset": "wish_cave_2_secondary",
 "LayeredGround": true,
 "IndependentGround": false,
-"GroundElement": "fairy"
+"GroundElement": "fairy",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -27879,6 +28033,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -28051,7 +28206,30 @@
 "WaterTileset": "wish_cave_2_secondary",
 "LayeredGround": true,
 "IndependentGround": false,
-"GroundElement": "steel"
+"GroundElement": "steel",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -30047,6 +30225,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -30219,7 +30398,30 @@
 "WaterTileset": "wish_cave_2_secondary",
 "LayeredGround": true,
 "IndependentGround": false,
-"GroundElement": "steel"
+"GroundElement": "steel",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -32215,6 +32417,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -32387,7 +32590,30 @@
 "WaterTileset": "wish_cave_2_secondary",
 "LayeredGround": true,
 "IndependentGround": false,
-"GroundElement": "fairy"
+"GroundElement": "fairy",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -34383,6 +34609,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -34555,7 +34782,30 @@
 "WaterTileset": "wish_cave_2_secondary",
 "LayeredGround": true,
 "IndependentGround": false,
-"GroundElement": "steel"
+"GroundElement": "steel",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -35699,6 +35949,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -35837,7 +36088,30 @@
 "WaterTileset": "lapis_cave_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "psychic"
+"GroundElement": "psychic",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -37037,6 +37311,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -37175,7 +37450,30 @@
 "WaterTileset": "lapis_cave_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "psychic"
+"GroundElement": "psychic",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -38375,6 +38673,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -38513,7 +38812,30 @@
 "WaterTileset": "lapis_cave_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "psychic"
+"GroundElement": "psychic",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -39713,6 +40035,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -39851,7 +40174,30 @@
 "WaterTileset": "lapis_cave_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "psychic"
+"GroundElement": "psychic",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -41051,6 +41397,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -41189,7 +41536,30 @@
 "WaterTileset": "lapis_cave_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "psychic"
+"GroundElement": "psychic",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -42389,6 +42759,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -42527,7 +42898,30 @@
 "WaterTileset": "lapis_cave_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "psychic"
+"GroundElement": "psychic",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -43727,6 +44121,7 @@
 },
 "Value": {
 "$type": "RogueElements.FloorStairsStep`3[[RogueEssence.LevelGen.MapGenContext, RogueEssence],[RogueEssence.LevelGen.MapGenEntrance, RogueEssence],[RogueEssence.LevelGen.MapGenExit, RogueEssence]], RogueElements",
+"MinDistance": 0,
 "Entrances": [
 {
 "Loc": {
@@ -43875,7 +44270,30 @@
 "WaterTileset": "lapis_cave_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "psychic"
+"GroundElement": "psychic",
+"Background": {
+"$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
+"MapLoc": {
+"X": 0,
+"Y": 0
+},
+"BGAnim": {
+"AnimIndex": "",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"BGMovement": {
+"X": 0,
+"Y": 0
+},
+"Parallax": "0, 0",
+"RepeatX": false,
+"RepeatY": false
+}
 }
 },
 {
@@ -50526,7 +50944,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "eevee",
+"Species": "eevee2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -50917,7 +51335,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "zubat",
+"Species": "zubat2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -51190,7 +51608,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "woobat",
+"Species": "woobat2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -51268,7 +51686,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "chingling",
+"Species": "chingling2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -53883,7 +54301,7 @@
 "Spawn": {
 "Spawn": {
 "BaseForm": {
-"Species": "golbat",
+"Species": "golbat2",
 "Form": 0,
 "Skin": "",
 "Gender": -1
@@ -59091,8 +59509,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59125,8 +59545,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59159,8 +59581,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59193,8 +59617,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59227,8 +59653,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59261,8 +59689,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59295,8 +59725,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59329,8 +59761,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59363,8 +59797,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59397,8 +59833,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59431,8 +59869,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59465,8 +59905,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59499,8 +59941,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59533,8 +59977,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59567,8 +60013,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59601,8 +60049,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59635,8 +60085,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59669,8 +60121,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59703,8 +60157,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59737,8 +60193,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59771,8 +60229,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59805,8 +60265,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59839,8 +60301,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59873,8 +60337,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59907,8 +60373,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59941,8 +60409,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -59975,8 +60445,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60009,8 +60481,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60043,8 +60517,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60077,8 +60553,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60111,8 +60589,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60145,8 +60625,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60179,8 +60661,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60213,8 +60697,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60247,8 +60733,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60281,8 +60769,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60315,8 +60805,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60349,8 +60841,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60383,8 +60877,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60417,8 +60913,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60451,8 +60949,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60485,8 +60985,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60519,8 +61021,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60553,8 +61057,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60587,8 +61093,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60621,8 +61129,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60655,8 +61165,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60689,8 +61201,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60723,8 +61237,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60757,8 +61273,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60791,8 +61309,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60825,8 +61345,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60859,8 +61381,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60893,8 +61417,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60927,8 +61453,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60961,8 +61489,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -60995,8 +61525,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61029,8 +61561,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61063,8 +61597,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61097,8 +61633,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61131,8 +61669,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61165,8 +61705,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61199,8 +61741,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61233,8 +61777,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61267,8 +61813,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61301,8 +61849,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61335,8 +61885,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61369,8 +61921,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61403,8 +61957,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61437,8 +61993,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61471,8 +62029,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61505,8 +62065,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61539,8 +62101,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61573,8 +62137,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61607,8 +62173,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61641,8 +62209,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61675,8 +62245,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61709,8 +62281,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61743,8 +62317,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61777,8 +62353,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61811,8 +62389,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61845,8 +62425,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61879,8 +62461,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61913,8 +62497,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61947,8 +62533,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -61981,8 +62569,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62015,8 +62605,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62049,8 +62641,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62083,8 +62677,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62117,8 +62713,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62151,8 +62749,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62185,8 +62785,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62219,8 +62821,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62253,8 +62857,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -62287,8 +62893,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65605,8 +66213,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65639,8 +66249,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65673,8 +66285,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65707,8 +66321,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65741,8 +66357,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65775,8 +66393,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65809,8 +66429,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65843,8 +66465,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65877,8 +66501,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65911,8 +66537,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65945,8 +66573,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -65979,8 +66609,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66013,8 +66645,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66047,8 +66681,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66081,8 +66717,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66115,8 +66753,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66149,8 +66789,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66183,8 +66825,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66217,8 +66861,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66251,8 +66897,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66285,8 +66933,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66319,8 +66969,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66353,8 +67005,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66387,8 +67041,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66421,8 +67077,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66455,8 +67113,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66489,8 +67149,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66523,8 +67185,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66557,8 +67221,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66591,8 +67257,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66625,8 +67293,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66659,8 +67329,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66693,8 +67365,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66727,8 +67401,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66761,8 +67437,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66795,8 +67473,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66829,8 +67509,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66863,8 +67545,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66897,8 +67581,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66931,8 +67617,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66965,8 +67653,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -66999,8 +67689,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67033,8 +67725,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67067,8 +67761,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67101,8 +67797,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67135,8 +67833,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67169,8 +67869,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67203,8 +67905,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67237,8 +67941,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67271,8 +67977,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67305,8 +68013,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67339,8 +68049,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67373,8 +68085,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67407,8 +68121,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67441,8 +68157,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67475,8 +68193,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67509,8 +68229,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67543,8 +68265,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67577,8 +68301,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67611,8 +68337,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67645,8 +68373,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67679,8 +68409,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67713,8 +68445,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67747,8 +68481,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67781,8 +68517,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67815,8 +68553,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67849,8 +68589,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67883,8 +68625,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67917,8 +68661,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67951,8 +68697,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -67985,8 +68733,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68019,8 +68769,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68053,8 +68805,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68087,8 +68841,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68121,8 +68877,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68155,8 +68913,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68189,8 +68949,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68223,8 +68985,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68257,8 +69021,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68291,8 +69057,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68325,8 +69093,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68359,8 +69129,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68393,8 +69165,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68427,8 +69201,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68461,8 +69237,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68495,8 +69273,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68529,8 +69309,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68563,8 +69345,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68597,8 +69381,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68631,8 +69417,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68665,8 +69453,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68699,8 +69489,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68733,8 +69525,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68767,8 +69561,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -68801,8 +69597,10 @@
 {
 "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
 "StartFromID": 0,
+"MinLevel": 0,
 "AddNumerator": 4,
-"AddDenominator": 3
+"AddDenominator": 3,
+"RerollSkills": false
 }
 ]
 },
@@ -69431,6 +70229,7 @@
 "Min": 4,
 "Max": 6
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 5,
 "Max": 16
@@ -69486,6 +70285,7 @@
 "Min": 4,
 "Max": 7
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 16,
 "Max": 27
@@ -69655,6 +70455,7 @@
 "Min": 5,
 "Max": 6
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 5,
 "Max": 16
@@ -69767,6 +70568,7 @@
 "Min": 5,
 "Max": 7
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 16,
 "Max": 27
@@ -69822,6 +70624,7 @@
 "Min": 5,
 "Max": 7
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 16,
 "Max": 27
@@ -69877,6 +70680,7 @@
 "Min": 5,
 "Max": 6
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 5,
 "Max": 16
@@ -69989,6 +70793,7 @@
 "Min": 9,
 "Max": 12
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 16,
 "Max": 27
@@ -70362,6 +71167,7 @@
 "Min": 4,
 "Max": 7
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 16,
 "Max": 21
@@ -70620,6 +71426,7 @@
 "Min": 4,
 "Max": 7
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 5,
 "Max": 16
@@ -71485,6 +72292,7 @@
 "Min": 3,
 "Max": 5
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 1,
 "Max": 25
@@ -74721,6 +75529,7 @@
 "Min": 4,
 "Max": 10
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 1,
 "Max": 25
@@ -74811,6 +75620,7 @@
 "Min": 3,
 "Max": 6
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 5,
 "Max": 27
@@ -75206,6 +76016,7 @@
 "Min": 4,
 "Max": 6
 },
+"BeginStart": false,
 "FloorRange": {
 "Min": 5,
 "Max": 16

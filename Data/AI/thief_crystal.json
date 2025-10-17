@@ -1,13 +1,13 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Thief",
+"DefaultText": "Thief Crystal",
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "Thief Crystal",
+"Comment": "",
 "ID": "thief_crystal",
 "Assignable": false,
 "Plans": [
@@ -19,7 +19,7 @@
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0,
-"AbandonRangeOnHit": true
+"AbandonRangeOnHit": false
 },
 {
 "$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
@@ -28,14 +28,14 @@
 "attack_crystal",
 "defense_crystal"
 ],
-"Factor": 1,
+"Factor": 0,
 "Omniscient": false,
-"IQ": 32,
+"IQ": 224,
 "RestrictedMobilityTypes": 0,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,
 "StatusRange": 0,
-"SelfStatusRange": 0,
+"SelfStatusRange": 4,
 "AbandonRangeOnHit": true
 },
 {
@@ -58,7 +58,7 @@
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0,
-"AbandonRangeOnHit": true
+"AbandonRangeOnHit": false
 },
 {
 "$type": "PMDC.Dungeon.WaitPlan, PMDC",
@@ -68,7 +68,7 @@
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0,
-"AbandonRangeOnHit": true
+"AbandonRangeOnHit": false
 }
 ]
 }

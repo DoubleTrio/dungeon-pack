@@ -1,9 +1,9 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Smart Wander",
+"DefaultText": "Wander Crystal Smart",
 "LocalTexts": {}
 },
 "Released": true,
@@ -42,7 +42,7 @@
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0,
-"AbandonRangeOnHit": true
+"AbandonRangeOnHit": false
 },
 {
 "$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
@@ -53,7 +53,7 @@
 ],
 "Factor": 1,
 "Omniscient": false,
-"IQ": 236,
+"IQ": 4,
 "RestrictedMobilityTypes": 0,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,
@@ -69,7 +69,7 @@
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0,
-"AbandonRangeOnHit": true
+"AbandonRangeOnHit": false
 },
 {
 "$type": "PMDC.Dungeon.WaitPlan, PMDC",
@@ -79,7 +79,7 @@
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0,
-"AbandonRangeOnHit": true
+"AbandonRangeOnHit": false
 }
 ]
 }

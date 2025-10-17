@@ -1,9 +1,9 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Normal Crystal Wander",
+"DefaultText": "Normal Crystal Wander Greedy",
 "LocalTexts": {}
 },
 "Released": true,
@@ -11,6 +11,23 @@
 "ID": "wander_crystal_normal_greedy",
 "Assignable": false,
 "Plans": [
+{
+"$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
+"StairIds": [
+"heal_crystal",
+"attack_crystal",
+"defense_crystal"
+],
+"Factor": 1,
+"Omniscient": false,
+"IQ": 4,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": true
+},
 {
 "$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
 "AttackPattern": 2,
@@ -26,23 +43,6 @@
 {
 "$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
 "IQ": 228,
-"RestrictedMobilityTypes": 0,
-"RestrictMobilityPassable": false,
-"AttackRange": 0,
-"StatusRange": 0,
-"SelfStatusRange": 0,
-"AbandonRangeOnHit": true
-},
-{
-"$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
-"StairIds": [
-"heal_crystal",
-"attack_crystal",
-"defense_crystal"
-],
-"Factor": 1,
-"Omniscient": false,
-"IQ": 4,
 "RestrictedMobilityTypes": 0,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,

@@ -1,38 +1,16 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Normal Crystal Wander",
+"DefaultText": "Wander Crystal Smart Greedy",
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "Searches for Crystals",
+"Comment": "",
 "ID": "wander_crystal_smart_greedy",
 "Assignable": false,
 "Plans": [
-{
-"$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
-"AttackPattern": 2,
-"PositionPattern": 1,
-"IQ": 100,
-"RestrictedMobilityTypes": 0,
-"RestrictMobilityPassable": false,
-"AttackRange": 0,
-"StatusRange": 0,
-"SelfStatusRange": 4,
-"AbandonRangeOnHit": true
-},
-{
-"$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
-"IQ": 228,
-"RestrictedMobilityTypes": 0,
-"RestrictMobilityPassable": false,
-"AttackRange": 0,
-"StatusRange": 0,
-"SelfStatusRange": 0,
-"AbandonRangeOnHit": true
-},
 {
 "$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
 "StairIds": [
@@ -51,8 +29,9 @@
 "AbandonRangeOnHit": true
 },
 {
-"$type": "PMDC.Dungeon.ExplorePlan, PMDC",
-"IQ": 228,
+"$type": "PMDC.Dungeon.PreBuffPlan, PMDC",
+"FirstMoveStatus": "last_used_move_slot",
+"IQ": 108,
 "RestrictedMobilityTypes": 0,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,
@@ -61,14 +40,46 @@
 "AbandonRangeOnHit": true
 },
 {
-"$type": "PMDC.Dungeon.WaitPlan, PMDC",
-"IQ": 228,
+"$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
+"AttackPattern": 4,
+"PositionPattern": 2,
+"IQ": 108,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 4,
+"AbandonRangeOnHit": true
+},
+{
+"$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
+"IQ": 236,
 "RestrictedMobilityTypes": 0,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,
 "StatusRange": 0,
 "SelfStatusRange": 0,
-"AbandonRangeOnHit": true
+"AbandonRangeOnHit": false
+},
+{
+"$type": "PMDC.Dungeon.ExplorePlan, PMDC",
+"IQ": 236,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
+},
+{
+"$type": "PMDC.Dungeon.WaitPlan, PMDC",
+"IQ": 236,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
 }
 ]
 }

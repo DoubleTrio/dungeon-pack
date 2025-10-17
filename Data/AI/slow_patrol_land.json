@@ -3,29 +3,18 @@
 "Object": {
 "$type": "RogueEssence.Data.AITactic, RogueEssence",
 "Name": {
-"DefaultText": "Wander Crystal Normal",
+"DefaultText": "Slow Patrol Land",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
-"ID": "wander_crystal_normal",
+"ID": "slow_patrol",
 "Assignable": false,
 "Plans": [
 {
-"$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
-"AttackPattern": 2,
-"PositionPattern": 1,
-"IQ": 100,
-"RestrictedMobilityTypes": 0,
-"RestrictMobilityPassable": false,
-"AttackRange": 0,
-"StatusRange": 0,
-"SelfStatusRange": 4,
-"AbandonRangeOnHit": true
-},
-{
-"$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
-"IQ": 228,
+"$type": "PMDC.Dungeon.WaitPeriodPlan, PMDC",
+"Turns": 2,
+"IQ": 128,
 "RestrictedMobilityTypes": 0,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,
@@ -34,26 +23,19 @@
 "AbandonRangeOnHit": false
 },
 {
-"$type": "PMDC.Dungeon.FleeStairsPlan, PMDC",
-"StairIds": [
-"heal_crystal",
-"attack_crystal",
-"defense_crystal"
-],
-"Factor": 0,
-"Omniscient": false,
-"IQ": 224,
-"RestrictedMobilityTypes": 0,
+"$type": "PMDC.Dungeon.StayInRangePlan, PMDC",
+"IQ": 128,
+"RestrictedMobilityTypes": 1,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,
 "StatusRange": 0,
-"SelfStatusRange": 4,
-"AbandonRangeOnHit": true
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
 },
 {
 "$type": "PMDC.Dungeon.ExplorePlan, PMDC",
-"IQ": 228,
-"RestrictedMobilityTypes": 0,
+"IQ": 128,
+"RestrictedMobilityTypes": 1,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,
 "StatusRange": 0,
@@ -62,7 +44,7 @@
 },
 {
 "$type": "PMDC.Dungeon.WaitPlan, PMDC",
-"IQ": 228,
+"IQ": 128,
 "RestrictedMobilityTypes": 0,
 "RestrictMobilityPassable": false,
 "AttackRange": 0,

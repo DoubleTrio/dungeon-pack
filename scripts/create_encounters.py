@@ -29,7 +29,7 @@ if __name__ == "__main__":
         ('whismur', 'wander_normal', 'rattled', ['echoed_voice', 'round'], 14, 15, 2, 6, 0, 10),
         
         #4
-        ('zubat', 'wander_normal', '', ['poison_fang'], 14, 15, 3, 6, 0, 10),
+        ('zubat2', 'wander_normal', '', ['poison_fang'], 14, 15, 3, 6, 0, 10),
         ('houndour', 'wander_normal', '', ['ember', 'leer', 'smog'], 14, 15, 3, 6, LONER, 10),
         ('azurill', 'wander_normal', 'thick_fat', ['charm', 'sing', 'bubble_beam'], 15, 16, 3, 5, 0, 10),
         
@@ -41,12 +41,12 @@ if __name__ == "__main__":
         ('spritzee', 'wander_normal', '', ['fairy_wind'], 17, 18, 5, 10, SUPPORT, 10),
         ('joltik', 'wander_normal', 'unnerve', ['electroweb', 'string_shot'], 16, 17, 5, 8, 0, 10),
         ('pikachu', 'wander_normal', '', ['quick_attack', 'round', 'thunder_wave', 'agility'], 17, 18, 5, 10, SUPPORT, 10),
-        ('woobat', 'wander_normal', '', ['heart_stamp', 'attract'], 16, 17, 5, 8, 0, 10),
+        ('woobat2', 'wander_normal', '', ['heart_stamp', 'attract'], 16, 17, 5, 8, 0, 10),
         ('vulpix', 'wander_normal', 'flash_fire', ['disable', 'ember'], 16, 17, 5, 8, 0, 10),
         
         
         #7
-        ('chingling', 'wander_normal', '', ['wish', 'wrap', 'ally_switch'], 18, 19, 6, 9, SUPPORT, 10),
+        ('chingling2', 'wander_normal', '', ['wish', 'wrap', 'ally_switch'], 18, 19, 6, 9, SUPPORT, 10),
         ('nickit', 'thief', 'stakeout', ['thief2'], 18, 19, 6, 10, 0, 10),
         ('gothita', 'wander_normal', 'competitive', ['confusion', 'fake_tears'], 18, 19, 6, 9, 0, 10),
         ('swinub', 'wander_normal', '', ['mud_bomb'], 18, 19, 6, 9, 0, 10),
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         #18
         ('plusle', 'wander_crystal_normal', 'plus', ['shock_wave', 'nuzzle', 'agility'], 36, 37, 17, 20, SUPPORT, 8),
         ('minun', 'wander_crystal_normal', 'minus', ['electroweb', 'baton_pass', 'copycat', 'wish'], 36, 37, 17, 20, SUPPORT, 10),
-        ('golbat', 'wander_normal', 'infiltrator', ['haze', 'wing_attack', 'giga_drain'], 37, 38, 18, 20, LEADER, 10),
+        ('golbat2', 'wander_normal', 'infiltrator', ['haze', 'wing_attack', 'giga_drain'], 37, 38, 18, 20, LEADER, 10),
         ('hattrem', 'wander_normal', 'healer', ['life_dew', 'aromatic_mist', 'mystical_fire'], 37, 38, 17, 20, SUPPORT, 10),
         ('duosion', 'wander_normal', 'magic_guard', ['reflect', 'pain_split', 'psybeam'], 38, 39, 17, 20, SUPPORT, 10),
         ('murkrow', 'wander_crystal_normal', 'super_luck', ['pursuit', 'foul_play', 'taunt'], 38, 39, 17, 20, 0, 10),

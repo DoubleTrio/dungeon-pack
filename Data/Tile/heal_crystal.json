@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "RogueEssence.Data.TileData, RogueEssence",
 "Name": {
@@ -27,7 +27,7 @@
 },
 "Layer": 0,
 "BlockItem": true,
-"StepType": 3,
+"StepType": 2,
 "MinimapIcon": {
 "X": 2,
 "Y": 1

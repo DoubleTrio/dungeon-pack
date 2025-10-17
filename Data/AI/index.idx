@@ -1,23 +1,23 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "wander_crystal_smart_greedy": {
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
 "Name": {
-"DefaultText": "Normal Crystal Wander",
+"DefaultText": "Wander Crystal Smart Greedy",
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "Searches for Crystals",
+"Comment": "",
 "SortOrder": 0
 },
 "thief_crystal": {
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
 "Name": {
-"DefaultText": "Thief",
+"DefaultText": "Thief Crystal",
 "LocalTexts": {}
 },
 "Released": true,
@@ -28,7 +28,7 @@
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
 "Name": {
-"DefaultText": "Normal Crystal Wander",
+"DefaultText": "Normal Crystal Wander Greedy",
 "LocalTexts": {}
 },
 "Released": true,
@@ -39,18 +39,29 @@
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
 "Name": {
-"DefaultText": "Normal Crystal Wander",
+"DefaultText": "Wander Crystal Normal",
 "LocalTexts": {}
 },
 "Released": true,
-"Comment": "Searches for Crystals",
+"Comment": "",
 "SortOrder": 0
 },
 "wander_crystal_smart": {
 "$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
 "Assignable": false,
 "Name": {
-"DefaultText": "Smart Wander",
+"DefaultText": "Wander Crystal Smart",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"slow_patrol_land": {
+"$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
+"Assignable": false,
+"Name": {
+"DefaultText": "Slow Patrol Land",
 "LocalTexts": {}
 },
 "Released": true,

@@ -1,0 +1,206 @@
+﻿{
+"Version": "0.8.11.0",
+"Object": {
+"$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"eevee2": {
+"$type": "RogueEssence.Data.MonsterEntrySummary, RogueEssence",
+"Forms": [
+{
+"Name": {
+"DefaultText": "Eevee",
+"LocalTexts": {
+"ja": "イーブイ",
+"ko": "이브이",
+"zh-hant": "伊布",
+"fr": "Évoli",
+"de": "Evoli",
+"es": "Eevee",
+"it": "Eevee",
+"ja-jp": "イーブイ",
+"zh-hans": "伊布"
+}
+},
+"Released": true,
+"Temporary": false
+}
+],
+"Name": {
+"DefaultText": "Eevee",
+"LocalTexts": {
+"ja": "イーブイ",
+"ko": "이브이",
+"zh-hant": "伊布",
+"fr": "Évoli",
+"de": "Evoli",
+"es": "Eevee",
+"it": "Eevee",
+"ja-jp": "イーブイ",
+"zh-hans": "伊布"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 133
+},
+"chingling2": {
+"$type": "RogueEssence.Data.MonsterEntrySummary, RogueEssence",
+"Forms": [
+{
+"Name": {
+"DefaultText": "Chingling",
+"LocalTexts": {
+"ja": "リーシャン",
+"ko": "랑딸랑",
+"zh-hant": "鈴鐺響",
+"fr": "Korillon",
+"de": "Klingplim",
+"es": "Chingling",
+"it": "Chingling",
+"ja-jp": "リーシャン",
+"zh-hans": "铃铛响"
+}
+},
+"Released": true,
+"Temporary": false
+}
+],
+"Name": {
+"DefaultText": "Chingling",
+"LocalTexts": {
+"ja": "リーシャン",
+"ko": "랑딸랑",
+"zh-hant": "鈴鐺響",
+"fr": "Korillon",
+"de": "Klingplim",
+"es": "Chingling",
+"it": "Chingling",
+"ja-jp": "リーシャン",
+"zh-hans": "铃铛响"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 433
+},
+"golbat2": {
+"$type": "RogueEssence.Data.MonsterEntrySummary, RogueEssence",
+"Forms": [
+{
+"Name": {
+"DefaultText": "Golbat",
+"LocalTexts": {
+"ja": "ゴルバット",
+"ko": "골뱃",
+"zh-hant": "大嘴蝠",
+"fr": "Nosferalto",
+"de": "Golbat",
+"es": "Golbat",
+"it": "Golbat",
+"ja-jp": "ゴルバット",
+"zh-hans": "大嘴蝠"
+}
+},
+"Released": true,
+"Temporary": false
+}
+],
+"Name": {
+"DefaultText": "Golbat",
+"LocalTexts": {
+"ja": "ゴルバット",
+"ko": "골뱃",
+"zh-hant": "大嘴蝠",
+"fr": "Nosferalto",
+"de": "Golbat",
+"es": "Golbat",
+"it": "Golbat",
+"ja-jp": "ゴルバット",
+"zh-hans": "大嘴蝠"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 42
+},
+"woobat2": {
+"$type": "RogueEssence.Data.MonsterEntrySummary, RogueEssence",
+"Forms": [
+{
+"Name": {
+"DefaultText": "Woobat",
+"LocalTexts": {
+"ja": "コロモリ",
+"ko": "또르박쥐",
+"zh-hant": "滾滾蝙蝠",
+"fr": "Chovsourir",
+"de": "Fleknoil",
+"es": "Woobat",
+"it": "Woobat",
+"ja-jp": "コロモリ",
+"zh-hans": "滚滚蝙蝠"
+}
+},
+"Released": true,
+"Temporary": false
+}
+],
+"Name": {
+"DefaultText": "Woobat",
+"LocalTexts": {
+"ja": "コロモリ",
+"ko": "또르박쥐",
+"zh-hant": "滾滾蝙蝠",
+"fr": "Chovsourir",
+"de": "Fleknoil",
+"es": "Woobat",
+"it": "Woobat",
+"ja-jp": "コロモリ",
+"zh-hans": "滚滚蝙蝠"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 527
+},
+"zubat2": {
+"$type": "RogueEssence.Data.MonsterEntrySummary, RogueEssence",
+"Forms": [
+{
+"Name": {
+"DefaultText": "Zubat",
+"LocalTexts": {
+"ja": "ズバット",
+"ko": "주뱃",
+"zh-hant": "超音蝠",
+"fr": "Nosferapti",
+"de": "Zubat",
+"es": "Zubat",
+"it": "Zubat",
+"ja-jp": "ズバット",
+"zh-hans": "超音蝠"
+}
+},
+"Released": true,
+"Temporary": false
+}
+],
+"Name": {
+"DefaultText": "Zubat",
+"LocalTexts": {
+"ja": "ズバット",
+"ko": "주뱃",
+"zh-hant": "超音蝠",
+"fr": "Nosferapti",
+"de": "Zubat",
+"es": "Zubat",
+"it": "Zubat",
+"ja-jp": "ズバット",
+"zh-hans": "超音蝠"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 41
+}
+}
+}
