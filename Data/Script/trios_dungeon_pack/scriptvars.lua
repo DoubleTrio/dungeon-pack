@@ -6,5 +6,9 @@ SV.Wishmaker = {
   BonusScore = 0
 }
 
+SV.EmberFrost = {
+  ShouldSwap = false,
+}
+
 SV.SavedCharacters = {}
 SV.SavedInventories = {}

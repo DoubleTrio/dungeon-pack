@@ -46,6 +46,8 @@ function CustomUpgrade:OnUpgrade()
       BonusScore = 0
     }
   end
+
+
   if SV.Wishmaker.RecruitedJirachi == nil then SV.Wishmaker.RecruitedJirachi = false end
   if SV.Wishmaker.MadeWish == nil then SV.Wishmaker.MadeWish = false end
   if SV.Wishmaker.RemoveBonusMoney == nil then SV.Wishmaker.RemoveBonusMoney = false end
@@ -58,6 +60,12 @@ function CustomUpgrade:OnUpgrade()
   if SV.SavedInventories == nil then
     SV.SavedInventories = {}
   end
+  if SV.EmberFrost == nil then
+    SV.EmberFrost = {
+      ShouldSwap = false,
+    }
+  end
+  if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
 end
 
 ---Summary

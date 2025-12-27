@@ -22,48 +22,133 @@ end
 ---emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 --Engine callback function
 function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
-	local player_count = GAME:GetPlayerPartyCount()
 
-	UI:ResetSpeaker()
+	print("ENTER SEGMENT")
+	if segmentID == 0 and mapID == 0 then
+
+		-- local first_member = GAME:GetPlayerPartyMember(0)
+		-- local second_member = GAME:GetPlayerPartyMember(1)
+
+		-- GAME:RemovePlayerTeam(1)
+
+		-- local first_member_tbl = LTBL(first_member)
+		-- local second_member_tbl = LTBL(second_member)
+
+
+		-- first_member_tbl.TeamID = 0
+		-- second_member_tbl.TeamID = 1
+
+		-- _DATA.Save.ActiveTeam.Assembly:Add(second_member)
+		-- UI:WaitShowDialogue(second_member:GetDisplayName(true) .. " has split off from the team.")
+		-- UI:WaitShowDialogue("what the")
+	-- elseif segmentID ~= 2 then
+
+		-- print("HRIROOE")
+		-- print("Aaaaaaa")
+
+		-- TASK:WaitTask()
+		-- GAME:RemovePlayerTeam(0)
+
+		-- GAME:SetTeamLeaderIndex(0)
+				-- print("BBbbbbb")
+		-- UI:WaitShowDialogue("Bruh")
+
+
+		-- local key = "emberfrost_team" .. tostring(segmentID)
+		
+
+
+		-- local next_team_id = 1
+		-- if segmentID == 1 then
+		-- 	next_team_id = 0
+		-- end
+
+		-- local next_key = "emberfrost_team" .. tostring(next_team_id)
+
+
+
+		-- M_HELPERS.SaveInventory(key)
+		-- M_HELPERS.LoadInventory(next_key)
+
+
+		-- local party_count = GAME:GetPlayerPartyCount()
+
+		-- for i = party_count - 1, 0, -1 do
+		-- 	local player = GAME:GetPlayerPartyMember(i)
+		-- 	GAME:RemovePlayerTeam(i)
+		-- 	GAME:AddPlayerAssembly(player)
+		-- end
+
+
+
+
+		-- local assemblyCount = GAME:GetPlayerAssemblyCount()
+
+		-- for i = assemblyCount - 1 - party_count, assemblyCount - 4, -1 do
+
+		-- 	if (i < 0) then
+		-- 		break
+		-- 	end
+
+		-- 	local member = GAME:GetPlayerAssemblyMember(i)
+
+		-- 	local tbl = LTBL(member)
+
+		-- 	if (tbl.TeamID == next_team_id) then
+		-- 		GAME:AddPlayerTeam(member)
+		-- 		GAME:RemovePlayerAssembly(i)
+		-- 	end
+		-- 	print("HIII")
+
+
+
+
+		-- 	local party_count2 = GAME:GetPlayerPartyCount()
+
+		-- for i = party_count2 - 1, 0, -1 do
+		-- 	local player = GAME:GetPlayerPartyMember(i)
+		-- 	print(tostring(player))
+		-- end
+
+
+
+		-- 	UI:WaitShowDialogue("TESTING")
+	-- end
+
+
+
+
+		-- local player_count = GAME:GetPlayerPartyCount()
+
+		-- for i = 0, player_count - 1, 1 do 
+		-- 	local player = GAME:GetPlayerPartyMember(i)
+		-- 	local tbl = LTBL(player)
+		-- 	tbl.TeamID = nil
+		-- end
+
+
+
+
+
+		-- local third_member = GAME:GetPlayerPartyMember(2)
+
+		-- GAME:RemovePlayerTeam(2)
+
+		-- local third_member_tbl = LTBL(third_member)
+
+		-- third_member_tbl.TeamID = 2
+
+		-- _DATA.Save.ActiveTeam.Assembly:Add(third_member)
+		-- UI:WaitShowDialogue(third_member:GetDisplayName(true) .. " has split off from the team.")
+	-- elseif segmentID == 2 then
+
+	-- end
+
+	-- UI:ResetSpeaker()
 	-- if (player_count ~= 2) then
 	-- 	GAME:FadeOut(false, 30)
 	-- UI:ResetSpeaker()
-	local first_member = GAME:GetPlayerPartyMember(0)
-
-	local second_member = GAME:GetPlayerPartyMember(1)
-
-	GAME:RemovePlayerTeam(1)
-	-- local second_member = GAME:GetPlayerPartyMember(1)
-
-	local first_member_tbl = LTBL(first_member)
-	local second_member_tbl = LTBL(second_member)
-
-
-	print(tostring(second_member))
-	first_member_tbl.TeamID = 0
-	second_member_tbl.TeamID = 1
-
-	_DATA.Save.ActiveTeam.Assembly:Add(second_member)
-
-
-
-
-
-		-- 	local partyCount = GAME:GetPlayerPartyCount()
-    -- for i = partyCount,1,-1 do
-    --   p = GAME:GetPlayerPartyMember(i-1)
-	  -- if not p.IsFounder then
-		-- GAME:RemovePlayerTeam(i-1)
-		-- GAME:AddPlayerAssembly(p)
-	  -- end
-    -- end
-
-
-		-- print(tostring(second_member))
-		
-
-		UI:WaitShowDialogue(second_member:GetDisplayName(true) .. " has split off from the team.")
-		GAME:FadeIn(false, 30)
+	-- l
 	
 	-- UI:WaitShowDialogue("You need exactly two team members to enter Emberfrost Depths.")
 	
@@ -72,6 +157,7 @@ function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 		-- COMMON.EndDungeonDay(RogueEssence.Data.GameProgress.ResultType.Escaped, 'guildmaster_island', -1, 1, 0)
 		-- return
 	-- end
+	end
 end
 
 
@@ -98,6 +184,7 @@ local function CleanUpEmberFrostDepths()
 
 		if (tbl.TeamID ~= nil) then
 			 GAME:AddPlayerTeam(member)
+			 GAME:RemovePlayerAssembly(i)
 			 tbl.TeamID = nil
 		end
 	end
@@ -109,6 +196,9 @@ end
 --Engine callback function
 function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+
+	-- print("Exitiing segment!!!!")
+	print(tostring(result))
   PrintInfo("=>> ExitSegment_emberfrost_depths result "..tostring(result).." segment "..tostring(segmentID))
   
 

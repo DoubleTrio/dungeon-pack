@@ -128,7 +128,7 @@ M_HELPERS = {
   LoadInventory = function(key)
     local save = _DATA.Save
 
-    local inv_data = SV.SavedInventories[key]
+    local inv_data = SV.SavedInventories[key] or {}
     M_HELPERS.ClearInventory(true)
 
     for _, item_data in ipairs(inv_data) do
