@@ -1038,6 +1038,31 @@ function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, contex
 	chara:FullRestore()
 end
 
+function SINGLE_CHAR_SCRIPT.SwapTileEvent(owner, ownerChar, context, args)
+
+	local se = args.SoundEffect
+	local tile = args.Tile
+	PrintInfo("YEP")
+	PrintInfo(tostring(se))
+
+	SOUND:PlaySE(se)
+	GAME:WaitFrames(20)
+	UI:WaitShowDialogue("............")	
+	-- local effect_tile = owner
+	-- local base_loc = effect_tile.TileLoc
+	-- local tile = _ZONE.CurrentMap.Tiles[base_loc.X][base_loc.Y]
+	-- if tile.Effect == owner then
+	-- 	tile.Effect = RogueEssence.Dungeon.EffectTile(tile.Effect.TileLoc)
+	-- end
+
+	-- local switch_tile = RogueEssence.Dungeon.SwitchTile(effect_tile.TileLoc)
+	-- switch_tile:LoadFromData()
+	-- _ZONE.CurrentMap.Tiles[base_loc.X][base_loc.Y].Effect = switch_tile
+end
+
+
+
+SOUND:PlaySE("Menu/Skip")
 function PickByWeights(entries)
   local total_weight = 0
   

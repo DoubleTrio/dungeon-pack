@@ -100,6 +100,33 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"a_pitfall_trap": {
+"Name": {
+"DefaultText": "Pitfall Trap",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"a_red_button": {
+"Name": {
+"DefaultText": "Red Button",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"a_red_button_pressed": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

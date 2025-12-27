@@ -49,6 +49,15 @@ function CustomUpgrade:OnUpgrade()
   if SV.Wishmaker.RecruitedJirachi == nil then SV.Wishmaker.RecruitedJirachi = false end
   if SV.Wishmaker.MadeWish == nil then SV.Wishmaker.MadeWish = false end
   if SV.Wishmaker.RemoveBonusMoney == nil then SV.Wishmaker.RemoveBonusMoney = false end
+
+
+  if SV.SavedCharacters == nil then
+    SV.SavedCharacters = {}
+  end
+
+  if SV.SavedInventories == nil then
+    SV.SavedInventories = {}
+  end
 end
 
 ---Summary

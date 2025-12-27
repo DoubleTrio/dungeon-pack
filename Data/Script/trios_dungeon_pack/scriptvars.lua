@@ -5,3 +5,6 @@ SV.Wishmaker = {
   TempItemString = nil,
   BonusScore = 0
 }
+
+SV.SavedCharacters = {}
+SV.SavedInventories = {}

@@ -11,6 +11,7 @@ function base_camp.Init(map)
   PrintInfo("=>> Init_base_camp")
   
   base_tbl.Init(map)
+  SOUND:PlayBGM("Top Menu - The Lost Continent.ogg", false)
 end
 
 function base_camp.Ferry_Action(obj, activator)
@@ -21,8 +22,10 @@ function base_camp.Ferry_Action(obj, activator)
     UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Ferry_Line_001']))
 	SV.base_camp.FerryIntroduced = true
   end
+
   GAME:UnlockDungeon('wishmaker_cave')
-  local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
+  GAME:UnlockDungeon('adventurers_peak')
+  local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'adventurers_peak', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
   local ground_entrances = {}
   
   UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Ferry_Line_002']))
