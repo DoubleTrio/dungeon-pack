@@ -35,6 +35,25 @@ M_HELPERS = {
       local memberKey = key .. tostring(i)
       M_HELPERS.SaveCharacter(member, memberKey)
     end
+
+    M_HELPERS.SaveInventory(key)
+  end,
+
+  LoadTeam = function(key)
+    -- Will load team and inventory
+    local save = _DATA.Save
+    save.ActiveTeam.Players:Clear()
+    local i = 0
+    while true do
+      local memberKey = key .. tostring(i)
+      local c_data = SV.SavedCharacters[memberKey]
+      if c_data == nil then break end
+      local character = M_HELPERS.LoadCharacter(memberKey)
+      save.ActiveTeam.Players:Add(character)
+      i = i + 1
+    end
+
+    M_HELPERS.LoadInventory(key)
   end,
 
 

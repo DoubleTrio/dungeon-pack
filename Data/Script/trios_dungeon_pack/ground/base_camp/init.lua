@@ -25,7 +25,8 @@ function base_camp.Ferry_Action(obj, activator)
 
   GAME:UnlockDungeon('wishmaker_cave')
   GAME:UnlockDungeon('adventurers_peak')
-  local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'adventurers_peak', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
+  GAME:UnlockDungeon('emberfrost_depths')
+  local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'adventurers_peak', 'emberfrost_depths', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
   local ground_entrances = {}
   
   UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Ferry_Line_002']))
@@ -33,6 +34,8 @@ function base_camp.Ferry_Action(obj, activator)
   COMMON.ShowDestinationMenu(dungeon_entrances,ground_entrances, true,
   ferry,
   STRINGS:Format(STRINGS.MapStrings['Ferry_Line_003']))
+
+  -- UI:WaitShowDialogue("You need exactly two team members to enter Emberfrost Depths.")
 end
 
 return base_camp
