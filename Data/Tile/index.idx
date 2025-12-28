@@ -2,6 +2,22 @@
 "Version": "0.8.11.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"stairs_go_down": {
+"Name": {
+"DefaultText": "Stairs",
+"LocalTexts": {
+"fr": "Escaliers",
+"de": "Treppe",
+"es": "Escaleras",
+"it": "Scale",
+"ko": "계단",
+"zh-hans": "楼梯"
+}
+},
+"Released": true,
+"Comment": "Down",
+"SortOrder": 0
+},
 "wish_crystal": {
 "Name": {
 "DefaultText": "Wish Crystal",

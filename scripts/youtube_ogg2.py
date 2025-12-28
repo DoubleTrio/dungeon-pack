@@ -80,30 +80,57 @@ def batch_download(tracks, output_dir="./output"):
 
 if __name__ == "__main__":
     TRACKS = [
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=nnO_FFiZJCc",
+        #     title="Rock Slide Canyon",
+        #     artist="Danirbu",
+        #     album="Original Soundtrack",
+        #     loop_start=5469672,
+        #     loop_length=5476165,
+        # ),
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=3ZUDRLMY4_8",
+        #     title="Dusty Trails",
+        #     artist="Danirbu",
+        #     album="Original Soundtrack",
+        #     loop_start=5197794,
+        #     loop_length=5200320,
+        # ),
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=_PVzJOcYZKk",
+        #     title="Ruins of Life",
+        #     artist="Danirbu",
+        #     album="Original Soundtrack",
+        #     loop_start=5469672,
+        #     loop_length=5476165,
+        # ),
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=npTdjMtlHM8&list=LL",
+        #     title="Terminal Velocity (Act 1)",
+        #     artist="Yash",
+        #     album="Sonic Colors",
+        #     loop_start=532745,
+        #     loop_length=5794417,
+        # ),
+  
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=14_CoQWjV8I",
+        #     title="Vast Poni Canyon",
+        #     artist="Yash",
+        #     album="Pokemon Sun and Moon",
+        #     loop_start=3661194,
+        #     loop_length=3071461,
+        # ),
+
         OggTrack(
-            url="https://www.youtube.com/watch?v=nnO_FFiZJCc",
-            title="Rock Slide Canyon",
-            artist="Danirbu",
-            album="Original Soundtrack",
-            loop_start=5469672,
-            loop_length=5476165,
+            url="https://www.youtube.com/watch?v=jO4uMerMpdw",
+            title="Choral Chambers",
+            artist="Yash",
+            album="Silksong",
+            loop_start=7600216,
+            loop_length=7587828,
         ),
-        OggTrack(
-            url="https://www.youtube.com/watch?v=3ZUDRLMY4_8",
-            title="Dusty Trails",
-            artist="Danirbu",
-            album="Original Soundtrack",
-            loop_start=5197794,
-            loop_length=5200320,
-        ),
-        OggTrack(
-            url="https://www.youtube.com/watch?v=_PVzJOcYZKk",
-            title="Ruins of Life",
-            artist="Danirbu",
-            album="Original Soundtrack",
-            loop_start=5469672,
-            loop_length=5476165,
-        ),
+        
     ]
 
     batch_download(TRACKS)

@@ -25,6 +25,35 @@ local function NumToGender(num)
 end
 M_HELPERS = {
 
+ 
+  AddToAssembly = function(species, level)
+    local char = M_HELPERS.CreateCharacter(species, level)
+    GAME:AddPlayerAssembly(char)
+  end,
+
+  AddToParty = function(species, level)
+    local char = M_HELPERS.CreateCharacter(species, level)
+    GAME:AddPlayerTeam(char)
+  end,
+
+  CreateCharacter = function(species, level)
+    local mon_id = RogueEssence.Dungeon.MonsterID(species, 0, "normal", Gender.Unknown)
+    local char = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, level, "", 0)
+    return char
+  end,
+
+  DebugPopulateAssembly = function(level)
+    M_HELPERS.AddToAssembly("charmander", level)
+    M_HELPERS.AddToAssembly("squirtle", level)
+    M_HELPERS.AddToAssembly("bulbasaur", level)
+  end,
+
+  DebugPopulateParty = function(level)
+    M_HELPERS.AddToParty("charmander", level)
+    M_HELPERS.AddToParty("squirtle", level)
+    M_HELPERS.AddToParty("bulbasaur", level)
+  end,
+  
   SaveTeam = function(key)
     -- Will save team and inventory
     local save = _DATA.Save

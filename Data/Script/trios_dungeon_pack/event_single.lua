@@ -714,6 +714,13 @@ function ResetEffectTile(owner)
     end
 end
 
+function SINGLE_CHAR_SCRIPT.EmberFrostSwapEvent(owner, ownerChar, context, args)
+	-- print("HI THEREEEEE")
+	GAME:RemovePlayerTeam(0)
+	print("EMBER FROST SWAP EVENT TRIGGERED")
+
+end
+
 function SINGLE_CHAR_SCRIPT.RevealGems(owner, ownerChar, context, args)
     local count = 0
     if _DATA.CurrentReplay ~= nil then
@@ -781,9 +788,10 @@ end
 
 function SINGLE_CHAR_SCRIPT.EmberFrostTest(owner, ownerChar, context, args)
 
-    if context.User == _DUNGEON.ActiveTeam.Leader then
-        print("EMBER FROST TEST TRIGGERED")
-        GAME:RemovePlayerTeam(0)
+	--  print("EMBER FROST TEST TRIGGERED GRRR")
+    if context.User == GAME:GetPlayerPartyMember(1) then
+        print("EMBER FROST TEST TRIGGERED HIHI")
+        -- GAME:RemovePlayerTeam(0)
     end
 
     -- print("HHIHIHHIHI")
@@ -806,6 +814,7 @@ function SINGLE_CHAR_SCRIPT.EmberFrostSwitchParties(owner, ownerChar, context, a
     if context.User ~= nil then
         return
     end
+		
     UI:WaitShowDialogue("The elemental energies shift...")
 
     GAME:RemovePlayerTeam(0)
@@ -1205,7 +1214,6 @@ function SINGLE_CHAR_SCRIPT.SwapTileEvent(owner, ownerChar, context, args)
     -- _ZONE.CurrentMap.Tiles[base_loc.X][base_loc.Y].Effect = switch_tile
 end
 
-SOUND:PlaySE("Menu/Skip")
 function PickByWeights(entries)
     local total_weight = 0
 

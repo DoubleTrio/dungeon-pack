@@ -31,15 +31,13 @@ function ZONE_GEN_SCRIPT.EmberfrostSwitchUp(zoneContext, context, queue, seed, a
     local active_effect = RogueEssence.Data.ActiveEffect()
     local destNote = LUA_ENGINE:MakeGenericType(MapEffectStepType, {MapGenContextType}, {active_effect})
     local priority = RogueElements.Priority(-6)
+    -- active_effect.OnMapTurnEnds:Add(-10, RogueEssence.Dungeon.SingleCharScriptEvent("EmberFrostTest"))
+    active_effect.OnTurnEnds:Add(10, RogueEssence.Dungeon.SingleCharScriptEvent("EmberFrostTest"))
 
     if SV.EmberFrost.ShouldSwap then
         SV.EmberFrost.ShouldSwap = false
-        print("SWITCHING TEAMS")
         active_effect.OnMapStarts:Add(-10, RogueEssence.Dungeon.SingleCharScriptEvent("EmberFrostSwitchParties"))
-        active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("EmberFrostTest2"))
-
-        active_effect.OnTurnStarts:Add(-10, RogueEssence.Dungeon.SingleCharScriptEvent("EmberFrostTest"))
-
+        -- active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("EmberFrostTest2"))
     elseif (zoneContext.CurrentID % interval) == 0 and zoneContext.CurrentID ~= 0 then
         local next_segment
         local next_id
