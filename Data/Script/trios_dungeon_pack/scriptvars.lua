@@ -8,6 +8,7 @@ SV.Wishmaker = {
 
 SV.EmberFrost = {
   ShouldSwap = false,
+  SelectedEnchantments = {},
 }
 
 SV.SavedCharacters = {}

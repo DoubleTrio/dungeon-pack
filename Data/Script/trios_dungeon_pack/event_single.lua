@@ -1,4 +1,5 @@
 require 'origin.common'
+require 'trios_dungeon_pack.emberfrost.frostmarks'
 require 'trios_dungeon_pack.wish_table.wish_table'
 require 'trios_dungeon_pack.helpers'
 
@@ -718,8 +719,51 @@ function SINGLE_CHAR_SCRIPT.EmberFrostSwapEvent(owner, ownerChar, context, args)
 	-- print("HI THEREEEEE")
 	GAME:RemovePlayerTeam(0)
 	print("EMBER FROST SWAP EVENT TRIGGERED")
-
 end
+
+function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context, args)
+	if context.User == _DUNGEON.ActiveTeam.Leader then
+		return
+	end
+
+	local valid_slots = {}
+	
+	local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+	local jeweled_bug_slot = -1
+	for i = 0, inv_count - 1 do
+		local item = _DATA.Save.ActiveTeam:GetInv(i)
+		local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(item.ID)
+		if item.ID == "emberfrost_jeweled_bug" then
+			jeweled_bug_slot = i
+		end
+		if not entry.CannotDrop then
+			table.insert(valid_slots, i)
+		end
+	end
+
+	local jeweled_bug_item = _DATA.Save.ActiveTeam:GetInv(jeweled_bug_slot)
+	if (#valid_slots > 0) then
+		local rand_index = _DATA.Save.Rand:Next(#valid_slots)
+		local swap_slot = valid_slots[(rand_index + 1)]
+		local item = _DATA.Save.ActiveTeam:GetInv(swap_slot)
+		_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " has eaten the " .. item:GetDisplayName() .. "!")
+		SOUND:PlayBattleSE("_UNK_DUN_Twinkle")
+		_DATA.Save.ActiveTeam:RemoveFromInv(swap_slot)
+	else
+		if (jeweled_bug_slot ~= -1) then
+			_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " couldn't find anything to eat and has left!")
+			SOUND:PlayBattleSE("_UNK_EVT_002") -- DUN_Wing_Attack
+			_DATA.Save.ActiveTeam:RemoveFromInv(jeweled_bug_slot)
+		end
+	end
+end
+
+
+	-- print("Initializing JEWELED BUG EVENT")
+	-- GAME:RemovePlayerTeam(0)
+	-- print("EMBER FROST SWAP EVENT TRIGGERED")
+
+
 
 function SINGLE_CHAR_SCRIPT.RevealGems(owner, ownerChar, context, args)
     local count = 0
@@ -790,7 +834,12 @@ function SINGLE_CHAR_SCRIPT.EmberFrostTest(owner, ownerChar, context, args)
 
 	--  print("EMBER FROST TEST TRIGGERED GRRR")
     if context.User == GAME:GetPlayerPartyMember(1) then
-        print("EMBER FROST TEST TRIGGERED HIHI")
+        -- print("EMBER FROST TEST TRIGGERED HIHI")
+					-- local powerup = Bag
+
+					-- if powerup:can_apply() then
+					-- 	powerup:apply()
+					-- end
         -- GAME:RemovePlayerTeam(0)
     end
 

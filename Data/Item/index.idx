@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "wish_gem": {
@@ -7,6 +7,9 @@
 "Icon": -1,
 "UsageType": 0,
 "States": [],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
 "Name": {
 "DefaultText": "Wish Gem",
 "LocalTexts": {}
@@ -14,6 +17,47 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 15
+},
+"emberfrost_jeweled_bug": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 10,
+"UsageType": 8,
+"States": [],
+"MaxStack": 0,
+"CannotDrop": true,
+"BagEffect": true,
+"Name": {
+"DefaultText": "Jeweled Bug",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"emberfrost_allterrain_gear": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": -1,
+"UsageType": 8,
+"States": [
+{
+"assembly": "PMDC, Version=0.8.11.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+},
+{
+"assembly": "PMDC, Version=0.8.11.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "All-Terrain Gear",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 1
 }
 }
 }
