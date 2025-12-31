@@ -68,6 +68,14 @@ function CustomUpgrade:OnUpgrade()
   end
   if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
   if SV.EmberFrost.SelectedEnchantments == nil then SV.EmberFrost.SelectedEnchantments = {} end
+
+  if SV.TemporaryFlags == nil then
+    SV.TemporaryFlags = {
+      OldDirection = nil
+    }
+  end
+
+  SV.TemporaryFlags.OldDirection = nil
 end
 
 ---Summary

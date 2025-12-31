@@ -18,7 +18,7 @@
 "MoneyRestrict": true,
 "BagRestrict": 0,
 "KeepTreasure": false,
-"BagSize": 2,
+"BagSize": 12,
 "Persistent": false,
 "Rescues": 2,
 "Rogue": 1,
@@ -18379,13 +18379,13 @@
 "OrderSoftness": 1,
 "WaterPercent": {
 "Min": 20,
-"Max": 20
+"Max": 21
 },
 "Bowl": true,
 "Terrain": {
 "$type": "RogueEssence.Dungeon.Tile, RogueEssence",
 "Data": {
-"ID": "water",
+"ID": "lava",
 "TileTex": {
 "AutoTileset": "",
 "Associates": [],
@@ -18426,7 +18426,7 @@
 "Terrain": {
 "$type": "RogueEssence.Dungeon.Tile, RogueEssence",
 "Data": {
-"ID": "water",
+"ID": "lava",
 "TileTex": {
 "AutoTileset": "",
 "Associates": [],
@@ -18460,7 +18460,7 @@
 "Terrain": {
 "$type": "RogueEssence.Dungeon.Tile, RogueEssence",
 "Data": {
-"ID": "water",
+"ID": "lava",
 "TileTex": {
 "AutoTileset": "",
 "Associates": [],
@@ -18492,10 +18492,10 @@
 "$type": "RogueEssence.LevelGen.MapTextureStep`1[[RogueEssence.LevelGen.MapGenContext, RogueEssence]], RogueEssence",
 "GroundTileset": "ice_maze_floor",
 "BlockTileset": "ice_maze_wall",
-"WaterTileset": "ice_maze_secondary",
+"WaterTileset": "ice_maze_with_lava_secondary",
 "LayeredGround": false,
 "IndependentGround": false,
-"GroundElement": "ice",
+"GroundElement": "fire",
 "Background": {
 "$type": "RogueEssence.Dungeon.MapBG, RogueEssence",
 "MapLoc": {
@@ -50715,6 +50715,8 @@
 "Comment": ""
 }
 ],
-"GroundMaps": []
+"GroundMaps": [
+"frost_checkpoint"
+]
 }
 }

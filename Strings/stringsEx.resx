@@ -203,4 +203,7 @@
   <data name="TALK_SHOP_THIEF_RETURN_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=sad]Not again.</value>
     <comment></comment>  </data>
+  <data name="MSG_WEATHER_WARD" xml:space="preserve">
+    <value>{0}'s [color=#F8C8C8]Weather Ward[color] made the weather disappear!</value>
+    <comment></comment>  </data>
 </root>

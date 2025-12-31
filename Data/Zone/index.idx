@@ -130,11 +130,13 @@ null
 "MoneyRestrict": true,
 "BagRestrict": 0,
 "KeepTreasure": false,
-"BagSize": 2,
+"BagSize": 12,
 "Rescues": 2,
 "CountedFloors": 9,
 "Rogue": 1,
-"Grounds": [],
+"Grounds": [
+"frost_checkpoint"
+],
 "Maps": [
 [
 0,

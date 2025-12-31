@@ -1,0 +1,33 @@
+﻿{
+"Version": "0.8.11.0",
+"Object": {
+"$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"ice_maze_with_lava_secondary": {
+"Name": {
+"DefaultText": "Ice Maze With Lava Secondary",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"ice_maze_with_lava_floor": {
+"Name": {
+"DefaultText": "Ice Maze With Lava Floor",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"ice_maze_with_lava_wall": {
+"Name": {
+"DefaultText": "Ice Maze With Lava Wall",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+}
+}
+}

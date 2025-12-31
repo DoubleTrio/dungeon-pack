@@ -13,3 +13,7 @@ SV.EmberFrost = {
 
 SV.SavedCharacters = {}
 SV.SavedInventories = {}
+
+SV.TemporaryFlags = {
+  OldDirection = nil
+}

@@ -1,5 +1,5 @@
 require 'origin.common'
-require 'trios_dungeon_pack.emberfrost.frostmarks'
+require 'trios_dungeon_pack.emberfrost.enchantments'
 require 'trios_dungeon_pack.wish_table.wish_table'
 require 'trios_dungeon_pack.helpers'
 
@@ -751,7 +751,7 @@ function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context,
 		_DATA.Save.ActiveTeam:RemoveFromInv(swap_slot)
 	else
 		if (jeweled_bug_slot ~= -1) then
-			_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " couldn't find anything to eat and has left!")
+			_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " couldn't find anything to eat and left!")
 			SOUND:PlayBattleSE("_UNK_EVT_002") -- DUN_Wing_Attack
 			_DATA.Save.ActiveTeam:RemoveFromInv(jeweled_bug_slot)
 		end
@@ -885,7 +885,7 @@ function SINGLE_CHAR_SCRIPT.AddSwitchSegmentStairs(owner, ownerChar, context, ar
 
             if tl.Effect.ID == "stairs_go_up" or tl.Effect.ID == "stairs_go_down" or tl.Effect.ID == "stairs_back_down" or
                 tl.Effect.ID == "stairs_back_up" then
-                local sec_loc = RogueEssence.Dungeon.SegLoc(args.NextSegment, args.NextID)
+                local sec_loc = RogueEssence.Dungeon.SegLoc(-1, args.NextID)
                 local dest_state = PMDC.Dungeon.DestState(sec_loc, false)
                 dest_state.PreserveMusic = false
                 tl.Effect.TileStates:Set(dest_state)
