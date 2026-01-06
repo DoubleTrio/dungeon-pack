@@ -4,214 +4,334 @@
     Use for ground mode only then.
 ]]
 
-
 EnchantmentSelectionMenu = Class("EnchantmentSelectionMenu")
 
---- Creates a new ``TeamSelectMenu`` instance using the provided list and callbacks.
---- This function throws an error if the parameter ``char_list`` contains less than 1 entries.
---- @param title string the title this window will have.
---- @param enchantment_list table an array, list or lua array table containing enchantment objects. Must have three elements.
---- @param confirm_action function the function called when a slot is chosen. It will have a enchantment object passed to it as a parameter.
---- @param refuse_action function the function called when the player presses the cancel or menu button.
---- @param enchantment_width number The width of each enchantmnet menu. Default is 100
-function EnchantmentSelectionMenu:initialize(title, enchantment_list, confirm_action, refuse_action, enchantment_width)
-  local len = 0
-  if type(enchantment_list) == 'table' then len = #enchantment_list end
+function EnchantmentSelectionMenu:initialize(title, enchantment_list, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action, enchantment_width)
+   local len = type(enchantment_list) == 'table' and #enchantment_list or 0
   if len < 1 then
-    --abort if list is empty
     error("parameter 'enchantment_list' cannot be an empty collection")
   end
+  
+  self:initializeConstants()
+  self:initializeState(title, enchantment_list, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action)
+  self:createMenu()
+end
 
+function EnchantmentSelectionMenu:initializeConstants()
+  self.LINE_HEIGHT = 12
+  self.VERT_SPACE = 14
+  self.ENCHANTMENT_WIDTH = 108
+  self.ENCHANTMENT_HEIGHT = 162
+  self.EDGE_PADDING = 1
+end
 
-  local VERT_SPACE = 14
-  -- local height = self.total_items_per_page * 16 + RogueEssence.Content.GraphicsManager.MenuBG.TileHeight * 2
-
-
+function EnchantmentSelectionMenu:initializeState(title, enchantment_list, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action)
   self.title = title
   self.enchantmentList = enchantment_list
+  self.onReroll = on_reroll
+  self.canReroll = can_reroll
   self.confirmAction = confirm_action
   self.refuseAction = refuse_action
-  self.enchantmentWidth = enchantment_width or 120
-  self.choice = nil
-
-
-  local GraphicsManager = RogueEssence.Content.GraphicsManager
-
-  -- local titleLoc =
-
+  self.selectionIndex = 1
+  self.count = #enchantment_list[1]
+  self.rerollCountTotals = current_rerolls
+  self.maxRerollCount = #self.enchantmentList
+  self.groundToggle = {}
+  self.enchantments = {}
   
-  local titleLocRect = RogueElements.Rect.FromPoints(
-    RogueElements.Loc(
-      80,
-      8
-    ),
+  self.currentEnchantments = {}
+  for i = 1, 3 do
+    self.currentEnchantments[i] = self.enchantmentList[self.rerollCountTotals[i]][i]
+  end
+end
+
+function EnchantmentSelectionMenu:createMenu()
+  local GraphicsManager = RogueEssence.Content.GraphicsManager
+  local titleRect = self:createTitleRect(GraphicsManager)
+  
+  self.menu = RogueEssence.Menu.ScriptableMenu(
+    titleRect.X, titleRect.Y, titleRect.Width, titleRect.Height,
+    function(input) self:Update(input) end
+  )
+  
+  self:addTitleText(titleRect)
+  self:createEnchantmentMenus(GraphicsManager, titleRect)
+  self:createGroundToggle(GraphicsManager, titleRect)
+  self:createRerollText(GraphicsManager, titleRect)
+  
+  self.enchantments[1].showCursor()
+end
+
+function EnchantmentSelectionMenu:createTitleRect(GraphicsManager)
+  return RogueElements.Rect.FromPoints(
+    RogueElements.Loc(80, 4),
     RogueElements.Loc(
       GraphicsManager.ScreenWidth - 80,
-      8 + GraphicsManager.MenuBG.TileHeight * 2 + 14 * 1
+      4 + GraphicsManager.MenuBG.TileHeight * 2 + 14
     )
   )
+end
 
-
-
-  -- self.summary = RogueEssence.Menu.TeamMiniSummary(RogueElements.Rect.FromPoints(RogueElements.Loc(16,
-  --       GraphicsManager.ScreenHeight - 8 - GraphicsManager.MenuBG.TileHeight * 2 - 14 * 5), --LINE_HEIGHT = 12, VERT_SPACE = 14
-  --       RogueElements.Loc(GraphicsManager.ScreenWidth - 16, GraphicsManager.ScreenHeight - 8)))
-
-
-  self.menu = RogueEssence.Menu.ScriptableMenu(titleLocRect.X, titleLocRect.Y, titleLocRect.Width, titleLocRect.Height,
-    function(input) self:Update(input) end)
-
-
- local titleText = RogueEssence.Menu.DialogueText(
-  title,
-  RogueElements.Rect(
-    RogueElements.Loc(0, 0),
-    RogueElements.Loc(
-      titleLocRect.Width,
-      titleLocRect.Height
-    )
-  ),
-  14
-)
-
-titleText.CenterH = true
-titleText.CenterV = true
-
-self.menu.Elements:Add(titleText)
-
-
-
-self.menu.Elements:Add(titleText)
-
-local enchantment_width = 108
-local enchantment_height = 150
-local enchantment_count = 3
-
-local edge_padding = 1
-local start_x = edge_padding
-local end_x = GraphicsManager.ScreenWidth - edge_padding
-local total_width = end_x - start_x
-
-
-local spacing = (total_width - enchantment_width * enchantment_count) / (enchantment_count - 1)
-local start_y = 40
-
-self.enchantments = {}
-
-
-
-for i = 1, enchantment_count do
-  local x = start_x + (i - 1) * (enchantment_width + spacing)
-
-  local enchantment = RogueEssence.Menu.SummaryMenu(
-    RogueElements.Rect.FromPoints(
-      RogueElements.Loc(x, start_y),
-      RogueElements.Loc(x + enchantment_width, start_y + enchantment_height)
-    )
-  )
-
-  --------------------------------
-  -- Title (centered)
-  --------------------------------
-  local title = RogueEssence.Menu.DialogueText(
-    self.enchantmentList[i].name,
+function EnchantmentSelectionMenu:addTitleText(titleRect)
+  local titleText = RogueEssence.Menu.DialogueText(
+    self.title,
     RogueElements.Rect(
-      RogueElements.Loc(0, 12),
-      RogueElements.Loc(enchantment_width, 24)
+      RogueElements.Loc(0, 0),
+      RogueElements.Loc(titleRect.Width, titleRect.Height)
     ),
     12
   )
-  title.CenterH = true
-  enchantment.Elements:Add(title)
+  titleText.CenterH = true
+  titleText.CenterV = true
+  self.menu.Elements:Add(titleText)
+end
 
+function EnchantmentSelectionMenu:createEnchantmentMenus(GraphicsManager, titleRect)
+  local start_x = self.EDGE_PADDING
+  local end_x = GraphicsManager.ScreenWidth - self.EDGE_PADDING
+  local total_width = end_x - start_x
+  local spacing = (total_width - self.ENCHANTMENT_WIDTH * 3) / 2
+  local row_y = titleRect.Y + titleRect.Height + 2
+  
+  for i = 1, 3 do
+    local x = start_x + (i - 1) * (self.ENCHANTMENT_WIDTH + spacing)
+    self.enchantments[i] = self:createEnchantmentMenu(i, x, row_y)
+  end
+end
 
-  local dividerY = 28
-  enchantment.Elements:Add(
-    RogueEssence.Menu.MenuDivider(
-      RogueElements.Loc(6, dividerY),
-      enchantment_width - 12
+function EnchantmentSelectionMenu:createEnchantmentMenu(index, x, y)
+  local enchantment = RogueEssence.Menu.SummaryMenu(
+    RogueElements.Rect.FromPoints(
+      RogueElements.Loc(x, y),
+      RogueElements.Loc(x + self.ENCHANTMENT_WIDTH, y + self.ENCHANTMENT_HEIGHT)
     )
   )
+  
+  local y_offset = 12
+  local name = self:createNameText(index, y_offset)
+  enchantment.Elements:Add(name)
+  
+  y_offset = y_offset + 18
+  enchantment.Elements:Add(
+    RogueEssence.Menu.MenuDivider(
+      RogueElements.Loc(10, y_offset),
+      self.ENCHANTMENT_WIDTH - 20
+    )
+  )
+  
+  local desc = self:createDescriptionText(index, y_offset + 6)
+  enchantment.Elements:Add(desc)
+  
+  local cursor = RogueEssence.Menu.MenuCursor(self.menu, RogueElements.Dir4.Up)
+  cursor.Loc = RogueElements.Loc(self.ENCHANTMENT_WIDTH / 2 - 6, y_offset + 112)
+  
+  self.menu.SummaryMenus:Add(enchantment)
+  
+  return {
+    menu = enchantment,
+    showCursor = function() enchantment.Elements:Add(cursor) end,
+    hideCursor = function() enchantment.Elements:Remove(cursor) end,
+    updateNewEnchantment = function(newEnchantment)
+      name:SetAndFormatText(M_HELPERS.MakeColoredText(newEnchantment.name, PMDColor.Yellow))
+      desc:SetAndFormatText(newEnchantment:getDescription())
+    end
+  }
+end
 
-  local desc = RogueEssence.Menu.DialogueText(
-    self.enchantmentList[i].description,
+function EnchantmentSelectionMenu:createNameText(index, y_offset)
+  local name = RogueEssence.Menu.DialogueText(
+    M_HELPERS.MakeColoredText(self.currentEnchantments[index].name, PMDColor.Yellow),
     RogueElements.Rect(
-      RogueElements.Loc(12, dividerY + 8),
-      RogueElements.Loc(enchantment_width - 24, enchantment_height - 16)
+      RogueElements.Loc(0, y_offset),
+      RogueElements.Loc(self.ENCHANTMENT_WIDTH, y_offset + 12)
+    ),
+    12
+  )
+  name.CenterH = true
+  return name
+end
+
+function EnchantmentSelectionMenu:createDescriptionText(index, y_offset)
+  local desc = RogueEssence.Menu.DialogueText(
+    self.currentEnchantments[index]:getDescription(),
+    RogueElements.Rect(
+      RogueElements.Loc(10, y_offset),
+      RogueElements.Loc(self.ENCHANTMENT_WIDTH - 16, 102)
     ),
     12
   )
   desc.CenterH = true
-  enchantment.Elements:Add(desc)
-
-  self.menu.SummaryMenus:Add(enchantment)
-  self.enchantments[i] = enchantment
+  return desc
 end
 
--- RogueEssence.Menu.MenuBase.BorderStyle = old
-
-
-  -- self.summary =
-
-
-  -- self.menu.SummaryMenus:Add(self.summary)
+function EnchantmentSelectionMenu:createGroundToggle(GraphicsManager, titleRect)
+  local row_y = titleRect.Y + titleRect.Height + self.ENCHANTMENT_HEIGHT + 10
+  
+  local groundToggle = RogueEssence.Menu.SummaryMenu(
+    RogueElements.Rect.FromPoints(
+      RogueElements.Loc(142, row_y),
+      RogueElements.Loc(
+        GraphicsManager.ScreenWidth - 142,
+        row_y + GraphicsManager.MenuBG.TileHeight * 2 + 14
+      )
+    )
+  )
+  
+  local toggleText = RogueEssence.Menu.DialogueText(
+    STRINGS:Format("\\uE0AF"),
+    RogueElements.Rect(
+      RogueElements.Loc(0, 0),
+      RogueElements.Loc(groundToggle.Bounds.Width, groundToggle.Bounds.Height)
+    ),
+    12
+  )
+  toggleText.CenterH = true
+  toggleText.CenterV = true
+  groundToggle.Elements:Add(toggleText)
+  
+  local cursor = RogueEssence.Menu.MenuCursor(self.menu, RogueElements.Dir4.Up)
+  cursor.Loc = RogueElements.Loc(groundToggle.Bounds.Width / 2 - 6, 18)
+  
+  self.groundToggle = {
+    menu = groundToggle,
+    showCursor = function() groundToggle.Elements:Add(cursor) end,
+    hideCursor = function() groundToggle.Elements:Remove(cursor) end
+  }
+  
+  self.menu.SummaryMenus:Add(groundToggle)
 end
 
---- Performs the final adjustments and creates the actual menu object.
-function EnchantmentSelectionMenu:createMenu()
-  -- local origin = RogueElements.Loc(16,16)
-  -- local option_array = luanet.make_array(RogueEssence.Menu.MenuElementChoice, self.optionsList)
-  -- self.menu = RogueEssence.Menu.ScriptableMultiPageMenu(self.label, origin, self.menuWidth, self.title, option_array, 0, self.MAX_ELEMENTS, self.refuseAction, self.refuseAction, false)
-  -- self.menu.ChoiceChangedFunction = function() self:updateSummary() end
+function EnchantmentSelectionMenu:createRerollText(GraphicsManager, titleRect)
+  local row_y = titleRect.Y + titleRect.Height + self.ENCHANTMENT_HEIGHT + 10
+  
+  local rerollTextMenu = RogueEssence.Menu.SummaryMenu(
+    RogueElements.Rect.FromPoints(
+      RogueElements.Loc(248, row_y),
+      RogueElements.Loc(348, row_y + GraphicsManager.MenuBG.TileHeight * 2 + 14)
+    )
+  )
+  
+  local rerollText = RogueEssence.Menu.DialogueText(
+    STRINGS:LocalKeyString(7) .. " to reroll",
+    RogueElements.Rect(
+      RogueElements.Loc(12, 0),
+      RogueElements.Loc(rerollTextMenu.Bounds.Width, rerollTextMenu.Bounds.Height)
+    ),
+    12
+  )
+  rerollText.CenterV = true
+  rerollTextMenu.Elements:Add(rerollText)
+  
+  self.menu.SummaryMenus:Add(rerollTextMenu)
 end
 
 function EnchantmentSelectionMenu:Update(input)
-  assert(self, "BaseState:Begin(): Error, self is nil!")
-  -- default does nothing
-  -- if input:JustPressed(RogueEssence.FrameInput.InputType.Confirm) then
-  --   if (self.pages[self.current_page + 1][self.current_item + 1].can_ferment) then
-  --   self.item_list_index = self.current_page * self.total_items_per_page + self.current_item
-  --   _GAME:SE("Menu/Confirm")
-  --   _MENU:RemoveMenu()
-  -- else
-  --   --play a sfx if you try to make something you can't
-  --   _GAME:SE("Menu/Cancel")
-  --   end
-  -- end
-
-  if input:JustPressed(RogueEssence.FrameInput.InputType.Cancel) or input:JustPressed(RogueEssence.FrameInput.InputType.Menu) then
-    _GAME:SE("Menu/Cancel")
+  if input:JustPressed(RogueEssence.FrameInput.InputType.Cancel) then
     _MENU:RemoveMenu()
+    return
   end
 
-  -- local moved = false
-  -- if #self.pages[self.current_page + 1] > 1 then
-  --   if RogueEssence.Menu.InteractableMenu.IsInputting(input, LUA_ENGINE:MakeLuaArray(Dir8, { Dir8.Down, Dir8.DownLeft, Dir8.DownRight })) then
-  --     moved = true
-  --     self.current_item = ((self.current_item + 1) % #self.pages[self.current_page + 1])
-  --     self.onChange(self)
-  --   elseif RogueEssence.Menu.InteractableMenu.IsInputting(input, LUA_ENGINE:MakeLuaArray(Dir8, { Dir8.Up, Dir8.UpLeft, Dir8.UpRight })) then
-  --     moved = true
-  --     self.current_item = (self.current_item + #self.pages[self.current_page + 1] - 1) % #self.pages[self.current_page + 1]
-  --     self.onChange(self)
-  --   end
-  -- end
+  if input:JustPressed(RogueEssence.FrameInput.InputType.Confirm) or
+     input:JustPressed(RogueEssence.FrameInput.InputType.Menu) then
+    self:handleConfirm()
+    return
+  end
 
-  -- if #self.pages > 1 then
-  --   if RogueEssence.Menu.InteractableMenu.IsInputting(input, LUA_ENGINE:MakeLuaArray(Dir8, { Dir8.Left })) then
-  --     self.setPage(self, (self.current_page + #self.pages - 1) % #self.pages)
-  --     moved = true
-  --   elseif RogueEssence.Menu.InteractableMenu.IsInputting(input, LUA_ENGINE:MakeLuaArray(Dir8, { Dir8.Right })) then
-  --     self.setPage(self, (self.current_page + 1) % #self.pages)
-  --     moved = true
-  --   end
-  -- end
+  local moved = self:handleNavigation(input)
+  if moved then
+    _GAME:SE("Menu/Skip")
+  end
+end
 
-  -- if moved then
-  --   _GAME:SE("Menu/Select")
-  --   self.cursor:ResetTimeOffset()
-  --   self.cursor.Loc = RogueElements.Loc(10, 24 + 14 * self.current_item)
-  -- end
+function EnchantmentSelectionMenu:handleConfirm()
+  if self.selectionIndex ~= -1 then
+    self.confirmAction(self.currentEnchantments[self.selectionIndex])
+  else
+    self.refuseAction()
+  end
+end
+
+function EnchantmentSelectionMenu:handleNavigation(input)
+  if self.selectionIndex ~= -1 then
+    return self:handleEnchantmentNavigation(input)
+  else
+    return self:handleGroundToggleNavigation(input)
+  end
+end
+
+function EnchantmentSelectionMenu:handleEnchantmentNavigation(input)
+  local oldIndex = self.selectionIndex
+  
+  if RogueEssence.Menu.InteractableMenu.IsInputting(
+      input, LUA_ENGINE:MakeLuaArray(Dir8, { Dir8.Right, Dir8.UpRight, Dir8.DownRight })) then
+    self:moveSelection(oldIndex, (self.selectionIndex % self.count) + 1)
+    return true
+    
+  elseif RogueEssence.Menu.InteractableMenu.IsInputting(
+      input, LUA_ENGINE:MakeLuaArray(Dir8, { Dir8.Left, Dir8.UpLeft, Dir8.DownLeft })) then
+    self:moveSelection(oldIndex, ((self.selectionIndex - 2 + self.count) % self.count) + 1)
+    return true
+    
+  elseif RogueEssence.Menu.InteractableMenu.IsInputting(
+      input, LUA_ENGINE:MakeLuaArray(Dir8, { Dir8.Down })) then
+    self:moveToGroundToggle(oldIndex)
+    return true
+    
+  elseif input:JustPressed(RogueEssence.FrameInput.InputType.TeamMode) then
+    return self:handleReroll(oldIndex)
+  end
+  
+  return false
+end
+
+function EnchantmentSelectionMenu:handleGroundToggleNavigation(input)
+  local directionMap = {
+    [Dir8.Up] = 2,
+    [Dir8.UpRight] = 3,
+    [Dir8.UpLeft] = 1
+  }
+  
+  for direction, targetIndex in pairs(directionMap) do
+    if RogueEssence.Menu.InteractableMenu.IsInputting(
+        input, LUA_ENGINE:MakeLuaArray(Dir8, { direction })) then
+      self:moveFromGroundToggle(targetIndex)
+      return true
+    end
+  end
+  
+  return false
+end
+
+function EnchantmentSelectionMenu:moveSelection(oldIndex, newIndex)
+  self.enchantments[oldIndex].hideCursor()
+  self.selectionIndex = newIndex
+  self.enchantments[newIndex].showCursor()
+end
+
+function EnchantmentSelectionMenu:moveToGroundToggle(oldIndex)
+  self.enchantments[oldIndex].hideCursor()
+  self.selectionIndex = -1
+  self.groundToggle.showCursor()
+end
+
+function EnchantmentSelectionMenu:moveFromGroundToggle(targetIndex)
+  self.groundToggle.hideCursor()
+  self.selectionIndex = targetIndex
+  self.enchantments[targetIndex].showCursor()
+end
+
+function EnchantmentSelectionMenu:handleReroll(oldIndex)
+  if self.rerollCountTotals[self.selectionIndex] < self.maxRerollCount then
+    SOUND:PlayBattleSE("_UNK_EVT_118")
+    self.rerollCountTotals[self.selectionIndex] = self.rerollCountTotals[self.selectionIndex] + 1
+    local newEnchantment = self.enchantmentList[self.rerollCountTotals[self.selectionIndex]][self.selectionIndex]
+    self.enchantments[oldIndex].updateNewEnchantment(newEnchantment)
+    self.currentEnchantments[self.selectionIndex] = newEnchantment
+    return false
+  else
+    _GAME:SE("Menu/Cancel")
+    return false
+  end
 end
 
 -- function EnchantmentSelectionMenu:createMenu()

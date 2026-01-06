@@ -8,7 +8,18 @@ SV.Wishmaker = {
 
 SV.EmberFrost = {
   ShouldSwap = false,
+
+  -- List of selected enchantment IDs
   SelectedEnchantments = {},
+
+  -- List of seen enchantment IDs
+  SeenEnchantments = {},
+
+  -- For custom enchantment data
+  EnchantmentData = {},
+  
+  RerollCounts = {1, 1, 1},
+  GotEnchantmentFromCheckpoint = false
 }
 
 SV.SavedCharacters = {}

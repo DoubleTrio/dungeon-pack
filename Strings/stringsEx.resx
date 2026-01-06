@@ -206,4 +206,26 @@
   <data name="MSG_WEATHER_WARD" xml:space="preserve">
     <value>{0}'s [color=#F8C8C8]Weather Ward[color] made the weather disappear!</value>
     <comment></comment>  </data>
+  <data name="MSG_FEEL_THE_BURN_START" xml:space="preserve">
+    <value>{0} is feeling the burn!</value>
+    <comment></comment>  </data>
+  <data name="MSG_FREEZE_TAG_START" xml:space="preserve">
+    <value>{0} can freeze tag targets!</value>
+    <comment></comment>  </data>
+  <data name="MSG_FREEZE_TAG_WAS_NOT_TAGGED" xml:space="preserve">
+    <value>{0} was not tagged!</value>
+    <comment></comment>  </data>
+  <data name="MSG_FREEZE_TAGGER_START" xml:space="preserve">
+    <value>{0} can freeze tag targets and cannot be frozen!</value>
+    <comment></comment>  </data>
+  <data name="MSG_FREEZE_TAGGER_END" xml:space="preserve">
+    <value>{0} can no longer freeze tag targets and can be frozen again!</value>
+    <comment></comment>  </data>
+  <data name="MSG_FREEZE_TAGGER_FREEZE_ATTEMPT" xml:space="preserve">
+    <value>{0} cannot be frozen again until they tag another target!</value>
+    <comment></comment>  </data>
+
+  <data name="MSG_HUNGER_STRIKE_START" xml:space="preserve">
+    <value>{0} can strike at hunger!</value>
+    <comment></comment>  </data>
 </root>

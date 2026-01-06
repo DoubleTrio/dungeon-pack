@@ -260,6 +260,91 @@ function BATTLE_SCRIPT.CrystalDefenseCountdownRemove(owner, ownerChar, context, 
 end
 
 
+function BATTLE_SCRIPT.TargetStatusRequired(owner, ownerChar, context, args)
+  local status = args.StatusID
+  local target = context.Target
+  local message_key = args.MessageKey
+  local stack = target:GetStatusEffect(status)
+  if stack == nil then
+    if message_key ~= nil then
+      _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(RogueEssence.StringKey(message_key):ToLocal(), context.Target:GetDisplayName(false)))
+    end
+
+    context.CancelState.Cancel = true
+  end
+end
+
+function BATTLE_SCRIPT.WizardPowerBoost(owner, ownerChar, context, args)
+  local boost_percent = args.BoostPercent
+
+  local unique_wands = {}
+  local total_unique = 0
+  
+  local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+  for i = inv_count, 0, -1 do
+      local item = _DATA.Save.ActiveTeam:GetInv(i)
+      local item_id = item.ID
+      if Contains(WANDS, item_id) then
+          if unique_wands[item_id] == nil then
+              unique_wands[item_id] = true
+              total_unique = total_unique + 1
+          end
+      end        
+  end
+  
+  local player_count = _DUNGEON.ActiveTeam.Players.Count
+  for player_idx = 0, player_count-1, 1 do
+    local inv_item = GAME:GetPlayerEquippedItem(player_idx)
+    local item_id = inv_item.ID
+    if Contains(WANDS, item_id) then
+        if unique_wands[item_id] == nil then
+            unique_wands[item_id] = true
+            total_unique = total_unique + 1
+        end
+    end        
+  end
+
+  local boost_amount = boost_percent * total_unique
+
+  -- do add anims as last parameter
+  local special_attack_boost = PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Magical, 100 + boost_amount, 100)
+  print("Applying Wizard Power Boost of " .. tostring(boost_amount) .. "% for " .. tostring(total_unique) .. " unique wands.")
+  TASK:WaitTask(special_attack_boost:Apply(owner, ownerChar, context))
+end
+
+
+-- function COMMON.ClearPlayerPrices()
+--   local item_count = GAME:GetPlayerBagCount()
+--   for item_idx = 0, item_count-1, 1 do
+--     local inv_item = GAME:GetPlayerBagItem(item_idx)
+-- 	inv_item.Price = 0
+--   end
+--   local player_count = _DUNGEON.ActiveTeam.Players.Count
+--   for player_idx = 0, player_count-1, 1 do
+--     local inv_item = GAME:GetPlayerEquippedItem(player_idx)
+-- 	inv_item.Price = 0
+--   end
+  
+--   COMMON.ClearMapTeamPrices(_ZONE.CurrentMap.AllyTeams)
+--   COMMON.ClearMapTeamPrices(_ZONE.CurrentMap.MapTeams)
+-- end
+
+
+-- {
+-- "Key": {
+-- "str": [
+-- 0
+-- ]
+-- },
+-- "Value": {
+-- "$type": "PMDC.Dungeon.MultiplyCategoryEvent, PMDC",
+-- "Category": 1,
+-- "Numerator": 11,
+-- "Denominator": 10,
+-- "Anims": []
+-- }
+-- }
+
 function BATTLE_SCRIPT.CrystalAttackCountdownRemove(owner, ownerChar, context, args)
   local status = owner.ID
   local stack = context.User:GetStatusEffect(status)

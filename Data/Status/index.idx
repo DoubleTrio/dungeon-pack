@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "no_heal": {
@@ -32,6 +32,51 @@
 "crystal_defense": {
 "Name": {
 "DefaultText": "Defense Crystal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_fire_speed_boost": {
+"Name": {
+"DefaultText": "Feel the Burn",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_freeze_tag": {
+"Name": {
+"DefaultText": "Freeze Tagger",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_tagged": {
+"Name": {
+"DefaultText": "Tagged",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_hunger_strike": {
+"Name": {
+"DefaultText": "Hunger Strike",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_wizard": {
+"Name": {
+"DefaultText": "Wizard",
 "LocalTexts": {}
 },
 "Released": true,

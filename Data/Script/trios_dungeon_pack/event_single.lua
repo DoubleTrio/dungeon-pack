@@ -721,6 +721,140 @@ function SINGLE_CHAR_SCRIPT.EmberFrostSwapEvent(owner, ownerChar, context, args)
 	print("EMBER FROST SWAP EVENT TRIGGERED")
 end
 
+
+function SINGLE_CHAR_SCRIPT.AddStatusToLeader(owner, ownerChar, context, args)
+    if context.User ~= _DUNGEON.ActiveTeam.Leader then
+        return
+    end
+	local status = RogueEssence.Dungeon.StatusEffect(args.StatusID)
+    TASK:WaitTask(_DUNGEON.ActiveTeam.Leader:AddStatusEffect(nil, status, true))
+end
+
+function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
+    local enchantment_id = args.EnchantmentID
+    local status_id = args.StatusID
+    local char = FindCharacterWithEnchantment(enchantment_id)
+    if context.User == char then
+        local status = RogueEssence.Dungeon.StatusEffect(status_id)
+        TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+    end
+end
+
+
+function Contains(tbl, value)
+    for _, v in ipairs(tbl) do
+        if v == value then
+            return true
+        end
+    end
+    return false
+end
+
+
+function SINGLE_CHAR_SCRIPT.PandorasItems(owner, ownerChar, context, args)
+
+    if context.User ~= nil then
+        return
+    end
+
+
+    local function RandomDifferent(tbl, current_id)
+        if #tbl <= 1 then
+            return current_id
+        end
+
+        local idx = _DATA.Save.Rand:Next(#tbl - 1) + 1
+        local chosen = tbl[idx]
+        if chosen == current_id then
+            chosen = tbl[#tbl]
+        end
+
+        return chosen
+    end
+
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+
+    for i = inv_count, 0, -1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+        if Contains(ORBS, item_id) then
+            item.ID = RandomDifferent(ORBS, item_id)
+        elseif Contains(EQUIPMENT, item_id) then
+            item.ID = RandomDifferent(EQUIPMENT, item_id)
+        end
+    end
+end
+
+
+function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+    local min_seed = args.MinimumSeeds
+    local amt_per_seed = args.MoneyPerSeed
+    local enchant_id = args.EnchantmentID
+    
+
+    local seed_index_arr = {}
+
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+    for i = inv_count, 0, -1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+        if Contains(SEED, item_id) then
+            table.insert(seed_index_arr, i)
+        end        
+    end
+
+
+    if (#seed_index_arr >= min_seed) then
+        local total_money = #seed_index_arr * amt_per_seed
+        for _, index in ipairs(seed_index_arr) do
+            _DATA.Save.ActiveTeam:RemoveFromInv(index)
+        end
+        local team_name = _DATA.Save.ActiveTeam.Name
+        GAME:AddToPlayerMoney(total_money)
+        local data = GetEnchantmentData(enchant_id)
+        data["money_earned"] = data["money_earned"] + total_money
+        SOUND:PlayBattleSE("DUN_Money")
+        _DUNGEON:LogMsg(
+            string.format(
+                "%s planted %s seed(s) and gained %s!", 
+                team_name, 
+                M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan),
+                M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+            )
+        )
+    
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
+    local enchantment_id = args.EnchantmentID
+    local status_id = args.StatusID
+    local apply_to_all = args.ApplyToAll or false
+    local char = FindCharacterWithEnchantment(enchantment_id)
+
+
+    if apply_to_all then
+        for _, party_char in luanet.each(_DATA.Save.ActiveTeam.Players) do
+            if party_char ~= nil then
+                if party_char:IsAlive() then
+                    local status = RogueEssence.Dungeon.StatusEffect(status_id)
+                    TASK:WaitTask(party_char:AddStatusEffect(nil, status, true))
+                end
+            end
+        end
+        return
+    end
+
+    if context.User == char then
+        local status = RogueEssence.Dungeon.StatusEffect(status_id)
+        TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+    end
+end
+
+
 function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context, args)
 	if context.User == _DUNGEON.ActiveTeam.Leader then
 		return

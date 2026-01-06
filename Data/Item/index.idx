@@ -37,7 +37,7 @@
 "emberfrost_allterrain_gear": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": -1,
-"UsageType": 8,
+"UsageType": 0,
 "States": [
 {
 "assembly": "PMDC, Version=0.8.11.0, Culture=neutral, PublicKeyToken=null",

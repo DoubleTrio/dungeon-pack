@@ -87,18 +87,6 @@
 ]
 },
 "Value": {
-"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "EmberFrostSwapEvent",
-"ArgTable": "{}"
-}
-},
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
 "$type": "PMDC.Dungeon.NextFloorEvent, PMDC"
 }
 },

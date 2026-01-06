@@ -23,7 +23,44 @@ local function NumToGender(num)
   end
   return res
 end
+
+PMDColor = {
+  Cyan = "#00FFFF",
+  Pink = "#F8C8C8",
+  Red = "#F80000",
+  Yellow = "#F8F8A0",
+  LightYellow = "#F8F800",
+  White = "#F8F8F8",
+  LightRed = "#F87878",
+  LimeGreen = "#00F800",
+  LightGreen = "#00E060",
+  LimeGreen2 = "#40F840",
+  Orange = "#F8C060",
+  Blue   = "#8080F8", -- Q
+  SlateBlue  = "#6080E0", -- S
+  Magenta        = "#F8A0F8",      -- X
+  SkyBlue     = "#8098F8",      -- Y
+  Lavender    = "#8888F8",      -- Z
+}
 M_HELPERS = {
+
+  MakeColoredText = function(text, color)
+    return "[color=" .. color .. "]" .. text .. "[color]"
+  end,
+
+  GiftItemToInventory = function(item_id, amount)
+    local orig_settings = UI:ExportSpeakerSettings()
+    local inv_item = RogueEssence.Dungeon.InvItem(item_id, false, amount)
+
+    GAME:GivePlayerItem(inv_item)
+    SOUND:PlayFanfare("Fanfare/Item")
+
+    UI:ResetSpeaker(false)
+    UI:SetCenter(true)
+    UI:WaitShowDialogue("You gained " .. inv_item:GetDisplayName() .. "!")
+    UI:SetCenter(false)
+    UI:ImportSpeakerSettings(orig_settings)
+  end,
 
   AddToAssembly = function(species, level)
     local char = M_HELPERS.CreateCharacter(species, level)
@@ -68,6 +105,7 @@ M_HELPERS = {
   end,
 
   GiveInventoryItemsToPlayer = function(items)
+    local orig_settings = UI:ExportSpeakerSettings()
     local filter = function(inv_slot)
       local slot = inv_slot.Slot
 
@@ -82,6 +120,7 @@ M_HELPERS = {
       local entry = _DATA:GetItem(item.ID)
       return not entry.CannotDrop
     end
+
 
     -- local items_to_receive = { {
     --   Item = "apricorn_big",
@@ -99,11 +138,8 @@ M_HELPERS = {
     _ZONE.CurrentZone.BagSize = _ZONE.CurrentZone.BagSize + amount
 
     for _, entry in ipairs(items) do
-      local inv_item = RogueEssence.Dungeon.InvItem(entry.Item, false, entry.Amount)
-
-      SOUND:PlayFanfare("Fanfare/Item")
-      UI:WaitShowDialogue("You gained a " .. inv_item:GetDisplayName() .. "!")
-      GAME:GivePlayerItem(inv_item)
+      print("Here is the item to give: " .. entry.Item .. " x" .. tostring(entry.Amount))
+      M_HELPERS.GiftItemToInventory(entry.Item, entry.Amount)
     end
 
     _ZONE.CurrentZone.BagSize = _ZONE.CurrentZone.BagSize - amount
@@ -141,6 +177,7 @@ M_HELPERS = {
 
       bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
     end
+    UI:ImportSpeakerSettings(orig_settings)
   end,
 
   LoadTeam = function(key)
@@ -394,6 +431,63 @@ M_HELPERS = {
     character.EquippedItem = invItem
 
     return character
-  end
+  end,
 
+  AddStatus = function (chara, status_id)
+    chara = chara or _DATA.Save.ActiveTeam.Leader
+    local status = RogueEssence.Dungeon.StatusEffect(status_id)
+    TASK:WaitTask(chara:AddStatusEffect(nil, status, true))
+  end,
+
+  UpgradeVariables = function()
+    if SV.Wishmaker == nil then
+      SV.Wishmaker = {
+        RecruitedJirachi = false,
+        MadeWish = false,
+        RemoveBonusMoney = false,
+        TempItemString = nil,
+        BonusScore = 0
+      }
+    end
+
+
+    if SV.Wishmaker.RecruitedJirachi == nil then SV.Wishmaker.RecruitedJirachi = false end
+    if SV.Wishmaker.MadeWish == nil then SV.Wishmaker.MadeWish = false end
+    if SV.Wishmaker.RemoveBonusMoney == nil then SV.Wishmaker.RemoveBonusMoney = false end
+
+
+    if SV.SavedCharacters == nil then
+      SV.SavedCharacters = {}
+    end
+
+    if SV.SavedInventories == nil then
+      SV.SavedInventories = {}
+    end
+    if SV.EmberFrost == nil then
+      SV.EmberFrost = {
+        ShouldSwap = false,
+        SelectedEnchantments = {},
+        SeenEnchantments = {},
+        RerollCounts = { 1, 1, 1 },
+        GotEnchantmentFromCheckpoint = false
+      }
+    end
+    if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
+    if SV.EmberFrost.SelectedEnchantments == nil then SV.EmberFrost.SelectedEnchantments = {} end
+    if SV.EmberFrost.RerollCounts == nil then SV.EmberFrost.RerollCounts = { 1, 1, 1 } end
+    if SV.EmberFrost.SeenEnchantments == nil then SV.EmberFrost.SeenEnchantments = {} end
+
+    if SV.EmberFrost.EnchantmentData == nil then
+      SV.EmberFrost.EnchantmentData = {}
+    end
+    if SV.EmberFrost.GotEnchantmentFromCheckpoint == nil then SV.EmberFrost.GotEnchantmentFromCheckpoint = false end
+
+    if SV.TemporaryFlags == nil then
+      SV.TemporaryFlags = {
+        OldDirection = nil
+      }
+    end
+
+    SV.TemporaryFlags.OldDirection = nil
+  end
 }

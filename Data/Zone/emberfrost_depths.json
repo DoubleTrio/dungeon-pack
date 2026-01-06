@@ -28532,6 +28532,11 @@
 "$type": "RogueEssence.LevelGen.ScriptZoneStep, RogueEssence",
 "Script": "EmberfrostSwitchUp",
 "ArgTable": "{}"
+},
+{
+"$type": "RogueEssence.LevelGen.ScriptZoneStep, RogueEssence",
+"Script": "AddEnchantmentActiveEffects",
+"ArgTable": "{}"
 }
 ],
 "IsRelevant": false,

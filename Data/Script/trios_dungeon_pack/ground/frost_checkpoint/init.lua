@@ -5,7 +5,7 @@
 ]] --
 -- Commonly included lua functions and data
 require 'origin.common'
-require 'trios_dungeon_pack.menu.EnchantmentSelectionsMenu'
+require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
 require 'trios_dungeon_pack.emberfrost.enchantments'
 require 'origin.menu.InventorySelectMenu'
 -- Package name
@@ -59,6 +59,9 @@ function frost_checkpoint.Init(map)
   COMMON.RespawnAllies()
   -- COMMON.RespawnAllies(true)
   GROUND:AddMapStatus("snow")
+  SOUND:PlayBGM("Rock Slide Canyon.ogg", true)
+  -- SOUND:PlayBGM("Rock Slide Canyon", true)
+
   
   -- local snow_status = RogueEssence.Dungeon.MapStatus("snow")
 	
@@ -233,6 +236,7 @@ function frost_checkpoint.Enter(map)
   UI:WaitShowTitle("Frost Checkpoint - 1", 20)
   GAME:WaitFrames(60)
   UI:WaitHideTitle(20)
+
   GAME:FadeIn(20)
 end
 
@@ -267,6 +271,59 @@ end
 function frost_checkpoint.South_Exit_Touch(obj, activator)
   print("Touched South Exit")
 end
+
+
+-- function searing_tunnel_midpoint.South_Exit_Touch(chara, activator)
+--   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+--   UI:ResetSpeaker(false)
+--   UI:SetCenter(true)
+--   local hero = CH('PLAYER')
+--   local partner = CH('Teammate1')
+--   local zone = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Zone]:Get("searing_tunnel")
+--   partner.IsInteracting = true
+--   GROUND:CharSetAnim(partner, 'None', true)
+--   GROUND:CharSetAnim(hero, 'None', true)
+  
+	
+--   local exit_ground = ''
+--   --During Chapter 5, return to the dungeon entrance instead.
+--   if SV.ChapterProgression.Chapter == 5 then
+-- 	exit_ground = 'searing_tunnel_entrance'
+-- 	UI:ChoiceMenuYesNo("Would you like to return\nto " .. zone:GetColoredName() .. "'s entrance?", true)
+--   else
+-- 	exit_ground = 'guild_dining_room'
+-- 	if SV.TemporaryFlags.MissionCompleted then exit_ground = 'guild_second_floor' end 
+-- 	UI:ChoiceMenuYesNo("Would you like to return\nto Metano Town?", true)
+--   end
+--   UI:WaitForChoice()
+--   local yesnoResult = UI:ChoiceResult()
+--   UI:SetCenter(false)
+--   if yesnoResult then 
+-- 	--Clear thief flag when leaving the dungeon.		
+-- 	SV.adventure.Thief = false
+-- 	SOUND:FadeOutBGM(60)
+-- 	GAME:FadeOut(false, 60)
+-- 	partner.IsInteracting = false
+-- 	GROUND:CharEndAnim(partner)
+-- 	GROUND:CharEndAnim(hero)	
+-- 	GAME:WaitFrames(60)
+-- 	if SV.ChapterProgression.Chapter == 5 then 
+-- 		SV.Chapter5.PlayTempTunnelScene = true
+-- 		SV.Chapter5.TunnelLastExitReason = 'Retreated'
+-- 		SV.Chapter5.TunnelMidpointState = 'RepeatArrival'
+-- 	else 
+-- 		SV.TemporaryFlags.Dinnertime = true 
+-- 		SV.TemporaryFlags.Bedtime = true
+-- 		SV.TemporaryFlags.MorningWakeup = true 
+-- 		SV.TemporaryFlags.MorningAddress = true 
+-- 	end
+-- 	GAME:EnterGroundMap(exit_ground, "Main_Entrance_Marker")
+--   end
+--   partner.IsInteracting = false
+--   GROUND:CharEndAnim(partner)
+--   GROUND:CharEndAnim(hero)	
+-- end
+
 
 -- call this at the end of an npc conversation, sister function of above StartConversation function
 local function EndConversation(target, changeNPCanimation)
@@ -306,6 +363,15 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
     return
   end
 
+  UI:ResetSpeaker()
+
+  -- if SV.EmberFrost.GotEnchantmentFromCheckpoint then
+  --   UI:SetCenter(true)
+  --   UI:WaitShowDialogue("You already selected an enchantment.")
+  --   UI:SetCenter(false)
+  --   return
+  -- end
+  
 
   GROUND:CharSetAnim(activator, "None", true)
 
@@ -343,36 +409,70 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
 
 
 
-  local enchantments = { EmberfrostSatchel, Gain5000P, CalmTheStorm }
+  ResetSeenEnchantments()
+  local enchantments = GetRandomEnchantments(6, 2)
 
 
+
+  print(Serpent.dump(enchantments) .. ".... uh")
+
+    print(Serpent.dump(SV.EmberFrost.RerollCounts) .. ".... uh")
   -- title, enchantment_list, confirm_action, refuse_action, enchantment_width
 
-  local ret = {}
+
+
+  local ret = nil
+
+  -- local ret_rerolls = 
+  
+
+
   local choose = function(enchantment)
+    SOUND:PlayBattleSE("_UNK_EVT_075")
     ret = enchantment
+    print("Chosen enchantment: " .. enchantment.name  )
     _MENU:RemoveMenu()
   end
+
+  -- local onReroll = function(index, shown_enchantments)
+  --   ret_rerolls[index] = ret_rerolls[index] + 1
+  --   local reroll_index = ret_rerolls[index]
+
+  --   shown_enchantments[index] = enchantments[reroll_index][index]
+  -- end
+
+  -- local canReroll = function(index)
+  --   return ret_rerolls[index] > 0
+  -- end
+
+  
+
   local refuse = function() _MENU:RemoveMenu() end
 
 
 
   local old = RogueEssence.Menu.MenuBase.BorderStyle
 
-  print(tostring(old))
-  RogueEssence.Menu.MenuBase.BorderStyle = 2
-  print(RogueEssence.Menu.MenuBase.BorderStyle)
+  RogueEssence.Menu.MenuBase.BorderStyle = 12
 
+  print(tostring(Serpent.dump(SV.EmberFrost.RerollCounts)))
 
-  local menu = EnchantmentSelectionMenu:new("Choose an enchantment!", enchantments, choose, refuse)
+  local menu = EnchantmentSelectionMenu:new("Choose an enchantment!", enchantments, nil, nil, SV.EmberFrost.RerollCounts, choose, refuse)
   UI:SetCustomMenu(menu.menu)
   UI:WaitForChoice()
 
-  RogueEssence.Menu.MenuBase.BorderStyle = 
-
-
+  RogueEssence.Menu.MenuBase.BorderStyle = old
+  -- \uE110
   _GROUND:RemoveMapStatus("crystal_moment")
-  GAME:WaitFrames(30)
+  GAME:WaitFrames(40)
+
+  if (ret ~= nil) then
+    GAME:WaitFrames(30)
+    table.insert(SV.EmberFrost.SelectedEnchantments, ret.id)
+    SV.EmberFrost.GotEnchantmentFromCheckpoint = true
+    ret:apply()
+  end
+
   -- TODO: Use the mission board as the template 
 
 

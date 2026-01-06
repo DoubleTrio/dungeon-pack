@@ -37,45 +37,7 @@ end
 ---------------------------------------------------------------]]
 function CustomUpgrade:OnUpgrade()
   assert(self, 'CustomUpgrade:OnUpgrade() : self is null!')
-  if SV.Wishmaker == nil then
-    SV.Wishmaker = {
-      RecruitedJirachi = false,
-      MadeWish = false,
-      RemoveBonusMoney = false,
-      TempItemString = nil,
-      BonusScore = 0
-    }
-  end
-
-
-  if SV.Wishmaker.RecruitedJirachi == nil then SV.Wishmaker.RecruitedJirachi = false end
-  if SV.Wishmaker.MadeWish == nil then SV.Wishmaker.MadeWish = false end
-  if SV.Wishmaker.RemoveBonusMoney == nil then SV.Wishmaker.RemoveBonusMoney = false end
-
-
-  if SV.SavedCharacters == nil then
-    SV.SavedCharacters = {}
-  end
-
-  if SV.SavedInventories == nil then
-    SV.SavedInventories = {}
-  end
-  if SV.EmberFrost == nil then
-    SV.EmberFrost = {
-      ShouldSwap = false,
-      SelectedEnchantments = {},
-    }
-  end
-  if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
-  if SV.EmberFrost.SelectedEnchantments == nil then SV.EmberFrost.SelectedEnchantments = {} end
-
-  if SV.TemporaryFlags == nil then
-    SV.TemporaryFlags = {
-      OldDirection = nil
-    }
-  end
-
-  SV.TemporaryFlags.OldDirection = nil
+  M_HELPERS.UpgradeVariables()
 end
 
 ---Summary
@@ -86,4 +48,5 @@ end
 
 --Add our service
 SCRIPT:AddService("CustomUpgrade", CustomUpgrade:new())
+
 return CustomUpgrade

@@ -1,9 +1,185 @@
 
+require 'origin.menu.team.TeamSelectMenu'
 ENCHANTMENT_TYPES = {
   items = "ITEMS",
   money = "MONEY",
   power = "POWER"
 }
+
+
+ENCHANTMENT_REGISTRY = ENCHANTMENT_REGISTRY or {}
+
+local count = 0
+
+function RegisterEnchantment(def)
+  assert(def.id, "Enchantment must have an id")
+
+  local enchant = setmetatable(def, { __index = PowerupDefaults })
+  ENCHANTMENT_REGISTRY[def.id] = enchant
+  count = count + 1
+  print(tostring(count))
+  return enchant
+end
+
+function GetSelectedEnchantments(selected)
+  selected = selected or SV.EmberFrost.SelectedEnchantments
+  local list = {}
+  for _, id in ipairs(selected or {}) do
+    local enchant = ENCHANTMENT_REGISTRY[id]
+    if enchant then
+      table.insert(list, enchant)
+    end
+  end
+  return list
+end
+
+function GetRandomEnchantments(amount, total_groups)
+  local candidates = {}
+  for id, enchant in pairs(ENCHANTMENT_REGISTRY) do
+    local seen = SV.EmberFrost.SeenEnchantments[id]
+
+    if not seen and (not enchant.can_apply or enchant:can_apply()) then
+      table.insert(candidates, enchant)
+    end
+  end
+
+  -- TODO: Change the random to C# version...
+  for i = #candidates, 2, -1 do
+    local j = math.random(i)
+    candidates[i], candidates[j] = candidates[j], candidates[i]
+  end
+
+  local result = {}
+  for i = 1, math.min(amount, #candidates) do
+    local enchant = candidates[i]
+    
+    table.insert(result, enchant)
+    SV.EmberFrost.SeenEnchantments[enchant.id] = true
+  end
+
+  
+  local per_group = math.floor(#result / total_groups)
+  local grouped = {}
+  for i = 1, total_groups do
+    grouped[i] = {}
+  end
+
+  for i, enchant in ipairs(result) do
+    local group_index = ((i - 1) % total_groups) + 1
+    table.insert(grouped[group_index], enchant)
+  end
+
+  return grouped
+end
+
+
+function ResetSeenEnchantments()
+  SV.EmberFrost.SeenEnchantments = {}
+  SV.EmberFrost.EnchantmentData = {}
+  SV.EmberFrost.RerollCounts = {1, 1, 1}
+end
+
+function PrepareNextEnchantment()
+  SV.RerollCounts = {1, 1, 1}
+  SV.EmberFrost.GotEnchantmentFromCheckpoint = false
+  
+end
+function GetEnchantmentData(enchant)
+  local id
+  if type(enchant) == "string" then
+    id = enchant
+  elseif type(enchant) == "table" and enchant.id then
+    id = enchant.id
+  else
+    error("GetEnchantmentData: enchant must be a string or a table with an id")
+  end
+
+  local data = SV.EmberFrost.EnchantmentData[id]
+
+  if not data then
+    data = {}
+    SV.EmberFrost.EnchantmentData[id] = data
+  end
+
+  return data
+end
+
+
+local function FindInGroup(count, get, enchant_id)
+  for i = count, 1, -1 do
+    local p = get(i - 1)
+    local tbl = LTBL(p)
+    if tbl.SelectedEnchantments and tbl.SelectedEnchantments[enchant_id] then
+      return p
+    end
+  end
+end
+
+function FindCharacterWithEnchantment(enchant_id)
+  return FindInGroup(
+    GAME:GetPlayerPartyCount(),
+    function(i) return GAME:GetPlayerPartyMember(i) end,
+    enchant_id
+  )
+  or FindInGroup(
+    GAME:GetPlayerAssemblyCount(),
+    function(i) return GAME:GetPlayerAssemblyMember(i) end,
+    enchant_id
+  )
+end
+
+function HasEnchantment(enchantment_id)
+  for _, id in ipairs(SV.EmberFrost.SelectedEnchantments) do
+    if id == enchantment_id then
+      return true 
+    end
+  end
+  return false
+end
+
+function AssignCharacterEnchantment(chara, enchantment_id)
+  local tbl = LTBL(chara)
+
+  tbl.SelectedEnchantments = tbl.SelectedEnchantments or {}
+  tbl.SelectedEnchantments[enchantment_id] = true
+end
+
+
+function FindCharacterWithEnchantment(enchant_id)
+  return FindInGroup(
+    GAME:GetPlayerPartyCount(),
+    function(i) return GAME:GetPlayerPartyMember(i) end,
+    enchant_id
+  )
+  or FindInGroup(
+    GAME:GetPlayerAssemblyCount(),
+    function(i) return GAME:GetPlayerAssemblyMember(i) end,
+    enchant_id
+  )
+end
+
+
+function ResetCharacterEnchantment(chara)
+  local tbl = LTBL(chara)
+  tbl.SelectedEnchantments = {}
+end
+
+
+function ResetAllCharacterEnchantments()
+  for i = 0, GAME:GetPlayerPartyCount() - 1 do
+    local chara = GAME:GetPlayerPartyMember(i)
+    ResetCharacterEnchantment(chara)
+  end
+
+  for i = 0, GAME:GetPlayerAssemblyCount() - 1 do
+    local chara = GAME:GetPlayerAssemblyMember(i)
+    ResetCharacterEnchantment(chara)
+  end
+end
+
+-- assume
+
+
 
 -- NOTE: These can only be called during GROUND MODE
 
@@ -23,8 +199,8 @@ PowerupDefaults = {
   end,
 
   -- At the start of each floor, call this 
-  map_effects = function(self, active_effect)
-    print(self.name .. " activated.")
+  set_active_effects = function(self, active_effect)
+    print(self.name .. " set map effect.")
     -- print(self.name .. " activated.")
   end,
 
@@ -39,9 +215,10 @@ PowerupDefaults = {
   end,
 
 
-  -- Used for getting the progres display, like the character selected
-  displayMenu = function(self)
-    return
+  -- Used for getting more info about the progress through a submenu (ex. character selected, the amount of money made, the stat boosts)
+  getProgressTexts = function(self)
+    -- return nil
+    return {}
   end,
 
 
@@ -52,21 +229,252 @@ PowerupDefaults = {
 
   -- Called upon when going back into a save file and setting variables in Lua that cannot be saved
   restore = function(self)
-    print(self.name .. " progressed.")
+    print(self.name .. " restore.")
+  end,
+  
+  getDescription = function(self)
+    return ""
   end
 }
 
--- Chillmark = setmetatable({
---   name = "Chillmark",
---   type = "Frost",
---   description = "",
---   offer_time = 1,
+-- ExpandedSatchel = RegisterEnchantment({
+--   name = "Expanded Satchel",
+--   id = "EXPANDED_SATCHEL",
+--   group = ENCHANTMENT_TYPES.items,
+
+--   bag_increase = 4,
+
+--   getDescription = function(self)
+--     return string.format(
+--       "Increases the team's bag size by %s for the duration of the dungeon. " ..
+--       "Additional bag size of %s in Emberfrost Depths.",
+--       M_HELPERS.MakeColoredText(tostring(self.bag_increase), PMDColor.Cyan),
+--       M_HELPERS.MakeColoredText("+" .. tostring(self.bag_increase), PMDColor.Cyan)
+--     )
+--   end,
+
+--   offer_time = "beginning",
 --   rarity = 1,
 
 --   apply = function(self)
---     print("Chillmark active: enemies move slower.")
---   end
+--     local old_amount = _ZONE.CurrentZone.BagSize
+--     _ZONE.CurrentZone.BagSize = old_amount + self.bag_increase
+
+--     UI:SetCenter(true)
+--     SOUND:PlayFanfare("Fanfare/Item")
+--     UI:WaitShowDialogue(
+--       string.format(
+--         "Your team's bag size has increased by %d! (%d -> %d)",
+--         M_HELPERS.MakeColoredText(tostring(self.bag_increase), PMDColor.Cyan),
+--         M_HELPERS.MakeColoredText(tostring(old_amount), PMDColor.Cyan),
+--         M_HELPERS.MakeColoredText(tostring(_ZONE.CurrentZone.BagSize), PMDColor.Cyan)
+--       )
+--     )
+--     UI:SetCenter(false)
+--   end,
+
+--   getProgressTexts = function(self)
+--     return {
+--       "Current Bag Size: " .. M_HELPERS.MakeColoredText(tostring(_ZONE.CurrentZone.BagSize), PMDColor.Cyan)
+--     }
+--   end,
+
+--   progress = function(self)
+--     _ZONE.CurrentZone.BagSize =
+--       _ZONE.CurrentZone.BagSize + self.bag_increase
+--   end,
+-- })
+
+
+
+-- AllTerrainTreads = RegisterEnchantment({
+--   name = "Treading Through",
+--   id = "ALL_TERRAIN_TREADS",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
+--     return string.format(
+--       "Gain %s " ..  entry:GetColoredName() ..  " (allows the holder to traverse water, lava, and pits)",
+--       M_HELPERS.MakeColoredText("2", PMDColor.Cyan)
+--     )
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+
+--   apply = function(self)
+--     -- TODO: Add to other inventory
+--     local items = {
+--       { Item = "emberfrost_allterrain_gear", Amount = 1 },
+--       { Item = "emberfrost_allterrain_gear", Amount = 1 },
+--     }
+
+--     M_HELPERS.GiveInventoryItemsToPlayer(items)
+--   end,
+
+-- })
+
+-- Gain5000P = RegisterEnchantment({
+
+
+
+--   name = "Gain 5000 " .. STRINGS:Format("\\uE024"),
+--   id = "GAIN_5000_P",
+--   group = ENCHANTMENT_TYPES.money,
+
+--   getDescription = function(self)
+--     return "Gain 5000 " .. STRINGS:Format("\\uE024")
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+
+--   apply = function(self)
+--     -- TODO: Add a custom menu to select which inventory item
+--     -- Check out InventorySelectMenu.lua for reference.
+--     _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + 5000
+--     SOUND:PlayFanfare("Fanfare/Item")
+--     UI:SetCenter(true)
+--     UI:WaitShowDialogue("You gained 5,000 " .. STRINGS:Format("\\uE024") .. "!")
+--     UI:SetCenter(false)
+
+--   end,
+
+-- })
+
+
+-- Gain7000P = RegisterEnchantment({
+
+
+
+--   name = "Gain 7,000 " .. STRINGS:Format("\\uE024"),
+--   id = "GAIN_7000_P",
+--   group = ENCHANTMENT_TYPES.money,
+--   getDescription = function(self)
+--     return "Gain 7000 " .. STRINGS:Format("\\uE024")
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+
+--   apply = function(self)
+--     -- TODO: Add a custom menu to select which inventory item
+--     -- Check out InventorySelectMenu.lua for reference.
+--     _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + 7000
+--     SOUND:PlayFanfare("Fanfare/Item")
+--     UI:SetCenter(true)
+--     UI:WaitShowDialogue("You gained 7000 " .. STRINGS:Format("\\uE024") .. "!")
+--     UI:SetCenter(false)
+
+--   end,
+
 -- }, { __index = PowerupDefaults })
+
+
+-- Gain9000P = setmetatable({
+--   name = "Gain 9000 " .. STRINGS:Format("\\uE024"),
+--   id = "GAIN_9000_P",
+--   group = ENCHANTMENT_TYPES.money,
+--   getDescription = function(self)
+--     return "Gain 9000 " .. STRINGS:Format("\\uE024")
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+
+--   apply = function(self)
+--     -- TODO: Add a custom menu to select which inventory item
+--     -- Check out InventorySelectMenu.lua for reference.
+--     _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + 9000
+--     SOUND:PlayFanfare("Fanfare/Item")
+--     UI:SetCenter(true)
+--     UI:WaitShowDialogue("You gained 9000 " .. STRINGS:Format("\\uE024") .. "!")
+--     UI:SetCenter(false)
+
+--   end,
+
+-- }, { __index = PowerupDefaults })
+
+
+-- CalmTheStorm = RegisterEnchantment({
+--   name = "Calm the Storm",
+--   id = "CALM_THE_STORM",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     local ward_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_weather_ward")
+--     return string.format("Gain a %s (allows the holder to eliminate the weather when it is battling)", ward_entry:GetIconName())
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--     local items = {
+--       {Item = "emberfrost_weather_ward", Amount = 1 },
+--     }
+
+--     M_HELPERS.GiveInventoryItemsToPlayer(items)
+--   end,
+
+-- })
+
+
+
+-- MysteryEnchant = RegisterEnchantment({
+--   gold_amount = 1000,
+--   name = "Mystery Enchant",
+--   id = "MYSTERY_ENCHANT",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self) 
+--     return string.format("Gain a random enchantment and %s.", M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan))
+--   end,
+  
+--   getProgressTexts = function(self)
+--     local data = GetEnchantmentData(self)
+--     local enchant_id = data["selected_enchantment"]
+--     local enchant = ENCHANTMENT_REGISTRY[enchant_id]
+--     if enchant then
+--       return {
+--         "Recieved: " .. M_HELPERS.MakeColoredText(enchant.name, PMDColor.Yellow),
+--       }
+--     end
+  
+--     return {}
+--   end,
+
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--     local enchantment = GetRandomEnchantments(1, 1)[1][1]
+
+--     print(tostring(self.id) .. " applying enchantment: " .. tostring(enchantment.id))
+--     local data = GetEnchantmentData(self)
+
+--     data["selected_enchantment"] = enchantment.id
+
+--     enchantment:apply()
+
+--     table.insert(SV.EmberFrost.SelectedEnchantments, enchantment.id)
+
+--     _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.gold_amount
+--     SOUND:PlayFanfare("Fanfare/Item")
+--     UI:SetCenter(true)
+--     UI:WaitShowDialogue("You gained " .. tostring(self.gold_amount) .. " " .. STRINGS:Format("\\uE024") .. "!")
+--     UI:SetCenter(false)
+
+--   end,
+
+
+-- })
+
+-- PrimalMemory = RegisterEnchantment({
+--   name = "Primal Memory",
+--   id = "PRIMAL_MEMORY",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     return "Select a team member. That member can remember any moves they can learn through a Recall Box. Gain a Recall Box"
+--   end,
+  
+
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--   end,
+-- })
 
 
 -- Frostbite = setmetatable({
@@ -81,72 +489,728 @@ PowerupDefaults = {
 --   end
 -- }, { __index = PowerupDefaults })
 
-EmberfrostSatchel = setmetatable({
-  name = "Emberfrost Satchel",
+
+SticksAndStones = RegisterEnchantment({
+  amount = 5,
+
+  name = "Sticks & Stones",
+  id = "STICKS_AND_STONES",
   group = ENCHANTMENT_TYPES.items,
-  description = "Increases the team's bag size by 4 for the duration of the dungeon. Additional bag size of +4 in Emberfrost Depths",
+  getDescription = function(self)
+
+    local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
+    local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
+    local gravelerock = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_gravelerock")
+    local geopebble = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_geo_pebble")
+    -- local sticks = RogueEssence.Dungeon.InvItem("ammo_stick", false, 1)
+
+    -- local goldenthorn = RogueEssence.Dungeon.InvItem("ammo_golden_thorn", false, 1)
+    -- local gravelerock = RogueEssence.Dungeon.InvItem("ammo_gravelerock", false, 1)
+    -- local geopebble = RogueEssence.Dungeon.InvItem("ammo_geo_pebble", false, 1)
+
+    return string.format(
+      "Gain %s of each: %s, %s, %s, %s",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+      goldenthorn:GetIconName(),
+      sticks:GetIconName(),
+
+      gravelerock:GetIconName(),
+      geopebble:GetIconName()
+    )
+    -- return "Select a team member. That member can remember any moves they can learn through a Recall Box"
+  end,
+  
+
   offer_time = "beginning",
   rarity = 1,
-
   apply = function(self)
-    _ZONE.CurrentZone.BagSize = _ZONE.CurrentZone.BagSize + 4
-  end,
 
-  progress = function(self)
-    _ZONE.CurrentZone.BagSize = _ZONE.CurrentZone.BagSize + 4
-  end,
-}, { __index = PowerupDefaults })
-
-AllTerrainTreads = setmetatable({
-  name = "Treading Through",
-  group = ENCHANTMENT_TYPES.items,
-  description = "Both parties gain an [color=#F8C8C8]All-Terrain Gear[color] (allows the holder to traverse water, lava, and pits)",
-  offer_time = "beginning",
-  rarity = 1,
-
-  apply = function(self)
-    -- TODO: Add to other inventory
+    local amount = self.amount
     local items = {
-      { Item = "emberfrost_allterrain_gear", Amount = 1 },
+      {Item = "ammo_stick", Amount = amount },
+      {Item = "ammo_golden_thorn", Amount = amount },
+      {Item = "ammo_gravelerock", Amount = amount },
+      {Item = "ammo_geo_pebble", Amount = amount },
     }
 
     M_HELPERS.GiveInventoryItemsToPlayer(items)
   end,
 
-}, { __index = PowerupDefaults })
+})
 
-		-- UI:WaitShowDialogue("Team " .. GAME:GetTeamName() .. " received " .. "[color=#00FFFF]" .. itemID .. "[color]" .. STRINGS:Format("\\uE024") .. ".[pause=40]") 
-Gain5000P = setmetatable({
-  name = "Gain 5000 " .. STRINGS:Format("\\uE024") ,
-  group = ENCHANTMENT_TYPES.money,
-  description = "Gain 5000 " .. STRINGS:Format("\\uE024"),
+-- 
+-- MayBreakMyBones = RegisterEnchantment({
+--   amount = 9,
+--   percent = 50,
+
+--   name = "...Break My Bones",
+--   id = "BREAK_MY_BONES",
+--   group = ENCHANTMENT_TYPES.items,
+--   can_apply = function(self)
+--     return HasEnchantment(SticksAndStones.id)
+--   end,
+
+--   getDescription = function(self)
+--     local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
+--     local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
+--     local gravelerock = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_gravelerock")
+--     local geopebble = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_geo_pebble")
+--     -- local sticks = RogueEssence.Dungeon.InvItem("ammo_stick", false, 1)
+
+--     -- local goldenthorn = RogueEssence.Dungeon.InvItem("ammo_golden_thorn", false, 1)
+--     -- local gravelerock = RogueEssence.Dungeon.InvItem("ammo_gravelerock", false, 1)
+--     -- local geopebble = RogueEssence.Dungeon.InvItem("ammo_geo_pebble", false, 1)
+
+--     return string.format(
+--       "Your team's projectiles do %s more damage. Gain %s of each: %s, %s, %s, %s",
+--       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+--       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+--       goldenthorn:GetIconName(),
+--       sticks:GetIconName(),
+
+--       gravelerock:GetIconName(),
+--       geopebble:GetIconName()
+--     )
+--     -- return "Projectiles deal 50% more damage."
+--     -- return "Select a team member. That member can remember any moves they can learn through a Recall Box"
+--   end,
+  
+
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--     local amount = self.amount
+
+--     local items = {
+--       "ammo_stick", Amount = amount },
+--       "ammo_golden_thorn", Amount = amount },
+--       "ammo_gravelerock", Amount = amount },
+--       "ammo_geo_pebble", Amount = amount },
+--     }
+
+--     M_HELPERS.GiveInventoryItemsToPlayer(items)
+--   end,
+
+-- })
+
+
+-- WordsWillNever = RegisterEnchantment({
+
+--   name = "...Words Will Never",
+--   id = "WORDS_WILL_NEVER",
+--   group = ENCHANTMENT_TYPES.items,
+--   can_apply = function(self)
+--     return HasEnchantment(MayBreakMyBones.id)
+--   end,
+
+--   getDescription = function(self)
+--     local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
+--     local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
+--     local gravelerock = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_gravelerock")
+--     local geopebble = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_geo_pebble")
+--     -- local sticks = RogueEssence.Dungeon.InvItem("ammo_stick", false, 1)
+
+--     -- local goldenthorn = RogueEssence.Dungeon.InvItem("ammo_golden_thorn", false, 1)
+--     -- local gravelerock = RogueEssence.Dungeon.InvItem("ammo_gravelerock", false, 1)
+--     -- local geopebble = RogueEssence.Dungeon.InvItem("ammo_geo_pebble", false, 1)
+
+--     return string.format(
+--       "Your team is immune to the negative status effects: Spite, Disabled, Taunt, Swagger, Torment, Grudge, and Quash",
+--       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+--       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+--       goldenthorn:GetIconName(),
+--       sticks:GetIconName(),
+
+--       gravelerock:GetIconName(),
+--       geopebble:GetIconName()
+--     )
+--     -- return "Projectiles deal 50% more damage."
+--     -- return "Select a team member. That member can remember any moves they can learn through a Recall Box"
+--   end,
+  
+
+--   offer_time = "beginning",
+--   rarity = 2,
+--   apply = function(self)
+--     local amount = self.amount
+
+--     local items = {
+--       "ammo_stick", Amount = amount },
+--       "ammo_golden_thorn", Amount = amount },
+--       "ammo_gravelerock", Amount = amount },
+--       "ammo_geo_pebble", Amount = amount },
+--     }
+
+--     M_HELPERS.GiveInventoryItemsToPlayer(items)
+--   end,
+
+-- })
+
+
+
+-- BuriedTreasures = RegisterEnchantment({
+--   turn_interval = 200,
+--   name = "Buried Treasures",
+--   id = "BURIED_TREASURES",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     return string.format(
+--       "At the start of each floor and every %s turns, show a compass towards to a buried treasure if any are present.",
+--       M_HELPERS.MakeColoredText(tostring(self.turn_interval), PMDColor.Cyan)
+--     )
+--   end,
+  
+
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--   end,
+-- })
+
+
+
+-- Pacifist = RegisterEnchantment({
+--   gold_amount = 500,
+--   name = "Pacifist",
+--   id = "PACIFIST",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     return string.format(
+--       "Select a character. When that character deals no damage for the floor, gain %s the following floor.",
+--       M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+--     )
+--   end,
+
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--   end,
+-- })
+
+-- RiskyMoves = RegisterEnchantment({
+--   gold_amount = 10000,
+--   total_floors = 5,
+--   name = "Risky Moves",
+--   id = "RISKY_MOVES",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     return string.format(
+--       "Your team cannot use items for %s floors. Gain %s afterwards",
+--       M_HELPERS.MakeColoredText(tostring(self.total_floors), PMDColor.Cyan),
+--       M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+--     )
+--   end,
+  
+
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--   end,
+-- })
+
+
+-- When an enemy is hit. Only 1 enemy can be marked at a time.
+-- Marksman = RegisterEnchantment({
+--   gold_amount = 10000,
+--   total_floors = 5,
+--   name = "Risky Moves",
+--   id = "RISKY_MOVES",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     return string.format(
+--       "Your team cannot use items for %s floors. Gain %s afterwards",
+--       M_HELPERS.MakeColoredText(tostring(self.total_floors), PMDColor.Cyan),
+--       M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+--     )
+--   end,
+  
+
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--   end,
+-- })
+-- FeelTheBurn = RegisterEnchantment({
+--   name = "Feel the Burn",
+--   chance = 15,
+--   id = "FEEL_THE_BURN",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     local element = _DATA:GetElement("fire")
+--     return string.format(
+--       "Choose a team member. When that member is hit by a %s move, they will take %s additional damage and gain a speed boost",
+--       element:GetIconName(),
+--       M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan)
+--     )
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+--   getProgressTexts = function(self)
+--     local char = FindCharacterWithEnchantment(self.id)
+--     local char_name = char and char:GetDisplayName(true) or nil
+--     if char_name then
+--       return {
+--         "Assigned to: " .. char_name,
+--       }
+--     end
+--     return {}
+--   end,
+
+--   set_active_effects = function(self, active_effect)
+--     active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({ StatusID = "emberfrost_fire_speed_boost", EnchantmentID = self.id })))
+--   end,
+
+--   apply = function(self)
+--     AssignEnchantmentToCharacter(self)
+--   end,
+-- })
+
+
+HungerStrike = RegisterEnchantment({
+  name = "Hunger Strike",
+  amount = 5,
+  id = "HUNGER_STRIKE",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Choose a team member. That member will lose hunger more quickly. When they inflict damage, the target will lose %s hunger points",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
+    )
+  end,
   offer_time = "beginning",
   rarity = 1,
-
-  apply = function(self)
-    -- TODO: Add a custom menu to select which inventory item
-    -- Check out InventorySelectMenu.lua for reference.
-    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + 5000
-    UI:WaitShowDialogue("You gained 5000 P!")
+  getProgressTexts = function(self)
+    local char = FindCharacterWithEnchantment(self.id)
+    local char_name = char and char:GetDisplayName(true) or nil
+    if char_name then
+      return {
+        "Assigned to: " .. char_name,
+      }
+    end
+    return {}
   end,
 
-}, { __index = PowerupDefaults })
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({ StatusID = "emberfrost_hunger_strike", EnchantmentID = self.id })))
+  end,
 
-CalmTheStorm = setmetatable({
-  name = "Calm the Storm",
+  apply = function(self)
+    AssignEnchantmentToCharacter(self)
+  end,
+})
+
+
+
+
+HungerStrike = RegisterEnchantment({
+  name = "Hunger Strike",
+  amount = 5,
+  id = "HUNGER_STRIKE",
   group = ENCHANTMENT_TYPES.items,
-  description = "Gain a [color=#F8C8C8]Weather Ward[color] item (allows the holder to eliminate the weather when it is battling)",
+  getDescription = function(self)
+    return string.format(
+      "Choose a team member. That member will lose hunger more quickly. When they inflict damage, the target will lose %s hunger points",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
+    )
+  end,
   offer_time = "beginning",
   rarity = 1,
+  getProgressTexts = function(self)
+    local char = FindCharacterWithEnchantment(self.id)
+    local char_name = char and char:GetDisplayName(true) or nil
+    if char_name then
+      return {
+        "Assigned to: " .. char_name,
+      }
+    end
+    return {}
+  end,
+
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({ StatusID = "emberfrost_hunger_strike", EnchantmentID = self.id })))
+  end,
+
   apply = function(self)
-    local items = {
-      { Item = "emberfrost_weather_ward", Amount = 1 },
+    AssignEnchantmentToCharacter(self)
+  end,
+})
+
+
+
+PandorasItems = RegisterEnchantment({
+  amount = 1,
+  name = "Pandora's Items",
+  id = "PANDORAS_ITEMS",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Gain %s random %s and %s. At the start of each floor, any non-held %s or %s are randomized",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText("equipment", PMDColor.Pink),
+      M_HELPERS.MakeColoredText("orb", PMDColor.Pink),
+      M_HELPERS.MakeColoredText("equipments", PMDColor.Pink),
+      M_HELPERS.MakeColoredText("orbs", PMDColor.Pink)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local data = GetEnchantmentData(self)
+    local equipment = data["equipment"]
+    local orb = data["orb"]
+
+    local equipment_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(equipment)
+    local orb_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(orb)
+    local text = {
+      "Equipment: " .. equipment_entry:GetIconName(),
+      "Orb: " .. orb_entry:GetIconName(),
     }
+
+    return text
+  end,
+
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PandorasItems"))
+  end,
+
+  apply = function(self)
+    local random_orb_index = math.random(#ORBS)
+    local random_orb = ORBS[random_orb_index]
+    local random_equipment_index = math.random(#EQUIPMENT)
+    local random_equipment = EQUIPMENT[random_equipment_index]
+    local amount = self.amount
+    local items = {
+      { Item = random_equipment, Amount = amount },
+      { Item = random_orb, Amount = amount },
+    }
+
+    local data = GetEnchantmentData(self)
+    data["equipment"] = random_equipment
+    data["orb"] = random_orb
+
 
     M_HELPERS.GiveInventoryItemsToPlayer(items)
   end,
+})
 
-}, { __index = PowerupDefaults })
+
+YourAWizard = RegisterEnchantment({
+  stack = 3,
+  amount = 3,
+  percent = 3,
+  name = "You're a Wizard!",
+  id = "YOURE_A_WIZARD",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Gain %s stacks of %s random %s. Then select a party member. That member will gain %s special attack boost for each unique %s in your inventory.",
+      M_HELPERS.MakeColoredText(tostring(self.stack), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText("wands", PMDColor.Pink),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText("wand", PMDColor.Pink)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+
+    
+    local data = GetEnchantmentData(self)
+    local wands = data["wands"]
+
+    local str_arr = {
+      "Recieved: ",
+    }
+    for _, wand in ipairs(wands) do
+        local item = RogueEssence.Dungeon.InvItem(wand, false, self.amount)
+
+        local wand_name = item:GetDisplayName()
+        table.insert(str_arr, wand_name)
+    end
+
+
+    
+    local unique_wands = {}
+    local total_unique = 0
+    
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+    for i = inv_count, 0, -1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+        print("Checking item in inventory: " .. tostring(item_id))
+        if Contains(WANDS, item_id) then
+            print("Found wand in inventory: " .. tostring(item_id)  )
+            if unique_wands[item_id] == nil then
+                unique_wands[item_id] = true
+                total_unique = total_unique + 1
+            end
+        end        
+    end
+  
+    local player_count = _DATA.Save.ActiveTeam.Players.Count
+    for player_idx = 0, player_count-1, 1 do
+      local inv_item = GAME:GetPlayerEquippedItem(player_idx)
+      local item_id = inv_item.ID
+      if Contains(WANDS, item_id) then
+          if unique_wands[item_id] == nil then
+              unique_wands[item_id] = true
+              total_unique = total_unique + 1
+          end
+      end        
+    end
+
+    print("Total Unique Wands: " .. tostring(total_unique))
+    local boost_amount = self.percent * total_unique
+
+    
+    local char = FindCharacterWithEnchantment(self.id)
+    local char_name = char and char:GetDisplayName(true) or nil
+
+
+    table.insert(str_arr, "\n")
+    table.insert(str_arr, "Assigned to: " .. char_name)
+    table.insert(str_arr, "Special Attack Boost: " .. M_HELPERS.MakeColoredText(tostring(boost_amount) .. "%", PMDColor.Cyan))
+    
+    return str_arr
+  end,
+
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({ StatusID = "emberfrost_wizard", EnchantmentID = self.id })))
+    -- active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
+  end,
+
+  apply = function(self)
+    AssignEnchantmentToCharacter(self)
+
+    local data = GetEnchantmentData(self)
+    data["wands"] = {}
+    data["boost"] = 0
+
+    local items = {}
+
+    for i = 1, self.amount do
+        local random_wand_index = math.random(#WANDS)
+        local wand = WANDS[random_wand_index]
+
+        table.insert(data["wands"], wand)
+
+
+        table.insert(items, { Item = wand, Amount = self.stack })
+    end
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+
+  end,
+})
+
+PlantYourSeeds = RegisterEnchantment({
+  money = 300,
+  amount = 3,
+  minimum = 6,
+  name = "Plant Your Seeds",
+  id = "PLANT_YOUR_SEEDS",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Gain %s random %s. At the start of each floor, if you have at least non-held %s, lose all of them and gain %s for each seed",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText("seeds", PMDColor.Pink),
+      M_HELPERS.MakeColoredText(tostring(self.minimum), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(self.money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    
+    local data = GetEnchantmentData(self)
+    local seeds = data["seeds"]
+    local money_earned = data["money_earned"]
+
+    local str_arr = {
+      "Recieved: ",
+    }
+    for _, seed in ipairs(seeds) do
+        local seed_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(seed)
+        local seed_name = seed_entry:GetIconName()
+        table.insert(str_arr, seed_name)
+    end
+
+    
+
+    -- TODO: Account for the player is holding the seeds...
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+    local seed_index_arr = {}
+    for i = inv_count, 0, -1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+        if Contains(SEED, item_id) then
+            table.insert(seed_index_arr, i)
+        end        
+    end
+
+    table.insert(str_arr, "\n")
+    table.insert(str_arr, "Seed Count: " .. M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan))
+    table.insert(str_arr, "Money Earned: " .. M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan))
+    
+    
+    return str_arr
+  end,
+
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
+  end,
+
+  apply = function(self)
+
+    local data = GetEnchantmentData(self)
+    data["seeds"] = {}
+    data["money_earned"] = 0
+
+    local items = {}
+
+    for i = 1, self.amount do
+        local random_seed_index = math.random(#SEED)
+        local seed = SEED[random_seed_index]
+
+        table.insert(data["seeds"], seed)
+
+  
+        table.insert(items, { Item = seed, Amount = 1 })
+    end
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end,
+})
+
+
+TheBubble = RegisterEnchantment({
+  interest = 1.10,
+  start = 10,
+  percent_increase = 1.5,
+  name = "The Bubble",
+  id = "THE_BUBBLE",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Gain %s interest at the start of each floor. If the bubble pops, lose half your %s. Pop chance increases by %s each floor and then resets.",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+      STRINGS:Format("\\uE024"),
+      
+      STRINGS:Format("\\uE024"),
+      M_HELPERS.MakeColoredText(tostring(self.money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    
+    local data = GetEnchantmentData(self)
+    local seeds = data["seeds"]
+    local money_earned = data["money_earned"]
+
+    local str_arr = {
+      "Recieved: ",
+    }
+    for _, seed in ipairs(seeds) do
+        local seed_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(seed)
+        local seed_name = seed_entry:GetIconName()
+        table.insert(str_arr, seed_name)
+    end
+
+    
+
+    -- TODO: Account for the player is holding the seeds...
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+    local seed_index_arr = {}
+    for i = inv_count, 0, -1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+        if Contains(SEED, item_id) then
+            table.insert(seed_index_arr, i)
+        end        
+    end
+
+    table.insert(str_arr, "\n")
+    table.insert(str_arr, "Seed Count: " .. M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan))
+    table.insert(str_arr, "Money Earned: " .. M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan))
+    
+    
+    return str_arr
+  end,
+
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
+  end,
+
+  apply = function(self)
+
+    local data = GetEnchantmentData(self)
+    data["seeds"] = {}
+    data["money_earned"] = 0
+
+    local items = {}
+
+    for i = 1, self.amount do
+        local random_seed_index = math.random(#SEED)
+        local seed = SEED[random_seed_index]
+
+        table.insert(data["seeds"], seed)
+
+  
+        table.insert(items, { Item = seed, Amount = 1 })
+    end
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end,
+})
+
+-- For each equipment in your inventory, gain a 3% attack boost.
+-- Fashionable = RegisterEnchantment({
+--   "for each unique specs or googles"
+
+-- })
+
+-- SupplyDrop - Gain essential items every 4 floors. (Apples, Reviver Seeds, Orbs, Sticks, Seeds, Oran, Sitrus Berry, Apricorn)
+-- Dazzling - Choose a character. For each equipment, lower the accuracy of the target
+-- RunAndGun - Projectiles deal more damage if your team has a speed boost, depends on it
+-- Fitness - Each food item grants more hunger points, boosts to yourself
+-- For 10 denmies fainted with an ammo, 
+-- Precision - Choose a team member. That team member. Moves that have less than 80% accuracy cannot miss.
+-- Blueprint - Select a team member. Gain tms. Select a tm, gain two randoms ones
+-- Primal memory
+-- TaskMaster - Complete various task to gain money. Defeat 10 enemies with mon. Reach hunger 20. Use 3 seeds. Use an orb. Complete a floor with items. 
+-- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
+-- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
+-- Team Building - Gain 3 big apricorns and 2 amber tears and a friend bow
+-- Gummi Overload - Gain 5 random gummies. Each gummy grants +1 max hunger.
+-- Death Defying - Gain a death amulet.
+-- I C - Gain an X-ray specs. Your team can see invisible traps.
+-- Harmony Scarf - Gain a harmony scarf. 
+-- Plates - Choose between 1 of the 17 plates.
+-- Huddle - Defense
+-- Moral Support / Support from Beyond - Gain a damage boost for each tea m member alive in the assembly
+-- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
+-- Tempo - Select a team member. That member gains a random permanetent stat boost for every 10 
+-- Solo Mission - When your team has only 1 member, that member does more damage
+-- Avenger - Dead teammates = more damage
+-- Ravenous - More damage when low on hunger
+-- Hoarder - More money when you have more items in your inventory
+-- Fitness Routine - Speed boost when your team has more than 75% hunger (ewwww, better)
+-- Full Belly Happy Heart 
+-- The Bubble - Interest per heard. Can pop. 1% higher chance to pop each passing floor. 
+-- Nitroglycerin - Speed boost when low on hunger
+-- Exit Strategy: Stairs sensor, gain 3 pure speeds, warp seed
+-- Choose a character. Super-effective moves deal less damage
+-- Bargainer: Half off from shop. I don’t know why, but I feel like giving everything to you half off now
+-- Affluent: Calculate the cost of inventory. Do damage based on total. Easier to recruit monsters. 
+-- Marksmen: Choose a team member. That member’s projectiles deal more damage. Mark the target. That target will take additonal damage
+-- Ranged: Select a team member. That member gets +1 tange. 
+-- Underdogs: Your team does more damage when lower leveled than the enemy
+-- Immunity: Choose a team member. That member is immune to negative status effects.
+-- Treausre Tracker: Gain a trackr. Will reveal buried within 20 tiles
+-- Eviolite: If held by a Pokémon that is not fully evolved, its Defense and Special Defense are raised by 50%. 
 
 -- {
 -- "Key": {
@@ -155,23 +1219,208 @@ CalmTheStorm = setmetatable({
 -- ]
 -- },
 -- "Value": {
--- "$type": "PMDC.Dungeon.FamilyBattleEvent, PMDC",
--- "BaseEvent": {
--- "$type": "PMDC.Dungeon.RegularAttackNeededEvent, PMDC",
--- "BaseEvent": {
--- "$type": "PMDC.Dungeon.SetAccuracyEvent, PMDC",
--- "Accuracy": -1
+-- "$type": "PMDC.Dungeon.SpeedPowerEvent, PMDC",
+-- "Reverse": false
 -- }
 -- }
+-- ],
+-- "OnHits": [
+-- {
+-- "Key": {
+-- "str": [
+-- -1
+-- ]
+-- },
+-- "Value": {
+-- "$type": "PMDC.Dungeon.DamageFormulaEvent, PMDC"
 -- }
 -- }
-      --  public override IEnumerator<YieldInstruction> Apply(GameEventOwner owner, Character ownerChar, BattleContext context)
-      --   {
-      --       if (context.ActionType == BattleActionType.Skill && context.UsageSlot == BattleContext.DEFAULT_ATTACK_SLOT)
-      --       {
-      --           yield return CoroutineManager.Instance.StartCoroutine(BaseEvent.Apply(owner, ownerChar, context));
-      --       }
-      --   }
-      -- MapFaction.MapFaction
 
--- HUDDLE - check out friend guard
+function AssignEnchantmentToCharacter(enchant)
+    local ret = {}
+    local choose = function(chars)
+        ret = chars
+        _MENU:RemoveMenu()
+    end
+    local refuse = function() end
+    local menu = TeamMultiSelectMenu:new(string.format("Assign %s to?", M_HELPERS.MakeColoredText(enchant.name, PMDColor.Yellow)), _DATA.Save.ActiveTeam.Players, function() return true end, choose, refuse)
+    UI:SetCustomMenu(menu.menu)
+    UI:WaitForChoice()
+ 
+
+    local selected_char = ret[1]
+    AssignCharacterEnchantment(selected_char, enchant.id)
+    UI:SetCenter(true)
+    SOUND:PlayFanfare("Fanfare/Item")
+    UI:WaitShowDialogue(
+      string.format(
+        "%s got the %s enchantment!",
+        selected_char:GetDisplayName(true),
+        M_HELPERS.MakeColoredText(enchant.name, PMDColor.Yellow)
+      )
+    )
+    UI:SetCenter(false)
+end
+
+
+
+
+
+ORBS = {
+  "orb_all_dodge", 
+  "orb_all_protect", 
+  "orb_cleanse", 
+  "orb_devolve", 
+  "orb_fill_in", 
+  "orb_endure", 
+  "orb_foe_hold", 
+  "orb_foe_seal", 
+  "orb_freeze", 
+  "orb_halving", 
+  "orb_invert", 
+  "orb_invisify", 
+  "orb_itemizer", 
+  "orb_luminous", 
+  "orb_pierce", 
+  "orb_scanner", 
+  "orb_mobile", 
+  "orb_mug", 
+  "orb_nullify", 
+  "orb_mirror", 
+  "orb_spurn", 
+  "orb_slow", 
+  "orb_slumber", 
+  "orb_petrify", 
+  "orb_totter", 
+  "orb_invisify", 
+  "orb_one_room", 
+  "orb_totter", 
+  "orb_rebound",
+  "orb_revival",  
+  "orb_rollcall", 
+  "orb_stayaway", 
+  "orb_trap_see", 
+  "orb_trapbust", 
+  "orb_trawl", 
+  "orb_weather", 
+}
+
+
+EQUIPMENT = {
+  "emberfrost_allterrain_gear",
+  "emberfrost_weather_ward",
+  "held_assault_vest",
+  "held_binding_band",
+  "held_big_root",
+  "held_black_belt",
+  "held_black_glasses",
+  "held_black_sludge",
+  "held_charcoal",
+  "held_choice_band",
+  "held_choice_scarf",
+  "held_choice_specs",
+  "held_cover_band",
+  "held_defense_scarf",
+  "held_dragon_scale",
+  "held_expert_belt",
+  "held_friend_bow",
+  "held_goggle_specs",
+  "held_grip_claw",
+  "held_hard_stone",
+  "held_heal_ribbon",
+  "held_iron_ball",
+  "held_life_orb",
+  "held_magnet",
+  "held_metal_coat",
+  "held_metronome",
+  "held_miracle_seed",
+  "held_mobile_scarf",
+  "held_mystic_water",
+  "held_pass_scarf",
+  "held_pierce_band",
+  "held_pink_bow",
+  "held_poison_barb",
+  "held_power_band",
+  "held_reunion_cape",
+  "held_ring_target",
+  "held_scope_lens",
+  "held_sharp_beak",
+  "held_shed_shell",
+  "held_shell_bell",
+  "held_silk_scarf",
+  "held_silver_powder",
+  "held_soft_sand",
+  "held_special_band",
+  "held_spell_tag",
+  "held_sticky_barb",
+  "held_toxic_orb",
+  "held_flame_orb",
+  "held_twist_band",
+  "held_twisted_spoon",
+  "held_warp_scarf",
+  "held_weather_rock",
+  "held_wide_lens",
+  "held_x_ray_specs",
+  "held_zinc_band",
+  "held_blank_plate",
+  "held_draco_plate",
+  "held_dread_plate",
+  "held_earth_plate",
+  "held_fist_plate",
+  "held_flame_plate",
+  "held_icicle_plate",
+  "held_insect_plate",
+  "held_iron_plate",
+  "held_meadow_plate",
+  "held_mind_plate",
+  "held_pixie_plate",
+  "held_sky_plate",
+  "held_splash_plate",
+  "held_spooky_plate",
+  "held_stone_plate",
+  "held_toxic_plate",
+  "held_zap_plate",
+}
+
+SEED = {
+  "seed_ban",
+  "seed_blast",
+  "seed_blinker",
+  "seed_decoy",
+  "seed_doom",
+  "seed_golden",
+  "seed_hunger",
+  "seed_ice",
+  "seed_joy",
+  "seed_last_chance",
+  "seed_plain",
+  "seed_pure",
+  "seed_reviver",
+  "seed_sleep",
+  -- "seed_spreader",
+  -- "seed_training",
+  -- "seed_vanish",
+  "seed_vile",
+  "seed_warp",
+}
+
+
+WANDS = {
+  "wand_fear",
+  -- "wand_infatuation",
+  "wand_lob",
+  "wand_lure",
+  "wand_path",
+  "wand_pounce",
+  "wand_purge",
+  "wand_slow",
+  -- "wand_stayaway",
+  -- "wand_surround",
+  "wand_switcher",
+  "wand_topsy_turvy",
+  -- "wand_totter",
+  "wand_transfer",
+  "wand_vanish",
+  "wand_warp",
+  "wand_whirlwind"
+}
