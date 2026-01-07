@@ -416,7 +416,7 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
 
   print(Serpent.dump(enchantments) .. ".... uh")
 
-    print(Serpent.dump(SV.EmberFrost.RerollCounts) .. ".... uh")
+    -- print(Serpent.dump(SV.EmberFrost.RerollCounts) .. ".... uh")
   -- title, enchantment_list, confirm_action, refuse_action, enchantment_width
 
 

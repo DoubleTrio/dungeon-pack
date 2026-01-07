@@ -62,6 +62,20 @@ M_HELPERS = {
     UI:ImportSpeakerSettings(orig_settings)
   end,
 
+  GetItemName = function(item_id, with_amount)
+    local item_name = ""
+
+    if (with_amount) then
+      local item = RogueEssence.Dungeon.InvItem(item_id, false, with_amount)
+      item_name = item:GetDisplayName()
+    else
+      local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(item_id)
+      item_name = entry:GetIconName()
+    end
+
+    return item_name
+  end,
+
   AddToAssembly = function(species, level)
     local char = M_HELPERS.CreateCharacter(species, level)
     GAME:AddPlayerAssembly(char)

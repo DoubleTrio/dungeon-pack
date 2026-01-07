@@ -3,11 +3,11 @@
 "Object": {
 "$type": "RogueEssence.Data.ItemData, RogueEssence",
 "Name": {
-"DefaultText": "Jeweled Bug",
+"DefaultText": "Bubble",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "A beautiful, jeweled bug in Emberfrost that eats an inventory item at the start of each floor. It will disappear upon reaching the end.",
+"DefaultText": "A very fragile bubble. Gain 10% interest on  at the start of each floor. If the bubble pops, lose half your  instead and the bubble will reset. Pop chance increases with each passing floor.",
 "LocalTexts": {}
 },
 "Released": true,
@@ -184,8 +184,8 @@
 },
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "EmberFrostJeweledBugEvent",
-"ArgTable": "{}"
+"Script": "TheBubble",
+"ArgTable": "{ EnchantmentID = \"THE_BUBBLE\" }"
 }
 }
 ],

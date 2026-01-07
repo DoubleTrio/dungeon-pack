@@ -1,11 +1,13 @@
 
 require 'origin.menu.team.TeamSelectMenu'
+require 'trios_dungeon_pack.menu.ItemSelectionMenu'
+
+
 ENCHANTMENT_TYPES = {
   items = "ITEMS",
   money = "MONEY",
   power = "POWER"
 }
-
 
 ENCHANTMENT_REGISTRY = ENCHANTMENT_REGISTRY or {}
 
@@ -14,7 +16,9 @@ local count = 0
 function RegisterEnchantment(def)
   assert(def.id, "Enchantment must have an id")
 
-  local enchant = setmetatable(def, { __index = PowerupDefaults })
+  local enchant = setmetatable(def, {
+    __index = PowerupDefaults
+  })
   ENCHANTMENT_REGISTRY[def.id] = enchant
   count = count + 1
   print(tostring(count))
@@ -25,12 +29,16 @@ function GetSelectedEnchantments(selected)
   selected = selected or SV.EmberFrost.SelectedEnchantments
   local list = {}
   for _, id in ipairs(selected or {}) do
-    local enchant = ENCHANTMENT_REGISTRY[id]
+    local enchant = GetEnchantmentFromRegistry(id)
     if enchant then
       table.insert(list, enchant)
     end
   end
   return list
+end
+
+function GetEnchantmentFromRegistry(enchantment_id)
+  return ENCHANTMENT_REGISTRY[enchantment_id]
 end
 
 function GetRandomEnchantments(amount, total_groups)
@@ -52,12 +60,11 @@ function GetRandomEnchantments(amount, total_groups)
   local result = {}
   for i = 1, math.min(amount, #candidates) do
     local enchant = candidates[i]
-    
+
     table.insert(result, enchant)
     SV.EmberFrost.SeenEnchantments[enchant.id] = true
   end
 
-  
   local per_group = math.floor(#result / total_groups)
   local grouped = {}
   for i = 1, total_groups do
@@ -72,18 +79,17 @@ function GetRandomEnchantments(amount, total_groups)
   return grouped
 end
 
-
 function ResetSeenEnchantments()
   SV.EmberFrost.SeenEnchantments = {}
   SV.EmberFrost.EnchantmentData = {}
-  SV.EmberFrost.RerollCounts = {1, 1, 1}
+  SV.EmberFrost.RerollCounts = { 1, 1, 1 }
 end
 
 function PrepareNextEnchantment()
-  SV.RerollCounts = {1, 1, 1}
+  SV.RerollCounts = { 1, 1, 1 }
   SV.EmberFrost.GotEnchantmentFromCheckpoint = false
-  
 end
+
 function GetEnchantmentData(enchant)
   local id
   if type(enchant) == "string" then
@@ -104,7 +110,6 @@ function GetEnchantmentData(enchant)
   return data
 end
 
-
 local function FindInGroup(count, get, enchant_id)
   for i = count, 1, -1 do
     local p = get(i - 1)
@@ -116,22 +121,17 @@ local function FindInGroup(count, get, enchant_id)
 end
 
 function FindCharacterWithEnchantment(enchant_id)
-  return FindInGroup(
-    GAME:GetPlayerPartyCount(),
-    function(i) return GAME:GetPlayerPartyMember(i) end,
-    enchant_id
-  )
-  or FindInGroup(
-    GAME:GetPlayerAssemblyCount(),
-    function(i) return GAME:GetPlayerAssemblyMember(i) end,
-    enchant_id
-  )
+  return FindInGroup(GAME:GetPlayerPartyCount(), function(i)
+    return GAME:GetPlayerPartyMember(i)
+  end, enchant_id) or FindInGroup(GAME:GetPlayerAssemblyCount(), function(i)
+    return GAME:GetPlayerAssemblyMember(i)
+  end, enchant_id)
 end
 
 function HasEnchantment(enchantment_id)
   for _, id in ipairs(SV.EmberFrost.SelectedEnchantments) do
     if id == enchantment_id then
-      return true 
+      return true
     end
   end
   return false
@@ -144,26 +144,18 @@ function AssignCharacterEnchantment(chara, enchantment_id)
   tbl.SelectedEnchantments[enchantment_id] = true
 end
 
-
 function FindCharacterWithEnchantment(enchant_id)
-  return FindInGroup(
-    GAME:GetPlayerPartyCount(),
-    function(i) return GAME:GetPlayerPartyMember(i) end,
-    enchant_id
-  )
-  or FindInGroup(
-    GAME:GetPlayerAssemblyCount(),
-    function(i) return GAME:GetPlayerAssemblyMember(i) end,
-    enchant_id
-  )
+  return FindInGroup(GAME:GetPlayerPartyCount(), function(i)
+    return GAME:GetPlayerPartyMember(i)
+  end, enchant_id) or FindInGroup(GAME:GetPlayerAssemblyCount(), function(i)
+    return GAME:GetPlayerAssemblyMember(i)
+  end, enchant_id)
 end
-
 
 function ResetCharacterEnchantment(chara)
   local tbl = LTBL(chara)
   tbl.SelectedEnchantments = {}
 end
-
 
 function ResetAllCharacterEnchantments()
   for i = 0, GAME:GetPlayerPartyCount() - 1 do
@@ -177,16 +169,6 @@ function ResetAllCharacterEnchantments()
   end
 end
 
--- assume
-
-
-
--- NOTE: These can only be called during GROUND MODE
-
-local function ensureData(self)
-  self.data = self.data or {}
-end
-
 PowerupDefaults = {
   -- Checks whether this powerup can be given to the player
   can_apply = function()
@@ -198,7 +180,7 @@ PowerupDefaults = {
     print(self.name .. " activated.")
   end,
 
-  -- At the start of each floor, call this 
+  -- At the start of each floor, call this
   set_active_effects = function(self, active_effect)
     print(self.name .. " set map effect.")
     -- print(self.name .. " activated.")
@@ -214,13 +196,11 @@ PowerupDefaults = {
     print(self.name .. " progressed.")
   end,
 
-
   -- Used for getting more info about the progress through a submenu (ex. character selected, the amount of money made, the stat boosts)
   getProgressTexts = function(self)
     -- return nil
     return {}
   end,
-
 
   -- When the end of the dungeon is reached, provide the player rewards
   reward = function(self)
@@ -231,7 +211,7 @@ PowerupDefaults = {
   restore = function(self)
     print(self.name .. " restore.")
   end,
-  
+
   getDescription = function(self)
     return ""
   end
@@ -477,6 +457,22 @@ PowerupDefaults = {
 -- })
 
 
+        -- /// <summary>
+        -- /// Moves learned by TM
+        -- /// </summary>
+        -- public List<LearnableSkill> TeachSkills;
+
+        -- /// <summary>
+        -- /// Egg moves
+        -- /// </summary>
+        -- public List<LearnableSkill> SharedSkills;
+
+        -- /// <summary>
+        -- /// Tutor moves
+        -- /// </summary>
+        -- public List<LearnableSkill> SecretSkills;
+
+
 -- Frostbite = setmetatable({
 --   name = "Frostbite",
 --   type = "Boost",
@@ -490,53 +486,53 @@ PowerupDefaults = {
 -- }, { __index = PowerupDefaults })
 
 
-SticksAndStones = RegisterEnchantment({
-  amount = 5,
+-- SticksAndStones = RegisterEnchantment({
+--   amount = 5,
 
-  name = "Sticks & Stones",
-  id = "STICKS_AND_STONES",
-  group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+--   name = "Sticks & Stones",
+--   id = "STICKS_AND_STONES",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
 
-    local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
-    local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
-    local gravelerock = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_gravelerock")
-    local geopebble = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_geo_pebble")
-    -- local sticks = RogueEssence.Dungeon.InvItem("ammo_stick", false, 1)
+--     local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
+--     local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
+--     local gravelerock = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_gravelerock")
+--     local geopebble = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_geo_pebble")
+--     -- local sticks = RogueEssence.Dungeon.InvItem("ammo_stick", false, 1)
 
-    -- local goldenthorn = RogueEssence.Dungeon.InvItem("ammo_golden_thorn", false, 1)
-    -- local gravelerock = RogueEssence.Dungeon.InvItem("ammo_gravelerock", false, 1)
-    -- local geopebble = RogueEssence.Dungeon.InvItem("ammo_geo_pebble", false, 1)
+--     -- local goldenthorn = RogueEssence.Dungeon.InvItem("ammo_golden_thorn", false, 1)
+--     -- local gravelerock = RogueEssence.Dungeon.InvItem("ammo_gravelerock", false, 1)
+--     -- local geopebble = RogueEssence.Dungeon.InvItem("ammo_geo_pebble", false, 1)
 
-    return string.format(
-      "Gain %s of each: %s, %s, %s, %s",
-      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-      goldenthorn:GetIconName(),
-      sticks:GetIconName(),
+--     return string.format(
+--       "Gain %s of each: %s, %s, %s, %s",
+--       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+--       goldenthorn:GetIconName(),
+--       sticks:GetIconName(),
 
-      gravelerock:GetIconName(),
-      geopebble:GetIconName()
-    )
-    -- return "Select a team member. That member can remember any moves they can learn through a Recall Box"
-  end,
+--       gravelerock:GetIconName(),
+--       geopebble:GetIconName()
+--     )
+--     -- return "Select a team member. That member can remember any moves they can learn through a Recall Box"
+--   end,
   
 
-  offer_time = "beginning",
-  rarity = 1,
-  apply = function(self)
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
 
-    local amount = self.amount
-    local items = {
-      {Item = "ammo_stick", Amount = amount },
-      {Item = "ammo_golden_thorn", Amount = amount },
-      {Item = "ammo_gravelerock", Amount = amount },
-      {Item = "ammo_geo_pebble", Amount = amount },
-    }
+--     local amount = self.amount
+--     local items = {
+--       {Item = "ammo_stick", Amount = amount },
+--       {Item = "ammo_golden_thorn", Amount = amount },
+--       {Item = "ammo_gravelerock", Amount = amount },
+--       {Item = "ammo_geo_pebble", Amount = amount },
+--     }
 
-    M_HELPERS.GiveInventoryItemsToPlayer(items)
-  end,
+--     M_HELPERS.GiveInventoryItemsToPlayer(items)
+--   end,
 
-})
+-- })
 
 -- 
 -- MayBreakMyBones = RegisterEnchantment({
@@ -707,6 +703,60 @@ SticksAndStones = RegisterEnchantment({
 --   apply = function(self)
 --   end,
 -- })
+
+
+
+-- RiskyMoves = RegisterEnchantment({
+--   gold_amount = 10000,
+--   total_floors = 5,
+--   name = "Risky Moves",
+--   id = "RISKY_MOVES",
+--   group = ENCHANTMENT_TYPES.items,
+--   getDescription = function(self)
+--     return string.format(
+--       "Your team cannot use items for %s floors. Gain %s afterwards",
+--       M_HELPERS.MakeColoredText(tostring(self.total_floors), PMDColor.Cyan),
+--       M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+--     )
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+--   apply = function(self)
+--   end,
+-- })
+
+
+
+-- Getting greedy
+
+-- Asking for trouble
+
+-- Pressing your luck
+
+-- Tempting fate
+
+OutOfControl = RegisterEnchantment({
+  gold_amount = 20000,
+  name = "Out of Control",
+  id = "OUT_OF_CONTROL",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Gain %s. You cannot use %s until the next checkpoint",
+      M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText("Team Mode", PMDColor.SkyBlue)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  apply = function(self)
+    _DATA.Save.TeamMode = false
+    SOUND:PlayFanfare("Fanfare/Note")
+		UI:WaitShowDialogue(string.format("Note: %s has been disabled until your next checkpoint.", M_HELPERS.MakeColoredText("Team Mode", PMDColor.SkyBlue)))
+    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.gold_amount
+  end,
+})
+
 
 
 -- When an enemy is hit. Only 1 enemy can be marked at a time.
@@ -1084,86 +1134,139 @@ PlantYourSeeds = RegisterEnchantment({
   end,
 })
 
-
 TheBubble = RegisterEnchantment({
-  interest = 1.10,
-  start = 10,
-  percent_increase = 1.5,
+  interest = 0.10,
+  start = 0,
+  pop_increase = 1.5,
+  loss = 0.50,
   name = "The Bubble",
   id = "THE_BUBBLE",
   group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
+    local bubble = M_HELPERS.GetItemName("emberfrost_bubble")
     return string.format(
-      "Gain %s interest at the start of each floor. If the bubble pops, lose half your %s. Pop chance increases by %s each floor and then resets.",
+      "Gain a %s (Gain %s interest at start of floor. If the %s pops, lose %s of your %s and it will reset. Pop chance increases by %s each floor)",
+      bubble,
+      M_HELPERS.MakeColoredText(tostring(math.ceil(self.interest * 100)).. "%", PMDColor.Cyan),
+      bubble,
+      M_HELPERS.MakeColoredText(tostring(math.ceil(self.loss * 100)) .. "%", PMDColor.Cyan), 
+      STRINGS:Format("\\uE024"),
+      M_HELPERS.MakeColoredText(tostring(self.pop_increase) .. "%", PMDColor.Cyan))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local data = GetEnchantmentData(self)
+    local money_earned = data["money_earned"] or 0
+    local money_lost = data["money_lost"] or 0
+    local pop_chance = data["pop_chance"] or 0
+
+    return { "Money Earned: " ..
+    M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
+      "Money Lost: " ..
+      M_HELPERS.MakeColoredText(tostring(money_lost) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Red),
+      "Current Pop Chance: " .. M_HELPERS.MakeColoredText(tostring(pop_chance) .. "%", PMDColor.Cyan) }
+  end,
+
+  set_active_effects = function(self, active_effect)
+    -- active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
+  end,
+
+  apply = function(self)
+    local data = GetEnchantmentData(self)
+    data["money_earned"] = 0
+    data["money_lost"] = 0
+    data["pop_chance"] = self.start
+
+    local items = { {
+      Item = "emberfrost_bubble",
+      Amount = 1
+    } }
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
+
+StackOfPlates = RegisterEnchantment({
+  amount = 2,
+  choice = 5,
+  name = "Stack of Plates",
+  id = "STACK_OF_PLATES",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Gain %s random type %s. Then select a %s from a choice of %s ",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-      STRINGS:Format("\\uE024"),
-      
-      STRINGS:Format("\\uE024"),
-      M_HELPERS.MakeColoredText(tostring(self.money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+      M_HELPERS.MakeColoredText(tostring("plates"), PMDColor.Pink),
+      M_HELPERS.MakeColoredText(tostring("plate"), PMDColor.Pink),
+      M_HELPERS.MakeColoredText(tostring(self.choice), PMDColor.Cyan)
     )
   end,
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    
+
     local data = GetEnchantmentData(self)
-    local seeds = data["seeds"]
-    local money_earned = data["money_earned"]
+    local plates = data["plates"]
 
     local str_arr = {
       "Recieved: ",
     }
-    for _, seed in ipairs(seeds) do
-        local seed_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(seed)
-        local seed_name = seed_entry:GetIconName()
-        table.insert(str_arr, seed_name)
+    for _, plate in ipairs(plates) do
+        local plate_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(plate)
+        local plate_name = plate_entry:GetIconName()
+        table.insert(str_arr, plate_name)
     end
 
-    
-
-    -- TODO: Account for the player is holding the seeds...
-    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
-    local seed_index_arr = {}
-    for i = inv_count, 0, -1 do
-        local item = _DATA.Save.ActiveTeam:GetInv(i)
-        local item_id = item.ID
-        if Contains(SEED, item_id) then
-            table.insert(seed_index_arr, i)
-        end        
-    end
-
-    table.insert(str_arr, "\n")
-    table.insert(str_arr, "Seed Count: " .. M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan))
-    table.insert(str_arr, "Money Earned: " .. M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan))
-    
-    
     return str_arr
-  end,
 
-  set_active_effects = function(self, active_effect)
-    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
+
+
+    -- local data = GetEnchantmentData(self)
+    -- local money_earned = data["money_earned"] or 0
+    -- local money_lost = data["money_lost"] or 0
+    -- local pop_chance = data["pop_chance"] or 0
+
+    -- return { "Money Earned: " ..
+    -- M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
+    --   "Money Lost: " ..
+    --   M_HELPERS.MakeColoredText(tostring(money_lost) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Red),
+    --   "Current Pop Chance: " .. M_HELPERS.MakeColoredText(tostring(pop_chance) .. "%", PMDColor.Cyan) }
   end,
 
   apply = function(self)
-
     local data = GetEnchantmentData(self)
-    data["seeds"] = {}
-    data["money_earned"] = 0
+    data["plates"] = {}
 
-    local items = {}
+    local random_items = {}
 
     for i = 1, self.amount do
-        local random_seed_index = math.random(#SEED)
-        local seed = SEED[random_seed_index]
+        local random_plate_index = math.random(#PLATES)
+        local plate = PLATES[random_plate_index]
+        table.insert(data["plates"], plate)
+        table.insert(random_items, { Item = plate, Amount = 1 })
+    end
+    M_HELPERS.GiveInventoryItemsToPlayer(random_items)
 
-        table.insert(data["seeds"], seed)
+
+    GAME:WaitFrames(20)
+  
+    local pool_items = {}
 
   
-        table.insert(items, { Item = seed, Amount = 1 })
+    local plates = GetRandomUnique(PLATES, 5)
+    for _, plate in ipairs(plates) do
+        table.insert(pool_items, { Item = plate, Amount = 1 })
     end
 
-    M_HELPERS.GiveInventoryItemsToPlayer(items)
-  end,
+    local result = SelectItemFromList(  
+      string.format("Choose %s", M_HELPERS.MakeColoredText("1", PMDColor.Cyan)),
+      pool_items
+    )
+
+    table.insert(data["plates"], result.Item)
+    GAME:WaitFrames(20)
+    M_HELPERS.GiveInventoryItemsToPlayer({ result })
+  end
 })
 
 -- For each equipment in your inventory, gain a 3% attack boost.
@@ -1171,47 +1274,49 @@ TheBubble = RegisterEnchantment({
 --   "for each unique specs or googles"
 
 -- })
-
 -- SupplyDrop - Gain essential items every 4 floors. (Apples, Reviver Seeds, Orbs, Sticks, Seeds, Oran, Sitrus Berry, Apricorn)
 -- Dazzling - Choose a character. For each equipment, lower the accuracy of the target
 -- RunAndGun - Projectiles deal more damage if your team has a speed boost, depends on it
 -- Fitness - Each food item grants more hunger points, boosts to yourself
--- For 10 denmies fainted with an ammo, 
--- Precision - Choose a team member. That team member. Moves that have less than 80% accuracy cannot miss.
+-- For 10 denmies fainted with an ammo,
+-- Precision - Choose a team member. That team member. Moves that have less than 80% accuracy cannot miss. Moves with accuracy will miss more often
 -- Blueprint - Select a team member. Gain tms. Select a tm, gain two randoms ones
 -- Primal memory
--- TaskMaster - Complete various task to gain money. Defeat 10 enemies with mon. Reach hunger 20. Use 3 seeds. Use an orb. Complete a floor with items. 
+-- TaskMaster - Complete various task to gain money. Defeat 10 enemies with mon. Reach hunger 20. Use 3 seeds. Use an orb. Complete a floor with items.
 -- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
 -- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
 -- Team Building - Gain 3 big apricorns and 2 amber tears and a friend bow
 -- Gummi Overload - Gain 5 random gummies. Each gummy grants +1 max hunger.
 -- Death Defying - Gain a death amulet.
 -- I C - Gain an X-ray specs. Your team can see invisible traps.
--- Harmony Scarf - Gain a harmony scarf. 
--- Plates - Choose between 1 of the 17 plates.
+-- Harmony Scarf - Gain a harmony scarf.
 -- Huddle - Defense
 -- Moral Support / Support from Beyond - Gain a damage boost for each tea m member alive in the assembly
 -- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
--- Tempo - Select a team member. That member gains a random permanetent stat boost for every 10 
+-- Tempo - Select a team member. That member gains a random permanetent stat boost for every 10
 -- Solo Mission - When your team has only 1 member, that member does more damage
 -- Avenger - Dead teammates = more damage
 -- Ravenous - More damage when low on hunger
 -- Hoarder - More money when you have more items in your inventory
 -- Fitness Routine - Speed boost when your team has more than 75% hunger (ewwww, better)
--- Full Belly Happy Heart 
--- The Bubble - Interest per heard. Can pop. 1% higher chance to pop each passing floor. 
+-- Full Belly Happy Heart
 -- Nitroglycerin - Speed boost when low on hunger
 -- Exit Strategy: Stairs sensor, gain 3 pure speeds, warp seed
 -- Choose a character. Super-effective moves deal less damage
 -- Bargainer: Half off from shop. I don’t know why, but I feel like giving everything to you half off now
--- Affluent: Calculate the cost of inventory. Do damage based on total. Easier to recruit monsters. 
--- Marksmen: Choose a team member. That member’s projectiles deal more damage. Mark the target. That target will take additonal damage
--- Ranged: Select a team member. That member gets +1 tange. 
+-- Affluent: Calculate the cost of inventory. Do damage based on total. Easier to recruit monsters.
+-- Ranged: Select a team member. That member gets +1 tange.
 -- Underdogs: Your team does more damage when lower leveled than the enemy
 -- Immunity: Choose a team member. That member is immune to negative status effects.
 -- Treausre Tracker: Gain a trackr. Will reveal buried within 20 tiles
--- Eviolite: If held by a Pokémon that is not fully evolved, its Defense and Special Defense are raised by 50%. 
-
+-- Eviolite: If held by a Pokémon that is not fully evolved, its Defense and Special Defense are raised by 50%.
+-- Level Up: Choose a team member. That member gains 5 levels.
+-- Reroll: For the next enchantment selections. Gain an extra reroll.
+-- Flexible: Gain 20,000 P, you will not know what your enchantment will be until you select it.
+-- Your next enchantment selection gains an extra reroll.
+-- Toll (Scorched): Select a team member. Lose 5% of your money when the character damage or 50 gold (whichever is higher) Do higher damage based on the toll
+-- Pay-to-Win - Pay 3,000 P, you can select another two enchantments afterwards
+-- -- Marksmen: Choose a team member. That member’s projectiles deal more damage. Mark the target. That target will take additonal damage
 -- {
 -- "Key": {
 -- "str": [
@@ -1261,8 +1366,6 @@ function AssignEnchantmentToCharacter(enchant)
     )
     UI:SetCenter(false)
 end
-
-
 
 
 
@@ -1424,3 +1527,66 @@ WANDS = {
   "wand_warp",
   "wand_whirlwind"
 }
+
+function table.copy(obj, seen)
+  if type(obj) ~= 'table' then return obj end
+  if seen and seen[obj] then return seen[obj] end
+  local s = seen or {}
+  local res = setmetatable({}, getmetatable(obj))
+  s[obj] = res
+  for k, v in pairs(obj) do res[table.copy(k, s)] = table.copy(v, s) end
+  return res
+end
+
+PLATES = {
+  "held_blank_plate",
+  "held_draco_plate",
+  "held_dread_plate",
+  "held_earth_plate",
+  "held_fist_plate",
+  "held_flame_plate",
+  "held_icicle_plate",
+  "held_insect_plate",
+  "held_iron_plate",
+  "held_meadow_plate",
+  "held_mind_plate",
+  "held_pixie_plate",
+  "held_sky_plate",
+  "held_splash_plate",
+  "held_spooky_plate",
+  "held_stone_plate",
+  "held_toxic_plate",
+  "held_zap_plate",
+}
+
+function GetRandomUnique(items, amount)
+    local pool = {}
+    for i = 1, #items do
+        pool[i] = items[i]
+    end
+
+    local result = {}
+    local count = math.min(amount, #pool)
+
+    for i = 1, count do
+        local index = math.random(#pool)
+        table.insert(result, pool[index])
+        table.remove(pool, index)
+    end
+
+    return result
+end
+
+
+function SelectItemFromList(prompt, items)
+    local ret = {}
+    local choose = function(item)
+        ret = item
+        _MENU:RemoveMenu()
+    end
+    local refuse = function() end
+    local menu = ItemSelectionMenu:new(prompt, items, choose, refuse)
+    UI:SetCustomMenu(menu.menu)
+    UI:WaitForChoice()
+    return ret
+end

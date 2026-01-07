@@ -83,6 +83,22 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 1
+},
+"emberfrost_bubble": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 10,
+"UsageType": 8,
+"States": [],
+"MaxStack": 0,
+"CannotDrop": true,
+"BagEffect": true,
+"Name": {
+"DefaultText": "Bubble",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
 }
 }
 }

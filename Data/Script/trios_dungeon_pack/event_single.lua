@@ -9,7 +9,13 @@ CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 ListType = luanet.import_type('System.Collections.Generic.List`1')
 MapItemType = luanet.import_type('RogueEssence.Dungeon.MapItem')
 
+
+
 SpawnListType = luanet.import_type('RogueElements.SpawnList`1')
+
+function math.round(x)
+    return math.floor(x + 0.5)
+end
 
 local function JoinTeamWithFanfareAssembly(recruit, from_dungeon)
     local orig_settings = UI:ExportSpeakerSettings()
@@ -829,6 +835,85 @@ function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
     end
 end
 
+
+function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
+
+    if context.User ~= _DUNGEON.ActiveTeam.Leader then
+        return
+    end
+
+    local enchantment_id = args.EnchantmentID
+    local data = GetEnchantmentData(enchantment_id)
+
+    local money_earned = data["money_earned"]
+    -- local money_lost = data["money_lost"]
+    local pop_chance = data["pop_chance"]
+
+    
+    local enchantment = GetEnchantmentFromRegistry(enchantment_id)
+    local interest = enchantment.interest
+    local pop_increase = enchantment.pop_increase
+    local loss = enchantment.loss
+    local item_name = M_HELPERS.GetItemName("emberfrost_bubble")
+
+    local total_money = _DATA.Save.ActiveTeam.Money
+
+    if (_DATA.Save.Rand:NextDouble() * 100 < pop_chance) then
+        SOUND:PlayBattleSE("DUN_Ice_Shard")
+        local total_money = _DATA.Save.ActiveTeam.Money
+
+        local lost_amount = math.round(total_money * loss)
+        GAME:RemoveFromPlayerMoney(lost_amount)
+        data["money_lost"] = data["money_lost"] + lost_amount
+        data["pop_chance"] = 0
+
+
+        _DUNGEON:LogMsg(
+            string.format(
+                "Oh no! The %s popped! %s was lost...", 
+                item_name,
+                M_HELPERS.MakeColoredText(tostring(lost_amount) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Red)
+            )
+        )
+    else
+        
+
+        local gained = math.round(total_money * interest)
+
+        if (gained > 0) then
+            SOUND:PlayBattleSE("DUN_Money")
+            data["pop_chance"] = data["pop_chance"] + pop_increase
+            GAME:AddToPlayerMoney(gained)
+            data["money_earned"] = data["money_earned"] + gained
+            _DUNGEON:LogMsg(
+            string.format(
+                "%s was gained from the %s", 
+                M_HELPERS.MakeColoredText(tostring(gained) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
+                item_name
+            )
+        )
+            
+        end
+
+    end
+
+    -- if _DATA.Save.Rand:Next(100) < pop_chance then
+    --     SOUND:PlayBattleSE("DUN_Money_Loss")
+    --     local team_name = _DATA.Save.ActiveTeam.Name
+    --     local lost_amount = math.min(money_earned, money_lost)
+    --     GAME:TakeFromPlayerMoney(lost_amount)
+    --     data["money_earned"] = money_earned - lost_amount
+    --     _DUNGEON:LogMsg(
+    --         string.format(
+    --             "%s's bubble popped! Lost %s!", 
+    --             team_name, 
+    --             M_HELPERS.MakeColoredText(tostring(lost_amount) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Red)
+    --         )
+    --     )
+    -- end
+    print("BUBBLE EVENT")
+end
+
 function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
     local enchantment_id = args.EnchantmentID
     local status_id = args.StatusID
@@ -891,13 +976,6 @@ function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context,
 		end
 	end
 end
-
-
-	-- print("Initializing JEWELED BUG EVENT")
-	-- GAME:RemovePlayerTeam(0)
-	-- print("EMBER FROST SWAP EVENT TRIGGERED")
-
-
 
 function SINGLE_CHAR_SCRIPT.RevealGems(owner, ownerChar, context, args)
     local count = 0
