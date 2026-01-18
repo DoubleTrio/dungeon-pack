@@ -736,15 +736,15 @@ function SINGLE_CHAR_SCRIPT.AddStatusToLeader(owner, ownerChar, context, args)
     TASK:WaitTask(_DUNGEON.ActiveTeam.Leader:AddStatusEffect(nil, status, true))
 end
 
-function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
-    local enchantment_id = args.EnchantmentID
-    local status_id = args.StatusID
-    local char = FindCharacterWithEnchantment(enchantment_id)
-    if context.User == char then
-        local status = RogueEssence.Dungeon.StatusEffect(status_id)
-        TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
-    end
-end
+-- function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
+--     local enchantment_id = args.EnchantmentID
+--     local status_id = args.StatusID
+--     local char = FindCharacterWithEnchantment(enchantment_id)
+--     if context.User == char then
+--         local status = RogueEssence.Dungeon.StatusEffect(status_id)
+--         TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+--     end
+-- end
 
 
 function Contains(tbl, value)
@@ -796,6 +796,10 @@ function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
     if context.User ~= nil then
         return
     end
+
+     _DATA.Save.TeamMode = true
+    print(tostring(    _DATA.Save.TeamMode) .. "aaaa")
+    _DATA.Save.TeamMode = true
     local min_seed = args.MinimumSeeds
     local amt_per_seed = args.MoneyPerSeed
     local enchant_id = args.EnchantmentID
@@ -842,6 +846,7 @@ function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
         return
     end
 
+    print("BUBBLE EVENT TRIGGERED")
     local enchantment_id = args.EnchantmentID
     local data = GetEnchantmentData(enchantment_id)
 
@@ -915,27 +920,38 @@ function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
 end
 
 function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
+
     local enchantment_id = args.EnchantmentID
     local status_id = args.StatusID
     local apply_to_all = args.ApplyToAll or false
     local char = FindCharacterWithEnchantment(enchantment_id)
 
-
+    --    print(enchantment_id)
     if apply_to_all then
-        for _, party_char in luanet.each(_DATA.Save.ActiveTeam.Players) do
-            if party_char ~= nil then
-                if party_char:IsAlive() then
+        if context.User ~= nil then
+		    return
+	    end
+        for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+  
+            if member ~= nil then
+                if not member.Dead then
+                            --   print(tostring(member:GetDisplayName(true)) .. " CHECKING")
                     local status = RogueEssence.Dungeon.StatusEffect(status_id)
-                    TASK:WaitTask(party_char:AddStatusEffect(nil, status, true))
+                    TASK:WaitTask(member:AddStatusEffect(nil, status, true))
                 end
             end
         end
         return
     end
 
+
     if context.User == char then
-        local status = RogueEssence.Dungeon.StatusEffect(status_id)
-        TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+       
+        if not char.Dead then
+             print("did it find the char?" .. enchantment_id)
+            local status = RogueEssence.Dungeon.StatusEffect(status_id)
+            TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+        end
     end
 end
 

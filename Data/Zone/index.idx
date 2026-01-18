@@ -71,7 +71,7 @@ null
 "KeepTreasure": false,
 "BagSize": 12,
 "Rescues": 2,
-"CountedFloors": 9,
+"CountedFloors": 15,
 "Rogue": 1,
 "Grounds": [
 "frost_checkpoint"
@@ -86,7 +86,13 @@ null
 5,
 6,
 7,
-8
+8,
+9,
+10,
+11,
+12,
+13,
+14
 ],
 [
 0,

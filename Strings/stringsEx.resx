@@ -224,8 +224,32 @@
   <data name="MSG_FREEZE_TAGGER_FREEZE_ATTEMPT" xml:space="preserve">
     <value>{0} cannot be frozen again until they tag another target!</value>
     <comment></comment>  </data>
-
+  <data name="MSG_RAVENOUS_START" xml:space="preserve">
+    <value>{0} will deal more damage the hungrier they become!</value>
+    <comment></comment>  </data>
   <data name="MSG_HUNGER_STRIKE_START" xml:space="preserve">
     <value>{0} can strike at hunger!</value>
+    <comment></comment>  </data>
+  <data name="MSG_GLASS_CANNON_START" xml:space="preserve">
+    <value>{0} both deals and receives more damage!</value>
+    <comment></comment>  </data>
+
+  <data name="MSG_SPONGE_START" xml:space="preserve">
+    <value>{0} both receives and deals reduced damage!</value>
+    <comment></comment>  </data>
+  <data name="MSG_MONO_MOVES_START" xml:space="preserve">
+    <value>{0} deals increased damage if all moves are of the same type!</value>
+    <comment></comment>  </data>
+  <data name="MSG_HANDS_TIED" xml:space="preserve">
+    <value>{0} has their hands tied!</value>
+    <comment></comment>  </data>
+  <data name="MSG_HANDS_TIED_ALREADY" xml:space="preserve">
+    <value>{0} already cannot use items!</value>
+    <comment></comment>  </data>
+  <data name="MSG_HANDS_TIED_END" xml:space="preserve">
+    <value>{0} can use items again!</value>
+    <comment></comment>  </data>
+  <data name="MSG_HANDS_TIED_START" xml:space="preserve">
+    <value>{0} was prevented from using items!</value>
     <comment></comment>  </data>
 </root>

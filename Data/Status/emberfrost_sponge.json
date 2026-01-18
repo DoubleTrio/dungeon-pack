@@ -1,0 +1,163 @@
+﻿{
+"Version": "0.8.11.0",
+"Object": {
+"$type": "RogueEssence.Data.StatusData, RogueEssence",
+"Name": {
+"DefaultText": "Sponge",
+"LocalTexts": {}
+},
+"Desc": {
+"DefaultText": "The Pokémon both receives and deals 50% reduced damage.",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"MenuName": true,
+"CarryOver": false,
+"Emoticon": "",
+"DropEmoticon": "",
+"FreeEmote": "Sword_Shield_Blue",
+"DrawEffect": -1,
+"Targeted": false,
+"StatusStates": [
+{
+"$type": "PMDC.Dungeon.TransferStatusState, PMDC"
+}
+],
+"OnSkillChanges": [],
+"TargetPassive": {
+"OnEquips": [],
+"OnPickups": [],
+"BeforeStatusAdds": [],
+"BeforeStatusAddings": [],
+"OnStatusAdds": [],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [],
+"OnTurnStarts": [],
+"OnTurnEnds": [],
+"OnMapTurnEnds": [],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [],
+"BeforeBeingHits": [],
+"AfterHittings": [],
+"AfterBeingHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"UserElementEffects": [],
+"TargetElementEffects": [],
+"ModifyHPs": [],
+"RestoreHPs": []
+},
+"ProximityEvent": {
+"Radius": -1,
+"TargetAlignments": 0,
+"BeforeExplosions": [],
+"OnEquips": [],
+"OnPickups": [],
+"BeforeStatusAdds": [],
+"BeforeStatusAddings": [],
+"OnStatusAdds": [],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [],
+"OnTurnStarts": [],
+"OnTurnEnds": [],
+"OnMapTurnEnds": [],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [],
+"BeforeBeingHits": [],
+"AfterHittings": [],
+"AfterBeingHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"UserElementEffects": [],
+"TargetElementEffects": [],
+"ModifyHPs": [],
+"RestoreHPs": []
+},
+"OnEquips": [],
+"OnPickups": [],
+"BeforeStatusAdds": [],
+"BeforeStatusAddings": [],
+"OnStatusAdds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
+"Message": {
+"Key": "MSG_SPONGE_START"
+},
+"Delay": true
+}
+}
+],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [],
+"OnTurnStarts": [],
+"OnTurnEnds": [],
+"OnMapTurnEnds": [],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.MultiplyDamageEvent, PMDC",
+"Numerator": 50,
+"Denominator": 100,
+"Anims": []
+}
+}
+],
+"BeforeBeingHits": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.MultiplyDamageEvent, PMDC",
+"Numerator": 50,
+"Denominator": 100,
+"Anims": []
+}
+}
+],
+"AfterHittings": [],
+"AfterBeingHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"UserElementEffects": [],
+"TargetElementEffects": [],
+"ModifyHPs": [],
+"RestoreHPs": []
+}
+}

@@ -274,6 +274,167 @@ function BATTLE_SCRIPT.TargetStatusRequired(owner, ownerChar, context, args)
   end
 end
 
+function BATTLE_SCRIPT.MonoMoves(owner, ownerChar, context, args)
+
+
+  -- local skill_data = _DATA:GetSkill(move_idx)
+	-- for _, element_id in ipairs(args.Elements) do
+	--   --check to see if the skill is of the correct element
+	--   if skill_data.Data.Element == element_id then
+	--     has_element = true
+	-- 	break
+	--   end
+	-- end
+
+  local chara = context.User
+
+  local main_element = nil
+  local all_same = true
+
+  for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+    local skill = chara.BaseSkills[ii].SkillNum
+    if skill ~= nil and skill ~= "" then
+      local skill_data = _DATA:GetSkill(skill)
+      local element = skill_data.Data.Element
+
+      if main_element == nil then
+        main_element = element
+      else
+        if element ~= main_element then
+          all_same = false
+        end
+      end
+    end
+  end
+  if (
+    context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill and
+    context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT and
+    (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical)
+  ) then
+    if all_same then
+
+      -- LogMsg(RogueEssence.Text.FormatGrammar(RogueEssence.StringKey("MONO_MOVES_ACTIVATED"):ToLocal(), chara:GetDisplayName(false)))
+
+      
+      -- public ItemAnimData(string animIndex, int frameTime, int startFrame, int endFrame)
+              -- public AnimData(string animIndex, int frameTime, int startFrame, int endFrame)
+      local anim_data = RogueEssence.Content.AnimData("Stat_Blue_Line", 5, -1, -1, 255, Dir8.Up)
+
+      -- AnimData(string animIndex, int frameTime, int startFrame, int endFrame, byte alpha, Dir8 dir)
+              -- public ParticleAnim(AnimData anim, int cycles, int totalTime)
+      local particle_anim = RogueEssence.Content.ParticleAnim(anim_data, 1, 0)
+      local emitter = RogueEssence.Content.SqueezedAreaEmitter(particle_anim)
+      emitter.Bursts = 2
+      emitter.ParticlesPerBurst = 3
+      emitter.BurstTime = 6
+      emitter.HeightSpeed = 16
+      emitter.Range = 24
+
+
+      -- print(tostring(emitter) .. " emitter")
+
+      	-- SOUND:PlayBattleSE("DUN_Tri_Attack_2")
+              	-- SOUND:PlayBattleSE("_UNK_EVT_085")
+                GAME:WaitFrames(10)
+                -- SOUND:PlayBattleSE("_UNK_EVT_043")
+      DUNGEON:PlayVFX(emitter, chara.MapLoc.X, chara.MapLoc.Y)
+
+
+
+      -- _DUNGEON:LogMsg(string.format("%s's Mono Moves Activated!", context.User:GetDisplayName(false)))
+      -- _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(RogueEssence.StringKey("MSG_LIQUID_OOZE"):ToLocal(), context.User:GetDisplayName(false)))
+      
+      print(tostring(anim_data))
+      local attack_boost = PMDC.Dungeon.MultiplyDamageEvent(100 + 35, 100)
+      TASK:WaitTask(attack_boost:Apply(owner, ownerChar, context))
+      -- local emitter = RogueEssence.Content.SqueezedAreaEmitter()
+      -- emitterx
+
+
+	-- GAME:WaitFrames(30)
+            --       Bursts = other.Bursts;
+            -- ParticlesPerBurst = other.ParticlesPerBurst;
+            -- BurstTime = other.BurstTime;
+            -- Range = other.Range;
+            -- HeightSpeed = other.HeightSpeed;
+            -- SpeedDiff = other.SpeedDiff;
+            -- StartHeight = other.StartHeight;
+            -- HeightDiff = other.HeightDiff;
+            -- Layer = other.Layer;
+      -- print(tostring(particle_anim))
+      -- print(tostring(anim_data))
+    end
+  end
+
+
+              -- if (effect)
+                -- yield return CoroutineManager.Instance.StartCoroutine(DungeonScene.Instance.ProcessBattleFX(this, this, DataManager.Instance.LoseChargeFX));
+
+end
+
+
+
+function BATTLE_SCRIPT.Ravenous(owner, ownerChar, context, args)
+  -- print("Ravenous called")
+  local chara = context.User
+
+  local add_boost = 0
+
+  if chara.Fullness <= 0 then
+    add_boost = 100
+  elseif chara.Fullness <= 3 then
+    add_boost = 50
+  elseif chara.Fullness <= 10 then
+    add_boost = 25
+  elseif chara.Fullness <= 20 then
+    add_boost = 10
+  end
+  if add_boost > 0 and (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical) then
+    local attack_boost = PMDC.Dungeon.MultiplyDamageEvent(100 + add_boost, 100)
+    local anim_data = RogueEssence.Content.AnimData("Stat_Green_Line", 5, -1, -1, 255, Dir8.Up)
+    local particle_anim = RogueEssence.Content.ParticleAnim(anim_data, 1, 0)
+    local emitter = RogueEssence.Content.SqueezedAreaEmitter(particle_anim)
+    emitter.Bursts = 2
+    emitter.ParticlesPerBurst = 3
+    emitter.BurstTime = 6
+    emitter.HeightSpeed = 16
+    emitter.Range = 24
+    GAME:WaitFrames(10)
+    DUNGEON:PlayVFX(emitter, chara.MapLoc.X, chara.MapLoc.Y)
+    TASK:WaitTask(attack_boost:Apply(owner, ownerChar, context))
+  end
+end
+
+function BATTLE_SCRIPT.RavenousAfterHit(owner, ownerChar, context, args)
+
+  local confusion_chance = 0
+  local chara = context.User
+  if chara.Fullness <= 0 then
+    confusion_chance = 33
+    -- add_boost = 100
+  elseif chara.Fullness <= 3 then
+    confusion_chance = 20
+    -- add_boost = 50
+  elseif chara.Fullness <= 10 then
+    confusion_chance = 15
+  end
+
+  local contains = chara.StatusEffects:ContainsKey("confuse")
+
+  if confusion_chance > 0 and (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical) and not contains then
+    -- local roll = RogueEssence.Dungeon.BattleContext.Rand:Next(100)
+    local roll = _DATA.Save.Rand:Next(100)
+  _DUNGEON:LogMsg(string.format("%s ravenousness took over!", chara:GetDisplayName(false)))
+    -- print("Ravenous confusion roll: " .. tostring(roll) .. " vs " .. tostring(confusion_chance))
+    if roll < confusion_chance then
+      SOUND:PlayBattleSE("DUN_Leech_Seed_2")
+      local status = RogueEssence.Dungeon.StatusEffect("confuse")
+      status:LoadFromData()
+      TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+    end 
+  end
+end
+
 function BATTLE_SCRIPT.WizardPowerBoost(owner, ownerChar, context, args)
   local boost_percent = args.BoostPercent
 
@@ -308,7 +469,6 @@ function BATTLE_SCRIPT.WizardPowerBoost(owner, ownerChar, context, args)
 
   -- do add anims as last parameter
   local special_attack_boost = PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Magical, 100 + boost_amount, 100)
-  print("Applying Wizard Power Boost of " .. tostring(boost_amount) .. "% for " .. tostring(total_unique) .. " unique wands.")
   TASK:WaitTask(special_attack_boost:Apply(owner, ownerChar, context))
 end
 

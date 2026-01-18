@@ -82,6 +82,78 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_glass_cannon": {
+"Name": {
+"DefaultText": "Glass Cannon",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_sponge": {
+"Name": {
+"DefaultText": "Sponge",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_embargo": {
+"Name": {
+"DefaultText": "Hands Tied",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_marksmen": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_marked": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_stairs_sensor": {
+"Name": {
+"DefaultText": "Stairs Sensor",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_mono_moves": {
+"Name": {
+"DefaultText": "Mono Moves",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_ravenous": {
+"Name": {
+"DefaultText": "Ravenous",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }
