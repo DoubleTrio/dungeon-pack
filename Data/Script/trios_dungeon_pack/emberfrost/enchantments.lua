@@ -3,12 +3,6 @@ require 'origin.menu.team.TeamSelectMenu'
 require 'trios_dungeon_pack.menu.ItemSelectionMenu'
 
 
-ENCHANTMENT_TYPES = {
-  items = "ITEMS",
-  money = "MONEY",
-  power = "POWER"
-}
-
 ENCHANTMENT_REGISTRY = ENCHANTMENT_REGISTRY or {}
 
 local count = 0
@@ -275,7 +269,6 @@ PowerupDefaults = {
 AllTerrainTreads = RegisterEnchantment({
   name = "Treading Through",
   id = "ALL_TERRAIN_TREADS",
-  group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
     return string.format(
@@ -302,7 +295,6 @@ AllTerrainTreads = RegisterEnchantment({
 AllTerrainTreads = RegisterEnchantment({
   name = "Treading Through",
   id = "ALL_TERRAIN_TREADS",
-  group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
     return string.format(
@@ -328,7 +320,6 @@ AllTerrainTreads = RegisterEnchantment({
 ThreadsOfLife = RegisterEnchantment({
   name = "Threads of Life",
   id = "THREADS_OF_LIFE",
-  group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("evo_harmony_scarf")
     return string.format(
@@ -498,7 +489,6 @@ PrimalMemory = RegisterEnchantment({
   name = "Primal Memory",
   id = "PRIMAL_MEMORY",
   amount = 2,
-  group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     local recall_box = M_HELPERS.GetItemName("machine_recall_box")
     return string.format(
@@ -543,7 +533,6 @@ EliteTutoring = RegisterEnchantment({
   name = "Elite Tutoring",
   id = "ELITE_TUTORING",
   amount = 1,
-  group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     local recall_box = M_HELPERS.GetItemName("machine_recall_box")
     return string.format(
@@ -895,7 +884,7 @@ HandsTied = RegisterEnchantment({
   gold_amount = 20000,
   name = "Hands Tied",
   id = "HANDS_TIED",
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Gain %s. The team cannot use %s until the next checkpoint",
@@ -922,7 +911,7 @@ Marksman = RegisterEnchantment({
   increased_damage_percent = 25,
   name = "Marksman",
   id = "MARKSMAN",
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Select a team member. When that member hits an enemy, that enemy is %s. %s enemies take %s more damage from all sources. Only one enemy can be %s at a time.",
@@ -949,7 +938,7 @@ Marksman = RegisterEnchantment({
 --   name = "Feel the Burn",
 --   chance = 15,
 --   id = "FEEL_THE_BURN",
---   group = ENCHANTMENT_TYPES.items,
+--   -- group = ENCHANTMENT_TYPES.items,
 --   getDescription = function(self)
 --     local element = _DATA:GetElement("fire")
 --     return string.format(
@@ -986,7 +975,7 @@ GlassCannon = RegisterEnchantment({
   id = "GLASS_CANNON",
   attack_boost = 50,
   defense_drop = 50,
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Choose a team member. That member will deal %s more damage but take %s more damage",
@@ -1022,7 +1011,7 @@ Sponge = RegisterEnchantment({
   id = "SPONGE",
   attack_boost = 50,
   defense_drop = 50,
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Choose a team member. That member will take %s less damage but deal %s less damage",
@@ -1092,7 +1081,7 @@ Sponge = RegisterEnchantment({
 Ravenous = RegisterEnchantment({
   name = "Ravenous",
   id = "RAVENOUS",
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Choose a team member. That member deals %s the more hungrier. At very low hunger, that member has a chance to be %s",
@@ -1127,7 +1116,7 @@ Ravenous = RegisterEnchantment({
 Avenger = RegisterEnchantment({
   name = "Avenger",
   id = "AVENGER",
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Choose a team member. That member deals %s the more members that are fainted",
@@ -1230,7 +1219,7 @@ PandorasItems = RegisterEnchantment({
   amount = 1,
   name = "Pandora's Items",
   id = "PANDORAS_ITEMS",
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Gain %s random %s and %s. At the start of each floor, any non-held %s or %s are randomized",
@@ -1287,7 +1276,7 @@ SupplyDrop = RegisterEnchantment({
   amount = 1,
   name = "Supply Drop",
   id = "SUPPLY_DROP",
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "After each checkpoint, gain a random supply drop containing %s",
@@ -1676,7 +1665,7 @@ ExitStrategy = RegisterEnchantment({
   salac_amount = 3,
   name = "Exit Strategy",
   id = "EXIT_STRATEGY",
-  group = ENCHANTMENT_TYPES.items,
+  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     local warp_scarf = M_HELPERS.GetItemName("held_warp_scarf")
     local pure_seed = M_HELPERS.GetItemName("seed_pure")
@@ -1902,13 +1891,63 @@ ExitStrategy = RegisterEnchantment({
 -- })
 -- 
 -- Minimalist - The less items in intentory, the more damage
--- Dazzling - Choose a character. For each equipment, lower the accuracy of the target
+-- Dazzled- Choose a team member. For each equipment, lower the accuracy of the target
 -- RunAndGun - Projectiles deal more damage if your team has a speed boost, depends on it
 -- Fitness - Each food item grants more hunger points, boosts to yourself
 -- For 10 enemies fainted with an ammo,
 -- Precision - Choose a team member. That team member. Moves that have less than 80% accuracy cannot miss. Moves with accuracy will miss more often
 -- BluePrint - Select a team member. Gain tms. Select a tm, gain two randoms ones. Gain a recall box.
--- TaskMaster - Complete various task to gain money. Defeat 10 enemies with mon. Reach hunger 20. Use 3 seeds. Use an orb. Complete a floor with items.
+-- TaskMaster - Complete tasks to gain money. The task will be rerolled upon arrival new floor. Gain cashout rewards?
+  -- Defeat 20 enemies
+  -- Reach hunger 5 on 1 mon
+  -- Use 2 seeds
+  -- Use an orb 
+  -- Eat 3 food items
+  -- Have over 100 hunger on 1 mon
+  -- Eat a gummy (dont like)
+  -- Use an assembly 
+  -- Use a recall box
+  -- Defeat 2 enemy with only regular attacks
+  -- Have all your team be less than 25% HP
+  -- Have all your team be below 50 hunger
+  -- Have all your team be above 50 hunger
+  -- Have less than 10 items in inventory by the end of the floor
+  -- All moves reach less than 5 pp on 1 mon
+  -- Be inflicted with a bad status condition
+  -- Throw projectiles and hit enemies 5 times
+  -- Walk 1000 steps on 1 floor
+  -- Pick up 300 Gold
+  -- Take a super-effective attack
+  -- Gain a level
+  -- Recruit a new team member
+  -- Complete a floor without gaining exp
+
+
+QUEST_REGISTRY = QUEST_REGISTRY or {}
+QuestDefaults = {
+  
+  -- At the start of each floor, call this
+  set_active_effects = function(self, active_effect)
+    print(self.name .. " set quest map effect.")
+    -- print(self.name .. " activated.")
+  end,
+
+  getDescription = function(self)
+    return ""
+  end,
+
+
+  -- Used for getting more info about the progress through a submenu (ex. character selected, the amount of money made, the stat boosts)
+  getProgressTexts = function(self)
+    -- return nil
+    return {}
+  end,
+}
+
+
+
+-- Minimalist - Your team gains a famage boost. When you pick up an item, that boost disappears. 
+  -- Use an orb. Complete a floor with items.
 -- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
 -- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
 -- Team Building - Select a between apricrons and 2 amber tears and a friend bow
@@ -1917,7 +1956,7 @@ ExitStrategy = RegisterEnchantment({
 -- I C - Gain an X-ray specs. Your team can see invisible traps.
 -- Harmony Scarf - Gain a harmony scarf.
 -- Huddle - Defense
--- Safety Net
+-- Safety Net - Gain 1,000 P when a team member faints. Gain a reviver seed
 -- Emergency Fund
 -- Moral Support / Support from Beyond - Gain a damage boost for each tea m member alive in the assembly
 -- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
@@ -1963,7 +2002,8 @@ ExitStrategy = RegisterEnchantment({
 -- Mileage - For every 100 tiles moved, gain a small boost
 -- Gain a random vitamin fo 
 -- Life-Steal+
--- Insurance - Whenever a team member faints, gain 500 P
+-- Revival Blessing - Gain a reviver orb.
+-- Insurance - Whenever a team member faints, gain 1000 P
 -- 3-1 Special - Gain 
 -- Ranged+: Select a team member. That member gets +1 tange.
 
