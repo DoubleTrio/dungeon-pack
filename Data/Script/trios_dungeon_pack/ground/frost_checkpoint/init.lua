@@ -60,6 +60,16 @@ function frost_checkpoint.Init(map)
   -- COMMON.RespawnAllies(true)
   GROUND:AddMapStatus("snow")
   SOUND:PlayBGM("Rock Slide Canyon.ogg", true)
+
+  
+  local active_enchants = GetSelectedEnchantments()
+
+  for _, enchant in pairs(active_enchants) do
+    enchant:on_checkpoint()
+  end
+
+
+
   -- SOUND:PlayBGM("Rock Slide Canyon", true)
 
   

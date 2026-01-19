@@ -227,13 +227,15 @@
   <data name="MSG_RAVENOUS_START" xml:space="preserve">
     <value>{0} will deal more damage the hungrier they become!</value>
     <comment></comment>  </data>
+  <data name="MSG_AVENGER_START" xml:space="preserve">
+    <value>{0} will avenge their allies!</value>
+    <comment></comment>  </data>
   <data name="MSG_HUNGER_STRIKE_START" xml:space="preserve">
     <value>{0} can strike at hunger!</value>
     <comment></comment>  </data>
   <data name="MSG_GLASS_CANNON_START" xml:space="preserve">
     <value>{0} both deals and receives more damage!</value>
     <comment></comment>  </data>
-
   <data name="MSG_SPONGE_START" xml:space="preserve">
     <value>{0} both receives and deals reduced damage!</value>
     <comment></comment>  </data>

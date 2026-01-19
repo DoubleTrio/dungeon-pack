@@ -214,7 +214,14 @@ PowerupDefaults = {
 
   getDescription = function(self)
     return ""
-  end
+  end,
+
+  -- On checkpoint reached
+  on_checkpoint = function(self)
+    
+    print(self.name .. " checkpoint.")
+  end,
+
 }
 
 -- ExpandedSatchel = RegisterEnchantment({
@@ -265,42 +272,90 @@ PowerupDefaults = {
 --   end,
 -- })
 
--- AllTerrainTreads = RegisterEnchantment({
---   name = "Treading Through",
---   id = "ALL_TERRAIN_TREADS",
---   group = ENCHANTMENT_TYPES.items,
---   getDescription = function(self)
---     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
---     return string.format(
---       "Gain %s " ..  entry:GetColoredName() ..  " (allows the holder to traverse water, lava, and pits)",
---       M_HELPERS.MakeColoredText("2", PMDColor.Cyan)
---     )
---   end,
---   offer_time = "beginning",
---   rarity = 1,
+AllTerrainTreads = RegisterEnchantment({
+  name = "Treading Through",
+  id = "ALL_TERRAIN_TREADS",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
+    return string.format(
+      "Gain %s " ..  entry:GetColoredName() ..  " (allows the holder to traverse water, lava, and pits)",
+      M_HELPERS.MakeColoredText("2", PMDColor.Cyan)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
 
---   apply = function(self)
---     -- TODO: Add to other inventory
---     local items = {
---       { Item = "emberfrost_allterrain_gear", Amount = 1 },
---       { Item = "emberfrost_allterrain_gear", Amount = 1 },
---     }
+  apply = function(self)
+    -- TODO: Add to other inventory
+    local items = {
+      { Item = "emberfrost_allterrain_gear", Amount = 1 },
+      { Item = "emberfrost_allterrain_gear", Amount = 1 },
+    }
 
---     M_HELPERS.GiveInventoryItemsToPlayer(items)
---   end,
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end,
 
--- })
-
--- Gain5000P = RegisterEnchantment({
+})
 
 
+AllTerrainTreads = RegisterEnchantment({
+  name = "Treading Through",
+  id = "ALL_TERRAIN_TREADS",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
+    return string.format(
+      "Gain %s " ..  entry:GetColoredName() ..  " (allows the holder to traverse water, lava, and pits)",
+      M_HELPERS.MakeColoredText("2", PMDColor.Cyan)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
 
---   name = "Gain 5000 " .. STRINGS:Format("\\uE024"),
---   id = "GAIN_5000_P",
+  apply = function(self)
+    -- TODO: Add to other inventory
+    local items = {
+      { Item = "emberfrost_allterrain_gear", Amount = 1 },
+      { Item = "emberfrost_allterrain_gear", Amount = 1 },
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end,
+
+})
+
+ThreadsOfLife = RegisterEnchantment({
+  name = "Threads of Life",
+  id = "THREADS_OF_LIFE",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("evo_harmony_scarf")
+    return string.format(
+      "Gain a " ..  entry:GetColoredName()
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+
+  apply = function(self)
+    local items = {
+      { Item = "evo_harmony_scarf", Amount = 1 },
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end,
+})
+-- Gain6500P = RegisterEnchantment({
+
+
+
+--   name = "Gain 6500 " .. STRINGS:Format("\\uE024"),
+--   id = "GAIN_6500_P",
 --   group = ENCHANTMENT_TYPES.money,
 
 --   getDescription = function(self)
---     return "Gain 5000 " .. STRINGS:Format("\\uE024")
+--     return "Gain 6500 " .. STRINGS:Format("\\uE024")
 --   end,
 --   offer_time = "beginning",
 --   rarity = 1,
@@ -1069,7 +1124,38 @@ Ravenous = RegisterEnchantment({
   end,
 })
 
--- wwww
+Avenger = RegisterEnchantment({
+  name = "Avenger",
+  id = "AVENGER",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "Choose a team member. That member deals %s the more members that are fainted",
+      M_HELPERS.MakeColoredText("more damage", PMDColor.Yellow)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local char = FindCharacterWithEnchantment(self.id)
+    local char_name = char and char:GetDisplayName(true) or nil
+    if char_name then
+      return {
+        "Assigned to: " .. char_name,
+      }
+    end
+    return {}
+  end,
+
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({ StatusID = "emberfrost_avenger", EnchantmentID = self.id })))
+  end,
+
+  apply = function(self)
+    AssignEnchantmentToCharacter(self)
+  end,
+})
+
 -- OneTrick
 -- MonoMoves = RegisterEnchantment({
   -- name = "Mono Moves",
@@ -1193,6 +1279,202 @@ PandorasItems = RegisterEnchantment({
 
 
     M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end,
+})
+
+
+SupplyDrop = RegisterEnchantment({
+  amount = 1,
+  name = "Supply Drop",
+  id = "SUPPLY_DROP",
+  group = ENCHANTMENT_TYPES.items,
+  getDescription = function(self)
+    return string.format(
+      "After each checkpoint, gain a random supply drop containing %s",
+      M_HELPERS.MakeColoredText("essential items", PMDColor.Yellow)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+
+  on_checkpoint = function(self)
+    local data = GetEnchantmentData(self)
+    data["can_receive_supply_drop"] = true
+  end,
+  set_active_effects = function(self, active_effect)
+
+    local essentials_table = {
+      Min = 2,
+      Max = 2,
+      Guaranteed = {
+        {
+          { Item = "food_apple", Amount = 1, Weight = 10 } 
+        },
+        {
+          { Item = "berry_sitrus", Amount = 1, Weight = 10 },
+          { Item = "berry_oran", Amount = 1, Weight = 10 },
+        },
+        {
+          { Item = "berry_leppa", Amount = 1, Weight = 10 },
+          { Item = "seed_reviver", Amount = 1, Weight = 10 },
+        },
+        {
+          { Item = "seed_reviver", Amount = 1, Weight = 2 },
+          { Item = "seed_ban", Amount = 1, Weight = 2 },
+          { Item = "seed_pure", Amount = 1, Weight = 2 },
+          { Item = "seed_joy", Amount = 1, Weight = 2 },
+        },
+        {
+          { Item = "ammo_geo_pebble", Amount = 3, Weight = 3 },
+          { Item = "ammo_gravelerock", Amount = 3, Weight = 3 },
+          { Item = "ammo_stick", Amount = 3, Weight = 3 },
+        },
+      },
+      Items = {
+        { Item = "food_apple", Amount = 1, Weight = 2 },
+        { Item = "berry_leppa", Amount = 1, Weight = 2 },
+        { Item = "berry_sitrus", Amount = 1, Weight = 2 },
+        { Item = "berry_oran", Amount = 1, Weight = 2 },
+        { Item = "berry_leppa", Amount = 1, Weight = 2 },
+        { Item = "berry_apicot", Amount = 1, Weight = 2 },
+        { Item = "berry_jaboca", Amount = 1, Weight = 2 },
+        { Item = "berry_liechi", Amount = 1, Weight = 2 },
+        { Item = "berry_starf", Amount = 1, Weight = 2 },
+        { Item = "berry_petaya", Amount = 1, Weight = 2 },
+        { Item = "berry_salac", Amount = 1, Weight = 2 },
+        { Item = "berry_ganlon", Amount = 1, Weight = 2 },
+        { Item = "berry_enigma", Amount = 1, Weight = 2 },
+        { Item = "berry_micle", Amount = 1, Weight = 2 },
+        { Item = "seed_ban", Amount = 1, Weight = 2 },
+        { Item = "seed_joy", Amount = 1, Weight = 2 },
+        { Item = "seed_decoy", Amount = 1, Weight = 2 },
+        { Item = "seed_pure", Amount = 1, Weight = 3 },
+        { Item = "seed_blast", Amount = 1, Weight = 3 },
+        { Item = "seed_ice", Amount = 1, Weight = 3 },
+        { Item = "seed_reviver", Amount = 1, Weight = 2 },
+        { Item = "seed_warp", Amount = 1, Weight = 2 },
+        { Item = "seed_doom", Amount = 1, Weight = 2 },
+        { Item = "seed_ice", Amount = 1, Weight = 2 },
+        { Item = "herb_white", Amount = 1, Weight = 2 },
+        { Item = "herb_mental", Amount = 1, Weight = 2 },
+        { Item = "herb_power", Amount = 1, Weight = 2 },
+        { Item = "orb_all_dodge", Amount = 1, Weight = 2 },
+        { Item = "orb_all_protect", Amount = 1, Weight = 2 },
+        { Item = "orb_cleanse", Amount = 1, Weight = 2 },
+        { Item = "orb_devolve", Amount = 1, Weight = 2 },
+        { Item = "orb_fill_in", Amount = 1, Weight = 2 },
+        { Item = "orb_endure", Amount = 1, Weight = 2 },
+        { Item = "orb_foe_hold", Amount = 1, Weight = 2 },
+        { Item = "orb_foe_seal", Amount = 1, Weight = 2 },
+        { Item = "orb_freeze", Amount = 1, Weight = 2 },
+        { Item = "orb_halving", Amount = 1, Weight = 2 },
+        { Item = "orb_invert", Amount = 1, Weight = 2 },
+        { Item = "orb_invisify", Amount = 1, Weight = 2 },
+        { Item = "orb_itemizer", Amount = 1, Weight = 2 },
+        { Item = "orb_luminous", Amount = 1, Weight = 2 },
+        { Item = "orb_pierce", Amount = 1, Weight = 2 },
+        { Item = "orb_scanner", Amount = 1, Weight = 2 },
+        { Item = "orb_mobile", Amount = 1, Weight = 2 },
+        { Item = "orb_mug", Amount = 1, Weight = 2 },
+        { Item = "orb_nullify", Amount = 1, Weight = 2 },
+        { Item = "orb_mirror", Amount = 1, Weight = 2 },
+        { Item = "orb_spurn", Amount = 1, Weight = 2 },
+        { Item = "orb_slow", Amount = 1, Weight = 2 },
+        { Item = "orb_slumber", Amount = 1, Weight = 2 },
+        { Item = "orb_petrify", Amount = 1, Weight = 2 },
+        { Item = "orb_totter", Amount = 1, Weight = 2 },
+        { Item = "orb_invisify", Amount = 1, Weight = 2 },
+        { Item = "orb_one_room", Amount = 1, Weight = 2 },
+        { Item = "orb_totter", Amount = 1, Weight = 2 },
+        { Item = "orb_rebound", Amount = 1, Weight = 2 },
+        { Item = "orb_rollcall", Amount = 1, Weight = 2 },
+        { Item = "orb_stayaway", Amount = 1, Weight = 2 },
+        { Item = "orb_trap_see", Amount = 1, Weight = 2 },
+        { Item = "orb_trapbust", Amount = 1, Weight = 2 },
+        { Item = "orb_trawl", Amount = 1, Weight = 2 },
+        { Item = "orb_weather", Amount = 1, Weight = 2 },
+        { Item = "machine_recall_box", Amount = 1, Weight = 2 },
+        { Item = "machine_assembly_box", Amount = 1, Weight = 2 },
+        { Item = "machine_ability_capsule", Amount = 1, Weight = 2 },
+        { Item = "medicine_elixir", Amount = 1, Weight = 2 },
+        { Item = "medicine_full_heal", Amount = 1, Weight = 2 },
+        { Item = "medicine_max_elixir", Amount = 1, Weight = 2 },
+        { Item = "medicine_max_potion", Amount = 1, Weight = 2 },
+        { Item = "medicine_potion", Amount = 1, Weight = 2 },
+        { Item = "medicine_x_accuracy", Amount = 1, Weight = 2 },
+        { Item = "medicine_x_attack", Amount = 1, Weight = 2 },
+        { Item = "medicine_x_defense", Amount = 1, Weight = 2 },
+        { Item = "medicine_x_sp_atk", Amount = 1, Weight = 2 },
+        { Item = "medicine_x_sp_atk", Amount = 1, Weight = 2 },
+        { Item = "medicine_x_speed", Amount = 1, Weight = 2 },
+        { Item = "ammo_cacnea_spike", Amount = 3, Weight = 2 },
+        { Item = "ammo_corsola_twig", Amount = 3, Weight = 2 },
+        { Item = "ammo_geo_pebble", Amount = 3, Weight = 2 },
+        { Item = "ammo_golden_thorn", Amount = 3, Weight = 2 },
+        { Item = "ammo_gravelerock", Amount = 3, Weight = 2 },
+        { Item = "ammo_iron_thorn", Amount = 3, Weight = 2 },
+        { Item = "ammo_rare_fossil", Amount = 3, Weight = 2 },
+        { Item = "ammo_silver_spike", Amount = 3, Weight = 2 },
+        { Item = "ammo_stick", Amount = 3, Weight = 2 },
+        { Item = "ammo_iron_thorn", Amount = 3, Weight = 2 },
+        { Item = "apricorn_big", Amount = 1, Weight = 2 },
+        { Item = "apricorn_black", Amount = 1, Weight = 2 },
+        { Item = "apricorn_blue", Amount = 1, Weight = 2 },
+        { Item = "apricorn_brown", Amount = 1, Weight = 2 },
+        { Item = "apricorn_green", Amount = 1, Weight = 2 },
+        { Item = "apricorn_plain", Amount = 1, Weight = 2 },
+        { Item = "apricorn_purple", Amount = 1, Weight = 2 },
+        { Item = "apricorn_red", Amount = 1, Weight = 2 },
+        { Item = "apricorn_white", Amount = 1, Weight = 2 },
+        { Item = "apricorn_yellow", Amount = 1, Weight = 2 },
+      },
+    }
+
+    		-- local item_table = DUNGEON_WISH_TABLE[choice]
+				-- local arguments = {}
+				-- arguments.MinAmount = item_table.Min
+				-- arguments.MaxAmount = item_table.Max
+				-- arguments.Guaranteed = item_table.Guaranteed
+				-- arguments.Items = item_table.Items
+        -- arguments.UseUserCharLoc = true
+				-- SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+				-- GAME:WaitFrames(60)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("SupplyDrop", Serpent.line({ DropTable = essentials_table, EnchantmentID = self.id  })))
+  end,
+
+  apply = function(self)
+    local data = GetEnchantmentData(self)
+    data["can_receive_supply_drop"] = true
+
+    UI:SetCenter(true)
+    SOUND:PlayFanfare("Fanfare/Item")
+    UI:WaitShowDialogue(
+      string.format(
+        "You will receive a %s after each checkpoint!",
+        M_HELPERS.MakeColoredText("supply drop", PMDColor.Yellow)
+      )
+    )
+    UI:SetCenter(false)
+    UI:ResetSpeaker()
+
+
+    -- TODO: Set flag to indi
+    -- local random_orb_index = math.random(#ORBS)
+    -- local random_orb = ORBS[random_orb_index]
+    -- local random_equipment_index = math.random(#EQUIPMENT)
+    -- local random_equipment = EQUIPMENT[random_equipment_index]
+    -- local amount = self.amount
+    -- local items = {
+    --   { Item = random_equipment, Amount = amount },
+    --   { Item = random_orb, Amount = amount },
+    -- }
+
+    -- local data = GetEnchantmentData(self)
+    -- data["equipment"] = random_equipment
+    -- data["orb"] = random_orb
+
+
+    -- M_HELPERS.GiveInventoryItemsToPlayer(items)
   end,
 })
 
@@ -1620,31 +1902,31 @@ ExitStrategy = RegisterEnchantment({
 -- })
 -- 
 -- Minimalist - The less items in intentory, the more damage
--- SupplyDrop - Gain essential items aftrer every checkpoint (Apples, Reviver Seeds, Orbs, Sticks, Seeds, Oran, Sitrus Berry, Apricorn)
 -- Dazzling - Choose a character. For each equipment, lower the accuracy of the target
 -- RunAndGun - Projectiles deal more damage if your team has a speed boost, depends on it
 -- Fitness - Each food item grants more hunger points, boosts to yourself
--- For 10 denmies fainted with an ammo,
+-- For 10 enemies fainted with an ammo,
 -- Precision - Choose a team member. That team member. Moves that have less than 80% accuracy cannot miss. Moves with accuracy will miss more often
 -- BluePrint - Select a team member. Gain tms. Select a tm, gain two randoms ones. Gain a recall box.
 -- TaskMaster - Complete various task to gain money. Defeat 10 enemies with mon. Reach hunger 20. Use 3 seeds. Use an orb. Complete a floor with items.
 -- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
 -- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
--- Team Building - Gain 3 big apricorns and 2 amber tears and a friend bow
+-- Team Building - Select a between apricrons and 2 amber tears and a friend bow
 -- Gummi Overload - Gain 5 random gummies. Each gummy grants +1 max hunger.
 -- Death Defying - Gain a death amulet.
 -- I C - Gain an X-ray specs. Your team can see invisible traps.
 -- Harmony Scarf - Gain a harmony scarf.
 -- Huddle - Defense
+-- Safety Net
+-- Emergency Fund
 -- Moral Support / Support from Beyond - Gain a damage boost for each tea m member alive in the assembly
 -- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
--- Tempo - Select a team member. That member gains a random permanetent stat boost for every 10
+-- Tempo - Select a team member. That member gains a permanent stat boost for every 10
 -- Solo Mission - When your team has only 1 member, that member does more damage
--- Avenger - Dead teammates = more damage
--- Ravenous - More damage when low on hunger
 -- Hoarder - More money when you have more items in your inventory
 -- Fitness Routine - Speed boost when your team has more than 75% hunger (ewwww, better)
 -- Full Belly Happy Heart
+-- Resilience - Take less damage from super-effective moves
 -- Nitroglycerin - Speed boost when low on hunger
 -- Choose a character. Super-effective moves deal less damage
 -- Bargainer: Half off from shop. I don’t know why, but I feel like giving everything to you half off now
@@ -1653,7 +1935,6 @@ ExitStrategy = RegisterEnchantment({
 -- Underdogs: Your team does more damage when lower leveled than the enemy
 -- Immunity: Choose a team member. That member is immune to negative status effects.
 -- Treausre Tracker: Gain a trackr. Will reveal buried within 20 tiles
--- Eviolite: If held by a Pokémon that is not fully evolved, its Defense and Special Defense are raised by 50%.
 -- Level Up: Choose a team member. That member gains 5 levels.
 -- Reroll: For the next enchantment selections. Gain an extra reroll.
 -- Flexible: Gain 20,000 P, you will not know what your enchantment will be until you select it.
@@ -1673,16 +1954,18 @@ ExitStrategy = RegisterEnchantment({
 -- Limit to only 1 boost except for speed. 
 -- 25% Spawn a slow tile 
 -- OneTrick - Choose a team member. That member is locked into 
---  That member only has one move, but that move deals more damage.
 -- StandGround - Standing in spot leaves a post which gains an attack boost
 -- Leader 
 -- Trick Shot - Arc projectiles do more damage
 -- Vitamins Gummmies - 
 -- Minimalist - The less items in intentory, the more damage 
+-- Power of 3s - For every 3 of the same item in inventory, gain a boost
+-- Mileage - For every 100 tiles moved, gain a small boost
 -- Gain a random vitamin fo 
 -- Life-Steal+
+-- Insurance - Whenever a team member faints, gain 500 P
 -- 3-1 Special - Gain 
---  Ranged+: Select a team member. That member gets +1 tange.
+-- Ranged+: Select a team member. That member gets +1 tange.
 
 -- Tank
 -- -- Marksmen: Choose a team member. That member’s projectiles deal more damage. Mark the target. That target will take additonal damage

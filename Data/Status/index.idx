@@ -154,6 +154,15 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_avenger": {
+"Name": {
+"DefaultText": "Avenger",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

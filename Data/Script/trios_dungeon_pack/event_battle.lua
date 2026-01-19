@@ -405,6 +405,46 @@ function BATTLE_SCRIPT.Ravenous(owner, ownerChar, context, args)
   end
 end
 
+
+
+function BATTLE_SCRIPT.Avenger(owner, ownerChar, context, args)
+  local chara = context.User
+
+  local count = 0
+
+  for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+		if member.Dead then
+      count = count + 1
+    end
+	end
+
+  local add_boost = 0
+
+  if count >= 3 then
+    add_boost = 35
+  elseif count >= 2 then
+    add_boost = 20
+  elseif count >= 1 then
+    add_boost = 10
+  end
+
+  print("Avenger dead count: " .. tostring(count) .. " add_boost: " .. tostring(add_boost)  )
+  if add_boost > 0 and (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical) then
+    local attack_boost = PMDC.Dungeon.MultiplyDamageEvent(100 + add_boost, 100)
+    local anim_data = RogueEssence.Content.AnimData("Stat_White_Line", 5, -1, -1, 255, Dir8.Up)
+    local particle_anim = RogueEssence.Content.ParticleAnim(anim_data, 1, 0)
+    local emitter = RogueEssence.Content.SqueezedAreaEmitter(particle_anim)
+    emitter.Bursts = 2
+    emitter.ParticlesPerBurst = 3
+    emitter.BurstTime = 6
+    emitter.HeightSpeed = 16
+    emitter.Range = 24
+    GAME:WaitFrames(10)
+    DUNGEON:PlayVFX(emitter, chara.MapLoc.X, chara.MapLoc.Y)
+    TASK:WaitTask(attack_boost:Apply(owner, ownerChar, context))
+  end
+end
+
 function BATTLE_SCRIPT.RavenousAfterHit(owner, ownerChar, context, args)
 
   local confusion_chance = 0
@@ -434,6 +474,38 @@ function BATTLE_SCRIPT.RavenousAfterHit(owner, ownerChar, context, args)
     end 
   end
 end
+
+-- function BATTLE_SCRIPT.EvioliteEvent(owner, ownerChar, context, args)
+--   --NOTE: A 50% decrease in damage was a bit powerful... 
+--   --This has been nerfed to 20%
+--   local DEFAULT_NUM = 20
+--   local DEFUALT_DENOM = 25
+
+--   local phy_num = DEFAULT_NUM
+--   local phy_denom = DEFUALT_DENOM
+
+--   local spec_num = DEFAULT_NUM
+--   local spec_denom = DEFUALT_DENOM
+
+--   if type(args.PhyNum) == "number" then p_num = args.PhyNum end
+--   if type(args.PhyDenom) == "number" then p_denom = args.PhyDenom end
+--   if type(args.SpecNum) == "number" then spec_num = args.SpecNum end
+--   if type(args.SpecDenom) == "number" then spec_denom = args.SpecDenom end
+--   local apply_effect = GAME:CanPromote(context.Target)
+--   if args.Reverse then apply_effect = (not apply_effect) end
+
+--   if apply_effect then
+--     local effects = {
+--       PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Physical, phy_num, phy_denom),
+--       PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Magical, spec_num, spec_denom)
+--     }
+
+--     for _, effect in pairs(effects) do
+--       TASK:WaitTask(effect:Apply(owner, ownerChar, context))
+--     end
+--   end
+-- end
+
 
 function BATTLE_SCRIPT.WizardPowerBoost(owner, ownerChar, context, args)
   local boost_percent = args.BoostPercent
@@ -565,3 +637,37 @@ function BATTLE_SCRIPT.CrystalHealCountdownRemove(owner, ownerChar, context, arg
     TASK:WaitTask(context.User:RemoveStatusEffect(status, true))
   end
 end
+
+-- function BATTLE_SCRIPT.FickleSpecsEvent(owner, ownerChar, context, args)
+--   local boost_rate = 2
+--   local reverse = false
+--   if type(args.BoostRate) == "number" then boost_rate = args.BoostRate end
+--   if type(args.Reverse) == "boolean" then reverse = args.Reverse end
+
+--   local move_status_id = "last_used_move"
+--   local move_repeat_status_id = "times_move_used"
+--   local move_status = context.User:GetStatusEffect(move_status_id)
+--   local repeat_status = context.User:GetStatusEffect(move_repeat_status_id)
+--   if move_status == nil or repeat_status == nil then
+--     return
+--   end
+--   local contains_move_id = move_status.StatusStates:Get(luanet.ctype(IDStateType)).ID == context.Data.ID
+--   if reverse then
+--     contains_move_id = not contains_move_id
+--   end
+
+--   if contains_move_id then
+--     return
+--   end
+--   if not repeat_status.StatusStates:Contains(luanet.ctype(RecentStateType)) then
+--     return
+--   end
+
+--   local effects = {
+--     PMDC.Dungeon.BoostCriticalEvent(boost_rate)
+--   }
+
+--   for _, effect in pairs(effects) do
+--     TASK:WaitTask(effect:Apply(owner, ownerChar, context))
+--   end
+-- end

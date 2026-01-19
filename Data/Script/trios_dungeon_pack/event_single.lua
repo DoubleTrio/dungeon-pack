@@ -792,6 +792,38 @@ function SINGLE_CHAR_SCRIPT.PandorasItems(owner, ownerChar, context, args)
 end
 
 
+function SINGLE_CHAR_SCRIPT.SupplyDrop(owner, ownerChar, context, args)
+
+    local drop_table = args.DropTable
+    local enchant_id = args.EnchantmentID
+    
+    if context.User ~= _DUNGEON.ActiveTeam.Leader then
+        return
+    end
+
+     
+    local data = GetEnchantmentData(enchant_id)
+
+    if not data["can_receive_supply_drop"] then
+        return
+    end
+
+    data["can_receive_supply_drop"] = false
+    local arguments = {}
+    arguments.MinAmount = drop_table.Min
+    arguments.MaxAmount = drop_table.Max
+    arguments.Guaranteed = drop_table.Guaranteed
+    arguments.Items = drop_table.Items
+    arguments.UseUserCharLoc = true
+    _DUNGEON:LogMsg(STRINGS:Format("A supply drop arrived!"))
+
+    SOUND:PlayBattleSE("_UNK_EVT_124")
+     GAME:WaitFrames(10)
+    SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+  
+    GAME:WaitFrames(60)
+end
+
 function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
     if context.User ~= nil then
         return
@@ -1192,6 +1224,8 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
     local Items = LUA_ENGINE:MakeGenericType(SpawnListType, {MapItemType}, {})
     local Guaranteed = args.Guaranteed
     local AlwaysSpawn = args.AlwaysSpawn
+    local use_user_char_loc = args.UseUserCharLoc
+
     -- print(tostring(Guaranteed))
     if type(args.MinAmount) == "number" then
         min_amount = args.MinAmount
@@ -1212,7 +1246,13 @@ function SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, args)
         y_offset = args.OffsetY
     end
 
-    local base_loc = effect_tile.TileLoc + RogueElements.Loc(x_offset, y_offset)
+    local base_loc
+    if use_user_char_loc then   
+        base_loc = context.User.CharLoc
+    else
+        base_loc = effect_tile.TileLoc
+    end
+    base_loc = base_loc + RogueElements.Loc(x_offset, y_offset)
 
     function checkOp(test_loc)
         local test_tile = _ZONE.CurrentMap:GetTile(test_loc)
@@ -1454,6 +1494,7 @@ function SINGLE_CHAR_SCRIPT.AskExitEvent(owner, ownerChar, context, args)
     _DUNGEON.PendingLeaderAction = _DUNGEON:ProcessPlayerInput(
         RogueEssence.Dungeon.GameAction(RogueEssence.Dungeon.GameAction.ActionType.Tile, Dir8.None, 1))
 end
+
 
 function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, context, args)
     local chara = context.User
