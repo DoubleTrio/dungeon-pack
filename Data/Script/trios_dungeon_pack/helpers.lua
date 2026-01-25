@@ -1,5 +1,49 @@
 BattleScriptEventType = luanet.import_type("RogueEssence.Dungeon.BattleScriptEvent")
 
+
+EnchantmentStatus = {
+  NotSeen = 0,
+  Seen = 1,
+  Selected  = 2,
+  SelectedAndWon = 3
+}
+
+function InitializeEnchantmentCollection()
+  for k, v in pairs(EnchantmentRegistry._registry) do
+
+    SetEnchantmentStatusIfNeeded(k, EnchantmentStatus.NotSeen)
+  end
+  print("Enchantment Collection initialized.")
+  print(Serpent.block(SV.EmberFrost.Enchantments.Collection))
+
+end
+
+function ResetEmberfrost()
+  SV.EmberFrost = {
+    Enchantments = {
+      Seen = {},
+      Selected = {},
+      Data = {},
+      Collection = {},
+      RerollCounts = {1, 1, 1},
+    },
+
+    Quests = {
+      Active = {},
+      Data = {},
+    },
+    GotEnchantmentFromCheckpoint = false
+  }
+
+
+  InitializeEnchantmentCollection()
+  
+end
+function SetEnchantmentStatusIfNeeded(enchantment_id, status)
+  local seen_value = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
+  SV.EmberFrost.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
+end
+
 local function GenderToNum(gender)
   local res = -1
   if gender == Gender.Genderless then
@@ -25,6 +69,7 @@ local function NumToGender(num)
 end
 
 PMDColor = {
+  Gray = "#868686",
   Cyan = "#00FFFF",
   Pink = "#F8C8C8",
   Red = "#F80000",
@@ -36,11 +81,11 @@ PMDColor = {
   LightGreen = "#00E060",
   LimeGreen2 = "#40F840",
   Orange = "#F8C060",
-  Blue   = "#8080F8", -- Q
+  Blue = "#8080F8", -- Q
   SlateBlue  = "#6080E0", -- S
-  Magenta        = "#F8A0F8",      -- X
-  SkyBlue     = "#8098F8",      -- Y
-  Lavender    = "#8888F8",      -- Z
+  Magenta = "#F8A0F8",      -- X
+  SkyBlue = "#8098F8",      -- Y
+  Lavender = "#8888F8",      -- Z
 }
 M_HELPERS = {
 
@@ -477,24 +522,41 @@ M_HELPERS = {
     if SV.SavedInventories == nil then
       SV.SavedInventories = {}
     end
+
+    
+
     if SV.EmberFrost == nil then
       SV.EmberFrost = {
-        ShouldSwap = false,
-        SelectedEnchantments = {},
-        SeenEnchantments = {},
-        RerollCounts = { 1, 1, 1 },
+        Enchantments = {
+          Seen = {},
+          Selected = {},
+          Data = {},
+          Collection = {},
+          RerollCounts = {1, 1, 1},
+        },
+
+        Quests = {
+          Active = {},
+          Data = {},
+        },
         GotEnchantmentFromCheckpoint = false
       }
-    end
-    if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
-    if SV.EmberFrost.SelectedEnchantments == nil then SV.EmberFrost.SelectedEnchantments = {} end
-    if SV.EmberFrost.RerollCounts == nil then SV.EmberFrost.RerollCounts = { 1, 1, 1 } end
-    if SV.EmberFrost.SeenEnchantments == nil then SV.EmberFrost.SeenEnchantments = {} end
 
-    if SV.EmberFrost.EnchantmentData == nil then
-      SV.EmberFrost.EnchantmentData = {}
+
+      InitializeEnchantmentCollection()
     end
-    if SV.EmberFrost.GotEnchantmentFromCheckpoint == nil then SV.EmberFrost.GotEnchantmentFromCheckpoint = false end
+
+
+    -- end
+    -- if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
+    -- if SV.EmberFrost.SelectedEnchantments == nil then SV.EmberFrost.SelectedEnchantments = {} end
+    -- if SV.EmberFrost.RerollCounts == nil then SV.EmberFrost.RerollCounts = { 1, 1, 1 } end
+    -- if SV.EmberFrost.SeenEnchantments == nil then SV.EmberFrost.SeenEnchantments = {} end
+
+    -- if SV.EmberFrost.EnchantmentData == nil then
+    --   SV.EmberFrost.EnchantmentData = {}
+    -- end
+    -- if SV.EmberFrost.GotEnchantmentFromCheckpoint == nil then SV.EmberFrost.GotEnchantmentFromCheckpoint = false end
 
     if SV.TemporaryFlags == nil then
       SV.TemporaryFlags = {

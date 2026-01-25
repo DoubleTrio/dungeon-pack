@@ -2,165 +2,16 @@
 require 'origin.menu.team.TeamSelectMenu'
 require 'trios_dungeon_pack.menu.ItemSelectionMenu'
 
-
-ENCHANTMENT_REGISTRY = ENCHANTMENT_REGISTRY or {}
-
-local count = 0
-
-function RegisterEnchantment(def)
-  assert(def.id, "Enchantment must have an id")
-
-  local enchant = setmetatable(def, {
-    __index = PowerupDefaults
-  })
-  ENCHANTMENT_REGISTRY[def.id] = enchant
-  count = count + 1
-  print(tostring(count))
-  return enchant
-end
-
-function GetSelectedEnchantments(selected)
-  selected = selected or SV.EmberFrost.SelectedEnchantments
-  local list = {}
-  for _, id in ipairs(selected or {}) do
-    local enchant = GetEnchantmentFromRegistry(id)
-    if enchant then
-      table.insert(list, enchant)
+-- Unfortunately, I'm not sure why passing a reference to the SV table doesn't work. This is a workaround for now
+local function resolve_path(root, path)
+    local current = root
+    for key in string.gmatch(path, "[^%.]+") do
+        if type(current) ~= "table" then
+            return nil
+        end
+        current = current[key]
     end
-  end
-  return list
-end
-
-function GetEnchantmentFromRegistry(enchantment_id)
-  return ENCHANTMENT_REGISTRY[enchantment_id]
-end
-
-function GetRandomEnchantments(amount, total_groups)
-  local candidates = {}
-  for id, enchant in pairs(ENCHANTMENT_REGISTRY) do
-    local seen = SV.EmberFrost.SeenEnchantments[id]
-
-    if not seen and (not enchant.can_apply or enchant:can_apply()) then
-      table.insert(candidates, enchant)
-    end
-  end
-
-  -- TODO: Change the random to C# version... maybe?
-  for i = #candidates, 2, -1 do
-    local j = math.random(i)
-    candidates[i], candidates[j] = candidates[j], candidates[i]
-  end
-
-  local result = {}
-  for i = 1, math.min(amount, #candidates) do
-    local enchant = candidates[i]
-
-    table.insert(result, enchant)
-    SV.EmberFrost.SeenEnchantments[enchant.id] = true
-  end
-
-  local per_group = math.floor(#result / total_groups)
-  local grouped = {}
-  for i = 1, total_groups do
-    grouped[i] = {}
-  end
-
-  for i, enchant in ipairs(result) do
-    local group_index = ((i - 1) % total_groups) + 1
-    table.insert(grouped[group_index], enchant)
-  end
-
-  return grouped
-end
-
-function ResetSeenEnchantments()
-  SV.EmberFrost.SeenEnchantments = {}
-  SV.EmberFrost.EnchantmentData = {}
-  SV.EmberFrost.RerollCounts = { 1, 1, 1 }
-end
-
-function PrepareNextEnchantment()
-  SV.RerollCounts = { 1, 1, 1 }
-  SV.EmberFrost.GotEnchantmentFromCheckpoint = false
-end
-
-function GetEnchantmentData(enchant)
-  local id
-  if type(enchant) == "string" then
-    id = enchant
-  elseif type(enchant) == "table" and enchant.id then
-    id = enchant.id
-  else
-    error("GetEnchantmentData: enchant must be a string or a table with an id")
-  end
-
-  local data = SV.EmberFrost.EnchantmentData[id]
-
-  if not data then
-    data = {}
-    SV.EmberFrost.EnchantmentData[id] = data
-  end
-
-  return data
-end
-
-local function FindInGroup(count, get, enchant_id)
-  for i = count, 1, -1 do
-    local p = get(i - 1)
-    local tbl = LTBL(p)
-    if tbl.SelectedEnchantments and tbl.SelectedEnchantments[enchant_id] then
-      return p
-    end
-  end
-end
-
-function FindCharacterWithEnchantment(enchant_id)
-  return FindInGroup(GAME:GetPlayerPartyCount(), function(i)
-    return GAME:GetPlayerPartyMember(i)
-  end, enchant_id) or FindInGroup(GAME:GetPlayerAssemblyCount(), function(i)
-    return GAME:GetPlayerAssemblyMember(i)
-  end, enchant_id)
-end
-
-function HasEnchantment(enchantment_id)
-  for _, id in ipairs(SV.EmberFrost.SelectedEnchantments) do
-    if id == enchantment_id then
-      return true
-    end
-  end
-  return false
-end
-
-function AssignCharacterEnchantment(chara, enchantment_id)
-  local tbl = LTBL(chara)
-
-  tbl.SelectedEnchantments = tbl.SelectedEnchantments or {}
-  tbl.SelectedEnchantments[enchantment_id] = true
-end
-
-function FindCharacterWithEnchantment(enchant_id)
-  return FindInGroup(GAME:GetPlayerPartyCount(), function(i)
-    return GAME:GetPlayerPartyMember(i)
-  end, enchant_id) or FindInGroup(GAME:GetPlayerAssemblyCount(), function(i)
-    return GAME:GetPlayerAssemblyMember(i)
-  end, enchant_id)
-end
-
-function ResetCharacterEnchantment(chara)
-  local tbl = LTBL(chara)
-  tbl.SelectedEnchantments = {}
-end
-
-function ResetAllCharacterEnchantments()
-  for i = 0, GAME:GetPlayerPartyCount() - 1 do
-    local chara = GAME:GetPlayerPartyMember(i)
-    ResetCharacterEnchantment(chara)
-  end
-
-  for i = 0, GAME:GetPlayerAssemblyCount() - 1 do
-    local chara = GAME:GetPlayerAssemblyMember(i)
-    ResetCharacterEnchantment(chara)
-  end
+    return current
 end
 
 PowerupDefaults = {
@@ -215,10 +66,338 @@ PowerupDefaults = {
     
     print(self.name .. " checkpoint.")
   end,
-
 }
 
--- ExpandedSatchel = RegisterEnchantment({
+function CreateRegistry(config)
+  local Registry = {}
+
+  Registry._registry = config.registry_table
+  Registry.data_table_path = config.data_table_path
+  Registry.selected_table_path = config.selected_table_path
+  Registry.seen_table_path = config.seen_table_path
+
+  -- Registry._seen = config.seen_table
+  -- Registry._default_selected = config.selected_table
+  Registry.defaults = config.defaults
+  Registry.selection_field = config.selection_field
+  Registry.can_apply_key  = config.can_apply_key or "can_apply"
+  Registry.debug = config.debug
+  Registry._count = 0
+
+  function Registry:Register(def)
+    assert(def.id, "Registry entry must have an id")
+
+    local entry = self.defaults
+      and setmetatable(def, { __index = self.defaults })
+      or def
+
+    self._registry[def.id] = entry
+
+    self._count = self._count + 1
+    if self.debug then
+      print("[Registry] Registered:", def.id)
+    end
+
+    return entry
+  end
+
+
+  function Registry:Get(id)
+    return self._registry[id]
+  end
+
+  function Registry:Select(id)
+    local select_table = resolve_path(SV, self.selected_table_path)
+    return select_table.insert(id)
+  end
+
+  function Registry:GetSelected(selected)
+    local list = {}
+    local select_table = selected or resolve_path(SV, self.selected_table_path)
+
+    for _, id in ipairs(select_table) do
+      local entry = self._registry[id]
+      if entry then
+        table.insert(list, entry)
+      end
+    end
+    return list
+  end
+
+
+  function Registry:GetData(entry)
+
+    local table = resolve_path(SV, self.data_table_path)
+    -- I'm not sure why this doesn't work...
+    -- local table = self._data_tab
+    -- self._data_tab = SV.EmberFrost.Enchantments.Data
+    local id
+
+    if type(entry) == "string" then
+      id = entry
+    elseif type(entry) == "table" and entry.id then
+      id = entry.id
+    else
+      error("Registry:GetData: entry must be string or table with id")
+    end
+
+    table[id] = table[id] or {}
+
+    return table[id]
+  end
+
+
+
+  function Registry:GetRandom(amount, total_groups)
+    
+    local seen_table = resolve_path(SV, self.seen_table_path)
+    -- local table = resolve_path(SV, self.data_table_path)
+    -- local table = {}
+    print(Serpent.dump(seen_table) .. ".... uh seen")
+    local candidates = {}
+
+    for id, entry in pairs(self._registry) do
+      local seen = seen_table[id]
+      local can_apply = entry[self.can_apply_key]
+
+      if not seen and (not can_apply or can_apply(entry)) then
+        table.insert(candidates, entry)
+      end
+    end
+    for i = #candidates, 2, -1 do
+      local j = math.random(i)
+      candidates[i], candidates[j] = candidates[j], candidates[i]
+    end
+
+    local picked = {}
+    for i = 1, math.min(amount, #candidates) do
+      local entry = candidates[i]
+      table.insert(picked, entry)
+    end
+
+    if not total_groups then
+      return picked
+    end
+
+    local grouped = {}
+    for i = 1, total_groups do
+      grouped[i] = {}
+    end
+
+    for i, entry in ipairs(picked) do
+      table.insert(grouped[((i - 1) % total_groups) + 1], entry)
+    end
+
+    return grouped
+  end
+
+  return Registry
+end
+
+EnchantmentRegistry = CreateRegistry({
+  registry_table  = {},
+  -- TODO - fix bug with the data table
+
+  seen_table_path = "EmberFrost.Enchantments.Seen",
+  data_table_path = "EmberFrost.Enchantments.Data",
+  selected_table_path = "EmberFrost.Enchantments.Selected",
+  defaults  = PowerupDefaults,
+  selection_field = "Enchantments",
+  debug = true
+})
+
+-- QuestRegistry = CreateRegistry({
+--   registry_table  = {},
+--   data_table      = SV.EmberFrost.Quests.Data,
+--   seen_table      = SV.EmberFrost.Quests.Seen,
+--   selected_table  = SV.EmberFrost.Quests.Active,
+--   defaults        = PowerupDefaults,
+--   selection_field = "ActiveQuests",
+--   debug           = true
+-- })
+
+-- ENCHANTMENT_REGISTRY = ENCHANTMENT_REGISTRY or {}
+
+-- local count = 0
+
+-- function RegisterEnchantment(def)
+--   assert(def.id, "Enchantment must have an id")
+
+--   local enchant = setmetatable(def, {
+--     __index = PowerupDefaults
+--   })
+--   ENCHANTMENT_REGISTRY[def.id] = enchant
+--   count = count + 1
+--   print(tostring(count))
+--   return enchant
+-- end
+
+
+-- function GetEnchantmentFromRegistry(enchantment_id)
+--   return ENCHANTMENT_REGISTRY[enchantment_id]
+-- end
+
+-- function GetRandomEnchantments(amount, total_groups)
+--   local candidates = {}
+--   for id, enchant in pairs(ENCHANTMENT_REGISTRY) do
+--     local seen = SV.EmberFrost.SeenEnchantments[id]
+
+--     if not seen and (not enchant.can_apply or enchant:can_apply()) then
+--       table.insert(candidates, enchant)
+--     end
+--   end
+
+--   -- TODO: Change the random to C# version... maybe?
+--   for i = #candidates, 2, -1 do
+--     local j = math.random(i)
+--     candidates[i], candidates[j] = candidates[j], candidates[i]
+--   end
+
+--   local result = {}
+--   for i = 1, math.min(amount, #candidates) do
+--     local enchant = candidates[i]
+
+--     table.insert(result, enchant)
+--     SV.EmberFrost.SeenEnchantments[enchant.id] = true
+--   end
+
+--   local per_group = math.floor(#result / total_groups)
+--   local grouped = {}
+--   for i = 1, total_groups do
+--     grouped[i] = {}
+--   end
+
+--   for i, enchant in ipairs(result) do
+--     local group_index = ((i - 1) % total_groups) + 1
+--     table.insert(grouped[group_index], enchant)
+--   end
+
+--   return grouped
+-- end
+
+
+
+-- function EnchantmentRegistry:GetData(enchant)
+--   -- Enchantment data, note it should 
+--   local id
+--   if type(enchant) == "string" then
+--     id = enchant
+--   elseif type(enchant) == "table" and enchant.id then
+--     id = enchant.id
+--   else
+--     error("EnchantmentRegistry:GetData: enchant must be a string or a table with an id")
+--   end
+
+--   local data = SV.EmberFrost.EnchantmentData[id]
+
+--   if not data then
+--     data = {}
+--     SV.EmberFrost.EnchantmentData[id] = data
+--   end
+
+--   return data
+-- end
+
+-- local function FindInGroup(count, get, enchant_id)
+--   for i = count, 1, -1 do
+--     local p = get(i - 1)
+--     local tbl = LTBL(p)
+--     if tbl.SelectedEnchantments and tbl.SelectedEnchantments[enchant_id] then
+--       return p
+--     end
+--   end
+-- end
+
+-- local function FindInGroups(groups, entry_id, field)
+--   field = field or "Selected"
+
+--   for _, group in ipairs(groups) do
+--     for i = group.count(), 1, -1 do
+--       local obj = group.get(i - 1)
+--       local tbl = LTBL(obj)
+
+--       local selected = tbl[field]
+--       if selected and selected[entry_id] then
+--         return obj
+--       end
+--     end
+--   end
+-- end
+
+-- function FindCharacterWithEnchantment(enchant_id)
+--   return FindInGroup(GAME:GetPlayerPartyCount(), function(i)
+--     return GAME:GetPlayerPartyMember(i)
+--   end, enchant_id) or FindInGroup(GAME:GetPlayerAssemblyCount(), function(i)
+--     return GAME:GetPlayerAssemblyMember(i)
+--   end, enchant_id)
+-- end
+
+-- function HasEnchantment(table, enchantment_id)
+--   table = table or SV.EmberFrost.SelectedEnchantments
+--   for _, id in ipairs(table) do
+--     if id == enchantment_id then
+--       return true
+--     end
+--   end
+--   return false
+-- end
+
+function ResetSeenEnchantments()
+  SV.EmberFrost.Enchantments.Seen = {}
+  -- SV.EmberFrost.Enchantments.Data = {}
+  -- SV.EmberFrost.Enchantments.Selected = {}
+  SV.EmberFrost.Enchantments.RerollCounts = { 1, 1, 1 }
+end
+
+function PrepareNextEnchantment()
+  -- SV.EmberFrost.Enchantments.RerollCounts = { 1, 1, 1 }
+  SV.EmberFrost.GotEnchantmentFromCheckpoint = false
+end
+
+
+function FindCharacterWithEnchantment(enchant_id)
+  -- Party
+  for i = GAME:GetPlayerPartyCount(), 1, -1 do
+    local obj = GAME:GetPlayerPartyMember(i - 1)
+    local tbl = LTBL(obj)
+
+    if tbl.Enchantments
+        and tbl.Enchantments[entry_id] then
+      return obj
+    end
+  end
+
+  -- Assembly
+  for i = GAME:GetPlayerAssemblyCount(), 1, -1 do
+    local obj = GAME:GetPlayerAssemblyMember(i - 1)
+    local tbl = LTBL(obj)
+
+    if tbl.Enchantments
+        and tbl.Enchantments[entry_id] then
+      return obj
+    end
+  end
+end
+
+function ResetCharacterEnchantment(chara)
+  local tbl = LTBL(chara)
+  tbl.SelectedEnchantments = {}
+end
+
+function ResetAllCharacterEnchantments()
+  for i = 0, GAME:GetPlayerPartyCount() - 1 do
+    local chara = GAME:GetPlayerPartyMember(i)
+    ResetCharacterEnchantment(chara)
+  end
+
+  for i = 0, GAME:GetPlayerAssemblyCount() - 1 do
+    local chara = GAME:GetPlayerAssemblyMember(i)
+    ResetCharacterEnchantment(chara)
+  end
+end
+
+
+-- ExpandedSatchel = EnchantmentRegistry:Register({
 --   name = "Expanded Satchel",
 --   id = "EXPANDED_SATCHEL",
 --   group = ENCHANTMENT_TYPES.items,
@@ -266,7 +445,7 @@ PowerupDefaults = {
 --   end,
 -- })
 
-AllTerrainTreads = RegisterEnchantment({
+AllTerrainTreads = EnchantmentRegistry:Register({
   name = "Treading Through",
   id = "ALL_TERRAIN_TREADS",
   getDescription = function(self)
@@ -291,33 +470,7 @@ AllTerrainTreads = RegisterEnchantment({
 
 })
 
-
-AllTerrainTreads = RegisterEnchantment({
-  name = "Treading Through",
-  id = "ALL_TERRAIN_TREADS",
-  getDescription = function(self)
-    local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
-    return string.format(
-      "Gain %s " ..  entry:GetColoredName() ..  " (allows the holder to traverse water, lava, and pits)",
-      M_HELPERS.MakeColoredText("2", PMDColor.Cyan)
-    )
-  end,
-  offer_time = "beginning",
-  rarity = 1,
-
-  apply = function(self)
-    -- TODO: Add to other inventory
-    local items = {
-      { Item = "emberfrost_allterrain_gear", Amount = 1 },
-      { Item = "emberfrost_allterrain_gear", Amount = 1 },
-    }
-
-    M_HELPERS.GiveInventoryItemsToPlayer(items)
-  end,
-
-})
-
-ThreadsOfLife = RegisterEnchantment({
+ThreadsOfLife = EnchantmentRegistry:Register({
   name = "Threads of Life",
   id = "THREADS_OF_LIFE",
   getDescription = function(self)
@@ -337,7 +490,7 @@ ThreadsOfLife = RegisterEnchantment({
     M_HELPERS.GiveInventoryItemsToPlayer(items)
   end,
 })
--- Gain6500P = RegisterEnchantment({
+-- Gain6500P = EnchantmentRegistry:Register({
 
 
 
@@ -365,7 +518,7 @@ ThreadsOfLife = RegisterEnchantment({
 -- })
 
 
--- Gain7000P = RegisterEnchantment({
+-- Gain7000P = EnchantmentRegistry:Register({
 
 
 
@@ -416,7 +569,7 @@ ThreadsOfLife = RegisterEnchantment({
 -- }, { __index = PowerupDefaults })
 
 
--- CalmTheStorm = RegisterEnchantment({
+-- CalmTheStorm = EnchantmentRegistry:Register({
 --   name = "Calm the Storm",
 --   id = "CALM_THE_STORM",
 --   group = ENCHANTMENT_TYPES.items,
@@ -438,7 +591,7 @@ ThreadsOfLife = RegisterEnchantment({
 
 
 
--- MysteryEnchant = RegisterEnchantment({
+-- MysteryEnchant = EnchantmentRegistry:Register({
 --   gold_amount = 1000,
 --   name = "Mystery Enchant",
 --   id = "MYSTERY_ENCHANT",
@@ -448,7 +601,7 @@ ThreadsOfLife = RegisterEnchantment({
 --   end,
   
 --   getProgressTexts = function(self)
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 --     local enchant_id = data["selected_enchantment"]
 --     local enchant = ENCHANTMENT_REGISTRY[enchant_id]
 --     if enchant then
@@ -466,7 +619,7 @@ ThreadsOfLife = RegisterEnchantment({
 --     local enchantment = GetRandomEnchantments(1, 1)[1][1]
 
 --     print(tostring(self.id) .. " applying enchantment: " .. tostring(enchantment.id))
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 
 --     data["selected_enchantment"] = enchantment.id
 
@@ -485,7 +638,7 @@ ThreadsOfLife = RegisterEnchantment({
 
 -- })
 
-PrimalMemory = RegisterEnchantment({
+PrimalMemory = EnchantmentRegistry:Register({
   name = "Primal Memory",
   id = "PRIMAL_MEMORY",
   amount = 2,
@@ -529,7 +682,7 @@ PrimalMemory = RegisterEnchantment({
   end,
 })
 
-EliteTutoring = RegisterEnchantment({
+EliteTutoring = EnchantmentRegistry:Register({
   name = "Elite Tutoring",
   id = "ELITE_TUTORING",
   amount = 1,
@@ -655,7 +808,7 @@ end
 -- }, { __index = PowerupDefaults })
 
 
--- SticksAndStones = RegisterEnchantment({
+-- SticksAndStones = EnchantmentRegistry:Register({
 --   amount = 5,
 
 --   name = "Sticks & Stones",
@@ -704,7 +857,7 @@ end
 -- })
 
 -- 
--- MayBreakMyBones = RegisterEnchantment({
+-- MayBreakMyBones = EnchantmentRegistry:Register({
 --   amount = 9,
 --   percent = 50,
 
@@ -712,7 +865,7 @@ end
 --   id = "BREAK_MY_BONES",
 --   group = ENCHANTMENT_TYPES.items,
 --   can_apply = function(self)
---     return HasEnchantment(SticksAndStones.id)
+--     return HasEnchantment(SV.EmberFrost.SelectedEnchantments, SticksAndStones.id)
 --   end,
 
 --   getDescription = function(self)
@@ -759,13 +912,13 @@ end
 -- })
 
 
--- WordsWillNever = RegisterEnchantment({
+-- WordsWillNever = EnchantmentRegistry:Register({
 
 --   name = "...Words Will Never",
 --   id = "WORDS_WILL_NEVER",
 --   group = ENCHANTMENT_TYPES.items,
 --   can_apply = function(self)
---     return HasEnchantment(MayBreakMyBones.id)
+--     return HasEnchantment(SV.EmberFrost.SelectedEnchantments, MayBreakMyBones.id)
 --   end,
 
 --   getDescription = function(self)
@@ -813,7 +966,7 @@ end
 
 
 
--- BuriedTreasures = RegisterEnchantment({
+-- BuriedTreasures = EnchantmentRegistry:Register({
 --   turn_interval = 200,
 --   name = "Buried Treasures",
 --   id = "BURIED_TREASURES",
@@ -834,7 +987,7 @@ end
 
 
 
--- Pacifist = RegisterEnchantment({
+-- Pacifist = EnchantmentRegistry:Register({
 --   gold_amount = 500,
 --   name = "Pacifist",
 --   id = "PACIFIST",
@@ -858,7 +1011,7 @@ end
 --   end,
 -- })
 
--- RiskyMoves = RegisterEnchantment({
+-- RiskyMoves = EnchantmentRegistry:Register({
 --   gold_amount = 10000,
 --   total_floors = 5,
 --   name = "Risky Moves",
@@ -880,7 +1033,7 @@ end
 -- })
 
 
-HandsTied = RegisterEnchantment({
+HandsTied = EnchantmentRegistry:Register({
   gold_amount = 20000,
   name = "Hands Tied",
   id = "HANDS_TIED",
@@ -907,7 +1060,7 @@ HandsTied = RegisterEnchantment({
 
 
 -- When an enemy is hit. Only 1 enemy can be marked at a time.
-Marksman = RegisterEnchantment({
+Marksman = EnchantmentRegistry:Register({
   increased_damage_percent = 25,
   name = "Marksman",
   id = "MARKSMAN",
@@ -934,7 +1087,7 @@ Marksman = RegisterEnchantment({
   end,
 })
 
--- FeelTheBurn = RegisterEnchantment({
+-- FeelTheBurn = EnchantmentRegistry:Register({
 --   name = "Feel the Burn",
 --   chance = 15,
 --   id = "FEEL_THE_BURN",
@@ -970,7 +1123,7 @@ Marksman = RegisterEnchantment({
 -- })
 
 
-GlassCannon = RegisterEnchantment({
+GlassCannon = EnchantmentRegistry:Register({
   name = "Glass Cannon",
   id = "GLASS_CANNON",
   attack_boost = 50,
@@ -1006,7 +1159,7 @@ GlassCannon = RegisterEnchantment({
 })
 
 
-Sponge = RegisterEnchantment({
+Sponge = EnchantmentRegistry:Register({
   name = "Sponge",
   id = "SPONGE",
   attack_boost = 50,
@@ -1043,7 +1196,7 @@ Sponge = RegisterEnchantment({
 
 
 
--- MonoMoves = RegisterEnchantment({
+-- MonoMoves = EnchantmentRegistry:Register({
 --   name = "Mono Moves",
 --   id = "MONO_MOVES",
 --   attack_boost = 35,
@@ -1078,7 +1231,7 @@ Sponge = RegisterEnchantment({
 --   end,
 -- })
 
-Ravenous = RegisterEnchantment({
+Ravenous = EnchantmentRegistry:Register({
   name = "Ravenous",
   id = "RAVENOUS",
   -- group = ENCHANTMENT_TYPES.items,
@@ -1113,7 +1266,7 @@ Ravenous = RegisterEnchantment({
   end,
 })
 
-Avenger = RegisterEnchantment({
+Avenger = EnchantmentRegistry:Register({
   name = "Avenger",
   id = "AVENGER",
   -- group = ENCHANTMENT_TYPES.items,
@@ -1146,7 +1299,7 @@ Avenger = RegisterEnchantment({
 })
 
 -- OneTrick
--- MonoMoves = RegisterEnchantment({
+-- MonoMoves = EnchantmentRegistry:Register({
   -- name = "Mono Moves",
   -- id = "MONO_MOVES",
   -- attack_boost = 35,
@@ -1180,7 +1333,7 @@ Avenger = RegisterEnchantment({
   --   AssignEnchantmentToCharacter(self)
   -- end,
 -- })
--- HungerStrike = RegisterEnchantment({
+-- HungerStrike = EnchantmentRegistry:Register({
 --   name = "Hunger Strike",
 --   amount = 5,
 --   id = "HUNGER_STRIKE",
@@ -1215,7 +1368,7 @@ Avenger = RegisterEnchantment({
 
 
 
-PandorasItems = RegisterEnchantment({
+PandorasItems = EnchantmentRegistry:Register({
   amount = 1,
   name = "Pandora's Items",
   id = "PANDORAS_ITEMS",
@@ -1233,9 +1386,19 @@ PandorasItems = RegisterEnchantment({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local data = GetEnchantmentData(self)
+    local data = EnchantmentRegistry:GetData(self)
     local equipment = data["equipment"]
     local orb = data["orb"]
+
+    print(tostring(equipment))
+    print(tostring(orb))
+    print(Serpent.dump(SV.EmberFrost.Enchantments.Data) .. " hmmmm")
+    print(Serpent.dump(EnchantmentRegistry._data) .. " hmmmm2")
+    print("Are they the same table reference?")
+    print(tostring(EnchantmentRegistry._data == SV.EmberFrost.Enchantments.Data))
+
+        print(Serpent.dump(SV.EmberFrost.Enchantments.Seen) .. " hmmmm")
+    print(Serpent.dump(EnchantmentRegistry._seen) .. " hmmmm2")
 
     local equipment_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(equipment)
     local orb_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(orb)
@@ -1252,6 +1415,11 @@ PandorasItems = RegisterEnchantment({
   end,
 
   apply = function(self)
+
+
+    print("Are they the same table reference hm,,,,dkd?")
+    print(tostring(EnchantmentRegistry._data == SV.EmberFrost.Enchantments.Data))
+
     local random_orb_index = math.random(#ORBS)
     local random_orb = ORBS[random_orb_index]
     local random_equipment_index = math.random(#EQUIPMENT)
@@ -1262,7 +1430,7 @@ PandorasItems = RegisterEnchantment({
       { Item = random_orb, Amount = amount },
     }
 
-    local data = GetEnchantmentData(self)
+    local data = EnchantmentRegistry:GetData(self)
     data["equipment"] = random_equipment
     data["orb"] = random_orb
 
@@ -1272,7 +1440,7 @@ PandorasItems = RegisterEnchantment({
 })
 
 
-SupplyDrop = RegisterEnchantment({
+SupplyDrop = EnchantmentRegistry:Register({
   amount = 1,
   name = "Supply Drop",
   id = "SUPPLY_DROP",
@@ -1287,7 +1455,7 @@ SupplyDrop = RegisterEnchantment({
   rarity = 1,
 
   on_checkpoint = function(self)
-    local data = GetEnchantmentData(self)
+    local data = EnchantmentRegistry:GetData(self)
     data["can_receive_supply_drop"] = true
   end,
   set_active_effects = function(self, active_effect)
@@ -1432,7 +1600,7 @@ SupplyDrop = RegisterEnchantment({
   end,
 
   apply = function(self)
-    local data = GetEnchantmentData(self)
+    local data = EnchantmentRegistry:GetData(self)
     data["can_receive_supply_drop"] = true
 
     UI:SetCenter(true)
@@ -1458,7 +1626,7 @@ SupplyDrop = RegisterEnchantment({
     --   { Item = random_orb, Amount = amount },
     -- }
 
-    -- local data = GetEnchantmentData(self)
+    -- local data = EnchantmentRegistry:GetData(self)
     -- data["equipment"] = random_equipment
     -- data["orb"] = random_orb
 
@@ -1467,7 +1635,7 @@ SupplyDrop = RegisterEnchantment({
   end,
 })
 
--- YourAWizard = RegisterEnchantment({
+-- YourAWizard = EnchantmentRegistry:Register({
 --   stack = 3,
 --   amount = 3,
 --   percent = 3,
@@ -1489,7 +1657,7 @@ SupplyDrop = RegisterEnchantment({
 --   getProgressTexts = function(self)
 
     
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 --     local wands = data["wands"]
 
 --     local str_arr = {
@@ -1556,7 +1724,7 @@ SupplyDrop = RegisterEnchantment({
 --   apply = function(self)
 --     AssignEnchantmentToCharacter(self)
 
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 --     data["wands"] = {}
 --     data["boost"] = 0
 
@@ -1577,89 +1745,88 @@ SupplyDrop = RegisterEnchantment({
 --   end,
 -- })
 
--- PlantYourSeeds = RegisterEnchantment({
---   money = 300,
---   amount = 3,
---   minimum = 6,
---   name = "Plant Your Seeds",
---   id = "PLANT_YOUR_SEEDS",
---   group = ENCHANTMENT_TYPES.items,
---   getDescription = function(self)
---     return string.format(
---       "Gain %s random %s. At the start of each floor, if you have at least non-held %s, lose all of them and gain %s for each seed",
---       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
---       M_HELPERS.MakeColoredText("seeds", PMDColor.Pink),
---       M_HELPERS.MakeColoredText(tostring(self.minimum), PMDColor.Cyan),
---       M_HELPERS.MakeColoredText(tostring(self.money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
---     )
---   end,
---   offer_time = "beginning",
---   rarity = 1,
---   getProgressTexts = function(self)
+PlantYourSeeds = EnchantmentRegistry:Register({
+  money = 300,
+  amount = 3,
+  minimum = 6,
+  name = "Plant Your Seeds",
+  id = "PLANT_YOUR_SEEDS",
+  getDescription = function(self)
+    return string.format(
+      "Gain %s random %s. At the start of each floor, if you have at least non-held %s, lose all of them and gain %s for each seed",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText("seeds", PMDColor.Pink),
+      M_HELPERS.MakeColoredText(tostring(self.minimum), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(self.money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
     
---     local data = GetEnchantmentData(self)
---     local seeds = data["seeds"]
---     local money_earned = data["money_earned"]
+    local data = EnchantmentRegistry:GetData(self)
+    local seeds = data["seeds"]
+    local money_earned = data["money_earned"]
 
---     local str_arr = {
---       "Recieved: ",
---     }
---     for _, seed in ipairs(seeds) do
---         local seed_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(seed)
---         local seed_name = seed_entry:GetIconName()
---         table.insert(str_arr, seed_name)
---     end
+    local str_arr = {
+      "Recieved: ",
+    }
+    for _, seed in ipairs(seeds) do
+        local seed_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(seed)
+        local seed_name = seed_entry:GetIconName()
+        table.insert(str_arr, seed_name)
+    end
 
     
 
---     -- TODO: Account for the player is holding the seeds...
---     local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
---     local seed_index_arr = {}
---     for i = inv_count, 0, -1 do
---         local item = _DATA.Save.ActiveTeam:GetInv(i)
---         local item_id = item.ID
---         if Contains(SEED, item_id) then
---             table.insert(seed_index_arr, i)
---         end        
---     end
+    -- TODO: Account for the player is holding the seeds...
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+    local seed_index_arr = {}
+    for i = inv_count, 0, -1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+        if Contains(SEED, item_id) then
+            table.insert(seed_index_arr, i)
+        end        
+    end
 
---     table.insert(str_arr, "\n")
---     table.insert(str_arr, "Seed Count: " .. M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan))
---     table.insert(str_arr, "Money Earned: " .. M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan))
+    table.insert(str_arr, "\n")
+    table.insert(str_arr, "Seed Count: " .. M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan))
+    table.insert(str_arr, "Money Earned: " .. M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan))
     
     
---     return str_arr
---   end,
+    return str_arr
+  end,
 
---   set_active_effects = function(self, active_effect)
---     active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
---   end,
+  set_active_effects = function(self, active_effect)
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
+  end,
 
---   apply = function(self)
+  apply = function(self)
 
---     local data = GetEnchantmentData(self)
---     data["seeds"] = {}
---     data["money_earned"] = 0
+    local data = EnchantmentRegistry:GetData(self)
+    data["seeds"] = {}
+    data["money_earned"] = 0
 
---     local items = {}
+    local items = {}
 
---     for i = 1, self.amount do
---         local random_seed_index = math.random(#SEED)
---         local seed = SEED[random_seed_index]
+    for i = 1, self.amount do
+        local random_seed_index = math.random(#SEED)
+        local seed = SEED[random_seed_index]
 
---         table.insert(data["seeds"], seed)
+        table.insert(data["seeds"], seed)
 
   
---         table.insert(items, { Item = seed, Amount = 1 })
---     end
+        table.insert(items, { Item = seed, Amount = 1 })
+    end
 
---     M_HELPERS.GiveInventoryItemsToPlayer(items)
---   end,
--- })
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end,
+})
 
 
 
-ExitStrategy = RegisterEnchantment({
+ExitStrategy = EnchantmentRegistry:Register({
   pure_seed_amount = 2,
   warp_wands_amount = 9,
   salac_amount = 3,
@@ -1697,7 +1864,7 @@ ExitStrategy = RegisterEnchantment({
   rarity = 1,
   -- getProgressTexts = function(self)
     
-  --   local data = GetEnchantmentData(self)
+  --   local data = EnchantmentRegistry:GetData(self)
   --   local seeds = data["seeds"]
   --   local money_earned = data["money_earned"]
 
@@ -1760,7 +1927,7 @@ ExitStrategy = RegisterEnchantment({
     AssignEnchantmentToCharacter(self)
   end,
 })
--- TheBubble = RegisterEnchantment({
+-- TheBubble = EnchantmentRegistry:Register({
 --   interest = 0.10,
 --   start = 0,
 --   pop_increase = 1.5,
@@ -1782,7 +1949,7 @@ ExitStrategy = RegisterEnchantment({
 --   offer_time = "beginning",
 --   rarity = 1,
 --   getProgressTexts = function(self)
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 --     local money_earned = data["money_earned"] or 0
 --     local money_lost = data["money_lost"] or 0
 --     local pop_chance = data["pop_chance"] or 0
@@ -1799,7 +1966,7 @@ ExitStrategy = RegisterEnchantment({
 --   end,
 
 --   apply = function(self)
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 --     data["money_earned"] = 0
 --     data["money_lost"] = 0
 --     data["pop_chance"] = self.start
@@ -1812,7 +1979,7 @@ ExitStrategy = RegisterEnchantment({
 --   end
 -- })
 
--- StackOfPlates = RegisterEnchantment({
+-- StackOfPlates = EnchantmentRegistry:Register({
 --   amount = 2,
 --   choice = 5,
 --   name = "Stack of Plates",
@@ -1831,7 +1998,7 @@ ExitStrategy = RegisterEnchantment({
 --   rarity = 1,
 --   getProgressTexts = function(self)
 
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 --     local plates = data["plates"]
 
 --     local str_arr = {
@@ -1847,7 +2014,7 @@ ExitStrategy = RegisterEnchantment({
 --   end,
 
 --   apply = function(self)
---     local data = GetEnchantmentData(self)
+--     local data = EnchantmentRegistry:GetData(self)
 --     data["plates"] = {}
 
 --     local random_items = {}
@@ -1885,7 +2052,7 @@ ExitStrategy = RegisterEnchantment({
 
 
 -- For each equipment in your inventory, gain a 3% attack boost.
--- Fashionable = RegisterEnchantment({
+-- Fashionable = EnchantmentRegistry:Register({
 --   "for each unique specs or googles"
 
 -- })
@@ -1947,20 +2114,43 @@ QuestDefaults = {
 
 
 -- Minimalist - Your team gains a famage boost. When you pick up an item, that boost disappears. 
-  -- Use an orb. Complete a floor with items.
+-- Minimalist - Gain money based on how few items you have in your inventory at the end of each floor.
+-- 
+-- All your party members gain the stat boost of the highest party member
+-- Lots of Equipment: Select 3 equipment from a pool of 5 random ones.
+-- Allies Type Squad - If you recruit all types, gain a huge reward (includes assembly).
+-- Monotype - If all your team members are the same type, gain a damage boost (Requires 2+ members).
+-- ???
+-- Win Out - 
+-- Gain 3 Invisibioty orbs
+-- Raining Gold - Gain 200 each floor 
+-- Gain 2 random allies from the previous floors. Gain an assembly box. They have gummi boosts with random equioment attatched 
+-- RPG Gold - Your team has %50 chance to gain 50 p from an enemies. 
+-- Every third attack is a critical hit. 
+-- Your team gains a ciritcal chance boost
+-- Your team does slighty more damage for super-effective moves.
+-- Your team takes slightly more damage for not very effective moves.
 -- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
 -- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
 -- Team Building - Select a between apricrons and 2 amber tears and a friend bow
 -- Gummi Overload - Gain 5 random gummies. Each gummy grants +1 max hunger.
--- Death Defying - Gain a death amulet.
+-- Gain a random gummi at the start of each floor. 
+-- Death Defying/ Second Wind - Gain a death amulet. If that member would faint, 50% chance to survive with 1 HP instead. When at 1 HP, gain a speed boost.
+-- Quick Reflexes - Choose a team member. That member has a chance to dodge physical attacks.
+-- Elusive - Each team gains a evasive boost at the start of each floor 
+-- Restart Mission - Lose all items in your inventory. 
+-- Each of your team member loses 2 levels. When the next checkpoint is reached, gain 5 levels for each team member.
+-- Killing Blow - Choose a team member. Explode area around enemy when defeated 
+-- Execute - Choose a team member. That member will deal defeat any enemies below 20% HP.
 -- I C - Gain an X-ray specs. Your team can see invisible traps.
 -- Harmony Scarf - Gain a harmony scarf.
 -- Huddle - Defense
--- Safety Net - Gain 1,000 P when a team member faints. Gain a reviver seed
+-- Safety Net / Emergency Fund - Gain 1,000 P when a team member faints. Gain a reviver seed
 -- Emergency Fund
 -- Moral Support / Support from Beyond - Gain a damage boost for each tea m member alive in the assembly
 -- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
 -- Tempo - Select a team member. That member gains a permanent stat boost for every 10
+-- After each member defeats 20 enemies, your team gains a damage boost.
 -- Solo Mission - When your team has only 1 member, that member does more damage
 -- Hoarder - More money when you have more items in your inventory
 -- Fitness Routine - Speed boost when your team has more than 75% hunger (ewwww, better)
@@ -2033,6 +2223,14 @@ QuestDefaults = {
 -- }
 -- }
 
+
+function AssignCharacterEnchantment(chara, enchantment_id)
+  local tbl = LTBL(chara)
+
+  tbl.SelectedEnchantments = tbl.SelectedEnchantments or {}
+  tbl.SelectedEnchantments[enchantment_id] = true
+end
+
 function AssignEnchantmentToCharacter(enchant)
     local ret = {}
     local choose = function(chars)
@@ -2059,7 +2257,6 @@ function AssignEnchantmentToCharacter(enchant)
     UI:SetCenter(false)
     return selected_char
 end
-
 
 
 ORBS = {
@@ -2456,3 +2653,4 @@ function SelectItemFromList(prompt, items)
     UI:WaitForChoice()
     return ret
 end
+

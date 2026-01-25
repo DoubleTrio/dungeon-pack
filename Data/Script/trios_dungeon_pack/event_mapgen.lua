@@ -27,7 +27,7 @@ StatType = luanet.import_type('RogueEssence.Data.Stat')
 function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue, seed, args)
   local activeEffect = RogueEssence.Data.ActiveEffect()
 
-  local active_enchants = GetSelectedEnchantments()
+  local active_enchants = EnchantmentRegistry:GetSelected()
 
   for _, enchant in pairs(active_enchants) do
     enchant:set_active_effects(activeEffect)
@@ -55,6 +55,7 @@ function ZONE_GEN_SCRIPT.EmberfrostSwitchUp(zoneContext, context, queue, seed, a
   local priority = RogueElements.Priority(-6)
 
 
+  SV.EmberFrost.ShouldSwap = false
   if SV.EmberFrost.ShouldSwap then
     SV.EmberFrost.ShouldSwap = false
     print("SWITCHING TEAMS")
@@ -86,7 +87,7 @@ active_effect.OnTurnStarts:Add(-10, RogueEssence.Dungeon.SingleCharScriptEvent("
 
     print(tostring(next_segment) .. " and " .. tostring(next_id))
   
-    SV.EmberFrost.ShouldSwap = true
+    -- SV.EmberFrost.ShouldSwap = true
     active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = next_segment, NextID = next_id })))
 
   end

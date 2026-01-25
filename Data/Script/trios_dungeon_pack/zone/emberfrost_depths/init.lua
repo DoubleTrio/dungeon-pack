@@ -164,7 +164,7 @@ end
 local function CleanUpEmberFrostDepths()
 
 	-- Clear 
-	SV.EmberFrost.SelectedEnchantments = {}
+	SV.EmberFrost.Enchantments.Selected = {}
 
 	local player_count = GAME:GetPlayerPartyCount()
 

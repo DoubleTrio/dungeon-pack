@@ -2,19 +2,20 @@
 EnchantmentViewMenu = Class("EnchantmentViewMenu")
 
 
-function EnchantmentViewMenu:initialize(title, enchantment_list, refuse_action, menu_width, label)
-
-    -- constants
+function EnchantmentViewMenu:initialize(title, enchantment_list, generate_menu_text, update_description_summary, refuse_action, menu_width, label)
   self.MAX_ELEMENTS = 10
 
   self.title = title
 
-  self.enchantmentList = GetSelectedEnchantments(enchantment_list)
+  -- print(Serpent.line(enchantment_list) .. ".... enchantment list in view menu")
+  self.enchantmentList = EnchantmentRegistry:GetSelected(enchantment_list)
+  print(Serpent.dump(self.enchantmentList) .. ".... enchantment list after getting selected")
 
-  print("Enchantment List Length: " .. tostring(#self.enchantmentList))
   self.menuWidth = menu_width or 122
   self.label = label or "TEAM_ENCHANTMENT_VIEW_MENU_LUA"
   self.currentIndex = 1
+  self.generateMenuText = generate_menu_text
+  self.updateDescriptionSummary = update_description_summary
 
   self.choice = nil -- result
   self.optionsList = self:generate_options()
@@ -35,13 +36,18 @@ function EnchantmentViewMenu:initialize(title, enchantment_list, refuse_action, 
   )
 
     self.menu.SummaryMenus:Add(self.summary)
-    self:updateSummary()
+    self:updateSummary(self.enchantmentList[1], self.summary)
 end
 
 function EnchantmentViewMenu:createMenu()
   local option_array = luanet.make_array(RogueEssence.Menu.MenuElementChoice, self.optionsList)
   self.menu = RogueEssence.Menu.ScriptableMultiPageMenu(self.origin, self.menuWidth, self.title, option_array, 0, self.MAX_ELEMENTS, function() _MENU:RemoveMenu() end, function() _MENU:RemoveMenu() end, false)
-  self.menu.ChoiceChangedFunction = function() self:updateSummary() print(tostring(self.menu.CurrentChoice)) end
+  self.menu.ChoiceChangedFunction = function()
+    local index = self.menu.CurrentPage * self.MAX_ELEMENTS + self.menu.CurrentChoice + 1
+    print("Choice changed to index: " .. tostring(index))
+    local enchantment = self.enchantmentList[index]
+    self:updateSummary(enchantment, self.summary)
+  end
   -- self.menu.
 end
 
@@ -53,91 +59,16 @@ function EnchantmentViewMenu:generate_options()
   local options = {}
   for i=1, #self.enchantmentList, 1 do
       local enchantment = self.enchantmentList[i]
-      local color = Color.White
-      local text_name = RogueEssence.Menu.MenuText(M_HELPERS.MakeColoredText(enchantment.name, PMDColor.Yellow), RogueElements.Loc(2, 1), color)
-      local option = RogueEssence.Menu.MenuElementChoice(function() self:choose(i) end, true, text_name)
+      local menu_text = self.generateMenuText(enchantment)
+      local option = RogueEssence.Menu.MenuElementChoice(function() end, true, menu_text)
       table.insert(options, option)
   end
   return options
 end
 
 
-function EnchantmentViewMenu:updateSummary()
-
-  local GraphicsManager = RogueEssence.Content.GraphicsManager
-
- 
-  local index = self.menu.CurrentPage * self.MAX_ELEMENTS + self.menu.CurrentChoice + 1
-  local enchantment = self.enchantmentList[index]
-  local additonal_texts = enchantment:getProgressTexts()
-  self.summary.Elements:Clear()
-  self.summary.Bounds = RogueElements.Rect.FromPoints(
-    RogueElements.Loc(self.origin.X + self.menuWidth + 2, self.origin.Y),
-    RogueElements.Loc(GraphicsManager.ScreenWidth - 16, self.origin.Y + 106 + #additonal_texts * 12 + 12)
-  )
-
-  -- print("Updating summary for index: " .. tostring(self.menu.CurrentChoice))
-
-  local y_offset = 10
-
-  local name = RogueEssence.Menu.DialogueText(
-    M_HELPERS.MakeColoredText(enchantment.name, PMDColor.Yellow),
-    RogueElements.Rect(
-      RogueElements.Loc(12, y_offset),
-      RogueElements.Loc(self.summary.Bounds.Width, y_offset + 6)
-    ),
-    12
-  )
-
-  y_offset = y_offset + 6 + 6
-
-  local divider = RogueEssence.Menu.MenuDivider(
-    RogueElements.Loc(10, y_offset),
-    self.summary.Bounds.Width - 20
-  )
-
-  y_offset = y_offset + 4
-  
-
-  local desc = RogueEssence.Menu.DialogueText(
-    enchantment:getDescription(),
-    RogueElements.Rect(
-      RogueElements.Loc(12, y_offset),
-      RogueElements.Loc(self.summary.Bounds.Width - 20, 60)
-    ),
-    12
-  )
-
-  y_offset = y_offset + 72
-
-  self.summary.Elements:Add(name)
-  self.summary.Elements:Add(divider)
-  self.summary.Elements:Add(desc)
-
-
-
-
-  if additonal_texts ~= nil then
-    for _, text in ipairs(additonal_texts) do
-      y_offset = y_offset + 12
-      local additional = RogueEssence.Menu.DialogueText(
-        text,
-        RogueElements.Rect(
-          RogueElements.Loc(12, y_offset),
-          RogueElements.Loc(self.summary.Bounds.Width - 20, y_offset + 6)
-        ),
-        12
-      )
-      self.summary.Elements:Add(additional)
-    end
-  end
-
-
-  -- return name
-
-
-  -- self.summary.
-    -- self.summary:SetMember(self.charList[self.menu.CurrentChoiceTotal+1])
+function EnchantmentViewMenu:updateSummary(enchantment, menu)
+  self.updateDescriptionSummary(enchantment, menu, self.origin, self.menuWidth)
 end
 
 

@@ -59,10 +59,10 @@ function frost_checkpoint.Init(map)
   COMMON.RespawnAllies()
   -- COMMON.RespawnAllies(true)
   GROUND:AddMapStatus("snow")
-  SOUND:PlayBGM("Rock Slide Canyon.ogg", true)
+  SOUND:PlayBGM("Obsidian Fieldlands 2.ogg", true)
 
   
-  local active_enchants = GetSelectedEnchantments()
+  local active_enchants = EnchantmentRegistry:GetSelected()
 
   for _, enchant in pairs(active_enchants) do
     enchant:on_checkpoint()
@@ -420,13 +420,11 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
 
 
   ResetSeenEnchantments()
-  local enchantments = GetRandomEnchantments(6, 2)
+  local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
 
   print(Serpent.dump(enchantments) .. ".... uh")
-
-    -- print(Serpent.dump(SV.EmberFrost.RerollCounts) .. ".... uh")
   -- title, enchantment_list, confirm_action, refuse_action, enchantment_width
 
 
@@ -465,9 +463,16 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
 
   RogueEssence.Menu.MenuBase.BorderStyle = 12
 
-  print(tostring(Serpent.dump(SV.EmberFrost.RerollCounts)))
+  print(tostring(Serpent.dump(SV.EmberFrost.Enchantments.RerollCounts)))
 
-  local menu = EnchantmentSelectionMenu:new("Choose an enchantment!", enchantments, nil, nil, SV.EmberFrost.RerollCounts, choose, refuse)
+  local on_enchantment_seen = function(enchantment_id)
+    SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Seen)
+    table.insert(SV.EmberFrost.Enchantments.Seen, enchantment_id)
+  end
+
+  print("Creating enchantment selection menu..." .. Serpent.dump(enchantments))
+
+  local menu = EnchantmentSelectionMenu:new("Choose an enchantment!", enchantments, on_enchantment_seen, nil, nil, SV.EmberFrost.Enchantments.RerollCounts, choose, refuse)
   UI:SetCustomMenu(menu.menu)
   UI:WaitForChoice()
 
@@ -478,10 +483,16 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
 
   if (ret ~= nil) then
     GAME:WaitFrames(30)
-    table.insert(SV.EmberFrost.SelectedEnchantments, ret.id)
+    local enchantment_id = ret.id
+    table.insert(SV.EmberFrost.Enchantments.Selected, enchantment_id)
+    SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Selected)
     SV.EmberFrost.GotEnchantmentFromCheckpoint = true
     ret:apply()
   end
+
+  print(Serpent.dump(SV.EmberFrost.Enchantments.Seen) .. " ... final seen table")
+
+  print(Serpent.dump(SV.EmberFrost.Enchantments.Collection) .. " ... collection table")
 
   -- TODO: Use the mission board as the template 
 

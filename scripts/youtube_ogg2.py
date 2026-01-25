@@ -122,15 +122,51 @@ if __name__ == "__main__":
         #     loop_length=3071461,
         # ),
 
-        OggTrack(
-            url="https://www.youtube.com/watch?v=jO4uMerMpdw",
-            title="Choral Chambers",
-            artist="Yash",
-            album="Silksong",
-            loop_start=7600216,
-            loop_length=7587828,
-        ),
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=jO4uMerMpdw",
+        #     title="Choral Chambers",
+        #     artist="Yash",
+        #     album="Silksong",
+        #     loop_start=7600216,
+        #     loop_length=7587828,
+        # ),
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=BuBXcdIqQ4g",
+        #     title="Obsidian Fieldlands 2",
+        #     artist="FiveNineSquared",
+        #     album="Pokemon Legends Arceus",
+        #     loop_start=3900211,
+        #     loop_length=7740451-3900211,
+        # ),
+
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=N7z_EGZm7jY",
+        #     title="Resolution Gorge",
+        #     artist="Danirbu",
+        #     album="Original Soundtrack",
+        #     loop_start=5070965,
+        #     loop_length=9669934-5070965,
+        # ),     
+
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=RggYAl27CVo",
+        #     title="Green Path",
+        #     artist="Yash",
+        #     album="Hollow Knight",
+        #     loop_start=0,
+        #     loop_length=9669790-0,
+        # ), 
         
+        OggTrack(
+            url="https://www.youtube.com/watch?v=NBFWOEwlcBA",
+            title="The Wind is Blowing at Cavi Cape",
+            artist="Yash",
+            album="Mario and Luigi: Bowser’s Inside Story ",
+            loop_start=3158390,
+            loop_length=6299179-3158390,
+        ), 
+
+
     ]
 
     batch_download(TRACKS)

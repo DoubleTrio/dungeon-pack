@@ -6,14 +6,14 @@
 
 EnchantmentSelectionMenu = Class("EnchantmentSelectionMenu")
 
-function EnchantmentSelectionMenu:initialize(title, enchantment_list, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action, enchantment_width)
+function EnchantmentSelectionMenu:initialize(title, enchantment_list, on_enchantment_seen, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action, enchantment_width)
    local len = type(enchantment_list) == 'table' and #enchantment_list or 0
   if len < 1 then
     error("parameter 'enchantment_list' cannot be an empty collection")
   end
   
   self:initializeConstants()
-  self:initializeState(title, enchantment_list, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action)
+  self:initializeState(title, enchantment_list, on_enchantment_seen, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action)
   self:createMenu()
 end
 
@@ -25,9 +25,10 @@ function EnchantmentSelectionMenu:initializeConstants()
   self.EDGE_PADDING = 1
 end
 
-function EnchantmentSelectionMenu:initializeState(title, enchantment_list, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action)
+function EnchantmentSelectionMenu:initializeState(title, enchantment_list, on_enchantment_seen, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action)
   self.title = title
   self.enchantmentList = enchantment_list
+  self.onEnchantmentSeen = on_enchantment_seen
   self.onReroll = on_reroll
   self.canReroll = can_reroll
   self.confirmAction = confirm_action
@@ -42,6 +43,7 @@ function EnchantmentSelectionMenu:initializeState(title, enchantment_list, on_re
   self.currentEnchantments = {}
   for i = 1, 3 do
     self.currentEnchantments[i] = self.enchantmentList[self.rerollCountTotals[i]][i]
+    self.onEnchantmentSeen(self.currentEnchantments[i].id)
   end
 end
 
@@ -74,7 +76,7 @@ end
 
 function EnchantmentSelectionMenu:addTitleText(titleRect)
   local titleText = RogueEssence.Menu.DialogueText(
-    self.title,
+    M_HELPERS.MakeColoredText(self.title, PMDColor.Yellow),
     RogueElements.Rect(
       RogueElements.Loc(0, 0),
       RogueElements.Loc(titleRect.Width, titleRect.Height)
@@ -132,7 +134,7 @@ function EnchantmentSelectionMenu:createEnchantmentMenu(index, x, y)
     showCursor = function() enchantment.Elements:Add(cursor) end,
     hideCursor = function() enchantment.Elements:Remove(cursor) end,
     updateNewEnchantment = function(newEnchantment)
-      name:SetAndFormatText(M_HELPERS.MakeColoredText(newEnchantment.name, PMDColor.Yellow))
+      name:SetAndFormatText(M_HELPERS.MakeColoredText(newEnchantment.name, PMDColor.White))
       desc:SetAndFormatText(newEnchantment:getDescription())
     end
   }
@@ -140,7 +142,7 @@ end
 
 function EnchantmentSelectionMenu:createNameText(index, y_offset)
   local name = RogueEssence.Menu.DialogueText(
-    M_HELPERS.MakeColoredText(self.currentEnchantments[index].name, PMDColor.Yellow),
+    M_HELPERS.MakeColoredText(self.currentEnchantments[index].name, PMDColor.White),
     RogueElements.Rect(
       RogueElements.Loc(0, y_offset),
       RogueElements.Loc(self.ENCHANTMENT_WIDTH, y_offset + 12)
@@ -325,6 +327,7 @@ function EnchantmentSelectionMenu:handleReroll(oldIndex)
     SOUND:PlayBattleSE("_UNK_EVT_118")
     self.rerollCountTotals[self.selectionIndex] = self.rerollCountTotals[self.selectionIndex] + 1
     local newEnchantment = self.enchantmentList[self.rerollCountTotals[self.selectionIndex]][self.selectionIndex]
+    self.onEnchantmentSeen(newEnchantment.id)
     self.enchantments[oldIndex].updateNewEnchantment(newEnchantment)
     self.currentEnchantments[self.selectionIndex] = newEnchantment
     return false
