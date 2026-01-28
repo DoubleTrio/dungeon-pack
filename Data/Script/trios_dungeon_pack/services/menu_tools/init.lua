@@ -14,11 +14,8 @@ local function GetTextAndColorBasedOnStatus(enchantment, seen_text)
 
   if seen_status == EnchantmentStatus.Seen then
     text = seen_text
-  elseif seen_status == EnchantmentStatus.Selected then
+  elseif seen_status == EnchantmentStatus.Selected or seen_status == EnchantmentStatus.SelectedAndWon then
     text_color = PMDColor.White
-    text = seen_text
-  elseif seen_status == EnchantmentStatus.SelectedAndWon then
-    text_color = PMDColor.Yellow
     text = seen_text
   end
 
@@ -29,10 +26,18 @@ local function GetTextAndColorBasedOnStatus(enchantment, seen_text)
 end
 
 local function collection_generate_menu_text(enchantment)
+  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment.id] or EnchantmentStatus.NotSeen
+
+
   local status_info = GetTextAndColorBasedOnStatus(enchantment, enchantment.name)
-  local text = status_info.text
+
   local text_color = status_info.color
+  local text = status_info.text
   local color = Color.White
+
+  if seen_status == EnchantmentStatus.SelectedAndWon then
+    text = PMDSpecialCharacters.Star .. " " .. text
+  end
 
   local text_name = RogueEssence.Menu.MenuText(M_HELPERS.MakeColoredText(text, text_color), RogueElements.Loc(2, 1), color)
 
@@ -41,7 +46,7 @@ end
      
 
 local function collection_update_description_summary(enchantment, menu, origin, menuWidth)
-  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment.id] or EnchantmentStatus.NotSeen 
+  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment.id] or EnchantmentStatus.NotSeen
   local status_info = GetTextAndColorBasedOnStatus(enchantment, enchantment.name)
 
   local text_color = status_info.color
@@ -60,8 +65,15 @@ local function collection_update_description_summary(enchantment, menu, origin, 
 
   local y_offset = 10
 
+
+  local text = status_info.text
+
+  if seen_status == EnchantmentStatus.SelectedAndWon then
+    text = PMDSpecialCharacters.Star .. " " .. text
+  end
+
   local name = RogueEssence.Menu.DialogueText(
-    M_HELPERS.MakeColoredText(status_info.text, text_color),
+    M_HELPERS.MakeColoredText(text, text_color),
     RogueElements.Rect(
       RogueElements.Loc(12, y_offset),
       RogueElements.Loc(menu.Bounds.Width, y_offset + 6)
@@ -77,9 +89,6 @@ local function collection_update_description_summary(enchantment, menu, origin, 
   )
 
   y_offset = y_offset + 4
-
-
-
 
   local description = M_HELPERS.MakeColoredText("???", text_color)
 
@@ -225,32 +234,16 @@ function MenuTools:OnMenuButtonPressed()
       MenuTools.MainMenu.Choices:Insert(5, RogueEssence.Menu.MenuTextChoice("Others", function () _MENU:AddMenu(MenuTools:CustomDungeonOthersMenu(), false) end))
     else
 
-      -- local refuse = function() print("* Refuse action called") _MENU:RemoveMenu() end
       MenuTools.MainMenu.Choices:Insert(4, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
 
       local collection = {}
-      local collections = SV.EmberFrost.Enchantments.Collection
-      local data = EnchantmentRegistry._registry
-      -- local tbl = {}
 
-      -- for _, enchant_id in ipairs(SV.EmberFrost.Enchantments.Selected) do
-      --   local enchantment = M_ENCHANTMENTS:GetEnchantmentByID(enchant_id)
-      --   if enchantment ~= nil then
-      --     table.insert(tbl, enchantment)
-      --   end
-      -- end
+      local data = EnchantmentRegistry._registry
       for k, _ in pairs(data) do
         table.insert(collection, k)
-        -- local tbl = {
-        --   id = k,
-        --   seen_status = collections[k] or EnchantmentStatus.NotSeen
-        -- }
-        -- table.insert(collection, tbl)
-        -- if enchantment ~= nil then
-        --   table.insert(tbl, enchantment)
-        -- end
       end
-      -- local 
+
+      table.sort(collection)
 
       MenuTools.MainMenu.Choices:Insert(5, RogueEssence.Menu.MenuTextChoice("Collection", function () _MENU:AddMenu(EnchantmentViewMenu:new("All Enchants", collection, collection_generate_menu_text, collection_update_description_summary).menu, false) end, true, Color.White))
     end
@@ -279,6 +272,15 @@ function MenuTools:CustomDungeonOthersMenu()
     
 	if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
 		menu.Choices:Insert(1, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
+
+    local collection = {}
+
+    local data = EnchantmentRegistry._registry
+    for k, _ in pairs(data) do
+      table.insert(collection, k)
+    end
+
+    table.sort(collection)
     menu.Choices:Insert(2, RogueEssence.Menu.MenuTextChoice("Collection", function () _MENU:AddMenu(EnchantmentViewMenu:new("All Enchants", collection, collection_generate_menu_text, collection_update_description_summary).menu, false) end, true, Color.White))
 	end
 	menu:InitMenu();

@@ -1,5 +1,5 @@
 require 'trios_dungeon_pack.helpers'
-
+require 'trios_dungeon_pack.beholder'
 PresetMultiTeamSpawnerType = luanet.import_type('RogueEssence.LevelGen.PresetMultiTeamSpawner`1')
 PlaceRandomMobsStepType = luanet.import_type('RogueEssence.LevelGen.PlaceRandomMobsStep`1')
 MonsterHouseStepType = luanet.import_type('RogueEssence.LevelGen.MonsterHouseStep`1')
@@ -24,14 +24,111 @@ BadStatusStateType = luanet.import_type('PMDC.Dungeon.BadStatusState')
 ListType = luanet.import_type('System.Collections.Generic.List`1')
 StatType = luanet.import_type('RogueEssence.Data.Stat')
 
+
+-- [ListCollapse]
+-- public StateCollection<UniversalState> UniversalStates;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> BeforeTryActions;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> BeforeActions;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> OnActions;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> BeforeExplosions;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> BeforeHits;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> OnHits;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> OnHitTiles;
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> AfterActions;
+-- [ListCollapse]
+-- public PriorityList<ElementEffectEvent> ElementEffects;
+
+-- [ListCollapse]
+-- public PriorityList<ItemGivenEvent> OnEquips;
+-- [ListCollapse]
+-- public PriorityList<ItemGivenEvent> OnPickups;
+
+-- [ListCollapse]
+-- public PriorityList<StatusGivenEvent> BeforeStatusAdds;
+-- [ListCollapse]
+-- public PriorityList<StatusGivenEvent> OnStatusAdds;
+-- [ListCollapse]
+-- public PriorityList<StatusGivenEvent> OnStatusRemoves;
+
+-- [ListCollapse]
+-- public PriorityList<MapStatusGivenEvent> OnMapStatusAdds;
+-- [ListCollapse]
+-- public PriorityList<MapStatusGivenEvent> OnMapStatusRemoves;
+
+-- [ListCollapse]
+-- public PriorityList<SingleCharEvent> OnMapStarts;
+
+-- [ListCollapse]
+-- public PriorityList<SingleCharEvent> OnTurnStarts;
+-- [ListCollapse]
+-- public PriorityList<SingleCharEvent> OnTurnEnds;
+-- [ListCollapse]
+-- public PriorityList<SingleCharEvent> OnMapTurnEnds;
+-- [ListCollapse]
+-- public PriorityList<SingleCharEvent> OnWalks;
+-- [ListCollapse]
+-- public PriorityList<SingleCharEvent> OnDeaths;
+
+-- [ListCollapse]
+-- public PriorityList<RefreshEvent> OnRefresh;
+-- [ListCollapse]
+-- public PriorityList<RefreshEvent> OnMapRefresh;
+
+-- [ListCollapse]
+-- public PriorityList<HPChangeEvent> ModifyHPs;
+-- [ListCollapse]
+-- public PriorityList<HPChangeEvent> RestoreHPs;
+
+-- [ListCollapse]
+-- public PriorityList<BattleEvent> InitActionData;
+
 function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue, seed, args)
   local activeEffect = RogueEssence.Data.ActiveEffect()
 
-  local active_enchants = EnchantmentRegistry:GetSelected()
+  beholder.stopObservingAll()
 
+  local active_enchants = EnchantmentRegistry:GetSelected()
   for _, enchant in pairs(active_enchants) do
-    enchant:set_active_effects(activeEffect)
+    enchant:set_active_effects(activeEffect, zoneContext)
   end
+
+  activeEffect.OnDeaths:Add(6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnDeath"))
+  activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnMapStart"))
+  activeEffect.OnMapTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnMapTurnEnds"))
+  activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnTurnEnds"))
+  activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("EmberfrostOnPickups"))
+  activeEffect.BeforeActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnBeforeActions"))
+  activeEffect.AfterActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnAfterActions"))
+  activeEffect.OnActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnActions"))
+  activeEffect.BeforeExplosions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeExplosions"))
+  activeEffect.BeforeTryActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeTryActions"))
+  activeEffect.OnHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnHits"))
+  -- activeEffect.BeforeBeingHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeBeingHits"))
+  activeEffect.BeforeHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeHits"))
+  activeEffect.BeforeStatusAdds:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("EmberfrostBeforeStatusAdds"))
+  activeEffect.OnHitTiles:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnHitTiles"))
+
+  activeEffect.OnStatusAdds:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("EmberfrostOnStatusAdds"))
+  activeEffect.OnStatusRemoves:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("EmberfrostOnStatusRemoves"))
+  activeEffect.OnTurnStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnTurnStarts"))
+  activeEffect.OnWalks:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnWalks"))
+
+  -- BeforeHits
+  
+
+  -- activeEffect.OnAfterActions:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("EmberfrostOnAfterActions"))
+  
+  -- activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("MissionItemPickup", '{ Mission = '..missionNum..' }'))
+
+  -- activeEffect.OnDeath:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnDeath"))
 
 
   -- for SV.EmberFrost.

@@ -20,11 +20,6 @@ SV.EmberFrost = {
     -- List of enchantments to view
     Collection = {},
 
-      -- "EXIT_STRATEGY" = 0 -- Not seen
-      -- "EXIT_STRATEGY" = 1 -- Seen but not selected
-      -- "EXIT_STRATEGY" = 2 -- Selected but not won yet
-      -- "EXIT_STRATEGY" = 3 -- Won out
-
     -- Reroll counts for enchantments
     RerollCounts = {1, 1, 1},
   },
@@ -34,6 +29,9 @@ SV.EmberFrost = {
     Active = {},
     Data = {},
   },
+
+  -- The last floor we were at in Emberfrost
+  LastFloor = 0,
 
   GotEnchantmentFromCheckpoint = false
 }

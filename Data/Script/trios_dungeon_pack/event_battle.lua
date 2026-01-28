@@ -6,6 +6,8 @@ TotalDamageDealtType = luanet.import_type('PMDC.Dungeon.TotalDamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 
 TaintedDrainType = luanet.import_type('PMDC.Dungeon.TaintedDrain')
+beholder = require 'trios_dungeon_pack.beholder'
+
 -- pachirisu, dragonair, quilava, oshawott, zangoose, zigzagoon, ribombee
 -- 
 -- B3F Oshawott: Wow! Wishmaker Cave is so beautiful! Sometimes, I feel something stirring within me as I look at the crystals. 
@@ -670,4 +672,89 @@ end
 --   for _, effect in pairs(effects) do
 --     TASK:WaitTask(effect:Apply(owner, ownerChar, context))
 --   end
+-- end
+
+function BATTLE_SCRIPT.EmberfrostOnAfterActions(owner, ownerChar, context, args)
+  if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+    return
+  end
+  beholder.trigger("OnAfterActions", owner, ownerChar, context, args)
+end
+
+function BATTLE_SCRIPT.EmberfrostOnActions(owner, ownerChar, context, args)
+  if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+    return
+  end
+  
+  beholder.trigger("OnActions", owner, ownerChar, context, args)
+end
+
+
+function BATTLE_SCRIPT.EmberfrostOnBeforeActions(owner, ownerChar, context, args)
+  if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+    return
+  end
+  
+  beholder.trigger("OnBeforeActions", owner, ownerChar, context, args)
+end
+
+function BATTLE_SCRIPT.EmberfrostBeforeHits(owner, ownerChar, context, args)
+  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --   return
+  -- end
+  
+  beholder.trigger("BeforeHits", owner, ownerChar, context, args)
+end
+
+
+function BATTLE_SCRIPT.EmberfrostOnHits(owner, ownerChar, context, args)
+  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --   return
+  -- end
+  
+  -- print("EmberfrostOnHits triggered")
+  beholder.trigger("OnHits", owner, ownerChar, context, args)
+end
+
+
+function BATTLE_SCRIPT.EmberfrostBeforeExplosions(owner, ownerChar, context, args)
+  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --   return
+  -- end
+  
+  beholder.trigger("BeforeExplosions", owner, ownerChar, context, args)
+end
+
+function BATTLE_SCRIPT.EmberfrostBeforeTryActions(owner, ownerChar, context, args)
+  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --   return
+  -- end
+  
+  beholder.trigger("BeforeTryActions", owner, ownerChar, context, args)
+end
+
+
+function BATTLE_SCRIPT.EmberfrostOnHitTiles(owner, ownerChar, context, args)
+  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --   return
+  -- end
+  
+  beholder.trigger("OnHitTiles", owner, ownerChar, context, args)
+end
+
+
+-- function BATTLE_SCRIPT.EmberfrostBeforeBeingHits(owner, ownerChar, context, args)
+--   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+--   --   return
+--   -- end
+  
+--   beholder.trigger("OnBeforeBeingHits", owner, ownerChar, context, args)
+-- end
+
+-- function BATTLE_SCRIPT.EmberfrostBeforeHittings(owner, ownerChar, context, args)
+--   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+--   --   return
+--   -- end
+  
+--   beholder.trigger("OnBeforeHittings", owner, ownerChar, context, args)
 -- end

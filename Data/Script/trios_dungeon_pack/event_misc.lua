@@ -1,5 +1,6 @@
 require 'trios_dungeon_pack.helpers'
 
+beholder = require 'trios_dungeon_pack.beholder'
 function ITEM_SCRIPT.WishItemPickupEvent(owner, ownerChar, context, args)
   if not SV.Wishmaker.MadeWish then
     return
@@ -30,3 +31,7 @@ end
 
 
 
+function ITEM_SCRIPT.EmberfrostOnPickups(owner, ownerChar, context, args)
+  print("EmberfrostOnPickups triggered")
+  beholder.trigger("OnPickups", owner, ownerChar, context, args)
+end

@@ -3,6 +3,8 @@ require 'trios_dungeon_pack.emberfrost.enchantments'
 require 'trios_dungeon_pack.wish_table.wish_table'
 require 'trios_dungeon_pack.helpers'
 
+beholder = require 'trios_dungeon_pack.beholder'
+
 StackStateType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
 CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
@@ -791,6 +793,72 @@ function SINGLE_CHAR_SCRIPT.PandorasItems(owner, ownerChar, context, args)
     end
 end
 
+function SINGLE_CHAR_SCRIPT.EmberfrostOnDeath(owner, ownerChar, context, args)
+    print("DEATH TRIGGERED")
+    beholder.trigger("OnDeath", owner, ownerChar, context, args)
+end
+
+function SINGLE_CHAR_SCRIPT.LogQuests(owner, ownerChar, context, args)
+
+    if context.User ~= nil then
+        return
+    end
+
+    local selected = QuestRegistry:GetSelected()
+
+    _DUNGEON:LogMsg("Quests:")
+    for _, quest in pairs(selected) do
+        _DUNGEON:LogMsg(string.format("%s (%s)", quest:getDescription(), M_HELPERS.MakeColoredText(tostring(quest.reward), PMDColor.Cyan) .. " " ..  PMDSpecialCharacters.Money))
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStart(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+    print("MAP START TRIGGERED")
+    beholder.trigger("OnMapStart", owner, ownerChar, context, args)
+    SV.EmberFrost.LastFloor = _ZONE.CurrentMapID.ID
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnMapTurnEnds(owner, ownerChar, context, args)
+    print("MAP TURN ENDS TRIGGERED")
+    beholder.trigger("OnMapTurnEnds", owner, ownerChar, context, args)
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnEnds(owner, ownerChar, context, args)
+
+    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+        return
+    end
+
+    print("TURN ENDS TRIGGERED")
+    beholder.trigger("OnTurnEnds", owner, ownerChar, context, args)
+end
+
+
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnStarts(owner, ownerChar, context, args)
+
+    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+        return
+    end
+
+    print("TURN STARTS")
+    beholder.trigger("OnTurnStarts", owner, ownerChar, context, args)
+end
+
+
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnWalks(owner, ownerChar, context, args)
+
+    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+        return
+    end
+
+    print("ON WALKS")
+    beholder.trigger("OnWalks", owner, ownerChar, context, args)
+end
 
 function SINGLE_CHAR_SCRIPT.SupplyDrop(owner, ownerChar, context, args)
 
@@ -802,7 +870,7 @@ function SINGLE_CHAR_SCRIPT.SupplyDrop(owner, ownerChar, context, args)
     end
 
      
-    local data = GetEnchantmentData(enchant_id)
+    local data = EnchantmentRegistry:GetData(enchant_id)
 
     if not data["can_receive_supply_drop"] then
         return
@@ -856,7 +924,7 @@ function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
         end
         local team_name = _DATA.Save.ActiveTeam.Name
         GAME:AddToPlayerMoney(total_money)
-        local data = GetEnchantmentData(enchant_id)
+        local data = EnchantmentRegistry:GetData(enchant_id)
         data["money_earned"] = data["money_earned"] + total_money
         SOUND:PlayBattleSE("DUN_Money")
         _DUNGEON:LogMsg(
@@ -880,14 +948,10 @@ function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
 
     print("BUBBLE EVENT TRIGGERED")
     local enchantment_id = args.EnchantmentID
-    local data = GetEnchantmentData(enchantment_id)
-
-    local money_earned = data["money_earned"]
+    local data = EnchantmentRegistry:GetData(enchantment_id)
     -- local money_lost = data["money_lost"]
     local pop_chance = data["pop_chance"]
-
-    
-    local enchantment = GetEnchantmentFromRegistry(enchantment_id)
+    local enchantment = EnchantmentRegistry:Get(enchantment_id)
     local interest = enchantment.interest
     local pop_increase = enchantment.pop_increase
     local loss = enchantment.loss

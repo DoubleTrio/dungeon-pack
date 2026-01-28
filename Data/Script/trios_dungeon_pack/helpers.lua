@@ -32,6 +32,7 @@ function ResetEmberfrost()
       Active = {},
       Data = {},
     },
+    LastFloor = 0,
     GotEnchantmentFromCheckpoint = false
   }
 
@@ -87,8 +88,37 @@ PMDColor = {
   SkyBlue = "#8098F8",      -- Y
   Lavender = "#8888F8",      -- Z
 }
+
+PMDSpecialCharacters = {
+  Heart = STRINGS:Format("\\u2661"),
+  MusicNote = STRINGS:Format("\\u266A"),
+
+  Check = STRINGS:Format("\\uE10A"),
+  Cross = STRINGS:Format("\\uE10B"),
+  Star = STRINGS:Format("\\uE10C"),
+  StarHalf = STRINGS:Format("\\uE10D"),
+
+  Mail = STRINGS:Format("\\uE10E"),
+  MailOpen = STRINGS:Format("\\uE10F"),
+
+  Calculator = STRINGS:Format("\\uE110"),
+  Pencil = STRINGS:Format("\\uE111"),
+
+  Scribble = STRINGS:Format("\\uE023"),
+  Money = STRINGS:Format("\\uE024"),
+  SpeechBubble = STRINGS:Format("\\uE040"),
+}
 M_HELPERS = {
 
+
+  map = function (tbl, f)
+    local t = {}
+    for k,v in ipairs(tbl) do
+        t[k] = f(v)
+    end
+    return t
+  end,
+  
   MakeColoredText = function(text, color)
     return "[color=" .. color .. "]" .. text .. "[color]"
   end,
@@ -539,6 +569,7 @@ M_HELPERS = {
           Active = {},
           Data = {},
         },
+        LastFloor = 0,
         GotEnchantmentFromCheckpoint = false
       }
 

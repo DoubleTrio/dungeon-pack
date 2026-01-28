@@ -163,35 +163,42 @@ end
 
 local function CleanUpEmberFrostDepths()
 
-	-- Clear 
+	require 'trios_dungeon_pack.beholder'
+	beholder.stopObservingAll()
+
 	SV.EmberFrost.Enchantments.Selected = {}
-
-	local player_count = GAME:GetPlayerPartyCount()
-
-	for i = 0, player_count - 1, 1 do 
-    local player = GAME:GetPlayerPartyMember(i)
-		local tbl = LTBL(player)
-		tbl.TeamID = nil
+	SV.EmberFrost.Enchantments.Data = {}
+	for k, v in pairs(QuestRegistry._registry) do
+    v:cleanup()
   end
+  
 
-	local assemblyCount = GAME:GetPlayerAssemblyCount()
+	-- local player_count = GAME:GetPlayerPartyCount()
 
-	for i = assemblyCount - 1, assemblyCount - 4, -1 do
+	-- for i = 0, player_count - 1, 1 do 
+  --   local player = GAME:GetPlayerPartyMember(i)
+	-- 	local tbl = LTBL(player)
+	-- 	tbl.TeamID = nil
+  -- end
 
-		if (i < 0) then
-			break
-		end
+	-- local assemblyCount = GAME:GetPlayerAssemblyCount()
 
-		local member = GAME:GetPlayerAssemblyMember(i)
+	-- for i = assemblyCount - 1, assemblyCount - 4, -1 do
 
-		local tbl = LTBL(member)
+	-- 	if (i < 0) then
+	-- 		break
+	-- 	end
 
-		if (tbl.TeamID ~= nil) then
-			 GAME:AddPlayerTeam(member)
-			 GAME:RemovePlayerAssembly(i)
-			 tbl.TeamID = nil
-		end
-	end
+	-- 	local member = GAME:GetPlayerAssemblyMember(i)
+
+	-- 	local tbl = LTBL(member)
+
+	-- 	if (tbl.TeamID ~= nil) then
+	-- 		 GAME:AddPlayerTeam(member)
+	-- 		 GAME:RemovePlayerAssembly(i)
+	-- 		 tbl.TeamID = nil
+	-- 	end
+	-- end
 
 	-- SV.SavedInventories["emberfrost_depths_primary"] = nil
 	-- SV.SavedInventories["emberfrost_depths_secondary"] = nil

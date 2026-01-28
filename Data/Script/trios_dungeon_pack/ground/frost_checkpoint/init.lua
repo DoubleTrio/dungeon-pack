@@ -59,7 +59,20 @@ function frost_checkpoint.Init(map)
   COMMON.RespawnAllies()
   -- COMMON.RespawnAllies(true)
   GROUND:AddMapStatus("snow")
-  SOUND:PlayBGM("Obsidian Fieldlands 2.ogg", true)
+
+  local music = "The Wind is Blowing at Cavi Cape.ogg"
+
+  local random = math.random(1,100)
+  if random >= 80 then
+    music = "Obsidian Fieldlands 2.ogg"
+  elseif random >= 60 then
+    music = "Vast Poni Canyon.ogg"
+  elseif random >= 40 then
+    music = "Rock Slide Canyon.ogg"
+  elseif random >= 20 then
+    music = "Resolution Gorge.ogg"
+  end
+  SOUND:PlayBGM(music, true)
 
   
   local active_enchants = EnchantmentRegistry:GetSelected()
