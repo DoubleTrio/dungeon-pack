@@ -674,11 +674,11 @@ end
 --   end
 -- end
 
-function BATTLE_SCRIPT.EmberfrostOnAfterActions(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.EmberfrostAfterActions(owner, ownerChar, context, args)
   if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
     return
   end
-  beholder.trigger("OnAfterActions", owner, ownerChar, context, args)
+  beholder.trigger("AfterActions", owner, ownerChar, context, args)
 end
 
 function BATTLE_SCRIPT.EmberfrostOnActions(owner, ownerChar, context, args)
@@ -690,12 +690,12 @@ function BATTLE_SCRIPT.EmberfrostOnActions(owner, ownerChar, context, args)
 end
 
 
-function BATTLE_SCRIPT.EmberfrostOnBeforeActions(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.EmberfrostBeforeActions(owner, ownerChar, context, args)
   if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
     return
   end
   
-  beholder.trigger("OnBeforeActions", owner, ownerChar, context, args)
+  beholder.trigger("BeforeActions", owner, ownerChar, context, args)
 end
 
 function BATTLE_SCRIPT.EmberfrostBeforeHits(owner, ownerChar, context, args)
