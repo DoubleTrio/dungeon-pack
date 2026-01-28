@@ -812,12 +812,12 @@ function SINGLE_CHAR_SCRIPT.LogQuests(owner, ownerChar, context, args)
     end
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStart(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStarts(owner, ownerChar, context, args)
     if context.User ~= nil then
         return
     end
     print("MAP START TRIGGERED")
-    beholder.trigger("OnMapStart", owner, ownerChar, context, args)
+    beholder.trigger("OnMapStarts", owner, ownerChar, context, args)
     SV.EmberFrost.LastFloor = _ZONE.CurrentMapID.ID
 end
 
@@ -897,9 +897,6 @@ function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
         return
     end
 
-     _DATA.Save.TeamMode = true
-    print(tostring(    _DATA.Save.TeamMode) .. "aaaa")
-    _DATA.Save.TeamMode = true
     local min_seed = args.MinimumSeeds
     local amt_per_seed = args.MoneyPerSeed
     local enchant_id = args.EnchantmentID
@@ -940,13 +937,39 @@ function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
 end
 
 
+function SINGLE_CHAR_SCRIPT.Minimalist(owner, ownerChar, context, args)
+
+    if context.User ~= nil then
+        return
+    end
+
+    local enchant_id = args.EnchantmentID
+    local slot_amt = args.AmountPerSlot
+    local data = EnchantmentRegistry:GetData(enchant_id)
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+    local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
+
+    local available_slots = max_inv_slots - inv_count
+
+    local total_money = available_slots * slot_amt
+    data["money_earned"] = data["money_earned"] + total_money
+    GAME:AddToPlayerMoney(total_money)
+    SOUND:PlayBattleSE("DUN_Money")
+    _DUNGEON:LogMsg(
+        string.format(
+            "Gained %s from Minimalist!", 
+            M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+        )
+    )
+
+    
+end
 function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
 
     if context.User ~= _DUNGEON.ActiveTeam.Leader then
         return
     end
 
-    print("BUBBLE EVENT TRIGGERED")
     local enchantment_id = args.EnchantmentID
     local data = EnchantmentRegistry:GetData(enchantment_id)
     -- local money_lost = data["money_lost"]

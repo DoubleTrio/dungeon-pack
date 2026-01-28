@@ -101,7 +101,7 @@ function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue
   end
 
   activeEffect.OnDeaths:Add(6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnDeath"))
-  activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnMapStart"))
+  activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnMapStarts"))
   activeEffect.OnMapTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnMapTurnEnds"))
   activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnTurnEnds"))
   activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("EmberfrostOnPickups"))

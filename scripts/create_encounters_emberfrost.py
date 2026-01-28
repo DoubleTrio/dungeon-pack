@@ -8,7 +8,106 @@ LONER = 3
 
 roles_arr = ["Normal", "Support", "Leader", "Loner"]
 
-# ice
+
+# eevee, crobat, burmy, wormadam, golem, snorlax, parasect, raichu, infernape (personal one), golduck, combee, vespiquen, scizor, heracross, aipom, ambipom, shellos, gastrodon, blissey, togepi, togetic, togekiss, machamp 
+# bidoof, starly, shinx, drifloon, kirketo, stantler, geodude, chimca, lopunny, munchlax, scyther, ponyta, rapiddash, metamod, eevee
+# ice, floatzel
+
+
+# PikachuPikachu
+# RaichuRaichu
+# ZubatZubat
+# GolbatGolbat
+# ParasParas
+# ParasectParasect
+# PsyduckPsyduck
+# GolduckGolduck
+# AbraAbra
+# KadabraKadabra
+# AlakazamAlakazam
+# MachopMachop
+# MachokeMachoke
+# GeodudeGeodude
+# GravelerGraveler
+# GolemGolem
+# PonytaPonyta
+# RapidashRapidash
+# HaunterHaunter
+# GengarGengar
+# OnixOnix
+# LickitungLickitung
+# ChanseyChansey
+# Mr. MimeMr. Mime
+# ScytherScyther
+# MagikarpMagikarp
+# GyaradosGyarados
+# EeveeEevee
+# SnorlaxSnorlax
+# CrobatCrobat
+# PichuPichu
+# AipomAipom
+# UnownUnown
+# SteelixSteelix
+# QwilfishQwilfish
+# HeracrossHeracross
+# SneaselSneasel
+# UrsaringUrsaring
+# StantlerStantler
+# BlisseyBlissey
+# WurmpleWurmple
+# SilcoonSilcoon
+# BeautiflyBeautifly
+# CascoonCascoon
+# DustoxDustox
+# SphealSpheal
+# SealeoSealeo
+# ChimcharChimchar
+# MonfernoMonferno
+# InfernapeInfernape
+# StarlyStarly
+# StaraviaStaravia
+# StaraptorStaraptor
+# BidoofBidoof
+# BibarelBibarel
+# KricketotKricketot
+# KricketuneKricketune
+# ShinxShinx
+# LuxioLuxio
+# LuxrayLuxray
+# BurmyBurmy
+# WormadamWormadam
+# MothimMothim
+# CombeeCombee
+# VespiquenVespiquen
+# BuizelBuizel
+# FloatzelFloatzel
+# CherubiCherubi
+# CherrimCherrim
+# ShellosShellos
+# GastrodonGastrodon
+# DrifloonDrifloon
+# DrifblimDrifblim
+# BunearyBuneary
+# LopunnyLopunny
+# Mime Jr.Mime Jr.
+# HappinyHappiny
+# ChatotChatot
+# MunchlaxMunchlax
+# ToxicroakToxicroak
+# WeavileWeavile
+# LickilickyLickilicky
+# TogekissTogekiss
+# LeafeonLeafeon
+# MespritMesprit
+# ShayminShaymin
+# ZoruaZorua
+# ZoroarkZoroark
+# LandorusLandorus
+# SylveonSylveon
+# WyrdeerWyrdeer
+# KleavorKleavor
+
+
 # spheal,
 # vulpix, ninetiles
  

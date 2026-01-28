@@ -26,6 +26,17 @@ UnrecruitableType = luanet.import_type('PMDC.LevelGen.MobSpawnUnrecruitable')
 
 RedirectionType = luanet.import_type('PMDC.Dungeon.Redirected')
 
+
+
+function FanfareText(text, sound)
+  local sound = sound or "Fanfare/Item"
+  SOUND:PlayFanfare(sound)
+  UI:SetCenter(true)
+  UI:WaitShowDialogue(text)
+  UI:SetCenter(false)
+end
+
+
 function GetFloorSpawns(config)
   local possible = {}
   local seen_species = {}
@@ -416,7 +427,6 @@ TreadingThrough = EnchantmentRegistry:Register({
   rarity = 1,
 
   apply = function(self)
-    -- TODO: Add to other inventory
     local items = { {
       Item = "emberfrost_allterrain_gear",
       Amount = 1
@@ -1343,6 +1353,7 @@ PandorasItems = EnchantmentRegistry:Register({
   end
 })
 
+
 SupplyDrop = EnchantmentRegistry:Register({
   amount = 1,
   name = "Supply Drop",
@@ -2252,35 +2263,49 @@ ExitStrategy = EnchantmentRegistry:Register({
 
 -- })
 --
+
 -- Minimalist - The less items in intentory, the more damage
 -- Dazzled- Choose a team member. For each equipment, lower the accuracy of the target
 -- RunAndGun - Projectiles deal more damage if your team has a speed boost, depends on it
+-- Spawn NPCs, which will give you rewards
 -- Fitness - Each food item grants more hunger points, boosts to yourself
 -- For 10 enemies fainted with an ammo,
 -- Precision - Choose a team member. That team member. Moves that have less than 80% accuracy cannot miss. Moves with accuracy will miss more often
 -- BluePrint - Select a team member. Gain tms. Select a tm, gain two randoms ones. Gain a recall box.
-
--- Minimalist - Your team gains a famage boost. When you pick up an item, that boost disappears.
--- Minimalist - Gain money based on how few items you have in your inventory at the end of each floor.
---
+-- From now to the next checkpoint, spawn buried treasueres
+-- Start of each floor, gain 1 PP in each move slot
+-- Spawn more apricrons
+-- Spawn more seeds
+-- Randomly explode the enemies 
+-- Orb Whisperer - Gain a random orb at the start of each floor (if there's room)
+-- Gain a random equipment at the start of each floor (if there's room)
 -- All your party members gain the stat boost of the highest party member
 -- Lots of Equipment: Select 3 equipment from a pool of 5 random ones.
+-- Have a 50% chance to an item 
+-- More buried treasures spawn
 -- Allies Type Squad - If you recruit all types, gain a huge reward (includes assembly).
+-- Trap Tripper Specialist - For every unique trap triggered on that floor, gain money
+-- Shops, vaults, and  are more likely to show up
 -- Monotype - If all your team members are the same type, gain a damage boost (Requires 2+ members).
 -- ???
--- Win Out -
+-- All In - Lost all your inventory items and (only offered past floor 15)
 -- Gain 3 Invisibioty orbs
--- Raining Gold - Gain 200 each floor
+-- Make It Rain - At the start of each floor, money or other valuables fall from the sky
+-- Regular attacks can destroy walls at the cost of 1 hunger
+-- The Orb - Each orb usage increases your team's damage
 -- Gain 2 random allies from the previous floors. Gain an assembly box. They have gummi boosts with random equioment attatched
--- RPG Gold - Your team has %50 chance to gain 50 p from an enemies.
+-- RPG Gold - Your team has 25% chance to gain 50 p from an enemies.
 -- Every third attack is a critical hit.
--- Your team gains a ciritcal chance boost
+-- Your team gains a critical chance boost
 -- Your team does slighty more damage for super-effective moves.
 -- Your team takes slightly more damage for not very effective moves.
 -- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
 -- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
 -- Team Building - Select a between apricrons and 2 amber tears and a friend bow
--- Gummi Overload - Gain 5 random gummies. Each gummy grants +1 max hunger.
+-- Gummi Overload - Gain a random gummi at the start of each floor (if there's room)
+-- Negligible Risk?: - Gain 20,000 P. Your team has a tiny chance to be inflicted with a random negative status at the end of the their turn
+-- 
+-- Gain 5 random gummies. Each gummy grants +1 max hunger.
 -- Gain a random gummi at the start of each floor.
 -- Death Defying/ Second Wind - Gain a death amulet. If that member would faint, 50% chance to survive with 1 HP instead. When at 1 HP, gain a speed boost.
 -- Quick Reflexes - Choose a team member. That member has a chance to dodge physical attacks.
@@ -2288,13 +2313,11 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- Restart Mission - Lose all items in your inventory.
 -- Each of your team member loses 2 levels. When the next checkpoint is reached, gain 5 levels for each team member.
 -- Killing Blow - Choose a team member. Explode area around enemy when defeated
--- Execute - Choose a team member. That member will deal defeat any enemies below 20% HP.
+-- Execute - Choose a team member. That member will defeat any enemies below 20% HP.
 -- I C - Gain an X-ray specs. Your team can see invisible traps.
 -- Harmony Scarf - Gain a harmony scarf.
 -- Huddle - Defense
 -- Safety Net / Emergency Fund - Gain 1,000 P when a team member faints. Gain a reviver seed
--- Emergency Fund
--- Moral Support / Support from Beyond - Gain a damage boost for each tea m member alive in the assembly
 -- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
 -- Tempo - Select a team member. That member gains a permanent stat boost for every 10
 -- After each member defeats 20 enemies, your team gains a damage boost.
@@ -2307,6 +2330,7 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- Choose a character. Super-effective moves deal less damage
 -- Bargainer: Half off from shop. I don’t know why, but I feel like giving everything to you half off now
 -- Affluent: Calculate the cost of inventory. Do damage based on total. Easier to recruit monsters.
+-- Material Investment - Earn interest 5% based on the cost of your inventory at the start of each floor.
 -- Ranged: Select a team member. That member gets +1 tange.
 -- Underdogs: Your team does more damage when lower leveled than the enemy
 -- Immunity: Choose a team member. That member is immune to negative status effects.
@@ -2323,29 +2347,27 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- Self-Improvment - Gain 1 nectors, 1 ability capsule, 1 recall box, 1 joy seed, 1 citrus 1 protein
 -- LotsOfStats
 -- Life Orb - Gain a life-orb
--- Life-Steal - Select a character
+-- Vampiric - Select a character, that character heals for a portion of damage dealt.
 -- When you pick up gold - Gain a random state boost.
 -- Drain Terrain - Fill gaps - Moves can fill gaps
 -- Mission Impossible
 -- Limit to only 1 boost except for speed.
 -- 25% Spawn a slow tile
--- OneTrick - Choose a team member. That member is locked into
+-- OneTrick - Choose a team member. That member is permenatly locked into 1 skill for the rest of the dungeon. Deal double damage
 -- StandGround - Standing in spot leaves a post which gains an attack boost
 -- Leader
 -- Trick Shot - Arc projectiles do more damage
 -- Vitamins Gummmies -
--- Minimalist - The less items in intentory, the more damage
+-- Minimalist - The less items in inventory, the more damage
 -- Power of 3s - For every 3 of the same item in inventory, gain a boost
--- Mileage - For every 100 tiles moved, gain a small boost
+-- Mileage - For every 300 tiles walked, gain a small boost to speed
 -- Gain a random vitamin fo
 -- Life-Steal+
 -- Revival Blessing - Gain a reviver orb.
 -- Insurance - Whenever a team member faints, gain 1000 P
 -- 3-1 Special - Gain
 -- Ranged+: Select a team member. That member gets +1 tange.
-
--- Tank
--- -- Marksmen: Choose a team member. That member’s projectiles deal more damage. Mark the target. That target will take additonal damage
+-- Marksmen: Choose a team member. That member’s projectiles deal more damage. Mark the target. That target will take additonal damage
 -- {
 -- "Key": {
 -- "str": [
@@ -2369,6 +2391,43 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- "$type": "PMDC.Dungeon.DamageFormulaEvent, PMDC"
 -- }
 -- }
+
+
+Minimalist = EnchantmentRegistry:Register({
+  amount = 50,
+  name = "Minimalist",
+  id = "MINIMALIST",
+  getDescription = function(self)
+    return string.format(
+      "At the start of each floor, gain %s for each available item slot in your inventory",
+      M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local data = EnchantmentRegistry:GetData(self)
+    local money_earned = data["money_earned"] or 0
+
+    return { "Total Earned: " ..
+      M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan) }
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    -- Should occur before the quests are logged
+    active_effect.OnMapStarts:Add(5,
+      RogueEssence.Dungeon.SingleCharScriptEvent("Minimalist", Serpent.line({
+        AmountPerSlot = self.amount,
+        EnchantmentID = self.id
+      })))
+  end,
+
+  apply = function(self)
+    local data = EnchantmentRegistry:GetData(self)
+    data["money_earned"] = 0
+    FanfareText(string.format("You will gain %s for each available item slot in your inventory at the start of each floor!",
+      M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan)))
+  end
+})
 
 function AssignCharacterEnchantment(chara, enchantment_id)
   local tbl = LTBL(chara)
@@ -2511,37 +2570,6 @@ function SelectItemFromList(prompt, items)
   return ret
 end
 
-
-
-
-
-
-
-require 'trios_dungeon_pack.beholder'
-
-OrbStateType = luanet.import_type('PMDC.Dungeon.OrbState')
-BerryStateType = luanet.import_type('PMDC.Dungeon.BerryState')
-EdibleStateType = luanet.import_type('PMDC.Dungeon.EdibleState')
-GummiStateType = luanet.import_type('PMDC.Dungeon.GummiState')
-DrinkStateType = luanet.import_type('PMDC.Dungeon.DrinkState')
-WandStateType = luanet.import_type('PMDC.Dungeon.WandState')
-
-AmmoStateType = luanet.import_type('PMDC.Dungeon.AmmoState')
-UtilityStateType = luanet.import_type('PMDC.Dungeon.UtilityState')
-HeldStateType = luanet.import_type('PMDC.Dungeon.HeldState')
-EquipStateType = luanet.import_type('PMDC.Dungeon.EquipState')
-EvoStateType = luanet.import_type('PMDC.Dungeon.EvoState')
-SeedStateType = luanet.import_type('PMDC.Dungeon.SeedState')
-
-MachineStateType = luanet.import_type('PMDC.Dungeon.MachineState')
-RecruitStateType = luanet.import_type('PMDC.Dungeon.RecruitState')
-CurerStateType = luanet.import_type('PMDC.Dungeon.CurerState')
-FoodStateType = luanet.import_type('PMDC.Dungeon.FoodState')
-HerbStateType = luanet.import_type('PMDC.Dungeon.HerbState')
-UnrecruitableType = luanet.import_type('PMDC.LevelGen.MobSpawnUnrecruitable')
-
-RedirectionType = luanet.import_type('PMDC.Dungeon.Redirected')
-
 local function get_item_from_context(context)
   local index = context.UsageSlot
   local item
@@ -2651,6 +2679,7 @@ QuestMaster = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
+    -- print("QuestMaster OnMapStarts Triggered")
     local quests = QuestRegistry:GetRandom(self.task_amount, 1)[1]
 
     SV.EmberFrost.Quests.Active = M_HELPERS.map(quests, function(q)
@@ -2666,7 +2695,7 @@ QuestMaster = EnchantmentRegistry:Register({
       quest:set_active_effects(active_effect)
       print(quest.id .. " set active effects.")
     end
-    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("LogQuests"))
+    active_effect.OnMapStarts:Add(6, RogueEssence.Dungeon.SingleCharScriptEvent("LogQuests"))
   end,
 
   apply = function(self)
@@ -2751,7 +2780,7 @@ local function CreateBountyQuest(config)
       local on_death_id
       local on_map_start_id
 
-      on_map_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+      on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
         local possible_spawns = GetFloorSpawns()
         local rand_spawn = possible_spawns[_DATA.Save.Rand:Next(#possible_spawns) + 1]
         local data = QuestRegistry:GetData(self)
@@ -3069,8 +3098,7 @@ local function CreateTimedDefeatQuest(config)
       local turns_elapsed = data["turns_elapsed"] or 0
       return { 
         "",
-        "Turns: " .. turns_elapsed .. "/" .. tostring(self.turns),
-        "Enemies: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount)
+        "Enemies: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount) .. " | Turns: " .. math.min(turns_elapsed, self.turns) .. "/" .. tostring(self.turns)
       }
     end
   }
