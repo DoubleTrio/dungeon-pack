@@ -36,7 +36,7 @@ function EnchantTools:OnAddMenu(menu)
   local function add_enchants_choice(target_label, y_offset)
     local choice = RogueEssence.Menu.MenuTextChoice(
       "Enchants",
-      function() _MENU:AddMenu(EnchantmentListMainMenu:new(menu.Bounds.Width + menu.Bounds.X + 2, y_offset).menu, true) end,
+      function() _MENU:AddMenu(EnchantmentListMainMenu:new(menu.Bounds.Width + menu.Bounds.X, y_offset).menu, true) end,
       true,
       Color.White
     )
@@ -68,7 +68,6 @@ end
 function EnchantTools:Subscribe(med)
     med:Subscribe("EnchantTools", EngineServiceEvents.LoadSavedData,     function() self.OnSaveLoad(self) end )
     med:Subscribe("EnchantTools", EngineServiceEvents.AddMenu,           function(_, args) self.OnAddMenu(self, args[0]) end )
-    med:Subscribe("EnchantTools", EngineServiceEvents.DungeonFloorExit,  function(dungeonloc, result) self.OnDungeonFloorEnd(self, dungeonloc, result) end )
     med:Subscribe("EnchantTools", EngineServiceEvents.UpgradeSave,       function(_) self.OnUpgrade(self) end )
 end
 

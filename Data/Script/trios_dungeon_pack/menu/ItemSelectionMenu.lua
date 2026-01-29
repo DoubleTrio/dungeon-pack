@@ -8,7 +8,7 @@ function ItemSelectionMenu:initialize(title, item_list, confirm_action, refuse_a
 
   self.itemList = item_list
 
-  self.menuWidth = menu_width or 122
+  self.menuWidth = menu_width or 142
   self.label = label or "TEAM_ITEM_SELECTION_MENU_LUA"
   self.currentIndex = 1
 
@@ -56,7 +56,9 @@ function ItemSelectionMenu:generate_options()
       local color = Color.White
       local text_name = RogueEssence.Menu.MenuText(item_name, RogueElements.Loc(2, 1), color)
       local option = RogueEssence.Menu.MenuElementChoice(function() self:choose(i) end, true, text_name)
-      table.insert(options, option)
+      if item_name ~= nil then
+        table.insert(options, option)
+      end
   end
   return options
 end

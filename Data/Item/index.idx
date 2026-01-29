@@ -124,6 +124,48 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 10
+},
+"tm_toxic": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Toxic",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_confide": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Confide",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
 }
 }
 }

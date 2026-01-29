@@ -195,7 +195,7 @@ function EnchantmentListMainMenu:initialize(x, y)
     self.static = EnchantmentListMainMenu.static
 
     self.optionsList = self:generate_options()
-    self.menu = RogueEssence.Menu.ScriptableSingleStripMenu(x - 1, y, self.static.width, self.optionsList, 0, function() _GAME:SE("Menu/Cancel"); _MENU:RemoveMenu() end)
+    self.menu = RogueEssence.Menu.ScriptableSingleStripMenu(x, y, self.static.width, self.optionsList, 0, function() _GAME:SE("Menu/Cancel"); _MENU:RemoveMenu() end)
 end
 
 function EnchantmentListMainMenu:generate_options()

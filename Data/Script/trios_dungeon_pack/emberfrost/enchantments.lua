@@ -26,8 +26,6 @@ UnrecruitableType = luanet.import_type('PMDC.LevelGen.MobSpawnUnrecruitable')
 
 RedirectionType = luanet.import_type('PMDC.Dungeon.Redirected')
 
-
-
 function FanfareText(text, sound)
   local sound = sound or "Fanfare/Item"
   SOUND:PlayFanfare(sound)
@@ -35,7 +33,6 @@ function FanfareText(text, sound)
   UI:WaitShowDialogue(text)
   UI:SetCenter(false)
 end
-
 
 function GetFloorSpawns(config)
   local possible = {}
@@ -334,7 +331,6 @@ function PrepareNextEnchantment()
 end
 
 function FindCharacterWithEnchantment(enchant_id)
-
   if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
     for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
       local tbl = LTBL(member)
@@ -619,9 +615,110 @@ PrimalMemory = EnchantmentRegistry:Register({
   end,
   apply = function(self)
     local selected_char = AssignEnchantmentToCharacter(self)
-    SetMovesRelearnable(selected_char, true, false)
+    SetMovesRelearnable(selected_char, true, false, false)
     local items = {}
     for i = 1, self.amount do
+      table.insert(items, {
+        Item = "machine_recall_box",
+        Amount = 1
+      })
+    end
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
+
+
+Blueprint = EnchantmentRegistry:Register({
+  name = "Blueprint",
+  id = "BLUEPRINT",
+  tm_amount = 2,
+  recall_amount = 1,
+  total_choices = 5,
+  getDescription = function(self)
+    local recall_box = M_HELPERS.GetItemName("machine_recall_box")
+    return string.format("Select a team member. Gain %s random TMs that member learns and then select another one (TMs will be randomized if not possible). Gain a %s",
+      M_HELPERS.MakeColoredText(self.tm_amount, PMDColor.Cyan),
+      recall_box
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local char = FindCharacterWithEnchantment(self.id)
+    local char_name = char and char:GetDisplayName(true) or nil
+    if char_name then
+      return { "Assigned to: " .. char_name }
+    end
+    return {}
+  end,
+  apply = function(self)
+    local selected_char = AssignEnchantmentToCharacter(self, false)
+    local possible_skills = GetMemberSkills(selected_char, false, false, true)
+    local seen = {}
+    local tm_items = {}
+
+    -- First, add TMs from possible_skills
+    for i = 1, math.min(self.tm_amount, #possible_skills) do
+      local rand_skill = GetRandomUnique(possible_skills, 1, seen)[1]
+      seen[rand_skill] = true
+      table.insert(tm_items, {
+        Item = "tm_" .. rand_skill,
+        Amount = 1
+      })
+    end
+
+    -- If we need more TMs, get from TMs pool
+    local remaining = self.tm_amount - #tm_items
+    if remaining > 0 then
+      local additional_tms = GetRandomUnique(TMS, remaining, seen)
+      for _, tm in ipairs(additional_tms) do
+        seen[tm] = true
+        table.insert(tm_items, {
+          Item = tm,
+          Amount = 1
+        })
+      end
+    end
+
+    M_HELPERS.GiveInventoryItemsToPlayer(tm_items)
+
+    -- Select 5 TMs for the choice menu (prioritize possible_skills, then add from TMs pool)
+    local choice_pool = {}
+    local choice_seen = {}
+
+    -- Add up to 5 from possible_skills first
+    for i = 1, math.min(self.total_choices, #possible_skills) do
+      local rand_skill = GetRandomUnique(possible_skills, 1, choice_seen)[1]
+      choice_seen[rand_skill] = true
+      table.insert(choice_pool, {
+        Item = "tm_" .. rand_skill,
+        Amount = 1
+      })
+    end
+
+    -- Fill remaining slots from TMs pool
+    local remaining_choices = 5 - #choice_pool
+    if remaining_choices > 0 then
+      local additional_choices = GetRandomUnique(TMS, remaining_choices, choice_seen)
+      for _, tm in ipairs(additional_choices) do
+        table.insert(choice_pool, {
+          Item = tm,
+          Amount = 1
+        })
+      end
+    end
+
+    local result = SelectItemFromList(
+      string.format("Choose %s", M_HELPERS.MakeColoredText("1", PMDColor.Cyan)),
+      choice_pool
+    )
+
+    GAME:WaitFrames(20)
+    M_HELPERS.GiveInventoryItemsToPlayer({ result })
+
+    local items = {}
+
+    for i = 1, self.recall_amount do
       table.insert(items, {
         Item = "machine_recall_box",
         Amount = 1
@@ -654,7 +751,7 @@ EliteTutoring = EnchantmentRegistry:Register({
   apply = function(self)
     local selected_char = AssignEnchantmentToCharacter(self)
 
-    SetMovesRelearnable(selected_char, false, true)
+    SetMovesRelearnable(selected_char, false, true, false)
 
     local items = {}
 
@@ -683,36 +780,94 @@ end
 -- function SetEggMovesRelearnable(member)
 
 -- end
+function GetMemberSkills(member, include_egg_moves, include_tutor_moves, include_teach_skills)
+  local skills = {}
 
-function SetMovesRelearnable(member, include_egg_moves, include_tutor_moves)
-  local playerMonId = member.BaseForm
 
-  while playerMonId ~= nil do
-    local mon = _DATA:GetMonster(playerMonId.Species)
-    local form = mon.Forms[playerMonId.Form]
-
-    if include_egg_moves then
-      for move_idx = 0, form.SharedSkills.Count - 1, 1 do
-        local move = form.SharedSkills[move_idx].Skill
-        -- local already_learned = member:HasBaseSkill(move)
-        member.Relearnables[move] = true
-      end
-    end
-
-    if include_tutor_moves then
-      for move_idx = 0, form.SecretSkills.Count - 1, 1 do
-        local move = form.SecretSkills[move_idx].Skill
-        -- local already_learned = member:HasBaseSkill(move)
-        member.Relearnables[move] = true
-      end
-    end
-    if mon.PromoteFrom ~= "" then
-      playerMonId = RogueEssence.Dungeon.MonsterID(mon.PromoteFrom, form.PromoteForm, "normal", Gender.Genderless)
-    else
-      playerMonId = nil
+  if include_egg_moves then
+    for skill in luanet.each(member.SharedSkills) do
+      table.insert(skills, skill.Skill)
     end
   end
+
+  if include_tutor_moves then
+    for skill in luanet.each(member.SecretSkills) do
+      table.insert(skills, skill.Skill)
+    end
+  end
+
+
+  if include_teach_skills then
+    for skill in luanet.each(member.TeachSkills) do
+      table.insert(skills, skill.Skill)
+    end
+  end
+
+  return skills
 end
+
+function GetMemberSkills(member, include_egg_moves, include_tutor_moves, include_teach_skills)
+  
+  local base_form = member.BaseForm
+  local mon = _DATA:GetMonster(base_form.Species)
+  local form = mon.Forms[base_form.Form]
+
+  local skills = {}
+  local seen = {} -- Track unique skills
+
+  if include_egg_moves then
+    for skill in luanet.each(form.SharedSkills) do
+      if not seen[skill.Skill] then
+        table.insert(skills, skill.Skill)
+        seen[skill.Skill] = true
+      end
+    end
+  end
+
+  if include_tutor_moves then
+    for skill in luanet.each(form.SecretSkills) do
+      if not seen[skill.Skill] then
+        table.insert(skills, skill.Skill)
+        seen[skill.Skill] = true
+      end
+    end
+  end
+
+
+  if include_teach_skills then
+    for skill in luanet.each(form.TeachSkills) do
+      if not seen[skill.Skill] then
+        table.insert(skills, skill.Skill)
+        seen[skill.Skill] = true
+      end
+    end
+  end
+
+
+  return skills
+end
+-- local already_learned = member:HasBaseSkill(move)
+-- if mon.PromoteFrom ~= "" then
+--   playerMonId = RogueEssence.Dungeon.MonsterID(mon.PromoteFrom, form.PromoteForm, "normal", Gender.Genderless)
+-- else
+--   playerMonId = nil
+-- end
+-- end
+
+function SetMovesRelearnable(member, include_egg_moves, include_tutor_moves, include_teach_skills)
+  local skills = GetMemberSkills(member, include_egg_moves, include_tutor_moves, include_teach_skills)
+  for _, skill in ipairs(skills) do
+    member.Relearnables[skill] = true
+  end
+end
+
+-- local already_learned = member:HasBaseSkill(move)
+-- if mon.PromoteFrom ~= "" then
+--   playerMonId = RogueEssence.Dungeon.MonsterID(mon.PromoteFrom, form.PromoteForm, "normal", Gender.Genderless)
+-- else
+--   playerMonId = nil
+-- end
+-- end
 
 -- /// <summary>
 -- /// Moves learned by TM
@@ -1353,7 +1508,6 @@ PandorasItems = EnchantmentRegistry:Register({
   end
 })
 
-
 SupplyDrop = EnchantmentRegistry:Register({
   amount = 1,
   name = "Supply Drop",
@@ -1371,6 +1525,15 @@ SupplyDrop = EnchantmentRegistry:Register({
     data["can_receive_supply_drop"] = true
   end,
   set_active_effects = function(self, active_effect, zone_context)
+    -- local item_table = DUNGEON_WISH_TABLE[choice]
+    -- local arguments = {}
+    -- arguments.MinAmount = item_table.Min
+    -- arguments.MaxAmount = item_table.Max
+    -- arguments.Guaranteed = item_table.Guaranteed
+    -- arguments.Items = item_table.Items
+    -- arguments.UseUserCharLoc = true
+    -- SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+    -- GAME:WaitFrames(60)
     local essentials_table = {
       Min = 2,
       Max = 2,
@@ -1378,7 +1541,7 @@ SupplyDrop = EnchantmentRegistry:Register({
         Item = "food_apple",
         Amount = 1,
         Weight = 10
-      } }, { {
+      }, {
         Item = "berry_sitrus",
         Amount = 1,
         Weight = 10
@@ -1810,15 +1973,6 @@ SupplyDrop = EnchantmentRegistry:Register({
       } }
     }
 
-    -- local item_table = DUNGEON_WISH_TABLE[choice]
-    -- local arguments = {}
-    -- arguments.MinAmount = item_table.Min
-    -- arguments.MaxAmount = item_table.Max
-    -- arguments.Guaranteed = item_table.Guaranteed
-    -- arguments.Items = item_table.Items
-    -- arguments.UseUserCharLoc = true
-    -- SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-    -- GAME:WaitFrames(60)
     active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("SupplyDrop", Serpent.line({
       DropTable = essentials_table,
       EnchantmentID = self.id
@@ -2264,8 +2418,7 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- })
 --
 
--- Minimalist - The less items in intentory, the more damage
--- Dazzled- Choose a team member. For each equipment, lower the accuracy of the target
+-- Dazzled - Choose a team member. For each equipment, lower the accuracy of the target
 -- RunAndGun - Projectiles deal more damage if your team has a speed boost, depends on it
 -- Spawn NPCs, which will give you rewards
 -- Fitness - Each food item grants more hunger points, boosts to yourself
@@ -2276,12 +2429,13 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- Start of each floor, gain 1 PP in each move slot
 -- Spawn more apricrons
 -- Spawn more seeds
--- Randomly explode the enemies 
+-- Checkpoint shop costs will be reduced by 20%
+-- Randomly explode the enemies
 -- Orb Whisperer - Gain a random orb at the start of each floor (if there's room)
 -- Gain a random equipment at the start of each floor (if there's room)
 -- All your party members gain the stat boost of the highest party member
 -- Lots of Equipment: Select 3 equipment from a pool of 5 random ones.
--- Have a 50% chance to an item 
+-- Have a 50% chance to an item
 -- More buried treasures spawn
 -- Allies Type Squad - If you recruit all types, gain a huge reward (includes assembly).
 -- Trap Tripper Specialist - For every unique trap triggered on that floor, gain money
@@ -2304,7 +2458,6 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- Team Building - Select a between apricrons and 2 amber tears and a friend bow
 -- Gummi Overload - Gain a random gummi at the start of each floor (if there's room)
 -- Negligible Risk?: - Gain 20,000 P. Your team has a tiny chance to be inflicted with a random negative status at the end of the their turn
--- 
 -- Gain 5 random gummies. Each gummy grants +1 max hunger.
 -- Gain a random gummi at the start of each floor.
 -- Death Defying/ Second Wind - Gain a death amulet. If that member would faint, 50% chance to survive with 1 HP instead. When at 1 HP, gain a speed boost.
@@ -2317,6 +2470,9 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- I C - Gain an X-ray specs. Your team can see invisible traps.
 -- Harmony Scarf - Gain a harmony scarf.
 -- Huddle - Defense
+-- Protoganist - The leader will take less damage from enemies and deal more damage
+-- Lucky Day - Shopkeepers will gurantee to spawn once
+-- Alchemy - At the start of each floor, any evo stones or plates has a small chance to convert to a gold nugget
 -- Safety Net / Emergency Fund - Gain 1,000 P when a team member faints. Gain a reviver seed
 -- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
 -- Tempo - Select a team member. That member gains a permanent stat boost for every 10
@@ -2347,7 +2503,7 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- Self-Improvment - Gain 1 nectors, 1 ability capsule, 1 recall box, 1 joy seed, 1 citrus 1 protein
 -- LotsOfStats
 -- Life Orb - Gain a life-orb
--- Vampiric - Select a character, that character heals for a portion of damage dealt.
+-- Vampiric - Select a character, that character heals for 30% of damage dealt.
 -- When you pick up gold - Gain a random state boost.
 -- Drain Terrain - Fill gaps - Moves can fill gaps
 -- Mission Impossible
@@ -2358,7 +2514,6 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- Leader
 -- Trick Shot - Arc projectiles do more damage
 -- Vitamins Gummmies -
--- Minimalist - The less items in inventory, the more damage
 -- Power of 3s - For every 3 of the same item in inventory, gain a boost
 -- Mileage - For every 300 tiles walked, gain a small boost to speed
 -- Gain a random vitamin fo
@@ -2392,14 +2547,12 @@ ExitStrategy = EnchantmentRegistry:Register({
 -- }
 -- }
 
-
 Minimalist = EnchantmentRegistry:Register({
   amount = 50,
   name = "Minimalist",
   id = "MINIMALIST",
   getDescription = function(self)
-    return string.format(
-      "At the start of each floor, gain %s for each available item slot in your inventory",
+    return string.format("At the start of each floor, gain %s for each available item slot in your inventory",
       M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
   end,
   offer_time = "beginning",
@@ -2409,22 +2562,22 @@ Minimalist = EnchantmentRegistry:Register({
     local money_earned = data["money_earned"] or 0
 
     return { "Total Earned: " ..
-      M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan) }
+    M_HELPERS.MakeColoredText(tostring(money_earned) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan) }
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
     -- Should occur before the quests are logged
-    active_effect.OnMapStarts:Add(5,
-      RogueEssence.Dungeon.SingleCharScriptEvent("Minimalist", Serpent.line({
-        AmountPerSlot = self.amount,
-        EnchantmentID = self.id
-      })))
+    active_effect.OnMapStarts:Add(5, RogueEssence.Dungeon.SingleCharScriptEvent("Minimalist", Serpent.line({
+      AmountPerSlot = self.amount,
+      EnchantmentID = self.id
+    })))
   end,
 
   apply = function(self)
     local data = EnchantmentRegistry:GetData(self)
     data["money_earned"] = 0
-    FanfareText(string.format("You will gain %s for each available item slot in your inventory at the start of each floor!",
+    FanfareText(string.format(
+      "You will gain %s for each available item slot in your inventory at the start of each floor!",
       M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan)))
   end
 })
@@ -2436,7 +2589,7 @@ function AssignCharacterEnchantment(chara, enchantment_id)
   tbl.Enchantments[enchantment_id] = true
 end
 
-function AssignEnchantmentToCharacter(enchant)
+function AssignEnchantmentToCharacter(enchant, show_message)
   local ret = {}
   local choose = function(chars)
     ret = chars
@@ -2452,12 +2605,20 @@ function AssignEnchantmentToCharacter(enchant)
   UI:WaitForChoice()
 
   local selected_char = ret[1]
+
+
   AssignCharacterEnchantment(selected_char, enchant.id)
-  UI:SetCenter(true)
-  SOUND:PlayFanfare("Fanfare/Item")
-  UI:WaitShowDialogue(string.format("%s got the %s enchantment!", selected_char:GetDisplayName(true),
-    M_HELPERS.MakeColoredText(enchant.name, PMDColor.Yellow)))
-  UI:SetCenter(false)
+  if show_message == nil then
+    show_message = true
+  end
+
+  if show_message then
+    UI:SetCenter(true)
+    SOUND:PlayFanfare("Fanfare/Item")
+    UI:WaitShowDialogue(string.format("%s got the %s enchantment!", selected_char:GetDisplayName(true),
+        M_HELPERS.MakeColoredText(enchant.name, PMDColor.Yellow)))
+    UI:SetCenter(false)
+  end
   return selected_char
 end
 
@@ -2500,7 +2661,8 @@ PLATES = { "held_blank_plate", "held_draco_plate", "held_dread_plate", "held_ear
   "held_mind_plate", "held_pixie_plate", "held_sky_plate", "held_splash_plate", "held_spooky_plate",
   "held_stone_plate", "held_toxic_plate", "held_zap_plate" }
 
-TMS = { "tm_acrobatics", "tm_aerial_ace", "tm_attract", "tm_avalanche", "tm_blizzard", "tm_brick_break", "tm_brine",
+TMS = { 
+  "tm_acrobatics", "tm_aerial_ace", "tm_attract", "tm_avalanche", "tm_blizzard", "tm_brick_break", "tm_brine",
   "tm_bulk_up", "tm_bulldoze", "tm_bullet_seed", "tm_calm_mind", "tm_captivate", "tm_charge_beam", "tm_cut",
   "tm_dark_pulse", "tm_dazzling_gleam", "tm_defog", "tm_dig", "tm_dive", "tm_double_team", "tm_dragon_claw",
   "tm_dragon_pulse", "tm_dragon_tail", "tm_drain_punch", "tm_dream_eater", "tm_earthquake", "tm_echoed_voice",
@@ -2518,7 +2680,12 @@ TMS = { "tm_acrobatics", "tm_aerial_ace", "tm_attract", "tm_avalanche", "tm_bliz
   "tm_substitute", "tm_sunny_day", "tm_surf", "tm_swagger", "tm_swords_dance", "tm_taunt", "tm_telekinesis",
   "tm_thief", "tm_thunder", "tm_thunder_wave", "tm_thunderbolt", "tm_torment", "tm_u_turn", "tm_venoshock",
   "tm_volt_switch", "tm_water_pulse", "tm_waterfall", "tm_whirlpool", "tm_wild_charge", "tm_will_o_wisp",
-  "tm_work_up", "tm_x_scissor" }
+  "tm_work_up", "tm_x_scissor",
+
+
+  -- s
+  "tm_toxic", "tm_confide"
+}
 
 print(GetTM("tm_acrobatics"))
 
@@ -2538,18 +2705,25 @@ function table.copy(obj, seen)
   return res
 end
 
-function GetRandomUnique(items, amount)
+function GetRandomUnique(items, amount, already_seen)
   local pool = {}
+  if already_seen == nil then
+    already_seen = {}
+  end
+
   for i = 1, #items do
-    pool[i] = items[i]
+    if not already_seen[items[i]] then
+      table.insert(pool, items[i])
+    end
   end
 
   local result = {}
   local count = math.min(amount, #pool)
 
   for i = 1, count do
-    local index = _DATA.Save.Rand:Next(#pool)
+    local index = _DATA.Save.Rand:Next(#pool) + 1
     table.insert(result, pool[index])
+    already_seen[pool[index]] = true
     table.remove(pool, index)
   end
 
@@ -2615,7 +2789,6 @@ QuestDefaults = {
   end,
   -- Called at the beginning of each floor
   cleanup = function(self)
-
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -2708,7 +2881,6 @@ QuestMaster = EnchantmentRegistry:Register({
   end
 })
 
-
 QuestDefaults = {
 
   can_apply = function()
@@ -2733,7 +2905,6 @@ QuestDefaults = {
   end,
   -- Called at the beginning of each floor
   cleanup = function(self)
-
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -2825,7 +2996,6 @@ QuestRegistry:Register(CreateBountyQuest({
   reward = 800
 }))
 
-
 QuestRegistry:Register({
   id = "LOW_PP",
   amount = 1,
@@ -2834,24 +3004,21 @@ QuestRegistry:Register({
 
   getDescription = function(self)
     local member_text = self.amount == 1 and "member" or "members"
-    return string.format(
-      "Let %s %s with all moves at %s PP or less",
-      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-      member_text,
-      M_HELPERS.MakeColoredText(tostring(self.pp), PMDColor.Cyan)
-    )
+    return string.format("Let %s %s with all moves at %s PP or less",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), member_text,
+      M_HELPERS.MakeColoredText(tostring(self.pp), PMDColor.Cyan))
   end,
-  
+
   set_active_effects = function(self, active_effect, zone_context)
     local data = QuestRegistry:GetData(self)
-    
+
     local on_turn_ends_id
     on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
       local members_with_low_pp = 0
-      
+
       for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
         local all_moves_low = true
-        
+
         for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
           local skill = member.BaseSkills[ii]
           if not skill.SkillNum ~= "" and skill.SkillNum ~= nil then
@@ -2862,12 +3029,12 @@ QuestRegistry:Register({
             end
           end
         end
-        
+
         if all_moves_low then
           members_with_low_pp = members_with_low_pp + 1
         end
       end
-      
+
       if members_with_low_pp >= self.amount then
         beholder.stopObserving(on_turn_ends_id)
         GAME:WaitFrames(30)
@@ -2875,18 +3042,13 @@ QuestRegistry:Register({
       end
     end)
   end,
-  
+
   getProgressTexts = function(self)
     local data = QuestRegistry:GetData(self)
     local status = data["completed"] and "Completed" or "Not Completed"
-    return {
-      "",
-      status
-    }
+    return { "", status }
   end
 })
-
-
 
 QuestRegistry:Register({
   id = "DEFEAT_ENEMY_WITH_PROJECTILE",
@@ -2906,16 +3068,15 @@ QuestRegistry:Register({
     after_actions_id = beholder.observe("AfterActions", function(owner, ownerChar, context, args)
       local team = context.User.MemberTeam
       -- if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe and team ~= _DUNGEON.ActiveTeam) then
-        if context.ActionType == RogueEssence.Dungeon.BattleActionType.Throw and team == _DUNGEON.ActiveTeam then
-          TotalKnockoutsTypes = luanet.import_type('PMDC.Dungeon.TotalKnockouts')
-          local knockouts = context:GetContextStateInt(luanet.ctype(TotalKnockoutsTypes), true, 0)
+      if context.ActionType == RogueEssence.Dungeon.BattleActionType.Throw and team == _DUNGEON.ActiveTeam then
+        TotalKnockoutsTypes = luanet.import_type('PMDC.Dungeon.TotalKnockouts')
+        local knockouts = context:GetContextStateInt(luanet.ctype(TotalKnockoutsTypes), true, 0)
 
-          if knockouts > 0 then
-            print("Defeated enemy with projectile!")
-            data["defeated_enemies"] = data["defeated_enemies"] + knockouts
-          end
-
+        if knockouts > 0 then
+          print("Defeated enemy with projectile!")
+          data["defeated_enemies"] = data["defeated_enemies"] + knockouts
         end
+      end
     end)
 
     on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
@@ -2927,8 +3088,6 @@ QuestRegistry:Register({
         self:complete_quest()
       end
     end)
-
-
   end,
 
   getProgressTexts = function(self)
@@ -2938,50 +3097,45 @@ QuestRegistry:Register({
   end
 })
 
-
 local function CreateProjectileQuest(config)
   return {
     id = config.id,
     amount = config.amount,
     reward = config.reward,
-    
+
     getDescription = config.getDescription or function(self)
       local plural = self.amount == 1 and "enemy" or "enemies"
-      return string.format(
-        "Hit %s %s with projectiles", 
-        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-        plural
-      )
+      return string.format("Hit %s %s with projectiles",
+        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), plural)
     end,
-    
+
     set_active_effects = function(self, active_effect, zone_context)
       local data = QuestRegistry:GetData(self)
       data["hits"] = 0
-      
 
       local on_hits_id
       local on_turn_ends_id
       on_hits_id = beholder.observe("OnHits", function(owner, ownerChar, context, args)
         local target_team = context.Target.MemberTeam
         local user_team = context.User.MemberTeam
-        
+
         if user_team == nil or user_team ~= _DUNGEON.ActiveTeam then
           return
         end
-        
+
         if target_team == nil or target_team == _DUNGEON.ActiveTeam then
           return
         end
-  
+
         if target_team.MapFaction ~= RogueEssence.Dungeon.Faction.Foe then
           return
         end
-        
+
         if context.ActionType == RogueEssence.Dungeon.BattleActionType.Throw then
           data["hits"] = data["hits"] + 1
         end
       end)
-      
+
       local on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
         if data["hits"] >= self.amount then
           beholder.stopObserving(on_hits_id)
@@ -2992,14 +3146,11 @@ local function CreateProjectileQuest(config)
         end
       end)
     end,
-    
+
     getProgressTexts = function(self)
       local data = QuestRegistry:GetData(self)
       local hits = data["hits"] or 0
-      return { 
-        "", 
-        "Progress: " .. math.min(hits, self.amount) .. "/" .. tostring(self.amount) 
-      }
+      return { "", "Progress: " .. math.min(hits, self.amount) .. "/" .. tostring(self.amount) }
     end
   }
 end
@@ -3028,48 +3179,45 @@ local function CreateTimedDefeatQuest(config)
     amount = config.amount,
     turns = config.turns,
     reward = config.reward,
-    
+
     getDescription = config.getDescription or function(self)
       local enemy_text = self.amount == 1 and "enemy" or "enemies"
       local turn_text = self.turns == 1 and "turn" or "turns"
-      return string.format(
-        "Defeat %s %s in %s %s", 
-        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-        enemy_text,
-        M_HELPERS.MakeColoredText(tostring(self.turns), PMDColor.Cyan),
-        turn_text
-      )
+      return string.format("Defeat %s %s in %s %s",
+        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), enemy_text,
+        M_HELPERS.MakeColoredText(tostring(self.turns), PMDColor.Cyan), turn_text)
     end,
-    
+
     set_active_effects = function(self, active_effect, zone_context)
       local data = QuestRegistry:GetData(self)
       data["defeated_enemies"] = 0
       data["turns_elapsed"] = 0
       data["timer_started"] = false
-      
+
       local on_death_id
       local on_map_turn_ends_id
       local on_turn_ends_id
-      
+
       on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
         local team = context.User.MemberTeam
-        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe and context.User.MemberTeam ~= _DUNGEON.ActiveTeam) then
+        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe and context.User.MemberTeam ~=
+              _DUNGEON.ActiveTeam) then
           data["defeated_enemies"] = data["defeated_enemies"] + 1
-          
+
           if not data["timer_started"] then
             data["timer_started"] = true
             data["turns_elapsed"] = 0
           end
-          
+
           print("Defeated enemies: " .. tostring(data["defeated_enemies"]) .. " / " .. tostring(self.amount))
         end
       end)
-      
+
       on_map_turn_ends_id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
         if data["timer_started"] then
           data["turns_elapsed"] = data["turns_elapsed"] + 1
           print("Turns elapsed: " .. tostring(data["turns_elapsed"]) .. " / " .. tostring(self.turns))
-          
+
           if data["turns_elapsed"] >= self.turns then
             data["defeated_enemies"] = 0
             data["turns_elapsed"] = 0
@@ -3077,7 +3225,7 @@ local function CreateTimedDefeatQuest(config)
           end
         end
       end)
-      
+
       on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
         if data["defeated_enemies"] >= self.amount then
           beholder.stopObserving(on_death_id)
@@ -3088,18 +3236,17 @@ local function CreateTimedDefeatQuest(config)
           self:complete_quest()
         end
       end)
-      
+
       print("Registered observers for " .. self.id)
     end,
-    
+
     getProgressTexts = function(self)
       local data = QuestRegistry:GetData(self)
       local defeated_enemies = data["defeated_enemies"] or 0
       local turns_elapsed = data["turns_elapsed"] or 0
-      return { 
-        "",
-        "Enemies: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount) .. " | Turns: " .. math.min(turns_elapsed, self.turns) .. "/" .. tostring(self.turns)
-      }
+      return { "",
+        "Enemies: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount) ..
+        " | Turns: " .. math.min(turns_elapsed, self.turns) .. "/" .. tostring(self.turns) }
     end
   }
 end
@@ -3130,18 +3277,13 @@ local function CreateEffectivenessQuest(config)
     id = config.id,
     amount = config.amount,
     reward = config.reward,
-    
+
     getDescription = config.getDescription or function(self)
       local action = config.is_dealing and "Deal" or "Take"
       local effectiveness = config.super_effective and "super effective" or "not super effective"
       local plural = self.amount == 1 and "time" or "times"
-      return string.format(
-        "%s a %s hit %s %s",
-        action,
-        effectiveness,
-        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-        plural
-      )
+      return string.format("%s a %s hit %s %s", action, effectiveness,
+        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), plural)
     end,
 
     set_active_effects = function(self, active_effect, zone_context)
@@ -3161,20 +3303,21 @@ local function CreateEffectivenessQuest(config)
         if context.ContextStates:Contains(redirection) then
           return
         end
-        
-        if context.ActionType == RogueEssence.Dungeon.BattleActionType.Trap or
-           context.ActionType == RogueEssence.Dungeon.BattleActionType.Item then
+
+        if context.ActionType == RogueEssence.Dungeon.BattleActionType.Trap or context.ActionType ==
+            RogueEssence.Dungeon.BattleActionType.Item then
           return
         end
 
-        if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and 
-           context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
+        if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
+            context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
           return
         end
 
-        local matchup = PMDC.Dungeon.PreTypeEvent.GetDualEffectiveness(context.User, context.Target, context.Data)
+        local matchup = PMDC.Dungeon.PreTypeEvent.GetDualEffectiveness(context.User, context.Target,
+          context.Data)
         matchup = matchup - PMDC.Dungeon.PreTypeEvent.NRM_2
-        
+
         -- Invert matchup for "not super effective" quests
         if not config.super_effective then
           matchup = matchup * -1
@@ -3200,10 +3343,7 @@ local function CreateEffectivenessQuest(config)
     getProgressTexts = function(self)
       local data = QuestRegistry:GetData(self)
       local hits = data["hits"] or 0
-      return {
-        "",
-        "Progress: " .. math.min(hits, self.amount) .. "/" .. tostring(self.amount) 
-      }
+      return { "", "Progress: " .. math.min(hits, self.amount) .. "/" .. tostring(self.amount) }
     end
   }
 end
@@ -3245,7 +3385,8 @@ QuestRegistry:Register({
   amount = 1,
   reward = 1000,
   getDescription = function(self)
-    return string.format("Have any member faint %s time", M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
+    return string.format("Have any member faint %s time",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -3275,8 +3416,6 @@ QuestRegistry:Register({
   end
 })
 
-
-
 QuestRegistry:Register({
   id = "SUPER_FULL",
   amount = 1,
@@ -3284,21 +3423,21 @@ QuestRegistry:Register({
   reward = 500,
 
   get_max_fullness = function(self)
-
     local max_fullness = 0
     for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
       if member.Fullness > max_fullness then
         max_fullness = member.Fullness
       end
     end
-    
+
     print("Max fullness is " .. tostring(max_fullness))
     return max_fullness
   end,
   getDescription = function(self)
-    return string.format("Have %s member be above %s hunger", M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), M_HELPERS.MakeColoredText(tostring(self.threshold), PMDColor.Cyan))
+    return string.format("Have %s member be above %s hunger",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(self.threshold), PMDColor.Cyan))
   end,
-  
 
   set_active_effects = function(self, active_effect, zone_context)
     local data = QuestRegistry:GetData(self)
@@ -3312,7 +3451,7 @@ QuestRegistry:Register({
       data["best_fullness"] = math.max(data["best_fullness"], max_fullness)
       if max_fullness > self.threshold then
         beholder.stopObserving(id)
-  
+
         GAME:WaitFrames(30)
         self:complete_quest()
       end
@@ -3320,7 +3459,7 @@ QuestRegistry:Register({
   end,
 
   getProgressTexts = function(self)
-    local data = QuestRegistry:GetData(self)  
+    local data = QuestRegistry:GetData(self)
     local best_fullness = data["best_fullness"]
     return { "", "Max Fullness: " .. best_fullness }
   end
@@ -3332,11 +3471,11 @@ local function CreateEmptyStomachQuest(config)
     amount = config.amount,
     threshold = config.threshold,
     reward = config.reward,
-    
+
     can_apply = function()
       return _DATA.Save.ActiveTeam.Players.Count == config.amount
     end,
-    
+
     get_min_fullness = function(self)
       local min_fullness = math.huge
       for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
@@ -3347,32 +3486,29 @@ local function CreateEmptyStomachQuest(config)
       print("Min fullness is " .. tostring(min_fullness))
       return min_fullness
     end,
-    
+
     getDescription = function(self)
       local member_text = self.amount == 1 and "member" or "members"
-      return string.format(
-        "Have all %s %s be below %s hunger", 
-        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-        member_text,
-        M_HELPERS.MakeColoredText(tostring(self.threshold), PMDColor.Cyan)
-      )
+      return string.format("Have all %s %s be below %s hunger",
+        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), member_text,
+        M_HELPERS.MakeColoredText(tostring(self.threshold), PMDColor.Cyan))
     end,
-    
+
     set_active_effects = function(self, active_effect, zone_context)
       local data = QuestRegistry:GetData(self)
-      
+
       local on_map_start_id
       local on_turn_end_id
-      
+
       on_map_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
         data["min_fullness"] = math.huge
       end)
-      
+
       on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
         print("Checking fullness for quest " .. self.id)
         local min_fullness = self:get_min_fullness()
         data["min_fullness"] = math.min(data["min_fullness"], min_fullness)
-        
+
         if min_fullness < self.threshold then
           beholder.stopObserving(on_map_start_id)
           beholder.stopObserving(on_turn_end_id)
@@ -3381,18 +3517,15 @@ local function CreateEmptyStomachQuest(config)
         end
       end)
     end,
-    
+
     getProgressTexts = function(self)
-      local data = QuestRegistry:GetData(self)  
+      local data = QuestRegistry:GetData(self)
       local min_fullness = data["min_fullness"]
       if min_fullness == math.huge then
         min_fullness = 100
       end
       local status = min_fullness < self.threshold and "Completed" or "Not Completed"
-      return {
-        "",
-        status
-      }
+      return { "", status }
     end
   }
 end
@@ -3425,18 +3558,17 @@ QuestRegistry:Register(CreateEmptyStomachQuest({
   reward = 500
 }))
 
-
 local function CreateLowHealthQuest(config)
   return {
     id = config.id,
     amount = config.amount,
     health_percent = config.health_percent,
     reward = config.reward,
-    
+
     can_apply = function()
       return _DATA.Save.ActiveTeam.Players.Count == config.amount
     end,
-    
+
     check_all_low_health = function(self)
       local threshold = self.health_percent / 100
       for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
@@ -3447,27 +3579,23 @@ local function CreateLowHealthQuest(config)
       end
       return true
     end,
-    
+
     getDescription = function(self)
       local member_text = self.amount == 1 and "member" or "members"
-      return string.format(
-        "Have all %s %s be at or below %s%% HP", 
-        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
-        member_text,
-        M_HELPERS.MakeColoredText(tostring(self.health_percent), PMDColor.Cyan)
-      )
+      return string.format("Have all %s %s be at or below %s%% HP",
+        M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), member_text,
+        M_HELPERS.MakeColoredText(tostring(self.health_percent), PMDColor.Cyan))
     end,
-    
+
     set_active_effects = function(self, active_effect, zone_context)
       local data = QuestRegistry:GetData(self)
-      
+
       local on_map_start_id
       local on_turn_end_id
-      
-    
+
       on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
         print("Checking HP for quest " .. self.id)
-        
+
         if self:check_all_low_health() then
           beholder.stopObserving(on_map_start_id)
           beholder.stopObserving(on_turn_end_id)
@@ -3476,14 +3604,11 @@ local function CreateLowHealthQuest(config)
         end
       end)
     end,
-    
+
     getProgressTexts = function(self)
-      local data = QuestRegistry:GetData(self)  
+      local data = QuestRegistry:GetData(self)
       local status = data["completed"] and "Completed" or "Not Completed"
-      return { 
-        "", 
-        status
-      }
+      return { "", status }
     end
   }
 end
@@ -3521,10 +3646,8 @@ QuestRegistry:Register({
   amount = 1000,
   reward = 500,
   getDescription = function(self)
-    return string.format(
-      "Stay on floor for %s turns",
-      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
-    )
+    return string.format("Stay on floor for %s turns",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -3532,28 +3655,22 @@ QuestRegistry:Register({
     data["turns"] = 0
 
     local id
-    id = beholder.observe("OnMapTurnEnds",
-      function(owner, ownerChar, context, args)
-
-        data["turns"] = data["turns"] + 1
-        print("Turns on floor: " .. tostring(data["turns"]) .. " / " .. tostring(self.amount))
-        if data["turns"] >= self.amount then
-          beholder.stopObserving(id)
-          data["turns"] = self.amount
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
+    id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
+      data["turns"] = data["turns"] + 1
+      print("Turns on floor: " .. tostring(data["turns"]) .. " / " .. tostring(self.amount))
+      if data["turns"] >= self.amount then
+        beholder.stopObserving(id)
+        data["turns"] = self.amount
+        GAME:WaitFrames(30)
+        self:complete_quest()
       end
-    )
+    end)
   end,
 
   getProgressTexts = function(self)
     local data = QuestRegistry:GetData(self)
     local turns = data["turns"]
-    return {
-      "",
-      "Progress: " .. math.min(turns, self.amount) .. "/" .. tostring(self.amount)
-    }
+    return { "", "Progress: " .. math.min(turns, self.amount) .. "/" .. tostring(self.amount) }
   end
 })
 
@@ -3682,7 +3799,6 @@ QuestRegistry:Register({
       if SV.EmberFrost.LastFloor <= self.capped_floor then
         return false
       end
-
 
       local possible_recruits = GetFloorSpawns({
         not_has_features = { UnrecruitableType }

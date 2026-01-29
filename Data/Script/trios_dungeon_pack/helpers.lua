@@ -145,6 +145,9 @@ M_HELPERS = {
       item_name = item:GetDisplayName()
     else
       local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(item_id)
+      if entry == nil then
+        return nil
+      end
       item_name = entry:GetIconName()
     end
 
