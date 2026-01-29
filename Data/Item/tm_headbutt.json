@@ -3,11 +3,11 @@
   "Object": {
     "$type": "RogueEssence.Data.ItemData, RogueEssence",
     "Name": {
-      "DefaultText": "TM Toxic",
+      "DefaultText": "TM Headbutt",
       "LocalTexts": {}
     },
     "Desc": {
-      "DefaultText": "Teaches the move Toxic to a Pokémon.",
+      "DefaultText": "Teaches the move Headbutt to a Pokémon.",
       "LocalTexts": {}
     },
     "Released": true,
@@ -23,13 +23,13 @@
     "ItemStates": [
       {
         "$type": "RogueEssence.Dungeon.ItemIDState, RogueEssence",
-        "ID": "toxic"
+        "ID": "headbutt"
       }
     ],
     "GroundUseActions": [
       {
         "$type": "RogueEssence.Ground.LearnItemEvent, RogueEssence",
-        "Skill": "toxic",
+        "Skill": "headbutt",
         "GroundUsageType": 6,
         "Selection": 0
       }

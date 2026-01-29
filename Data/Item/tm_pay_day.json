@@ -3,11 +3,11 @@
   "Object": {
     "$type": "RogueEssence.Data.ItemData, RogueEssence",
     "Name": {
-      "DefaultText": "TM Toxic",
+      "DefaultText": "TM Pay Day",
       "LocalTexts": {}
     },
     "Desc": {
-      "DefaultText": "Teaches the move Toxic to a Pokémon.",
+      "DefaultText": "Teaches the move Pay Day to a Pokémon.",
       "LocalTexts": {}
     },
     "Released": true,
@@ -23,13 +23,13 @@
     "ItemStates": [
       {
         "$type": "RogueEssence.Dungeon.ItemIDState, RogueEssence",
-        "ID": "toxic"
+        "ID": "pay_day"
       }
     ],
     "GroundUseActions": [
       {
         "$type": "RogueEssence.Ground.LearnItemEvent, RogueEssence",
-        "Skill": "toxic",
+        "Skill": "pay_day",
         "GroundUsageType": 6,
         "Selection": 0
       }

@@ -3,11 +3,11 @@
   "Object": {
     "$type": "RogueEssence.Data.ItemData, RogueEssence",
     "Name": {
-      "DefaultText": "TM Toxic",
+      "DefaultText": "TM Future Sight",
       "LocalTexts": {}
     },
     "Desc": {
-      "DefaultText": "Teaches the move Toxic to a Pokémon.",
+      "DefaultText": "Teaches the move Future Sight to a Pokémon.",
       "LocalTexts": {}
     },
     "Released": true,
@@ -23,13 +23,13 @@
     "ItemStates": [
       {
         "$type": "RogueEssence.Dungeon.ItemIDState, RogueEssence",
-        "ID": "toxic"
+        "ID": "future_sight"
       }
     ],
     "GroundUseActions": [
       {
         "$type": "RogueEssence.Ground.LearnItemEvent, RogueEssence",
-        "Skill": "toxic",
+        "Skill": "future_sight",
         "GroundUsageType": 6,
         "Selection": 0
       }

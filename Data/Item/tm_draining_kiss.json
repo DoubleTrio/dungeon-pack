@@ -3,11 +3,11 @@
   "Object": {
     "$type": "RogueEssence.Data.ItemData, RogueEssence",
     "Name": {
-      "DefaultText": "TM Toxic",
+      "DefaultText": "TM Draining Kiss",
       "LocalTexts": {}
     },
     "Desc": {
-      "DefaultText": "Teaches the move Toxic to a Pokémon.",
+      "DefaultText": "Teaches the move Draining Kiss to a Pokémon.",
       "LocalTexts": {}
     },
     "Released": true,
@@ -23,13 +23,13 @@
     "ItemStates": [
       {
         "$type": "RogueEssence.Dungeon.ItemIDState, RogueEssence",
-        "ID": "toxic"
+        "ID": "draining_kiss"
       }
     ],
     "GroundUseActions": [
       {
         "$type": "RogueEssence.Ground.LearnItemEvent, RogueEssence",
-        "Skill": "toxic",
+        "Skill": "draining_kiss",
         "GroundUsageType": 6,
         "Selection": 0
       }

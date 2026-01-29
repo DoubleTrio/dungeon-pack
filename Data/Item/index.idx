@@ -1,4 +1,4 @@
-﻿{
+{
 "Version": "0.8.11.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
@@ -161,6 +161,3135 @@
 "BagEffect": false,
 "Name": {
 "DefaultText": "TM Confide",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_acid_spray": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Acid Spray",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_agility": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Agility",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_air_cutter": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Air Cutter",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_air_slash": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Air Slash",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_ally_switch": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Ally Switch",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_amnesia": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Amnesia",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_assurance": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Assurance",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_aura_sphere": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Aura Sphere",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_aurora_veil": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Aurora Veil",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_baton_pass": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Baton Pass",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_beat_up": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Beat Up",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_blast_burn": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Blast Burn",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_blaze_kick": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Blaze Kick",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_body_press": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Body Press",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_body_slam": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Body Slam",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_bounce": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Bounce",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_brave_bird": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Brave Bird",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_breaking_swipe": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Breaking Swipe",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_brutal_swing": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Brutal Swing",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_bug_buzz": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Bug Buzz",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_charm": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Charm",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_chilling_water": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Chilling Water",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_close_combat": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Close Combat",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_confuse_ray": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Confuse Ray",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_cosmic_power": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Cosmic Power",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_cross_poison": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Cross Poison",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_crunch": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Crunch",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_darkest_lariat": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Darkest Lariat",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_disarming_voice": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Disarming Voice",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_draco_meteor": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Draco Meteor",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_dragon_dance": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Dragon Dance",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_draining_kiss": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Draining Kiss",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_drill_run": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Drill Run",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_earth_power": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Earth Power",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_eerie_impulse": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Eerie Impulse",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_electric_terrain": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Electric Terrain",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_electro_ball": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Electro Ball",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_electroweb": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Electroweb",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_encore": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Encore",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_fake_out": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Fake Out",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_fake_tears": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Fake Tears",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_fire_fang": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Fire Fang",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_fire_pledge": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Fire Pledge",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_fire_punch": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Fire Punch",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_fire_spin": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Fire Spin",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_flare_blitz": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Flare Blitz",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_focus_energy": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Focus Energy",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_foul_play": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Foul Play",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_frenzy_plant": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Frenzy Plant",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_future_sight": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Future Sight",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_grass_pledge": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Grass Pledge",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_grassy_terrain": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Grassy Terrain",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_guard_swap": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Guard Swap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_gunk_shot": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Gunk Shot",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_headbutt": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Headbutt",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_heat_crash": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Heat Crash",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_heat_wave": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Heat Wave",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_heavy_slam": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Heavy Slam",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_helping_hand": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Helping Hand",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_hex": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Hex",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_high_horsepower": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM High Horsepower",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_hurricane": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Hurricane",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_hydro_cannon": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Hydro Cannon",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_hydro_pump": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Hydro Pump",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_hyper_voice": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Hyper Voice",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_ice_fang": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Ice Fang",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_ice_punch": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Ice Punch",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_ice_spinner": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Ice Spinner",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_icicle_spear": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Icicle Spear",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_icy_wind": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Icy Wind",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_imprison": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Imprison",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_iron_defense": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Iron Defense",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_iron_head": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Iron Head",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_leaf_blade": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Leaf Blade",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_leaf_storm": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Leaf Storm",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_leech_life": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Leech Life",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_liquidation": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Liquidation",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_low_kick": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Low Kick",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_magic_room": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Magic Room",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_magical_leaf": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Magical Leaf",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_mega_kick": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Mega Kick",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_mega_punch": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Mega Punch",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_megahorn": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Megahorn",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_metal_claw": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Metal Claw",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_metronome": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Metronome",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_misty_terrain": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Misty Terrain",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_mud_shot": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Mud Shot",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_mud_slap": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Mud Slap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_muddy_water": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Muddy Water",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_mystical_fire": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Mystical Fire",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_nasty_plot": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Nasty Plot",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_night_shade": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Night Shade",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_outrage": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Outrage",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_pay_day": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Pay Day",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_phantom_force": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Phantom Force",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_pin_missile": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Pin Missile",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_play_rough": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Play Rough",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_poison_tail": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Poison Tail",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_pollen_puff": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Pollen Puff",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_pounce": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Pounce",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_power_gem": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Power Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_power_swap": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Power Swap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_power_whip": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Power Whip",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_psybeam": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Psybeam",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_psychic_fangs": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Psychic Fangs",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_psychic_terrain": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Psychic Terrain",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_psycho_cut": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Psycho Cut",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_razor_shell": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Razor Shell",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_revenge": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Revenge",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_reversal": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Reversal",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_rock_blast": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Rock Blast",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_sand_tomb": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Sand Tomb",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_scary_face": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Scary Face",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_screech": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Screech",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_seed_bomb": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Seed Bomb",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_self_destruct": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Self Destruct",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_skill_swap": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Skill Swap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_sleep_talk": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Sleep Talk",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_smart_strike": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Smart Strike",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_snore": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Snore",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_snowscape": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Snowscape",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_solar_beam": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Solar Beam",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_solar_blade": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Solar Blade",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_speed_swap": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Speed Swap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_spikes": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Spikes",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_stealth_rock": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Stealth Rock",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_steel_beam": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Steel Beam",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_stomping_tantrum": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Stomping Tantrum",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_stored_power": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Stored Power",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_superpower": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Superpower",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_swift": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Swift",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_tail_slap": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Tail Slap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_tailwind": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Tailwind",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_take_down": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Take Down",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_tera_blast": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Tera Blast",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_throat_chop": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Throat Chop",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_thunder_fang": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Thunder Fang",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_thunder_punch": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Thunder Punch",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_toxic_spikes": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Toxic Spikes",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_trailblaze": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Trailblaze",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_tri_attack": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Tri Attack",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_trick": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Trick",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_trick_room": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Trick Room",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_uproar": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Uproar",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_venom_drench": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Venom Drench",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_water_pledge": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Water Pledge",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_weather_ball": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Weather Ball",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_wonder_room": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Wonder Room",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 13
+},
+"tm_zen_headbutt": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 13,
+"UsageType": 6,
+"States": [
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.ItemIDState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "TM Zen Headbutt",
 "LocalTexts": {}
 },
 "Released": true,
