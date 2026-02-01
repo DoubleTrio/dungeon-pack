@@ -3047,12 +3047,6 @@ SwatTeam = EnchantmentRegistry:Register({
       TASK:WaitTask(target:AddStatusEffect(nil, status, true))
 
     end)
-
-    -- active_effect.OnMapStarts:Add(5,
-    --   RogueEssence.Dungeon.SingleCharScriptEvent("ApplyStatusIfTypeMatches", Serpent.line({
-    --     Types = { "bug" },
-    --     StatusID = "emberfrost_swat_team",
-    --   })))
   end,
 
   apply = function(self)
