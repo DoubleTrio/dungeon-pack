@@ -65,10 +65,10 @@ null
 "LevelCap": true,
 "KeepSkills": false,
 "TeamRestrict": true,
-"TeamSize": 1,
+"TeamSize": 4,
 "MoneyRestrict": true,
 "BagRestrict": 0,
-"KeepTreasure": false,
+"KeepTreasure": true,
 "BagSize": 24,
 "Rescues": 2,
 "CountedFloors": 66,
@@ -97,7 +97,9 @@ null
 16,
 17,
 18,
-19
+19,
+20,
+21
 ],
 [
 0,

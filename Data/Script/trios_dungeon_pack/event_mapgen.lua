@@ -107,7 +107,7 @@ function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue
   activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("EmberfrostOnPickups"))
   activeEffect.BeforeActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeActions"))
   activeEffect.AfterActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostAfterActions"))
-  activeEffect.OnActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnActions"))
+  activeEffect.OnActions:Add(6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnActions"))
   activeEffect.BeforeExplosions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeExplosions"))
   activeEffect.BeforeTryActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeTryActions"))
   activeEffect.OnHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnHits"))

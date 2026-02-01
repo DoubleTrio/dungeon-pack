@@ -1,0 +1,80 @@
+﻿{
+"Version": "0.8.11.0",
+"Object": {
+"$type": "RogueEssence.Data.AITactic, RogueEssence",
+"Name": {
+"DefaultText": "Retreater Item",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"ID": "retreater_item",
+"Assignable": false,
+"Plans": [
+{
+"$type": "PMDC.Dungeon.RetreaterPlan, PMDC",
+"Factor": 3,
+"IQ": 164,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
+},
+{
+"$type": "PMDC.Dungeon.AttackFoesPlan, PMDC",
+"AttackPattern": 2,
+"PositionPattern": 1,
+"IQ": 68,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 4,
+"AbandonRangeOnHit": true
+},
+{
+"$type": "PMDC.Dungeon.FollowLeaderPlan, PMDC",
+"IQ": 196,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
+},
+{
+"$type": "PMDC.Dungeon.FindItemPlan, PMDC",
+"IncludeMoney": false,
+"IQ": 4,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
+},
+{
+"$type": "PMDC.Dungeon.ExplorePlan, PMDC",
+"IQ": 196,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
+},
+{
+"$type": "PMDC.Dungeon.WaitPlan, PMDC",
+"IQ": 196,
+"RestrictedMobilityTypes": 0,
+"RestrictMobilityPassable": false,
+"AttackRange": 0,
+"StatusRange": 0,
+"SelfStatusRange": 0,
+"AbandonRangeOnHit": false
+}
+]
+}
+}

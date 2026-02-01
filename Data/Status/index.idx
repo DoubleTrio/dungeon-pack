@@ -163,6 +163,15 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_rationalize": {
+"Name": {
+"DefaultText": "Emberfrost Rationalize",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

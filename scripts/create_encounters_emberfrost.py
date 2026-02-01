@@ -374,6 +374,7 @@ if __name__ == "__main__":
         ('paras', 0, 'retreater', '', ['leech_seed', 'poison_powder'], 6, 7, 1, 5, SUPPORT, 10),
         ('burmy', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 6, 7, 1, 5, 0, 5),
         ('budew', 0, 'wander_normal', '', ['nature_power'], 5, 6, 1, 3, 0, 10),
+        ('eevee', 0, 'wander_normal', '', ['tickle', 'yawn', 'quick_attack'], 5, 6, 1, 5, 0, 10),
         
 
 
@@ -382,17 +383,129 @@ if __name__ == "__main__":
         ('buizel', 0, 'wander_normal', '', ['sonic_boom'], 8, 9, 2, 5, 0, 10),
 
         #4 
-        ('geodude', 0, 'patrol', '', ['rollout', 'tackle'], 9, 10, 3, 6, 0, 10),
+        ('geodude', 0, 'patrol', '', ['rollout', 'tackle'], 9, 10, 3, 5, 0, 10),
         ('cascoon', 0, 'wait_attack', '', ['bug_bite', 'string_shot'], 9, 10, 3, 5, 0, 5),
-        ('cyndaquil', 0, 'wander_normal', '', ['ember', 'smokescreen'], 9, 10, 3, 5, 0, 10),
+        ('cyndaquil', 0, 'wander_normal', '', ['ember', 'smokescreen'], 8, 9, 3, 5, 0, 10),
         ('oshawott', 0, 'wander_normal', '', ['water_gun', 'encore'], 9, 10, 3, 5, 0, 10),
-        ('rowlet', 0, 'wander_normal', '', ['leafage', 'duel_wingbeat'], 9, 10, 3, 5, 0, 10),
-        ('eevee', 0, 'wander_normal', '', ['tickle', 'yawn', 'quick_attack'], 9, 10, 3, 5, 0, 10),
+        ('rowlet', 0, 'wander_normal', '', ['leafage', 'dual_wingbeat'], 8, 9, 3, 5, 0, 10),
         ('pichu', 0, 'wander_normal', '', ['nuzzle', 'charm', 'fake_out'], 10, 11, 3, 5, SUPPORT, 10),
 
 
         #5
         ('onix', 0, 'slow_wander', '', ['block', 'iron_tail'], 11, 12, 4, 5, 0, 10),
+
+        #6
+        ('pancham', 0, 'wander_normal', 'mold_breaker', ['taunt', 'circle_throw'], 12, 13, 5, 7, 0, 10),
+        ('corsola', 0, 'wander_normal', 'natural_cure', ['aqua_ring', 'amnesia', 'icicle_spear'], 11, 12, 5, 7, SUPPORT, 10),
+        ('shellos', 0, 'wander_normal', 'storm_drain', ['mud_sport', 'water_pulse'], 12, 13, 5, 7, 0, 10),       
+        ('krabby', 0, 'wander_normal', '', ['bubble_beam', 'vice_grip'], 11, 12, 5, 7, 0, 10),
+        ('corphish', 0, 'retreater_item', '', ['knock_off', 'fling'], 11, 12, 5, 7, 0, 10),
+        ('staryu', 0, 'wander_normal', 'illuminate', ['confuse_ray', 'light_screen', 'water_gun'], 12, 13, 5, 8, SUPPORT, 10),
+
+        #7
+        ('rattata', 1, 'retreater', 'hustle', ['screech', 'sucker_punch'], 11, 12, 6, 8, 0, 10),
+        ('diglett', 1, 'wander_normal', 'tangling_hair', ['bulldoze', 'sucker_punch'], 12, 13, 6, 8, 0, 10),
+        ('meowth', 1, 'thief', '', ['pay_day', 'thief'], 13, 14, 6, 8, 0, 10),
+        ('vulpix', 1, 'wander_normal', 'snow_cloak', ['nasty_plot', 'dazzling_gleam'], 11, 12, 6, 7, 0, 10),
+        ('geodude', 1, 'wander_normal', 'galvanize', ['rock_climb'], 11, 12, 6, 8, 0, 10),
+        ('grimer', 1, 'retreater_item', 'stench', ['haze', 'belch'], 11, 12, 6, 8, 0, 10),
+
+
+        #8
+        ('dratini', 0, 'wander_smart', 'shed_skin', ['twister', 'dragon_rage'], 14, 15, 7, 9, 0, 10),
+        ('wimpod', 0, 'fleeing', '', ["sand_attack", "struggle_bug"], 15, 16, 7, 8, 0, 10),
+        ('dwebble', 0, 'retreater', 'sturdy', ['rock_tomb', 'bug_bite'], 13, 14, 7, 9, 0, 10),
+        ('anorith', 0, 'wander_normal', 'swift_swim', ['stealth_rock', 'ancient_power'], 12, 13, 7, 9, 0, 10),
+        ('wailmer', 0, 'wander_normal', 'pressure', ['rest', 'amnesia', 'growl'], 14, 15, 7, 9, SUPPORT, 10),
+        ('mareanie', 0, 'wander_normal', '', ['wide_guard', 'toxic_spikes', 'pounce'], 15, 16, 7, 10, SUPPORT, 10),
+    
+
+        #9
+        ('quaxwell', 0, 'wander_normal', 'torrent', ['water_pledge', 'detect'], 16, 17, 8, 10, SUPPORT, 6),
+        ('scyther', 0, 'wander_normal', 'technician', ['agility', 'false_swipe'], 17, 18, 8, 10, LONER, 10),
+        ('sandygast', 0, 'wander_normal', 'water_compaction', ['destiny_bond', 'stockpile', 'swallow', 'spit_up'], 19, 20, 8, 10, NORMAL, 10),
+        ('tatsugiri', 0, 'wander_smart', '', ['dragon_dance', 'icy_wind'], 15, 16, 8, 10, SUPPORT, 10),
+        ('krabby', 0, 'wander_normal', 'hyper_cutter', ['bubble_beam', 'vice_grip', 'knock_off'], 17, 18, 8, 10, 0, 10),
+
+        #10
+        ('crocinaw', 0, 'wander_normal', 'sheer_force', ['ice_fang', 'psychic_fangs'], 18, 19, 9, 10, LONER, 10),
+        ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'disable'], 19, 20, 9, 10, SUPPORT, 10),
+
+
+
+
+        # Rocks begin to fall from the dungeon!
+        # https://theworldofpokemon.com/habitats/habitat_8.html
+        # https://theworldofpokemon.com/HabitatPage.html
+        # raticate
+        # https://pokemondb.net/pokedex/raticate/moves/7
+        #11
+
+        ('geodude', 0, 'patrol', '', ['rollout', 'tackle', 'rock_slide'], 18, 19, 9, 10, NORMAL, 10),
+        ('druddigon', 0, 'wander_smart', '', ['glare', 'scale_shot'], 19, 20, 9, 10, LONER, 10),
+        ('graveler', 0, 'wander_normal', 'sheer_force', ['magnitude', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
+        ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'disable'], 19, 20, 9, 10, SUPPORT, 10),
+        ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
+        ('machoke', 0, 'wander_normal', 'guts', ['cross_chop', 'rock_tomb'], 19, 20, 9, 10, LONER, 10),
+
+
+
+
+
+        # ('dwe', 1, 'fleeing', '', ["sand_attack", "struggle_bug"], 11, 12, 4, 5, LONER, 10),
+
+        # ('marowak', 1, 'retreater', 'rock_head', ['bone_club', 'bone_rush'], 11, 12, 4, 5, LONER, 10),
+        # ('raichu', 1, 'wander_normal', 'surge_surfer', ['spark', 'quick_attack'], 11, 12, 4, 5, 0, 10),
+        # ('exeggcute', 1, 'wander_normal', 'harvest', ['leech_seed', 'stun_spore'], 11, 12, 4, 5, SUPPORT, 10),
+        # ('marill', 1, 'wander_normal', 'thick_fat', ['bubble_beam', 'aqua_jet'], 11, 12, 4, 5, 0, 10),
+        # ('wimpod', 1, 'retreater', '', ['aqua_jet', 'bug_bite'], 11, 12, 4, 5, LONER, 10),
+        # ('sneasel', 1, 'wander_normal', 'inner_focus', ['ice_shard', 'feint_attack'], 11, 12, 4, 5, LONER, 10),
+        # ('krokorok', 1, 'wander_smart', '', ['sand_attack', 'bite'], 11, 12, 4, 5, LONER, 10),
+
+        # ('tirtouga', 1, 'wander_smart', '', ['water_gun', 'rock_throw'], 11, 12, 4, 5, LONER, 10),
+
+
+        # ('sandyshrew', 1, 'retreater',
+        # Have lots of berries in this area
+
+        # ('oricorio', 0, 'wander_normal', '', ['feather_dance', 'quiver_dance', 'attract', 'teeter_dance'], 4, 5, 0, 3, SUPPORT, 10),
+
+        # Have lots of iron balls in this area
+
+
+
+
+
+        # mons standing on this target get range
+
+        # Relicanth
+        # corphish
+        # Anorith
+        # oricorio
+        # alolan rat
+        # alolan diglett
+        # alolan geodude
+        # alolan vulpix
+        # alolan meowth
+        # alolan grimer
+        # eggxecute 
+        # alolan eggxecute (sleeping)
+        # alolan marow
+        # alolan raichu (sleeping)
+        # mareanie
+        # wimpod
+        # snease
+        # pancham
+        # krok (tototile evo)
+        # Dwebble
+        # quaxly
+        # tirtouga
+        # gimme
+        # dratini
+   
+        # Tirtouga
+        # tatsugiri
+
 
         #2
         # ('skitty', 0, 'wander_normal', 'wonder_skin', ['fake_out', 'copycat'], 10, 11, 0, 4, 0, 10),
@@ -442,37 +555,6 @@ if __name__ == "__main__":
 
         # Clamperl
 
-        # Relicanth
-        # corphish
-        # Anorith
-        # oricorio
-        # alolan rat
-        # alolan diglett
-        # alolan geodude
-        # alolan vulpix
-        # alolan meowth
-        # alolan grimer
-        # eggxecute 
-        # alolan marow
-        # alolan raichu (sleeping)
-        # mareanie
-        # wimpod
-        # snealsel
-        # pancham
-        # krok (tototile evo)
-        # Dwebble
-        # quaxly
-        # tirtouga
-        # gimme
-        # dratini
-        # sandyghast
-        # Tirtouga
-        # tatsugiri
-        # Mareanie
-        # Binacle
-        # Crabrawler
-        # Wailmer
-        # dhelmise
 
         # Luvdisc
 
@@ -513,6 +595,10 @@ if __name__ == "__main__":
                         "StartFromID": 0,
                         "AddNumerator": 4,
                         "AddDenominator": 3
+                    },
+                    {
+                        "$type": "PMDC.LevelGen.MobSpawnLuaTable, PMDC",
+                        "LuaTable": "{ EmberfrostRun = true }"
                     }
                 ]
             },
@@ -605,6 +691,10 @@ if __name__ == "__main__":
                         },
                         {
                             "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+                        },
+                        {
+                            "$type": "PMDC.LevelGen.MobSpawnLuaTable, PMDC",
+                            "LuaTable": "{ EmberfrostRun = true }"
                         }
                     ]
                 },

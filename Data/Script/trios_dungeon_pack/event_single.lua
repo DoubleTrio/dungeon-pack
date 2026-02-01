@@ -735,6 +735,7 @@ function SINGLE_CHAR_SCRIPT.AddStatusToLeader(owner, ownerChar, context, args)
         return
     end
 	local status = RogueEssence.Dungeon.StatusEffect(args.StatusID)
+    status:LoadFromData()
     TASK:WaitTask(_DUNGEON.ActiveTeam.Leader:AddStatusEffect(nil, status, true))
 end
 
@@ -936,7 +937,6 @@ function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
     end
 end
 
-
 function SINGLE_CHAR_SCRIPT.Minimalist(owner, ownerChar, context, args)
 
     if context.User ~= nil then
@@ -961,9 +961,129 @@ function SINGLE_CHAR_SCRIPT.Minimalist(owner, ownerChar, context, args)
             M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
         )
     )
-
-    
 end
+
+
+function SINGLE_CHAR_SCRIPT.GiveRandomForEachType(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+
+    local type = args.Type
+    local item_tbl = args.ItemTable
+    local include_assembly = args.IncludeAssembly or false
+    local sound = args.Sound or "DUN_Me_First_2"
+    local anim_name = args.AnimName or "Circle_Green_Out"
+
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+    local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
+    local available_slots = max_inv_slots - inv_count
+    local members = GetCharacterOfMatchingType(type, include_assembly)
+    local count = #members
+
+    local give_count = math.min(count, available_slots)
+
+    -- Sound\      SOUND:PlayBattleSE("DUN_Ice_Shard")
+    -- TODO: Play a visual effect for each party member that matches that type
+
+    --     },
+    -- "Value": {
+    -- "$type": "PMDC.Dungeon.BerryAoEEvent, PMDC",
+    -- "Msg": {
+    -- "Key": "MSG_HARVEST"
+    -- },
+    -- "Emitter": {
+    -- "$type": "RogueEssence.Content.RepeatEmitter, RogueEssence",
+    -- "LocHeight": 0,
+    -- "Anim": {
+    -- "$type": "RogueEssence.Content.StaticAnim, RogueEssence",
+    -- "Anim": {
+    -- "AnimIndex": "Circle_Green_Out",
+    -- "FrameTime": 2,
+    -- "StartFrame": -1,
+    -- "EndFrame": -1,
+    -- "AnimDir": -1,
+    -- "Alpha": 255,
+    -- "AnimFlip": 0
+    -- },
+    -- "TotalTime": 0,
+    -- "Cycles": 1,
+    -- "FrameOffset": 0
+    -- },
+    -- "Bursts": 3,
+    -- "BurstTime": 8,
+    -- "Layer": 2,
+    -- "Offset": 0
+    -- },
+    -- "Sound": "DUN_Me_First_2"
+    -- }
+    -- }
+    if give_count == 0 then
+        return
+    end
+
+
+
+    for i, member in ipairs(members) do
+
+        SOUND:PlayBattleSE(sound)
+
+        -- public AnimData(string animIndex, int frameTime, int startFrame, int endFrame)
+
+        local anim_data = RogueEssence.Content.AnimData(anim_name, 2, -1, -1, 255)
+
+        -- AnimData(string animIndex, int frameTime, int startFrame, int endFrame, byte alpha, Dir8 dir)
+        -- public ParticleAnim(AnimData anim, int cycles, int totalTime)
+        local emitter = RogueEssence.Content.RepeatEmitter(anim_data)
+        -- local emitter = RogueEssence.Content.SqueezedAreaEmitter(repeat_anim)
+        emitter.Bursts = 3
+        emitter.BurstTime = 8
+
+        -- print(tostring(emitter) .. " emitter")
+
+        -- SOUND:PlayBattleSE("DUN_Tri_Attack_2")
+        -- SOUND:PlayBattleSE("_UNK_EVT_085")
+
+        -- SOUND:PlayBattleSE("_UNK_EVT_043")
+        DUNGEON:PlayVFX(emitter, member.MapLoc.X, member.MapLoc.Y)
+        GAME:WaitFrames(10)
+        
+
+    end
+
+        --     public override IEnumerator<YieldInstruction> Apply(GameEventOwner owner, Character ownerChar, BattleContext context)
+        -- {
+        --     if (context.ActionType == BattleActionType.Item)
+        --     {
+        --         ItemData itemData = DataManager.Instance.GetItem(context.Item.ID);
+        --         if (itemData.ItemStates.Contains<BerryState>())
+        --         {
+        --             AreaAction newAction = new AreaAction();
+        --             newAction.TargetAlignments = (Alignment.Self | Alignment.Friend);
+        --             newAction.Range = 1;
+        --             newAction.ActionFX.Emitter = Emitter;
+        --             newAction.Speed = 10;
+        --             newAction.ActionFX.Sound = Sound;
+        --             newAction.ActionFX.Delay = 30;
+        --             context.HitboxAction = newAction;
+        --             context.Explosion.TargetAlignments = (Alignment.Self | Alignment.Friend);
+
+        --             DungeonScene.Instance.LogMsg(Text.FormatGrammar(Msg.ToLocal(), ownerChar.GetDisplayName(false), owner.GetDisplayName()));
+        --         }
+        --     }
+        --     yield break;
+        -- }
+    
+    for i = 1, give_count do
+        print("GIVE RANDOM FOR EACH TYPE TRIGGERED3")
+        local rand_index = _DATA.Save.Rand:Next(#item_tbl) + 1
+        local item = item_tbl[rand_index]
+        print("Giving item: " .. item)
+        GAME:GivePlayerItem(item)
+    end
+end
+
 function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
 
     if context.User ~= _DUNGEON.ActiveTeam.Leader then
@@ -1040,6 +1160,10 @@ end
 
 function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
 
+    if context.User ~= nil then
+        return
+    end
+
     local enchantment_id = args.EnchantmentID
     local status_id = args.StatusID
     local apply_to_all = args.ApplyToAll or false
@@ -1047,17 +1171,19 @@ function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args
 
     --    print(enchantment_id)
     if apply_to_all then
-        if context.User ~= nil then
-		    return
-	    end
         for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-  
             if member ~= nil then
-                if not member.Dead then
-                            --   print(tostring(member:GetDisplayName(true)) .. " CHECKING")
-                    local status = RogueEssence.Dungeon.StatusEffect(status_id)
-                    TASK:WaitTask(member:AddStatusEffect(nil, status, true))
-                end
+                local status = RogueEssence.Dungeon.StatusEffect(status_id)
+                status:LoadFromData()
+                TASK:WaitTask(member:AddStatusEffect(nil, status, true))
+            end
+        end
+
+        for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+            if member ~= nil then
+                local status = RogueEssence.Dungeon.StatusEffect(status_id)
+                status:LoadFromData()
+                TASK:WaitTask(member:AddStatusEffect(nil, status, true))
             end
         end
         return
@@ -1069,6 +1195,7 @@ function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args
         if not char.Dead then
              print("did it find the char?" .. enchantment_id)
             local status = RogueEssence.Dungeon.StatusEffect(status_id)
+            status:LoadFromData()
             TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
         end
     end
@@ -1167,6 +1294,55 @@ function SINGLE_CHAR_SCRIPT.LogShimmeringEvent(owner, ownerChar, context, args)
     _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg))
 end
 
+
+
+function SINGLE_CHAR_SCRIPT.ApplyStatusIfTypeMatches(owner, ownerChar, context, args)
+
+    if context.User ~= nil then
+        return
+    end
+    
+    local status_id = args.StatusID
+    local types = args.Types
+
+    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+        for _, t in ipairs(types) do
+            if member.Element1 == t or member.Element2 == t then
+                print("Applying status to " .. member:GetDisplayName(true))
+                print("Status ID: " .. status_id)
+                local status = RogueEssence.Dungeon.StatusEffect(status_id)
+                status:LoadFromData()
+                TASK:WaitTask(member:AddStatusEffect(nil, status, true))
+                break
+            end
+        end
+    end
+
+    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+        local tbl = LTBL(member)
+        if tbl.EmberfrostRun then
+            for _, t in ipairs(types) do
+                if member.Element1 == t or member.Element2 == t then
+                    print("Applying status to " .. member:GetDisplayName(true))
+                    print("Status ID: " .. status_id)
+                    local status = RogueEssence.Dungeon.StatusEffect(status_id)
+                    TASK:WaitTask(member:AddStatusEffect(nil, status, true))
+                    break
+                end
+            end
+        end
+    end
+
+    
+
+    -- if context.User == char then
+    --     if not char.Dead then
+    --         print("did it find the char?" .. enchantment_id)
+    --         local status = RogueEssence.Dungeon.StatusEffect(status_id)
+    --         TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+    --     end
+    -- end
+end
 -- function SINGLE_CHAR_SCRIPT.EmberfrostSwitchSegment(owner, ownerChar, context, args)
 -- 	print("Emberfrost Switch Segment Triggered")
 --   if context.User ~= nil then
@@ -1636,3 +1812,263 @@ function PickByWeights(entries)
         end
     end
 end
+
+
+
+
+
+-- --For use in the Terrakion Fight and his dungeon after the midway point.
+-- function SINGLE_CHAR_SCRIPT.QueueRockFall(owner, ownerChar, context, args)
+--     --random chance for floor tiles to become a "falling rock shadow" tile.
+--     local map = _ZONE.CurrentMap
+
+--     SOUND:PlayBattleSE("EVT_Tower_Quake")
+--     --minshake, maxshake, shaketime
+--     DUNGEON:MoveScreen(RogueEssence.Content.ScreenMover(3, 6, 40))
+--     _DUNGEON:LogMsg(STRINGS:Format("A great power shakes the cavern!"))
+
+--     --flavor rocks; rocks should fall all over, not just on you.
+--     for xx = 0, map.Width - 1, 1 do
+--         for yy = 0, map.Height - 1, 1 do
+--             --1/8 chance to set a tile to rock fall.  is
+--             if map.Rand:Next(1, 9) == 1 then
+--                 local loc = RogueElements.Loc(xx, yy)
+--                 local tile = map:GetTile(loc)
+--                 --Make sure the tile is a floor tile and has nothing on it already (traps)
+--                 if tile.ID == _DATA.GenFloor and tile.Effect.ID == '' then
+--                     tile.Effect = RogueEssence.Dungeon.EffectTile('falling_rock_shadow', true, loc)
+--                 end
+--             end
+--         end
+--     end
+
+--     --for every pokemon on the floor, queue up extra rocks around them. Always make sure a spot is clear within one tile of them though!
+--     --todo: Improve code efficiency. Multiple for loops for each party instead of transferring to a lua table if this proves to be too slow.
+--     local floor_mons = {}
+
+--     --your team
+--     for i = 0, GAME:GetPlayerPartyCount() - 1, 1 do
+--         table.insert(floor_mons, GAME:GetPlayerPartyMember(i))
+--         print("PlayerParty" .. i)
+--     end
+
+--     for i = 0, GAME:GetPlayerGuestCount() - 1, 1 do
+--         table.insert(floor_mons, GAME:GetPlayerGuestMember(i))
+--         print("GuestParty" .. i)
+--     end
+
+--     --enemy teams
+--     for i = 0, map.MapTeams.Count - 1, 1 do
+--         local team = map.MapTeams[i].Players
+--         for j = 0, team.Count - 1, 1 do
+--             table.insert(floor_mons, team[j])
+--             print("EnemyTeam" .. i)
+--         end
+--     end
+
+--     --neutrals
+--     for i = 0, map.AllyTeams.Count - 1, 1 do
+--         local team = map.AllyTeams[i].Players
+--         for j = 0, team.Count - 1, 1 do
+--             table.insert(floor_mons, team[j])
+--             print("Neutral" .. i)
+--         end
+--     end
+
+--     print("length = " .. tostring(#floor_mons))
+
+--     for i = 1, #floor_mons, 1 do
+--         local member = floor_mons[i] --RogueEssence.Dungeon.Character
+--         local charLoc = member.CharLoc
+
+--         --Spawn extra boulders near Pokemon in a 3x3 radius.
+--         --Don't spawn boulders on top of terrakion; they'll be too good at killing him if this happens.
+--         if member.CurrentForm.Species ~= 'terrakion' then
+--             for xx = -1, 1, 1 do
+--                 for yy = -1, 1, 1 do
+--                     --pass a check with 66% success rate. If you do, spawn a boulder shadow.
+--                     --Bound these values to stay in bounds. This has a byproduct of condensing boulders a bit when at map edges, but this shouldn't come into practice much.
+--                     if map.Rand:Next(1, 4) ~= 1 then
+--                         local boulderX = charLoc.X + xx
+--                         local boulderY = charLoc.Y + yy
+
+--                         if boulderX < 0 then boulderX = 0 end
+--                         if boulderY < 0 then boulderY = 0 end
+
+--                         if boulderX >= map.Width then boulderX = map.Width - 1 end
+--                         if boulderY >= map.Height then boulderY = map.Height - 1 end
+
+--                         local loc = RogueElements.Loc(charLoc.X + xx, charLoc.Y + yy)
+--                         local tile = map:GetTile(loc)
+--                         if tile.ID == _DATA.GenFloor and tile.Effect.ID == '' then
+--                             tile.Effect = RogueEssence.Dungeon.EffectTile('falling_rock_shadow', true, loc)
+--                         end
+--                     end
+--                 end
+--             end
+--         end
+--     end
+
+
+--     --loop through the pokemon on the floor again; this time clean 1 boulder next to each pokemon.
+--     --this is to help prevent RNG screwing you over into a checkmate scenario
+--     for i = 1, #floor_mons, 1 do
+--         local member = floor_mons[i] --RogueEssence.Dungeon.Character
+--         local charLoc = member.CharLoc
+
+--         --Clear 1 space nearby each pokemon.
+--         local nearby_boulder_locs = {}
+
+--         --again, Terrakion is an exception. Dont remove boulders near him since we aren't spawning them near him.
+--         --todo: make this less hacky? Maybe just remove him from the overall list instead of exceptioning him twice? but would such a search be too slow?
+--         if member.CurrentForm.Species ~= 'terrakion' then
+--             for xx = -1, 1, 1 do
+--                 for yy = -1, 1, 1 do
+--                     local boulderX = charLoc.X + xx
+--                     local boulderY = charLoc.Y + yy
+
+--                     if boulderX < 0 then boulderX = 0 end
+--                     if boulderY < 0 then boulderY = 0 end
+
+--                     if boulderX >= map.Width then boulderX = map.Width - 1 end
+--                     if boulderY >= map.Height then boulderY = map.Height - 1 end
+
+--                     local loc = RogueElements.Loc(charLoc.X + xx, charLoc.Y + yy)
+--                     local tile = map:GetTile(loc)
+--                     if tile.Effect.ID == 'falling_rock_shadow' then
+--                         table.insert(nearby_boulder_locs, loc)
+--                     end
+--                 end
+--             end
+
+--             --Finally clear the tile.
+--             if #nearby_boulder_locs > 0 then
+--                 local loc = nearby_boulder_locs[map.Rand:Next(1, #nearby_boulder_locs + 1)]
+--                 local tile = map:GetTile(loc)
+--                 tile.Effect = RogueEssence.Dungeon.EffectTile('', true, loc)
+--             end
+--         end
+--     end
+
+
+
+--     GAME:WaitFrames(30)
+-- end
+
+-- function SINGLE_CHAR_SCRIPT.ResolveRockFall(owner, ownerChar, context, args)
+--     --Resolve the queued up rock falls. Play the animation in 4 waves so the animations aren't 100% synced up; what wave you're in is your x pos + y pos modulo 4 + 1.
+
+--     local waves = { {}, {}, {}, {} }
+--     local map = _ZONE.CurrentMap
+--     local width = map.Width
+--     local height = map.Height
+
+--     SOUND:PlayBattleSE("DUN_Rock_Throw")
+
+--     --drops a boulder on a location
+--     local function DropBoulder(loc)
+--         --emitter for the result anim of our main emitter
+--         local result_emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Rock_Smash_Front", 2))
+--         result_emitter.Layer = RogueEssence.Content.DrawLayer.Front
+
+--         --falling boulder animation. Emitter attributes are mostly self explanatory.
+--         local emitter = RogueEssence.Content.MoveToEmitter()
+--         emitter.MoveTime = 30
+--         emitter.Anim = RogueEssence.Content.AnimData("Rock_Piece_Rotating", 2)
+--         emitter.ResultAnim =
+--         result_emitter                --this result anim can be any other emitter i believe, not just an emptyfiniteemitter.
+--         emitter.ResultLayer = RogueEssence.Content.DrawLayer.Front
+--         emitter.HeightStart = 240
+--         emitter.HeightEnd = 0
+--         --emitter.OffsetStart = 0 --these are saved as Locations i believe, not as ints
+--         --emitter.OffsetEnd = 0
+--         emitter.LingerStart = 0 --linger is having the anim stay still before or after it moves
+--         emitter.LingerEnd = 0
+--         DUNGEON:PlayVFX(emitter, loc.X * 24 + 12, loc.Y * 24 + 16)
+
+--         GAME:WaitFrames(30)
+
+--         --clear the shadow
+--         map:GetTile(loc).Effect = RogueEssence.Dungeon.EffectTile('', true, loc)
+
+--         local flinch = RogueEssence.Dungeon.StatusEffect("flinch")
+--         --initialize status data before adding it to anything
+--         flinch:LoadFromData()
+--         local chara = map:GetCharAtLoc(loc)
+
+--         --damage anyone standing under a rock when it resolves.
+--         if chara ~= nil then
+--             --deal 1/4 max hp as damage, multiplied based on type effectiveness. Also flinch the target.
+--             local damage = chara.MaxHP / 4
+
+--             --get the type effectiveness on each of the chara's types, then add that together. then run it through GetEffectivenessMult to get the actual multiplier. This is the numerator for x/4. so divide by 4 after for true amount
+--             local type_effectiveness = PMDC.Dungeon.PreTypeEvent.CalculateTypeMatchup('rock', chara.Element1) +
+--             PMDC.Dungeon.PreTypeEvent.CalculateTypeMatchup('rock', chara.Element2)
+--             type_effectiveness = PMDC.Dungeon.PreTypeEvent.GetEffectivenessMult(type_effectiveness)
+
+
+--             damage = type_effectiveness * damage
+--             damage = math.floor(damage / 4)
+
+--             TASK:WaitTask(chara:InflictDamage(damage))
+--             TASK:WaitTask(chara:AddStatusEffect(nil, flinch, true))
+--         end
+--     end
+
+--     --local arriveAnim = RogueEssence.Content.StaticAnim(RogueEssence.Content.AnimData("Rock_Pieces", 1), 1)
+--     --arriveAnim:SetupEmitted(RogueElements.Loc(waves[i][j].X * 24 + 12, waves[i][j].Y * 24 + 12), 32, RogueElements.Dir8.Down)
+--     --DUNGEON:PlayVFXAnim(arriveAnim, RogueEssence.Content.DrawLayer.Front)
+
+
+--     for xx = 0, map.Width - 1, 1 do
+--         for yy = 0, map.Height - 1, 1 do
+--             local loc = RogueElements.Loc(xx, yy)
+--             local tile = map:GetTile(loc)
+--             --queue up the shadow in that position for that wave.
+--             if tile.Effect.ID == 'falling_rock_shadow' then
+--                 table.insert(waves[((xx + yy) % #waves) + 1], loc)
+--             end
+--         end
+--     end
+
+--     local boulder_coroutines = {}
+--     for i = 1, #waves, 1 do
+--         for j = 1, #waves[i], 1 do
+--             table.insert(boulder_coroutines,
+--                 TASK:BranchCoroutine(function()
+--                     GAME:WaitFrames((i - 1) * 10)
+--                     DropBoulder(waves[i][j])
+--                 end))
+--         end
+--     end
+
+--     TASK:JoinCoroutines(boulder_coroutines)
+
+--     --pause a bit after dropping all boulders
+--     GAME:WaitFrames(20)
+-- end
+
+-- function SINGLE_CHAR_SCRIPT.RockfallTemors(owner, ownerChar, context, args)
+--     --args.ShadowDuration - how long the shadows are out before they fall. Should be 1 pretty much always. Dont let it be less than 1!!!!
+--     --args.TurnsBetweenTremors - how many turns after one tremor should another trigger? Much less during the bossfight.
+--     if context.User == nil then
+--         --failsafes
+--         if SV.ClovenRuins.BoulderCountdown == nil then SV.ClovenRuins.BoulderCountdown = -1 end
+
+--         --reset the counter when we go past 0. -1 or else it would end up taking 1 more turn than intended
+--         if SV.ClovenRuins.BoulderCountdown < 0 then
+--             SV.ClovenRuins.BoulderCountdown = args.TurnsBetweenTremors - 1
+--         end
+
+--         --when there's only ShadowDuration turns left, trigger the shadow spawns.
+--         if SV.ClovenRuins.BoulderCountdown == args.ShadowDuration then
+--             SINGLE_CHAR_SCRIPT.QueueRockFall(owner, ownerChar, context, args)
+--         end
+
+--         if SV.ClovenRuins.BoulderCountdown == 0 then
+--             SINGLE_CHAR_SCRIPT.ResolveRockFall(owner, ownerChar, context, args)
+--         end
+
+--         SV.ClovenRuins.BoulderCountdown = SV.ClovenRuins.BoulderCountdown - 1
+--     end
+-- end

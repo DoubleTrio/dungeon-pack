@@ -23,7 +23,14 @@ end
 --Engine callback function
 function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 
-	print("ENTER SEGMENT")
+
+	SV.EmberFrost.Enchantments.Selected = { "SHOPPER", "LOOSE_CHANGE", "TREASURE_HUNT", 'RATIONALIZE', 'SWAT_TEAM' }
+	-- print("ENTER SEGMENT")
+	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+		local tbl = LTBL(member)
+		tbl.EmberfrostRun = true
+	end
+
 	if segmentID == 0 and mapID == 0 then
 
 		-- local first_member = GAME:GetPlayerPartyMember(0)
@@ -171,7 +178,15 @@ local function CleanUpEmberFrostDepths()
 	for k, v in pairs(QuestRegistry._registry) do
     v:cleanup()
   end
-  
+	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+		local tbl = LTBL(member)
+		tbl.EmberfrostRun = false
+	end
+
+	for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+		local tbl = LTBL(member)
+		tbl.EmberfrostRun = false
+	end
 
 	-- local player_count = GAME:GetPlayerPartyCount()
 

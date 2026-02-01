@@ -67,6 +67,17 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"retreater_item": {
+"$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
+"Assignable": false,
+"Name": {
+"DefaultText": "Retreater Item",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

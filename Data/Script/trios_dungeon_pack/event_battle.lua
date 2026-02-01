@@ -758,3 +758,30 @@ end
   
 --   beholder.trigger("OnBeforeHittings", owner, ownerChar, context, args)
 -- end
+
+function BATTLE_SCRIPT.Protagonist(owner, ownerChar, context, args)
+
+  local boost = args.BoostAmount
+  if context.User == _DUNGEON.ActiveTeam.Leader then
+    local multiply_element = PMDC.Dungeon.MultiplyDamageEvent(100 + boost, 100)
+    TASK:WaitTask(multiply_element:Apply(owner, ownerChar, context))
+  elseif context.Target == _DUNGEON.ActiveTeam.Leader then
+    local multiply_element = PMDC.Dungeon.MultiplyDamageEvent(100 - boost, 100)
+    TASK:WaitTask(multiply_element:Apply(owner, ownerChar, context))
+  end
+end
+function BATTLE_SCRIPT.MoralSupport(owner, ownerChar, context, args)
+
+  local enchant_id = args.EnchantmentID
+
+  local enchant = EnchantmentRegistry:Get(enchant_id)
+
+  local boost = enchant:get_total_boost()
+  local num = 100 + boost
+  local denom = 100
+  if context.User.MemberTeam == _DUNGEON.ActiveTeam then
+    print("MoralSupport boost for ally: " .. tostring(boost) )
+    local multiply_element = PMDC.Dungeon.MultiplyDamageEvent(num, denom)
+    TASK:WaitTask(multiply_element:Apply(owner, ownerChar, context))
+  end
+end

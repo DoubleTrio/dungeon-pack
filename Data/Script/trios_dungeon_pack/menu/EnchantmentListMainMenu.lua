@@ -216,8 +216,11 @@ function EnchantmentListMainMenu:generate_options()
     local collection = {}
 
     local data = EnchantmentRegistry._registry
-    for k, _ in pairs(data) do
-      table.insert(collection, k)
+    for k, v in pairs(data) do
+      local hidden = v.hidden_for_story or false
+      if not hidden then
+        table.insert(collection, k)
+      end
     end
 
     table.sort(collection)
