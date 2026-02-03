@@ -500,8 +500,53 @@ CalmTheStorm = EnchantmentRegistry:Register({
 
 })
 
+
+
+TwoForOne = EnchantmentRegistry:Register({
+  name = "2 for 1",
+  id = "TWO_FOR_ONE",
+  amount = 2,
+  getDescription = function(self)
+    return string.format("Gain %s random enchantments",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
+    )
+  end,
+
+  getProgressTexts = function(self)
+    local data = EnchantmentRegistry:GetData(self)
+    local enchant_ids = data["selected_enchantments"]
+    local texts = {}
+    for _, enchant_id in ipairs(enchant_ids) do
+      local enchant = EnchantmentRegistry._registry[enchant_id]
+      if enchant then
+        table.insert(texts, "Recieved: " .. M_HELPERS.MakeColoredText(enchant.name, PMDColor.Yellow))
+      end
+    end
+
+    return texts
+  end,
+
+  offer_time = "beginning",
+  rarity = 1,
+  apply = function(self)
+    local data = EnchantmentRegistry:GetData(self)
+    data["selected_enchantments"] = {}
+    local enchantments = EnchantmentRegistry:GetRandom(2, 1)[1]
+
+
+    for _, enchantment in ipairs(enchantments) do
+      local data = EnchantmentRegistry:GetData(self)
+      table.insert(data["selected_enchantments"], enchantment.id)
+
+      enchantment:apply()
+
+      table.insert(SV.EmberFrost.SelectedEnchantments, enchantment.id)
+    end
+  end,
+})
+
 MysteryEnchant = EnchantmentRegistry:Register({
-  gold_amount = 2000,
+  gold_amount = 4000,
   name = "Mystery Enchant",
   id = "MYSTERY_ENCHANT",
   getDescription = function(self)
@@ -2795,7 +2840,6 @@ end
 
 -- Deep Dweller - raises SpD when hit by a water type move 
 
-
 --  Dark Tranquility - powers down moves of opponents if they move after the pokemon with this ability
 
 -- Daunt - lowers the opponent's speed everytime it enters the field by 1 stage (like intimidate)
@@ -2906,6 +2950,72 @@ end
 
 -- Portal Creation - all damaging moves get +1 priority if the pokemon with this ability is inflicted with a major status condition
 
+
+
+-- Tarot Cards - For each Psychic Gain a random boost or negative boost for each psychic type
+-- Puppetmaster - Add a guest substiute doll with half the
+
+PuppetMaster = EnchantmentRegistry:Register({
+  name = "Puppetmaster",
+  id = "PUPPETMASTER",
+  getDescription = function(self)
+    local ghost_type = _DATA:GetElement("ghost")
+    local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
+    return string.format(
+      "Gain a %s. Each %s in the active party summons a substitute doll tthat mirrors a weaker version of itself and attacks enemies",
+      purple_apricorn, ghost_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local ghost_type = _DATA:GetElement("ghost")
+    local icon = ghost_type:GetIconName()
+
+    local count = #GetCharacterOfMatchingType("ghost", false)
+
+    return { "Total " .. icon .. " Members: " .. count }
+  end,
+
+  cleanup = function(self)
+    for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
+      local guest = GAME:GetPlayerGuestMember(i)
+      local tbl = LTBL(guest)
+      if tbl[self.id] then
+        GAME:RemovePlayerGuest(i)
+      end
+    end
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    -- for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+    --   local tbl = LTBL(member)
+    -- end
+    -- self:cleanup()
+
+    active_effect.OnMapStarts:Add(5, RogueEssence.Dungeon.SingleCharScriptEvent("PuppetMaster", Serpent.line({
+      EnchantmentID = self.id,
+      Type = "ghost",
+    })))
+  end,
+
+  apply = function(self)
+    -- local items = {
+    --   {
+    --     Item = "apricorn_green",
+    --     Amount = 1
+    --   }
+    -- }
+
+    -- M_HELPERS.GiveInventoryItemsToPlayer(items)
+
+
+    -- FanfareText(string.format(
+    --   "You will gain a random berry or food for each %s in your active party at the start of each floor!",
+    --   _DATA:GetElement("grass"):GetIconName()),)
+  end
+})
+
+
 Harvester = EnchantmentRegistry:Register({
   name = "Harvester",
   id = "HARVESTER",
@@ -2979,7 +3089,6 @@ Rationalize = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
-    -- print("Setting Harvester active effects...")
     active_effect.OnMapStarts:Add(5, RogueEssence.Dungeon.SingleCharScriptEvent("ApplyStatusIfTypeMatches", Serpent.line({
       Types = { "normal" },
       StatusID = "emberfrost_rationalize",
@@ -2990,17 +3099,15 @@ Rationalize = EnchantmentRegistry:Register({
   end
 })
 
-SwatTeam = EnchantmentRegistry:Register({
-  name = "Swat Team",
-  id = "SWAT_TEAM",
-  chance = 30,
+DraconianDefience = EnchantmentRegistry:Register({
+  name = "Draconian Defience",
+  id = "DRACONIAN_DEFICIENCE",
   getDescription = function(self)
-    local bug_type = _DATA:GetElement("bug")
-
-    local green_apricorn = M_HELPERS.GetItemName("apricorn_green")
+    local dragon = _DATA:GetElement("dragon")
+    local red_apricorn = M_HELPERS.GetItemName("apricorn_red")
     return string.format(
-      "Gain a %s. %s types in your team will have a %s chance to have their %s moves inflict the target with the infestation status",
-      green_apricorn, bug_type:GetIconName(), M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan), bug_type:GetIconName())
+      "Gain a %s. %s types in your team deal more damage the lower HP they are",
+      red_apricorn, dragon:GetIconName(), M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan))
   end,
   offer_time = "beginning",
   rarity = 1,
@@ -3009,49 +3116,182 @@ SwatTeam = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
+    active_effect.OnMapStarts:Add(5,
 
-    local chance = self.chance
-    beholder.observe("OnHits", function(owner, ownerChar, context, args)
-      local user = context.User
-      local target = context.Target
-
-   
-      
-      if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
-          context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
-        return
-      end
-
-
-      if user.MemberTeam ~= _DUNGEON.ActiveTeam then
-        return
-      end
-
-      if user.Element1 ~= "bug" and user.Element2 ~= "bug" then
-        return
-      end
-
-      local roll = _DATA.Save.Rand:Next(100)
-      if roll >= chance then
-        return
-      end
-
-
-      if target == nil then
-        return
-      end
-
-      local status = RogueEssence.Dungeon.StatusEffect("infestation")
-
-      status:LoadFromData()
-      TASK:WaitTask(target:AddStatusEffect(nil, status, true))
-
-    end)
+      RogueEssence.Dungeon.SingleCharScriptEvent("ApplyStatusIfTypeMatches", Serpent.line({
+        Types = { "dragon" },
+        StatusID = "emberfrost_draconian_defience",
+      })))
   end,
+  --   local chance = self.chance
+  --   beholder.observe("OnHits", function(owner, ownerChar, context, args)
+  --     local user = context.User
+  --     local target = context.Target
 
+
+
+  --     if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
+  --         context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
+  --       return
+  --     end
+
+
+  --     if user.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --       return
+  --     end
+
+  --     if user.Element1 ~= "bug" and user.Element2 ~= "bug" then
+  --       return
+  --     end
+
+  --     local roll = _DATA.Save.Rand:Next(100)
+  --     if roll >= chance then
+  --       return
+  --     end
+
+
+  --     if target == nil then
+  --       return
+  --     end
+
+  --     local status = RogueEssence.Dungeon.StatusEffect("infestation")
+
+  --     status:LoadFromData()
+  --     TASK:WaitTask(target:AddStatusEffect(nil, status, true))
+  --   end)
+  -- end,
   apply = function(self)
   end
 })
+
+local function CreateTypeStatusEnchantment(config)
+  return EnchantmentRegistry:Register({
+    name = config.name,
+    id = config.id,
+    chance = config.chance,
+    getDescription = function(self)
+      local element_type = _DATA:GetElement(config.element)
+      local apricorn = M_HELPERS.GetItemName(config.apricorn)
+      return string.format(
+        "Gain a %s. %s types in your team will have a %s chance to have their %s moves inflict the target with the %s status",
+        apricorn,
+        element_type:GetIconName(),
+        M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
+        element_type:GetIconName(),
+        config.status_name
+      )
+    end,
+    offer_time = "beginning",
+    rarity = 1,
+    getProgressTexts = function(self)
+      return {}
+    end,
+    set_active_effects = function(self, active_effect, zone_context)
+      local chance = self.chance
+      beholder.observe("OnHits", function(owner, ownerChar, context, args)
+        local user = context.User
+        local target = context.Target
+
+        if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
+            context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
+          return
+        end
+
+        if user.MemberTeam ~= _DUNGEON.ActiveTeam then
+          return
+        end
+
+        if user.Element1 ~= config.element and user.Element2 ~= config.element then
+          return
+        end
+
+        local roll = _DATA.Save.Rand:Next(100)
+        if roll >= chance then
+          return
+        end
+
+        if target == nil then
+          return
+        end
+
+        local status = RogueEssence.Dungeon.StatusEffect(config.status_id)
+        status:LoadFromData()
+        TASK:WaitTask(target:AddStatusEffect(nil, status, true))
+      end)
+    end,
+    apply = function(self)
+    end
+  })
+end
+
+SwatTeam = CreateTypeStatusEnchantment({
+  name = "Swat Team",
+  id = "SWAT_TEAM",
+  chance = 30,
+  element = "bug",
+  apricorn = "apricorn_green",
+  status_name = "infestation",
+  status_id = "infestation"
+})
+
+Subzero = CreateTypeStatusEnchantment({
+  name = "Subzero",
+  id = "SUBZERO",
+  chance = 25,
+  element = "ice",
+  apricorn = "apricorn_blue",
+  status_name = "Frostbite",
+  status_id = "emberfrost_frostbite"
+})
+
+-- Blaze Tile - Will burn the user, but will double their speed. (max 2 stack) 
+-- Fire Tile - Take fire damage but raise attack
+-- Ice Title - Freeze chracter, but grant, users on these tiles will be granted +2 range on thei rmoves
+
+
+-- Negative Aura - Targets with two tiles of the will have their attack reduced by 20% 
+
+-- polished metal
+-- gives a plus 1 evasiveness boost for steel types.
+
+--  Poison: Intoxication/Noxious Cloud/Toxic Boost/Contamination - Prevent 
+
+-- Toxic Touch: When the user attacks, the target is inflicted with a stacking “contamination” debuff that spreads to nearby enemies after a turn.
+
+-- Chain Infection: Any status effect the user receives (burn, poison, etc.) also spreads to a random enemy at the end of the turn.
+
+-- Virulent / Noxious Aura: At the start of each turn, all enemies have a small chance to be poisoned, paralyzed, or weakened. All poison-type hav
+
+-- -- Normal: Extraordinaire/Power Boost/Amplifier/Complexity
+
+-- Electric: Battery Charger/Electrify/Juicer/High Capacity/Overflow/Overcharge damage will be carried over to the next target (1 transfer) - Overcharge
+
+-- Fighting: Prideful/Fighting Spirit/Combo - Raise the attack str for each 
+
+-- Effects:
+-- Each turn, the Pokémon afflicted with the Frostbite loses 1/16th of its Max HP
+-- The Pokémon's Special Attack Stat is cut by 50%.
+
+-- Fairy: Uplifting Spirit/Wish Granter/Spirit’s Gift/Trickery
+
+-- Psychic: Positive Vision, Enlightenment, Will Power, premeditation, confuse target, 
+
+-- Dark: Corruption/Nightmare Fuel/Darkest Hour/Malevolence/Negative Aura
+-- 
+-- Flying: Strong Wings/Rising Phoenix/Shedded Feathers/Flocking/Air Ride (can guide other types across terrtains), Turbulence, Flock - Each flying type reduces damage of nearby allies
+
+-- Quick Charge: Moves that take 2 turns to use now only require 1, but require 1 extra PP.
+-- Ghost: Possession/Haunted/Spirit Riser/After Dusk/Conjure - 
+
+-- Cruel Kindness – Fairy-type moves heal allies for a portion of the damage dealt.
+-- Fickle Magic – Fairy-type moves have a chance to inflict a random status.
+
+
+-- Rock: Hardheaded/Compression
+
+-- Steel: Enhanced Armor/Iron Will/Tempered Steel/Black Smith
+
+-- Ground: Tectonic strength/Earth Rising/Aftershock, Quicksands - 
 
 Shopper = EnchantmentRegistry:Register({
   name = "Shopper",
@@ -4631,3 +4871,5 @@ QuestRegistry:Register(CreateItemUseQuest({
     return { "", "Progress: " .. math.min(count, self.amount) .. "/" .. tostring(self.amount) }
   end
 }))
+
+

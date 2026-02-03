@@ -964,6 +964,268 @@ function SINGLE_CHAR_SCRIPT.Minimalist(owner, ownerChar, context, args)
 end
 
 
+function GetSpawnCandidates(origin, radius)
+    local top_left = RogueElements.Loc(origin.X - radius, origin.Y - radius)
+    local bottom_right = RogueElements.Loc(origin.X + radius, origin.Y + radius)
+
+    local near_candidates = {}
+    local far_candidates = {}
+
+    for x = top_left.X, bottom_right.X do
+        for y = top_left.Y, bottom_right.Y do
+            local testLoc = RogueElements.Loc(x, y)
+
+            if not _ZONE.CurrentMap:TileBlocked(testLoc)
+                and _ZONE.CurrentMap:GetCharAtLoc(testLoc) == nil then
+                local min_dist = math.huge
+
+                -- check party
+                for i = 0, GAME:GetPlayerPartyCount() - 1 do
+                    local member = GAME:GetPlayerPartyMember(i)
+                    local dx = math.abs(member.CharLoc.X - x)
+                    local dy = math.abs(member.CharLoc.Y - y)
+                    min_dist = math.min(min_dist, math.max(dx, dy))
+                end
+
+                -- check guests
+                for i = 0, GAME:GetPlayerGuestCount() - 1 do
+                    local member = GAME:GetPlayerGuestMember(i)
+                    local dx = math.abs(member.CharLoc.X - x)
+                    local dy = math.abs(member.CharLoc.Y - y)
+                    min_dist = math.min(min_dist, math.max(dx, dy))
+                end
+
+                if min_dist == 1 then
+                    table.insert(near_candidates, testLoc)
+                elseif min_dist == 2 then
+                    table.insert(far_candidates, testLoc)
+                end
+            end
+        end
+    end
+
+   
+    if #near_candidates > 0 then
+        return near_candidates
+    end
+
+    return far_candidates
+end
+
+
+
+function CloneCharacter(chara)
+    local character = RogueEssence.Dungeon.CharData()
+
+    character.BaseForm = chara.BaseForm
+    character.Nickname = chara.Nickname
+    character.Level = chara.Level
+    character.MaxHPBonus = chara.MaxHPBonus
+    character.AtkBonus = chara.AtkBonus
+    character.DefBonus = chara.DefBonus
+    character.MAtkBonus = chara.MAtkBonus
+    character.MDefBonus = chara.MDefBonus
+    character.SpeedBonus = chara.SpeedBonus
+    character.Unrecruitable = chara.Unrecruitable
+
+    for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+        character.BaseSkills[ii] = RogueEssence.Dungeon.SlotSkill(chara.BaseSkills[ii])
+    end
+
+    for ii = 0, RogueEssence.Dungeon.CharData.MAX_INTRINSIC_SLOTS - 1 do
+        character.BaseIntrinsics[ii] = chara.BaseIntrinsics[ii]
+    end
+    character.FormIntrinsicSlot = chara.FormIntrinsicSlot
+
+    local new_mob = RogueEssence.Dungeon.Character(chara)
+
+    new_mob.IdleOverride = chara.IdleOverride
+    local idleAction = RogueEssence.Dungeon.CharAnimIdle(chara.CharLoc, chara.CharDir)
+    if chara.IdleOverride > -1 then
+        idleAction.Override = chara.IdleOverride
+    end
+    -- new_mob.currentCharAction = RogueEssence.Dungeon.EmptyCharAction(idleAction)
+
+    new_mob.Tactic = RogueEssence.Data.AITactic(chara.Tactic)
+    -- new_mob.EquippedItem = RogueEssence.Dungeon.InvItem(chara.EquippedItem)
+
+    for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+        new_mob.Skills[ii].Element.Enabled = chara.Skills[ii].Element.Enabled
+    end
+
+    -- for key, status in pairs(chara.StatusEffects) do
+    --     new_mob.StatusEffects:Add(key, status:Clone())
+    -- end
+
+    return new_mob
+end
+
+function SINGLE_CHAR_SCRIPT.PuppetMaster(owner, ownerChar, context, args)
+    -- print("PUPPET MASTER TRIGGERED")
+    if context.User ~= nil then
+        return
+    end
+
+    for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
+        local guest = GAME:GetPlayerGuestMember(i)
+        local tbl = LTBL(guest)
+        if tbl["PUPPETMASTER"] then
+            GAME:RemovePlayerGuest(i)
+        end
+    end
+    _DATA.Save.ActiveTeam.Guests:Clear()
+
+
+    local type = args.Type
+    local enchant_id = args.EnchantmentID
+    local include_assembly = args.IncludeAssembly or false
+
+    local members = GetCharacterOfMatchingType(type, include_assembly)
+
+    for i, member in ipairs(members) do
+
+        local spawn_candidates = GetSpawnCandidates(member.CharLoc, 2)
+        local clone = CloneCharacter(member)
+        local tbl = LTBL(clone)
+        clone.CharLoc = spawn_candidates[_DATA.Save.Rand:Next(#spawn_candidates) + 1]
+        tbl[enchant_id] = true
+        local tactic = _DATA:GetAITactic("go_after_foes")
+        clone.Tactic = tactic
+        clone.Nickname = "Puppet"
+
+        for ii = 0, 3 do
+            if clone.Skills[ii].Element.SkillNum ~= nil and clone.Skills[ii].Element.SkillNum ~= "" then
+                clone:SetSkillCharges(ii, 5)
+            end
+        end
+
+
+        -- Debating whether to keep the abilities or not
+        -- clone.BaseIntrinsics[0] = ""
+        -- clone.Intrinsics[0].Element.ID = ""
+        clone.Element1 = "ghost"
+        clone.Element2 = _DATA.DefaultElement
+
+        clone.ActionEvents:Clear()
+        local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("PuppetInteract")
+        clone.ActionEvents:Add(talk_evt)
+        local tbl = LTBL(clone)
+        tbl["species"] = member.BaseForm.Species
+        
+        
+        
+        local status = RogueEssence.Dungeon.StatusEffect("emberfrost_appearance_proxy")
+        status:LoadFromData()
+        TASK:WaitTask(clone:AddStatusEffect(nil, status, true))
+        -- for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+        --     clone.BaseSkills[ii].Charges = 5
+        -- end
+
+            --         for (int ii = 0; ii < target.Skills.Count; ii++)
+            -- {
+            --     if (!String.IsNullOrEmpty(target.Skills[ii].Element.SkillNum))
+            --         target.SetSkillCharges(ii, 1);
+            -- }
+
+      
+
+        -- local monster = RogueEssence.Dungeon.MonsterID("missingno",
+        --     1,
+        --     "normal",
+        --     Gender.Genderless)
+        -- clone.ProxySprite = monster
+        -- clone
+
+       
+        _DATA.Save.ActiveTeam.Guests:Add(clone)
+        -- Dark_Void_Front
+
+
+        local anim = RogueEssence.Dungeon.CharAbsentAnim(clone.CharLoc, clone.CharDir)
+
+        -- COMMON.RemoveCharEffects(player)
+        -- TASK:WaitTask(_DUNGEON:ProcessBattleFX(player, player, _DATA.SendHomeFX))
+
+
+        TASK:WaitTask(clone:StartAnim(anim))
+
+        local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dark_Void_Front", 1))
+
+        -- emitter.DrawLayer = DrawLayer.Front
+        emitter.Layer = DrawLayer.Front
+
+        DUNGEON:PlayVFX(emitter, clone.CharLoc.X * 24 + 12, clone.CharLoc.Y * 24 + 12)
+        SOUND:PlayBattleSE("DUN_Night_Shade_3")
+        GAME:WaitFrames(30)
+
+        local anim = RogueEssence.Dungeon.CharAbsentAnim(clone.CharLoc, clone.CharDir)
+        
+
+        -- COMMON.RemoveCharEffects(player)
+        -- TASK:WaitTask(_DUNGEON:ProcessBattleFX(player, player, _DATA.SendHomeFX))
+
+
+        -- for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+        --     if member.Dead == false then
+  
+        --     end
+        -- end
+        TASK:WaitTask(clone:StartAnim(anim))
+
+
+        local stand_anim = RogueEssence.Dungeon.CharAnimNone(clone.CharLoc, clone.CharDir)
+        stand_anim.MajorAnim = true
+        TASK:WaitTask(clone:StartAnim(stand_anim))
+
+        -- DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
+        -- GROUND:Hide("Apple")
+        -- GROUND:PlayVFX(emitter, apple.Bounds.Center.X, apple.Bounds.Center.Y)
+
+
+    end
+end
+
+        -- local enchant_id = args.EnchantmentID
+        -- local slot_amt = args.AmountPerSlot
+        -- local data = EnchantmentRegistry:GetData(enchant_id)
+        -- local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+        -- local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
+
+        -- local available_slots = max_inv_slots - inv_count
+
+        -- local total_money = available_slots * slot_amt
+        -- data["money_earned"] = data["money_earned"] + total_money
+        -- GAME:AddToPlayerMoney(total_money)
+        -- SOUND:PlayBattleSE("DUN_Money")
+        -- _DUNGEON:LogMsg(
+        --     string.format(
+        --         "Gained %s from Minimalist for %s!", 
+        --         M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
+        --         member:GetDisplayName(true)
+        --     )
+        -- )
+
+
+    -- local enchant_id = args.EnchantmentID
+    -- local slot_amt = args.AmountPerSlot
+    -- local data = EnchantmentRegistry:GetData(enchant_id)
+    -- local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+    -- local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
+
+    -- local available_slots = max_inv_slots - inv_count
+
+    -- local total_money = available_slots * slot_amt
+    -- data["money_earned"] = data["money_earned"] + total_money
+    -- GAME:AddToPlayerMoney(total_money)
+    -- SOUND:PlayBattleSE("DUN_Money")
+    -- _DUNGEON:LogMsg(
+    --     string.format(
+    --         "Gained %s from Minimalist!",
+    --         M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+    --     )
+    -- )
+
+
 function SINGLE_CHAR_SCRIPT.GiveRandomForEachType(owner, ownerChar, context, args)
     if context.User ~= nil then
         return
@@ -1773,6 +2035,7 @@ function SINGLE_CHAR_SCRIPT.RemoveStatusSingleCharEvent(owner, ownerChar, contex
     chara:FullRestore()
 end
 
+
 function SINGLE_CHAR_SCRIPT.SwapTileEvent(owner, ownerChar, context, args)
 
     local se = args.SoundEffect
@@ -1812,6 +2075,7 @@ function PickByWeights(entries)
         end
     end
 end
+
 
 
 

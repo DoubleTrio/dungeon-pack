@@ -24,7 +24,8 @@ end
 function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 
 
-	SV.EmberFrost.Enchantments.Selected = { "SHOPPER", "LOOSE_CHANGE", "TREASURE_HUNT", 'RATIONALIZE', 'SWAT_TEAM' }
+	SV.EmberFrost.Enchantments.Selected = { "SHOPPER", "LOOSE_CHANGE", "TREASURE_HUNT", 'RATIONALIZE', 'SWAT_TEAM',
+		'DRACONIAN_DEFICIENCE', 'SUBZERO', 'PUPPETMASTER' }
 	-- print("ENTER SEGMENT")
 	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
 		local tbl = LTBL(member)

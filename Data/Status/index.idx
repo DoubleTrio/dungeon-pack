@@ -172,6 +172,35 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_frostbite": {
+"Name": {
+"DefaultText": "Frostbitten",
+"LocalTexts": {
+"it": "Assideramento"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_draconian_defience": {
+"Name": {
+"DefaultText": "Draconian Defience",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_appearance_proxy": {
+"Name": {
+"DefaultText": "Appearance Proxy",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

@@ -408,6 +408,56 @@ function BATTLE_SCRIPT.Ravenous(owner, ownerChar, context, args)
 end
 
 
+function BATTLE_SCRIPT.DraconicDefienceBeforeActions(owner, ownerChar, context, args)
+  local chara = context.User
+  local health_ratio = chara.HP / chara.MaxHP
+
+  if health_ratio <= 0.50 then
+    local anim_data = RogueEssence.Content.AnimData("Taunt_Veins", 5, -1, -1, 255, Dir8.Up)
+    local particle_anim = RogueEssence.Content.ParticleAnim(anim_data, 1, 0)
+    local emitter = RogueEssence.Content.SqueezedAreaEmitter(particle_anim)
+    emitter.Bursts = 1
+    emitter.ParticlesPerBurst = 1
+    emitter.BurstTime = 6
+    emitter.HeightSpeed = 16
+    emitter.Range = 4
+    local sound = "DUN_Taunt"
+    SOUND:PlayBattleSE(sound)
+    GAME:WaitFrames(10)
+    DUNGEON:PlayVFX(emitter, chara.MapLoc.X, chara.MapLoc.Y)
+  end
+end
+
+function BATTLE_SCRIPT.DraconicDefience(owner, ownerChar, context, args)
+  -- print("Ravenous called")
+  local chara = context.User
+
+
+
+  local health_ratio = chara.HP / chara.MaxHP
+
+  local add_boost = 0
+
+  if health_ratio <= 0.01 then
+    add_boost = 150
+  elseif health_ratio <= 0.05 then
+    add_boost = 100
+  elseif health_ratio <= 0.10 then
+    add_boost = 50
+  elseif health_ratio <= 0.25 then
+    add_boost = 25
+  elseif health_ratio <= 50 then
+    add_boost = 10
+  end
+
+  print("Draconic Defience health ratio: " .. tostring(health_ratio) .. " add_boost: " .. tostring(add_boost)  )
+  if add_boost > 0 and (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical) then
+    local attack_boost = PMDC.Dungeon.MultiplyDamageEvent(100 + add_boost, 100)
+
+    TASK:WaitTask(attack_boost:Apply(owner, ownerChar, context))
+  end
+end
+
 
 function BATTLE_SCRIPT.Avenger(owner, ownerChar, context, args)
   local chara = context.User
@@ -785,3 +835,74 @@ function BATTLE_SCRIPT.MoralSupport(owner, ownerChar, context, args)
     TASK:WaitTask(multiply_element:Apply(owner, ownerChar, context))
   end
 end
+
+-- function COMMON.DungeonInteract(chara, target, action_cancel, turn_cancel)
+
+  -- COMMON.DungeonInteract(context.User, context.Target, context.CancelState, context.TurnCancel)
+function BATTLE_SCRIPT.PuppetInteract(owner, ownerChar, context, args)
+
+  local action_cancel = context.CancelState
+  local turn_cancel = context.TurnCancel
+  local chara = context.User
+  local target = context.Target
+  action_cancel.Cancel = true
+
+  if COMMON.CanTalk(target) then
+    UI:SetSpeaker(target)
+    UI:SetSpeakerEmotion("Happy")
+    local quote = "...!"
+
+    local tbl = LTBL(target)
+
+    print("PuppetInteract species: " .. tostring(tbl["species"]) .. " vs " .. tostring(chara.BaseForm.Species))
+
+    local same_species = tbl["species"] == chara.BaseForm.Species 
+    if same_species then
+      UI:SetSpeakerEmotion("Joyous")
+      quote = "...I'm you!"
+    end
+    
+    local oldDir = target.CharDir
+    
+    local ratio = target.HP * 100 // target.MaxHP
+      if ratio <= 25 then
+        UI:SetSpeakerEmotion("Pain")
+        quote = "......"
+        if same_species then
+          quote = "...Help me?"
+        end
+        -- pool = personality_group.PINCH
+        -- key = "TALK_PINCH_%04d"
+      elseif ratio <= 50 then
+        UI:SetSpeakerEmotion("Worried")
+        quote = "......?"
+      if same_species then
+        quote = "...Why do I feel like this?"
+      end
+        -- pool = personality_group.HALF
+        -- key = "TALK_HALF_%04d"
+      else
+        -- pool = personality_group.FULL
+        -- key = "TALK_FULL_%04d"
+      end
+      DUNGEON:CharTurnToChar(target, chara)
+    
+      UI:WaitShowDialogue(quote)
+    
+      target.CharDir = oldDir
+  else
+  
+    UI:ResetSpeaker()
+  
+    local chosen_quote = RogueEssence.StringKey("TALK_CANT"):ToLocal()
+    chosen_quote = string.gsub(chosen_quote, "%[myname%]", target:GetDisplayName(true))
+  
+    UI:WaitShowDialogue(chosen_quote)
+  
+  end
+  UI:ResetSpeaker()
+  -- UI:WaitShowDialogue("Hi there")
+  -- COMMON.DungeonInteract(context.User, context.Target, context.CancelState, context.TurnCancel)
+end
+
+
