@@ -201,6 +201,15 @@
 "Released": false,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_card": {
+"Name": {
+"DefaultText": "Emberfrost Card",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

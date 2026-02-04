@@ -436,7 +436,7 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
   local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
-  enchantments[1][1] = EnchantmentRegistry._registry["RATIONALIZE"]
+  enchantments[1][1] = EnchantmentRegistry._registry["TAROT_CARDS"]
 
   print(Serpent.dump(enchantments) .. ".... uh")
   -- title, enchantment_list, confirm_action, refuse_action, enchantment_width

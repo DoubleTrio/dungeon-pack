@@ -1185,6 +1185,71 @@ function SINGLE_CHAR_SCRIPT.PuppetMaster(owner, ownerChar, context, args)
     end
 end
 
+function SINGLE_CHAR_SCRIPT.TarotCards(owner, ownerChar, context, args)
+    -- print("PUPPET MASTER TRIGGERED")
+    if context.User ~= nil then
+        return
+    end
+
+
+    local type = args.Type
+    local enchant_id = args.EnchantmentID
+    local include_assembly = args.IncludeAssembly or false
+
+
+    local members = GetCharacterOfMatchingType(type, include_assembly)
+    for i, member in ipairs(members) do
+
+
+        SOUND:PlayBattleSE('_UNK_DUN_TWINKLE')
+
+        -- if 
+
+
+        -- GAME:
+
+	-- 		--print("Set crit health!")
+	-- 	elseif player.HP > player.MaxHP / 4 and player:GetStatusEffect("critical_health") ~= nil then
+	-- 		TASK:WaitTask(player:RemoveStatusEffect("critical_health"))
+
+
+        -- local arriveAnim = RogueEssence.Content.StaticAnim(RogueEssence.Content.AnimData("Card", 3))
+        -- arriveAnim:SetupEmitted(RogueElements.Loc(member.CharLoc.X * 24 + 12, member.CharLoc.Y * 24 + 12), 32,
+        --     RogueElements.Dir8.Down)
+        -- DUNGEON:PlayVFXAnim(arriveAnim, RogueEssence.Content.DrawLayer.Front)
+
+
+        -- local arriveAnim = RogueEssence.Content.StaticAnim(RogueEssence.Content.AnimData("Card", 3))
+        -- arriveAnim:SetupEmitted(RogueElements.Loc(member.CharLoc.X * 24 + 12, member.CharLoc.Y * 24 + 12))
+        -- DUNGEON:PlayVFXAnim(arriveAnim, RogueEssence.Content.DrawLayer.Front)
+
+
+        local card = TarotRegistry:GetRandom(1, 1)[1][1]
+
+        --initialize status data before adding it to anything
+
+        -- if card.add_as_status then
+        local card_status = RogueEssence.Dungeon.StatusEffect("emberfrost_card")
+        card_status:LoadFromData()
+        TASK:WaitTask(member:AddStatusEffect(nil, card_status, false))
+        -- end
+        -- else
+        --     local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Card", 3), 1)
+        --     emitter.Layer = DrawLayer.Front
+        --     DUNGEON:PlayVFX(emitter, member.CharLoc.X * 24 + 12, member.CharLoc.Y * 24 - 6)
+        --     -- GraphicsManager.GetChara(Appearance).TileHeight
+        -- end
+        card:apply(owner, ownerChar, context, args, member)
+
+
+        -- if card.add_as_status then
+        GAME:WaitFrames(20)
+        TASK:WaitTask(member:RemoveStatusEffect("emberfrost_card"))
+        -- end
+
+    end
+end
+
         -- local enchant_id = args.EnchantmentID
         -- local slot_amt = args.AmountPerSlot
         -- local data = EnchantmentRegistry:GetData(enchant_id)
@@ -1704,6 +1769,7 @@ function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
     }}
     GAME:WaitFrames(10)
     local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dig", 3), 1)
+    
     DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
     SOUND:PlayBattleSE("DUN_Dig")
     GAME:WaitFrames(10)

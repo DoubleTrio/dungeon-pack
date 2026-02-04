@@ -26,6 +26,112 @@ UnrecruitableType = luanet.import_type('PMDC.LevelGen.MobSpawnUnrecruitable')
 
 RedirectionType = luanet.import_type('PMDC.Dungeon.Redirected')
 
+
+ORBS = { "orb_all_dodge", "orb_all_protect", "orb_cleanse", "orb_devolve", "orb_fill_in", "orb_endure", "orb_foe_hold",
+  "orb_foe_seal", "orb_freeze", "orb_halving", "orb_invert", "orb_invisify", "orb_itemizer", "orb_luminous",
+  "orb_pierce", "orb_scanner", "orb_mobile", "orb_mug", "orb_nullify", "orb_mirror", "orb_spurn", "orb_slow",
+  "orb_slumber", "orb_petrify", "orb_totter", "orb_invisify", "orb_one_room", "orb_one_shot", "orb_totter", "orb_rebound",
+  "orb_revival", "orb_rollcall", "orb_stayaway", "orb_trap_see", "orb_trapbust", "orb_trawl", "orb_weather" }
+
+EQUIPMENT = { "emberfrost_allterrain_gear", "emberfrost_weather_ward", "held_assault_vest", "held_binding_band",
+  "held_big_root", "held_black_belt", "held_black_glasses", "held_black_sludge", "held_charcoal",
+  "held_choice_band", "held_choice_scarf", "held_choice_specs", "held_cover_band", "held_defense_scarf",
+  "held_dragon_scale", "held_expert_belt", "held_friend_bow", "held_goggle_specs", "held_grip_claw",
+  "held_hard_stone", "held_heal_ribbon", "held_iron_ball", "held_life_orb", "held_magnet", "held_metal_coat",
+  "held_metronome", "held_miracle_seed", "held_mobile_scarf", "held_mystic_water", "held_pass_scarf",
+  "held_pierce_band", "held_pink_bow", "held_poison_barb", "held_power_band", "held_reunion_cape",
+  "held_ring_target", "held_scope_lens", "held_sharp_beak", "held_shed_shell", "held_shell_bell",
+  "held_silk_scarf", "held_silver_powder", "held_soft_sand", "held_special_band", "held_spell_tag",
+  "held_sticky_barb", "held_toxic_orb", "held_flame_orb", "held_twist_band", "held_twisted_spoon",
+  "held_warp_scarf", "held_weather_rock", "held_wide_lens", "held_x_ray_specs", "held_zinc_band",
+  "held_blank_plate", "held_draco_plate", "held_dread_plate", "held_earth_plate", "held_fist_plate",
+  "held_flame_plate", "held_icicle_plate", "held_insect_plate", "held_iron_plate", "held_meadow_plate",
+  "held_mind_plate", "held_pixie_plate", "held_sky_plate", "held_splash_plate", "held_spooky_plate",
+  "held_stone_plate", "held_toxic_plate", "held_zap_plate" }
+
+SEED = { "seed_ban", "seed_blast", "seed_blinker", "seed_decoy", "seed_doom", "seed_golden", "seed_hunger", "seed_ice",
+  "seed_joy", "seed_last_chance", "seed_plain", "seed_pure", "seed_reviver", "seed_sleep", -- "seed_spreader",
+  -- "seed_training",
+  -- "seed_vanish",
+  "seed_vile", "seed_warp" }
+
+WANDS = { "wand_fear",                                                            -- "wand_infatuation",
+  "wand_lob", "wand_lure", "wand_path", "wand_pounce", "wand_purge", "wand_slow", -- "wand_stayaway",
+  -- "wand_surround",
+  "wand_switcher", "wand_topsy_turvy",                                            -- "wand_totter",
+  "wand_transfer", "wand_vanish", "wand_warp", "wand_whirlwind" }
+
+PLATES = { "held_blank_plate", "held_draco_plate", "held_dread_plate", "held_earth_plate", "held_fist_plate",
+  "held_flame_plate", "held_icicle_plate", "held_insect_plate", "held_iron_plate", "held_meadow_plate",
+  "held_mind_plate", "held_pixie_plate", "held_sky_plate", "held_splash_plate", "held_spooky_plate",
+  "held_stone_plate", "held_toxic_plate", "held_zap_plate" }
+
+TMS = {
+  "tm_acrobatics", "tm_aerial_ace", "tm_attract", "tm_avalanche", "tm_blizzard", "tm_brick_break", "tm_brine",
+  "tm_bulk_up", "tm_bulldoze", "tm_bullet_seed", "tm_calm_mind", "tm_captivate", "tm_charge_beam", "tm_cut",
+  "tm_dark_pulse", "tm_dazzling_gleam", "tm_defog", "tm_dig", "tm_dive", "tm_double_team", "tm_dragon_claw",
+  "tm_dragon_pulse", "tm_dragon_tail", "tm_drain_punch", "tm_dream_eater", "tm_earthquake", "tm_echoed_voice",
+  "tm_embargo", "tm_endure", "tm_energy_ball", "tm_explosion", "tm_facade", "tm_false_swipe", "tm_fire_blast",
+  "tm_flame_charge", "tm_flamethrower", "tm_flash", "tm_flash_cannon", "tm_fling", "tm_fly", "tm_focus_blast",
+  "tm_focus_punch", "tm_frost_breath", "tm_frustration", "tm_giga_drain", "tm_giga_impact", "tm_grass_knot",
+  "tm_gyro_ball", "tm_hail", "tm_hidden_power", "tm_hone_claws", "tm_hyper_beam", "tm_ice_beam", "tm_incinerate",
+  "tm_infestation", "tm_iron_tail", "tm_light_screen", "tm_low_sweep", "tm_natural_gift", "tm_nature_power",
+  "tm_overheat", "tm_payback", "tm_pluck", "tm_poison_jab", "tm_power_up_punch", "tm_protect", "tm_psych_up",
+  "tm_psychic", "tm_psyshock", "tm_quash", "tm_rain_dance", "tm_recycle", "tm_reflect", "tm_rest", "tm_retaliate",
+  "tm_return", "tm_roar", "tm_rock_climb", "tm_rock_polish", "tm_rock_slide", "tm_rock_smash", "tm_rock_tomb",
+  "tm_roost", "tm_round", "tm_safeguard", "tm_sandstorm", "tm_scald", "tm_secret_power", "tm_shadow_ball",
+  "tm_shadow_claw", "tm_shock_wave", "tm_silver_wind", "tm_sky_drop", "tm_sludge_bomb", "tm_sludge_wave",
+  "tm_smack_down", "tm_snarl", "tm_snatch", "tm_steel_wing", "tm_stone_edge", "tm_strength", "tm_struggle_bug",
+  "tm_substitute", "tm_sunny_day", "tm_surf", "tm_swagger", "tm_swords_dance", "tm_taunt", "tm_telekinesis",
+  "tm_thief", "tm_thunder", "tm_thunder_wave", "tm_thunderbolt", "tm_torment", "tm_u_turn", "tm_venoshock",
+  "tm_volt_switch", "tm_water_pulse", "tm_waterfall", "tm_whirlpool", "tm_wild_charge", "tm_will_o_wisp",
+  "tm_work_up", "tm_x_scissor",
+  "tm_toxic", "tm_confide"
+}
+
+
+BERRIES = {
+  "berry_apicot", "berry_babiri", "berry_charti", "berry_chilan", "berry_chople", "berry_coba", "berry_colbur",
+  "berry_enigma", "berry_ganlon", "berry_haban", "berry_jaboca", "berry_kasib", "berry_kebia", "berry_leppa",
+  "berry_liechi", "berry_lum", "berry_micle", "berry_occa", "berry_oran", "berry_passho", "berry_payapa", "berry_petaya",
+  "berry_rindo", "berry_roseli", "berry_rowap", "berry_salac", "berry_shuca", "berry_sitrus", "berry_starf",
+  "berry_tanga", "berry_wacan", "berry_yache"
+}
+
+FOOD = {
+  "food_apple", "food_apple_big", "food_apple_huge", "food_apple_perfect", "food_banana", "food_banana_big",
+}
+
+HARVEST_TABLE = {
+  "berry_apicot", "berry_babiri", "berry_charti", "berry_chilan", "berry_chople", "berry_coba", "berry_colbur",
+  "berry_enigma", "berry_ganlon", "berry_haban", "berry_jaboca", "berry_kasib", "berry_kebia", "berry_leppa",
+  "berry_liechi", "berry_lum", "berry_micle", "berry_occa", "berry_oran", "berry_passho", "berry_payapa", "berry_petaya",
+  "berry_rindo", "berry_roseli", "berry_rowap", "berry_salac", "berry_shuca", "berry_sitrus", "berry_starf",
+  "berry_tanga", "berry_wacan", "berry_yache", "food_apple", "food_apple_big", "food_apple_huge", "food_apple_perfect",
+  "food_banana", "food_banana_big",
+}
+
+
+STATS = {
+  RogueEssence.Data.Stat.Attack,
+  RogueEssence.Data.Stat.Defense,
+  RogueEssence.Data.Stat.MAtk,
+  RogueEssence.Data.Stat.MDef,
+  RogueEssence.Data.Stat.Speed
+}
+
+local function ConcatTables(a, b)
+  local t = {}
+  for _, v in ipairs(a) do
+    t[#t + 1] = v
+  end
+  for _, v in ipairs(b) do
+    t[#t + 1] = v
+  end
+  return t
+end
+
+
 function FanfareText(text, sound)
   local sound = sound or "Fanfare/Item"
   SOUND:PlayFanfare(sound)
@@ -95,6 +201,34 @@ function GetFloorSpawns(config)
   end
 
   return possible
+end
+
+function GetInventoryCost()
+  local sum = 0
+  local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+  for i = 0, inv_count - 1 do
+    local item = _DATA.Save.ActiveTeam:GetInv(i)
+    local id = item.ID
+    local entry = _DATA:GetItem(id)
+    if not entry.CannotDrop then
+      sum = sum + entry.Price
+    end
+  end
+
+
+  local save = _DATA.Save
+  local player_count = save.ActiveTeam.Players.Count
+  for i = 0, player_count - 1, 1 do
+    local player = save.ActiveTeam.Players[i]
+    if player.EquippedItem.ID ~= '' and player.EquippedItem.ID ~= nil then
+      local entry = _DATA:GetItem(player.EquippedItem.ID)
+      if not entry.CannotDrop then
+        sum = sum + entry.Price
+      end
+    end
+  end
+
+  return sum
 end
 
 -- Unfortunately, I'm not sure why passing a reference to the SV table doesn't work. This is a workaround for now
@@ -725,7 +859,7 @@ Blueprint = EnchantmentRegistry:Register({
   end
 })
 
-
+APRICORNS = { "apricorn_black", "apricorn_blue", "apricorn_brown", 'apricorn_green', 'apricorn_purple', 'apricorn_plain', 'apricorn_red', 'apricorn_white', 'apricorn_yellow' }
 
 TeamBuilding = EnchantmentRegistry:Register({
   amount = 2,
@@ -735,7 +869,7 @@ TeamBuilding = EnchantmentRegistry:Register({
   apricorn_amount = 2,
   total_choices = 5,
   amber_tear_amount = 3,
-  apricorns = { "apricorn_black", "apricorn_blue", "apricorn_brown", 'apricorn_green', 'apricorn_purple', 'apricorn_plain', 'apricorn_red', 'apricorn_white', 'apricorn_yellow' },
+
   getDescription = function(self)
     local assembly_box = M_HELPERS.GetItemName("machine_assembly_box")
 
@@ -774,8 +908,8 @@ TeamBuilding = EnchantmentRegistry:Register({
     local random_items = {}
 
     for i = 1, self.amount do
-      local random_apricorn_index = math.random(#self.apricorns)
-      local apricorn = self.apricorns[random_apricorn_index]
+      local random_apricorn_index = math.random(APRICORNS)
+      local apricorn = APRICORNS[random_apricorn_index]
       table.insert(data["apricorns"], apricorn)
       table.insert(random_items, { Item = apricorn, Amount = 1 })
     end
@@ -1170,36 +1304,6 @@ SticksAndStones = EnchantmentRegistry:Register({
 --     AssignEnchantmentToCharacter(self)
 --   end,
 -- })
-
-
-HandsTied = EnchantmentRegistry:Register({
-  gold_amount = 10000,
-  name = "Hands Tied",
-  id = "HANDS_TIED",
-  getDescription = function(self)
-    return string.format("Gain %s. The team cannot use %s until the next checkpoint", M_HELPERS.MakeColoredText(
-        tostring(self.gold_amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan),
-      M_HELPERS.MakeColoredText("items", PMDColor.SkyBlue))
-  end,
-
-  set_active_effects = function(self, active_effect, zone_context)
-    active_effect.OnMapStarts:Add(2,
-      RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({
-        StatusID = "emberfrost_embargo",
-        EnchantmentID = self.id,
-        ApplyToAll = true
-      })))
-  end,
-  offer_time = "beginning",
-  rarity = 1,
-  apply = function(self)
-    UI:SetCenter(true)
-    SOUND:PlayFanfare("Fanfare/Note")
-    UI:WaitShowDialogue(string.format("Note: Your team cannot use %s until the next checkpoint.",
-      M_HELPERS.MakeColoredText("items", PMDColor.SkyBlue)))
-    UI:SetCenter(false)
-  end
-})
 
 HandsTied = EnchantmentRegistry:Register({
   gold_amount = 10000,
@@ -2288,7 +2392,7 @@ MoralSupport = EnchantmentRegistry:Register({
 -- Type Mastery  - If you recruit all types, gain a huge reward (includes assembly).
 -- Trap Tripper Specialist - For every unique trap triggered on that floor, gain money
 -- Shops, vaults, and  are more likely to show up
--- Monotype - If all your team members share a common type, gain a damage boost (Requires 2+ members).
+-- Monotype - If all your team members share a common type, gain a damage boost (Requires 3+ members).
 -- Elemental Affinity - Choose a type. Your team does more damage with that type, but takes more damage from that type.
 -- Weathered - Your team gains a boost depending on the current weather condition. Rain 
 -- All In - Lost all your inventory items and (only offered past floor 15)
@@ -2324,6 +2428,7 @@ MoralSupport = EnchantmentRegistry:Register({
 -- Safety Net / Emergency Fund - Gain 1,000 P when a team member faints. Gain a reviver seed
 -- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
 -- Evo: Gain +10 boosts for each evolution
+-- Randorb - Gain a random orb at the start of each floor
 -- Tempo - Select a team member. That member gains a permanent stat boost for every 10
 -- After each member defeats 20 enemies, your team gains a damage boost.
 -- Solo Mission - When your team has only 1 member, that member does more damage
@@ -2581,6 +2686,7 @@ local type_master_drops = {
   --   { Item = "apricorn_yellow",         Amount = 1, Weight = 2 }
   -- }
 }
+
 
 
 TypeMaster = EnchantmentRegistry:Register({
@@ -2952,8 +3058,466 @@ end
 
 
 
--- Tarot Cards - For each Psychic Gain a random boost or negative boost for each psychic type
+-- Tarot Cards - For each Psychic type. Gain a random boost or negative boost for each psychic type draw a card and apply a random effect
+
 -- Puppetmaster - Add a guest substiute doll with half the
+
+-- Fired Uplifting
+-- Negative Aura - Apply a random debug
+
+TarotCards = EnchantmentRegistry:Register({
+  name = "Tarot Cards",
+  id = "TAROT_CARDS",
+  getDescription = function(self)
+    local psychic_type = _DATA:GetElement("psychic")
+    local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
+    return string.format(
+      "Gain a %s. For each %s in the %s, draw a card and apply a random effect at the start of each floor",
+      purple_apricorn, psychic_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local psychic_type = _DATA:GetElement("psychic")
+    local icon = psychic_type:GetIconName()
+
+    local count = #GetCharacterOfMatchingType("psychic", false)
+
+    return { "Total " .. icon .. " Members: " .. count }
+  end,
+
+
+  set_active_effects = function(self, active_effect, zone_context)
+
+
+    active_effect.OnMapStarts:Add(5, RogueEssence.Dungeon.SingleCharScriptEvent("TarotCards", Serpent.line({
+      EnchantmentID = self.id,
+      Type = "psychic",
+    })))
+  end,
+
+  apply = function(self)
+    local items = {
+      {
+        Item = "apricorn_purple",
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
+
+
+
+
+TarotRegistry = CreateRegistry({
+  registry_table = {},
+  defaults = TarotDefaults,
+})
+
+TarotRegistry:Register({
+  id = "THE_HERMIT",
+  name = "The Hermit",
+  -- amount = 500,
+  apply = function(self, owner, ownerChar, context, args)
+    -- local money = _DATA.Save.
+    local randval = _DATA.Save.Rand:Next(200, 1001)
+    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + randval
+    _DUNGEON:LogMsg(string.format("%s: You gained %s!", M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
+    M_HELPERS.MakeColoredText(tostring(randval) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan)))
+  end
+})
+
+local function CreateStatusTarot(id, name, statusId, stackCount)
+  return {
+    id = id,
+    name = name,
+    apply = function(self, owner, ownerChar, context, args)
+      local entry = _DATA:GetStatus(statusId)
+      local statusName = entry.Name:ToLocal()
+
+      _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(
+        "{0}: Your team gain [a/an] {1} boost!",
+        M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
+        statusName
+      ))
+
+      for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+        local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(statusId, false, false, stackCount)
+        local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.None)
+        mock_context.User = member
+        TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, mock_context))
+      end
+    end
+  }
+end
+
+TarotRegistry:Register(CreateStatusTarot("THE_TOWER", "The Tower", "mod_defense", 1))
+TarotRegistry:Register(CreateStatusTarot("THE_HIGH_PRIESTESS", "The High Priestess", "mod_special_defense", 1))
+
+
+TarotRegistry:Register(CreateStatusTarot("THE_EMPRESS", "The Empress", "mod_special_attack", 1))
+TarotRegistry:Register(CreateStatusTarot("THE_EMPEROR", "The Emperor", "mod_attack", 1))
+
+
+TarotRegistry:Register(CreateStatusTarot("THE_CHARIOT", "The Chariot", "mod_speed", 1))
+
+TarotRegistry:Register(CreateStatusTarot("THE_HIEROPHANT", "The Hierophant", "mod_accuracy", 1))
+TarotRegistry:Register(CreateStatusTarot("THE_DEVIL", "The Devil", "mod_evasion", 1))
+
+
+TarotRegistry:Register({
+  id = "THE_WORLD",
+  name = "The World",
+  amount = 500,
+  apply = function(self, owner, ownerChar, context, args, member)
+
+    local name = member:GetDisplayName(true)
+    _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(
+      "{0}: {1} has revealed the layout of the floor!",
+      M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
+      name
+    ))
+
+    local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
+    mock_context.User = member
+    local level_event = PMDC.Dungeon.MapOutRadiusEvent(25)
+    TASK:WaitTask(level_event:Apply(nil, nil, mock_context))
+  end
+})
+
+
+  -- local string_key = args.StringKey
+  -- local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(status, false, false, 1)
+  -- local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
+  -- mock_context.User = context.User
+  -- local stack = context.User:GetStatusEffect(status)
+  -- if stack ~= nil then
+  --   local s = stack.StatusStates:Get(luanet.ctype(StackStateType))
+  --   if s.Stack < max_stack then
+  --     ResetEffectTile(owner)
+  --     TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, mock_context))
+  --   else
+  --     local msg = RogueEssence.StringKey(string_key):ToLocal()
+  --     _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg, context.User:GetDisplayName(true)))
+  --   end
+    
+  -- else
+  --   ResetEffectTile(owner)
+  --   TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, mock_context))
+--   end
+-- end
+
+
+TarotRegistry:Register({
+  id = "WHEEL_OF_FORTUNE",
+  name = "Wheel of Fortune",
+  add_as_status = true,
+  apply = function(self, owner, ownerChar, context, args, member)
+    local wheel_choice = WheelOfFortuneRegistry:GetRandom(1, 1)[1][1]
+
+    local choices = {
+      { "Accept", true },
+      { "Decline",  true },
+    }
+
+    print(tostring(wheel_choice.id) .. "WHEEL OF FORTUNE CHOICE")
+    local question = wheel_choice:getQuestion(member)
+    print(tostring(question) .. "WHEEL OF FORTUNE QUESTION")
+    UI:BeginChoiceMenu(string.format("%s: %s", M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan), question), choices, 1, 2)
+    UI:WaitForChoice()
+    local result = UI:ChoiceResult()
+
+    if result == 1 then
+      local roll = _DATA.Save.Rand:Next(100)
+      if roll < wheel_choice.chance then
+        wheel_choice:yes_choice(owner, ownerChar, context, args, member)
+      else
+        
+        _DUNGEON:LogMsg(M_HELPERS.MakeColoredText("Nope!", PMDColor.Magenta))
+        wheel_choice:roll_fail(owner, ownerChar, context, args, member)
+      end
+    else
+      wheel_choice:no_choice(owner, ownerChar, context, args, member)
+    end
+
+    GAME:WaitFrames(30)
+  end
+})
+
+WheelOfFortuneRegistry = CreateRegistry({
+  registry_table = {},
+  defaults = WheelOfFortuneDefaults,
+})
+
+WheelOfFortuneDefaults = {
+  -- On Map Starts
+  getQuestion = function(self, member)
+    return "add question"
+  end,
+
+  roll_fail = function(owner, ownerChar, context, args, member)
+  end,
+
+  yes_choice = function(owner, ownerChar, context, args, member)
+  end,
+
+  no_choice = function(owner, ownerChar, context, args, member)
+  end
+}
+
+WheelOfFortuneRegistry:Register({
+  id = "FAINT_MEMBER",
+  amount = 5000,
+  chance = 100,
+
+  getQuestion = function(self)
+    return string.format("Take a %s to gain %s or a random team member faints. Risk it?",
+      M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(self.amount .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
+  end,
+
+  roll_fail = function(owner, ownerChar, context, args)
+    local candidates = {}
+
+    for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+      if not member.Dead then
+        table.insert(candidates, member)
+      end
+    end
+
+    local index = _DATA.Save.Rand:Next(#candidates) + 1
+
+    local mem = candidates[index]
+
+    SOUND:PlayBattleSE('DUN_Hit_Neutral')
+    TASK:WaitTask(mem:InflictDamage(9999))
+
+  end,
+
+  yes_choice = function(self, owner, ownerChar, context, args)
+    -- SOUND:
+    SOUND:PlayBattleSE('DUN_Money')
+    _DUNGEON:LogMsg(string.format("Gained %s!", M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan)))
+    
+    -- M_HELPERS.MakeColoredText("Gained %s", ))
+    -- _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.amount
+  
+  end,
+
+  no_choice = function(self, owner, ownerChar, context, args)
+  end
+})
+
+WheelOfFortuneRegistry:Register({
+  id = "REMOVE_INVENTORY",
+  chance = 25,
+
+
+  getQuestion = function(self, member)
+    local value = GetInventoryCost()
+
+    return string.format("Take a %s to gain %s or remove all items in your inventory. Risk it?",
+      M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(value .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
+  end,
+
+  roll_fail = function(self, owner, ownerChar, context, args)
+    local save = _DATA.Save
+
+
+    
+    local inv_count = save.ActiveTeam:GetInvCount() - 1
+    for i = inv_count, 0, -1 do
+      local entry = _DATA:GetItem(save.ActiveTeam:GetInv(i).ID)
+      if not entry.CannotDrop then
+        save.ActiveTeam:RemoveFromInv(i)
+      end
+    end
+    
+    local player_count = save.ActiveTeam.Players.Count
+    for i = 0, player_count - 1, 1 do 
+      local player = save.ActiveTeam.Players[i]
+      if player.EquippedItem.ID ~= '' and player.EquippedItem.ID ~= nil then 
+        local entry = _DATA:GetItem(player.EquippedItem.ID)
+        if not entry.CannotDrop then
+          player:SilentDequipItem()
+        end
+      end
+    end
+  end,
+
+  yes_choice = function(self, owner, ownerChar, context, args)
+    local value = GetInventoryCost()
+
+    SOUND:PlayBattleSE('DUN_Money')
+    _DUNGEON:LogMsg(string.format("Gained %s!", M_HELPERS.MakeColoredText(tostring(value) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan)))
+    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + value
+
+
+
+        -- M_HELPERS.MakeColoredText("Gained %s", ))
+  
+    -- SOUND:
+    -- SOUND:PlayBattleSE('DUN_Money')
+    -- _DUNGEON:LogMsg(string.format("Gained %s!",
+    --   M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan)))
+
+    -- M_HELPERS.MakeColoredText("Gained %s", ))
+    -- _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.amount
+  end,
+
+  no_choice = function(self, owner, ownerChar, context, args)
+  end
+})
+
+
+
+
+WheelOfFortuneRegistry:Register({
+  id = "REMOVE_LEVELS",
+  chance = 35,
+  gain = 5,
+  lose = 3,
+
+  getQuestion = function(self, member)
+    local name = member:GetDisplayName(true)
+
+    return string.format("Take a %s for %s to gain %s levels or lose %s levels. Risk it?",
+      M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
+      name,
+      M_HELPERS.MakeColoredText(tostring(self.gain), PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(self.lose), PMDColor.Cyan)
+  )
+  end,
+
+  roll_fail = function(self, owner, ownerChar, context, args, member)
+
+    local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
+    mock_context.User = member
+    local level_event = PMDC.Dungeon.LevelChangeEvent(-self.lose, false)
+    TASK:WaitTask(level_event:Apply(nil, nil, mock_context))
+    -- print("AKAAKAAKKA")
+    TASK:WaitTask(_DUNGEON:CheckEXP())
+  end,
+  yes_choice = function(self, owner, ownerChar, context, args, member)
+    print(tostring(member))
+
+    local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.None)
+    mock_context.User = member
+
+    local level_event = PMDC.Dungeon.LevelChangeEvent(-self.gain, false)
+    print(tostring(level_event))
+    TASK:WaitTask(level_event:Apply(nil, nil, mock_context))
+    -- print("MMDDMDMDM")
+    TASK:WaitTask(_DUNGEON:CheckEXP())
+   
+  end,
+
+  no_choice = function(self, owner, ownerChar, context, args, member)
+
+  end
+})
+
+
+local function CreateItemTarot(id, name, itemIds, count)
+
+  count = count or 1
+  return {
+    id = id,
+    name = name,
+    apply = function(self, owner, ownerChar, context, args, member)
+
+      local idx = _DATA.Save.Rand:Next(#itemIds) + 1
+      local pickedItem = itemIds[idx]
+
+      local arguments = {
+        MinAmount = 0,
+        MaxAmount = 0,
+        Guaranteed = {
+          {
+            { Item = pickedItem, Amount = count, Weight = 10 }
+          }
+        },
+        Items = {},
+        MaxRangeWidth = 2,
+        MaxRangeHeight = 2,
+        UseUserCharLoc = true
+      }
+
+      local itemName = M_HELPERS.GetItemName(pickedItem, count)
+      _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(
+        "{0}: You received a {1}!",
+        M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
+        itemName
+      ))
+
+      GAME:WaitFrames(10)
+      context.User = member
+      SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+    end
+  }
+end
+
+TarotRegistry:Register(CreateItemTarot("THE_SUN", "The Sun", { "evo_sun_stone" }))
+TarotRegistry:Register(CreateItemTarot("THE_MOON", "The Moon", { "evo_moon_stone" }))
+TarotRegistry:Register(CreateItemTarot("THE_STAR", "The Star", {"loot_star_piece"}))
+TarotRegistry:Register(CreateItemTarot("DEATH", "The Hanged Man", { "orb_one_shot" }))
+TarotRegistry:Register(CreateItemTarot("THE_FOOL", "The Fool", { "orb_invisify" }))
+TarotRegistry:Register(CreateItemTarot("JUSTICE", "Justice", { "orb_rebound" }))
+TarotRegistry:Register(CreateItemTarot("THE_HANGED_MAN", "Death", { "seed_reviver" }))
+TarotRegistry:Register(CreateItemTarot("STRENGTH", "Strength", { "tm_strength" }))
+TarotRegistry:Register(CreateItemTarot("THE_LOVERS", "The Lover", ConcatTables(APRICORNS, { "loot_heart_scale" })))
+
+
+TarotRegistry:Register(CreateItemTarot("THE_MAGICIAN", "The Magician", WANDS, 9))
+
+
+TarotRegistry:Register({
+  id = "TEMPERANCE",
+  name = "Temperance",
+  apply = function(self, owner, ownerChar, context, args)
+    local inv = GetInventoryCost()
+    local value = math.min(math.floor(inv / 5), 2000)
+
+    SOUND:PlayBattleSE('DUN_Money')
+    _DUNGEON:LogMsg(string.format("%s: Gained %s!",
+      M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(value) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan)))
+    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + value
+  end
+})
+
+TarotRegistry:Register({
+  id = "JUDGEMENT",
+  name = "Judgement",
+  apply = function(self, owner, ownerChar, context, args)
+    local sound = "DUN_Gummi"
+    SOUND:PlayBattleSE(sound)
+    local rand_index = _DATA.Save.Rand:Next(#STATS) + 1
+    local stat = STATS[rand_index]
+
+    local stat_text = RogueEssence.Text.ToLocal(stat)
+
+    _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar("{0}: All members in the active party gained [a/an] {1} boost!",
+      M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
+      stat_text)
+    )
+
+
+    for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+      BoostStat(stat, 1, member)
+    end
+    
+  end
+})
+
+TarotDefaults = {
+  apply = function(owner, ownerChar, context, args)    
+  end
+}
+
 
 PuppetMaster = EnchantmentRegistry:Register({
   name = "Puppetmaster",
@@ -2962,7 +3526,7 @@ PuppetMaster = EnchantmentRegistry:Register({
     local ghost_type = _DATA:GetElement("ghost")
     local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
     return string.format(
-      "Gain a %s. Each %s in the active party summons a substitute doll tthat mirrors a weaker version of itself and attacks enemies",
+      "Gain a %s. Each %s in the %s summons a doll that mirrors a weaker version of itself and targets enemies",
       purple_apricorn, ghost_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
   end,
   offer_time = "beginning",
@@ -2992,26 +3556,13 @@ PuppetMaster = EnchantmentRegistry:Register({
     -- end
     -- self:cleanup()
 
-    active_effect.OnMapStarts:Add(5, RogueEssence.Dungeon.SingleCharScriptEvent("PuppetMaster", Serpent.line({
+    active_effect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("PuppetMaster", Serpent.line({
       EnchantmentID = self.id,
       Type = "ghost",
     })))
   end,
 
   apply = function(self)
-    -- local items = {
-    --   {
-    --     Item = "apricorn_green",
-    --     Amount = 1
-    --   }
-    -- }
-
-    -- M_HELPERS.GiveInventoryItemsToPlayer(items)
-
-
-    -- FanfareText(string.format(
-    --   "You will gain a random berry or food for each %s in your active party at the start of each floor!",
-    --   _DATA:GetElement("grass"):GetIconName()),)
   end
 })
 
@@ -3291,7 +3842,7 @@ Subzero = CreateTypeStatusEnchantment({
 
 -- Steel: Enhanced Armor/Iron Will/Tempered Steel/Black Smith
 
--- Ground: Tectonic strength/Earth Rising/Aftershock, Quicksands - 
+-- Ground: Tectonic strength/Earth Rising/Aftershock, Quicksands -  
 
 Shopper = EnchantmentRegistry:Register({
   name = "Shopper",
@@ -3426,91 +3977,6 @@ function AssignEnchantmentToCharacter(enchant, show_message)
   end
   return selected_char
 end
-
-ORBS = { "orb_all_dodge", "orb_all_protect", "orb_cleanse", "orb_devolve", "orb_fill_in", "orb_endure", "orb_foe_hold",
-  "orb_foe_seal", "orb_freeze", "orb_halving", "orb_invert", "orb_invisify", "orb_itemizer", "orb_luminous",
-  "orb_pierce", "orb_scanner", "orb_mobile", "orb_mug", "orb_nullify", "orb_mirror", "orb_spurn", "orb_slow",
-  "orb_slumber", "orb_petrify", "orb_totter", "orb_invisify", "orb_one_room", "orb_totter", "orb_rebound",
-  "orb_revival", "orb_rollcall", "orb_stayaway", "orb_trap_see", "orb_trapbust", "orb_trawl", "orb_weather" }
-
-EQUIPMENT = { "emberfrost_allterrain_gear", "emberfrost_weather_ward", "held_assault_vest", "held_binding_band",
-  "held_big_root", "held_black_belt", "held_black_glasses", "held_black_sludge", "held_charcoal",
-  "held_choice_band", "held_choice_scarf", "held_choice_specs", "held_cover_band", "held_defense_scarf",
-  "held_dragon_scale", "held_expert_belt", "held_friend_bow", "held_goggle_specs", "held_grip_claw",
-  "held_hard_stone", "held_heal_ribbon", "held_iron_ball", "held_life_orb", "held_magnet", "held_metal_coat",
-  "held_metronome", "held_miracle_seed", "held_mobile_scarf", "held_mystic_water", "held_pass_scarf",
-  "held_pierce_band", "held_pink_bow", "held_poison_barb", "held_power_band", "held_reunion_cape",
-  "held_ring_target", "held_scope_lens", "held_sharp_beak", "held_shed_shell", "held_shell_bell",
-  "held_silk_scarf", "held_silver_powder", "held_soft_sand", "held_special_band", "held_spell_tag",
-  "held_sticky_barb", "held_toxic_orb", "held_flame_orb", "held_twist_band", "held_twisted_spoon",
-  "held_warp_scarf", "held_weather_rock", "held_wide_lens", "held_x_ray_specs", "held_zinc_band",
-  "held_blank_plate", "held_draco_plate", "held_dread_plate", "held_earth_plate", "held_fist_plate",
-  "held_flame_plate", "held_icicle_plate", "held_insect_plate", "held_iron_plate", "held_meadow_plate",
-  "held_mind_plate", "held_pixie_plate", "held_sky_plate", "held_splash_plate", "held_spooky_plate",
-  "held_stone_plate", "held_toxic_plate", "held_zap_plate" }
-
-SEED = { "seed_ban", "seed_blast", "seed_blinker", "seed_decoy", "seed_doom", "seed_golden", "seed_hunger", "seed_ice",
-  "seed_joy", "seed_last_chance", "seed_plain", "seed_pure", "seed_reviver", "seed_sleep",       -- "seed_spreader",
-  -- "seed_training",
-  -- "seed_vanish",
-  "seed_vile", "seed_warp" }
-
-WANDS = { "wand_fear",                                                          -- "wand_infatuation",
-  "wand_lob", "wand_lure", "wand_path", "wand_pounce", "wand_purge", "wand_slow", -- "wand_stayaway",
-  -- "wand_surround",
-  "wand_switcher", "wand_topsy_turvy",                                          -- "wand_totter",
-  "wand_transfer", "wand_vanish", "wand_warp", "wand_whirlwind" }
-
-PLATES = { "held_blank_plate", "held_draco_plate", "held_dread_plate", "held_earth_plate", "held_fist_plate",
-  "held_flame_plate", "held_icicle_plate", "held_insect_plate", "held_iron_plate", "held_meadow_plate",
-  "held_mind_plate", "held_pixie_plate", "held_sky_plate", "held_splash_plate", "held_spooky_plate",
-  "held_stone_plate", "held_toxic_plate", "held_zap_plate" }
-
-TMS = { 
-  "tm_acrobatics", "tm_aerial_ace", "tm_attract", "tm_avalanche", "tm_blizzard", "tm_brick_break", "tm_brine",
-  "tm_bulk_up", "tm_bulldoze", "tm_bullet_seed", "tm_calm_mind", "tm_captivate", "tm_charge_beam", "tm_cut",
-  "tm_dark_pulse", "tm_dazzling_gleam", "tm_defog", "tm_dig", "tm_dive", "tm_double_team", "tm_dragon_claw",
-  "tm_dragon_pulse", "tm_dragon_tail", "tm_drain_punch", "tm_dream_eater", "tm_earthquake", "tm_echoed_voice",
-  "tm_embargo", "tm_endure", "tm_energy_ball", "tm_explosion", "tm_facade", "tm_false_swipe", "tm_fire_blast",
-  "tm_flame_charge", "tm_flamethrower", "tm_flash", "tm_flash_cannon", "tm_fling", "tm_fly", "tm_focus_blast",
-  "tm_focus_punch", "tm_frost_breath", "tm_frustration", "tm_giga_drain", "tm_giga_impact", "tm_grass_knot",
-  "tm_gyro_ball", "tm_hail", "tm_hidden_power", "tm_hone_claws", "tm_hyper_beam", "tm_ice_beam", "tm_incinerate",
-  "tm_infestation", "tm_iron_tail", "tm_light_screen", "tm_low_sweep", "tm_natural_gift", "tm_nature_power",
-  "tm_overheat", "tm_payback", "tm_pluck", "tm_poison_jab", "tm_power_up_punch", "tm_protect", "tm_psych_up",
-  "tm_psychic", "tm_psyshock", "tm_quash", "tm_rain_dance", "tm_recycle", "tm_reflect", "tm_rest", "tm_retaliate",
-  "tm_return", "tm_roar", "tm_rock_climb", "tm_rock_polish", "tm_rock_slide", "tm_rock_smash", "tm_rock_tomb",
-  "tm_roost", "tm_round", "tm_safeguard", "tm_sandstorm", "tm_scald", "tm_secret_power", "tm_shadow_ball",
-  "tm_shadow_claw", "tm_shock_wave", "tm_silver_wind", "tm_sky_drop", "tm_sludge_bomb", "tm_sludge_wave",
-  "tm_smack_down", "tm_snarl", "tm_snatch", "tm_steel_wing", "tm_stone_edge", "tm_strength", "tm_struggle_bug",
-  "tm_substitute", "tm_sunny_day", "tm_surf", "tm_swagger", "tm_swords_dance", "tm_taunt", "tm_telekinesis",
-  "tm_thief", "tm_thunder", "tm_thunder_wave", "tm_thunderbolt", "tm_torment", "tm_u_turn", "tm_venoshock",
-  "tm_volt_switch", "tm_water_pulse", "tm_waterfall", "tm_whirlpool", "tm_wild_charge", "tm_will_o_wisp",
-  "tm_work_up", "tm_x_scissor",
-  "tm_toxic", "tm_confide"
-}
-
-
-BERRIES = {
-  "berry_apicot", "berry_babiri", "berry_charti", "berry_chilan", "berry_chople", "berry_coba", "berry_colbur",
-  "berry_enigma", "berry_ganlon", "berry_haban", "berry_jaboca", "berry_kasib", "berry_kebia", "berry_leppa",
-  "berry_liechi", "berry_lum", "berry_micle", "berry_occa", "berry_oran", "berry_passho", "berry_payapa", "berry_petaya",
-  "berry_rindo", "berry_roseli", "berry_rowap", "berry_salac", "berry_shuca", "berry_sitrus", "berry_starf",
-  "berry_tanga", "berry_wacan", "berry_yache"
-}
-
-FOOD = {
-  "food_apple", "food_apple_big", "food_apple_huge", "food_apple_perfect", "food_banana", "food_banana_big",
-}
-
-HARVEST_TABLE = {
-  "berry_apicot", "berry_babiri", "berry_charti", "berry_chilan", "berry_chople", "berry_coba", "berry_colbur",
-  "berry_enigma", "berry_ganlon", "berry_haban", "berry_jaboca", "berry_kasib", "berry_kebia", "berry_leppa",
-  "berry_liechi", "berry_lum", "berry_micle", "berry_occa", "berry_oran", "berry_passho", "berry_payapa", "berry_petaya",
-  "berry_rindo", "berry_roseli", "berry_rowap", "berry_salac", "berry_shuca", "berry_sitrus", "berry_starf",
-  "berry_tanga", "berry_wacan", "berry_yache", "food_apple", "food_apple_big", "food_apple_huge", "food_apple_perfect",
-  "food_banana", "food_banana_big",
-}
-
 
 function table.copy(obj, seen)
   if type(obj) ~= 'table' then
@@ -3703,46 +4169,6 @@ QuestMaster = EnchantmentRegistry:Register({
     -- UI:SetCenter(false)
   end
 })
-
-QuestDefaults = {
-
-  can_apply = function()
-    return true
-  end,
-
-  complete_quest = function(self)
-    local data = QuestRegistry:GetData(self)
-
-    local enchantment_data = EnchantmentRegistry:GetData(QuestMaster)
-
-    if not data["completed"] then
-      data["completed"] = true
-      _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.reward
-      enchantment_data["money_earned"] = enchantment_data["money_earned"] + self.reward
-      if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
-        SOUND:PlayFanfare("Fanfare/Note")
-        UI:WaitShowDialogue(string.format("Completed Quest! %s (%s)", self:getDescription(),
-          M_HELPERS.MakeColoredText(tostring(self.reward), PMDColor.Cyan) .. " " .. PMDSpecialCharacters.Money))
-      end
-    end
-  end,
-  -- Called at the beginning of each floor
-  cleanup = function(self)
-  end,
-
-  set_active_effects = function(self, active_effect, zone_context)
-    print(self.name .. " set quest map effect.")
-    -- print(self.name .. " activated.")
-  end,
-
-  getDescription = function(self)
-    return ""
-  end,
-
-  getProgressTexts = function(self)
-    return {}
-  end
-}
 
 QuestRegistry = CreateRegistry({
   registry_table = {},
@@ -4462,39 +4888,6 @@ QuestRegistry:Register(CreateLowHealthQuest({
   health_percent = 50,
   reward = 500
 }))
-
-QuestRegistry:Register({
-  id = "STAY_ON_FLOOR",
-  amount = 1000,
-  reward = 500,
-  getDescription = function(self)
-    return string.format("Stay on floor for %s turns",
-      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
-  end,
-
-  set_active_effects = function(self, active_effect, zone_context)
-    local data = QuestRegistry:GetData(self)
-    data["turns"] = 0
-
-    local id
-    id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
-      data["turns"] = data["turns"] + 1
-      print("Turns on floor: " .. tostring(data["turns"]) .. " / " .. tostring(self.amount))
-      if data["turns"] >= self.amount then
-        beholder.stopObserving(id)
-        data["turns"] = self.amount
-        GAME:WaitFrames(30)
-        self:complete_quest()
-      end
-    end)
-  end,
-
-  getProgressTexts = function(self)
-    local data = QuestRegistry:GetData(self)
-    local turns = data["turns"]
-    return { "", "Progress: " .. math.min(turns, self.amount) .. "/" .. tostring(self.amount) }
-  end
-})
 
 QuestRegistry:Register({
   id = "STAY_ON_FLOOR",
