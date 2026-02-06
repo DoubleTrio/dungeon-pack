@@ -527,36 +527,111 @@ function BATTLE_SCRIPT.RavenousAfterHit(owner, ownerChar, context, args)
   end
 end
 
--- function BATTLE_SCRIPT.EvioliteEvent(owner, ownerChar, context, args)
---   --NOTE: A 50% decrease in damage was a bit powerful... 
---   --This has been nerfed to 20%
---   local DEFAULT_NUM = 20
---   local DEFUALT_DENOM = 25
+require 'trios_dungeon_pack.emberfrost.enchantments'
 
---   local phy_num = DEFAULT_NUM
---   local phy_denom = DEFUALT_DENOM
 
---   local spec_num = DEFAULT_NUM
---   local spec_denom = DEFUALT_DENOM
+function BATTLE_SCRIPT.StoreItemInEnchant(owner, ownerChar, context, args)
+  if context.ActionType ~= RogueEssence.Dungeon.BattleActionType.Item then
+    return
+  end
 
---   if type(args.PhyNum) == "number" then p_num = args.PhyNum end
---   if type(args.PhyDenom) == "number" then p_denom = args.PhyDenom end
---   if type(args.SpecNum) == "number" then spec_num = args.SpecNum end
---   if type(args.SpecDenom) == "number" then spec_denom = args.SpecDenom end
---   local apply_effect = GAME:CanPromote(context.Target)
---   if args.Reverse then apply_effect = (not apply_effect) end
+  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --   return
+  -- end
 
---   if apply_effect then
---     local effects = {
---       PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Physical, phy_num, phy_denom),
---       PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Magical, spec_num, spec_denom)
---     }
+  local enchant_id = args.EnchantmentID
 
---     for _, effect in pairs(effects) do
---       TASK:WaitTask(effect:Apply(owner, ownerChar, context))
---     end
---   end
--- end
+
+  local item = GetItemFromContext(context)
+
+  local data = EnchantmentRegistry:GetData(enchant_id)
+
+  data["item"] = item
+end
+
+function BATTLE_SCRIPT.BerryNutritiousAfterActions(owner, ownerChar, context, args)
+
+
+  if context.ActionType ~= RogueEssence.Dungeon.BattleActionType.Item then
+    return
+  end
+
+  if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+    return
+  end
+
+
+  local enchant_id = args.EnchantmentID
+  local chance = args.Chance
+  local data = EnchantmentRegistry:GetData(enchant_id)
+
+  local item = data["item"]
+
+  if item == nil then 
+    return
+  end
+
+
+
+  BerryStateType = luanet.import_type('PMDC.Dungeon.BerryState')
+  local contains = ItemIdContainsState(item, BerryStateType)
+
+  if not contains then
+    return
+  end
+
+  local roll = _DATA.Save.Rand:Next(100)
+  if roll >= chance then
+    return
+  end
+
+
+  local sound = "DUN_Gummi"
+  SOUND:PlayBattleSE(sound)
+  local rand_index = _DATA.Save.Rand:Next(#STATS) + 1
+  local stat = STATS[rand_index]
+
+  local stat_text = RogueEssence.Text.ToLocal(stat)
+  local user = context.User
+
+
+  _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar("{0} gained [a/an] {1} stat boost!",
+    user:GetDisplayName(true),
+    stat_text
+  ))
+  BoostStat(stat, 1, user)
+end
+
+function BATTLE_SCRIPT.EvioliteEvent(owner, ownerChar, context, args)
+  --NOTE: A 50% decrease in damage was a bit powerful... 
+  --This has been nerfed to 20%
+  local DEFAULT_NUM = 20
+  local DEFUALT_DENOM = 25
+
+  local phy_num = DEFAULT_NUM
+  local phy_denom = DEFUALT_DENOM
+
+  local spec_num = DEFAULT_NUM
+  local spec_denom = DEFUALT_DENOM
+
+  if type(args.PhyNum) == "number" then p_num = args.PhyNum end
+  if type(args.PhyDenom) == "number" then p_denom = args.PhyDenom end
+  if type(args.SpecNum) == "number" then spec_num = args.SpecNum end
+  if type(args.SpecDenom) == "number" then spec_denom = args.SpecDenom end
+  local apply_effect = GAME:CanPromote(context.Target)
+  if args.Reverse then apply_effect = (not apply_effect) end
+
+  if apply_effect then
+    local effects = {
+      PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Physical, phy_num, phy_denom),
+      PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Magical, spec_num, spec_denom)
+    }
+
+    for _, effect in pairs(effects) do
+      TASK:WaitTask(effect:Apply(owner, ownerChar, context))
+    end
+  end
+end
 
 
 function BATTLE_SCRIPT.WizardPowerBoost(owner, ownerChar, context, args)
@@ -901,8 +976,446 @@ function BATTLE_SCRIPT.PuppetInteract(owner, ownerChar, context, args)
   
   end
   UI:ResetSpeaker()
-  -- UI:WaitShowDialogue("Hi there")
-  -- COMMON.DungeonInteract(context.User, context.Target, context.CancelState, context.TurnCancel)
+
 end
 
+-- function COMMON.EndDayCycle()
+--   --reshuffle items
 
+--   SV.adventure.Thief = false
+--   SV.adventure.Tutors = {}
+--   SV.base_shop = {}
+
+--   math.randomseed(GAME:GetDailySeed())
+--   --roll a random index from 1 to length of category
+--   --add the item in that index category to the shop
+--   --2 essentials, always
+--   local type_count = 2
+--   for ii = 1, type_count, 1 do
+--     local base_data = COMMON.ESSENTIALS[math.random(1, #COMMON.ESSENTIALS)]
+--     table.insert(SV.base_shop, base_data)
+--   end
+
+--   --1-2 ammo, always
+--   type_count = math.random(1, 2)
+--   for ii = 1, type_count, 1 do
+--     local base_data = COMMON.AMMO[math.random(1, #COMMON.AMMO)]
+--     table.insert(SV.base_shop, base_data)
+--   end
+
+--   --2-3 utilities, always
+--   type_count = math.random(3, 4)
+--   for ii = 1, type_count, 1 do
+--     local base_data = COMMON.UTILITIES[math.random(1, #COMMON.UTILITIES)]
+--     table.insert(SV.base_shop, base_data)
+--   end
+
+--   --1-2 orbs, always
+--   type_count = math.random(1, 2)
+--   for ii = 1, type_count, 1 do
+--     local base_data = COMMON.ORBS[math.random(1, #COMMON.ORBS)]
+--     table.insert(SV.base_shop, base_data)
+--   end
+
+--   --1-2 special item, always
+--   type_count = math.random(1, 2)
+--   for ii = 1, type_count, 1 do
+--     local base_data = COMMON.SPECIAL[math.random(1, #COMMON.SPECIAL)]
+--     table.insert(SV.base_shop, base_data)
+--   end
+
+
+--   local catalog = {}
+
+--   for ii = 1, #COMMON_GEN.TRADES_RANDOM, 1 do
+--     local base_data = { Item = COMMON_GEN.TRADES_RANDOM[ii].Item, ReqItem = COMMON_GEN.TRADES_RANDOM[ii].ReqItem }
+
+--     -- check if the item has been acquired before, or if it's a 1* item and dex has been seen
+--     if SV.unlocked_trades[COMMON_GEN.TRADES_RANDOM[ii].Item] ~= nil then
+--       table.insert(catalog, base_data)
+--     elseif #COMMON_GEN.TRADES_RANDOM[ii].ReqItem == 2 then
+--       if _DATA.Save:GetMonsterUnlock(COMMON_GEN.TRADES_RANDOM[ii].Dex) == RogueEssence.Data.GameProgress.UnlockState.Discovered then
+--         table.insert(catalog, base_data)
+--       end
+--     end
+--   end
+
+--   SV.base_trades = {}
+--   if #catalog < 25 then
+--     type_count = 0
+--   elseif #catalog < 50 then
+--     type_count = 1
+--   elseif #catalog < 75 then
+--     type_count = 2
+--   elseif #catalog < 100 then
+--     type_count = 3
+--   elseif #catalog < 150 then
+--     type_count = 4
+--   elseif #catalog < 250 then
+--     type_count = 5
+--   elseif #catalog < 350 then
+--     type_count = 6
+--   else
+--     type_count = 7
+--   end
+
+--   for ii = 1, type_count, 1 do
+--     local idx = math.random(1, #catalog)
+--     local base_data = catalog[idx]
+--     table.insert(SV.base_trades, base_data)
+--     table.remove(catalog, idx)
+--   end
+
+--   COMMON.UpdateDayEndVars()
+-- end
+
+-- function base_camp_2.Shop_Action(obj, activator)
+--   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+
+--   local state = 0
+--   local repeated = false
+--   local cart = {}
+--   local catalog = {}
+--   for ii = 1, #SV.base_shop, 1 do
+--     local base_data = SV.base_shop[ii]
+--     local item_data = { Item = RogueEssence.Dungeon.InvItem(base_data.Index, false, base_data.Amount), Price = base_data
+--     .Price }
+--     table.insert(catalog, item_data)
+--   end
+
+
+--   local chara = CH('Shop_Owner')
+--   UI:SetSpeaker(chara)
+
+--   while state > -1 do
+--     if state == 0 then
+--       local msg = STRINGS:Format(STRINGS.MapStrings['Shop_Intro'])
+--       if repeated == true then
+--         msg = STRINGS:Format(STRINGS.MapStrings['Shop_Intro_Return'])
+--       end
+--       local shop_choices = { STRINGS:Format(STRINGS.MapStrings['Shop_Option_Buy']), STRINGS:Format(STRINGS.MapStrings
+--       ['Shop_Option_Sell']),
+--         STRINGS:FormatKey("MENU_INFO"),
+--         STRINGS:FormatKey("MENU_EXIT") }
+--       UI:BeginChoiceMenu(msg, shop_choices, 1, 4)
+--       UI:WaitForChoice()
+--       local result = UI:ChoiceResult()
+--       repeated = true
+--       if result == 1 then
+--         if #catalog > 0 then
+--           --TODO: use the enum instead of a hardcoded number
+--           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy'], STRINGS:LocalKeyString(26)))
+--           state = 1
+--         else
+--           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy_Empty']))
+--         end
+--       elseif result == 2 then
+--         local bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
+--         if bag_count > 0 then
+--           --TODO: use the enum instead of a hardcoded number
+--           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Sell'], STRINGS:LocalKeyString(26)))
+--           state = 3
+--         else
+--           UI:SetSpeakerEmotion("Angry")
+--           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Bag_Empty']))
+--           UI:SetSpeakerEmotion("Normal")
+--         end
+--       elseif result == 3 then
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_001']))
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_002']))
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_003']))
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_004']))
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_005']))
+--       else
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Goodbye']))
+--         state = -1
+--       end
+--     elseif state == 1 then
+--       UI:ShopMenu(catalog)
+--       UI:WaitForChoice()
+--       local result = UI:ChoiceResult()
+--       if #result > 0 then
+--         local bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
+--         local bag_cap = GAME:GetPlayerBagLimit()
+--         if bag_count == bag_cap then
+--           UI:SetSpeakerEmotion("Angry")
+--           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Bag_Full']))
+--           UI:SetSpeakerEmotion("Normal")
+--         else
+--           cart = result
+--           state = 2
+--         end
+--       else
+--         state = 0
+--       end
+--     elseif state == 2 then
+--       local total = 0
+--       for ii = 1, #cart, 1 do
+--         total = total + catalog[cart[ii]].Price
+--       end
+--       local msg
+--       if total > GAME:GetPlayerMoney() then
+--         UI:SetSpeakerEmotion("Angry")
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy_No_Money']))
+--         UI:SetSpeakerEmotion("Normal")
+--         state = 1
+--       else
+--         if #cart == 1 then
+--           local name = catalog[cart[1]].Item:GetDisplayName()
+--           msg = STRINGS:Format(STRINGS.MapStrings['Shop_Buy_One'], STRINGS:FormatKey("MONEY_AMOUNT", total), name)
+--         else
+--           msg = STRINGS:Format(STRINGS.MapStrings['Shop_Buy_Multi'], STRINGS:FormatKey("MONEY_AMOUNT", total))
+--         end
+--         UI:ChoiceMenuYesNo(msg, false)
+--         UI:WaitForChoice()
+--         result = UI:ChoiceResult()
+
+--         if result then
+--           GAME:RemoveFromPlayerMoney(total)
+--           for ii = 1, #cart, 1 do
+--             local item = catalog[cart[ii]].Item
+--             GAME:GivePlayerItem(item.ID, item.Amount, false)
+--           end
+--           for ii = #cart, 1, -1 do
+--             table.remove(catalog, cart[ii])
+--             table.remove(SV.base_shop, cart[ii])
+--           end
+
+--           cart = {}
+--           SOUND:PlayBattleSE("DUN_Money")
+--           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy_Complete']))
+--           state = 0
+--         else
+--           state = 1
+--         end
+--       end
+--     elseif state == 3 then
+--       UI:SellMenu()
+--       UI:WaitForChoice()
+--       local result = UI:ChoiceResult()
+
+--       if #result > 0 then
+--         cart = result
+--         state = 4
+--       else
+--         state = 0
+--       end
+--     elseif state == 4 then
+--       local total = 0
+--       for ii = 1, #cart, 1 do
+--         local item
+--         if cart[ii].IsEquipped then
+--           item = GAME:GetPlayerEquippedItem(cart[ii].Slot)
+--         else
+--           item = GAME:GetPlayerBagItem(cart[ii].Slot)
+--         end
+--         total = total + item:GetSellValue()
+--       end
+--       local msg
+--       if #cart == 1 then
+--         local item
+--         if cart[1].IsEquipped then
+--           item = GAME:GetPlayerEquippedItem(cart[1].Slot)
+--         else
+--           item = GAME:GetPlayerBagItem(cart[1].Slot)
+--         end
+--         msg = STRINGS:Format(STRINGS.MapStrings['Shop_Sell_One'], STRINGS:FormatKey("MONEY_AMOUNT", total),
+--           item:GetDisplayName())
+--       else
+--         msg = STRINGS:Format(STRINGS.MapStrings['Shop_Sell_Multi'], STRINGS:FormatKey("MONEY_AMOUNT", total))
+--       end
+--       UI:ChoiceMenuYesNo(msg, false)
+--       UI:WaitForChoice()
+--       result = UI:ChoiceResult()
+
+--       if result then
+--         for ii = #cart, 1, -1 do
+--           if cart[ii].IsEquipped then
+--             GAME:TakePlayerEquippedItem(cart[ii].Slot, true)
+--           else
+--             GAME:TakePlayerBagItem(cart[ii].Slot, true)
+--           end
+--         end
+--         SOUND:PlayBattleSE("DUN_Money")
+--         GAME:AddToPlayerMoney(total)
+--         cart = {}
+--         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Sell_Complete']))
+--         state = 0
+--       else
+--         state = 3
+--       end
+--     end
+--   end
+-- end
+
+
+local function RunShop(item_list)
+    local state = 0
+    
+    while state == 0 do
+        local inv_cost = GetInventoryCost()
+        local choices = {
+            { "Buy",            true },
+            { "Sell All Items", inv_cost > 0 },
+            { "Cancel",         true },
+        }
+        
+        local question = "What business do you have for me today?"
+        UI:BeginChoiceMenu(question, choices, 1, 3)
+        UI:WaitForChoice()
+        local result = UI:ChoiceResult()
+        
+        if result == 1 then
+            -- Buy menu
+            local buy_state = 0
+            while buy_state == 0 do
+                local item_choices = {}
+                for _, item in ipairs(item_list) do
+                    local item_name = M_HELPERS.GetItemName(item.Item, item.Amount)
+                    local price_display = item_name .. " (" .. M_HELPERS.FormatMoney(item.Price) .. ")"
+                    local money = _DATA.Save.ActiveTeam.Money
+                    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+                    local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
+                    local available_slots = max_inv_slots - inv_count
+                    table.insert(item_choices, { price_display, available_slots > 0 and money >= item.Price })
+                end
+                table.insert(item_choices, { "Cancel", true })
+                
+                local question = "Have a look! Do you see anything that you like?"
+                UI:BeginChoiceMenu(question, item_choices, 1, #item_choices)
+                UI:WaitForChoice()
+                local item_result = UI:ChoiceResult()
+                
+                if item_result > 0 and item_result <= #item_list then
+                    -- Confirm purchase
+                    local selected_item = item_list[item_result]
+                    local item_name = M_HELPERS.GetItemName(selected_item.Item, selected_item.Amount)
+                    UI:ChoiceMenuYesNo(string.format("Ah, the %s! How about for %s?", item_name, M_HELPERS.FormatMoney(selected_item.Price)))
+                    UI:WaitForChoice()
+                    local confirm = UI:ChoiceResult()
+                    
+                    if confirm then
+                        _DATA:LogUIPlay(item_result + 1) -- Log 2 for item #1, 3 for item #2, etc.
+                        SOUND:PlayBattleSE("DUN_Monwey")
+                        UI:WaitShowDialogue("Pleasure doing business with you!")
+                        UI:ResetSpeaker()
+                        return item_result + 1 -- Return item_result + 1 (2 for item #1, 3 for item #2, etc.)
+                    else
+                        _DATA:LogUIPlay(-1)
+                        -- Continue shopping (don't exit)
+                    end
+                else
+                    -- Cancel
+                    _DATA:LogUIPlay(-1)
+                    buy_state = 1 -- Exit buy menu
+                end
+            end
+            
+        elseif result == 2 then
+            -- Sell all items
+            local inv_cost = GetInventoryCost()
+            UI:ChoiceMenuYesNo(string.format("I shall give you %s for all your items. How does that sound?", M_HELPERS.FormatMoney(inv_cost)))
+            UI:WaitForChoice()
+            local sell_inv = UI:ChoiceResult()
+            
+            if sell_inv then
+                SOUND:PlayBattleSE("DUN_Money")
+                _DATA:LogUIPlay(1)
+                -- Sell inventory
+                -- M_HELPERS.RemoveAllInventory()
+                UI:WaitShowDialogue("Thank you for your business!")
+                UI:ResetSpeaker()
+                return 1 -- Return 1 for successful sell
+            else
+                _DATA:LogUIPlay(-1)
+                -- Continue in shop (don't exit)
+            end
+            
+        else
+            -- Cancel main menu
+            _DATA:LogUIPlay(-1)
+            state = 1 -- Exit shop
+        end
+    end
+    
+    UI:ResetSpeaker()
+    return -1 -- Return -1 only if exiting without any action
+end
+
+function BATTLE_SCRIPT.TravelingMerchantInteract(owner, ownerChar, context, args)
+  local action_cancel = context.CancelState
+  local turn_cancel = context.TurnCancel
+  local chara = context.User
+  local target = context.Target
+  turn_cancel.Cancel = true
+
+
+  -- action_cancel.Cancel = true
+
+  if COMMON.CanTalk(target) then
+    UI:SetSpeaker(target)
+    UI:SetSpeakerEmotion("Normal")
+
+    local oldDir = target.CharDir
+
+    local ratio = target.HP * 100 // target.MaxHP
+    if ratio <= 25 then
+
+    elseif ratio <= 50 then
+
+    else
+
+    end
+    DUNGEON:CharTurnToChar(target, chara)
+    local tbl = LTBL(target)
+    local item_list = tbl.Items
+
+
+    local actions = {
+      function()
+        local inv_cost = GetInventoryCost()
+        _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + inv_cost
+      end,
+    }
+
+    for i, item in ipairs(item_list) do
+      table.insert(actions, function()
+        local item_name = item.Item
+        local item_price = item.Price
+        local item_amount = item.Amount
+
+        local inv_item = RogueEssence.Dungeon.InvItem(item_name, false, item_amount)
+
+        _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money - item_price
+        GAME:GivePlayerItem(inv_item)
+      end)
+    end
+
+    local ui_index = -1
+    if _DATA.CurrentReplay ~= nil then
+      ui_index = _DATA.CurrentReplay:ReadUI()
+      if ui_index ~= -1 then
+        actions[ui_index]()
+      end
+    else
+      local purchased_index = RunShop(item_list)
+      if purchased_index ~= -1 then
+        actions[purchased_index]()
+      end
+    end
+
+
+
+    target.CharDir = oldDir
+  else
+    UI:ResetSpeaker()
+
+    local chosen_quote = RogueEssence.StringKey("TALK_CANT"):ToLocal()
+    chosen_quote = string.gsub(chosen_quote, "%[myname%]", target:GetDisplayName(true))
+
+    UI:WaitShowDialogue(chosen_quote)
+    return
+  end
+
+
+end

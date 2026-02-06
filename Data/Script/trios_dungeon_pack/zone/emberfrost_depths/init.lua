@@ -25,20 +25,22 @@ function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 
 
 	SV.EmberFrost.Enchantments.Selected = { "SHOPPER", "LOOSE_CHANGE", "TREASURE_HUNT", 'RATIONALIZE', 'SWAT_TEAM',
-		'DRACONIAN_DEFICIENCE', 'SUBZERO', 'PUPPETMASTER', 'TAROT_CARDS' }
+		'DRACONIAN_DEFICIENCE', 'SUBZERO', 'PUPPETEER', 'TAROT_CARDS', 'BERRY_NUTRITOUS', 'TEMPO', 'RAINING_GOLD', 'RANDORB',
+		'TRAVELING_MERCHANT' }
+		-- 'RANDORB'
+		-- 'BOUNTY_HUNTER'
 	-- print("ENTER SEGMENT")
 	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
 		local tbl = LTBL(member)
 		tbl.EmberfrostRun = true
 	end
 
-	for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
-		local guest = GAME:GetPlayerGuestMember(i)
-		local tbl = LTBL(guest)
-		if tbl["PUPPETMASTER"] then
-			GAME:RemovePlayerGuest(i)
-		end
-	end
+	-- _DATA.Save.ActiveTeam.Guests:Clear()
+	-- print(tostring(Puppeteer.id) .. "ANEMEEMEMEMEM")
+	-- RemoveGuestsWithValue(Puppeteer.id)
+	-- RemoveGuestsWithValue(TravelingMerchant.id)
+
+	
 
 	if segmentID == 0 and mapID == 0 then
 
@@ -197,6 +199,8 @@ local function CleanUpEmberFrostDepths()
 		tbl.EmberfrostRun = false
 	end
 
+	RemoveGuestsWithValue(Puppeteer.id)
+	RemoveGuestsWithValue(TravelingMerchant.id)
 	-- local player_count = GAME:GetPlayerPartyCount()
 
 	-- for i = 0, player_count - 1, 1 do 

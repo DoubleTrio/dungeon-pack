@@ -78,6 +78,17 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"follower": {
+"$type": "RogueEssence.Data.AIEntrySummary, RogueEssence",
+"Assignable": false,
+"Name": {
+"DefaultText": "Follower",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

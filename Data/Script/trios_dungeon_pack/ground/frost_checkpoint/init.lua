@@ -11,6 +11,7 @@ require 'origin.menu.InventorySelectMenu'
 -- Package name
 local frost_checkpoint = {}
 
+
 -- --This function is called to move partner to a specific marker on loading a new map
 -- function PartnerEssentials.InitializePartnerSpawn(dir, customPosition)
 -- 	--Each map has an initial point where the partner spawns.
@@ -55,8 +56,10 @@ local frost_checkpoint = {}
 -------------------------------
 ---frost_checkpoint.Init(map)
 -- Engine callback function
+
 function frost_checkpoint.Init(map)
   COMMON.RespawnAllies()
+  RespawnGuests()
   -- COMMON.RespawnAllies(true)
   GROUND:AddMapStatus("snow")
 
@@ -98,6 +101,28 @@ function frost_checkpoint.Init(map)
   local player = CH('PLAYER')
   local partner = CH('Teammate_1')
   -- PartnerEssentials.InitializePartnerSpawn()
+end
+
+function RespawnGuests()
+  -- GROUND:RefreshPlayer()
+
+
+  -- local party = GAME:GetPlayerPartyTable()
+  -- local playeridx = GAME:GetTeamLeaderIndex()
+
+  --Place player teammates
+  local count = _DATA.Save.ActiveTeam.Guests.Count
+  for i = 1, count, 1
+  do
+    GROUND:RemoveCharacter("Guest" .. tostring(i))
+  end
+  local total = 1
+  for member in luanet.each(_DATA.Save.ActiveTeam.Guests) do
+    GROUND:SpawnerSetSpawn("GUEST_" .. tostring(total), member)
+    local chara = GROUND:SpawnerDoSpawn("GUEST_" .. tostring(total))
+    -- GROUND:GiveCharIdleChatter(chara)
+    total = total + 1
+  end
 end
 
 -- if _DATA.CurrentReplay == nil then
@@ -436,7 +461,7 @@ function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
   local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
-  enchantments[1][1] = EnchantmentRegistry._registry["TAROT_CARDS"]
+  enchantments[1][1] = EnchantmentRegistry._registry['TRAVELING_MERCHANT']
 
   print(Serpent.dump(enchantments) .. ".... uh")
   -- title, enchantment_list, confirm_action, refuse_action, enchantment_width
@@ -601,5 +626,64 @@ function frost_checkpoint.Teammate1_Action(chara, activator)
   DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
   COMMON.GroundInteract(activator, chara)
 end
+
+
+local function GetGroundDialogueForGuest(guest, player) 
+  local oldDir = guest.Direction
+  GROUND:CharTurnToChar(guest, player)
+
+
+  UI:SetSpeaker(guest)
+  local tbl = LTBL(guest)
+  local id = tbl.ID
+
+  local enchant = EnchantmentRegistry:Get(id)
+
+  enchant:dialogue()
+  
+  guest.Direction = oldDir
+end
+
+
+function frost_checkpoint.Guest1_Action(chara, activator)
+  DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
+  GetGroundDialogueForGuest(chara, activator)
+  -- COMMON.GroundInteract(activator, chara)
+  -- print("guest1")
+  -- print(tostring(chara))
+  -- local tbl = LTBL(chara)
+  -- print(Serpent.dump(tbl))
+  -- local s = _DATA.Save.ActiveTeam.Guests[0]
+  -- print(tostring(s))
+
+  -- local tbl2 = LTBL(s)
+  -- print(Serpent.dump(tbl2))
+
+  -- chara.Direction = olddir
+
+
+  
+end
+
+
+
+function frost_checkpoint.Guest2_Action(chara, activator)
+  DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
+  -- COMMON.GroundInteract(activator, chara)
+  -- print("guest2")
+  -- local tbl = LTBL(chara)
+  -- print(Serpent.dump(tbl))
+  GetGroundDialogueForGuest(chara)
+end
+
+-- function frost_checkpoint.GUEST_1_Action(chara, activator)
+--   DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
+--   COMMON.GroundInteract(activator, chara)
+-- end
+
+-- function frost_checkpoint.GUEST_2_Action(chara, activator)
+--   DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
+--   COMMON.GroundInteract(activator, chara)
+-- end
 
 return frost_checkpoint

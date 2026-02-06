@@ -117,8 +117,89 @@ STATS = {
   RogueEssence.Data.Stat.Defense,
   RogueEssence.Data.Stat.MAtk,
   RogueEssence.Data.Stat.MDef,
-  RogueEssence.Data.Stat.Speed
+  RogueEssence.Data.Stat.Speed,
+  RogueEssence.Data.Stat.HP
 }
+
+function GetRandomFromArray(table)
+  return table[_DATA.Save.Rand:Next(#table) + 1]
+end
+
+function table.copy(obj, seen)
+  if type(obj) ~= 'table' then
+    return obj
+  end
+  if seen and seen[obj] then
+    return seen[obj]
+  end
+  local s = seen or {}
+  local res = setmetatable({}, getmetatable(obj))
+  s[obj] = res
+  for k, v in pairs(obj) do
+    res[table.copy(k, s)] = table.copy(v, s)
+  end
+  return res
+end
+
+function GetRandomUnique(items, amount, already_seen)
+  local pool = {}
+  if already_seen == nil then
+    already_seen = {}
+  end
+
+  for i = 1, #items do
+    if not already_seen[items[i]] then
+      table.insert(pool, items[i])
+    end
+  end
+
+  local result = {}
+  local count = math.min(amount, #pool)
+
+  for i = 1, count do
+    local index = _DATA.Save.Rand:Next(#pool) + 1
+    table.insert(result, pool[index])
+    already_seen[pool[index]] = true
+    table.remove(pool, index)
+  end
+
+  return result
+end
+
+function SelectItemFromList(prompt, items)
+  local ret = {}
+  local choose = function(item)
+    ret = item
+    _MENU:RemoveMenu()
+  end
+  local refuse = function()
+  end
+  local menu = ItemSelectionMenu:new(prompt, items, choose, refuse)
+  UI:SetCustomMenu(menu.menu)
+  UI:WaitForChoice()
+  return ret
+end
+
+function GetItemFromContext(context)
+  local index = context.UsageSlot
+  local item
+  if index >= -1 then
+    item = _DATA.Save.ActiveTeam:GetInv(index).ID
+  elseif index == -1 then
+    item = context.User.EquippedItem.ID
+  elseif index == -2 then
+    local map_slot = _ZONE.CurrentMap:GetItem(context.User.CharLoc)
+    item = _ZONE.CurrentMap.Items[map_slot].Value
+  end
+
+  return item
+end
+
+function ItemIdContainsState(item_id, state_type)
+  local item_data = _DATA:GetItem(item_id)
+  local contains = item_data.ItemStates:Contains(luanet.ctype(state_type))
+  return contains
+end
 
 local function ConcatTables(a, b)
   local t = {}
@@ -313,9 +394,16 @@ PowerupDefaults = {
     return ""
   end,
 
+  -- Could maybe use beholder...
   -- On checkpoint reached
   on_checkpoint = function(self)
     print(self.name .. " checkpoint.")
+  end,
+
+  -- Could also maybe use beholder...
+  -- On checkpoint exiting
+  on_exit_checkpoint = function(self)
+    print(self.name .. " exit checkpoint.")
   end
 }
 
@@ -411,9 +499,8 @@ function CreateRegistry(config)
       end
     end
 
-    -- Fisher-Yates shuffle (fixed for 1-indexed Lua arrays)
     for i = #candidates, 2, -1 do
-      local j = _DATA.Save.Rand:Next(i) + 1       -- Add 1 to convert 0-indexed to 1-indexed
+      local j = _DATA.Save.Rand:Next(i) + 1
       candidates[i], candidates[j] = candidates[j], candidates[i]
     end
 
@@ -1305,6 +1392,7 @@ SticksAndStones = EnchantmentRegistry:Register({
 --   end,
 -- })
 
+
 HandsTied = EnchantmentRegistry:Register({
   gold_amount = 10000,
   name = "Hands Tied",
@@ -1339,19 +1427,92 @@ ATrueLeader = EnchantmentRegistry:Register({
   name = "A True Leader",
   id = "A_TRUE_LEADER",
   getDescription = function(self)
-    return string.format("Gain %s. You cannot swap leaders until the next checkpoint", M_HELPERS.MakeColoredText(
+    return string.format("You cannot swap leaders until the next checkpoint. Gain %s when you do reach the next checkpoint.", M_HELPERS.MakeColoredText(
         tostring(self.gold_amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan),
       M_HELPERS.MakeColoredText("items", PMDColor.SkyBlue))
   end,
 
+  on_checkpoint = function ()
+    local data = EnchantmentRegistry:GetData(ATrueLeader)
+    data["completed"] = true
+    _DATA.Save.NoSwitching = false
+
+  end,
+  on_exit_checkpoint = function()
+    local data = EnchantmentRegistry:GetData(self)
+    if not data["completed"] then
+      _DATA.Save.NoSwitching = true
+    end
+  end,
+  offer_range = {3, 4},
+  offer_time = "beginning",
+  rarity = 1,
+  apply = function(self)
+    local data = EnchantmentRegistry:GetData(self)
+    data["completed"] = false
+
+    UI:SetCenter(true)
+    SOUND:PlayFanfare("Fanfare/Note")
+    UI:WaitShowDialogue(string.format("Note: Your team cannot swap leaders until the next checkpoint.",
+      M_HELPERS.MakeColoredText("items", PMDColor.SkyBlue)))
+    UI:SetCenter(false)
+  end
+})
+
+
+Tempo = EnchantmentRegistry:Register({
+  name = "Tempo",
+  id = "TEMPO",
+  count = 3,
+  getDescription = function(self)
+    return string.format("For every %s enemies defeated, your team gains a random stat boost", M_HELPERS.MakeColoredText(tostring(self.count), PMDColor.Cyan))
+  end,
+
+  getProgressTexts = function(self)
+    return {
+      string.format("Enemies Defeated: %s/%s", tostring(EnchantmentRegistry:GetData(self)["defeated_enemies"]), tostring(self.count))
+    }
+  end,
+
   set_active_effects = function(self, active_effect, zone_context)
+    local data = EnchantmentRegistry:GetData(self)
+    data["defeated_enemies"] = data["defeated_enemies"] or 0
+
+    local on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+      local data = EnchantmentRegistry:GetData(self)
+      if data["defeated_enemies"] >= self.count then
+        data["defeated_enemies"] = data["defeated_enemies"] % self.count
+
+        local stat = GetRandomFromArray(STATS)
+        local stat_text = RogueEssence.Text.ToLocal(stat)
+
+        _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(
+          "All members in the active party gained [a/an] {0} stat boost!",
+          stat_text)
+        )
+
+        for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+          BoostStat(stat, 1, member)
+        end
+      end
+
+    end)
+
+    local on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
+      local team = context.User.MemberTeam
+      if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
+        local data = EnchantmentRegistry:GetData(self)
+              
+
+        data["defeated_enemies"] = data["defeated_enemies"] + 1
+      end
+    end)
 
   end,
   offer_time = "beginning",
   rarity = 1,
   apply = function(self)
-    -- TODO GAIN MONEY
-    -- DEPENDENT ON WHAT CHECKOINT
+
   end
 })
 
@@ -1668,10 +1829,10 @@ PandorasItems = EnchantmentRegistry:Register({
     print("Are they the same table reference hm,,,,dkd?")
     print(tostring(EnchantmentRegistry._data == SV.EmberFrost.Enchantments.Data))
 
-    local random_orb_index = _DATA.Save.Rand:Next(#ORBS)
-    local random_orb = ORBS[random_orb_index]
-    local random_equipment_index = _DATA.Save.Rand:Next(#EQUIPMENT)
-    local random_equipment = EQUIPMENT[random_equipment_index]
+
+    local random_orb = GetRandomFromArray(ORBS)
+    local random_equipment = GetRandomFromArray(EQUIPMENT)
+
     local amount = self.amount
     local items = { {
       Item = random_equipment,
@@ -2043,8 +2204,9 @@ PlantYourSeeds = EnchantmentRegistry:Register({
     local items = {}
 
     for i = 1, self.amount do
-      local random_seed_index = _DATA.Save.Rand:Next(#SEED)
-      local seed = SEED[random_seed_index]
+
+      
+      local seed = GetRandomFromArray(SEED)
 
       table.insert(data["seeds"], seed)
 
@@ -2800,7 +2962,6 @@ TypeMaster = EnchantmentRegistry:Register({
     local on_turn_ends_id
     on_turn_ends_id =
     beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      print("Checking Type Mastery completion...")
       if self:completed() then
         beholder.stopObserving(on_turn_ends_id)
         GAME:WaitFrames(30)            
@@ -2818,7 +2979,7 @@ TypeMaster = EnchantmentRegistry:Register({
         local old = context.User
         context.User = _DUNGEON.ActiveTeam.Leader
         SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-        GAME:WaitFrames(60)
+        GAME:WaitFrames(20)
 
         context.User = old
 
@@ -3060,8 +3221,6 @@ end
 
 -- Tarot Cards - For each Psychic type. Gain a random boost or negative boost for each psychic type draw a card and apply a random effect
 
--- Puppetmaster - Add a guest substiute doll with half the
-
 -- Fired Uplifting
 -- Negative Aura - Apply a random debug
 
@@ -3222,9 +3381,7 @@ TarotRegistry:Register({
       { "Decline",  true },
     }
 
-    print(tostring(wheel_choice.id) .. "WHEEL OF FORTUNE CHOICE")
     local question = wheel_choice:getQuestion(member)
-    print(tostring(question) .. "WHEEL OF FORTUNE QUESTION")
     UI:BeginChoiceMenu(string.format("%s: %s", M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan), question), choices, 1, 2)
     UI:WaitForChoice()
     local result = UI:ChoiceResult()
@@ -3287,9 +3444,8 @@ WheelOfFortuneRegistry:Register({
       end
     end
 
-    local index = _DATA.Save.Rand:Next(#candidates) + 1
 
-    local mem = candidates[index]
+    local mem = GetRandomFromArray(candidates)
 
     SOUND:PlayBattleSE('DUN_Hit_Neutral')
     TASK:WaitTask(mem:InflictDamage(9999))
@@ -3324,28 +3480,7 @@ WheelOfFortuneRegistry:Register({
   end,
 
   roll_fail = function(self, owner, ownerChar, context, args)
-    local save = _DATA.Save
-
-
-    
-    local inv_count = save.ActiveTeam:GetInvCount() - 1
-    for i = inv_count, 0, -1 do
-      local entry = _DATA:GetItem(save.ActiveTeam:GetInv(i).ID)
-      if not entry.CannotDrop then
-        save.ActiveTeam:RemoveFromInv(i)
-      end
-    end
-    
-    local player_count = save.ActiveTeam.Players.Count
-    for i = 0, player_count - 1, 1 do 
-      local player = save.ActiveTeam.Players[i]
-      if player.EquippedItem.ID ~= '' and player.EquippedItem.ID ~= nil then 
-        local entry = _DATA:GetItem(player.EquippedItem.ID)
-        if not entry.CannotDrop then
-          player:SilentDequipItem()
-        end
-      end
-    end
+    M_HELPERS.RemoveAllInventory()
   end,
 
   yes_choice = function(self, owner, ownerChar, context, args)
@@ -3429,15 +3564,14 @@ local function CreateItemTarot(id, name, itemIds, count)
     name = name,
     apply = function(self, owner, ownerChar, context, args, member)
 
-      local idx = _DATA.Save.Rand:Next(#itemIds) + 1
-      local pickedItem = itemIds[idx]
+      local picked_item = GetRandomFromArray(itemIds)
 
       local arguments = {
         MinAmount = 0,
         MaxAmount = 0,
         Guaranteed = {
           {
-            { Item = pickedItem, Amount = count, Weight = 10 }
+            { Item = picked_item, Amount = count, Weight = 10 }
           }
         },
         Items = {},
@@ -3446,7 +3580,7 @@ local function CreateItemTarot(id, name, itemIds, count)
         UseUserCharLoc = true
       }
 
-      local itemName = M_HELPERS.GetItemName(pickedItem, count)
+      local itemName = M_HELPERS.GetItemName(picked_item, count)
       _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(
         "{0}: You received a {1}!",
         M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
@@ -3495,12 +3629,11 @@ TarotRegistry:Register({
   apply = function(self, owner, ownerChar, context, args)
     local sound = "DUN_Gummi"
     SOUND:PlayBattleSE(sound)
-    local rand_index = _DATA.Save.Rand:Next(#STATS) + 1
-    local stat = STATS[rand_index]
 
+    local stat = GetRandomStat()
     local stat_text = RogueEssence.Text.ToLocal(stat)
 
-    _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar("{0}: All members in the active party gained [a/an] {1} boost!",
+    _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar("{0}: All members in the active party gained [a/an] {1} stat boost!",
       M_HELPERS.MakeColoredText(self.name, PMDColor.Cyan),
       stat_text)
     )
@@ -3519,9 +3652,9 @@ TarotDefaults = {
 }
 
 
-PuppetMaster = EnchantmentRegistry:Register({
-  name = "Puppetmaster",
-  id = "PUPPETMASTER",
+Puppeteer = EnchantmentRegistry:Register({
+  name = "Puppeteer",
+  id = "PUPPETEER",
   getDescription = function(self)
     local ghost_type = _DATA:GetElement("ghost")
     local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
@@ -3551,21 +3684,683 @@ PuppetMaster = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
-    -- for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
-    --   local tbl = LTBL(member)
-    -- end
-    -- self:cleanup()
 
-    active_effect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("PuppetMaster", Serpent.line({
+    active_effect.OnMapStarts:Add(-20, RogueEssence.Dungeon.SingleCharScriptEvent("RemoveGuestWithIDBackground", Serpent.line({
+      ID = self.id,
+    })))
+
+    active_effect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("Puppeteer", Serpent.line({
       EnchantmentID = self.id,
       Type = "ghost",
     })))
   end,
 
   apply = function(self)
+    local items = {
+      {
+        Item = "apricorn_purple",
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
   end
 })
 
+
+HideAndSeek = EnchantmentRegistry:Register({
+  name = "Hide and Seek",
+  id = "HIDE_AND_SEEK",
+  getDescription = function(self)
+    local ghost_type = _DATA:GetElement("ghost")
+    local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
+    return string.format(
+      "Gain a %s. Each %s in the %s summons a doll that mirrors a weaker version of itself and targets enemies",
+      purple_apricorn, ghost_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local ghost_type = _DATA:GetElement("ghost")
+    local icon = ghost_type:GetIconName()
+
+    local count = #GetCharacterOfMatchingType("ghost", false)
+
+    return { "Total " .. icon .. " Members: " .. count }
+  end,
+
+  cleanup = function(self)
+    for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
+      local guest = GAME:GetPlayerGuestMember(i)
+      local tbl = LTBL(guest)
+      if tbl[self.id] then
+        GAME:RemovePlayerGuest(i)
+      end
+    end
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    active_effect.OnMapStarts:Add(-20,
+      RogueEssence.Dungeon.SingleCharScriptEvent("RemoveGuestWithIDBackground", Serpent.line({
+        ID = self.id,
+      })))
+
+    active_effect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("Puppeteer", Serpent.line({
+      EnchantmentID = self.id,
+      Type = "ghost",
+    })))
+  end,
+
+  apply = function(self)
+    local items = {
+      {
+        Item = "apricorn_purple",
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
+
+-- Bounty Hunter - Defeat a specific mon, gain 100 P. When you reach 15 bounties recieve a massive reward
+
+-- HideAndSeek - From now, you will be tasked with finding a lost item.
+-- Sightseer
+-- Sightseer +
+
+-- From now until the end of the dungeon, until Spawn a random NPC on which will give reward. Spawn a random or two gold nuggets...
+
+-- local mon_id = RogueEssence.Dungeon.MonsterID(mission.Client, 0, "normal",
+--   GeneralFunctions.NumToGender(mission.ClientGender))
+-- -- set the escort level 20% less than the expected level
+-- local level = math.floor(MISSION_GEN.EXPECTED_LEVEL[mission.Zone] * 0.80)
+-- local new_mob = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, level, "", -1)
+-- local tactic = _DATA:GetAITactic("stick_together")
+-- new_mob.Tactic = RogueEssence.Data.AITactic(tactic);
+-- _DATA.Save.ActiveTeam.Guests:Add(new_mob)
+-- local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("EscortInteract")
+-- new_mob.ActionEvents:Add(talk_evt)
+
+-- local tbl = LTBL(new_mob)
+-- tbl.Escort = name
+-- UI:ResetSpeaker()
+
+-- SightSeeing
+
+
+-- local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("PuppetInteract")
+-- clone.ActionEvents:Add(talk_evt)
+
+
+
+function RemoveGuestsWithValue(id)
+  for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
+    local guest = GAME:GetPlayerGuestMember(i)
+    local tbl = LTBL(guest)
+    if tbl[id] then
+      GAME:RemovePlayerGuest(i)
+    end
+  end
+end
+
+-- SightSeer - Escort a mon to 
+
+TravelingMerchant = EnchantmentRegistry:Register({
+  name = "Traveling Merchant",
+  id = "TRAVELING_MERCHANT",
+
+  
+  getDescription = function(self)
+    -- local name = 
+      local species = 'kecleon'
+      local name = _DATA:GetMonster(species).Forms[0].FormName:ToLocal()
+    return string.format("%s will join your journey until the next checkpoint. You can buys items or sell your entire inventory while they're with you",
+      M_HELPERS.MakeColoredText(name, PMDColor.Cyan))
+  end,
+  getProgressTexts = function(self)
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    return {}
+  end,
+
+  on_checkpoint = function(self)
+
+    local data = EnchantmentRegistry:GetData(self)
+
+    -- if not data["completed"] then
+    --   local mon_id = RogueEssence.Dungeon.MonsterID("kecleon", 0, "normal", Gender.Unknown)
+    --   local new_mob = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, 50, "", -1)
+
+    --   UI:WaitShowDialogue(M_HELPERS.MakeColoredText(new_mob.Name, PMDColor.LimeGreen2) .. " has left your party")
+
+    --   RemoveGuestsWithValue(self.id)
+    --   data["completed"] = true
+    -- end
+  end,
+ 
+  dialogue = function ()
+    UI:WaitShowDialogue("Prep quickly! I have business ventures to attend to!")
+    UI:SetSpeakerEmotion("Happy")
+    UI:WaitShowDialogue("Oh, I'm also happy to do business with you during our travels!")
+  end,
+
+  apply = function(self)
+    local data = EnchantmentRegistry:GetData(self)
+    data["completed"] = false
+    RemoveGuestsWithValue(self.id)
+    local mon_id = RogueEssence.Dungeon.MonsterID("kecleon", 0, "normal", Gender.Unknown)
+    local new_mob = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, 50, "", -1)
+
+    local tactic = _DATA:GetAITactic("follower")
+    new_mob.Tactic = RogueEssence.Data.AITactic(tactic);
+    local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("TravelingMerchantInteract")
+    new_mob.ActionEvents:Add(talk_evt)
+    local tbl = LTBL(new_mob)
+    tbl[self.id] = true
+    tbl.ID = self.id
+    tbl.Items = {
+      { Item = "food_apple", Amount = 1, Price = 300 },
+      { Item = "berry_leppa", Amount = 1, Price = 1000 },
+      { Item = "berry_sitrus", Amount = 1, Price = 500 },
+      { Item = "seed_reviver",  Amount = 1, Price = 1000 },
+    }
+
+  
+    GAME:SetCharacterSkill(new_mob, "slash", 0)
+    GAME:SetCharacterSkill(new_mob, "feint_attack", 1)
+    GAME:SetCharacterSkill(new_mob, "brick_break", 2)
+    GAME:SetCharacterSkill(new_mob, "shadow_claw", 3)
+    new_mob.SpeedBonus = 25
+    new_mob.MaxHPBonus = 25
+    new_mob.AtkBonus = 25
+    new_mob.MAtkBonus = 25
+    new_mob.DefBonus = 25
+    new_mob.MDefBonus = 25
+        
+    -- if GAME:GetCharacterSkill(GAME:GetPlayerPartyMember(0), 3) ~= "" then
+    --   GAME:SetCharacterSkill(GAME:GetPlayerPartyMember(0), egg_move_list[mon_id.Species], 3) --override move in slot 4 if 4 moves are known. They can always go see slowpoke to get it back
+    -- else
+    --   GAME:LearnSkill(GAME:GetPlayerPartyMember(0), egg_move_list[mon_id.Species])
+    -- end
+    local function AddRandomShopCategories(tbl)
+      local categories = {
+        -- Seeds
+        function()
+          local seed_amount = _DATA.Save.Rand:Next(2, 5)
+          local seeds = GetRandomUnique(SEED, seed_amount)
+          for _, item in ipairs(seeds) do
+            table.insert(tbl.Items, { Item = item, Amount = 1, Price = 100 })
+          end
+        end,
+        -- Apricorns
+        function()
+          local apricorn_amount = _DATA.Save.Rand:Next(2, 4)
+          local apricorns = GetRandomUnique(APRICORNS, apricorn_amount)
+          for _, item in ipairs(apricorns) do
+            table.insert(tbl.Items, { Item = item, Amount = 1, Price = 1000 })
+          end
+        end,
+        -- Orbs
+        function()
+          local orb_amount = _DATA.Save.Rand:Next(1, 4)
+          local orbs = GetRandomUnique(ORBS, orb_amount)
+          for _, item in ipairs(orbs) do
+            local entry = _DATA:GetItem(item)
+            local price = entry.Price
+            table.insert(tbl.Items, { Item = item, Amount = 1, Price = price * 3 })
+          end
+        end,
+        -- Wands
+        function()
+          local wand_amount = _DATA.Save.Rand:Next(1, 3)
+          local wands = GetRandomUnique(WANDS, wand_amount)
+          for _, item in ipairs(wands) do
+            table.insert(tbl.Items, { Item = item, Amount = 9, Price = 300 })
+          end
+        end
+      }
+
+
+      local chosen_indices = GetRandomUnique({ 1, 2, 3, 4 }, 2)
+
+
+      for _, index in ipairs(chosen_indices) do
+        categories[index]()
+      end
+    end
+
+   
+    AddRandomShopCategories(tbl)
+    
+
+
+
+
+    _DATA.Save.ActiveTeam.Guests:Add(new_mob)
+    GAME:FadeOut(false, 40)
+
+    GAME:WaitFrames(20)
+    RespawnGuests()
+
+    GAME:FadeIn(60)
+
+
+
+    SOUND:PlayFanfare("Fanfare/NewTeam")
+    UI:WaitShowDialogue("Added [color=#00FF00]" .. new_mob.Name .. "[color] to the party as a guest!")
+
+
+    local player = CH('PLAYER')
+
+    local count = _DATA.Save.ActiveTeam.Guests.Count 
+    local guest = CH('Guest' .. count)
+
+    print(tostring(guest))
+
+    local old_dir_guest = guest.Direction
+    local old_dir_player = player.Direction
+    GROUND:CharTurnToChar(player, guest)
+    GROUND:CharTurnToChar(guest, player)
+
+    UI:SetSpeaker(new_mob)
+    UI:SetSpeakerEmotion("Happy")
+    UI:WaitShowDialogue("Pleasure to make your acquaintance!")
+    UI:SetSpeakerEmotion("Normal")
+    UI:WaitShowDialogue("I hope we can do business together during our little journey.")
+    print(tostring(new_mob))
+    guest.Direction = old_dir_guest
+    player.Direction = old_dir_player
+  end
+})
+
+
+SightSeer = EnchantmentRegistry:Register({
+  name = "Sightseer",
+  id = "SIGHTSEER",
+
+  
+  getDescription = function(self)
+    -- local name = 
+      -- local species = 'kecleon'
+      -- local name = _DATA:GetMonster(species).Forms[0].FormName:ToLocal()
+      return string.format("A traveling escort will join your journey. Protect them until the next checkpoint to receive a reward.")
+      -- M_HELPERS.MakeColoredText(name, PMDColor.Cyan))
+  end,
+  getProgressTexts = function(self)
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    return {}
+  end,
+
+  on_checkpoint = function(self)
+
+    -- local data = EnchantmentRegistry:GetData(self)
+
+    -- if not data["completed"] then
+    --   local mon_id = RogueEssence.Dungeon.MonsterID("kecleon", 0, "normal", Gender.Unknown)
+    --   local new_mob = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, 50, "", -1)
+
+    --   UI:WaitShowDialogue(M_HELPERS.MakeColoredText(new_mob.Name, PMDColor.LimeGreen2) .. " has left your party")
+
+    --   RemoveGuestsWithValue(self.id)
+    --   data["completed"] = true
+    -- end
+  end,
+ 
+  dialogue = function ()
+    -- UI:WaitShowDialogue("Prep quickly! I have business ventures to attend to!")
+    -- UI:SetSpeakerEmotion("Happy")
+    -- UI:WaitShowDialogue("Oh, I'm also happy to do business with you during our travels!")
+  end,
+
+  apply = function(self)
+    -- local data = EnchantmentRegistry:GetData(self)
+    -- data["completed"] = false
+    -- RemoveGuestsWithValue(self.id)
+    -- local mon_id = RogueEssence.Dungeon.MonsterID("kecleon", 0, "normal", Gender.Unknown)
+    -- local new_mob = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, mon_id, 50, "", -1)
+
+    -- local tactic = _DATA:GetAITactic("follower")
+    -- new_mob.Tactic = RogueEssence.Data.AITactic(tactic);
+    -- local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("TravelingMerchantInteract")
+    -- new_mob.ActionEvents:Add(talk_evt)
+    -- local tbl = LTBL(new_mob)
+    -- tbl[self.id] = true
+    -- tbl.ID = self.id
+    -- tbl.Items = {
+    --   { Item = "food_apple", Amount = 1, Price = 300 },
+    --   { Item = "berry_leppa", Amount = 1, Price = 1000 },
+    --   { Item = "berry_sitrus", Amount = 1, Price = 500 },
+    --   { Item = "seed_reviver",  Amount = 1, Price = 1000 },
+    -- }
+
+  
+    -- GAME:SetCharacterSkill(new_mob, "slash", 0)
+    -- GAME:SetCharacterSkill(new_mob, "feint_attack", 1)
+    -- GAME:SetCharacterSkill(new_mob, "brick_break", 2)
+    -- GAME:SetCharacterSkill(new_mob, "shadow_claw", 3)
+    -- new_mob.SpeedBonus = 25
+    -- new_mob.MaxHPBonus = 25
+    -- new_mob.AtkBonus = 25
+    -- new_mob.MAtkBonus = 25
+    -- new_mob.DefBonus = 25
+    -- new_mob.MDefBonus = 25
+        
+    -- -- if GAME:GetCharacterSkill(GAME:GetPlayerPartyMember(0), 3) ~= "" then
+    -- --   GAME:SetCharacterSkill(GAME:GetPlayerPartyMember(0), egg_move_list[mon_id.Species], 3) --override move in slot 4 if 4 moves are known. They can always go see slowpoke to get it back
+    -- -- else
+    -- --   GAME:LearnSkill(GAME:GetPlayerPartyMember(0), egg_move_list[mon_id.Species])
+    -- -- end
+    -- local function AddRandomShopCategories(tbl)
+    --   local categories = {
+    --     -- Seeds
+    --     function()
+    --       local seed_amount = _DATA.Save.Rand:Next(2, 5)
+    --       local seeds = GetRandomUnique(SEED, seed_amount)
+    --       for _, item in ipairs(seeds) do
+    --         table.insert(tbl.Items, { Item = item, Amount = 1, Price = 100 })
+    --       end
+    --     end,
+    --     -- Apricorns
+    --     function()
+    --       local apricorn_amount = _DATA.Save.Rand:Next(2, 4)
+    --       local apricorns = GetRandomUnique(APRICORNS, apricorn_amount)
+    --       for _, item in ipairs(apricorns) do
+    --         table.insert(tbl.Items, { Item = item, Amount = 1, Price = 1000 })
+    --       end
+    --     end,
+    --     -- Orbs
+    --     function()
+    --       local orb_amount = _DATA.Save.Rand:Next(1, 4)
+    --       local orbs = GetRandomUnique(ORBS, orb_amount)
+    --       for _, item in ipairs(orbs) do
+    --         local entry = _DATA:GetItem(item)
+    --         local price = entry.Price
+    --         table.insert(tbl.Items, { Item = item, Amount = 1, Price = price * 3 })
+    --       end
+    --     end,
+    --     -- Wands
+    --     function()
+    --       local wand_amount = _DATA.Save.Rand:Next(1, 3)
+    --       local wands = GetRandomUnique(WANDS, wand_amount)
+    --       for _, item in ipairs(wands) do
+    --         table.insert(tbl.Items, { Item = item, Amount = 9, Price = 300 })
+    --       end
+    --     end
+    --   }
+
+
+    --   local chosen_indices = GetRandomUnique({ 1, 2, 3, 4 }, 2)
+
+
+    --   for _, index in ipairs(chosen_indices) do
+    --     categories[index]()
+    --   end
+    -- end
+
+   
+    -- AddRandomShopCategories(tbl)
+    
+
+
+
+
+    -- _DATA.Save.ActiveTeam.Guests:Add(new_mob)
+    -- GAME:FadeOut(false, 40)
+
+    -- GAME:WaitFrames(20)
+    -- RespawnGuests()
+
+    -- GAME:FadeIn(60)
+
+
+
+    -- SOUND:PlayFanfare("Fanfare/NewTeam")
+    -- UI:WaitShowDialogue("Added [color=#00FF00]" .. new_mob.Name .. "[color] to the party as a guest!")
+
+
+    -- local player = CH('PLAYER')
+
+    -- local count = _DATA.Save.ActiveTeam.Guests.Count 
+    -- local guest = CH('Guest' .. count)
+
+    -- print(tostring(guest))
+
+    -- local old_dir_guest = guest.Direction
+    -- local old_dir_player = player.Direction
+    -- GROUND:CharTurnToChar(player, guest)
+    -- GROUND:CharTurnToChar(guest, player)
+
+    -- UI:SetSpeaker(new_mob)
+    -- UI:SetSpeakerEmotion("Happy")
+    -- UI:WaitShowDialogue("Pleasure to make your acquaintance!")
+    -- UI:SetSpeakerEmotion("Normal")
+    -- UI:WaitShowDialogue("I hope we can do business together during our little journey.")
+    -- print(tostring(new_mob))
+    -- guest.Direction = old_dir_guest
+    -- player.Direction = old_dir_player
+  end
+})
+
+
+Randorb = EnchantmentRegistry:Register({
+  name = "Randorb",
+  id = "RANDORB",
+
+  getDescription = function(self)
+    return string.format("Gain a random %s. At the start of each floor, gain a random orb",
+      M_HELPERS.MakeColoredText(tostring(self.initial) .. PMDSpecialCharacters.Money, PMDColor.Cyan),
+      PMDSpecialCharacters.Money)
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    local on_start_id
+
+    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+      local random_orb = GetRandomFromArray(ORBS)
+      print(tostring(random_orb))
+      local arguments = {
+        MinAmount = 1,
+        MaxAmount = 1,
+        Guaranteed = {},
+        Items = {
+          { Item = random_orb, Amount = 1, Weight = 80 },
+
+
+        },
+        UseUserCharLoc = true,
+      }
+
+      GAME:WaitFrames(10)
+      local old = context.User
+      context.User = _DUNGEON.ActiveTeam.Leader
+      SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+      context.User = old
+      GAME:WaitFrames(20)
+    end)
+
+
+
+    return {}
+  end,
+
+  apply = function(self)
+    local random_orb = GetRandomFromArray(ORBS)
+    local items = {
+      {
+        Item = random_orb,
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
+
+
+Randorb = EnchantmentRegistry:Register({
+  name = "Randorb",
+  id = "RANDORB",
+
+  getDescription = function(self)
+    return string.format("Gain a random %s. At the start of each floor, gain a random orb",
+      M_HELPERS.MakeColoredText(tostring(self.initial) .. PMDSpecialCharacters.Money, PMDColor.Cyan),
+      PMDSpecialCharacters.Money)
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    local on_start_id
+
+    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+      local random_orb = GetRandomFromArray(ORBS)
+      print(tostring(random_orb))
+      local arguments = {
+        MinAmount = 1,
+        MaxAmount = 1,
+        Guaranteed = {},
+        Items = {
+          { Item = random_orb, Amount = 1,   Weight = 80 },
+    
+
+        },
+        UseUserCharLoc = true,
+      }
+
+      GAME:WaitFrames(10)
+      local old = context.User
+      context.User = _DUNGEON.ActiveTeam.Leader
+      SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+      context.User = old
+      GAME:WaitFrames(20)
+    end)
+
+
+
+    return {}
+  end,
+
+  apply = function(self)
+    local random_orb = GetRandomFromArray(ORBS)
+    local items = {
+      {
+        Item = random_orb,
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+
+
+  end
+})
+
+RainingGold = EnchantmentRegistry:Register({
+  name = "Raining Gold",
+  id = "RAINING_GOLD",
+  initial = 2000,
+  
+
+  getDescription = function(self)
+    return string.format("Gain %s. At the start of each floor, a shower of %s falls from the sky",
+    M_HELPERS.MakeColoredText(tostring(self.initial) .. PMDSpecialCharacters.Money, PMDColor.Cyan),
+    PMDSpecialCharacters.Money)
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    local on_start_id
+    
+    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+  
+      local arguments = {
+        MinAmount = 7,
+        MaxAmount = 11,
+        Guaranteed = {},
+        Items = {
+          { Item = "money",      Amount = 50, Weight = 80 },
+          { Item = "money",      Amount = 100, Weight = 15 },
+          { Item = "money",      Amount = 200, Weight = 5 },
+          { Item = "money",      Amount = 1200, Weight = 1 },
+
+        },
+        UseUserCharLoc = true,
+      }
+
+      GAME:WaitFrames(10)
+      local old = context.User
+      context.User = _DUNGEON.ActiveTeam.Leader
+      SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+      context.User = old
+      GAME:WaitFrames(20)
+    end) 
+  end,
+
+  apply = function(self)
+    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.initial
+    SOUND:PlayFanfare("Fanfare/Item")
+    UI:SetCenter(true)
+    UI:WaitShowDialogue("You gained " .. tostring(self.initial) .. " " .. PMDSpecialCharacters.Money .. "!")
+    UI:SetCenter(false)
+  end
+})
+
+
+BerryNutritious = EnchantmentRegistry:Register({
+  name = "Berry Nutritous",
+  id = "BERRY_NUTRITOUS",
+  chance = 50,
+
+  getDescription = function(self)
+    return string.format("Gain a random berry. Whenever a team member eats a berry, there is a %s chance they get a random stat boost", M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+
+    return {}
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    active_effect.BeforeActions:Add(5,
+      RogueEssence.Dungeon.BattleScriptEvent("StoreItemInEnchant", Serpent.line({
+      EnchantmentID = self.id
+    })))
+
+    active_effect.AfterActions:Add(5,
+      RogueEssence.Dungeon.BattleScriptEvent("BerryNutritiousAfterActions", Serpent.line({
+        Chance = self.chance,
+        EnchantmentID = self.id
+      })))    
+  end,
+
+  apply = function(self)
+
+    local rand_berry = GetRandomFromArray(BERRIES)
+    local items = {
+      {
+        Item = rand_berry,
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
 
 Harvester = EnchantmentRegistry:Register({
   name = "Harvester",
@@ -3636,7 +4431,12 @@ Rationalize = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    return {}
+    local grass_type = _DATA:GetElement("normal")
+    local icon = grass_type:GetIconName()
+
+    local count = #GetCharacterOfMatchingType("normal", false)
+
+    return { "Total " .. icon .. " Members: " .. count }
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -3647,6 +4447,15 @@ Rationalize = EnchantmentRegistry:Register({
   end,
 
   apply = function(self)
+    local items = {
+      {
+        Item = "apricorn_white",
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+
   end
 })
 
@@ -3735,7 +4544,12 @@ local function CreateTypeStatusEnchantment(config)
     offer_time = "beginning",
     rarity = 1,
     getProgressTexts = function(self)
-      return {}
+      local grass_type = _DATA:GetElement(config.element)
+      local icon = grass_type:GetIconName()
+
+      local count = #GetCharacterOfMatchingType(config.element, false)
+
+      return { "Total " .. icon .. " Members: " .. count }
     end,
     set_active_effects = function(self, active_effect, zone_context)
       local chance = self.chance
@@ -3771,6 +4585,15 @@ local function CreateTypeStatusEnchantment(config)
       end)
     end,
     apply = function(self)
+      local items = {
+        {
+          Item = config.apricorn,
+          Amount = 1
+        }
+      }
+
+      M_HELPERS.GiveInventoryItemsToPlayer(items)
+      
     end
   })
 end
@@ -3798,8 +4621,6 @@ Subzero = CreateTypeStatusEnchantment({
 -- Blaze Tile - Will burn the user, but will double their speed. (max 2 stack) 
 -- Fire Tile - Take fire damage but raise attack
 -- Ice Title - Freeze chracter, but grant, users on these tiles will be granted +2 range on thei rmoves
-
-
 -- Negative Aura - Targets with two tiles of the will have their attack reduced by 20% 
 
 -- polished metal
@@ -3978,81 +4799,7 @@ function AssignEnchantmentToCharacter(enchant, show_message)
   return selected_char
 end
 
-function table.copy(obj, seen)
-  if type(obj) ~= 'table' then
-    return obj
-  end
-  if seen and seen[obj] then
-    return seen[obj]
-  end
-  local s = seen or {}
-  local res = setmetatable({}, getmetatable(obj))
-  s[obj] = res
-  for k, v in pairs(obj) do
-    res[table.copy(k, s)] = table.copy(v, s)
-  end
-  return res
-end
 
-function GetRandomUnique(items, amount, already_seen)
-  local pool = {}
-  if already_seen == nil then
-    already_seen = {}
-  end
-
-  for i = 1, #items do
-    if not already_seen[items[i]] then
-      table.insert(pool, items[i])
-    end
-  end
-
-  local result = {}
-  local count = math.min(amount, #pool)
-
-  for i = 1, count do
-    local index = _DATA.Save.Rand:Next(#pool) + 1
-    table.insert(result, pool[index])
-    already_seen[pool[index]] = true
-    table.remove(pool, index)
-  end
-
-  return result
-end
-
-function SelectItemFromList(prompt, items)
-  local ret = {}
-  local choose = function(item)
-    ret = item
-    _MENU:RemoveMenu()
-  end
-  local refuse = function()
-  end
-  local menu = ItemSelectionMenu:new(prompt, items, choose, refuse)
-  UI:SetCustomMenu(menu.menu)
-  UI:WaitForChoice()
-  return ret
-end
-
-local function get_item_from_context(context)
-  local index = context.UsageSlot
-  local item
-  if index >= -1 then
-    item = _DATA.Save.ActiveTeam:GetInv(index).ID
-  elseif index == -1 then
-    item = context.User.EquippedItem.ID
-  elseif index == -2 then
-    local map_slot = _ZONE.CurrentMap:GetItem(context.User.CharLoc)
-    item = _ZONE.CurrentMap.Items[map_slot].Value
-  end
-
-  return item
-end
-
-local function item_id_contains_state(item_id, state_type)
-  local item_data = _DATA:GetItem(item_id)
-  local contains = item_data.ItemStates:Contains(luanet.ctype(state_type))
-  return contains
-end
 
 QuestDefaults = {
 
@@ -4202,15 +4949,14 @@ local function CreateBountyQuest(config)
 
       on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
         local possible_spawns = GetFloorSpawns()
-        local rand_spawn = possible_spawns[_DATA.Save.Rand:Next(#possible_spawns) + 1]
+        local rand_spawn = GetRandomFromArray(possible_spawns)
         local data = QuestRegistry:GetData(self)
         data["bounty_target"] = rand_spawn
       end)
 
       on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
         local team = context.User.MemberTeam
-        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe and context.User.MemberTeam ~=
-              _DUNGEON.ActiveTeam) then
+        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
           if context.User.BaseForm.Species ~= data["bounty_target"] then
             return
           end
@@ -4442,14 +5188,14 @@ local function CreateTimedDefeatQuest(config)
       data["turns_elapsed"] = 0
       data["timer_started"] = false
 
+
       local on_death_id
       local on_map_turn_ends_id
       local on_turn_ends_id
 
       on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
         local team = context.User.MemberTeam
-        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe and context.User.MemberTeam ~=
-              _DUNGEON.ActiveTeam) then
+        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
           data["defeated_enemies"] = data["defeated_enemies"] + 1
 
           if not data["timer_started"] then
@@ -4748,7 +5494,7 @@ local function CreateEmptyStomachQuest(config)
       local on_map_start_id
       local on_turn_end_id
 
-      on_map_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+      on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
         data["min_fullness"] = math.huge
       end)
 
@@ -5036,7 +5782,7 @@ QuestRegistry:Register({
     local on_start_id
     local on_turn_end_id
 
-    on_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
       data["starting_team_members"] = self:get_total_team_members()
     end)
 
@@ -5094,7 +5840,7 @@ QuestRegistry:Register({
     local on_start_id
     local on_turn_end_id
 
-    on_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
       print("LEVEL UP CHECK START")
       for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
         local tbl = LTBL(member)
@@ -5154,8 +5900,8 @@ local function CreateItemUseQuest(config)
 
       on_before_actions_id = beholder.observe("OnBeforeActions", function(owner, ownerChar, context, args)
         if context.ActionType == RogueEssence.Dungeon.BattleActionType.Item then
-          local item = get_item_from_context(context)
-          local contains = item_id_contains_state(item, config.state_type)
+          local item = GetItemFromContext(context)
+          local contains = ItemIdContainsState(item, config.state_type)
           if contains then
             data["count"] = data["count"] + 1
           end

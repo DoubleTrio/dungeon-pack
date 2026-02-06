@@ -577,8 +577,15 @@ function BoostStat(stat, change, target)
   lookup_table[stat]()
 
   if new_stat > prev_stat then
-    UI:WaitShowDialogue(RogueEssence.Text.FormatGrammar(RogueEssence.StringKey("MSG_STAT_BOOST"):ToLocal(),
-      target:GetDisplayName(false), RogueEssence.Text.ToLocal(stat), tostring(new_stat - prev_stat)))
+    local message = RogueEssence.Text.FormatGrammar(RogueEssence.StringKey("MSG_STAT_BOOST"):ToLocal(),
+      target:GetDisplayName(false), RogueEssence.Text.ToLocal(stat), tostring(new_stat - prev_stat))
+
+    if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
+      _DUNGEON:LogMsg(message)
+    else
+      UI:WaitShowDialogue(message)
+    end
+
     return true
   else
     return false

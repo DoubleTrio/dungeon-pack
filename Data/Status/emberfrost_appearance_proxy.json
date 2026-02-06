@@ -10,7 +10,7 @@
 "DefaultText": "",
 "LocalTexts": {}
 },
-"Released": false,
+"Released": true,
 "Comment": "",
 "MenuName": false,
 "CarryOver": false,
@@ -128,8 +128,8 @@
 },
 "Value": {
 "$type": "PMDC.Dungeon.MultiplyDamageEvent, PMDC",
-"Numerator": 4,
-"Denominator": 5,
+"Numerator": 70,
+"Denominator": 100,
 "Anims": []
 }
 }
@@ -143,8 +143,8 @@
 },
 "Value": {
 "$type": "PMDC.Dungeon.MultiplyDamageEvent, PMDC",
-"Numerator": 5,
-"Denominator": 4,
+"Numerator": 130,
+"Denominator": 100,
 "Anims": []
 }
 }

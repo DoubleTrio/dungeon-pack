@@ -161,7 +161,7 @@ if __name__ == "__main__":
             url="https://www.youtube.com/watch?v=NBFWOEwlcBA",
             title="The Wind is Blowing at Cavi Cape",
             artist="Yash",
-            album="Mario and Luigi: Bowser’s Inside Story ",
+            album="Mario and Luigi: Bowser's Inside Story ",
             loop_start=3158390,
             loop_length=6299179-3158390,
         ), 

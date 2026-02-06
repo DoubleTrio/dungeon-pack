@@ -236,7 +236,7 @@
 --       local on_death_id
 --       local on_map_start_id
 
---       on_map_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+--       on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
 --         local possible_spawns = GetFloorSpawns()
 --         local rand_spawn = possible_spawns[_DATA.Save.Rand:Next(#possible_spawns) + 1]
 --         local data = QuestRegistry:GetData(self)
@@ -821,7 +821,7 @@
 --       local on_map_start_id
 --       local on_turn_end_id
       
---       on_map_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+--       on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
 --         data["min_fullness"] = math.huge
 --       end)
       
@@ -1162,7 +1162,7 @@
 --     local on_start_id
 --     local on_turn_end_id
 
---     on_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+--     on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
 --       data["starting_team_members"] = self:get_total_team_members()
 --     end)
 
@@ -1220,7 +1220,7 @@
 --     local on_start_id
 --     local on_turn_end_id
 
---     on_start_id = beholder.observe("OnMapStart", function(owner, ownerChar, context, args)
+--     on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
 --       print("LEVEL UP CHECK START")
 --       for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
 --         local tbl = LTBL(member)

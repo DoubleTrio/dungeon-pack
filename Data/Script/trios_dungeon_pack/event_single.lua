@@ -1060,25 +1060,24 @@ function CloneCharacter(chara)
     return new_mob
 end
 
-function SINGLE_CHAR_SCRIPT.PuppetMaster(owner, ownerChar, context, args)
-    -- print("PUPPET MASTER TRIGGERED")
+function SINGLE_CHAR_SCRIPT.RemoveGuestWithIDBackground(owner, ownerChar, context, args)
     if context.User ~= nil then
         return
     end
 
-    for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
-        local guest = GAME:GetPlayerGuestMember(i)
-        local tbl = LTBL(guest)
-        if tbl["PUPPETMASTER"] then
-            GAME:RemovePlayerGuest(i)
-        end
-    end
-    _DATA.Save.ActiveTeam.Guests:Clear()
+    local id = args.ID
+    RemoveGuestsWithValue(id)
+end
 
+function SINGLE_CHAR_SCRIPT.Puppeteer(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
 
     local type = args.Type
     local enchant_id = args.EnchantmentID
     local include_assembly = args.IncludeAssembly or false
+    RemoveGuestsWithValue(enchant_id)
 
     local members = GetCharacterOfMatchingType(type, include_assembly)
 
@@ -1092,13 +1091,14 @@ function SINGLE_CHAR_SCRIPT.PuppetMaster(owner, ownerChar, context, args)
         local tactic = _DATA:GetAITactic("go_after_foes")
         clone.Tactic = tactic
         clone.Nickname = "Puppet"
-
         for ii = 0, 3 do
-            if clone.Skills[ii].Element.SkillNum ~= nil and clone.Skills[ii].Element.SkillNum ~= "" then
+            local skill = clone.Skills[ii].Element
+            if skill.SkillNum ~= nil and skill.SkillNum ~= "" then
                 clone:SetSkillCharges(ii, 5)
             end
-        end
 
+            skill.Enabled = true
+        end
 
         -- Debating whether to keep the abilities or not
         -- clone.BaseIntrinsics[0] = ""
@@ -1111,6 +1111,7 @@ function SINGLE_CHAR_SCRIPT.PuppetMaster(owner, ownerChar, context, args)
         clone.ActionEvents:Add(talk_evt)
         local tbl = LTBL(clone)
         tbl["species"] = member.BaseForm.Species
+        tbl[enchant_id] = true
         
         
         

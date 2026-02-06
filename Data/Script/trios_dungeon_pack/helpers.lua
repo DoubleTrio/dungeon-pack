@@ -182,6 +182,7 @@ M_HELPERS = {
     M_HELPERS.AddToParty("bulbasaur", level)
   end,
 
+
   SaveTeam = function(key)
     -- Will save team and inventory
     local save = _DATA.Save
@@ -194,6 +195,37 @@ M_HELPERS = {
     end
 
     M_HELPERS.SaveInventory(key)
+  end,
+
+  FormatMoney = function (amount)
+    return M_HELPERS.MakeColoredText(string.format("%d", amount) .. PMDSpecialCharacters.Money, PMDColor.Cyan)
+    
+  end,
+  FormatPercent = function (percent)
+    return M_HELPERS.MakeColoredText(string.format("%d%%", percent), PMDColor.Yellow)
+  end,
+
+  RemoveAllInventory = function(include_cannot_drop)
+    local save = _DATA.Save
+    
+    local inv_count = save.ActiveTeam:GetInvCount() - 1
+    for i = inv_count, 0, -1 do
+      local entry = _DATA:GetItem(save.ActiveTeam:GetInv(i).ID)
+      if not entry.CannotDrop or include_cannot_drop then
+        save.ActiveTeam:RemoveFromInv(i)
+      end
+    end
+    
+    local player_count = save.ActiveTeam.Players.Count
+    for i = 0, player_count - 1, 1 do 
+      local player = save.ActiveTeam.Players[i]
+      if player.EquippedItem.ID ~= '' and player.EquippedItem.ID ~= nil then 
+        local entry = _DATA:GetItem(player.EquippedItem.ID)
+        if not entry.CannotDrop or include_cannot_drop then
+          player:SilentDequipItem()
+        end
+      end
+    end
   end,
 
   GiveInventoryItemsToPlayer = function(items)
