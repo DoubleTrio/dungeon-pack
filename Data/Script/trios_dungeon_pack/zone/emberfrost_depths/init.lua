@@ -22,14 +22,6 @@ end
 ---emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 --Engine callback function
 function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
-
-
-	SV.EmberFrost.Enchantments.Selected = { "SHOPPER", "LOOSE_CHANGE", "TREASURE_HUNT", 'RATIONALIZE', 'SWAT_TEAM',
-		'DRACONIAN_DEFICIENCE', 'SUBZERO', 'PUPPETEER', 'TAROT_CARDS', 'BERRY_NUTRITOUS', 'TEMPO', 'RAINING_GOLD', 'RANDORB',
-		'TRAVELING_MERCHANT' }
-		-- 'RANDORB'
-		-- 'BOUNTY_HUNTER'
-	-- print("ENTER SEGMENT")
 	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
 		local tbl = LTBL(member)
 		tbl.EmberfrostRun = true
@@ -177,18 +169,23 @@ function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 	-- end
 	end
 end
-
-
-local function CleanUpEmberFrostDepths()
-
+function CleanUpEmberFrostDepths()
 	require 'trios_dungeon_pack.beholder'
 	beholder.stopObservingAll()
 
+	local active_enchants = EnchantmentRegistry:GetSelected()
+	for _, enchant in pairs(active_enchants) do
+		enchant:cleanup()
+	end
+
 	SV.EmberFrost.Enchantments.Selected = {}
 	SV.EmberFrost.Enchantments.Data = {}
+	SV.EmberFrost.CheckpointProgression = 0
+	SV.EmberFrost.GotEnchantmentFromCheckpoint = false
+
 	for k, v in pairs(QuestRegistry._registry) do
-    v:cleanup()
-  end
+		v:cleanup()
+	end
 	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
 		local tbl = LTBL(member)
 		tbl.EmberfrostRun = false
@@ -201,36 +198,8 @@ local function CleanUpEmberFrostDepths()
 
 	RemoveGuestsWithValue(Puppeteer.id)
 	RemoveGuestsWithValue(TravelingMerchant.id)
-	-- local player_count = GAME:GetPlayerPartyCount()
-
-	-- for i = 0, player_count - 1, 1 do 
-  --   local player = GAME:GetPlayerPartyMember(i)
-	-- 	local tbl = LTBL(player)
-	-- 	tbl.TeamID = nil
-  -- end
-
-	-- local assemblyCount = GAME:GetPlayerAssemblyCount()
-
-	-- for i = assemblyCount - 1, assemblyCount - 4, -1 do
-
-	-- 	if (i < 0) then
-	-- 		break
-	-- 	end
-
-	-- 	local member = GAME:GetPlayerAssemblyMember(i)
-
-	-- 	local tbl = LTBL(member)
-
-	-- 	if (tbl.TeamID ~= nil) then
-	-- 		 GAME:AddPlayerTeam(member)
-	-- 		 GAME:RemovePlayerAssembly(i)
-	-- 		 tbl.TeamID = nil
-	-- 	end
-	-- end
-
-	-- SV.SavedInventories["emberfrost_depths_primary"] = nil
-	-- SV.SavedInventories["emberfrost_depths_secondary"] = nil
 end
+
 ---emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 --Engine callback function
 function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
@@ -239,7 +208,6 @@ function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 	-- print("Exitiing segment!!!!")
 	print(tostring(result))
   PrintInfo("=>> ExitSegment_emberfrost_depths result "..tostring(result).." segment "..tostring(segmentID))
-  
 
 	CleanUpEmberFrostDepths()
   --first check for rescue flag; if we're in rescue mode then take a different path

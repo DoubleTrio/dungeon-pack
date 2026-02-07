@@ -11,7 +11,7 @@
 "NoEXP": false,
 "ExpPercent": 100,
 "Level": 5,
-"LevelCap": true,
+"LevelCap": false,
 "KeepSkills": false,
 "TeamRestrict": true,
 "TeamSize": 4,

@@ -402,9 +402,13 @@ PowerupDefaults = {
 
   -- Could also maybe use beholder...
   -- On checkpoint exiting
-  on_exit_checkpoint = function(self)
+  on_checkpoint_exit = function(self)
     print(self.name .. " exit checkpoint.")
-  end
+  end,
+
+  -- Called when exiting the dungeon
+  cleanup = function(self)
+  end,
 }
 
 function CreateRegistry(config)
@@ -1438,7 +1442,7 @@ ATrueLeader = EnchantmentRegistry:Register({
     _DATA.Save.NoSwitching = false
 
   end,
-  on_exit_checkpoint = function()
+  on_checkpoint_exit = function()
     local data = EnchantmentRegistry:GetData(self)
     if not data["completed"] then
       _DATA.Save.NoSwitching = true
@@ -2531,7 +2535,7 @@ MoralSupport = EnchantmentRegistry:Register({
 
 -- })
 --
-
+-- Vampiric - Select a character, that character heals for 30% of damage dealt.
 -- An exclusive item for the Salamence family. When kept in the bag, it allows Dragon-type moves to hit Fairy-type Pokémon.
 -- Dazzled - Choose a team member. For each equipment, lower the accuracy of the target
 -- RunAndGun - Projectiles deal more damage if your team has a speed boost, depends on it
@@ -2545,8 +2549,6 @@ MoralSupport = EnchantmentRegistry:Register({
 -- Spawn more seeds
 -- Checkpoint shop costs will be reduced by 20%
 -- Randomly explode the enemies
--- Orb Whisperer / Roulette - Gain a random orb at the start of each floor (if there's room)
--- Gain a random equipment at the start of each floor (if there's room)
 -- All your party members gain the stat boost of the highest party member
 -- Lots of Equipment: Select 3 equipment from a pool of 5 random ones.
 -- Have a 50% chance to an item
@@ -2559,7 +2561,6 @@ MoralSupport = EnchantmentRegistry:Register({
 -- Weathered - Your team gains a boost depending on the current weather condition. Rain 
 -- All In - Lost all your inventory items and (only offered past floor 15)
 -- Gain 3 Invisibioty orbs
--- Make It Rain - At the start of each floor, money or other valuables fall from the sky
 -- Regular attacks can destroy walls at the cost of 1 hunger
 -- The Orb - Each orb usage increases your team's damage
 -- Gain 2 random allies from the previous floors. Gain an assembly box. They have gummi boosts with random equioment attatched
@@ -2571,7 +2572,6 @@ MoralSupport = EnchantmentRegistry:Register({
 -- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
 -- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
 -- Team Building - Gain 2 random apricorns. Select a between apricrons and 2 amber tears and a friend bow. Gain a Assembly Box
--- Gummi Overload - Gain a random gummi at the start of each floor (if there's room)
 -- Negligible Risk?: - Gain 20,000 P. Your team has a tiny chance to be inflicted with a random negative status at the end of the their turn
 -- Gain 5 random gummies. Each gummy grants +1 max hunger.
 -- Gain a random gummi at the start of each floor.
@@ -2583,16 +2583,10 @@ MoralSupport = EnchantmentRegistry:Register({
 -- Killing Blow - Choose a team member. Explode area around enemy when defeated
 -- Execute - Choose a team member. That member will defeat any enemies below 20% HP.
 -- I C - Gain an X-ray specs. Your team can see invisible traps.
--- Harmony Scarf - Gain a harmony scarf.
 -- Huddle - Defense
--- Lucky Day - Shopkeepers will gurantee to spawn once
 -- Alchemy - At the start of each floor, any evo stones or plates has a small chance to convert to a gold nugget
 -- Safety Net / Emergency Fund - Gain 1,000 P when a team member faints. Gain a reviver seed
--- Berry Nutritious - At the start of each floor, if you have at least 5 berries, each party member gains 2 random stat boosts,
 -- Evo: Gain +10 boosts for each evolution
--- Randorb - Gain a random orb at the start of each floor
--- Tempo - Select a team member. That member gains a permanent stat boost for every 10
--- After each member defeats 20 enemies, your team gains a damage boost.
 -- Solo Mission - When your team has only 1 member, that member does more damage
 -- Hoarder - More money when you have more items in your inventory
 -- Fitness Routine - Speed boost when your team has more than 75% hunger (ewwww, better)
@@ -2619,15 +2613,13 @@ MoralSupport = EnchantmentRegistry:Register({
 -- Self-Improvment - Gain 1 nectors, 1 ability capsule, 1 recall box, 1 joy seed, 1 citrus 1 protein
 -- LotsOfStats
 -- Life Orb - Gain a life-orb
--- Vampiric - Select a character, that character heals for 30% of damage dealt.
+
 -- When you pick up gold - Gain a random state boost.
 -- Drain Terrain - Fill gaps - Moves can fill gaps
 -- Mission Impossible
 -- Limit to only 1 boost except for speed.
--- 25% Spawn a slow tile
 -- OneTrick - Choose a team member. That member is permenatly locked into 1 skill for the rest of the dungeon. Deal double damage
 -- StandGround - Standing in spot leaves a post which gains an attack boost
--- Leader
 -- Trick Shot - Arc projectiles do more damage
 -- Vitamins Gummmies -
 -- Power of 3s - For every 3 of the same item in inventory, gain a boost
@@ -3766,8 +3758,6 @@ HideAndSeek = EnchantmentRegistry:Register({
 -- Bounty Hunter - Defeat a specific mon, gain 100 P. When you reach 15 bounties recieve a massive reward
 
 -- HideAndSeek - From now, you will be tasked with finding a lost item.
--- Sightseer
--- Sightseer +
 
 -- From now until the end of the dungeon, until Spawn a random NPC on which will give reward. Spawn a random or two gold nuggets...
 
@@ -3803,8 +3793,6 @@ function RemoveGuestsWithValue(id)
     end
   end
 end
-
--- SightSeer - Escort a mon to 
 
 TravelingMerchant = EnchantmentRegistry:Register({
   name = "Traveling Merchant",
@@ -3982,11 +3970,8 @@ SightSeer = EnchantmentRegistry:Register({
 
   
   getDescription = function(self)
-    -- local name = 
-      -- local species = 'kecleon'
-      -- local name = _DATA:GetMonster(species).Forms[0].FormName:ToLocal()
-      return string.format("A traveling escort will join your journey. Protect them until the next checkpoint to receive a reward.")
-      -- M_HELPERS.MakeColoredText(name, PMDColor.Cyan))
+
+      return string.format("A traveling escort will join your party as a guest until the next checkpoint. If they make it to the next checkpoint, you'll receive a reward")
   end,
   getProgressTexts = function(self)
   end,
@@ -4823,7 +4808,7 @@ QuestDefaults = {
       end
     end
   end,
-  -- Called at the beginning of each floor
+  -- Called when exiting the dungeon
   cleanup = function(self)
   end,
 
@@ -4840,6 +4825,7 @@ QuestDefaults = {
     return {}
   end
 }
+
 
 QuestMaster = EnchantmentRegistry:Register({
   name = "Quest Master",
@@ -5814,7 +5800,7 @@ QuestRegistry:Register({
 
   get_total_level_from_start = function(self)
     local total_level = 0
-    for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
       local tbl = LTBL(member)
       total_level = total_level + (member.Level - tbl["StartLevel"])
     end
@@ -5826,11 +5812,11 @@ QuestRegistry:Register({
   end,
 
   cleanup = function(self)
-    for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
       local tbl = LTBL(member)
       tbl["StartLevel"] = nil
     end
-    for member in luanet.each(_DUNGEON.ActiveTeam.Assembly) do
+    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
       local tbl = LTBL(member)
       tbl["StartLevel"] = nil
     end

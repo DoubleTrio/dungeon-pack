@@ -817,13 +817,11 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStarts(owner, ownerChar, context, arg
     if context.User ~= nil then
         return
     end
-    print("MAP START TRIGGERED")
     beholder.trigger("OnMapStarts", owner, ownerChar, context, args)
     SV.EmberFrost.LastFloor = _ZONE.CurrentMapID.ID
 end
 
 function SINGLE_CHAR_SCRIPT.EmberfrostOnMapTurnEnds(owner, ownerChar, context, args)
-    print("MAP TURN ENDS TRIGGERED")
     beholder.trigger("OnMapTurnEnds", owner, ownerChar, context, args)
 end
 
@@ -833,7 +831,6 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnEnds(owner, ownerChar, context, args
         return
     end
 
-    print("TURN ENDS TRIGGERED")
     beholder.trigger("OnTurnEnds", owner, ownerChar, context, args)
 end
 
@@ -845,7 +842,6 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnStarts(owner, ownerChar, context, ar
         return
     end
 
-    print("TURN STARTS")
     beholder.trigger("OnTurnStarts", owner, ownerChar, context, args)
 end
 
@@ -857,7 +853,6 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnWalks(owner, ownerChar, context, args)
         return
     end
 
-    print("ON WALKS")
     beholder.trigger("OnWalks", owner, ownerChar, context, args)
 end
 
@@ -1727,6 +1722,7 @@ function SINGLE_CHAR_SCRIPT.AddSwitchSegmentStairs(owner, ownerChar, context, ar
     if context.User ~= nil then
         return
     end
+    print("eeeememem")
 
     local map = _ZONE.CurrentMap
     for xx = 0, map.Width - 1, 1 do
@@ -1736,6 +1732,7 @@ function SINGLE_CHAR_SCRIPT.AddSwitchSegmentStairs(owner, ownerChar, context, ar
 
             if tl.Effect.ID == "stairs_go_up" or tl.Effect.ID == "stairs_go_down" or tl.Effect.ID == "stairs_back_down" or
                 tl.Effect.ID == "stairs_back_up" then
+                print("Found stairs at " .. xx .. ", " .. yy)
                 local sec_loc = RogueEssence.Dungeon.SegLoc(-1, args.NextID)
                 local dest_state = PMDC.Dungeon.DestState(sec_loc, false)
                 dest_state.PreserveMusic = false

@@ -439,7 +439,9 @@ if __name__ == "__main__":
         # https://theworldofpokemon.com/HabitatPage.html
         # raticate
         # https://pokemondb.net/pokedex/raticate/moves/7
-        #11
+
+        # Rocks will fall from the ceiling!
+        # 
 
         ('geodude', 0, 'patrol', '', ['rollout', 'tackle', 'rock_slide'], 18, 19, 9, 10, NORMAL, 10),
         ('druddigon', 0, 'wander_smart', '', ['glare', 'scale_shot'], 19, 20, 9, 10, LONER, 10),
@@ -447,6 +449,13 @@ if __name__ == "__main__":
         ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'disable'], 19, 20, 9, 10, SUPPORT, 10),
         ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
         ('machoke', 0, 'wander_normal', 'guts', ['cross_chop', 'rock_tomb'], 19, 20, 9, 10, LONER, 10),
+
+
+
+        #11
+        
+        #16
+
 
 
 

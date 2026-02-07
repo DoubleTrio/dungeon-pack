@@ -25,7 +25,7 @@ SV.EmberFrost = {
   },
 
   Quests = {
-    -- List of active quests for the task maste enchantment
+    -- List of active quests for the task master enchantment
     Active = {},
     Data = {},
   },
@@ -33,7 +33,21 @@ SV.EmberFrost = {
   -- The last floor we were at in Emberfrost
   LastFloor = 0,
 
-  GotEnchantmentFromCheckpoint = false
+  -- The checkpoint progression we were at in Emberfrost
+  -- 1 corresponds to the one after completing 5F
+  -- 2 corresponds to the one after completing 10F
+  -- 3 corresponds to the one after completing 15F
+  -- etc
+  CheckpointProgression = 0,
+
+  -- Whether the dungeon was cleared
+  Completed = false,
+
+  -- Recieve a reminder about the enchantment collection and where to view it
+  ReceivedEnchantmentReminder = true,
+
+  -- Whether we got an enchantment from the checkpoint
+  GotEnchantmentFromCheckpoint = false,
 }
 
 SV.SavedCharacters = {}

@@ -8,59 +8,20 @@ require 'origin.common'
 require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
 require 'trios_dungeon_pack.emberfrost.enchantments'
 require 'origin.menu.InventorySelectMenu'
+local checkpoint = require 'trios_dungeon_pack.emberfrost.checkpoint'
+
 -- Package name
 local frost_checkpoint = {}
 
-
--- --This function is called to move partner to a specific marker on loading a new map
--- function PartnerEssentials.InitializePartnerSpawn(dir, customPosition)
--- 	--Each map has an initial point where the partner spawns.
--- 	--Set the Partner Spawn variable to default to let the partner spawn there
--- 	--My nomenclature, to keep things consistent, is to just copy the player's spawn marker's name,
--- 	--add _Partner to the end for the partner's marker.
--- 	--You can specify the dir parameter for a custom direction to spawn as if you want.
--- 	--This function also assigns ground partner AI to the partner so they actually follow you.
-
--- 	if GAME:GetPlayerPartyCount() < 2 then return end --do nothing if party is only size 1
-
--- 	local partner = CH('Teammate1')
--- 	local player = CH('PLAYER')
-
--- 	--in case a custom position is ever needed
--- 	if customPosition ~= nil then
--- 		dir = dir or partner.Direction
--- 		GROUND:TeleportTo(partner, customPosition.X, customPosition.Y, dir)
--- 	--otherwise use the marker system
--- 	elseif SV.partner.Spawn ~= 'Default' then
--- 		local player = CH('PLAYER')
--- 		local marker = MRKR(SV.partner.Spawn)
-
--- 		--Failsafe. Sometimes the spawn variable isn't handled properly, and you get to a map with an invalid marker.
--- 		--If this happens, act as though the marker is 'Default'. I.e. do nothing.
--- 		--The bug this failsafe fixes sometimes happens in normal gameplay but typically doesn't cause any visible issues. This is more of an issue with debugging requiring a map reload depending on how you get to it.
--- 		if marker ~= nil then
--- 			dir = dir or marker.Direction or partner.Direction
--- 			GROUND:TeleportTo(partner, marker.Position.X, marker.Position.Y, dir)
--- 		else
--- 			print('partner position marker failsafe hit')
--- 		end
--- 	end	
-
--- 	AI:SetCharacterAI(partner, "origin.ai.ground_partner", CH('PLAYER'), partner.Position)
---     partner.CollisionDisabled = true
--- 	partner.InteractOrder = 1--if partner and another NPC overlap, the partner is deprioritized and won't be spoken to, the other npc will
-
--- end
--------------------------------
+-------------------------
 -- Map Callbacks
 -------------------------------
 ---frost_checkpoint.Init(map)
 -- Engine callback function
 
 function frost_checkpoint.Init(map)
-  COMMON.RespawnAllies()
-  RespawnGuests()
-  -- COMMON.RespawnAllies(true)
+  checkpoint.OnCheckpointArrive()
+
   GROUND:AddMapStatus("snow")
 
   local music = "The Wind is Blowing at Cavi Cape.ogg"
@@ -77,12 +38,7 @@ function frost_checkpoint.Init(map)
   end
   SOUND:PlayBGM(music, true)
 
-  
-  local active_enchants = EnchantmentRegistry:GetSelected()
 
-  for _, enchant in pairs(active_enchants) do
-    enchant:on_checkpoint()
-  end
 
 
 
@@ -103,27 +59,6 @@ function frost_checkpoint.Init(map)
   -- PartnerEssentials.InitializePartnerSpawn()
 end
 
-function RespawnGuests()
-  -- GROUND:RefreshPlayer()
-
-
-  -- local party = GAME:GetPlayerPartyTable()
-  -- local playeridx = GAME:GetTeamLeaderIndex()
-
-  --Place player teammates
-  local count = _DATA.Save.ActiveTeam.Guests.Count
-  for i = 1, count, 1
-  do
-    GROUND:RemoveCharacter("Guest" .. tostring(i))
-  end
-  local total = 1
-  for member in luanet.each(_DATA.Save.ActiveTeam.Guests) do
-    GROUND:SpawnerSetSpawn("GUEST_" .. tostring(total), member)
-    local chara = GROUND:SpawnerDoSpawn("GUEST_" .. tostring(total))
-    -- GROUND:GiveCharIdleChatter(chara)
-    total = total + 1
-  end
-end
 
 -- if _DATA.CurrentReplay == nil then
 -- 	TASK:WaitTask(end_sequence())
@@ -313,377 +248,42 @@ function frost_checkpoint.GameLoad(map)
 end
 
 function frost_checkpoint.North_Exit_Touch(obj, activator)
-  print("Touched North Exit")
+  DEBUG.EnableDbgCoro()   --Enable debugging this coroutine
+  checkpoint.ProceedToNextSection()
 end
 
 function frost_checkpoint.South_Exit_Touch(obj, activator)
-  print("Touched South Exit")
+  DEBUG.EnableDbgCoro()   --Enable debugging this coroutine
+  checkpoint.AskReturn()
 end
-
-
--- function searing_tunnel_midpoint.South_Exit_Touch(chara, activator)
---   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
---   UI:ResetSpeaker(false)
---   UI:SetCenter(true)
---   local hero = CH('PLAYER')
---   local partner = CH('Teammate1')
---   local zone = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Zone]:Get("searing_tunnel")
---   partner.IsInteracting = true
---   GROUND:CharSetAnim(partner, 'None', true)
---   GROUND:CharSetAnim(hero, 'None', true)
-  
-	
---   local exit_ground = ''
---   --During Chapter 5, return to the dungeon entrance instead.
---   if SV.ChapterProgression.Chapter == 5 then
--- 	exit_ground = 'searing_tunnel_entrance'
--- 	UI:ChoiceMenuYesNo("Would you like to return\nto " .. zone:GetColoredName() .. "'s entrance?", true)
---   else
--- 	exit_ground = 'guild_dining_room'
--- 	if SV.TemporaryFlags.MissionCompleted then exit_ground = 'guild_second_floor' end 
--- 	UI:ChoiceMenuYesNo("Would you like to return\nto Metano Town?", true)
---   end
---   UI:WaitForChoice()
---   local yesnoResult = UI:ChoiceResult()
---   UI:SetCenter(false)
---   if yesnoResult then 
--- 	--Clear thief flag when leaving the dungeon.		
--- 	SV.adventure.Thief = false
--- 	SOUND:FadeOutBGM(60)
--- 	GAME:FadeOut(false, 60)
--- 	partner.IsInteracting = false
--- 	GROUND:CharEndAnim(partner)
--- 	GROUND:CharEndAnim(hero)	
--- 	GAME:WaitFrames(60)
--- 	if SV.ChapterProgression.Chapter == 5 then 
--- 		SV.Chapter5.PlayTempTunnelScene = true
--- 		SV.Chapter5.TunnelLastExitReason = 'Retreated'
--- 		SV.Chapter5.TunnelMidpointState = 'RepeatArrival'
--- 	else 
--- 		SV.TemporaryFlags.Dinnertime = true 
--- 		SV.TemporaryFlags.Bedtime = true
--- 		SV.TemporaryFlags.MorningWakeup = true 
--- 		SV.TemporaryFlags.MorningAddress = true 
--- 	end
--- 	GAME:EnterGroundMap(exit_ground, "Main_Entrance_Marker")
---   end
---   partner.IsInteracting = false
---   GROUND:CharEndAnim(partner)
---   GROUND:CharEndAnim(hero)	
--- end
-
-
--- call this at the end of an npc conversation, sister function of above StartConversation function
-local function EndConversation(target, changeNPCanimation)
-  if changeNPCanimation == nil then
-    changeNPCanimation = true
-  end -- should NPC change their animation? useful for flying npcs too
-
-  local hero = CH('PLAYER')
-  -- local partner = CH('Teammate1')
-
-  -- if target ~= partner then--if partner conversation was started don't turn them back around after
-  if SV.TemporaryFlags.OldDirection ~= Direction.None then
-    GROUND:EntTurn(target, SV.TemporaryFlags.OldDirection)
-  end
-  SV.TemporaryFlags.OldDirection = Direction.None -- Clear flag
-  -- end
-
-  -- GROUND:CharEndAnim(partner)
-  GROUND:CharEndAnim(hero)
-  -- if changeNPCanimation then GROUND:CharEndAnim(target) end
-
-  -- partner.IsInteracting = false
-end
-
--- local orig_settings = UI:ExportSpeakerSettings()
--- if fanfare then
-
--- end
--- UI:ResetSpeaker(false)
--- UI:SetCenter(true)
--- if not force_storage and GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount() < GAME:GetPlayerBagLimit() then
 
 function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
-  -- Check if the player directoin is facing the chest before opening...
-
-  if (activator.Direction ~= Dir8.Up) then
-    return
-  end
-
-  UI:ResetSpeaker()
-
-  -- if SV.EmberFrost.GotEnchantmentFromCheckpoint then
-  --   UI:SetCenter(true)
-  --   UI:WaitShowDialogue("You already selected an enchantment.")
-  --   UI:SetCenter(false)
-  --   return
-  -- end
-  
-
-  GROUND:CharSetAnim(activator, "None", true)
-
-
-  local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Open", 10))
-  -- emitter.LocHeight = 12
-  GROUND:PlayVFX(emitter, obj.MapLoc.X + 18, obj.MapLoc.Y + 12)
-
-  local emitter2 = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Light", 4))
-
-
-  --   local startPos = obj.MapLoc * RogueEssence.Content.GraphicsManager.TileSize +
-  --     RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2,
-  --       RogueEssence.Content.GraphicsManager.TileSize / 2) + RogueElements.Loc(-100, 72)
-
-  -- local endPos = obj.MapLoc * RogueEssence.Content.GraphicsManager.TileSize +
-  --     RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2,
-  --       RogueEssence.Content.GraphicsManager.TileSize / 2) + RogueElements.Loc(-80, 52)
-  GROUND:PlayVFX(emitter2, obj.MapLoc.X - 100, obj.MapLoc.Y, Dir8.Left, -100, 100)
-
-
-  GAME:WaitFrames(50)
-  
-  local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
-	
-	crystal_moment_status:LoadFromData()
-  crystal_moment_status.Emitter.Layer = DrawLayer.Top
-
-	_GROUND:AddMapStatus(crystal_moment_status)
-  
-
-
-
-  GAME:WaitFrames(60)
-
-
-
-  ResetSeenEnchantments()
-  local enchantments = EnchantmentRegistry:GetRandom(6, 2)
-
-
-  enchantments[1][1] = EnchantmentRegistry._registry['TRAVELING_MERCHANT']
-
-  print(Serpent.dump(enchantments) .. ".... uh")
-  -- title, enchantment_list, confirm_action, refuse_action, enchantment_width
-
-
-
-  local ret = nil
-
-  -- local ret_rerolls = 
-  
-
-
-  local choose = function(enchantment)
-    SOUND:PlayBattleSE("_UNK_EVT_075")
-    ret = enchantment
-    print("Chosen enchantment: " .. enchantment.name  )
-    _MENU:RemoveMenu()
-  end
-
-  -- local onReroll = function(index, shown_enchantments)
-  --   ret_rerolls[index] = ret_rerolls[index] + 1
-  --   local reroll_index = ret_rerolls[index]
-
-  --   shown_enchantments[index] = enchantments[reroll_index][index]
-  -- end
-
-  -- local canReroll = function(index)
-  --   return ret_rerolls[index] > 0
-  -- end
-
-  
-
-  local refuse = function() _MENU:RemoveMenu() end
-
-
-
-  local old = RogueEssence.Menu.MenuBase.BorderStyle
-
-  RogueEssence.Menu.MenuBase.BorderStyle = 12
-
-  print(tostring(Serpent.dump(SV.EmberFrost.Enchantments.RerollCounts)))
-
-  local on_enchantment_seen = function(enchantment_id)
-    SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Seen)
-    table.insert(SV.EmberFrost.Enchantments.Seen, enchantment_id)
-  end
-
-  print("Creating enchantment selection menu..." .. Serpent.dump(enchantments))
-
-  local menu = EnchantmentSelectionMenu:new("Choose an enchantment!", enchantments, on_enchantment_seen, nil, nil, SV.EmberFrost.Enchantments.RerollCounts, choose, refuse)
-  UI:SetCustomMenu(menu.menu)
-  UI:WaitForChoice()
-
-  RogueEssence.Menu.MenuBase.BorderStyle = old
-  -- \uE110
-  _GROUND:RemoveMapStatus("crystal_moment")
-  GAME:WaitFrames(40)
-
-  if (ret ~= nil) then
-    GAME:WaitFrames(30)
-    local enchantment_id = ret.id
-    table.insert(SV.EmberFrost.Enchantments.Selected, enchantment_id)
-    SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Selected)
-    SV.EmberFrost.GotEnchantmentFromCheckpoint = true
-    ret:apply()
-  end
-
-  print(Serpent.dump(SV.EmberFrost.Enchantments.Seen) .. " ... final seen table")
-
-  print(Serpent.dump(SV.EmberFrost.Enchantments.Collection) .. " ... collection table")
-
-  -- TODO: Use the mission board as the template 
-
-
-  -- local items = {
-  --   { Item= "emberfrost_allterrain_gear", Amount = 1},
-  --   { Item= "emberfrost_allterrain_gear", Amount = 1}
-  -- }
-
-  -- M_HELPERS.GiveInventoryItemsToPlayer(items)
-
-  GROUND:CharEndAnim(activator)
-
-
-  -- local emitter = SingleEmitter(AnimData("Chest_Light", 4))
-
-  -- emitter:SetupEmit(
-  --     obj.MapLoc * RogueEssence.Content.GraphicsManager.TileSize
-  --         + RogueElements.Loc(
-  --             RogueEssence.Content.GraphicsManager.TileSize / 2,
-  --             RogueEssence.Content.GraphicsManager.TileSize / 2
-  --         )
-  --         + RogueElements.Loc(-100, 72),
-
-  --     obj.MapLoc * RogueEssence.Content.GraphicsManager.TileSize
-  --         + RogueElements.Loc(
-  --             RogueEssence.Content.GraphicsManager.TileSize / 2,
-  --             RogueEssence.Content.GraphicsManager.TileSize / 2
-  --         )
-  --         + RogueElements.Loc(-80, 52),
-
-  --     Dir8.Left
-  -- )
-
-
-  --  DrawLayer.NoDraw
-  -- print("AAAA")
-
-  -- UI:WaitShowDialogue("A mystical energy radiates from the chest as it opens. Choose your enchantment")
-
-  -- DungeonScene.Instance:CreateAnim(emitter, DrawLayer.NoDraw)
-
-  -- emitter:SetupEmit(RogueElements.Loc(activator.MapLoc.X + -100, activator.MapLoc.Y + 100), RogueElements.Loc(activator.MapLoc.X - 200, activator.MapLoc.Y  + 100), Dir8.Up)
-  --   GameManager.Instance.BattleSE("EVT_Fade_White");
-  -- {
-  --     SingleEmitter emitter = new SingleEmitter(new AnimData("Chest_Light", 4));
-  --     emitter.SetupEmit(baseLoc * GraphicsManager.TileSize + new Loc(GraphicsManager.TileSize / 2) + new Loc(-100, 72), baseLoc * GraphicsManager.TileSize + new Loc(GraphicsManager.TileSize / 2) + new Loc(-80, 52), Dir8.Left);
-  --     DungeonScene.Instance.CreateAnim(emitter, DrawLayer.NoDraw);
-  -- }
-  -- {
-  --     SingleEmitter emitter = new SingleEmitter(new AnimData("Chest_Light", 4));
-  --     emitter.SetupEmit(baseLoc * GraphicsManager.TileSize + new Loc(GraphicsManager.TileSize / 2) + new Loc(100, 72), baseLoc * GraphicsManager.TileSize + new Loc(GraphicsManager.TileSize / 2) + new Loc(80, 52), Dir8.Right);
-  --     DungeonScene.Instance.CreateAnim(emitter, DrawLayer.NoDraw);
-  -- }
-
-  -- emitter.LocHeight = 12
-
-  -- GAME:WaitFrames(60)
-  -- UI:WaitShowDialogue("BOOM.")
-
-  -- SOUND:PlayBattleSE("DUN_Explosion")
-  -- emitter = RogueEssence.Content.FiniteAreaEmitter(RogueEssence.Content.AnimData("Explosion", 3))
-  -- emitter.Range = 72
-  -- emitter.Speed = 72
-  -- emitter.TotalParticles = 12
-  -- GROUND:PlayVFX(emitter, activator.MapLoc.X, activator.MapLoc.Y)
-  -- GROUND:ObjectSetDefaultAnim(obj, 'Ches', 0, 0, 0, Direction.Right)	
-  -- GROUND:ObjectSetAnim(obj, 6, 0, 3, Direction.Right, 1)
-  -- GROUND:ObjectSetDefaultAnim(obj, 'Diary_Purple_Opening', 0, 3, 3, Direction.Right)
-  -- CHEST:OpenChest(obj, activator)
+  DEBUG.EnableDbgCoro()
+  checkpoint.ChestInteraction(obj, activator)
 end
 
 -------------------------------
 -- Entities Callbacks
 -------------------------------
 
--- function frost_checkpoint.Teammate1_Action(chara, activator)
---   -- DEBUG.EnableDbgCoro() --Enable debugging this coroutine
---   -- PartnerEssentials.GetPartnerDialogue(CH('Teammate1'))
---  end
-
-function frost_checkpoint.Teammate2_Action(chara, activator)
-  -- DEBUG.EnableDbgCoro() --Enable debugging this coroutine
-  -- if SV.ChapterProgression.Chapter == 5 then--growlithe dialogue
-  -- searing_tunnel_midpoint_ch_5.Growlithe_Action(chara, activator)
-  -- else
-  -- GeneralFunctions.GroundInteract(activator, chara)
-  -- end
-end
-
 function frost_checkpoint.Teammate1_Action(chara, activator)
-  DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
+  DEBUG.EnableDbgCoro()
   COMMON.GroundInteract(activator, chara)
 end
 
-
-local function GetGroundDialogueForGuest(guest, player) 
-  local oldDir = guest.Direction
-  GROUND:CharTurnToChar(guest, player)
-
-
-  UI:SetSpeaker(guest)
-  local tbl = LTBL(guest)
-  local id = tbl.ID
-
-  local enchant = EnchantmentRegistry:Get(id)
-
-  enchant:dialogue()
-  
-  guest.Direction = oldDir
+function frost_checkpoint.Teammate2_Action(chara, activator)
+  DEBUG.EnableDbgCoro()
+  COMMON.GroundInteract(activator, chara)
 end
-
 
 function frost_checkpoint.Guest1_Action(chara, activator)
-  DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
-  GetGroundDialogueForGuest(chara, activator)
-  -- COMMON.GroundInteract(activator, chara)
-  -- print("guest1")
-  -- print(tostring(chara))
-  -- local tbl = LTBL(chara)
-  -- print(Serpent.dump(tbl))
-  -- local s = _DATA.Save.ActiveTeam.Guests[0]
-  -- print(tostring(s))
-
-  -- local tbl2 = LTBL(s)
-  -- print(Serpent.dump(tbl2))
-
-  -- chara.Direction = olddir
-
-
-  
+  DEBUG.EnableDbgCoro()
+  checkpoint.GetGroundDialogueForGuest(chara, activator)
 end
-
-
 
 function frost_checkpoint.Guest2_Action(chara, activator)
-  DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
-  -- COMMON.GroundInteract(activator, chara)
-  -- print("guest2")
-  -- local tbl = LTBL(chara)
-  -- print(Serpent.dump(tbl))
-  GetGroundDialogueForGuest(chara)
+  DEBUG.EnableDbgCoro()
+  checkpoint.GetGroundDialogueForGuest(chara, activator)
 end
-
--- function frost_checkpoint.GUEST_1_Action(chara, activator)
---   DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
---   COMMON.GroundInteract(activator, chara)
--- end
-
--- function frost_checkpoint.GUEST_2_Action(chara, activator)
---   DEBUG.EnableDbgCoro() -- Enable debugging this coroutine
---   COMMON.GroundInteract(activator, chara)
--- end
 
 return frost_checkpoint

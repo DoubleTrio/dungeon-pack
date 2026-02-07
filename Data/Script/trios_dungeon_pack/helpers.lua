@@ -25,7 +25,7 @@ function ResetEmberfrost()
       Selected = {},
       Data = {},
       Collection = {},
-      RerollCounts = {1, 1, 1},
+      RerollCounts = { 1, 1, 1 },
     },
 
     Quests = {
@@ -33,16 +33,15 @@ function ResetEmberfrost()
       Data = {},
     },
     LastFloor = 0,
-    GotEnchantmentFromCheckpoint = false
-  }
+    GotEnchantmentFromCheckpoint = false,
 
+    CheckpointProgression = 0,
+    Completed = false,
+    ReceivedEnchantmentReminder = true,
+  }
 
   InitializeEnchantmentCollection()
   
-end
-function SetEnchantmentStatusIfNeeded(enchantment_id, status)
-  local seen_value = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
-  SV.EmberFrost.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
 end
 
 local function GenderToNum(gender)
@@ -605,7 +604,11 @@ M_HELPERS = {
           Data = {},
         },
         LastFloor = 0,
-        GotEnchantmentFromCheckpoint = false
+        GotEnchantmentFromCheckpoint = false,
+
+        CheckpointProgression = 0,
+        Completed = false,
+        ReceivedEnchantmentReminder = true,
       }
 
 
