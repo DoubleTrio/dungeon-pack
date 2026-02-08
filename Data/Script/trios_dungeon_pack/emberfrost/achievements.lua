@@ -1,0 +1,14 @@
+-- Clear Emberfrost with Jeweled Bug in inventory
+-- Clear Emberfrost with X amount from Task Master
+-- Cash out reward from Type Master
+-- Clear Emberfrost with 10000 gold_amount
+-- Clear Emberfrost with 100000 gold_amount
+-- Clear Emberfrost with 50000 gold_amount
+-- Clear Emberfrost with 1000000 gold_amount
+-- Clear Emberfrost with no enchants
+-- Clear Emberfrost with only the mon you entered with
+-- Clear Emberfrost with a score of 500000
+-- See all the enchants
+-- Select all enchants
+-- ??? - maybe secret achievement?
+

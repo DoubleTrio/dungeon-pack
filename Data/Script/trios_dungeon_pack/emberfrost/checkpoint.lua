@@ -1,3 +1,24 @@
+
+require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
+require 'trios_dungeon_pack.emberfrost.enchantments'
+require 'origin.menu.InventorySelectMenu'
+
+function PlayRandomBGM(tracks)
+  tracks = tracks or {
+    "The Wind is Blowing at Cavi Cape.ogg",
+    "Obsidian Fieldlands 2.ogg",
+    "Vast Poni Canyon.ogg",
+    "Rock Slide Canyon.ogg",
+    "Resolution Gorge.ogg",
+    "Wishmaker Depths.ogg",
+    "Ruins of Life.ogg"
+  }
+
+  -- pick a random track with equal probability
+  local music = tracks[math.random(#tracks)]
+  SOUND:PlayBGM(music, true)
+end
+
 function SetEnchantmentStatusIfNeeded(enchantment_id, status)
   local seen_value = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
   SV.EmberFrost.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
@@ -20,6 +41,20 @@ function RespawnGuests()
 end
 
 local checkpoint = {}
+
+
+function checkpoint.ShowTitle(guest, player)
+
+  local title = "Checkpoint " .. SV.EmberFrost.CheckpointProgression
+
+  if SV.EmberFrost.CheckpointProgression == 5 then
+    title = title .. " - Final Stretch"
+  end
+  UI:WaitShowTitle(title, 20)
+  GAME:WaitFrames(60)
+  UI:WaitHideTitle(20)
+end
+
 
 function checkpoint.GetGroundDialogueForGuest(guest, player)
   local oldDir = guest.Direction
@@ -65,8 +100,9 @@ function checkpoint.AskContinue()
   return yesnoResult
 end
 
-function checkpoint.ProceedToNextSection(floor_num)
-  floor_num = floor_num or (SV.EmberFrost.CheckpointProgression * 5) - 1
+function checkpoint.ProceedToNextSection(segment, floor_num)
+  segment = segment or 0
+  floor_num = floor_num or (SV.EmberFrost.CheckpointProgression * 5)
   UI:ResetSpeaker(false)
   UI:SetCenter(true)
   local player = CH('PLAYER')
@@ -205,4 +241,68 @@ function checkpoint.ChestInteraction(obj, activator)
   
 end
 
+function checkpoint.ShopkeeperDialogue()
+  -- checkpoint.GetGroundDialogueForGuest(chara, activator)
+  UI:WaitShowDialogue("hi i'm the shopkeeper")
+  -- 1st Checkpoint:
+  -- If in roguelocke mode, then the introduction isn't necessary, only for story mod
+  -- Oy there! Making ways towards the Emberfrost ain't you? Come over here ... and don't mind that chest there...
+
+  -- Ay, I bunch of first-timers I see.
+  -- Ay, a first-timer I see.
+
+
+  -- Pachirisu
+
+  -- Psh. You probably heard a similar spiel from Nocturne. Very few have made it towards the end of Emberfrost and yada-yada-yada...
+
+  -- I'm here to make your life easier
+
+  -- Oy there! Making ways towards the Emberfrost ain't ye? Come o'er here ... an don't mind dat chest there.
+  -- Ay, I bunch o' first-timers I see.
+  -- Ay, a first-timer I see.
+
+  -- Psh. Ye prolly heard a similar spiel from Nocturne. Mighty few have made it towards the end of Emberfrost and yada-yada-yada...
+
+  -- Let me keep it simple, I be here to make yer life easier as I have a bunch of goods for your little adventure but at a penny
+
+  -- Let me keep it simple, I be here to make yer life easier as I have a bunch of loot fer your wee adventure... but at a penny of course!
+
+  -- The Emberfrost be more barren of resources that you need to make it there
+  -- The penny will cost ye 2 penny
+
+  -- Then see that chest o'er there, that thing be mighty special, aye indeed. Open the chest and it shall grant untold powers
+
+  -- ... only for the Emberfrost area
+  -- Anyways, lads, speak wit' me if ye loot ye needs for  your wee adventure!
+
+
+  -- I haven't seen an explorer team such as yours in quite a while!
+
+  -- The more you purchase from me the more expensive it will be later
+  -- It's supply & demand baby!
+  -- Except fer gold 'n pearls, folks these days don't understand thar value 'n 'ave no use at the Emberfrost
+  -- What do they call it these days, oh yeah, supply and demand har-har! Popular items will be more expensive, while less popular items will have the same price
+  -- Wha' do they call it these days, oh aye, supply 'n demand har har har!
+
+
+
+
+  -- When press "Sell": Whatever you're selling, I've already got. I'm sure those Kecleons have be taking businesses with with you
+
+
+  -- How can I be of er' service today?
+
+  -- Best of luck ye scallywags!
+
+  -- That will be 1500 gold, how that sound for ye
+  -- Dat shall be 1500 gold, how dat sound fer ye
+
+  -- Har-Har pleasure doing businesses with ye.
+
+  -- 2nd Checkpoint:
+  -- How did I get here?
+
+  -- Actually, we're all related...
+end
 return checkpoint

@@ -141,35 +141,13 @@ end
 
 function ZONE_GEN_SCRIPT.EmberfrostSwitchUp(zoneContext, context, queue, seed, args)
 
-  -- TODO: map to the right checkpoint
-  local interval = 1
+  local interval = 5
   local active_effect = RogueEssence.Data.ActiveEffect()
   local destNote = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { active_effect })
   local priority = RogueElements.Priority(-6)
 
-  if (zoneContext.CurrentID % interval) == 0 and zoneContext.CurrentID ~= 0 then
-    print("YAY")
-
-
-    local next_segment
-    local next_id
-    if zoneContext.CurrentSegment == 0 then
-      next_segment = 1
-      next_id = zoneContext.CurrentID - interval 
-      
-    else
-      next_segment = 0
-      next_id = zoneContext.CurrentID + interval 
-    end
-  
-    if zoneContext.CurrentSegment == 1 and zoneContext.CurrentID == 8 then
-      next_segment = 2
-      next_id = 0
-    end
-  
-    -- SV.EmberFrost.ShouldSwap = true
-    active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = -1, NextID = 0 })))
-
+  if ((zoneContext.CurrentID + 1) % interval) == 0 and zoneContext.CurrentID ~= 0  and zoneContext.CurrentID ~= 29 then
+    active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = -1, NextID = SV.EmberFrost.CheckpointProgression })))
   end
   queue:Enqueue(priority, destNote)
 end

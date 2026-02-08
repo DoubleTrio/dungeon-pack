@@ -5235,7 +5235,7 @@
 "anchor_shot"
 ],
 "Intrinsic": "",
-"Tactic": "patrol",
+"Tactic": "wait_and_see",
 "SpawnConditions": [],
 "SpawnFeatures": [
 {
@@ -23007,12 +23007,12 @@
 ]
 },
 "StartAmount": {
-"Min": 20,
-"Max": 31
+"Min": 100,
+"Max": 131
 },
 "AddAmount": {
-"Min": 16,
-"Max": 20
+"Min": 18,
+"Max": 29
 },
 "ModStates": [
 {
@@ -245225,7 +245225,11 @@
 }
 ],
 "GroundMaps": [
-"frost_checkpoint"
+"cove_checkpoint",
+"rocky_checkpoint",
+"frost_checkpoint",
+"blaze_checkpoint",
+"elemental_checkpoint"
 ]
 }
 }

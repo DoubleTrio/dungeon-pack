@@ -74,7 +74,11 @@ null
 "CountedFloors": 66,
 "Rogue": 1,
 "Grounds": [
-"frost_checkpoint"
+"cove_checkpoint",
+"rocky_checkpoint",
+"frost_checkpoint",
+"blaze_checkpoint",
+"elemental_checkpoint"
 ],
 "Maps": [
 [

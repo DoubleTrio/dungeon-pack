@@ -1,5 +1,6 @@
 import json
 import csv
+from re import M
 
 NORMAL = 0
 SUPPORT = 1
@@ -364,51 +365,55 @@ if __name__ == "__main__":
         #1
         ('buneary', 0, 'wander_normal', '', ['double_hit', 'foresight'], 4, 5, 0, 3, 0, 10),
         ('shinx', 0, 'wander_normal', '', ['howl', 'tackle'], 4, 5, 0, 3, LONER, 10),
-        ('starly', 0, 'wander_normal', '', ['tackle', 'sand_attack'], 4, 5, 0, 3, 0, 10),
+        ('starly', 0, 'wander_dumb', '', ['tackle', 'sand_attack'], 4, 5, 0, 3, 0, 10),
 
 
         #2
-        ('psyduck', 0, 'weird_tree', '', ['water_pulse', 'flip_turn'], 8, 9, 1, 6, 0, 6),
+        ('psyduck', 0, 'weird_tree', '', ['water_pulse', 'flip_turn'], 8, 9, 1, 5, 0, 6),
         ('bidoof', 0, 'wander_normal', '', ['super_fang', 'tackle'], 6, 7, 1, 5, 0, 10),
-        ('silcoon', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 6, 7, 1, 3, 0, 5),
         ('paras', 0, 'retreater', '', ['leech_seed', 'poison_powder'], 6, 7, 1, 5, SUPPORT, 10),
         ('burmy', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 6, 7, 1, 5, 0, 5),
         ('budew', 0, 'wander_normal', '', ['nature_power'], 5, 6, 1, 3, 0, 10),
-        ('eevee', 0, 'wander_normal', '', ['tickle', 'yawn', 'quick_attack'], 5, 6, 1, 5, 0, 10),
-        
+
 
 
         #3
         ('machop', 0, 'wander_normal', '', ['focus_energy', 'low_kick'], 7, 8, 2, 5, LONER, 10),
         ('buizel', 0, 'wander_normal', '', ['sonic_boom'], 8, 9, 2, 5, 0, 10),
+        ('eevee', 0, 'wander_normal', '', ['tickle', 'yawn', 'quick_attack'], 6, 7, 1, 5, 0, 10),
 
         #4 
         ('geodude', 0, 'patrol', '', ['rollout', 'tackle'], 9, 10, 3, 5, 0, 10),
-        ('cascoon', 0, 'wait_attack', '', ['bug_bite', 'string_shot'], 9, 10, 3, 5, 0, 5),
+        ('silcoon', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 9, 10, 3, 3, 0, 4),
+        ('cascoon', 0, 'wait_attack', '', ['bug_bite', 'string_shot'], 9, 10, 3, 5, 0, 4),
         ('cyndaquil', 0, 'wander_normal', '', ['ember', 'smokescreen'], 8, 9, 3, 5, 0, 10),
         ('oshawott', 0, 'wander_normal', '', ['water_gun', 'encore'], 9, 10, 3, 5, 0, 10),
         ('rowlet', 0, 'wander_normal', '', ['leafage', 'dual_wingbeat'], 8, 9, 3, 5, 0, 10),
-        ('pichu', 0, 'wander_normal', '', ['nuzzle', 'charm', 'fake_out'], 10, 11, 3, 5, SUPPORT, 10),
+
 
 
         #5
         ('onix', 0, 'slow_wander', '', ['block', 'iron_tail'], 11, 12, 4, 5, 0, 10),
+        ('pichu', 0, 'wander_normal', '', ['nuzzle', 'charm', 'fake_out'], 12, 13, 4, 5, SUPPORT, 10),
 
+
+        # Add like path wands + pounce wands on islands
         #6
         ('pancham', 0, 'wander_normal', 'mold_breaker', ['taunt', 'circle_throw'], 12, 13, 5, 7, 0, 10),
+        ('meowth', 1, 'thief', '', ['pay_day'], 11, 12, 5, 7, 0, 10),
+        ('diglett', 1, 'wander_normal', 'tangling_hair', ['bulldoze', 'sucker_punch'], 10, 11, 5, 8, 0, 10),
         ('corsola', 0, 'wander_normal', 'natural_cure', ['aqua_ring', 'amnesia', 'icicle_spear'], 11, 12, 5, 7, SUPPORT, 10),
         ('shellos', 0, 'wander_normal', 'storm_drain', ['mud_sport', 'water_pulse'], 12, 13, 5, 7, 0, 10),       
-        ('krabby', 0, 'wander_normal', '', ['bubble_beam', 'vice_grip'], 11, 12, 5, 7, 0, 10),
-        ('corphish', 0, 'retreater_item', '', ['knock_off', 'fling'], 11, 12, 5, 7, 0, 10),
-        ('staryu', 0, 'wander_normal', 'illuminate', ['confuse_ray', 'light_screen', 'water_gun'], 12, 13, 5, 8, SUPPORT, 10),
+        ('krabby', 0, 'wander_normal', '', ['bubble_beam'], 10, 11, 5, 7, 0, 10),
+        ('corphish', 0, 'wander_normal', '', ['knock_off', 'fling', 'harden'], 11, 12, 5, 7, 0, 10),
 
         #7
         ('rattata', 1, 'retreater', 'hustle', ['screech', 'sucker_punch'], 11, 12, 6, 8, 0, 10),
-        ('diglett', 1, 'wander_normal', 'tangling_hair', ['bulldoze', 'sucker_punch'], 12, 13, 6, 8, 0, 10),
-        ('meowth', 1, 'thief', '', ['pay_day', 'thief'], 13, 14, 6, 8, 0, 10),
+
         ('vulpix', 1, 'wander_normal', 'snow_cloak', ['nasty_plot', 'dazzling_gleam'], 11, 12, 6, 7, 0, 10),
-        ('geodude', 1, 'wander_normal', 'galvanize', ['rock_climb'], 11, 12, 6, 8, 0, 10),
-        ('grimer', 1, 'retreater_item', 'stench', ['haze', 'belch'], 11, 12, 6, 8, 0, 10),
+        ('geodude', 1, 'wander_normal', 'galvanize', ['rock_climb'], 10, 11, 6, 8, 0, 10),
+        ('grimer', 1, 'retreater_item', 'stench', ['assurance', 'clear_smog'], 11, 12, 6, 8, 0, 10),
+        ('staryu', 0, 'wander_normal', 'illuminate', ['confuse_ray', 'light_screen'], 12, 13, 6, 8, SUPPORT, 10),
 
 
         #8
@@ -424,12 +429,48 @@ if __name__ == "__main__":
         ('quaxwell', 0, 'wander_normal', 'torrent', ['water_pledge', 'detect'], 16, 17, 8, 10, SUPPORT, 6),
         ('scyther', 0, 'wander_normal', 'technician', ['agility', 'false_swipe'], 17, 18, 8, 10, LONER, 10),
         ('sandygast', 0, 'wander_normal', 'water_compaction', ['destiny_bond', 'stockpile', 'swallow', 'spit_up'], 19, 20, 8, 10, NORMAL, 10),
-        ('tatsugiri', 0, 'wander_smart', '', ['dragon_dance', 'icy_wind'], 15, 16, 8, 10, SUPPORT, 10),
-        ('krabby', 0, 'wander_normal', 'hyper_cutter', ['bubble_beam', 'vice_grip', 'knock_off'], 17, 18, 8, 10, 0, 10),
+        ('tatsugiri', 0, 'wander_smart', '', ['whirlpool'], 15, 16, 8, 10, SUPPORT, 10),
+        ('krabby', 0, 'wander_normal', 'hyper_cutter', ['bubble_beam'], 17, 18, 8, 10, 0, 10),
 
         #10
         ('crocinaw', 0, 'wander_normal', 'sheer_force', ['ice_fang', 'psychic_fangs'], 18, 19, 9, 10, LONER, 10),
         ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'disable'], 19, 20, 9, 10, SUPPORT, 10),
+
+        
+        #11
+        ('geodude', 0, 'patrol', '', ['tackle', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
+        ('druddigon', 0, 'wander_smart', '', ['glare', 'scale_shot'], 19, 20, 9, 10, LONER, 10),
+        ('graveler', 0, 'wander_normal', 'sheer_force', ['magnitude', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
+        # ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
+        ('machoke', 0, 'wander_normal', 'guts', ['cross_chop'], 19, 20, 9, 10, NORMAL, 10),
+        #15 - Harder hitting enemies - froslass, spite, poltergeist - no food, seeds,  on this floor!lm
+        ## Wyrdeer 	Wyrdeer
+        ## glalie - protect, frost_breath
+        ## scizor - swords, iron_head
+        # purserker
+        # vanilite
+        # https://pokemondb.net/ability/thick-fat - any mon with
+        ## hariyama
+        ## delibird - bestow 50% or 50% good ir bad item, maybe the bad item explodes on the leader in like 5 turns
+        ## tricksters mon
+        ## bascalibur 
+        # luxio, chinchou
+        
+
+
+
+        #20 - Swarms of teamfire types + specifix teams! vulpix with nintales leader, salandit with siazzle leader, durant + heatmor
+        # charizrd durant + zangoose versus seviper + heatmor
+
+
+        #21
+        ('turtonator', 0, 'wander_normal', '', ['dragon_claw', 'dragon_rage'], 21, 22, 10, 12, 0, 10),
+        #22
+        #23
+        #24
+        #25 -  
+        # turtonator
+
 
 
 
@@ -443,17 +484,14 @@ if __name__ == "__main__":
         # Rocks will fall from the ceiling!
         # 
 
-        ('geodude', 0, 'patrol', '', ['rollout', 'tackle', 'rock_slide'], 18, 19, 9, 10, NORMAL, 10),
-        ('druddigon', 0, 'wander_smart', '', ['glare', 'scale_shot'], 19, 20, 9, 10, LONER, 10),
-        ('graveler', 0, 'wander_normal', 'sheer_force', ['magnitude', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
-        ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'disable'], 19, 20, 9, 10, SUPPORT, 10),
-        ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
-        ('machoke', 0, 'wander_normal', 'guts', ['cross_chop', 'rock_tomb'], 19, 20, 9, 10, LONER, 10),
+
+        # aron, pineco, fortress, # skarmary
+
 
 
 
         #11
-        
+
         #16
 
 

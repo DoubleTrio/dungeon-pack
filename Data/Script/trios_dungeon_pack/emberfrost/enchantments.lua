@@ -3211,9 +3211,6 @@ end
 
 
 
--- Tarot Cards - For each Psychic type. Gain a random boost or negative boost for each psychic type draw a card and apply a random effect
-
--- Fired Uplifting
 -- Negative Aura - Apply a random debug
 
 TarotCards = EnchantmentRegistry:Register({
@@ -3649,10 +3646,10 @@ Puppeteer = EnchantmentRegistry:Register({
   id = "PUPPETEER",
   getDescription = function(self)
     local ghost_type = _DATA:GetElement("ghost")
-    local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
+    local black_apricorn = M_HELPERS.GetItemName("apricorn_black")
     return string.format(
       "Gain a %s. Each %s in the %s summons a doll that mirrors a weaker version of itself and targets enemies",
-      purple_apricorn, ghost_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
+      black_apricorn, ghost_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
   end,
   offer_time = "beginning",
   rarity = 1,
@@ -3690,7 +3687,7 @@ Puppeteer = EnchantmentRegistry:Register({
   apply = function(self)
     local items = {
       {
-        Item = "apricorn_purple",
+        Item = "apricorn_black",
         Amount = 1
       }
     }
@@ -3700,60 +3697,61 @@ Puppeteer = EnchantmentRegistry:Register({
 })
 
 
-HideAndSeek = EnchantmentRegistry:Register({
-  name = "Hide and Seek",
-  id = "HIDE_AND_SEEK",
-  getDescription = function(self)
-    local ghost_type = _DATA:GetElement("ghost")
-    local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
-    return string.format(
-      "Gain a %s. Each %s in the %s summons a doll that mirrors a weaker version of itself and targets enemies",
-      purple_apricorn, ghost_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
-  end,
-  offer_time = "beginning",
-  rarity = 1,
-  getProgressTexts = function(self)
-    local ghost_type = _DATA:GetElement("ghost")
-    local icon = ghost_type:GetIconName()
+-- HideAndSeek = EnchantmentRegistry:Register({
+--   name = "Hide and Seek",
+--   id = "HIDE_AND_SEEK",
+--   getDescription = function(self)
+--     local ghost_type = _DATA:GetElement("ghost")
+--     local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
+--     return string.format(
+--       "Gain a %s. Each %s in the %s summons a doll that mirrors a weaker version of itself and targets enemies",
+--       purple_apricorn, ghost_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow))
+--   end,
+--   offer_time = "beginning",
+--   rarity = 1,
+--   getProgressTexts = function(self)
+--     local ghost_type = _DATA:GetElement("ghost")
+--     local icon = ghost_type:GetIconName()
 
-    local count = #GetCharacterOfMatchingType("ghost", false)
+--     local count = #GetCharacterOfMatchingType("ghost", false)
 
-    return { "Total " .. icon .. " Members: " .. count }
-  end,
+--     return { "Total " .. icon .. " Members: " .. count }
+--   end,
 
-  cleanup = function(self)
-    for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
-      local guest = GAME:GetPlayerGuestMember(i)
-      local tbl = LTBL(guest)
-      if tbl[self.id] then
-        GAME:RemovePlayerGuest(i)
-      end
-    end
-  end,
+--   cleanup = function(self)
+--     for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
+--       local guest = GAME:GetPlayerGuestMember(i)
+--       local tbl = LTBL(guest)
+--       if tbl[self.id] then
+--         GAME:RemovePlayerGuest(i)
+--       end
+--     end
+--   end,
 
-  set_active_effects = function(self, active_effect, zone_context)
-    active_effect.OnMapStarts:Add(-20,
-      RogueEssence.Dungeon.SingleCharScriptEvent("RemoveGuestWithIDBackground", Serpent.line({
-        ID = self.id,
-      })))
+--   set_active_effects = function(self, active_effect, zone_context)
+--     active_effect.OnMapStarts:Add(-20,
+--       RogueEssence.Dungeon.SingleCharScriptEvent("RemoveGuestWithIDBackground", Serpent.line({
+--         ID = self.id,
+--       })))
 
-    active_effect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("Puppeteer", Serpent.line({
-      EnchantmentID = self.id,
-      Type = "ghost",
-    })))
-  end,
+--     active_effect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("Puppeteer", Serpent.line({
+--       EnchantmentID = self.id,
+--       Type = "ghost",
+--     })))
+--   end,
 
-  apply = function(self)
-    local items = {
-      {
-        Item = "apricorn_purple",
-        Amount = 1
-      }
-    }
+--   apply = function(self)
+--     local items = {
+--       {
+--         Item = "apricorn_purple",
+--         Amount = 1
+--       }
+--     }
 
-    M_HELPERS.GiveInventoryItemsToPlayer(items)
-  end
-})
+--     M_HELPERS.GiveInventoryItemsToPlayer(items)
+--   end
+-- })
+
 
 -- Bounty Hunter - Defeat a specific mon, gain 100 P. When you reach 15 bounties recieve a massive reward
 
@@ -4396,6 +4394,7 @@ Harvester = EnchantmentRegistry:Register({
   end
 })
 
+-- Negative Aura - For each  At the end of each turn, enemies within 2 tiles of
 
 -- Rationalize: This Pokémon's Normal-Type moves are Super Effective to Fairy, Ghosts, and Dragon-Types in exchange for Moves from those Types becoming Super Effective to this Pokémon.
 -- https://gamefaqs.gamespot.com/boards/359435-pokemon-violet/80421481
@@ -4603,15 +4602,34 @@ Subzero = CreateTypeStatusEnchantment({
   status_id = "emberfrost_frostbite"
 })
 
+
 -- Blaze Tile - Will burn the user, but will double their speed. (max 2 stack) 
 -- Fire Tile - Take fire damage but raise attack
 -- Ice Title - Freeze chracter, but grant, users on these tiles will be granted +2 range on thei rmoves
--- Negative Aura - Targets with two tiles of the will have their attack reduced by 20% 
+
+-- Evolved - Mons that evolved gain +5 stat boosts
+-- Targets with two tiles of the will have their attack reduced by 20% (Dark) - Malevolence - Apply a random debuff for any enemies within two tiles
+-- fired Up -- 
+-- Noxious
+-- Electric -- Overflow/Overcharge damage will be carried over to the next target - from base elctric damage (1 transfer) - Overcharge
+-- Water Purification - Heal Passively hea teammates
+-- Combat Flow - Every third attack of fighting mons will do increased damage and critical hit
+-- Flock - Flying types will reduce damage of nearby floating allies. Allies nearby can traverse
+-- Ground
+-- Rock -- Geopebbles and gravlerrocks. 
+-- Steel  -- Steel- “conduction- when hit by fire moves all defenses raise by 1 stage & reduce damage by 25%.
+-- Iron Will : steel-type moves will utilize the user's defense stat to determine power
+-- Ignition: the Pokemon's speed is boosted when inflicted with a burn
+-- Fairy -
+-- Cruel Kindness – Fairy-type moves heal allies for a portion of the damage dealt.
+-- Fairy -
+-- Steel: Reinforced Plating - Impact, take 10% damage from one physical move, once. Every 50 turns - gain a shield that reduces damage by 80%
+--  Conductor- The Pokémon's Attack and Special Attack stats get boosted if hit by an Electric-Type move.
 
 -- polished metal
 -- gives a plus 1 evasiveness boost for steel types.
 
---  Poison: Intoxication/Noxious Cloud/Toxic Boost/Contamination - Prevent 
+--  Poison: Intoxication/Noxious Cloud/Toxic Boost/Contamination - Prevent\\ 
 
 -- Toxic Touch: When the user attacks, the target is inflicted with a stacking “contamination” debuff that spreads to nearby enemies after a turn.
 
@@ -4621,33 +4639,24 @@ Subzero = CreateTypeStatusEnchantment({
 
 -- -- Normal: Extraordinaire/Power Boost/Amplifier/Complexity
 
--- Electric: Battery Charger/Electrify/Juicer/High Capacity/Overflow/Overcharge damage will be carried over to the next target (1 transfer) - Overcharge
+-- Electric: Battery Charger/Electrify/Juicer/High Capacity/
 
 -- Fighting: Prideful/Fighting Spirit/Combo - Raise the attack str for each 
 
--- Effects:
--- Each turn, the Pokémon afflicted with the Frostbite loses 1/16th of its Max HP
--- The Pokémon's Special Attack Stat is cut by 50%.
-
 -- Fairy: Uplifting Spirit/Wish Granter/Spirit’s Gift/Trickery
 
--- Psychic: Positive Vision, Enlightenment, Will Power, premeditation, confuse target, 
-
--- Dark: Corruption/Nightmare Fuel/Darkest Hour/Malevolence/Negative Aura
+-- Dark: Corruption/Nightmare Fuel/Darkest Hour//Negative Aura
 -- 
 -- Flying: Strong Wings/Rising Phoenix/Shedded Feathers/Flocking/Air Ride (can guide other types across terrtains), Turbulence, Flock - Each flying type reduces damage of nearby allies
 
 -- Quick Charge: Moves that take 2 turns to use now only require 1, but require 1 extra PP.
 -- Ghost: Possession/Haunted/Spirit Riser/After Dusk/Conjure - 
 
--- Cruel Kindness – Fairy-type moves heal allies for a portion of the damage dealt.
--- Fickle Magic – Fairy-type moves have a chance to inflict a random status.
 
 
 -- Rock: Hardheaded/Compression
 
--- Steel: Enhanced Armor/Iron Will/Tempered Steel/Black Smith
-
+-- Dungeon Unboxing --- open all boxes inside your inventory
 -- Ground: Tectonic strength/Earth Rising/Aftershock, Quicksands -  
 
 Shopper = EnchantmentRegistry:Register({
@@ -5827,7 +5836,6 @@ QuestRegistry:Register({
     local on_turn_end_id
 
     on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-      print("LEVEL UP CHECK START")
       for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
         local tbl = LTBL(member)
         tbl["StartLevel"] = member.Level

@@ -1,64 +1,63 @@
 require 'origin.common'
-
 local checkpoint = require 'trios_dungeon_pack.emberfrost.checkpoint'
 
 -- Package name
-local frost_checkpoint = {}
+local cove_checkpoint = {}
 
 -------------------------
 -- Map Callbacks
 -------------------------------
----frost_checkpoint.Init(map)
+---cove_checkpoint.Init(map)
 -- Engine callback function
 
-function frost_checkpoint.Init(map)
+function cove_checkpoint.Init(map)
   PlayRandomBGM()
   checkpoint.OnCheckpointArrive()
-  GROUND:AddMapStatus("snow")
+  GROUND:AddMapStatus("rain")
 end
 
----frost_checkpoint.Enter(map)
+---cove_checkpoint.Enter(map)
 -- Engine callback function
-function frost_checkpoint.Enter(map)
+function cove_checkpoint.Enter(map)
   checkpoint.ShowTitle()
   GAME:FadeIn(20)
 end
 
----frost_checkpoint.Exit(map)
+---cove_checkpoint.Exit(map)
 -- Engine callback function
-function frost_checkpoint.Exit(map)
+function cove_checkpoint.Exit(map)
 
 end
 
----frost_checkpoint.Update(map)
+---cove_checkpoint.Update(map)
 -- Engine callback function
-function frost_checkpoint.Update(map)
+function cove_checkpoint.Update(map)
 
 end
 
----frost_checkpoint.GameSave(map)
+---cove_checkpoint.GameSave(map)
 -- Engine callback function
-function frost_checkpoint.GameSave(map)
+function cove_checkpoint.GameSave(map)
 
 end
 
----frost_checkpoint.GameLoad(map)
+---cove_checkpoint.GameLoad(map)
 -- Engine callback function
-function frost_checkpoint.GameLoad(map)
+function cove_checkpoint.GameLoad(map)
   GAME:FadeIn(20)
 end
 
-function frost_checkpoint.North_Exit_Touch(obj, activator)
-  DEBUG.EnableDbgCoro()   --Enable debugging this coroutine
+function cove_checkpoint.North_Exit_Touch(obj, activator)
+  DEBUG.EnableDbgCoro() --Enable debugging this coroutine
   checkpoint.ProceedToNextSection()
 end
 
-function frost_checkpoint.South_Exit_Touch(obj, activator)
-  DEBUG.EnableDbgCoro()   --Enable debugging this coroutine
+function cove_checkpoint.South_Exit_Touch(obj, activator)
+  DEBUG.EnableDbgCoro() --Enable debugging this coroutine
   checkpoint.AskReturn()
 end
 
-function frost_checkpoint.Enchantment_Chest_Action(obj, activator)
+function cove_checkpoint.Enchantment_Chest_Action(obj, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.ChestInteraction(obj, activator)
 end
@@ -67,30 +66,29 @@ end
 -- Entities Callbacks
 -------------------------------
 
-function frost_checkpoint.Teammate1_Action(chara, activator)
+function cove_checkpoint.Teammate1_Action(chara, activator)
   DEBUG.EnableDbgCoro()
   COMMON.GroundInteract(activator, chara)
 end
 
-function frost_checkpoint.Teammate2_Action(chara, activator)
+function cove_checkpoint.Teammate2_Action(chara, activator)
   DEBUG.EnableDbgCoro()
   COMMON.GroundInteract(activator, chara)
 end
 
-function frost_checkpoint.Guest1_Action(chara, activator)
+function cove_checkpoint.Guest1_Action(chara, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.GetGroundDialogueForGuest(chara, activator)
 end
 
-function frost_checkpoint.Guest2_Action(chara, activator)
+function cove_checkpoint.Guest2_Action(chara, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.GetGroundDialogueForGuest(chara, activator)
 end
 
-function frost_checkpoint.Shopkeeper_Action(obj, activator)
+function cove_checkpoint.Shopkeeper_Action(obj, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.ShopkeeperDialogue()
 end
 
-return frost_checkpoint
-
+return cove_checkpoint

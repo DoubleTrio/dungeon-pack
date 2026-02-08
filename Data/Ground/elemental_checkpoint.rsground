@@ -4,7 +4,7 @@
 "$type": "RogueEssence.Ground.GroundMap, RogueEssence",
 "TexSize": 3,
 "Name": {
-"DefaultText": "Checkpoint #3",
+"DefaultText": "Checkpoint 1",
 "LocalTexts": {}
 },
 "Released": false,
@@ -29414,3382 +29414,2204 @@
 "Tiles": [
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 127
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 311
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 311
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 55
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 55
+"NeighborCode": 567
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 191
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 127
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 55
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 38
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 9
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 12
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 19
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 55
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 191
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 110
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 9
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 6
 },
 {
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_floor",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 137
 },
 {
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_floor",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 76
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 3
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 12
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 155
+"NeighborCode": 667
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 38
-},
-{
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
-"Layers": [],
-"NeighborCode": 2
-},
-{
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 137
+"NeighborCode": 311
 },
 {
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 223
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 239
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 76
-},
-{
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
-"Layers": [],
-"NeighborCode": 2
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 19
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-}
-],
-[
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 223
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 239
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 205
-}
-],
-[
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-}
-],
-[
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_wall",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 55
 },
 {
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_wall",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 191
+"NeighborCode": 567
 },
 {
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 511
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 127
-},
-{
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_wall",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 55
 },
 {
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_wall",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 55
 },
 {
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 55
-}
-],
-[
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 205
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 76
-},
-{
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
-"Layers": [],
-"NeighborCode": 8
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 19
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 191
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 127
-},
-{
-"AutoTileset": "ice_maze_floor",
-"Associates": [],
-"Layers": [],
-"NeighborCode": 55
-},
-{
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_wall",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 38
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 8
+"NeighborCode": 2
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 137
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 205
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 223
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 239
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 205
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 76
+},
+{
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 2
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 19
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 567
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 311
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+}
 ],
+[
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 205
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 223
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 511
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 239
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 205
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 255
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 511
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 511
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 511
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 511
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+}
 ],
+[
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 191
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 127
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+}
+],
+[
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 717
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 717
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 76
+},
+{
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 8
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 19
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 191
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 127
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 55
+},
+{
+"AutoTileset": "craggy_coast_floor",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 38
+},
+{
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 8
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 137
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 461
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 717
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 717
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 205
+}
+],
+[
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 767
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 255
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 622
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 3
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 12
 },
 {
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_floor",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 19
 },
 {
-"AutoTileset": "ice_maze_floor",
+"AutoTileset": "craggy_coast_floor",
 "Associates": [],
 "Layers": [],
 "NeighborCode": 38
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 9
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 6
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 155
+"NeighborCode": 411
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 495
+"NeighborCode": 239
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 205
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 332
+"NeighborCode": 76
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 3
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 5
 },
 {
-"AutoTileset": "ice_maze_secondary",
-"Associates": [
-"ice_aegis_cave_secondary"
-],
+"AutoTileset": "craggy_coast_secondary",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 6
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 137
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 205
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 223
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 495
+"NeighborCode": 239
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
+"Layers": [],
+"NeighborCode": 717
+},
+{
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 205
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 205
+"NeighborCode": 717
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 205
+"NeighborCode": 461
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
-"NeighborCode": 205
+"NeighborCode": 223
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
-"Layers": [],
-"NeighborCode": 479
-},
-{
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 }
 ],
 [
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 255
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 511
 },
 {
-"AutoTileset": "ice_maze_wall",
-"Associates": [
-"amp_plains_floor",
-"amp_plains_secondary",
-"electric_maze_wall"
-],
+"AutoTileset": "craggy_coast_wall",
+"Associates": [],
 "Layers": [],
 "NeighborCode": 767
 }
@@ -32797,8 +31619,8 @@
 ]
 }
 ],
-"AssetName": "frost_checkpoint",
-"Music": "Choral Chambers.ogg",
+"AssetName": "cove_checkpoint",
+"Music": "The Wind is Blowing at Cavi Cape.ogg",
 "EdgeView": 1,
 "NoSwitching": false,
 "ViewCenter": null,
