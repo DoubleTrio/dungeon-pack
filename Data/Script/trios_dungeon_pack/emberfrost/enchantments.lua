@@ -111,6 +111,8 @@ HARVEST_TABLE = {
   "food_banana", "food_banana_big",
 }
 
+EMBERFROST_BEHOLDER_GROUPS = {}
+
 
 STATS = {
   RogueEssence.Data.Stat.Attack,
@@ -532,6 +534,7 @@ function CreateRegistry(config)
 
   return Registry
 end
+
 
 EnchantmentRegistry = CreateRegistry({
   registry_table = {},
@@ -1478,39 +1481,45 @@ Tempo = EnchantmentRegistry:Register({
     }
   end,
 
+
   set_active_effects = function(self, active_effect, zone_context)
     local data = EnchantmentRegistry:GetData(self)
     data["defeated_enemies"] = data["defeated_enemies"] or 0
 
-    local on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      local data = EnchantmentRegistry:GetData(self)
-      if data["defeated_enemies"] >= self.count then
-        data["defeated_enemies"] = data["defeated_enemies"] % self.count
-
-        local stat = GetRandomFromArray(STATS)
-        local stat_text = RogueEssence.Text.ToLocal(stat)
-
-        _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(
-          "All members in the active party gained [a/an] {0} stat boost!",
-          stat_text)
-        )
-
-        for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
-          BoostStat(stat, 1, member)
-        end
-      end
-
-    end)
-
-    local on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
-      local team = context.User.MemberTeam
-      if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
         local data = EnchantmentRegistry:GetData(self)
-              
+        if data["defeated_enemies"] >= self.count then
+          data["defeated_enemies"] = data["defeated_enemies"] % self.count
 
-        data["defeated_enemies"] = data["defeated_enemies"] + 1
-      end
+          local stat = GetRandomFromArray(STATS)
+          local stat_text = RogueEssence.Text.ToLocal(stat)
+
+          _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(
+            "All members in the active party gained [a/an] {0} stat boost!",
+            stat_text)
+          )
+
+          for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+            BoostStat(stat, 1, member)
+          end
+        end
+      end)
+
+      local on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
+        local team = context.User.MemberTeam
+        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
+          local data = EnchantmentRegistry:GetData(self)
+
+
+          data["defeated_enemies"] = data["defeated_enemies"] + 1
+        end
+      end)
+
     end)
+
+
+
 
   end,
   offer_time = "beginning",
@@ -2951,33 +2960,29 @@ TypeMaster = EnchantmentRegistry:Register({
     if data["rewarded"] then
       return
     end
-    local on_turn_ends_id
-    on_turn_ends_id =
-    beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      if self:completed() then
-        beholder.stopObserving(on_turn_ends_id)
-        GAME:WaitFrames(30)            
-        data["rewarded"] = true
-        local arguments = {}
-        arguments.MinAmount = type_master_drops.Min
-        arguments.MaxAmount = type_master_drops.Max
-        arguments.Guaranteed = type_master_drops.Guaranteed
-        arguments.Items = type_master_drops.Items
-        arguments.UseUserCharLoc = true
-
-        FanfareText("Type Mastery Completed!")
-
-        GAME:WaitFrames(10)
-        local old = context.User
-        context.User = _DUNGEON.ActiveTeam.Leader
-        SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-        GAME:WaitFrames(20)
-
-        context.User = old
-
-  
-      end
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local on_turn_ends_id
+      on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+        if self:completed() then
+          beholder.stopObserving(on_turn_ends_id)
+          GAME:WaitFrames(30)
+          data["rewarded"] = true
+          local arguments = {}
+          arguments.MinAmount = type_master_drops.Min
+          arguments.MaxAmount = type_master_drops.Max
+          arguments.Guaranteed = type_master_drops.Guaranteed
+          arguments.Items = type_master_drops.Items
+          arguments.UseUserCharLoc = true
+          FanfareText("Type Mastery Completed!")
+          GAME:WaitFrames(10)
+          local old = context.User
+          context.User = _DUNGEON.ActiveTeam.Leader
+          SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+          GAME:WaitFrames(20)
+          context.User = old
+        end
       end)
+    end)
   end,
 
   apply = function(self)
@@ -3663,13 +3668,7 @@ Puppeteer = EnchantmentRegistry:Register({
   end,
 
   cleanup = function(self)
-    for i = _DATA.Save.ActiveTeam.Guests.Count - 1, 0, -1 do
-      local guest = GAME:GetPlayerGuestMember(i)
-      local tbl = LTBL(guest)
-      if tbl[self.id] then
-        GAME:RemovePlayerGuest(i)
-      end
-    end
+    RemoveGuestsWithValue(self.id)
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -3809,6 +3808,10 @@ TravelingMerchant = EnchantmentRegistry:Register({
 
   set_active_effects = function(self, active_effect, zone_context)
     return {}
+  end,
+
+  cleanup = function(self)
+    RemoveGuestsWithValue(self.id)
   end,
 
   on_checkpoint = function(self)
@@ -4134,9 +4137,7 @@ Randorb = EnchantmentRegistry:Register({
   id = "RANDORB",
 
   getDescription = function(self)
-    return string.format("Gain a random %s. At the start of each floor, gain a random orb",
-      M_HELPERS.MakeColoredText(tostring(self.initial) .. PMDSpecialCharacters.Money, PMDColor.Cyan),
-      PMDSpecialCharacters.Money)
+    return string.format("Gain a random orb. At the start of each floor, gain a random orb")
   end,
   offer_time = "beginning",
   rarity = 1,
@@ -4144,32 +4145,33 @@ Randorb = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
-    local on_start_id
 
-    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-      local random_orb = GetRandomFromArray(ORBS)
-      print(tostring(random_orb))
-      local arguments = {
-        MinAmount = 1,
-        MaxAmount = 1,
-        Guaranteed = {},
-        Items = {
-          { Item = random_orb, Amount = 1, Weight = 80 },
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local on_start_id
+
+      on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+        local random_orb = GetRandomFromArray(ORBS)
+        print(tostring(random_orb))
+        local arguments = {
+          MinAmount = 1,
+          MaxAmount = 1,
+          Guaranteed = {},
+          Items = {
+            { Item = random_orb, Amount = 1, Weight = 80 },
 
 
-        },
-        UseUserCharLoc = true,
-      }
+          },
+          UseUserCharLoc = true,
+        }
 
-      GAME:WaitFrames(10)
-      local old = context.User
-      context.User = _DUNGEON.ActiveTeam.Leader
-      SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-      context.User = old
-      GAME:WaitFrames(20)
+        GAME:WaitFrames(10)
+        local old = context.User
+        context.User = _DUNGEON.ActiveTeam.Leader
+        SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+        context.User = old
+        GAME:WaitFrames(20)
+      end)
     end)
-
-
 
     return {}
   end,
@@ -4184,67 +4186,6 @@ Randorb = EnchantmentRegistry:Register({
     }
 
     M_HELPERS.GiveInventoryItemsToPlayer(items)
-  end
-})
-
-
-Randorb = EnchantmentRegistry:Register({
-  name = "Randorb",
-  id = "RANDORB",
-
-  getDescription = function(self)
-    return string.format("Gain a random %s. At the start of each floor, gain a random orb",
-      M_HELPERS.MakeColoredText(tostring(self.initial) .. PMDSpecialCharacters.Money, PMDColor.Cyan),
-      PMDSpecialCharacters.Money)
-  end,
-  offer_time = "beginning",
-  rarity = 1,
-  getProgressTexts = function(self)
-  end,
-
-  set_active_effects = function(self, active_effect, zone_context)
-    local on_start_id
-
-    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-      local random_orb = GetRandomFromArray(ORBS)
-      print(tostring(random_orb))
-      local arguments = {
-        MinAmount = 1,
-        MaxAmount = 1,
-        Guaranteed = {},
-        Items = {
-          { Item = random_orb, Amount = 1,   Weight = 80 },
-    
-
-        },
-        UseUserCharLoc = true,
-      }
-
-      GAME:WaitFrames(10)
-      local old = context.User
-      context.User = _DUNGEON.ActiveTeam.Leader
-      SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-      context.User = old
-      GAME:WaitFrames(20)
-    end)
-
-
-
-    return {}
-  end,
-
-  apply = function(self)
-    local random_orb = GetRandomFromArray(ORBS)
-    local items = {
-      {
-        Item = random_orb,
-        Amount = 1
-      }
-    }
-
-    M_HELPERS.GiveInventoryItemsToPlayer(items)
-
-
   end
 })
 
@@ -4266,31 +4207,33 @@ RainingGold = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
-    local on_start_id
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local on_start_id
+      
+      on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
     
-    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-  
-      local arguments = {
-        MinAmount = 7,
-        MaxAmount = 11,
-        Guaranteed = {},
-        Items = {
-          { Item = "money",      Amount = 50, Weight = 80 },
-          { Item = "money",      Amount = 100, Weight = 15 },
-          { Item = "money",      Amount = 200, Weight = 5 },
-          { Item = "money",      Amount = 1200, Weight = 1 },
+        local arguments = {
+          MinAmount = 7,
+          MaxAmount = 11,
+          Guaranteed = {},
+          Items = {
+            { Item = "money",      Amount = 50, Weight = 80 },
+            { Item = "money",      Amount = 100, Weight = 15 },
+            { Item = "money",      Amount = 200, Weight = 5 },
+            { Item = "money",      Amount = 1200, Weight = 1 },
 
-        },
-        UseUserCharLoc = true,
-      }
+          },
+          UseUserCharLoc = true,
+        }
 
-      GAME:WaitFrames(10)
-      local old = context.User
-      context.User = _DUNGEON.ActiveTeam.Leader
-      SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-      context.User = old
-      GAME:WaitFrames(20)
-    end) 
+        GAME:WaitFrames(10)
+        local old = context.User
+        context.User = _DUNGEON.ActiveTeam.Leader
+        SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+        context.User = old
+        GAME:WaitFrames(20)
+      end) 
+    end)
   end,
 
   apply = function(self)
@@ -4537,35 +4480,37 @@ local function CreateTypeStatusEnchantment(config)
     end,
     set_active_effects = function(self, active_effect, zone_context)
       local chance = self.chance
-      beholder.observe("OnHits", function(owner, ownerChar, context, args)
-        local user = context.User
-        local target = context.Target
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        beholder.observe("OnHits", function(owner, ownerChar, context, args)
+          local user = context.User
+          local target = context.Target
 
-        if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
-            context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
-          return
-        end
+          if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
+              context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
+            return
+          end
 
-        if user.MemberTeam ~= _DUNGEON.ActiveTeam then
-          return
-        end
+          if user.MemberTeam ~= _DUNGEON.ActiveTeam then
+            return
+          end
 
-        if user.Element1 ~= config.element and user.Element2 ~= config.element then
-          return
-        end
+          if user.Element1 ~= config.element and user.Element2 ~= config.element then
+            return
+          end
 
-        local roll = _DATA.Save.Rand:Next(100)
-        if roll >= chance then
-          return
-        end
+          local roll = _DATA.Save.Rand:Next(100)
+          if roll >= chance then
+            return
+          end
 
-        if target == nil then
-          return
-        end
+          if target == nil then
+            return
+          end
 
-        local status = RogueEssence.Dungeon.StatusEffect(config.status_id)
-        status:LoadFromData()
-        TASK:WaitTask(target:AddStatusEffect(nil, status, true))
+          local status = RogueEssence.Dungeon.StatusEffect(config.status_id)
+          status:LoadFromData()
+          TASK:WaitTask(target:AddStatusEffect(nil, status, true))
+        end)
       end)
     end,
     apply = function(self)
@@ -4909,6 +4854,12 @@ QuestMaster = EnchantmentRegistry:Register({
       PMDSpecialCharacters.Money .. "!")
     UI:WaitShowDialogue("You can check your quests in the Others -> Enchants menu while in dungeon.")
     -- UI:SetCenter(false)
+  end,
+
+  cleanup = function(self)
+    for k, v in pairs(QuestRegistry._registry) do
+      v:cleanup()
+    end
   end
 })
 
@@ -4939,30 +4890,33 @@ local function CreateBountyQuest(config)
     set_active_effects = function(self, active_effect, zone_context)
       local data = QuestRegistry:GetData(self)
       data["defeated_enemies"] = 0
-      local on_death_id
-      local on_map_start_id
 
-      on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-        local possible_spawns = GetFloorSpawns()
-        local rand_spawn = GetRandomFromArray(possible_spawns)
-        local data = QuestRegistry:GetData(self)
-        data["bounty_target"] = rand_spawn
-      end)
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        local on_death_id
+        local on_map_start_id
 
-      on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
-        local team = context.User.MemberTeam
-        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
-          if context.User.BaseForm.Species ~= data["bounty_target"] then
-            return
+        on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+          local possible_spawns = GetFloorSpawns()
+          local rand_spawn = GetRandomFromArray(possible_spawns)
+          local data = QuestRegistry:GetData(self)
+          data["bounty_target"] = rand_spawn
+        end)
+
+        on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
+          local team = context.User.MemberTeam
+          if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
+            if context.User.BaseForm.Species ~= data["bounty_target"] then
+              return
+            end
+            data["defeated_enemies"] = data["defeated_enemies"] + 1
+            if data["defeated_enemies"] >= self.amount then
+              data["defeated_enemies"] = self.amount
+              beholder.stopObserving(on_death_id)
+              beholder.stopObserving(on_map_start_id)
+              self:complete_quest()
+            end
           end
-          data["defeated_enemies"] = data["defeated_enemies"] + 1
-          if data["defeated_enemies"] >= self.amount then
-            data["defeated_enemies"] = self.amount
-            beholder.stopObserving(on_death_id)
-            beholder.stopObserving(on_map_start_id)
-            self:complete_quest()
-          end
-        end
+        end)
       end)
     end,
 
@@ -5001,34 +4955,36 @@ QuestRegistry:Register({
 
   set_active_effects = function(self, active_effect, zone_context)
 
-    local on_turn_ends_id
-    on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      local members_with_low_pp = 0
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local on_turn_ends_id
+      on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+        local members_with_low_pp = 0
 
-      for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
-        local all_moves_low = true
+        for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+          local all_moves_low = true
 
-        for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
-          local skill = member.BaseSkills[ii]
-          if not skill.SkillNum ~= "" and skill.SkillNum ~= nil then
-            local charges = skill.Charges
-            if charges > self.pp then
-              all_moves_low = false
-              break
+          for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+            local skill = member.BaseSkills[ii]
+            if not skill.SkillNum ~= "" and skill.SkillNum ~= nil then
+              local charges = skill.Charges
+              if charges > self.pp then
+                all_moves_low = false
+                break
+              end
             end
+          end
+
+          if all_moves_low then
+            members_with_low_pp = members_with_low_pp + 1
           end
         end
 
-        if all_moves_low then
-          members_with_low_pp = members_with_low_pp + 1
+        if members_with_low_pp >= self.amount then
+          beholder.stopObserving(on_turn_ends_id)
+          GAME:WaitFrames(30)
+          self:complete_quest()
         end
-      end
-
-      if members_with_low_pp >= self.amount then
-        beholder.stopObserving(on_turn_ends_id)
-        GAME:WaitFrames(30)
-        self:complete_quest()
-      end
+      end)
     end)
   end,
 
@@ -5051,32 +5007,34 @@ QuestRegistry:Register({
     local data = QuestRegistry:GetData(self)
     data["defeated_enemies"] = 0
 
-    local after_actions_id
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local after_actions_id
 
-    local on_turn_ends_id
-    after_actions_id = beholder.observe("AfterActions", function(owner, ownerChar, context, args)
-      local team = context.User.MemberTeam
-      -- if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe and team ~= _DUNGEON.ActiveTeam) then
-      if context.ActionType == RogueEssence.Dungeon.BattleActionType.Throw and team == _DUNGEON.ActiveTeam then
-        TotalKnockoutsTypes = luanet.import_type('PMDC.Dungeon.TotalKnockouts')
-        local knockouts = context:GetContextStateInt(luanet.ctype(TotalKnockoutsTypes), true, 0)
+      local on_turn_ends_id
+      after_actions_id = beholder.observe("AfterActions", function(owner, ownerChar, context, args)
+        local team = context.User.MemberTeam
+        -- if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe and team ~= _DUNGEON.ActiveTeam) then
+        if context.ActionType == RogueEssence.Dungeon.BattleActionType.Throw and team == _DUNGEON.ActiveTeam then
+          TotalKnockoutsTypes = luanet.import_type('PMDC.Dungeon.TotalKnockouts')
+          local knockouts = context:GetContextStateInt(luanet.ctype(TotalKnockoutsTypes), true, 0)
 
-        if knockouts > 0 then
-          print("Defeated enemy with projectile!")
-          data["defeated_enemies"] = data["defeated_enemies"] + knockouts
+          if knockouts > 0 then
+            print("Defeated enemy with projectile!")
+            data["defeated_enemies"] = data["defeated_enemies"] + knockouts
+          end
         end
-      end
-    end)
+      end)
 
-    on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      if data["defeated_enemies"] >= self.amount then
-        beholder.stopObserving(after_actions_id)
-        beholder.stopObserving(on_turn_ends_id)
-        data["defeated_enemies"] = self.amount
-        GAME:WaitFrames(30)
-        self:complete_quest()
-      end
-    end)
+      on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+        if data["defeated_enemies"] >= self.amount then
+          beholder.stopObserving(after_actions_id)
+          beholder.stopObserving(on_turn_ends_id)
+          data["defeated_enemies"] = self.amount
+          GAME:WaitFrames(30)
+          self:complete_quest()
+        end
+      end)
+  end)
   end,
 
   getProgressTexts = function(self)
@@ -5102,37 +5060,38 @@ local function CreateProjectileQuest(config)
       local data = QuestRegistry:GetData(self)
       data["hits"] = 0
 
-      local on_hits_id
-      local on_turn_ends_id
-      on_hits_id = beholder.observe("OnHits", function(owner, ownerChar, context, args)
-        local target_team = context.Target.MemberTeam
-        local user_team = context.User.MemberTeam
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        local on_hits_id
+        local on_turn_ends_id
+        on_hits_id = beholder.observe("OnHits", function(owner, ownerChar, context, args)
+          local target_team = context.Target.MemberTeam
+          local user_team = context.User.MemberTeam
+          if user_team == nil or user_team ~= _DUNGEON.ActiveTeam then
+            return
+          end
 
-        if user_team == nil or user_team ~= _DUNGEON.ActiveTeam then
-          return
-        end
+          if target_team == nil or target_team == _DUNGEON.ActiveTeam then
+            return
+          end
 
-        if target_team == nil or target_team == _DUNGEON.ActiveTeam then
-          return
-        end
+          if target_team.MapFaction ~= RogueEssence.Dungeon.Faction.Foe then
+            return
+          end
 
-        if target_team.MapFaction ~= RogueEssence.Dungeon.Faction.Foe then
-          return
-        end
+          if context.ActionType == RogueEssence.Dungeon.BattleActionType.Throw then
+            data["hits"] = data["hits"] + 1
+          end
+        end)
 
-        if context.ActionType == RogueEssence.Dungeon.BattleActionType.Throw then
-          data["hits"] = data["hits"] + 1
-        end
-      end)
-
-      local on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-        if data["hits"] >= self.amount then
-          beholder.stopObserving(on_hits_id)
-          beholder.stopObserving(on_turn_ends_id)
-          data["hits"] = self.amount
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
+        on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+          if data["hits"] >= self.amount then
+            beholder.stopObserving(on_hits_id)
+            beholder.stopObserving(on_turn_ends_id)
+            data["hits"] = self.amount
+            GAME:WaitFrames(30)
+            self:complete_quest()
+          end
+        end)
       end)
     end,
 
@@ -5184,49 +5143,50 @@ local function CreateTimedDefeatQuest(config)
       data["timer_started"] = false
 
 
-      local on_death_id
-      local on_map_turn_ends_id
-      local on_turn_ends_id
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
 
-      on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
-        local team = context.User.MemberTeam
-        if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
-          data["defeated_enemies"] = data["defeated_enemies"] + 1
+        local on_death_id
+        local on_map_turn_ends_id
+        local on_turn_ends_id
 
-          if not data["timer_started"] then
-            data["timer_started"] = true
-            data["turns_elapsed"] = 0
+        on_death_id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
+          local team = context.User.MemberTeam
+          if (team ~= nil and team.MapFaction == RogueEssence.Dungeon.Faction.Foe) then
+            data["defeated_enemies"] = data["defeated_enemies"] + 1
+
+            if not data["timer_started"] then
+              data["timer_started"] = true
+              data["turns_elapsed"] = 0
+            end
+
+            print("Defeated enemies: " .. tostring(data["defeated_enemies"]) .. " / " .. tostring(self.amount))
           end
+        end)
 
-          print("Defeated enemies: " .. tostring(data["defeated_enemies"]) .. " / " .. tostring(self.amount))
-        end
-      end)
+        on_map_turn_ends_id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
+          if data["timer_started"] then
+            data["turns_elapsed"] = data["turns_elapsed"] + 1
+            print("Turns elapsed: " .. tostring(data["turns_elapsed"]) .. " / " .. tostring(self.turns))
 
-      on_map_turn_ends_id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
-        if data["timer_started"] then
-          data["turns_elapsed"] = data["turns_elapsed"] + 1
-          print("Turns elapsed: " .. tostring(data["turns_elapsed"]) .. " / " .. tostring(self.turns))
-
-          if data["turns_elapsed"] >= self.turns then
-            data["defeated_enemies"] = 0
-            data["turns_elapsed"] = 0
-            data["timer_started"] = false
+            if data["turns_elapsed"] >= self.turns then
+              data["defeated_enemies"] = 0
+              data["turns_elapsed"] = 0
+              data["timer_started"] = false
+            end
           end
-        end
-      end)
+        end)
 
-      on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-        if data["defeated_enemies"] >= self.amount then
-          beholder.stopObserving(on_death_id)
-          beholder.stopObserving(on_map_turn_ends_id)
-          beholder.stopObserving(on_turn_ends_id)
-          data["defeated_enemies"] = self.amount
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
+        on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+          if data["defeated_enemies"] >= self.amount then
+            beholder.stopObserving(on_death_id)
+            beholder.stopObserving(on_map_turn_ends_id)
+            beholder.stopObserving(on_turn_ends_id)
+            data["defeated_enemies"] = self.amount
+            GAME:WaitFrames(30)
+            self:complete_quest()
+          end
+        end)
       end)
-
-      print("Registered observers for " .. self.id)
     end,
 
     getProgressTexts = function(self)
@@ -5280,52 +5240,54 @@ local function CreateEffectivenessQuest(config)
       local data = QuestRegistry:GetData(self)
       data["hits"] = 0
 
-      local on_turn_end_id
-      local on_hit_id
-      on_hit_id = beholder.observe("OnHits", function(owner, ownerChar, context, args)
-        -- Check if we're tracking the user (dealing) or target (taking)
-        local check_team = config.is_dealing and context.User.MemberTeam or context.Target.MemberTeam
-        if check_team == nil or check_team ~= _DUNGEON.ActiveTeam then
-          return
-        end
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        local on_turn_end_id
+        local on_hit_id
+        on_hit_id = beholder.observe("OnHits", function(owner, ownerChar, context, args)
+          -- Check if we're tracking the user (dealing) or target (taking)
+          local check_team = config.is_dealing and context.User.MemberTeam or context.Target.MemberTeam
+          if check_team == nil or check_team ~= _DUNGEON.ActiveTeam then
+            return
+          end
 
-        if context.ContextStates:Contains(redirection) then
-          return
-        end
+          if context.ContextStates:Contains(redirection) then
+            return
+          end
 
-        if context.ActionType == RogueEssence.Dungeon.BattleActionType.Trap or context.ActionType ==
-            RogueEssence.Dungeon.BattleActionType.Item then
-          return
-        end
+          if context.ActionType == RogueEssence.Dungeon.BattleActionType.Trap or context.ActionType ==
+              RogueEssence.Dungeon.BattleActionType.Item then
+            return
+          end
 
-        if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
-            context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
-          return
-        end
+          if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
+              context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
+            return
+          end
 
-        local matchup = PMDC.Dungeon.PreTypeEvent.GetDualEffectiveness(context.User, context.Target,
-          context.Data)
-        matchup = matchup - PMDC.Dungeon.PreTypeEvent.NRM_2
+          local matchup = PMDC.Dungeon.PreTypeEvent.GetDualEffectiveness(context.User, context.Target,
+            context.Data)
+          matchup = matchup - PMDC.Dungeon.PreTypeEvent.NRM_2
 
-        -- Invert matchup for "not super effective" quests
-        if not config.super_effective then
-          matchup = matchup * -1
-        end
+          -- Invert matchup for "not super effective" quests
+          if not config.super_effective then
+            matchup = matchup * -1
+          end
 
-        if matchup > 0 then
-          data["hits"] = data["hits"] + 1
-        end
-      end)
+          if matchup > 0 then
+            data["hits"] = data["hits"] + 1
+          end
+        end)
 
-      on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-        print("Hits recorded: " .. tostring(data["hits"]) .. " / " .. tostring(self.amount))
-        if data["hits"] >= self.amount then
-          beholder.stopObserving(on_hit_id)
-          beholder.stopObserving(on_turn_end_id)
-          data["hits"] = self.amount
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
+        on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+          print("Hits recorded: " .. tostring(data["hits"]) .. " / " .. tostring(self.amount))
+          if data["hits"] >= self.amount then
+            beholder.stopObserving(on_hit_id)
+            beholder.stopObserving(on_turn_end_id)
+            data["hits"] = self.amount
+            GAME:WaitFrames(30)
+            self:complete_quest()
+          end
+        end)
       end)
     end,
 
@@ -5382,19 +5344,21 @@ QuestRegistry:Register({
     local data = QuestRegistry:GetData(self)
     data["fainted"] = 0
 
-    local id
-    id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
-      local team = context.User.MemberTeam
-      if (team ~= nil and context.User.MemberTeam == _DUNGEON.ActiveTeam) then
-        data["fainted"] = data["fainted"] + 1
-        print("Fainted: " .. tostring(data["fainted"]) .. " / " .. tostring(self.amount))
-        if data["fainted"] >= self.amount then
-          beholder.stopObserving(id)
-          data["fainted"] = self.amount
-          GAME:WaitFrames(30)
-          self:complete_quest()
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local id
+      id = beholder.observe("OnDeath", function(owner, ownerChar, context, args)
+        local team = context.User.MemberTeam
+        if (team ~= nil and context.User.MemberTeam == _DUNGEON.ActiveTeam) then
+          data["fainted"] = data["fainted"] + 1
+          print("Fainted: " .. tostring(data["fainted"]) .. " / " .. tostring(self.amount))
+          if data["fainted"] >= self.amount then
+            beholder.stopObserving(id)
+            data["fainted"] = self.amount
+            GAME:WaitFrames(30)
+            self:complete_quest()
+          end
         end
-      end
+      end)
     end)
   end,
 
@@ -5432,18 +5396,20 @@ QuestRegistry:Register({
     local data = QuestRegistry:GetData(self)
     data["best_fullness"] = 0
 
-    local id
-    id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      print("Checking fullness for quest " .. self.id)
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local id
+      id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+        print("Checking fullness for quest " .. self.id)
 
-      local max_fullness = self:get_max_fullness()
-      data["best_fullness"] = math.max(data["best_fullness"], max_fullness)
-      if max_fullness > self.threshold then
-        beholder.stopObserving(id)
+        local max_fullness = self:get_max_fullness()
+        data["best_fullness"] = math.max(data["best_fullness"], max_fullness)
+        if max_fullness > self.threshold then
+          beholder.stopObserving(id)
 
-        GAME:WaitFrames(30)
-        self:complete_quest()
-      end
+          GAME:WaitFrames(30)
+          self:complete_quest()
+        end
+      end)
     end)
   end,
 
@@ -5486,24 +5452,26 @@ local function CreateEmptyStomachQuest(config)
     set_active_effects = function(self, active_effect, zone_context)
       local data = QuestRegistry:GetData(self)
 
-      local on_map_start_id
-      local on_turn_end_id
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        local on_map_start_id
+        local on_turn_end_id
 
-      on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-        data["min_fullness"] = math.huge
-      end)
+        on_map_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+          data["min_fullness"] = math.huge
+        end)
 
-      on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-        print("Checking fullness for quest " .. self.id)
-        local min_fullness = self:get_min_fullness()
-        data["min_fullness"] = math.min(data["min_fullness"], min_fullness)
+        on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+          print("Checking fullness for quest " .. self.id)
+          local min_fullness = self:get_min_fullness()
+          data["min_fullness"] = math.min(data["min_fullness"], min_fullness)
 
-        if min_fullness < self.threshold then
-          beholder.stopObserving(on_map_start_id)
-          beholder.stopObserving(on_turn_end_id)
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
+          if min_fullness < self.threshold then
+            beholder.stopObserving(on_map_start_id)
+            beholder.stopObserving(on_turn_end_id)
+            GAME:WaitFrames(30)
+            self:complete_quest()
+          end
+        end)
       end)
     end,
 
@@ -5579,18 +5547,20 @@ local function CreateLowHealthQuest(config)
     set_active_effects = function(self, active_effect, zone_context)
       local data = QuestRegistry:GetData(self)
 
-      local on_map_start_id
-      local on_turn_end_id
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        local on_map_start_id
+        local on_turn_end_id
 
-      on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-        print("Checking HP for quest " .. self.id)
+        on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+          print("Checking HP for quest " .. self.id)
 
-        if self:check_all_low_health() then
-          beholder.stopObserving(on_map_start_id)
-          beholder.stopObserving(on_turn_end_id)
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
+          if self:check_all_low_health() then
+            beholder.stopObserving(on_map_start_id)
+            beholder.stopObserving(on_turn_end_id)
+            GAME:WaitFrames(30)
+            self:complete_quest()
+          end
+        end)
       end)
     end,
 
@@ -5642,16 +5612,17 @@ QuestRegistry:Register({
   set_active_effects = function(self, active_effect, zone_context)
     local data = QuestRegistry:GetData(self)
     data["turns"] = 0
-
-    local id
-    id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
-      data["turns"] = data["turns"] + 1
-      if data["turns"] >= self.amount then
-        beholder.stopObserving(id)
-        data["turns"] = self.amount
-        GAME:WaitFrames(30)
-        self:complete_quest()
-      end
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local id
+      id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
+        data["turns"] = data["turns"] + 1
+        if data["turns"] >= self.amount then
+          beholder.stopObserving(id)
+          data["turns"] = self.amount
+          GAME:WaitFrames(30)
+          self:complete_quest()
+        end
+      end)
     end)
   end,
 
@@ -5678,41 +5649,43 @@ local function CreateAvoidActionQuest(config)
       local no_action_used = true
       data["turns"] = 0
 
-      local on_map_turn_end_id
-      local on_before_actions_id
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        local on_map_turn_end_id
+        local on_before_actions_id
 
-      on_map_turn_end_id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
-        if no_action_used then
-          data["turns"] = data["turns"] + 1
-        else
-          data["turns"] = 0
-        end
-
-        if data["turns"] >= self.amount then
-          beholder.stopObserving(on_map_turn_end_id)
-          beholder.stopObserving(on_before_actions_id)
-          data["turns"] = self.amount
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
-
-        no_action_used = true
-      end)
-
-      on_before_actions_id = beholder.observe("OnBeforeActions", function(owner, ownerChar, context, args)
-        -- Use custom check function if provided, otherwise check forbidden actions
-        if config.check_forbidden then
-          if config.check_forbidden(context) then
-            no_action_used = false
+        on_map_turn_end_id = beholder.observe("OnMapTurnEnds", function(owner, ownerChar, context, args)
+          if no_action_used then
+            data["turns"] = data["turns"] + 1
+          else
+            data["turns"] = 0
           end
-        else
-          for _, forbidden_type in ipairs(config.forbidden_actions) do
-            if context.ActionType == forbidden_type then
+
+          if data["turns"] >= self.amount then
+            beholder.stopObserving(on_map_turn_end_id)
+            beholder.stopObserving(on_before_actions_id)
+            data["turns"] = self.amount
+            GAME:WaitFrames(30)
+            self:complete_quest()
+          end
+
+          no_action_used = true
+        end)
+
+        on_before_actions_id = beholder.observe("OnBeforeActions", function(owner, ownerChar, context, args)
+          -- Use custom check function if provided, otherwise check forbidden actions
+          if config.check_forbidden then
+            if config.check_forbidden(context) then
               no_action_used = false
-              break
+            end
+          else
+            for _, forbidden_type in ipairs(config.forbidden_actions) do
+              if context.ActionType == forbidden_type then
+                no_action_used = false
+                break
+              end
             end
           end
-        end
+        end)
       end)
     end,
 
@@ -5774,20 +5747,22 @@ QuestRegistry:Register({
   set_active_effects = function(self, active_effect, zone_context)
     local data = QuestRegistry:GetData(self)
 
-    local on_start_id
-    local on_turn_end_id
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local on_start_id
+      local on_turn_end_id
 
-    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-      data["starting_team_members"] = self:get_total_team_members()
-    end)
+      on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+        data["starting_team_members"] = self:get_total_team_members()
+      end)
 
-    on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      local new_count = self:get_total_team_members()
-      if new_count - data["starting_team_members"] >= self.amount then
-        beholder.stopObserving(on_start_id)
-        beholder.stopObserving(on_turn_end_id)
-        self:complete_quest()
-      end
+      on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+        local new_count = self:get_total_team_members()
+        if new_count - data["starting_team_members"] >= self.amount then
+          beholder.stopObserving(on_start_id)
+          beholder.stopObserving(on_turn_end_id)
+          self:complete_quest()
+        end
+      end)
     end)
   end,
 
@@ -5832,27 +5807,29 @@ QuestRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
-    local on_start_id
-    local on_turn_end_id
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local on_start_id
+      local on_turn_end_id
 
-    on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
-      for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
-        local tbl = LTBL(member)
-        tbl["StartLevel"] = member.Level
-      end
-      for member in luanet.each(_DUNGEON.ActiveTeam.Assembly) do
-        local tbl = LTBL(member)
-        tbl["StartLevel"] = member.Level
-      end
-    end)
+      on_start_id = beholder.observe("OnMapStarts", function(owner, ownerChar, context, args)
+        for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
+          local tbl = LTBL(member)
+          tbl["StartLevel"] = member.Level
+        end
+        for member in luanet.each(_DUNGEON.ActiveTeam.Assembly) do
+          local tbl = LTBL(member)
+          tbl["StartLevel"] = member.Level
+        end
+      end)
 
-    on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-      local leveled_up = self:get_total_level_from_start()
-      if leveled_up >= self.amount then
-        beholder.stopObserving(on_start_id)
-        beholder.stopObserving(on_turn_end_id)
-        self:complete_quest()
-      end
+      on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+        local leveled_up = self:get_total_level_from_start()
+        if leveled_up >= self.amount then
+          beholder.stopObserving(on_start_id)
+          beholder.stopObserving(on_turn_end_id)
+          self:complete_quest()
+        end
+      end)
     end)
   end,
 
@@ -5880,26 +5857,28 @@ local function CreateItemUseQuest(config)
       local data = QuestRegistry:GetData(self)
       data["count"] = 0
 
-      local on_before_actions_id
-      local on_turn_end_id
+      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+        local on_before_actions_id
+        local on_turn_end_id
 
-      on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
-        if data["count"] >= self.amount then
-          beholder.stopObserving(on_before_actions_id)
-          beholder.stopObserving(on_turn_end_id)
-          GAME:WaitFrames(30)
-          self:complete_quest()
-        end
-      end)
-
-      on_before_actions_id = beholder.observe("OnBeforeActions", function(owner, ownerChar, context, args)
-        if context.ActionType == RogueEssence.Dungeon.BattleActionType.Item then
-          local item = GetItemFromContext(context)
-          local contains = ItemIdContainsState(item, config.state_type)
-          if contains then
-            data["count"] = data["count"] + 1
+        on_turn_end_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
+          if data["count"] >= self.amount then
+            beholder.stopObserving(on_before_actions_id)
+            beholder.stopObserving(on_turn_end_id)
+            GAME:WaitFrames(30)
+            self:complete_quest()
           end
-        end
+        end)
+
+        on_before_actions_id = beholder.observe("OnBeforeActions", function(owner, ownerChar, context, args)
+          if context.ActionType == RogueEssence.Dungeon.BattleActionType.Item then
+            local item = GetItemFromContext(context)
+            local contains = ItemIdContainsState(item, config.state_type)
+            if contains then
+              data["count"] = data["count"] + 1
+            end
+          end
+        end)
       end)
     end,
 

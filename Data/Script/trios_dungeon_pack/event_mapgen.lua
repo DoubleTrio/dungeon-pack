@@ -93,7 +93,7 @@ StatType = luanet.import_type('RogueEssence.Data.Stat')
 function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue, seed, args)
   local activeEffect = RogueEssence.Data.ActiveEffect()
 
-  beholder.stopObservingAll()
+  beholder.stopObserving(EMBERFROST_BEHOLDER_GROUPS)
 
   local active_enchants = EnchantmentRegistry:GetSelected()
   for _, enchant in pairs(active_enchants) do

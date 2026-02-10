@@ -19,11 +19,6 @@ function PlayRandomBGM(tracks)
   SOUND:PlayBGM(music, true)
 end
 
-function SetEnchantmentStatusIfNeeded(enchantment_id, status)
-  local seen_value = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
-  SV.EmberFrost.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
-end
-
 function RespawnGuests()
   local count = _DATA.Save.ActiveTeam.Guests.Count
   for i = 1, count, 1
@@ -136,7 +131,7 @@ function checkpoint.AskReturn()
     GAME:FadeOut(false, 60)
     GROUND:CharEndAnim(player)
     GAME:WaitFrames(60)
-    CleanUpEmberFrostDepths()
+    ResetEmberfrostRun()
     GAME:EndDungeonRun(RogueEssence.Data.GameProgress.ResultType.Escaped, "guildmaster_island", -1, 0, 0, true, true)
     GAME:EnterZone("guildmaster_island", -1, 1, 0)
   end

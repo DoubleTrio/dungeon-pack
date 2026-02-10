@@ -8,41 +8,29 @@ EnchantmentStatus = {
   SelectedAndWon = 3
 }
 
+AchievementStatus = {
+  Hidden         = 0,
+  Visible        = 1,
+  Achieved       = 2
+}
+
+function SetEnchantmentStatusIfNeeded(enchantment_id, status)
+  local seen_value = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
+  SV.EmberFrost.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
+end
+
+function SetAchievementStatusIfNeeded(achievement_id, status)
+  local seen_value = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Hidden
+  SV.EmberFrost.Achievements.Statuses[achievement_id] = math.max(seen_value, status)
+end
+
 function InitializeEnchantmentCollection()
   for k, v in pairs(EnchantmentRegistry._registry) do
 
     SetEnchantmentStatusIfNeeded(k, EnchantmentStatus.NotSeen)
   end
-  print("Enchantment Collection initialized.")
-  print(Serpent.block(SV.EmberFrost.Enchantments.Collection))
-
 end
 
-function ResetEmberfrost()
-  SV.EmberFrost = {
-    Enchantments = {
-      Seen = {},
-      Selected = {},
-      Data = {},
-      Collection = {},
-      RerollCounts = { 1, 1, 1 },
-    },
-
-    Quests = {
-      Active = {},
-      Data = {},
-    },
-    LastFloor = 0,
-    GotEnchantmentFromCheckpoint = false,
-
-    CheckpointProgression = 0,
-    Completed = false,
-    ReceivedEnchantmentReminder = true,
-  }
-
-  InitializeEnchantmentCollection()
-  
-end
 
 local function GenderToNum(gender)
   local res = -1
@@ -603,6 +591,10 @@ M_HELPERS = {
           Active = {},
           Data = {},
         },
+        Shopkeeper = {},
+
+        Achievements = {},
+
         LastFloor = 0,
         GotEnchantmentFromCheckpoint = false,
 

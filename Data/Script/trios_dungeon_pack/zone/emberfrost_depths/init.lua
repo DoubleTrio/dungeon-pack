@@ -169,36 +169,6 @@ function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 	-- end
 	end
 end
-function CleanUpEmberFrostDepths()
-	require 'trios_dungeon_pack.beholder'
-	beholder.stopObservingAll()
-
-	local active_enchants = EnchantmentRegistry:GetSelected()
-	for _, enchant in pairs(active_enchants) do
-		enchant:cleanup()
-	end
-
-	SV.EmberFrost.Enchantments.Selected = {}
-	SV.EmberFrost.Enchantments.Data = {}
-	SV.EmberFrost.CheckpointProgression = 0
-	SV.EmberFrost.GotEnchantmentFromCheckpoint = false
-
-	for k, v in pairs(QuestRegistry._registry) do
-		v:cleanup()
-	end
-	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-		local tbl = LTBL(member)
-		tbl.EmberfrostRun = false
-	end
-
-	for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-		local tbl = LTBL(member)
-		tbl.EmberfrostRun = false
-	end
-
-	RemoveGuestsWithValue(Puppeteer.id)
-	RemoveGuestsWithValue(TravelingMerchant.id)
-end
 
 ---emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 --Engine callback function
@@ -209,7 +179,7 @@ function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 	print(tostring(result))
   PrintInfo("=>> ExitSegment_emberfrost_depths result "..tostring(result).." segment "..tostring(segmentID))
 
-	CleanUpEmberFrostDepths()
+	ResetEmberfrostRun()
   --first check for rescue flag; if we're in rescue mode then take a different path
   local exited = COMMON.ExitDungeonMissionCheck(result, rescue, zone.ID, segmentID)
   if exited == true then
