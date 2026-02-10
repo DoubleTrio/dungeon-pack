@@ -390,6 +390,135 @@ function GROUND_ITEM_EVENT_SCRIPT.GroundGummiEvent(context, args)
   --print("Speed Stat EXP = " .. tostring(context.User.SpeedBonus))
 end
 
+function GetMusicSelection()
+  print("Melody Box Event")
+  local music_selection = {}
+  music_selection.music_tbl = {}
+  music_selection.music_tbl["Aftermath 2.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Aftermath.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Ambush Forest 2.ogg"] = { "DUN_ambush_forest" }
+  music_selection.music_tbl["Ambush Forest 3.ogg"] = { "DUN_ambush_forest" }
+  music_selection.music_tbl["Ambush Forest.ogg"] = { "DUN_ambush_forest" }
+  music_selection.music_tbl["Base Town.ogg"] = { "MAIN_00" }
+  music_selection.music_tbl["Boss Battle 2.ogg"] = { "MAIN_01" }
+  music_selection.music_tbl["Boss Battle.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Bramble Thicket.ogg"] = { "DUN_bramble_woods" }
+  music_selection.music_tbl["Bramble Woods.ogg"] = { "DUN_bramble_woods" }
+  music_selection.music_tbl["Canyon Camp.ogg"] = { "MAIN_03" }
+  music_selection.music_tbl["Castaway Cave 2.ogg"] = { "DUN_castaway_cave" }
+  music_selection.music_tbl["Castaway Cave.ogg"] = { "DUN_castaway_cave" }
+  music_selection.music_tbl["Cave Camp.ogg"] = { "MAIN_04" }
+  music_selection.music_tbl["Champion Road 2.ogg"] = { "DUN_champions_road", "DUN_guildmaster_trail" }
+  music_selection.music_tbl["Champion Road.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Cliff Camp.ogg"] = { "MAIN_02" }
+  music_selection.music_tbl["Copper Quarry.ogg"] = { "DUN_copper_quarry" }
+  music_selection.music_tbl["Demonstration 2.ogg"] = { "MAIN_00" }
+  music_selection.music_tbl["Demonstration 3.ogg"] = { "DUN_secret_garden" }
+  music_selection.music_tbl["Demonstration.ogg"] = { "MAIN_00" }
+  music_selection.music_tbl["Depleted Basin.ogg"] = { "DUN_depleted_basin" }
+  music_selection.music_tbl["Enraged Caldera.ogg"] = { "DUN_sleeping_caldera" }
+  music_selection.music_tbl["Faded Trail.ogg"] = { "DUN_faded_trail" }
+  music_selection.music_tbl["Faultline Ridge.ogg"] = { "DUN_faultline_ridge", "DUN_guildmaster_trail" }
+  music_selection.music_tbl["Fertile Valley.ogg"] = { "DUN_fertile_valley" }
+  music_selection.music_tbl["Final Battle.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Flyaway Cliffs.ogg"] = { "DUN_flyaway_cliffs", "DUN_guildmaster_trail" }
+  music_selection.music_tbl["Forsaken Desert.ogg"] = { "DUN_forsaken_desert" }
+  music_selection.music_tbl["Glacial Path.ogg"] = { "DUN_snowbound_path", "DUN_guildmaster_trail" }
+  music_selection.music_tbl["Guildmaster.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Lava Floe Island Fire.ogg"] = { "DUN_lava_floe_island" }
+  music_selection.music_tbl["Lava Floe Island Water.ogg"] = { "DUN_lava_floe_island" }
+  music_selection.music_tbl["Luminous Spring.ogg"] = { "MAIN_00" }
+  music_selection.music_tbl["Magnetic Quarry.ogg"] = { "DUN_copper_quarry" }
+  music_selection.music_tbl["Monster House.ogg"] = { "MAIN_04" }
+  music_selection.music_tbl["Muddy Valley.ogg"] = { "DUN_fertile_valley", "DUN_sleeping_caldera" }
+  music_selection.music_tbl["Mysterious Passage 2.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Mysterious Passage.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Outlaw.ogg"] = { "MAIN_03" }
+  music_selection.music_tbl["Overgrown Wilds.ogg"] = { "DUN_overgrown_wilds", "DUN_secret_garden" }
+  music_selection.music_tbl["Relic Tower.ogg"] = { "DUN_relic_tower", "DUN_moonlit_courtyard" }
+  music_selection.music_tbl["Rescue.ogg"] = { "MAIN_00" }
+  music_selection.music_tbl["Shop.ogg"] = { "MAIN_03" }
+  music_selection.music_tbl["Sickly Hollow 2.ogg"] = { "DUN_sickly_hollow" }
+  music_selection.music_tbl["Sickly Hollow.ogg"] = { "DUN_sickly_hollow", "DUN_veiled_ridge" }
+  music_selection.music_tbl["Snow Camp.ogg"] = { "MAIN_05" }
+  music_selection.music_tbl["Snowbound Path.ogg"] = { "DUN_snowbound_path" }
+  music_selection.music_tbl["Summit.ogg"] = { "GUILDMASTER" }
+  music_selection.music_tbl["Threat.ogg"] = { "MAIN_04" }
+  music_selection.music_tbl["Thunderstruck Pass.ogg"] = { "DUN_thunderstruck_pass" }
+  music_selection.music_tbl["Title.ogg"] = { "MAIN_00" }
+  music_selection.music_tbl["Treacherous Mountain 2.ogg"] = { "DUN_treacherous_mountain" }
+  music_selection.music_tbl["Treacherous Mountain 3.ogg"] = { "DUN_treacherous_mountain" }
+  music_selection.music_tbl["Treacherous Mountain.ogg"] = { "DUN_treacherous_mountain" }
+  music_selection.music_tbl["Trickster Woods.ogg"] = { "DUN_trickster_woods", "DUN_secret_garden" }
+  music_selection.music_tbl["Tropical Path.ogg"] = { "DUN_tropical_path" }
+  music_selection.music_tbl["Veiled Ridge.ogg"] = { "DUN_veiled_ridge" }
+  music_selection.music_tbl["Wind.ogg"] = { "MAIN_05" }
+
+  local unlocks = {}
+  unlocks["MAIN_00"] = true
+  if SV.forest_camp.ExpositionComplete then
+    unlocks["MAIN_01"] = true
+  end
+  if SV.cliff_camp.ExpositionComplete then
+    unlocks["MAIN_02"] = true
+  end
+  if SV.canyon_camp.ExpositionComplete then
+    unlocks["MAIN_03"] = true
+  end
+  if SV.rest_stop.ExpositionComplete then
+    unlocks["MAIN_04"] = true
+  end
+  if SV.final_stop.ExpositionComplete then
+    unlocks["MAIN_05"] = true
+  end
+  if SV.guildmaster_summit.GameComplete then
+    unlocks["GUILDMASTER"] = true
+  end
+
+  zones = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Zone]:GetOrderedKeys(false)
+  for zone_idx = 0, zones.Count - 1, 1 do
+    zone = zones[zone_idx]
+    if _DATA.Save:GetDungeonUnlock(zone) == RogueEssence.Data.GameProgress.UnlockState.Completed then
+      unlocks["DUN_" .. zone] = true
+    end
+  end
+
+
+  
+  local spoilers = {}
+  for key, unlock_reqs in pairs(music_selection.music_tbl) do
+    contains_unlock = false
+    for ii = 1, #unlock_reqs, 1 do
+      if unlocks[unlock_reqs[ii]] == true then
+        contains_unlock = true
+      end
+    end
+    if not contains_unlock then
+      table.insert(spoilers, key)
+    end
+  end
+
+
+  UI:ShowMusicMenu(false, spoilers)
+  UI:WaitForChoice()
+  local result = UI:ChoiceResult()
+  return result
+end
+
+function GROUND_ITEM_EVENT_SCRIPT.MelodyBoxEvent(context, args)
+  context.CancelState.Cancel = true
+  local result = GetMusicSelection()
+  print(result)
+  if result == "" or result == nil then
+    result = _ZONE.CurrentGround.Music  
+  end
+  SOUND:PlayBGM(result, true)
+
+  -- if SOUND:GetCurrentSong() ~= SV.base_town.Song then
+  --   SOUND:PlayBGM(SV.base_town.Song, true)
+  -- end
+  -- UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Music_End']))
+end
 function GROUND_ITEM_EVENT_SCRIPT.GroundWonderGummiEvent(context, args)
   -- { Heal = 20, Msg = true, Change = 2, BoostedStat = "none" }
   GROUND_ITEM_EVENT_SCRIPT.GroundVitaminEvent(context, args)
@@ -460,8 +589,6 @@ function GROUND_ITEM_EVENT_SCRIPT.GroundRestoreBellyEvent(context, args)
     context.User.FullnessRemainder = 0
   end
 end
-
-GROUND_ITEM_EVENT_SCRIPT = {}
 
 function GROUND_ITEM_EVENT_SCRIPT.GroundVitaminEvent(context, args)
   local lookup_table = {}

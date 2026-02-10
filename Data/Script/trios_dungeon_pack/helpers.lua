@@ -20,6 +20,7 @@ function SetEnchantmentStatusIfNeeded(enchantment_id, status)
 end
 
 function SetAchievementStatusIfNeeded(achievement_id, status)
+  -- local 
   local seen_value = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Hidden
   SV.EmberFrost.Achievements.Statuses[achievement_id] = math.max(seen_value, status)
 end

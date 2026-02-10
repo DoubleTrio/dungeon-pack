@@ -1,0 +1,18 @@
+﻿{
+  "Version": [
+    "0.0",
+    "0.8.11.0"
+  ],
+  "Object": {
+    "ZoneSteps": {
+      "_t": "a",
+      "2": [
+        {
+          "$type": "RogueEssence.LevelGen.ScriptZoneStep, RogueEssence",
+          "Script": "MelodyBoxZoneScript",
+          "ArgTable": "{}"
+        }
+      ]
+    }
+  }
+}

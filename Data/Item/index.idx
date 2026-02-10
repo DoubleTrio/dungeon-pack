@@ -3298,19 +3298,19 @@
 },
 "emberfrost_melody_box": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
-"Icon": -1,
-"UsageType": 0,
+"Icon": 10,
+"UsageType": 1,
 "States": [],
 "MaxStack": 0,
-"CannotDrop": false,
-"BagEffect": false,
+"CannotDrop": true,
+"BagEffect": true,
 "Name": {
-"DefaultText": "",
+"DefaultText": "Melody Box",
 "LocalTexts": {}
 },
-"Released": false,
+"Released": true,
 "Comment": "",
-"SortOrder": 0
+"SortOrder": 17
 }
 }
 }

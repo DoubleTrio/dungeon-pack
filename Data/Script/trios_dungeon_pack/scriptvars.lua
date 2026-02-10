@@ -114,6 +114,12 @@ SV.EmberFrost = {
     ToDisplay = {},
     
   },
+
+  -- Reseted with every new segment
+  MelodyBox = {
+    DungeonMusicSelection = "",
+    LastDungeonMusic = ""
+  }
 }
 
 SV.SavedCharacters = {}

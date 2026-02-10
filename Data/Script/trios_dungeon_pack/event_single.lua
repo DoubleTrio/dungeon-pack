@@ -2140,10 +2140,38 @@ function PickByWeights(entries)
     end
 end
 
+function SINGLE_CHAR_SCRIPT.MelodyBoxOnMapStarts(owner, ownerChar, context, args)
+    
+    -- print("HI THEHREHEHEEHE")
+    -- if context.User ~= nil then
+    --     return
+    -- end
+
+    -- print("AKAKAAKAAKAKAKAK")
+    -- local main_dungeon_music = _ZONE.CurrentMap.Music
+
+ 
+    -- print("JAJAJAJAAA")
+end
 
 
+-- function SINGLE_CHAR_SCRIPT.MelodyBoxOnMapStartsAfter(owner, ownerChar, context, args)
+--     -- print("HI THEHREHEHEEHE")
+--     -- if context.User ~= nil then
+--     --     return
+--     -- end
 
+--     -- print("AKAKAAKAAKAKAKAK")
+--     local main_dungeon_music = _ZONE.CurrentMap.Music
 
+--     if SV.EmberFrost.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
+--         SV.EmberFrost.MelodyBox.DungeonMusicSelection = ""
+--     else
+--         if SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= nil and SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= "" then
+--             SOUND:PlayBGM(SV.EmberFrost.MelodyBox.DungeonMusicSelection, true)
+--         end
+--     end
+-- end
 
 -- --For use in the Terrakion Fight and his dungeon after the midway point.
 -- function SINGLE_CHAR_SCRIPT.QueueRockFall(owner, ownerChar, context, args)

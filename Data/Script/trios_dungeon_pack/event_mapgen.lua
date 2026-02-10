@@ -90,6 +90,31 @@ StatType = luanet.import_type('RogueEssence.Data.Stat')
 -- [ListCollapse]
 -- public PriorityList<BattleEvent> InitActionData;
 
+ScriptGenStepType = luanet.import_type('RogueEssence.LevelGen.ScriptGenStep`1')
+
+
+function ZONE_GEN_SCRIPT.MelodyBoxZoneScript(zoneContext, context, queue, seed, args)
+  
+  MapDataStepType = luanet.import_type('PMDC.LevelGen.MapDataStep`1')
+  local map_data_step = queue:Front()
+  local type = LUA_ENGINE:TypeOf(map_data_step)
+
+  if type:GetGenericTypeDefinition() == luanet.ctype(MapDataStepType) then
+    return
+  end
+
+  local main_dungeon_music = map_data_step.Music
+
+  if SV.EmberFrost.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
+    SV.EmberFrost.MelodyBox.DungeonMusicSelection = ""
+  else
+    if SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= nil and SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= "" then
+      -- SOUND:PlayBGM(SV.EmberFrost.MelodyBox.DungeonMusicSelection, true)
+      map_data_step.Music = SV.EmberFrost.MelodyBox.DungeonMusicSelection
+    end
+  end
+end
+
 function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue, seed, args)
   local activeEffect = RogueEssence.Data.ActiveEffect()
 

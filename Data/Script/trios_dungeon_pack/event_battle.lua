@@ -1419,3 +1419,25 @@ function BATTLE_SCRIPT.TravelingMerchantInteract(owner, ownerChar, context, args
 
 
 end
+
+
+function BATTLE_SCRIPT.MelodyBoxBattleEvent(owner, ownerChar, context, args)
+
+  context.CancelState.Cancel = true
+  context.TurnCancel.Cancel = true
+
+  local result = GetMusicSelection()
+
+  if result ~= nil and result ~= "" then
+    SV.EmberFrost.MelodyBox.LastDungeonMusic = _ZONE.CurrentMap.Music
+    SV.EmberFrost.MelodyBox.DungeonMusicSelection = result
+  else
+    result = _ZONE.CurrentMap.Music
+    SV.EmberFrost.MelodyBox.DungeonMusicSelection = nil
+  end
+
+  print(result)
+  print("AAKAKAAKA")
+  print(_ZONE.CurrentMap.Music)
+  SOUND:PlayBGM(result, true)
+end
