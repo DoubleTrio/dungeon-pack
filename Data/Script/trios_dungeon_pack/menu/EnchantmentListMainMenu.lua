@@ -1,15 +1,15 @@
-require 'trios_dungeon_pack.menu.EnchantmentViewMenu'
+require 'trios_dungeon_pack.menu.ItemViewMenu'
 -- -----------------------------------------------
 -- Enchantment List Main Menu
 -- -----------------------------------------------
 
 
 
-local function GetTextAndColorBasedOnStatus(enchantment, seen_text)
+local function GetTextAndColorBasedOnStatus(enchantment_id, seen_text)
   local text_color = PMDColor.Gray
   local text = "???"
 
-  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment.id] or EnchantmentStatus.NotSeen
+  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
 
   if seen_status == EnchantmentStatus.Seen then
     text = seen_text
@@ -24,11 +24,134 @@ local function GetTextAndColorBasedOnStatus(enchantment, seen_text)
   }
 end
 
-local function collection_generate_menu_text(enchantment)
-  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment.id] or EnchantmentStatus.NotSeen
+local function GetTextAndColorBasedOnStatusAchievement(achievement_id, seen_text)
+  local text_color = PMDColor.Gray
+  local text = "???"
+
+  local achievement_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
+
+  if achievement_status == AchievementStatus.Visible then
+    text = seen_text
+  elseif achievement_status == AchievementStatus.Achieved then
+    text_color = PMDColor.Cyan
+    text = seen_text
+  end
+
+  return {
+    text = text,
+    color = text_color
+  }
+end
 
 
-  local status_info = GetTextAndColorBasedOnStatus(enchantment, enchantment.name)
+--------------------------------------------------
+-- Achievement Menu Text
+--------------------------------------------------
+local function achievement_generate_menu_text(achievement_id)
+  local achievement = AchievementRegistry:Get(achievement_id)
+
+  -- Get status
+  local achievement_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
+
+  local status_info = GetTextAndColorBasedOnStatusAchievement(achievement_id, achievement.name)
+
+  local text_color = status_info.color
+  local text = status_info.text
+
+  -- Add star if achieved
+  if achievement_status == AchievementStatus.Achieved then
+    text = PMDSpecialCharacters.Star .. " " .. text
+  end
+
+  local text_name = RogueEssence.Menu.MenuText(
+    M_HELPERS.MakeColoredText(text, text_color),
+    RogueElements.Loc(2, 1),
+    Color.White
+  )
+
+  return text_name
+end
+
+
+local function achievement_update_description_summary(achievement_id, menu, origin, menuWidth)
+  local achievement = AchievementRegistry:Get(achievement_id)
+  local seen_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
+  local status_info = GetTextAndColorBasedOnStatusAchievement(achievement_id, achievement.name)
+
+  local text_color = status_info.color
+
+  local GraphicsManager = RogueEssence.Content.GraphicsManager
+
+  menu.Elements:Clear()
+
+
+  menu.Bounds = RogueElements.Rect.FromPoints(
+    RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
+    RogueElements.Loc(GraphicsManager.ScreenWidth - 16, origin.Y + 106)
+  )
+
+  local y_offset = 10
+
+
+  --------------------------------------------------
+  local text = status_info.text
+
+  if seen_status == AchievementStatus.Achieved then
+    text = PMDSpecialCharacters.Star .. " " .. text
+  end
+
+  local name = RogueEssence.Menu.DialogueText(
+    M_HELPERS.MakeColoredText(text, text_color),
+    RogueElements.Rect(
+      RogueElements.Loc(12, y_offset),
+      RogueElements.Loc(menu.Bounds.Width, y_offset + 6)
+    ),
+    12
+  )
+
+  y_offset = y_offset + 12
+
+  local divider = RogueEssence.Menu.MenuDivider(
+    RogueElements.Loc(10, y_offset),
+    menu.Bounds.Width - 20
+  )
+
+  y_offset = y_offset + 4
+
+
+  local description = M_HELPERS.MakeColoredText("???", text_color)
+
+  -- Show description if not hidden
+  if seen_status ~= AchievementStatus.Hidden then
+    if achievement.getDescription ~= nil then
+      description = achievement:getDescription()
+    elseif achievement.description ~= nil then
+      description = achievement.description
+    end
+  end
+
+  local desc = RogueEssence.Menu.DialogueText(
+    description,
+    RogueElements.Rect(
+      RogueElements.Loc(12, y_offset),
+      RogueElements.Loc(menu.Bounds.Width - 20, 60)
+    ),
+    12
+  )
+
+
+  menu.Elements:Add(name)
+  menu.Elements:Add(divider)
+  menu.Elements:Add(desc)
+end
+
+
+local function collection_generate_menu_text(enchantment_id)
+  local enchantment = EnchantmentRegistry:Get(enchantment_id)
+  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
+
+
+  local status_info = GetTextAndColorBasedOnStatus(enchantment_id, enchantment.name)
 
   local text_color = status_info.color
   local text = status_info.text
@@ -44,9 +167,11 @@ local function collection_generate_menu_text(enchantment)
 end
      
 
-local function collection_update_description_summary(enchantment, menu, origin, menuWidth)
-  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment.id] or EnchantmentStatus.NotSeen
-  local status_info = GetTextAndColorBasedOnStatus(enchantment, enchantment.name)
+local function collection_update_description_summary(enchantment_id, menu, origin, menuWidth)
+  
+  local enchantment = EnchantmentRegistry:Get(enchantment_id)
+  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
+  local status_info = GetTextAndColorBasedOnStatus(enchantment_id, enchantment.name)
 
   local text_color = status_info.color
 
@@ -111,15 +236,17 @@ local function collection_update_description_summary(enchantment, menu, origin, 
   menu.Elements:Add(desc)
 end
 
-local function selection_generate_menu_text(enchantment)
+local function selection_generate_menu_text(enchantment_id)
+  local enchantment = EnchantmentRegistry:Get(enchantment_id)
   local color = Color.White
   local text_name = RogueEssence.Menu.MenuText(M_HELPERS.MakeColoredText(enchantment.name, PMDColor.White), RogueElements.Loc(2, 1), color)
 
   return text_name
 end
 
-local function selection_update_description_summary(enchantment, menu, origin, menuWidth)
+local function selection_update_description_summary(enchantment_id, menu, origin, menuWidth)
   local GraphicsManager = RogueEssence.Content.GraphicsManager
+  local enchantment = EnchantmentRegistry:Get(enchantment_id)
   local additional_texts = enchantment:getProgressTexts()
 
   menu.Elements:Clear()
@@ -185,10 +312,11 @@ end
 
 
 
+
 EnchantmentListMainMenu = Class('EnchantmentListMainMenu')
 EnchantmentListMainMenu.static = {}
 EnchantmentListMainMenu.static.width = 70
-EnchantmentListMainMenu.static.options =  {"Active", "Collection"}
+-- EnchantmentListMainMenu.static.options =  {"Active Enchants", "Enchant Collection", "AAAA"}
 
 function EnchantmentListMainMenu:initialize(x, y)
     assert(self, "EnchantmentListMainMenu:initialize(): self is nil!")
@@ -208,7 +336,7 @@ function EnchantmentListMainMenu:generate_options()
     local has_enchants = enchant_count > 0
 
 
-    table.insert(list, { "Active", has_enchants, function() _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end } )
+    table.insert(list, { "Active Enchants", has_enchants, function() _MENU:AddMenu(ItemViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end } )
 
 
 
@@ -217,16 +345,30 @@ function EnchantmentListMainMenu:generate_options()
 
     local data = EnchantmentRegistry._registry
     for k, v in pairs(data) do
-      local hidden = v.hidden_for_story or false
-      if not hidden then
+      -- local hidden = v.hidden_for_story or false
+      -- if not hidden then
         table.insert(collection, k)
-      end
+      -- end
     end
 
     table.sort(collection)
 
-    table.insert(list, { "Collection", true, function() _MENU:AddMenu(EnchantmentViewMenu:new("All Enchants", collection, collection_generate_menu_text, collection_update_description_summary).menu, false) end } )
+    table.insert(list, { "Enchant Collection", true, function() _MENU:AddMenu(ItemViewMenu:new("All Enchants", collection, collection_generate_menu_text, collection_update_description_summary).menu, false) end } )
 
+
+    -- local achievements_collection = {}
+    -- for k, v in pairs(SV.EmberFrost.Achievements.Statuses) do
+    --   table.insert(achievements_collection, k)
+    -- end
+
+    local achievements_collection = AchievementRegistry:GetIDOrdered()
+
+
+
+    table.insert(list,
+      { "Achievements", true, function() _MENU:AddMenu(
+        ItemViewMenu:new("Achievements", achievements_collection, achievement_generate_menu_text, achievement_update_description_summary)
+        .menu, false) end })
             -- MenuTools.MainMenu.Choices:Insert(4, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
         
     -- local text = self.static.options

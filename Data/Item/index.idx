@@ -3300,7 +3300,16 @@
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": 10,
 "UsageType": 1,
-"States": [],
+"States": [
+{
+"assembly": "PMDC, Version=0.8.11.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.ExclusiveState"
+},
+{
+"assembly": "RogueEssence, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+"type": "RogueEssence.Dungeon.MaterialState"
+}
+],
 "MaxStack": 0,
 "CannotDrop": true,
 "BagEffect": true,

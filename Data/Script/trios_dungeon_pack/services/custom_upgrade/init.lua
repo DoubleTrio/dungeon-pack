@@ -7,6 +7,8 @@
 ]]--
 require 'origin.common'
 require 'origin.services.baseservice'
+-- require 'trios_dungeon_pack.helpers'
+require 'trios_dungeon_pack.emberfrost.achievements'
 
 --Declare class CustomUpgrade
 local CustomUpgrade = Class('CustomUpgrade', BaseService)
@@ -40,10 +42,23 @@ function CustomUpgrade:OnUpgrade()
   M_HELPERS.UpgradeVariables()
 end
 
+
+function CustomUpgrade:OnUpgrade()
+  assert(self, 'CustomUpgrade:OnUpgrade() : self is null!')
+  M_HELPERS.UpgradeVariables()
+end
+
+
+
+function CustomUpgrade:LoadSavedData()
+  InitializeEnchantmentCollection()
+  InitializeAchievementCollection()
+end
 ---Summary
 -- Subscribe to all channels this service wants callbacks from
 function CustomUpgrade:Subscribe(med)
   med:Subscribe("CustomUpgrade", EngineServiceEvents.UpgradeSave,  function() self.OnUpgrade(self) end )
+  med:Subscribe("CustomUpgrade", EngineServiceEvents.LoadSavedData, function() self.LoadSavedData(self) end)
 end
 
 --Add our service

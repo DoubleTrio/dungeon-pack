@@ -20,7 +20,15 @@
 "MaxStack": 0,
 "CannotDrop": true,
 "BagEffect": true,
-"ItemStates": [],
+"ItemStates": [
+{
+"$type": "PMDC.Dungeon.ExclusiveState, PMDC",
+"ItemType": 0
+},
+{
+"$type": "RogueEssence.Dungeon.MaterialState, RogueEssence"
+}
+],
 "GroundUseActions": [
 {
 "$type": "RogueEssence.Ground.ScriptItemEvent, RogueEssence",

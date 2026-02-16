@@ -33,7 +33,7 @@ function EnchantTools:OnAddMenu(menu)
     if not menu:HasLabel() then return end
 
     local function add_enchants_choice(target_label, y_offset)
-        local choice = RogueEssence.Menu.MenuTextChoice("Enchants", function()
+        local choice = RogueEssence.Menu.MenuTextChoice("Run Info", function()
             _MENU:AddMenu(EnchantmentListMainMenu:new(
                               menu.Bounds.Width + menu.Bounds.X, y_offset).menu,
                           true)

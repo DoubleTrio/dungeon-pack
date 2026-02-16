@@ -111,6 +111,110 @@ HARVEST_TABLE = {
   "food_banana", "food_banana_big",
 }
 
+GUMMIS = {
+  "gummi_black",
+  "gummi_blue",
+  "gummi_brown",
+  "gummi_clear",
+  "gummi_foul",
+  "gummi_gold",
+  "gummi_grass",
+  "gummi_gray",
+  "gummi_green",
+  "gummi_magenta",
+  "gummi_orange",
+  "gummi_pink",
+  "gummi_purple",
+  "gummi_red",
+  "gummi_royal",
+  "gummi_silver",
+  "gummi_sky",
+  "gummi_white",
+  "gummi_wonder",
+  "gummi_yellow"
+}
+
+AMMOS = {
+  "ammo_cacnea_spike",
+  "ammo_corsola_twig",
+  "ammo_geo_pebble",
+  "ammo_golden_thorn",
+  "ammo_gravelerock",
+  "ammo_iron_thorn",
+  "ammo_rare_fossil",
+  "ammo_silver_spike",
+  "ammo_stick"
+}
+
+APRICORNS = { "apricorn_black", "apricorn_blue", "apricorn_brown", 'apricorn_green', 'apricorn_purple', 'apricorn_plain',
+  'apricorn_red', 'apricorn_white', 'apricorn_yellow', "apricorn_big", "apricorn_glittery" }
+
+BOOSTS = {
+  "boost_calcium", "boost_carbos", "boost_hp_up", "boost_iron", "boost_nectar", "boost_protein", "boost_zinc"
+}
+
+EVOS = {
+  "evo_chipped_pot",
+  "evo_cracked_pot",
+  "evo_dawn_stone",
+  "evo_deep_sea_scale",
+  "evo_deep_sea_tooth",
+  "evo_dubious_disc",
+  "evo_dusk_stone",
+  "evo_electirizer",
+  "evo_fire_stone",
+  "evo_harmony_scarf",
+  "evo_ice_stone",
+  "evo_kings_rock",
+  "evo_leaf_stone",
+  "evo_link_cable",
+  "evo_lunar_ribbon",
+  "evo_magmarizer",
+  "evo_moon_stone",
+  "evo_oval_stone",
+  "evo_prism_scale",
+  "evo_protector",
+  "evo_razor_claw",
+  "evo_razor_fang",
+  "evo_reaper_cloth",
+  "evo_shiny_stone",
+  "evo_sun_ribbon",
+  "evo_sun_stone",
+  "evo_thunder_stone",
+  "evo_up_grade",
+  "evo_water_stone"
+}
+
+
+MACHINES = {
+  "machine_ability_capsule",
+  "machine_assembly_box",
+  "machine_recall_box",
+}
+
+MEDICINE = {
+  "medicine_dire_hit",
+  "medicine_elixir",
+  "medicine_full_heal",
+  "medicine_full_restore",
+  "medicine_guard_spec",
+  "medicine_max_elixir",
+  "medicine_max_potion",
+  "medicine_potion",
+  "medicine_x_accuracy",
+  "medicine_x_attack",
+  "medicine_x_defense",
+  "medicine_x_sp_atk",
+  "medicine_x_sp_def",
+  "medicine_x_speed"
+}
+
+HERBS = {
+  "herb_mental",
+  "herb_power",
+  "herb_white"
+}
+
 EMBERFROST_BEHOLDER_GROUPS = {}
 
 
@@ -415,6 +519,7 @@ PowerupDefaults = {
 
 function CreateRegistry(config)
   local Registry = {}
+  local order = {}
 
   Registry._registry = config.registry_table
   Registry.data_table_path = config.data_table_path
@@ -436,6 +541,7 @@ function CreateRegistry(config)
     }) or def
 
     self._registry[def.id] = entry
+    table.insert(order, def.id)
 
     self._count = self._count + 1
     if self.debug then
@@ -447,6 +553,11 @@ function CreateRegistry(config)
 
   function Registry:Get(id)
     return self._registry[id]
+  end
+
+
+  function Registry:GetIDOrdered()
+    return order
   end
 
   function Registry:Select(id)
@@ -635,6 +746,29 @@ ExpandedSatchel = EnchantmentRegistry:Register({
 
   progress = function(self)
     _ZONE.CurrentZone.BagSize = _ZONE.CurrentZone.BagSize + self.bag_increase
+  end
+})
+
+
+JeweledBug = EnchantmentRegistry:Register({
+  name = "Jeweled Bug",
+  id = "JEWELLED_BUG",
+  amount = 50000,
+  getDescription = function(self)
+    local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_jeweled_bug")
+    return string.format("Gain a " .. entry:GetColoredName() ..
+      " (eats a random item at the start of each floor and gives " .. M_HELPERS.MakeColoredText(tostring(self.amount) .. PMDSpecialCharacters.Money, PMDColor.Cyan))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+
+  apply = function(self)
+    local items = { {
+      Item = "emberfrost_jeweled_bug",
+      Amount = 1
+    } }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
   end
 })
 
@@ -1805,10 +1939,10 @@ PandorasItems = EnchantmentRegistry:Register({
   -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
-      "Gain %s random %s and %s. At the start of each floor, any non-held %s or %s are randomized",
+      "Gain %s random %s, %s, and %s. At the start of each floor, any non-held items are randomized (except food, loots, and treasures)",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
       M_HELPERS.MakeColoredText("equipment", PMDColor.Pink), M_HELPERS.MakeColoredText("orb", PMDColor.Pink),
-      M_HELPERS.MakeColoredText("equipments", PMDColor.Pink), M_HELPERS.MakeColoredText("orbs", PMDColor.Pink))
+      M_HELPERS.MakeColoredText("apricorn", PMDColor.Pink))
   end,
   offer_time = "beginning",
   rarity = 1,
@@ -1835,7 +1969,7 @@ PandorasItems = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
-    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PandorasItems"))
+    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PandorasItemsModified"))
   end,
 
   apply = function(self)
@@ -2157,7 +2291,7 @@ YourAWizard = EnchantmentRegistry:Register({
 PlantYourSeeds = EnchantmentRegistry:Register({
   money = 300,
   amount = 3,
-  minimum = 6,
+  minimum = 5,
   name = "Plant Your Seeds",
   id = "PLANT_YOUR_SEEDS",
   getDescription = function(self)
@@ -2340,6 +2474,9 @@ TheBubble = EnchantmentRegistry:Register({
   loss = 0.45,
   name = "The Bubble",
   id = "THE_BUBBLE",
+  cleanup = function (self)
+    M_HELPERS.RemoveItemIDFromInventory("emberfrost_bubble")
+  end,
   -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     local bubble = M_HELPERS.GetItemName("emberfrost_bubble")
@@ -2348,7 +2485,7 @@ TheBubble = EnchantmentRegistry:Register({
       bubble,
       M_HELPERS.MakeColoredText(tostring(math.ceil(self.interest * 100)).. "%", PMDColor.Cyan),
       bubble,
-      M_HELPERS.MakeColoredText(tostring(math.ceil(self.loss * 100)) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(math.ceil(self.loss * 100)) .. "%", PMDColor.Red),
       PMDSpecialCharacters.Money,
       M_HELPERS.MakeColoredText(tostring(self.pop_increase) .. "%", PMDColor.Cyan))
   end,
@@ -2365,10 +2502,6 @@ TheBubble = EnchantmentRegistry:Register({
       "Money Lost: " ..
       M_HELPERS.MakeColoredText(tostring(money_lost) .. " " .. PMDSpecialCharacters.Money, PMDColor.Red),
       "Current Pop Chance: " .. M_HELPERS.MakeColoredText(tostring(pop_chance) .. "%", PMDColor.Cyan) }
-  end,
-
-  set_active_effects = function(self, active_effect, zone_context)
-    -- active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("PlantYourSeeds", Serpent.line({ MoneyPerSeed = self.money, MinimumSeeds = self.minimum, EnchantmentID = self.id })))
   end,
 
   apply = function(self)
@@ -2492,6 +2625,18 @@ Protagonist = EnchantmentRegistry:Register({
   end
 })
 
+
+function CountAssemblyWithKey(key)
+  local count = 0
+  for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+    local tbl = LTBL(member)
+    if tbl ~= nil and tbl[key] == true then
+      count = count + 1
+    end
+  end
+  return count
+end
+
 MoralSupport = EnchantmentRegistry:Register({
   name = "Moral Support",
   id = "MORAL_SUPPORT",
@@ -2499,13 +2644,8 @@ MoralSupport = EnchantmentRegistry:Register({
   key = "EmberfrostRun",
 
   get_total_boost = function(self)
-    local count = 0
-    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-      local tbl = LTBL(member)
-      if tbl ~= nil and tbl[self.key] == true then
-        count = count + 1
-      end
-    end
+
+    local count = CountAssemblyWithKey(self.key)
     return count * self.boost
   end,
   getDescription = function(self)
@@ -2965,6 +3105,7 @@ TypeMaster = EnchantmentRegistry:Register({
       on_turn_ends_id = beholder.observe("OnTurnEnds", function(owner, ownerChar, context, args)
         if self:completed() then
           beholder.stopObserving(on_turn_ends_id)
+          beholder.trigger("OnTypeMasterCompleted")
           GAME:WaitFrames(30)
           data["rewarded"] = true
           local arguments = {}
@@ -3443,6 +3584,10 @@ WheelOfFortuneRegistry:Register({
 
     SOUND:PlayBattleSE('DUN_Hit_Neutral')
     TASK:WaitTask(mem:InflictDamage(9999))
+
+    if not mem.Dead then
+      beholder.trigger("OnNotToday")
+    end
 
   end,
 
@@ -4592,7 +4737,7 @@ Subzero = CreateTypeStatusEnchantment({
 
 -- Dark: Corruption/Nightmare Fuel/Darkest Hour//Negative Aura
 -- 
--- Flying: Strong Wings/Rising Phoenix/Shedded Feathers/Flocking/Air Ride (can guide other types across terrtains), Turbulence, Flock - Each flying type reduces damage of nearby allies
+-- Flying: Strong Wings/Rising Phoenix/Shedded Feathers/Flocking/Air Ride (can guide other types across terrains), Turbulence, Flock - Each flying type reduces damage of nearby allies
 
 -- Quick Charge: Moves that take 2 turns to use now only require 1, but require 1 extra PP.
 -- Ghost: Possession/Haunted/Spirit Riser/After Dusk/Conjure - 

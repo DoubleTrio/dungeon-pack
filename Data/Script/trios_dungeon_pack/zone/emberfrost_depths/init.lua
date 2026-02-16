@@ -5,6 +5,8 @@
 ]]--
 -- Commonly included lua functions and data
 require 'origin.common'
+require 'trios_dungeon_pack.emberfrost.achievements'
+require 'trios_dungeon_pack.beholder'
 
 -- Package name
 local emberfrost_depths = {}
@@ -22,6 +24,7 @@ end
 ---emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 --Engine callback function
 function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
+	InitializeAchievementListeners()
 	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
 		local tbl = LTBL(member)
 		tbl.EmberfrostRun = true
@@ -179,7 +182,6 @@ function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 	print(tostring(result))
   PrintInfo("=>> ExitSegment_emberfrost_depths result "..tostring(result).." segment "..tostring(segmentID))
 
-	ResetEmberfrostRun()
   --first check for rescue flag; if we're in rescue mode then take a different path
   local exited = COMMON.ExitDungeonMissionCheck(result, rescue, zone.ID, segmentID)
   if exited == true then
@@ -203,6 +205,13 @@ function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
   	end
   end
 
+
+
+	if result == RogueEssence.Data.GameProgress.ResultType.Cleared then
+		print("CLEARED")
+		beholder.trigger("OnEmberfrostClear")
+	end
+	ResetEmberfrostRun()
 end
 
 ---emberfrost_depths.Rescued(zone, name, mail)

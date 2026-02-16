@@ -22,11 +22,13 @@ function ResetEmberfrostRun()
     Data = {},
   }
   SV.EmberFrost.LastFloor = 0
+  SV.EmberFrost.CheckpointProgression = 0
   SV.EmberFrost.ReceivedEnchantmentReminder = false
   SV.EmberFrost.GotEnchantmentFromCheckpoint = false
   SV.EmberFrost.Shopkeeper = {}
 
   beholder.stopObserving(EMBERFROST_BEHOLDER_GROUPS)
+  StopAchievementListeners()
   for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
     local tbl = LTBL(member)
     tbl.EmberfrostRun = false
@@ -119,7 +121,9 @@ SV.EmberFrost = {
   MelodyBox = {
     DungeonMusicSelection = "",
     LastDungeonMusic = ""
+
   }
+
 }
 
 SV.SavedCharacters = {}

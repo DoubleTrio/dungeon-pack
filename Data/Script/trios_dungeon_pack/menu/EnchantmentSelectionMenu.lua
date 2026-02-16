@@ -4,6 +4,8 @@
     Use for ground mode only then.
 ]]
 
+require 'trios_dungeon_pack.beholder'
+
 EnchantmentSelectionMenu = Class("EnchantmentSelectionMenu")
 
 function EnchantmentSelectionMenu:initialize(title, enchantment_list, on_enchantment_seen, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action, enchantment_width)

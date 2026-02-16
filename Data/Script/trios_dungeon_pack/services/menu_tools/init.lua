@@ -1,6 +1,5 @@
 require 'origin.common'
 require 'origin.services.baseservice'
-require 'trios_dungeon_pack.menu.EnchantmentViewMenu'
 
 --Declare class MenuTools
 local MenuTools = Class('MenuTools', BaseService)

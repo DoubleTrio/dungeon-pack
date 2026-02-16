@@ -172,6 +172,7 @@ function ZONE_GEN_SCRIPT.EmberfrostSwitchUp(zoneContext, context, queue, seed, a
   local priority = RogueElements.Priority(-6)
 
   if ((zoneContext.CurrentID + 1) % interval) == 0 and zoneContext.CurrentID ~= 0  and zoneContext.CurrentID ~= 29 then
+    print(tostring(SV.EmberFrost.CheckpointProgression) .. "GRRRRRRRR")
     active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = -1, NextID = SV.EmberFrost.CheckpointProgression })))
   end
   queue:Enqueue(priority, destNote)

@@ -749,49 +749,62 @@ end
 --     end
 -- end
 
-
-function Contains(tbl, value)
-    for _, v in ipairs(tbl) do
-        if v == value then
-            return true
+local function RandomDifferent(tbl, current_id)
+    if #tbl <= 1 then
+        return current_id
+    end
+    local idx = _DATA.Save.Rand:Next(#tbl - 1) + 1
+    local chosen = tbl[idx]
+    if chosen == current_id then
+        chosen = tbl[#tbl]
+        if chosen == current_id then
+            chosen = tbl[1]
         end
     end
-    return false
+    return chosen
 end
 
+function SINGLE_CHAR_SCRIPT.PandorasItemsModified(owner, ownerChar, context, args)
 
-function SINGLE_CHAR_SCRIPT.PandorasItems(owner, ownerChar, context, args)
-
+    
     if context.User ~= nil then
         return
     end
 
 
-    local function RandomDifferent(tbl, current_id)
-        if #tbl <= 1 then
-            return current_id
-        end
+    local ITEM_POOLS = {
+        GUMMIS = GUMMIS,
+        ORBS = ORBS,
+        EQUIPMENT = EQUIPMENT,
+        SEED = SEED,
+        WANDS = WANDS,
+        TMS = TMS,
+        BERRIES = BERRIES,
+        AMMOS = AMMOS,
+        APRICORNS = APRICORNS,
+        BOOSTS = BOOSTS,
+        EVOS = EVOS,
+        MACHINES = MACHINES,
+        MEDICINE = MEDICINE
+    }
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
 
-        local idx = _DATA.Save.Rand:Next(#tbl - 1) + 1
-        local chosen = tbl[idx]
-        if chosen == current_id then
-            chosen = tbl[#tbl]
-        end
-
-        return chosen
+    if inv_count <= 0 then
+        return
     end
 
-    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
-
-    for i = inv_count, 0, -1 do
+    for i = 0, inv_count - 1 do
         local item = _DATA.Save.ActiveTeam:GetInv(i)
         local item_id = item.ID
-        if Contains(ORBS, item_id) then
-            item.ID = RandomDifferent(ORBS, item_id)
-        elseif Contains(EQUIPMENT, item_id) then
-            item.ID = RandomDifferent(EQUIPMENT, item_id)
+
+        for _, pool in pairs(ITEM_POOLS) do
+            if Contains(pool, item_id) then
+                item.ID = RandomDifferent(pool, item_id)
+                break
+            end
         end
     end
+    _DUNGEON:LogMsg("Your items were rerolled!")
 end
 
 function SINGLE_CHAR_SCRIPT.EmberfrostOnDeath(owner, ownerChar, context, args)
@@ -1432,7 +1445,9 @@ function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
         local lost_amount = math.round(total_money * loss)
         GAME:RemoveFromPlayerMoney(lost_amount)
         data["money_lost"] = data["money_lost"] + lost_amount
+        beholder.trigger("TheBubbleLost", lost_amount, data["money_lost"], data["pop_chance"])
         data["pop_chance"] = 0
+        
 
 
         _DUNGEON:LogMsg(
@@ -1448,10 +1463,12 @@ function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
         local gained = math.round(total_money * interest)
 
         if (gained > 0) then
+
             SOUND:PlayBattleSE("DUN_Money")
             data["pop_chance"] = data["pop_chance"] + pop_increase
             GAME:AddToPlayerMoney(gained)
             data["money_earned"] = data["money_earned"] + gained
+            beholder.trigger("TheBubbleGained", gained, data["money_earned"], data["pop_chance"])
             _DUNGEON:LogMsg(
             string.format(
                 "%s was gained from the %s", 

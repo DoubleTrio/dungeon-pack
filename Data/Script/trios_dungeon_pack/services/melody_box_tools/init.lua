@@ -1,6 +1,5 @@
 require 'origin.common'
 require 'origin.services.baseservice'
-require 'trios_dungeon_pack.menu.EnchantmentViewMenu'
 
 local MelodyBoxTools = Class('MelodyBoxTools', BaseService)
 
@@ -39,14 +38,6 @@ end
 ---------------------------------------------------------------]]
 function MelodyBoxTools:DungeonSegmentEnd()
   SV.EmberFrost.DungeonMusicSelection = ""
-  print("DungeonSegmentEnd!!!!")
-  print("DungeonSegmentEnd!!!!")
-  print("DungeonSegmentEnd!!!!")
-  print("DungeonSegmentEnd!!!!")
-  print("DungeonSegmentEnd!!!!")
-  print("DungeonSegmentEnd!!!!")
-  print("DungeonSegmentEnd!!!!")
-  print("DungeonSegmentEnd!!!!")
 end
 
 function MelodyBoxTools:OnMenuButtonPressed()

@@ -905,7 +905,6 @@ function BATTLE_SCRIPT.MoralSupport(owner, ownerChar, context, args)
   local num = 100 + boost
   local denom = 100
   if context.User.MemberTeam == _DUNGEON.ActiveTeam then
-    print("MoralSupport boost for ally: " .. tostring(boost) )
     local multiply_element = PMDC.Dungeon.MultiplyDamageEvent(num, denom)
     TASK:WaitTask(multiply_element:Apply(owner, ownerChar, context))
   end
@@ -1435,9 +1434,5 @@ function BATTLE_SCRIPT.MelodyBoxBattleEvent(owner, ownerChar, context, args)
     result = _ZONE.CurrentMap.Music
     SV.EmberFrost.MelodyBox.DungeonMusicSelection = nil
   end
-
-  print(result)
-  print("AAKAKAAKA")
-  print(_ZONE.CurrentMap.Music)
   SOUND:PlayBGM(result, true)
 end

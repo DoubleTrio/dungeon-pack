@@ -1,6 +1,8 @@
 
 require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
 require 'trios_dungeon_pack.emberfrost.enchantments'
+require 'trios_dungeon_pack.beholder'
+
 require 'origin.menu.InventorySelectMenu'
 
 function PlayRandomBGM(tracks)
@@ -143,6 +145,7 @@ function checkpoint.ChestInteraction(obj, activator)
     return
   end
   UI:ResetSpeaker()
+  print(Serpent.dump(SV.EmberFrost.Enchantments.Collection))
   if SV.EmberFrost.GotEnchantmentFromCheckpoint then
     UI:SetCenter(true)
     UI:WaitShowDialogue("You already selected an enchantment.")
@@ -182,11 +185,11 @@ function checkpoint.ChestInteraction(obj, activator)
 
   GAME:WaitFrames(60)
 
-  -- ResetSeenEnchantments()
+  ResetSeenEnchantments()
   local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
-  enchantments[1][1] = EnchantmentRegistry._registry['RAINING_GOLD']
+  enchantments[1][1] = EnchantmentRegistry._registry[PandorasItems.id]
   local ret = nil
   local choose = function(enchantment)
     SOUND:PlayBattleSE("_UNK_EVT_075")
@@ -208,9 +211,8 @@ function checkpoint.ChestInteraction(obj, activator)
   local on_enchantment_seen = function(enchantment_id)
     SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Seen)
     table.insert(SV.EmberFrost.Enchantments.Seen, enchantment_id)
+    beholder.trigger("OnEnchantmentSeen", enchantment_id)
   end
-
-  print("Creating enchantment selection menu..." .. Serpent.dump(enchantments))
 
   local menu = EnchantmentSelectionMenu:new("Choose an enchantment!", enchantments, on_enchantment_seen, nil, nil,
     SV.EmberFrost.Enchantments.RerollCounts, choose, refuse)
@@ -218,7 +220,6 @@ function checkpoint.ChestInteraction(obj, activator)
   UI:WaitForChoice()
 
   RogueEssence.Menu.MenuBase.BorderStyle = old
-  -- \uE110
   _GROUND:RemoveMapStatus("crystal_moment")
   GAME:WaitFrames(40)
 
@@ -228,6 +229,9 @@ function checkpoint.ChestInteraction(obj, activator)
     table.insert(SV.EmberFrost.Enchantments.Selected, enchantment_id)
     SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Selected)
     SV.EmberFrost.GotEnchantmentFromCheckpoint = true
+    beholder.trigger("OnEnchantmentSelected", enchantment_id)
+    print("AJAJAJAA")
+
     ret:apply()
   end
 

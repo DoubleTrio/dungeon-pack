@@ -3,7 +3,7 @@
 "Object": {
 "$type": "RogueEssence.Data.ZoneData, RogueEssence",
 "Name": {
-"DefaultText": "Emberfrost Depths",
+"DefaultText": "Emberfrost",
 "LocalTexts": {}
 },
 "Released": true,

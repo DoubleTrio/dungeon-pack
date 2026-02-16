@@ -14,24 +14,26 @@ AchievementStatus = {
   Achieved       = 2
 }
 
+function Contains(tbl, value)
+  for _, v in ipairs(tbl) do
+    if v == value then
+      return true
+    end
+  end
+  return false
+end
+
 function SetEnchantmentStatusIfNeeded(enchantment_id, status)
   local seen_value = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
   SV.EmberFrost.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
 end
 
-function SetAchievementStatusIfNeeded(achievement_id, status)
-  -- local 
-  local seen_value = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Hidden
-  SV.EmberFrost.Achievements.Statuses[achievement_id] = math.max(seen_value, status)
-end
 
 function InitializeEnchantmentCollection()
   for k, v in pairs(EnchantmentRegistry._registry) do
-
     SetEnchantmentStatusIfNeeded(k, EnchantmentStatus.NotSeen)
   end
 end
-
 
 local function GenderToNum(gender)
   local res = -1
@@ -312,7 +314,6 @@ M_HELPERS = {
   end,
 
   ClearInventory = function(override_cannot_drop)
-    -- NOTE: Does not account for equipped items.
     local save = _DATA.Save
     local inv_count = save.ActiveTeam:GetInvCount() - 1
 
@@ -321,6 +322,19 @@ M_HELPERS = {
       local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(save.ActiveTeam:GetInv(i)
         .ID)
       if not entry.CannotDrop or override_cannot_drop then
+        save.ActiveTeam:RemoveFromInv(i)
+      end
+    end
+  end,
+
+  RemoveItemIDFromInventory = function(item_id)
+    local save = _DATA.Save
+    local inv_count = save.ActiveTeam:GetInvCount() - 1
+
+    -- remove bag items
+    for i = inv_count, 0, -1 do
+      local item = _DATA.Save.ActiveTeam:GetInv(i)
+      if item.ID == item_id then
         save.ActiveTeam:RemoveFromInv(i)
       end
     end
