@@ -48,8 +48,6 @@ function CustomUpgrade:OnUpgrade()
   M_HELPERS.UpgradeVariables()
 end
 
-
-
 function CustomUpgrade:LoadSavedData()
   InitializeEnchantmentCollection()
   InitializeAchievementCollection()

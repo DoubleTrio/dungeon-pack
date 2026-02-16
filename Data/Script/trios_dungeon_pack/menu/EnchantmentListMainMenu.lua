@@ -26,39 +26,29 @@ end
 
 local function GetTextAndColorBasedOnStatusAchievement(achievement_id, seen_text)
   local text_color = PMDColor.Gray
-  local text = "???"
 
   local achievement_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
 
   if achievement_status == AchievementStatus.Visible then
-    text = seen_text
   elseif achievement_status == AchievementStatus.Achieved then
     text_color = PMDColor.Cyan
-    text = seen_text
   end
 
   return {
-    text = text,
     color = text_color
   }
 end
 
-
---------------------------------------------------
--- Achievement Menu Text
---------------------------------------------------
 local function achievement_generate_menu_text(achievement_id)
   local achievement = AchievementRegistry:Get(achievement_id)
 
-  -- Get status
   local achievement_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
 
   local status_info = GetTextAndColorBasedOnStatusAchievement(achievement_id, achievement.name)
 
   local text_color = status_info.color
-  local text = status_info.text
+  local text = achievement.name
 
-  -- Add star if achieved
   if achievement_status == AchievementStatus.Achieved then
     text = PMDSpecialCharacters.Star .. " " .. text
   end
@@ -92,9 +82,7 @@ local function achievement_update_description_summary(achievement_id, menu, orig
 
   local y_offset = 10
 
-
-  --------------------------------------------------
-  local text = status_info.text
+  local text = achievement.name
 
   if seen_status == AchievementStatus.Achieved then
     text = PMDSpecialCharacters.Star .. " " .. text

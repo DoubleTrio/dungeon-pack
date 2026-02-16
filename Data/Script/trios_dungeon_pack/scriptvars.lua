@@ -56,6 +56,9 @@ SV.EmberFrost = {
 
     -- Reroll counts for enchantments
     RerollCounts = {1, 1, 1},
+
+    -- Reminder for getting an enchantment after selecting one for first tane
+    GotFirstReminder = false,
   },
 
   Quests = {

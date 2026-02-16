@@ -129,8 +129,8 @@ AchievementRegistry:Register({
 })
 
 AchievementRegistry:Register({
-  id = "ENCHANTMENT_ENCYCLOPEDIA",
-  name = "Enchantment Encyclopedia",
+  id = "ENCYCLOPEDIA",
+  name = "Encyclopedia",
   defaultVis = AchievementStatus.Hidden,
   getDescription = function(self)
     return "See all the enchants"
@@ -150,8 +150,8 @@ AchievementRegistry:Register({
 })
 
 AchievementRegistry:Register({
-  id = "Arcanist",
-  name = "ARCANIST",
+  id = "ARCANIST",
+  name = "Arcanist",
   defaultVis = AchievementStatus.Hidden,
   getDescription = function(self)
     return "Win with all the enchants"
@@ -329,6 +329,7 @@ AchievementRegistry:Register({
   end,
 })
 
+-- 4 puppers
 function SetAchievementStatusIfNeeded(achievement_id, status)
   local achievement_value = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Hidden
   SV.EmberFrost.Achievements.Statuses[achievement_id] = math.max(achievement_value, status)

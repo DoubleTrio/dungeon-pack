@@ -230,14 +230,16 @@ function checkpoint.ChestInteraction(obj, activator)
     SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Selected)
     SV.EmberFrost.GotEnchantmentFromCheckpoint = true
     beholder.trigger("OnEnchantmentSelected", enchantment_id)
-    print("AJAJAJAA")
-
     ret:apply()
+
+    if not SV.EmberFrost.Enchantments.GotFirstReminder then
+      SV.EmberFrost.Enchantments.GotFirstReminder = true
+      SOUND:PlayFare("Fanfare/Note")
+      UI:WaitShowDialogue("Note: You can view your enchantments at any time in the \"Run Info\" -> \"Active Enchants\" menu.")
+    end
   end
 
-
   GROUND:CharEndAnim(activator)
-  
 end
 
 function checkpoint.ShopkeeperDialogue()
