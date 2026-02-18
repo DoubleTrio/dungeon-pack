@@ -1305,40 +1305,6 @@ function SetMovesRelearnable(member, include_egg_moves, include_tutor_moves, inc
   end
 end
 
--- local already_learned = member:HasBaseSkill(move)
--- if mon.PromoteFrom ~= "" then
---   playerMonId = RogueEssence.Dungeon.MonsterID(mon.PromoteFrom, form.PromoteForm, "normal", Gender.Genderless)
--- else
---   playerMonId = nil
--- end
--- end
-
--- /// <summary>
--- /// Moves learned by TM
--- /// </summary>
--- public List<LearnableSkill> TeachSkills;
-
--- /// <summary>
--- /// Egg moves
--- /// </summary>
--- public List<LearnableSkill> SharedSkills;
-
--- /// <summary>
--- /// Tutor moves
--- /// </summary>
--- public List<LearnableSkill> SecretSkills;
-
--- Frostbite = setmetatable({
---   name = "Frostbite",
---   type = "Boost",
---   description = "",
---   offer_time = 1,
---   rarity = 1,
-
---   apply = function(self)
---     print("Frostbite active: attacks deal damage over time.")
---   end
--- }, { __index = PowerupDefaults })
 
 SticksAndStones = EnchantmentRegistry:Register({
   amount = 5,
@@ -1604,7 +1570,7 @@ ATrueLeader = EnchantmentRegistry:Register({
 Tempo = EnchantmentRegistry:Register({
   name = "Tempo",
   id = "TEMPO",
-  count = 3,
+  count = 15,
   getDescription = function(self)
     return string.format("For every %s enemies defeated, your team gains a random stat boost", M_HELPERS.MakeColoredText(tostring(self.count), PMDColor.Cyan))
   end,
@@ -1906,7 +1872,7 @@ HungerStrike = EnchantmentRegistry:Register({
   -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
-      "Choose a team member. That member will lose hunger more quickly. When they inflict damage, the target will lose %s hunger points",
+      "Your party will lose hunger more quickly when walking. When they inflict damage with a move, the target will lose %s hunger points",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
     )
   end,
@@ -1924,16 +1890,23 @@ HungerStrike = EnchantmentRegistry:Register({
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
-    active_effect.OnMapStarts:Add(2, RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({ StatusID = "emberfrost_hunger_strike", EnchantmentID = self.id })))
+    active_effect.OnMapStarts:Add(2,
+    RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
+        Serpent.line({ StatusID = "emberfrost_hunger_strike", EnchantmentID = self.id, ApplyToAll = true })))
   end,
 
   apply = function(self)
-    AssignEnchantmentToCharacter(self)
+    -- UI:SetCenter(true)
+    -- SOUND:PlayFanfare("Fanfare/Note")
+    -- UI:WaitShowDialogue(string.format("Note: Your team will lose %s hunger points when walking.",
+    --   M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.SkyBlue)))
+    -- UI:SetCenter(false)
   end,
 })
 
 PandorasItems = EnchantmentRegistry:Register({
   amount = 1,
+  gold_amount = 1000,
   name = "Pandora's Items",
   id = "PANDORAS_ITEMS",
   -- group = ENCHANTMENT_TYPES.items,
@@ -1947,25 +1920,25 @@ PandorasItems = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local data = EnchantmentRegistry:GetData(self)
-    local equipment = data["equipment"]
-    local orb = data["orb"]
+    return {}
+    -- local data = EnchantmentRegistry:GetData(self)
+    -- local equipment = data["equipment"]
+    -- local orb = data["orb"]
 
-    print(tostring(equipment))
-    print(tostring(orb))
-    print(Serpent.dump(SV.EmberFrost.Enchantments.Data) .. " hmmmm")
-    print(Serpent.dump(EnchantmentRegistry._data) .. " hmmmm2")
-    print("Are they the same table reference?")
-    print(tostring(EnchantmentRegistry._data == SV.EmberFrost.Enchantments.Data))
+    -- print(tostring(equipment))
+    -- print(tostring(orb))
+    -- print(Serpent.dump(SV.EmberFrost.Enchantments.Data) .. " hmmmm")
+    -- print(Serpent.dump(EnchantmentRegistry._data) .. " hmmmm2")
+    -- print("Are they the same table reference?")
+    -- print(tostring(EnchantmentRegistry._data == SV.EmberFrost.Enchantments.Data))
 
-    print(Serpent.dump(SV.EmberFrost.Enchantments.Seen) .. " hmmmm")
-    print(Serpent.dump(EnchantmentRegistry._seen) .. " hmmmm2")
+    -- print(Serpent.dump(SV.EmberFrost.Enchantments.Seen) .. " hmmmm")
+    -- print(Serpent.dump(EnchantmentRegistry._seen) .. " hmmmm2")
 
-    local equipment_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(equipment)
-    local orb_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(orb)
-    local text = { "Equipment: " .. equipment_entry:GetIconName(), "Orb: " .. orb_entry:GetIconName() }
+    -- local equipment_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(equipment)
+    -- local orb_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(orb)
+    -- local text = { "Equipment: " .. equipment_entry:GetIconName(), "Orb: " .. orb_entry:GetIconName() }
 
-    return text
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -1973,12 +1946,9 @@ PandorasItems = EnchantmentRegistry:Register({
   end,
 
   apply = function(self)
-    print("Are they the same table reference hm,,,,dkd?")
-    print(tostring(EnchantmentRegistry._data == SV.EmberFrost.Enchantments.Data))
-
-
     local random_orb = GetRandomFromArray(ORBS)
     local random_equipment = GetRandomFromArray(EQUIPMENT)
+    local random_apricorn = GetRandomFromArray(APRICORNS)
 
     local amount = self.amount
     local items = { {
@@ -1987,11 +1957,15 @@ PandorasItems = EnchantmentRegistry:Register({
     }, {
       Item = random_orb,
       Amount = amount
+    }, {
+      Item = random_apricorn,
+      Amount = amount
     } }
 
-    local data = EnchantmentRegistry:GetData(self)
-    data["equipment"] = random_equipment
-    data["orb"] = random_orb
+    -- local data = EnchantmentRegistry:GetData(self)
+    -- data["equipment"] = random_equipment
+    -- data["orb"] = random_orb
+    -- data["apricorn"] = random_apricorn
 
     M_HELPERS.GiveInventoryItemsToPlayer(items)
   end
@@ -2713,16 +2687,16 @@ MoralSupport = EnchantmentRegistry:Register({
 -- Regular attacks can destroy walls at the cost of 1 hunger
 -- The Orb - Each orb usage increases your team's damage
 -- Gain 2 random allies from the previous floors. Gain an assembly box. They have gummi boosts with random equioment attatched
--- RPG Gold - Your team has 25% chance to gain 50 p from an enemies.
+-- RPG Gold - Your team has 25% chance to gain 50 p from an enemies. -- Enemies have a 50% chance to drop gold based on their level
 -- Combo Chain: When you use 3 skills in a row. Second The final attack will be critical and deal double damage
 -- Your team gains a critical chance boost
 -- Your team does slighty more damage for super-effective moves.
+-- Allowance - Gain 200 each mon that is not fully evolved at the start of each floor
 -- Your team takes slightly more damage for not very effective moves.
 -- All for one - Choose a team member. That members gains for power for each team member within 1 tile.
 -- One for all - Choose a team member. That members transfer ALL status to all adjacent allies upon recieiving a status.
 -- Team Building - Gain 2 random apricorns. Select a between apricrons and 2 amber tears and a friend bow. Gain a Assembly Box
 -- Negligible Risk?: - Gain 20,000 P. Your team has a tiny chance to be inflicted with a random negative status at the end of the their turn
--- Gain 5 random gummies. Each gummy grants +1 max hunger.
 -- Gain a random gummi at the start of each floor.
 -- Death Defying/ Second Wind - Gain a death amulet. If that member would faint, 50% chance to survive with 1 HP instead. When at 1 HP, gain a speed boost.
 -- Quick Reflexes - Choose a team member. That member has a chance to dodge physical attacks.

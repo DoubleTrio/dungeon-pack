@@ -144,12 +144,17 @@
 ]
 },
 "Value": {
+"$type": "PMDC.Dungeon.AttackingMoveNeededEvent, PMDC",
+"BaseEvents": [
+{
 "$type": "PMDC.Dungeon.RestoreBellyEvent, PMDC",
 "BoostAnims": [],
 "Heal": -5,
-"Msg": true,
+"Msg": false,
 "AddMaxBelly": 0,
 "NeedFullBelly": false
+}
+]
 }
 }
 ],

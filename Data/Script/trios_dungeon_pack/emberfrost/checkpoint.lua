@@ -146,12 +146,12 @@ function checkpoint.ChestInteraction(obj, activator)
   end
   UI:ResetSpeaker()
   print(Serpent.dump(SV.EmberFrost.Enchantments.Collection))
-  if SV.EmberFrost.GotEnchantmentFromCheckpoint then
-    UI:SetCenter(true)
-    UI:WaitShowDialogue("You already selected an enchantment.")
-    UI:SetCenter(false)
-    return
-  end
+  -- if SV.EmberFrost.GotEnchantmentFromCheckpoint then
+  --   UI:SetCenter(true)
+  --   UI:WaitShowDialogue("You already selected an enchantment.")
+  --   UI:SetCenter(false)
+  --   return
+  -- end
 
 
   GROUND:CharSetAnim(activator, "None", true)
@@ -234,8 +234,8 @@ function checkpoint.ChestInteraction(obj, activator)
 
     if not SV.EmberFrost.Enchantments.GotFirstReminder then
       SV.EmberFrost.Enchantments.GotFirstReminder = true
-      SOUND:PlayFare("Fanfare/Note")
-      UI:WaitShowDialogue("Note: You can view your enchantments at any time in the \"Run Info\" -> \"Active Enchants\" menu.")
+      SOUND:PlayFanfare("Fanfare/Note")
+      UI:WaitShowDialogue("Note: You can check your active enchantments while in-dungeon: Others -> Run Info -> Active Enchants.")
     end
   end
 

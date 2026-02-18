@@ -143,6 +143,33 @@
 "Released": false,
 "Comment": "",
 "SortOrder": 0
+},
+"hidden_item_tile": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"ice_tile": {
+"Name": {
+"DefaultText": "Ice Tile",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"fire_tile": {
+"Name": {
+"DefaultText": "Fire Tile",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

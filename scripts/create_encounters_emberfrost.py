@@ -384,7 +384,7 @@ if __name__ == "__main__":
 
         #4 
         ('geodude', 0, 'patrol', '', ['rollout', 'tackle'], 9, 10, 3, 5, 0, 10),
-        ('silcoon', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 9, 10, 3, 3, 0, 4),
+        ('silcoon', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 9, 10, 3, 5, 0, 4),
         ('cascoon', 0, 'wait_attack', '', ['bug_bite', 'string_shot'], 9, 10, 3, 5, 0, 4),
         ('cyndaquil', 0, 'wander_normal', '', ['ember', 'smokescreen'], 8, 9, 3, 5, 0, 10),
         ('oshawott', 0, 'wander_normal', '', ['water_gun', 'encore'], 9, 10, 3, 5, 0, 10),
@@ -392,13 +392,13 @@ if __name__ == "__main__":
 
 
 
-        #5
-        ('onix', 0, 'slow_wander', '', ['block', 'iron_tail'], 11, 12, 4, 5, 0, 10),
+        # 5
+        ('onix', 0, 'slow_wander_normal', '', ['block', 'iron_tail'], 12, 13, 4, 5, 0, 10),
         ('pichu', 0, 'wander_normal', '', ['nuzzle', 'charm', 'fake_out'], 12, 13, 4, 5, SUPPORT, 10),
 
 
         # Add like path wands + pounce wands on islands
-        #6
+        # 6
         ('pancham', 0, 'wander_normal', 'mold_breaker', ['taunt', 'circle_throw'], 12, 13, 5, 7, 0, 10),
         ('meowth', 1, 'thief', '', ['pay_day'], 11, 12, 5, 7, 0, 10),
         ('diglett', 1, 'wander_normal', 'tangling_hair', ['bulldoze', 'sucker_punch'], 10, 11, 5, 8, 0, 10),
@@ -437,11 +437,11 @@ if __name__ == "__main__":
         ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'disable'], 19, 20, 9, 10, SUPPORT, 10),
 
         
-        #11
+        # 11
         ('geodude', 0, 'patrol', '', ['tackle', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
         ('druddigon', 0, 'wander_smart', '', ['glare', 'scale_shot'], 19, 20, 9, 10, LONER, 10),
         ('graveler', 0, 'wander_normal', 'sheer_force', ['magnitude', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
-        # ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
+        ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
         ('machoke', 0, 'wander_normal', 'guts', ['cross_chop'], 19, 20, 9, 10, NORMAL, 10),
         #15 - Harder hitting enemies - froslass, spite, poltergeist - no food, seeds,  on this floor!lm
         ## Wyrdeer 	Wyrdeer
@@ -464,7 +464,7 @@ if __name__ == "__main__":
 
 
         #21
-        ('turtonator', 0, 'wander_normal', '', ['dragon_claw', 'dragon_rage'], 21, 22, 10, 12, 0, 10),
+        # ('turtonator', 0, 'wander_normal', '', ['dragon_claw', 'dragon_rage'], 21, 22, 10, 12, 0, 10),
         #22
         #23
         #24

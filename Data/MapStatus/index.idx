@@ -1,7 +1,24 @@
 ﻿{
-"Version": "0.8.8.0",
+"Version": "0.8.11.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"fog": {
+"Name": {
+"DefaultText": "Fog",
+"LocalTexts": {
+"fr": "Brouillard",
+"de": "Nebel",
+"es": "Niebla",
+"it": "Nebbia",
+"ja": "きり",
+"ja-jp": "きり",
+"zh-hans": "起雾"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
 "shimmering5": {
 "Name": {
 "DefaultText": "Shimmering",
