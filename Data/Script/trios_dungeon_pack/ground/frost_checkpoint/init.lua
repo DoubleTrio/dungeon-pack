@@ -12,7 +12,6 @@ local frost_checkpoint = {}
 -- Engine callback function
 
 function frost_checkpoint.Init(map)
-  PlayRandomBGM()
   checkpoint.OnCheckpointArrive()
   GROUND:AddMapStatus("snow")
 end

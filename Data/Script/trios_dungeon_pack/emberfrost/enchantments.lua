@@ -26,7 +26,7 @@ UnrecruitableType = luanet.import_type('PMDC.LevelGen.MobSpawnUnrecruitable')
 
 RedirectionType = luanet.import_type('PMDC.Dungeon.Redirected')
 
-
+-- https://pokemondb.net/ability/guts
 ORBS = { "orb_all_dodge", "orb_all_protect", "orb_cleanse", "orb_devolve", "orb_fill_in", "orb_endure", "orb_foe_hold",
   "orb_foe_seal", "orb_freeze", "orb_halving", "orb_invert", "orb_invisify", "orb_itemizer", "orb_luminous",
   "orb_pierce", "orb_scanner", "orb_mobile", "orb_mug", "orb_nullify", "orb_mirror", "orb_spurn", "orb_slow",
@@ -280,7 +280,23 @@ function SelectItemFromList(prompt, items)
   end
   local refuse = function()
   end
-  local menu = ItemSelectionMenu:new(prompt, items, choose, refuse)
+
+  local generate_option_choice = function (item_entry, i, confirm_action)
+
+    local item_name = M_HELPERS.GetItemName(item_entry.Item, item_entry.Amount)
+
+    local color = Color.White
+    local text_name = RogueEssence.Menu.MenuText(item_name, RogueElements.Loc(2, 1), color)
+
+    local option = RogueEssence.Menu.MenuElementChoice(
+      function() confirm_action(i) end,
+      true,
+      text_name
+    )
+    return option
+  end
+
+  local menu = ItemSelectionMenu:new(prompt, items, generate_option_choice, choose, refuse)
   UI:SetCustomMenu(menu.menu)
   UI:WaitForChoice()
   return ret
@@ -1406,6 +1422,13 @@ SticksAndStones = EnchantmentRegistry:Register({
 --   end,
 
 -- })
+
+-- Enemies spawn with a sharply decreased random stat debuff
+-- Randomly disable moves from an enemy
+-- Eenmy spawns with 1 sealed move
+-- Taunt - Attacks have a chance of inflicting torment 
+-- Enemy cannot raise their stats
+-- Split into tier 1 and tier 2
 
 -- WordsWillNever = EnchantmentRegistry:Register({
 
@@ -3024,7 +3047,7 @@ TypeMaster = EnchantmentRegistry:Register({
     -- local type_count = self:get_type_progress().count
     local total_types = #self.valid_types
 
-    return string.format("If your team has recruited all %s types, gain a massive reward",
+    return string.format("When your team has recruited all %s types at the same time, gain a massive reward",
       M_HELPERS.MakeColoredText(tostring(total_types), PMDColor.Cyan))
   end,
   offer_time = "beginning",
@@ -3273,6 +3296,8 @@ end
 
 -- Play Dead - grants immunity to normal type moves
 
+-- Moves cost 2pp, but deal double damahge
+-- All enemies iwll have the eablity
 
 -- Power Fume - after every turn there is a chance that the opposing pokemon will be poisoned
 
@@ -4726,9 +4751,11 @@ Subzero = CreateTypeStatusEnchantment({
 Shopper = EnchantmentRegistry:Register({
   name = "Shopper",
   id = "SHOPPER",
+  amount = 1000,
 
   getDescription = function(self)
-    return "Increase the likelihood of shopkeepers appearing in the dungeon"
+    return string.format("Gain %s. The likelihood of shopkeepers appearing in the dungeon is increased.", M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
+    -- return "Increase the likelihood of shopkeepers appearing in the dungeon"
   end,
   offer_time = "beginning",
   rarity = 1,
@@ -4745,6 +4772,9 @@ Shopper = EnchantmentRegistry:Register({
   end,
 
   apply = function(self)
+    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.gold_amount
+
+    FanfareText("You gained " .. tostring(self.gold_amount) .. " " .. PMDSpecialCharacters.Money .. "!")
     FanfareText(string.format(
       "Shopkeepers are more likely to appear in the dungeon!"))
   end
@@ -4753,9 +4783,10 @@ Shopper = EnchantmentRegistry:Register({
 TreasureHunt = EnchantmentRegistry:Register({
   name = "Treasure Hunt",
   id = "TREASURE_HUNT",
+  amount = 1000,
 
   getDescription = function(self)
-    return "Increase the likelihood of chests appearing in the dungeon"
+    return string.format("Gain %s. The likelihood of chests appearing in the dungeon is increased.", M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
   end,
   offer_time = "beginning",
   rarity = 1,
@@ -4772,6 +4803,10 @@ TreasureHunt = EnchantmentRegistry:Register({
   end,
 
   apply = function(self)
+
+    _DATA.Save.ActiveTeam.Money = _DATA.Save.ActiveTeam.Money + self.gold_amount
+
+    FanfareText("You gained " .. tostring(self.gold_amount) .. " " .. PMDSpecialCharacters.Money .. "!")
     FanfareText(string.format(
       "Chests are more likely to appear in the dungeon!"))
   end

@@ -1,9 +1,4 @@
-------------------------------------------------------------
--- ItemViewMenu.lua (generic, reusable view menu)
--- Follows your original structure:
---  - selection handled by each MenuElementChoice callback
---  - ChoiceChangedFunction only updates summary
-------------------------------------------------------------
+
 ItemViewMenu = Class("ItemViewMenu")
 
 --- @param title string
@@ -11,13 +6,6 @@ ItemViewMenu = Class("ItemViewMenu")
 --- @param generate_menu_text fun(item:any, index:number): any
 --- @param update_description_summary fun(item:any, summary:any, origin:any, menu_width:number): nil
 --- @param opts table|nil
----   opts.refuse_action fun(): nil
----   opts.menu_width number
----   opts.label string
----   opts.max_elements number
----   opts.origin RogueElements.Loc
----   opts.on_choose fun(item:any, index:number, self:ItemViewMenu): nil
----   opts.summary_height number
 function ItemViewMenu:initialize(title, item_list, generate_menu_text, update_description_summary, opts)
   opts = opts or {}
 

@@ -12,6 +12,7 @@ local rocky_checkpoint = {}
 
 function rocky_checkpoint.Init(map)
   checkpoint.OnCheckpointArrive()
+  GROUND:AddMapStatus("sandstorm")
 end
 
 ---rocky_checkpoint.Enter(map)

@@ -170,6 +170,15 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"trap_heal": {
+"Name": {
+"DefaultText": "Heal Trap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

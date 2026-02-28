@@ -375,26 +375,23 @@ if __name__ == "__main__":
         ('burmy', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 6, 7, 1, 5, 0, 5),
         ('budew', 0, 'wander_normal', '', ['nature_power'], 5, 6, 1, 3, 0, 10),
 
-
-
         #3
         ('machop', 0, 'wander_normal', '', ['focus_energy', 'low_kick'], 7, 8, 2, 5, LONER, 10),
-        ('buizel', 0, 'wander_normal', '', ['sonic_boom'], 8, 9, 2, 5, 0, 10),
+        ('geodude', 0, 'patrol', '', ['rollout', 'tackle'], 7, 8, 2, 5, 0, 10),
         ('eevee', 0, 'wander_normal', '', ['tickle', 'yawn', 'quick_attack'], 6, 7, 1, 5, 0, 10),
 
         #4 
-        ('geodude', 0, 'patrol', '', ['rollout', 'tackle'], 9, 10, 3, 5, 0, 10),
+ 
         ('silcoon', 0, 'wait_attack', '', ['bug_bite', 'poison_sting'], 9, 10, 3, 5, 0, 4),
         ('cascoon', 0, 'wait_attack', '', ['bug_bite', 'string_shot'], 9, 10, 3, 5, 0, 4),
         ('cyndaquil', 0, 'wander_normal', '', ['ember', 'smokescreen'], 8, 9, 3, 5, 0, 10),
         ('oshawott', 0, 'wander_normal', '', ['water_gun', 'encore'], 9, 10, 3, 5, 0, 10),
         ('rowlet', 0, 'wander_normal', '', ['leafage', 'dual_wingbeat'], 8, 9, 3, 5, 0, 10),
 
-
-
         # 5
         ('onix', 0, 'slow_wander_normal', '', ['block', 'iron_tail'], 12, 13, 4, 5, 0, 10),
         ('pichu', 0, 'wander_normal', '', ['nuzzle', 'charm', 'fake_out'], 12, 13, 4, 5, SUPPORT, 10),
+        ('buizel', 0, 'wander_normal', '', ['sonic_boom'], 10, 11, 4, 7, 0, 10),
 
 
         # Add like path wands + pounce wands on islands
@@ -409,14 +406,15 @@ if __name__ == "__main__":
 
         #7
         ('rattata', 1, 'retreater', 'hustle', ['screech', 'sucker_punch'], 11, 12, 6, 8, 0, 10),
-
         ('vulpix', 1, 'wander_normal', 'snow_cloak', ['nasty_plot', 'dazzling_gleam'], 11, 12, 6, 7, 0, 10),
         ('geodude', 1, 'wander_normal', 'galvanize', ['rock_climb'], 10, 11, 6, 8, 0, 10),
         ('grimer', 1, 'retreater_item', 'stench', ['assurance', 'clear_smog'], 11, 12, 6, 8, 0, 10),
         ('staryu', 0, 'wander_normal', 'illuminate', ['confuse_ray', 'light_screen'], 12, 13, 6, 8, SUPPORT, 10),
 
 
+# Cramorant 	Cramorant
         #8
+        # ('horsea', 0, 'wander_normal', 'swift_swim', ['twister', 'dragon_rage'], 14, 15, 7, 9, 0, 10),
         ('dratini', 0, 'wander_smart', 'shed_skin', ['twister', 'dragon_rage'], 14, 15, 7, 9, 0, 10),
         ('wimpod', 0, 'fleeing', '', ["sand_attack", "struggle_bug"], 15, 16, 7, 8, 0, 10),
         ('dwebble', 0, 'retreater', 'sturdy', ['rock_tomb', 'bug_bite'], 13, 14, 7, 9, 0, 10),
@@ -433,7 +431,7 @@ if __name__ == "__main__":
         ('krabby', 0, 'wander_normal', 'hyper_cutter', ['bubble_beam'], 17, 18, 8, 10, 0, 10),
 
         #10
-        ('crocinaw', 0, 'wander_normal', 'sheer_force', ['ice_fang', 'psychic_fangs'], 18, 19, 9, 10, LONER, 10),
+        ('crockonow', 0, 'wander_normal', 'sheer_force', ['ice_fang', 'psychic_fangs'], 18, 19, 9, 10, LONER, 10),
         ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'disable'], 19, 20, 9, 10, SUPPORT, 10),
 
         
@@ -443,6 +441,98 @@ if __name__ == "__main__":
         ('graveler', 0, 'wander_normal', 'sheer_force', ['magnitude', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
         ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
         ('machoke', 0, 'wander_normal', 'guts', ['cross_chop'], 19, 20, 9, 10, NORMAL, 10),
+
+
+
+        # ('lopunny', 0, 'wander_normal', 'guts', ['cross_chop'], 19, 20, 9, 10, NORMAL, 10),
+        # 16
+        ('snowrunt', 0, 'wander_normal', 'snow_cloak', ['powder_snow', 'light_screen'], 25, 20, 9, 10, NORMAL, 10),
+        ('castform', 0, 'retreater', 'forecast', ['weather_ball', 'hail', 'rain_dance'], 25, 20, 9, 10, SUPPORT, 10),
+        ('glalie', 0, 'wander_normal', 'ice_body', ['ice_beam', 'protect', 'icicle_spear'], 25, 20, 9, 10, LONER, 10),
+        ('froslass', 0, 'wander_normal', 'cursed_body', ['ice_beam', 'spite', 'destiny_bond'], 25, 20, 9, 10, NORMAL, 10),
+        ('floatzel', 0, 'wander_normal', 'swift_swim', ['ice_fang', 'ice_shard'], 25, 20, 9, 10, NORMAL, 10),
+        ('duskclops', 0, 'wander_normal', 'pressure', ['curse', 'protect'], 25, 20, 9, 10, LONER, 10),
+        ('sealeo', 0, 'wander_normal', 'ice_body', ['icy_wind', 'brine', 'rollout'], 25, 20, 9, 10, NORMAL, 10),
+        ('piloswine', 0, 'wander_normal', 'snow_cloak', ['bulldoze', 'take_down', 'ice_fang'], 25, 20, 9, 10, NORMAL, 10),
+        ('azumarill', 0, 'wander_normal', 'thick_fat', ['belly_drum', 'aqua_jet'], 25, 20, 9, 10, NORMAL, 10),
+        
+        ('snorlax', 0, 'slow_wander_normal', 'gluttony', ['body_slam', 'yawn'], 25, 20, 9, 10, NORMAL, 10),
+        ('grumpig', 0, 'wander_normal', 'gluttony', ['body_slam', 'yawn'], 25, 20, 9, 10, NORMAL, 10),
+        ('miltank', 0, 'wander_normal', 'thick_fat', ['psybeam', 'charge_beam'], 25, 20, 9, 10, NORMAL, 10),
+        ('glaceon', 0, 'wander_normal', 'snow_cloak', ['haze', 'mirror_coat', 'icy_wind'], 25, 20, 9, 10, NORMAL, 10),
+        ('weavile', 0, 'retreater', 'pickpocket', ['night_slash', 'agility', 'ice_punch'], 25, 20, 9, 10, LONER, 10),
+        ('sneasle', 1, 'wander_normal', 'thief', ['taunt', 'thief', 'embargo'], 25, 20, 9, 10, LONER, 10),
+        ('sneasler', 0, 'wander_normal', 'unburdan', ['night_slash', 'agility', 'ice_punch'], 25, 20, 9, 10, LONER, 10),
+
+        # Overcoat
+        # Cryagonal, Dubwool, Greedent, Mr. Rime, Eiscue, Absol, Delibird, Cubchoo, Beartic, Spiritomb, mimikyu,
+        # hattrem, hatterene, clefable, magmorter, electabuzz. amaura, aurorus, bronzor, brazil, indeedee, mawile
+        # tauros, fighting and water and fire, furret, ghost corsola, stantlr
+        # gal darmanitan
+        # zoroark, zoroark his
+        # gothrita, 
+        # slaking, shedninja, hariyama, banette, magnetzone, 
+        # hisuan samurott,
+        # watchog
+        # escalvilar
+        # jellicent
+        # beheeyem
+        # klang, klinklang
+        # the ice creams
+        # lapras vault
+        # mienfoo, mienshao
+        # Bouffalant 	Bouffalant
+        # pawnyard, bisharp
+        # mandibuzz, 
+        # hisuan braviary
+        # durant
+        # diggersby
+        # pangoro
+        # meowstic
+        # the sword mons
+        # bergmite
+        # dubwool
+        # avalugg
+        # salandit, salazzle
+        # type null, silvally
+        # minior
+        # thievull
+        # rockruff, lycanrok
+        # drampa
+        # crabdominable
+        #20 
+        # armarouge and ceruldge]
+        # tinkatuff
+
+# Cetoddle 	Cetoddle
+# 	Ice
+#0975 	Cetitan 	Cetitan
+        #25
+
+
+
+        # ('wal')
+        # ('seadra', 0, 'wander_normal', 'thick_fat', ['curse', 'protect'], 25, 20, 9, 10, LONER, 10),
+
+        # Swinub
+        # Piloswine 
+        # axumarill
+        # floatzel 
+        # frostlass
+        # prinplup
+        # 
+
+        # 17
+        # 18
+        # 19
+        # 20
+
+        # 12
+        # ('geodude', 0, 'patrol', '', ['tackle', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
+        # ('druddigon', 0, 'wander_smart', '', ['glare', 'scale_shot'], 19, 20, 9, 10, LONER, 10),
+        # ('graveler', 0, 'wander_normal', 'sheer_force', ['magnitude', 'rocks_slide'], 18, 19, 9, 10, NORMAL, 10),
+        # ('salandit', 0, 'wander_smart', 'corrosion', ['flame_burst', 'toxic'], 19, 20, 9, 10, LONER, 10),
+        # ('machoke', 0, 'wander_normal', 'guts', ['cross_chop'], 19, 20, 9, 10, NORMAL, 10),
         #15 - Harder hitting enemies - froslass, spite, poltergeist - no food, seeds,  on this floor!lm
         ## Wyrdeer 	Wyrdeer
         ## glalie - protect, frost_breath

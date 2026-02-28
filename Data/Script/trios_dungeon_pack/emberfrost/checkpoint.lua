@@ -3,16 +3,17 @@ require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
 require 'trios_dungeon_pack.emberfrost.enchantments'
 require 'trios_dungeon_pack.beholder'
 
+require 'trios_dungeon_pack.menu.ItemShopMenu'
 require 'origin.menu.InventorySelectMenu'
 
 function PlayRandomBGM(tracks)
   tracks = tracks or {
-    "The Wind is Blowing at Cavi Cape.ogg",
-    "Obsidian Fieldlands 2.ogg",
+    -- "The Wind is Blowing at Cavi Cape.ogg",
+    -- "Obsidian Fieldlands 2.ogg",
     "Vast Poni Canyon.ogg",
-    "Rock Slide Canyon.ogg",
-    "Resolution Gorge.ogg",
-    "Wishmaker Depths.ogg",
+    -- "Rock Slide Canyon.ogg",
+    -- "Resolution Gorge.ogg",
+    -- "Wishmaker Depths.ogg",
     "Ruins of Life.ogg"
   }
 
@@ -190,6 +191,7 @@ function checkpoint.ChestInteraction(obj, activator)
 
 
   enchantments[1][1] = EnchantmentRegistry._registry[PandorasItems.id]
+  enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]
   local ret = nil
   local choose = function(enchantment)
     SOUND:PlayBattleSE("_UNK_EVT_075")
@@ -242,9 +244,128 @@ function checkpoint.ChestInteraction(obj, activator)
   GROUND:CharEndAnim(activator)
 end
 
+
+
+
+function CreateShopMenu(prompt, items)
+  local ret = {}
+  local choose = function(item)
+    ret = item
+    _MENU:RemoveMenu()
+  end
+  local refuse = function()
+    _MENU:RemoveMenu()
+  end
+
+  local generate_option_choice = function(item_entry, i, confirm_action)
+    local cost_text = tostring(item_entry.Cost) .. PMDSpecialCharacters.YellowShard
+    local item_name = M_HELPERS.GetItemName(item_entry.Item, item_entry.Amount)
+    local text = cost_text .. " - " .. item_name
+
+    local color = Color.White
+    local text_name = RogueEssence.Menu.MenuText(text, RogueElements.Loc(2, 1), color)
+
+    local option = RogueEssence.Menu.MenuElementChoice(
+      function() confirm_action(i) end,
+      false,
+      text_name
+    )
+    return option
+  end
+
+  local menu = ItemSelectionMenu:new(prompt, items, generate_option_choice, choose, refuse)
+  UI:SetCustomMenu(menu.menu)
+  UI:WaitForChoice()
+  return ret
+end
+
+
+-- function CountInventory()
+-- end
+function checkpoint.GenerateShop()
+  local shop = {}
+
+  table.insert(shop, {Item = "ammo_cacnea_spike", Amount = 1, Cost = 3})
+  return shop
+end
+
+
+-- function ItemShopMenu:generate_options()
+--   local options = {}
+--   for i = 1, #self.itemsList, 1 do
+--     local item_entry = self.itemsList[i]
+--     local enabled = self.filter(item)
+--     -- local item, equip_id = nil, nil
+--     -- if slot.IsEquipped then
+--     --   equip_id = slot.Slot
+--     --   item = _DATA.Save.ActiveTeam.Players[equip_id].EquippedItem
+--     -- else
+--     --   item = _DATA.Save.ActiveTeam:GetInv(slot.Slot)
+--     -- end
+--     local color = Color.White
+--     if not enabled then color = Color.Red end
+
+--     -- local name = item:GetDisplayName()
+--     -- if equip_id then name = tostring(equip_id + 1) .. ": " .. name end
+
+--     --     List<MenuChoice> flatChoices = new List<MenuChoice>();
+--     -- for (int ii = 0; ii < goods.Count; ii++)
+--     -- {
+--     --     int index = ii;
+
+--     --     bool canAfford = goods[index].Item2 <= DataManager.Instance.Save.ActiveTeam.Money;
+--     --     MenuText itemText = new MenuText(goods[index].Item1.GetDisplayName(), new Loc(2, 1), canAfford ? Color.White : Color.Red);
+--     --     MenuText itemPrice = new MenuText(goods[index].Item2.ToString(), new Loc(ItemMenu.ITEM_MENU_WIDTH - 8 * 4, 1), DirV.Up, DirH.Right, Color.Lime);
+--     --     flatChoices.Add(new MenuElementChoice(() => { choose(index); }, true, itemText, itemPrice));
+--     -- }
+
+
+
+--     -- MenuText itemPrice = new MenuText(goods[index].Item2.ToString(), new Loc(ItemMenu.ITEM_MENU_WIDTH - 8 * 4, 1), DirV.Up, DirH.Right, Color.Lime);
+--     local text_name = RogueEssence.Menu.MenuText(item_entry.Name, RogueElements.Loc(2, 1), color)
+--     local option = RogueEssence.Menu.MenuElementChoice(function() self:choose(i) end, enabled, text_name)
+--     table.insert(options, option)
+--   end
+--   return options
+-- end
 function checkpoint.ShopkeeperDialogue()
+
+
   -- checkpoint.GetGroundDialogueForGuest(chara, activator)
   UI:WaitShowDialogue("hi i'm the shopkeeper")
+  -- UI:WaitShowDialogue("Your Treasure Bag is full! Choose item(s) to remove.")
+
+
+  local ret = {}
+  local choose = function(list)
+    ret = list
+  end
+  local refuse = function()
+    _MENU:RemoveMenu()
+  end
+
+    -- local shop = checkpoint.GenerateShop()
+  local menu = ItemShopMenu:new("ow", {Item = "ammo_cacnea_spike", Amount = 1, Cost = 3}, function(x)
+      return true
+    
+  end,
+    choose, refuse, "Trash", 176, true, diff)
+
+  UI:SetCustomMenu(menu.menu)
+  UI:WaitForChoice()
+
+  -- CreateShopMenu("shop!", shop)
+  -- local ret = {}
+  -- local choose = function(list) ret = list end
+  -- local refuse = function() _MENU:RemoveMenu() end
+  -- local shop = checkpoint.GenerateShop()
+  -- local menu = ItemShopMenu:new("gi", function (x) return true
+    
+  -- end, choose, refuse, "ggiig", 176, true, 8)
+  -- UI:SetCustomMenu(menu.menu)
+  -- UI:WaitForChoice()
+  -- return ret
+
   -- 1st Checkpoint:
   -- If in roguelocke mode, then the introduction isn't necessary, only for story mod
   -- Oy there! Making ways towards the Emberfrost ain't you? Come over here ... and don't mind that chest there...

@@ -3320,6 +3320,22 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 17
+},
+"yellow_shard": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": -1,
+"UsageType": 0,
+"States": [],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "Yellow Shard",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 15
 }
 }
 }

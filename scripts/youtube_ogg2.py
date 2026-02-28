@@ -157,14 +157,89 @@ if __name__ == "__main__":
         #     loop_length=9669790-0,
         # ), 
         
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=NBFWOEwlcBA",
+        #     title="The Wind is Blowing at Cavi Cape",
+        #     artist="Yash",
+        #     album="Mario and Luigi: Bowser's Inside Story ",
+        #     loop_start=3158390,
+        #     loop_length=6299179-3158390,
+        # ), 
+
         OggTrack(
-            url="https://www.youtube.com/watch?v=NBFWOEwlcBA",
-            title="The Wind is Blowing at Cavi Cape",
-            artist="Yash",
-            album="Mario and Luigi: Bowser's Inside Story ",
+            url="https://www.youtube.com/watch?v=v--v4WnH3I0",
+            title="Striking Boss Battle!",
+            artist="Danirbu",
+            album="Original Soundtrack",
             loop_start=3158390,
             loop_length=6299179-3158390,
         ), 
+
+        OggTrack(
+            url="https://www.youtube.com/watch?v=PcKcNRjif-Q",
+            title="The Dreadful Fight!",
+            artist="Yash",
+            album="Final Fantasy IV",
+            loop_start=1677591,
+            loop_length=5715667 - 1677591,
+        ), 
+
+        OggTrack(
+            url="https://www.youtube.com/watch?v=hdZy_B2LzFw",
+            title="Battle! Gladion",
+            artist="Yash",
+            album="Pokemon Sun and Moon",
+            loop_start=4165009,
+            loop_length=7605466-4165009,
+        ),
+
+        # https://www.youtube.com/watch?v=Yz0XV1bm8Yg"
+# Hollow Bastion (Kingdom Hearts)
+# https://www.youtube.com/watch?v=RYICv_2sdZw
+
+
+
+  
+    
+    
+  
+
+  
+    
+    
+    
+  
+
+  
+    
+    
+  
+
+  
+    
+    
+    
+  
+
+  
+    
+      
+      
+    
+    
+      
+      
+    
+  
+# Battle! AI Professor - PMD2 Soundfont Remix 
+# https://www.youtube.com/watch?v=2It76g47tJA
+
+# Gladion Team's
+# https://www.youtube.com/watch?v=Yz0XV1bm8Yg
+
+
+
+# https://www.youtube.com/watch?v=Yz0XV1bm8Yg
 
 
     ]

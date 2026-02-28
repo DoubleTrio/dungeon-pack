@@ -97,6 +97,7 @@ PMDSpecialCharacters = {
   Scribble = STRINGS:Format("\\uE023"),
   Money = STRINGS:Format("\\uE024"),
   SpeechBubble = STRINGS:Format("\\uE040"),
+  YellowShard = STRINGS:Format("\\uE025"),
 }
 M_HELPERS = {
 

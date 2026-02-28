@@ -1,11 +1,14 @@
 ItemSelectionMenu = Class("ItemSelectionMenu")
 
+-- - @param generate_menu_text fun(item:any, index:number): any
 
-function ItemSelectionMenu:initialize(title, item_list, confirm_action, refuse_action, menu_width, label)
+function ItemSelectionMenu:initialize(title, item_list, generate_option_choice, confirm_action, refuse_action,
+                                      menu_width, label)
   self.MAX_ELEMENTS = 6
 
   self.title = title
 
+  self.generateOptionChoice = generate_option_choice
   self.itemList = item_list
 
   self.menuWidth = menu_width or 142
@@ -40,7 +43,7 @@ function ItemSelectionMenu:createMenu()
   local origin = RogueElements.Loc(16, self.itemSummary.Bounds.Y - math.min(self.MAX_ELEMENTS, #self.itemList) * 14 - 30)
 
   self.menu = RogueEssence.Menu.ScriptableMultiPageMenu(origin, self.menuWidth, self.title, option_array, 0, self.MAX_ELEMENTS, refuse, refuse, false)
-  self.menu.ChoiceChangedFunction = function() self:updateSummary() print(tostring(self.menu.CurrentChoice)) end
+  self.menu.ChoiceChangedFunction = function() self:updateSummary() end
   -- self.menu.
 end
 
@@ -50,19 +53,19 @@ end
 --- @return table a list of ``RogueEssence.Menu.MenuElementChoice`` objects.
 function ItemSelectionMenu:generate_options()
   local options = {}
-  for i=1, #self.itemList, 1 do
-      local item_entry = self.itemList[i]
-      local item_name = M_HELPERS.GetItemName(item_entry.Item, item_entry.Amount)
-      local color = Color.White
-      local text_name = RogueEssence.Menu.MenuText(item_name, RogueElements.Loc(2, 1), color)
-      local option = RogueEssence.Menu.MenuElementChoice(function() self:choose(i) end, true, text_name)
-      if item_name ~= nil then
-        table.insert(options, option)
-      end
+  for i = 1, #self.itemList, 1 do
+    local item_entry = self.itemList[i]
+    print(tostring(item_entry))
+    print(Serpent.dump(item_entry))
+
+    local option = self.generateOptionChoice(item_entry, i, function(idx)
+      self:choose(idx)
+    end)
+
+    table.insert(options, option)
   end
   return options
 end
-
 
 function ItemSelectionMenu:updateSummary()
   local index = self.menu.CurrentPage * self.MAX_ELEMENTS + self.menu.CurrentChoice + 1

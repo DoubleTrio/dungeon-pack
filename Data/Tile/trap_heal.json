@@ -1,0 +1,292 @@
+﻿{
+"Version": "0.8.11.0",
+"Object": {
+"$type": "RogueEssence.Data.TileData, RogueEssence",
+"Name": {
+"DefaultText": "Heal Trap",
+"LocalTexts": {}
+},
+"Desc": {
+"DefaultText": "Triggering this trap makes life dew appear, healing all nearby Pokémon by 50%.",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"Anim": {
+"AnimIndex": "Trap_Heal",
+"FrameTime": 1,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"Offset": {
+"X": 0,
+"Y": 0
+},
+"Layer": 0,
+"BlockItem": true,
+"StepType": 3,
+"MinimapIcon": {
+"X": 2,
+"Y": 1
+},
+"MinimapColor": "255, 255, 0, 255",
+"LandedOnTiles": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.TriggerUnderfootEvent, PMDC"
+}
+}
+],
+"InteractWithTiles": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.InvokeTrapEvent, PMDC",
+"HitboxAction": {
+"$type": "RogueEssence.Dungeon.AreaAction, RogueEssence",
+"Emitter": {
+"$type": "RogueEssence.Content.CircleSquareFountainEmitter, RogueEssence",
+"LocHeight": 0,
+"Anims": [
+{
+"$type": "RogueEssence.Content.EmittingAnim, RogueEssence",
+"ResultAnim": {
+"$type": "RogueEssence.Content.EmittingAnim, RogueEssence",
+"ResultAnim": {
+"$type": "RogueEssence.Content.StaticAnim, RogueEssence",
+"Anim": {
+"AnimIndex": "Aqua_Tail_Wave",
+"FrameTime": 2,
+"StartFrame": -1,
+"EndFrame": -1,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"TotalTime": 0,
+"Cycles": 1,
+"FrameOffset": 0
+},
+"Layer": 0,
+"Anim": {
+"AnimIndex": "Water_Sport",
+"FrameTime": 2,
+"StartFrame": 0,
+"EndFrame": 3,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"TotalTime": 0,
+"Cycles": 1,
+"FrameOffset": 0
+},
+"Layer": 2,
+"Anim": {
+"AnimIndex": "Water_Sport",
+"FrameTime": 1,
+"StartFrame": 0,
+"EndFrame": 0,
+"AnimDir": -1,
+"Alpha": 255,
+"AnimFlip": 0
+},
+"TotalTime": 0,
+"Cycles": 1,
+"FrameOffset": 0
+}
+],
+"Bursts": 3,
+"ParticlesPerBurst": 3,
+"BurstTime": 3,
+"StartDistance": 0,
+"RangeDiff": 2,
+"HeightRatio": 0.5,
+"Layer": 2
+},
+"HitTiles": true,
+"BurstTiles": 0,
+"HitArea": 0,
+"Range": 2,
+"Speed": 4,
+"CharAnimData": {
+"$type": "RogueEssence.Dungeon.CharAnimFrameType, RogueEssence",
+"ActionType": 0
+},
+"TargetAlignments": 3,
+"TileEmitter": {
+"$type": "RogueEssence.Content.EmptyFiniteEmitter, RogueEssence",
+"LocHeight": 0
+},
+"PreActions": [
+{
+"Delay": 10,
+"AbsoluteDelay": false,
+"Sound": "DUN_Healing_Wish_2",
+"Emitter": {
+"$type": "RogueEssence.Content.EmptyFiniteEmitter, RogueEssence",
+"LocHeight": 0
+},
+"ScreenMovement": {
+"MinShake": 0,
+"MaxShake": 0,
+"MaxShakeTime": 0
+}
+},
+{
+"Delay": 0,
+"AbsoluteDelay": false,
+"Sound": "DUN_Natural_Gift",
+"Emitter": {
+"$type": "RogueEssence.Content.EmptyFiniteEmitter, RogueEssence",
+"LocHeight": 0
+},
+"ScreenMovement": {
+"MinShake": 0,
+"MaxShake": 0,
+"MaxShakeTime": 0
+}
+}
+],
+"ActionFX": {
+"Delay": 0,
+"AbsoluteDelay": false,
+"Sound": "DUN_Dragon_Dance",
+"Emitter": {
+"$type": "RogueEssence.Content.EmptyFiniteEmitter, RogueEssence",
+"LocHeight": 0
+},
+"ScreenMovement": {
+"MinShake": 0,
+"MaxShake": 0,
+"MaxShakeTime": 0
+}
+},
+"LagBehindTime": 30
+},
+"Explosion": {
+"TargetAlignments": 7,
+"HitTiles": false,
+"Range": 0,
+"Speed": 0,
+"TileEmitter": {
+"$type": "RogueEssence.Content.EmptyFiniteEmitter, RogueEssence",
+"LocHeight": 0
+},
+"Emitter": {
+"$type": "RogueEssence.Content.EmptyCircleSquareEmitter, RogueEssence",
+"LocHeight": 0
+},
+"IntroFX": [],
+"ExplodeFX": {
+"Delay": 0,
+"AbsoluteDelay": false,
+"Sound": "",
+"Emitter": {
+"$type": "RogueEssence.Content.EmptyFiniteEmitter, RogueEssence",
+"LocHeight": 0
+},
+"ScreenMovement": {
+"MinShake": 0,
+"MaxShake": 0,
+"MaxShakeTime": 0
+}
+}
+},
+"NewData": {
+"Element": "none",
+"Category": 0,
+"HitRate": -1,
+"SkillStates": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeExplosions": [],
+"BeforeHits": [],
+"OnHits": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.RestoreHPEvent, PMDC",
+"Numerator": 2,
+"Denominator": 4,
+"AffectTarget": true
+}
+}
+],
+"OnHitTiles": [],
+"AfterActions": [],
+"ElementEffects": [],
+"IntroFX": [],
+"HitFX": {
+"Delay": 0,
+"AbsoluteDelay": false,
+"Sound": "",
+"Emitter": {
+"$type": "RogueEssence.Content.EmptyFiniteEmitter, RogueEssence",
+"LocHeight": 0
+},
+"ScreenMovement": {
+"MinShake": 0,
+"MaxShake": 0,
+"MaxShakeTime": 0
+}
+},
+"HitCharAction": {
+"$type": "RogueEssence.Dungeon.CharAnimFrameType, RogueEssence",
+"ActionType": 0
+}
+},
+"Message": {
+"Key": "MSG_TILE_CHECK"
+},
+"OneTime": true
+}
+}
+],
+"OnEquips": [],
+"OnPickups": [],
+"BeforeStatusAdds": [],
+"BeforeStatusAddings": [],
+"OnStatusAdds": [],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [],
+"OnTurnStarts": [],
+"OnTurnEnds": [],
+"OnMapTurnEnds": [],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [],
+"BeforeBeingHits": [],
+"AfterHittings": [],
+"AfterBeingHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"UserElementEffects": [],
+"TargetElementEffects": [],
+"ModifyHPs": [],
+"RestoreHPs": []
+}
+}
