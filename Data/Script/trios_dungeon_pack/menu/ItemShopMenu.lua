@@ -35,6 +35,11 @@ function ItemShopMenu:initialize(title, items, filter, confirm_action, refuse_ac
   self.confirm_button = confirm_button
   self.confirmAction = confirm_action
   self.refuseAction = refuse_action
+
+  -- how many shards from selection
+  self.selected_total = 0
+
+
   self.menuWidth = menu_width or 176
   self.filter = filter or function(_) return true end
   self.includeEquips = include_equips
@@ -71,7 +76,21 @@ function ItemShopMenu:initialize(title, items, filter, confirm_action, refuse_ac
   self.menu = RogueEssence.Menu.ScriptableMultiPageMenu(label, origin, self.menuWidth, title, option_array, 0,
     self.MAX_ELEMENTS, refuse_action, refuse_action, false, self.max_choices, self.multiConfirmAction)
   self.menu.ChoiceChangedFunction = function() self:updateSummary() end
-  self.menu.MultiSelectChangedFunction = function() self:updateSummary() end
+  self.menu.MultiSelectChangedFunction = function()
+    self:updateSummary()
+    
+    local option = option_array[self.menu.CurrentChoice]
+    local item_slot = self.slotList[self.menu.CurrentChoice + 1]
+    local item = _DATA.Save.ActiveTeam:GetInv(item_slot.Slot)
+
+    if option.Selected then
+      self.selected_total = self.selected_total + item.Amount
+    else
+      self.selected_total = self.selected_total - item.Amount
+    end
+
+    self:updateShardText()
+  end
   self.menu.UpdateFunction = function(input) self:updateFunction(input) end
 
   -- create the summary window
@@ -80,8 +99,105 @@ function ItemShopMenu:initialize(title, items, filter, confirm_action, refuse_ac
   self.summary = RogueEssence.Menu.ItemSummary(RogueElements.Rect.FromPoints(
     RogueElements.Loc(16, GraphicsManager.ScreenHeight - 8 - GraphicsManager.MenuBG.TileHeight * 2 - 14 * 4),         --LINE_HEIGHT = 12, VERT_SPACE = 14
     RogueElements.Loc(GraphicsManager.ScreenWidth - 16, GraphicsManager.ScreenHeight - 8)))
+  
+  self.itemCountMenu = RogueEssence.Menu.SummaryMenu(RogueElements.Rect.FromPoints(
+    RogueElements.Loc(16 + self.menuWidth, self.menu.Bounds.Bottom - 12 * 2 - GraphicsManager.MenuBG.TileHeight * 2),
+    RogueElements.Loc(RogueEssence.Content.GraphicsManager.ScreenWidth - 16, self.menu.Bounds.Bottom)
+  ))
+
+
+  local titleText = RogueEssence.Menu.DialogueText(
+    "Shards:",
+    RogueElements.Rect(
+      RogueElements.Loc(GraphicsManager.MenuBG.TileWidth * 2, 0),
+      RogueElements.Loc(self.itemCountMenu.Bounds.Width, 24)
+    ),
+    12
+  )
+  titleText.CenterV = true
+  self.itemCountMenu.Elements:Add(titleText)
+
+
+
+
+  local shardText = RogueEssence.Menu.DialogueText(
+    "[Placeholder]",
+    RogueElements.Rect(
+      RogueElements.Loc(0, GraphicsManager.MenuBG.TileHeight + 12),
+      RogueElements.Loc(self.itemCountMenu.Bounds.Width, GraphicsManager.MenuBG.TileHeight + 12 + 12)
+    ),
+    12
+  )
+    
+  shardText.CenterH = true
+
+  self.shardText = shardText
+  -- SetAndFormatText
+  self.itemCountMenu.Elements:Add(shardText)
+
+
+
   self.menu.SummaryMenus:Add(self.summary)
+  self.menu.SummaryMenus:Add(self.itemCountMenu)
   self:updateSummary()
+  self:updateShardText()
+end
+
+function ItemShopMenu:count_item(item_id)
+  local sum = 0
+  local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+  for i = 0, inv_count - 1 do
+    local item = _DATA.Save.ActiveTeam:GetInv(i)
+    if (item.ID == item_id) then
+      sum = sum + item.Amount
+    end
+  end
+
+
+  local player_count = _DATA.Save.ActiveTeam.Players.Count
+  for i = 0, player_count - 1, 1 do
+    local player = _DATA.Save.ActiveTeam.Players[i]
+    if player.EquippedItem.ID == item_id then
+      sum = sum + player.EquippedItem.Amount
+    end
+  end
+  return sum
+end
+
+function ItemShopMenu:remove_item(item_id, amount)
+  local remaining = amount
+
+  local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+  for i = inv_count - 1, 0, -1 do
+    if remaining <= 0 then break end
+    local item = _DATA.Save.ActiveTeam:GetInv(i)
+    if item.ID == item_id then
+      if item.Amount <= remaining then
+        remaining = remaining - item.Amount
+        _DATA.Save.ActiveTeam:RemoveFromInv(i)
+      else
+        item.Amount = item.Amount - remaining
+        remaining = 0
+      end
+    end
+  end
+
+  if remaining > 0 then
+    local player_count = _DATA.Save.ActiveTeam.Players.Count
+    for i = 0, player_count - 1, 1 do
+      if remaining <= 0 then break end
+      local player = _DATA.Save.ActiveTeam.Players[i]
+      if player.EquippedItem.ID == item_id then
+        if player.EquippedItem.Amount <= remaining then
+          remaining = remaining - player.EquippedItem.Amount
+          player:SilentDequipItem()
+        else
+          player.EquippedItem.Amount = player.EquippedItem.Amount - remaining
+          remaining = 0
+        end
+      end
+    end
+  end
 end
 
 --- Loads the item slots that will be part of the menu.
@@ -135,7 +251,21 @@ function ItemShopMenu:generate_options()
     local name = item:GetDisplayName()
     if equip_id then name = tostring(equip_id + 1) .. ": " .. name end
     local text_name = RogueEssence.Menu.MenuText(name, RogueElements.Loc(2, 1), color)
-    local option = RogueEssence.Menu.MenuElementChoice(function() self:choose(i) end, enabled, text_name)
+
+
+    local amount = (math.random(2) == 1) and 1 or 10
+    local shard_text = RogueEssence.Menu.MenuText(amount .. " " .. PMDSpecialCharacters.YellowShard,
+    --176
+    RogueElements.Loc(176 - 8 * 4, 1), DirV.Up, DirH.Right, color)
+    -- new Loc(ItemMenu.ITEM_MENU_WIDTH - 8 * 4, 1), DirV.Up, DirH.Right, Color.Lim
+            --         bool canAfford = goods[index].Item2 <= DataManager.Instance.Save.ActiveTeam.Money;
+            --     MenuText itemText = new MenuText(goods[index].Item1.GetDisplayName(), new Loc(2, 1), canAfford ? Color.White : Color.Red);
+            --     MenuText itemPrice = new MenuText(goods[index].Item2.ToString(), new Loc(ItemMenu.ITEM_MENU_WIDTH - 8 * 4, 1), DirV.Up, DirH.Right, Color.Lime);
+            --     flatChoices.Add(new MenuElementChoice(() => { choose(index); }, true, itemText, itemPrice));
+            -- }
+
+
+    local option = RogueEssence.Menu.MenuElementChoice(function() self:choose(i) print("Akaakakak") end, enabled, text_name, shard_text)
     table.insert(options, option)
   end
   return options
@@ -156,16 +286,17 @@ end
 --- the chosen index as the single element of a table array.
 --- @param index number the index of the chosen character, wrapped inside of a single element table array.
 function ItemShopMenu:choose(index)
+  print("choosing")
   self.multiConfirmAction({ index - 1 })
 end
 
 --- Uses the current input to apply changes to the menu.
 --- @param input userdata the ``RogueEssense.InputManager``.
 function ItemShopMenu:updateFunction(input)
-  if input:JustPressed(RogueEssence.FrameInput.InputType.SortItems) then
-    _GAME:SE("Menu/Sort")
-    self:SortCommand()
-  end
+  -- if input:JustPressed(RogueEssence.FrameInput.InputType.SortItems) then
+    -- _GAME:SE("Menu/Sort")
+    -- self:SortCommand()
+  -- end
 end
 
 --- Sorts the inventory and genertes a new menu to replace this one with, reselecting any
@@ -227,8 +358,22 @@ end
 
 --- Updates the summary window.
 function ItemShopMenu:updateSummary()
-  print(tostring(self.menu.CurrentChoiceTotal))
+  -- print(tostring(self.menu.CurrentChoiceTotal).. "Ge")
+  -- print(tostring(self.menu.CurrentChoice))
   self.summary:SetItem(_DATA.Save.ActiveTeam:GetInv(self.slotList[self.menu.CurrentChoiceTotal + 1].Slot))
+end
+
+function ItemShopMenu:updateShardText()
+  
+  local text = string.format("%d%s", self:count_item("yellow_shard"), PMDSpecialCharacters.YellowShard)
+
+  if self.selected_total > 0 then
+    text = text .. string.format(" (-%d)", self.selected_total)
+  end
+  print(tostring(text))
+  print(tostring(self.selected_total))
+
+  self.shardText:SetAndFormatText(text)
 end
 
 --- Extract the list of selected slots.

@@ -3326,7 +3326,7 @@
 "Icon": -1,
 "UsageType": 0,
 "States": [],
-"MaxStack": 0,
+"MaxStack": 9,
 "CannotDrop": false,
 "BagEffect": false,
 "Name": {

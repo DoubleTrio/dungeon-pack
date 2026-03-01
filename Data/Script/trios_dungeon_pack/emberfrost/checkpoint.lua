@@ -345,15 +345,17 @@ function checkpoint.ShopkeeperDialogue()
   end
 
     -- local shop = checkpoint.GenerateShop()
-  local menu = ItemShopMenu:new("ow", {Item = "ammo_cacnea_spike", Amount = 1, Cost = 3}, function(x)
+  local menu = ItemShopMenu:new("Pachirisu's Shop", {Item = "ammo_cacnea_spike", Amount = 1, Cost = 3}, function(x)
       return true
     
   end,
-    choose, refuse, "Trash", 176, true, diff)
+    choose, refuse, "Buy", 176, true, diff)
 
   UI:SetCustomMenu(menu.menu)
   UI:WaitForChoice()
 
+  -- CalculateChoiceLength
+    -- protected int CalculateChoiceLength(IEnumerable<IChoosable> choices, int minWidth)
   -- CreateShopMenu("shop!", shop)
   -- local ret = {}
   -- local choose = function(list) ret = list end
