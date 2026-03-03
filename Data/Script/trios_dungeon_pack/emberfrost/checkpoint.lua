@@ -22,7 +22,22 @@ function PlayRandomBGM(tracks)
   SOUND:PlayBGM(music, true)
 end
 
-function RespawnGuests()
+
+local checkpoint = {}
+
+
+function checkpoint.ShowTitle(guest, player)
+
+  local title = "Checkpoint " .. SV.EmberFrost.CheckpointProgression
+  if SV.EmberFrost.CheckpointProgression == 5 then
+    title = title .. " - Final Stretch"
+  end
+  UI:WaitShowTitle(title, 20)
+  GAME:WaitFrames(60)
+  UI:WaitHideTitle(20)
+end
+
+function checkpoint.RespawnGuests()
   local count = _DATA.Save.ActiveTeam.Guests.Count
   for i = 1, count, 1
   do
@@ -37,22 +52,6 @@ function RespawnGuests()
     total = total + 1
   end
 end
-
-local checkpoint = {}
-
-
-function checkpoint.ShowTitle(guest, player)
-
-  local title = "Checkpoint " .. SV.EmberFrost.CheckpointProgression
-
-  if SV.EmberFrost.CheckpointProgression == 5 then
-    title = title .. " - Final Stretch"
-  end
-  UI:WaitShowTitle(title, 20)
-  GAME:WaitFrames(60)
-  UI:WaitHideTitle(20)
-end
-
 
 function checkpoint.GetGroundDialogueForGuest(guest, player)
   local oldDir = guest.Direction
@@ -70,9 +69,30 @@ function checkpoint.GetGroundDialogueForGuest(guest, player)
   guest.Direction = oldDir
 end
 
+function checkpoint.GenerateShop()
+  local shop = {}
+  local i = 1
+
+  local function addItem(entry)
+    entry.Index = i
+    shop[i] = entry
+    i = i + 1
+  end
+
+  addItem({ Item = "ammo_cacnea_spike", Amount = 1, Cost = 3 })
+  if not SV.EmberFrost.GotMelodyBox then
+    addItem({ Item = "emberfrost_melody_box", Amount = 1, Cost = 80 })
+  end
+
+  return shop
+end
+
 function checkpoint.OnCheckpointArrive()
+
+  
   COMMON.RespawnAllies()
-  RespawnGuests()
+  checkpoint.RespawnGuests()
+  SV.EmberFrost.Shopkeeper = checkpoint.GenerateShop()
   SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression + 1
   local active_enchants = EnchantmentRegistry:GetSelected()
   for _, enchant in pairs(active_enchants) do
@@ -112,6 +132,10 @@ function checkpoint.ProceedToNextSection(segment, floor_num)
     checkpoint.OnCheckpointExit()
     GAME:ContinueDungeon('emberfrost_depths', 0, floor_num, 0, RogueEssence.Data.GameProgress.DungeonStakes.Risk, true, true)
   end
+
+  local checkpoint = SV.EmberFrost.CheckpointProgression
+  checkpoint = math.max(checkpoint, 5)
+  SV.EmberFrost.ShopkeeperDialogueProgression[checkpoint] = true
 
   GROUND:CharEndAnim(player)
   
@@ -280,16 +304,6 @@ function CreateShopMenu(prompt, items)
 end
 
 
--- function CountInventory()
--- end
-function checkpoint.GenerateShop()
-  local shop = {}
-
-  table.insert(shop, {Item = "ammo_cacnea_spike", Amount = 1, Cost = 3})
-  return shop
-end
-
-
 -- function ItemShopMenu:generate_options()
 --   local options = {}
 --   for i = 1, #self.itemsList, 1 do
@@ -328,32 +342,225 @@ end
 --   end
 --   return options
 -- end
-function checkpoint.ShopkeeperDialogue()
 
 
-  -- checkpoint.GetGroundDialogueForGuest(chara, activator)
-  UI:WaitShowDialogue("hi i'm the shopkeeper")
-  -- UI:WaitShowDialogue("Your Treasure Bag is full! Choose item(s) to remove.")
 
+function checkpoint.ShopkeeperIntroDialogue()
+  local checkpoint = SV.EmberFrost.CheckpointProgression
 
-  local ret = {}
-  local choose = function(list)
-    ret = list
+  local player = CH("PLAYER")
+  local shopkeeper = CH("Shopkeeper")
+  checkpoint = math.max(checkpoint, 5)
+  if not SV.EmberFrost.ShopkeeperDialogueProgression[checkpoint] and not GAME:InRogueMode() then
+    if checkpoint == 1 then
+      UI:WaitShowDialogue("Ay! A bunch of ")
+    elseif checkpoint == 2 then
+      UI:WaitShowDialogue("hi2")
+    elseif checkpoint == 3 then
+      UI:WaitShowDialogue("hi3")
+    elseif checkpoint == 4 then
+      UI:WaitShowDialogue("hi4")
+    else
+      UI:WaitShowDialogue("hey, you are probably using dev mode")
+      GROUND:CharSetEmote(shopkeeper, "shock", 1)
+      SOUND:PlayBattleSE("EVT_Emote_Shock_Bad")
+      GROUND:CharSetEmote(player, "exclaim", 1)
+      UI:WaitShowDialogue("donenenen")
+    end
+    -- SV.EmberFrost.ShopkeeperDialogueProgression[checkpoint] = true
   end
-  local refuse = function()
-    _MENU:RemoveMenu()
+end
+
+function checkpoint.ShopkeeperDialogue(shopkeeper, player)
+  local oldDir = shopkeeper.Direction
+  GROUND:CharTurnToChar(shopkeeper, player)
+  GROUND:CharSetAnim(player, "None", true)
+  GROUND:CharSetAnim(shopkeeper, "None", true)
+
+  UI:SetSpeaker(shopkeeper)
+  -- UI:SetSpeakerReverse(true)
+  -- local portrait_loc = RogueEssence.Menu.SpeakerPortrait.DefaultLoc
+  -- portrait_loc.X = RogueEssence.Content.GraphicsManager.ScreenWidth - 56
+  -- UI:SetSpeakerLoc(portrait_loc.X, portrait_loc.Y)
+
+  checkpoint.ShopkeeperIntroDialogue()
+
+  local state = 0
+  local repeated = false
+  local cart = {}
+
+  while state > -1 do
+    if state == 0 then
+      local msg = repeated and "What else will it be?" or
+      "Welcome! I trade in Yellow Shards. Buy, sell, or just browse?"
+      local choices = { "Buy", "Sell", "Info", "Section Info", "Leave" }
+      UI:BeginChoiceMenu(msg, choices, 1, 5)
+      UI:WaitForChoice()
+      local result = UI:ChoiceResult()
+      repeated = true
+
+      if result == 1 then
+        local shop_array = {}
+        for _, item in pairs(SV.EmberFrost.Shopkeeper) do
+          table.insert(shop_array, item)
+        end
+        if #shop_array > 0 then
+          UI:WaitShowDialogue("Take a look at what I've got. Payment in Yellow Shards only!")
+          state = 1
+        else
+          UI:WaitShowDialogue("...Hm. Looks like I'm all sold out. Check back later.")
+        end
+      elseif result == 2 then
+        local bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
+        if bag_count > 0 then
+          UI:WaitShowDialogue("Got something to offload? I'll give you a fair cut.")
+          state = 3
+        else
+          UI:SetSpeakerEmotion("Sad")
+          UI:WaitShowDialogue("You've got nothing on you. Come back when you've got something to sell.")
+          UI:SetSpeakerEmotion("Normal")
+        end
+      elseif result == 3 then
+        UI:WaitShowDialogue("INFO PLACEHOLDER 1: This shop accepts Yellow Shards as currency.")
+        UI:WaitShowDialogue("INFO PLACEHOLDER 2: Items purchased here are gone for good — no restocks mid-run.")
+        UI:WaitShowDialogue("INFO PLACEHOLDER 3: Selling items returns 60% of their value in Poke.")
+        UI:WaitShowDialogue("INFO PLACEHOLDER 4: [Additional lore/info here]")
+        
+      elseif result == 4 then
+      
+        UI:WaitShowDialogue("Water section!")
+
+      else
+        UI:WaitShowDialogue("Safe travels. Don't spend those shards all in one place.")
+        state = -1
+      end
+    elseif state == 1 then
+      local shop_array = {}
+      for _, item in pairs(SV.EmberFrost.Shopkeeper) do
+        table.insert(shop_array, item)
+      end
+
+      local result = ItemShopMenu.run("Pachirisu's Shop", shop_array, function(x) return true end, "Trade", 8)
+
+      if result.Items then
+        local bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
+        local bag_cap = GAME:GetPlayerBagLimit()
+        if bag_count == bag_cap then
+          UI:SetSpeakerEmotion("Sad")
+          UI:WaitShowDialogue("Hmm. Your bag seems full.")
+          UI:SetSpeakerEmotion("Happy")
+          UI:WaitShowDialogue("You can give some items to me!")
+          UI:SetSpeakerEmotion("Normal")
+        else
+          cart = result.Items
+          local total = result.Cost
+
+          local msg
+
+          if #cart == 1 then
+            local item_name = RogueEssence.Dungeon.InvItem(cart[1].Item, false, cart[1].Amount):GetDisplayName()
+            msg = "That'll be " .. total .. PMDSpecialCharacters.YellowShard .. " for " .. item_name .. ". Deal?"
+          else
+            msg = "That'll be " .. total .. PMDSpecialCharacters.YellowShard .. " for all of that. Deal?"
+          end
+
+          UI:ChoiceMenuYesNo(msg, false)
+          UI:WaitForChoice()
+          local confirm = UI:ChoiceResult()
+
+          if confirm then
+            local bought_count = #cart
+            M_HELPERS.RemoveItem("yellow_shard", total)
+            for ii = 1, #cart do
+              local entry = cart[ii]
+              GAME:GivePlayerItem(entry.Item, entry.Amount, false)
+              SV.EmberFrost.Shopkeeper[entry.Index] = nil
+            end
+            cart = {}
+            SOUND:PlayBattleSE("DUN_Money")
+            if bought_count == 1 then
+              UI:WaitShowDialogue("Good pick. Take care of it.")
+            else
+              UI:WaitShowDialogue("Nice haul. Pleasure doing business.")
+            end
+          else
+            UI:WaitShowDialogue("Aww unfortunate. Come back next time!")
+          end
+        end
+      end
+      state = 0
+    elseif state == 3 then
+      UI:SellMenu()
+      UI:WaitForChoice()
+      local result = UI:ChoiceResult()
+
+      if #result > 0 then
+        cart = result
+        state = 4
+      else
+        state = 0
+      end
+    elseif state == 4 then
+      local total = 0
+      for ii = 1, #cart do
+        local item
+        if cart[ii].IsEquipped then
+          item = GAME:GetPlayerEquippedItem(cart[ii].Slot)
+        else
+          item = GAME:GetPlayerBagItem(cart[ii].Slot)
+        end
+        total = total + math.floor(item:GetSellValue() * 0.5)
+      end
+
+      local msg
+      if #cart == 1 then
+        local item
+        if cart[1].IsEquipped then
+          item = GAME:GetPlayerEquippedItem(cart[1].Slot)
+        else
+          item = GAME:GetPlayerBagItem(cart[1].Slot)
+        end
+        msg = "I'll give you " .. STRINGS:FormatKey("MONEY_AMOUNT", total) .. " for that " .. item:GetDisplayName() .. ". Sound good?"
+      else
+        msg = "I'll give you " .. STRINGS:FormatKey("MONEY_AMOUNT", total) .. " for all of it. Sound good?"
+      end
+
+      UI:ChoiceMenuYesNo(msg, false)
+      UI:WaitForChoice()
+      local result = UI:ChoiceResult()
+
+      if result then
+        local sold_count = #cart
+        for ii = #cart, 1, -1 do
+          if cart[ii].IsEquipped then
+            GAME:TakePlayerEquippedItem(cart[ii].Slot, true)
+          else
+            GAME:TakePlayerBagItem(cart[ii].Slot, true)
+          end
+        end
+        SOUND:PlayBattleSE("DUN_Money")
+        GAME:AddToPlayerMoney(total)
+        cart = {}
+        if sold_count == 1 then
+          UI:WaitShowDialogue("Pleasure. I'll take care of this.")
+        else
+          UI:WaitShowDialogue("Pleasure. I'll take care of all of these.")
+        end
+        state = 0
+      else
+        state = 3
+      end
+    end
   end
 
-    -- local shop = checkpoint.GenerateShop()
-  local menu = ItemShopMenu:new("Pachirisu's Shop", {Item = "ammo_cacnea_spike", Amount = 1, Cost = 3}, function(x)
-      return true
-    
-  end,
-    choose, refuse, "Buy", 176, true, diff)
+  shopkeeper.Direction = oldDir
+  GROUND:CharEndAnim(player)
+  GROUND:CharEndAnim(shopkeeper)
+  UI:ResetSpeaker()
+end
 
-  UI:SetCustomMenu(menu.menu)
-  UI:WaitForChoice()
 
+  -- UI:WaitForChoice()
   -- CalculateChoiceLength
     -- protected int CalculateChoiceLength(IEnumerable<IChoosable> choices, int minWidth)
   -- CreateShopMenu("shop!", shop)
@@ -428,5 +635,5 @@ function checkpoint.ShopkeeperDialogue()
   -- How did I get here?
 
   -- Actually, we're all related...
-end
+-- end
 return checkpoint

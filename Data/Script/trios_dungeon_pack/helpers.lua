@@ -219,6 +219,64 @@ M_HELPERS = {
     end
   end,
 
+  StartConversation = function (
+      target, dialogue, emotion, npcTurn, changeNPCanimation, changeSpeaker,
+      animation, turnframes
+  )
+    if emotion == nil then emotion = 'Normal' end
+    if changeSpeaker == nil then changeSpeaker = true end
+    if npcTurn == nil then npcTurn = true end                      --should NPC turn to face you?
+    if changeNPCanimation == nil then changeNPCanimation = true end --should NPC change their animation? useful for flying npcs too
+    if animation == nil then animation = 'None' end
+    if turnframes == nil then turnframes = 4 end
+
+
+    local hero = CH('PLAYER')
+    SV.TemporaryFlags.OldDirection = target.Direction
+    if changeSpeaker then UI:SetSpeaker(target) end
+    UI:SetSpeakerEmotion(emotion)
+    GROUND:CharSetAnim(hero, animation, true)
+    if changeNPCanimation then GROUND:CharSetAnim(target, animation, true) end
+
+    GROUND:CharTurnToChar(hero, target)
+    if npcTurn then GROUND:CharTurnToChar(target, hero) end
+    UI:WaitShowDialogue(dialogue)
+    UI:WaitDialog()
+  end,
+
+  EndConversation = function(target, changeNPCanimation)    
+    if changeNPCanimation == nil then changeNPCanimation = true end --should NPC change their animation? useful for flying npcs too
+
+    local hero = CH('PLAYER')
+
+
+    if SV.TemporaryFlags.OldDirection ~= Direction.None then GROUND:EntTurn(target, SV.TemporaryFlags.OldDirection) end
+    SV.TemporaryFlags.OldDirection = Direction.None -- Clear flag
+
+    GROUND:CharEndAnim(hero)
+    GROUND:CharEndAnim(target)
+  end,
+
+  RemoveItem = function(item_id, amount)
+    local remaining = amount
+
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+    for i = inv_count - 1, 0, -1 do
+      if remaining <= 0 then break end
+      local item = _DATA.Save.ActiveTeam:GetInv(i)
+      if item.ID == item_id then
+        if item.Amount <= remaining then
+          remaining = remaining - item.Amount
+          _DATA.Save.ActiveTeam:RemoveFromInv(i)
+        else
+          item.Amount = item.Amount - remaining
+          remaining = 0
+        end
+      end
+    end
+  end,
+
+
   GiveInventoryItemsToPlayer = function(items)
     local orig_settings = UI:ExportSpeakerSettings()
     local filter = function(inv_slot)
@@ -644,3 +702,4 @@ M_HELPERS = {
     SV.TemporaryFlags.OldDirection = nil
   end
 }
+

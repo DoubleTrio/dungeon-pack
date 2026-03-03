@@ -87,10 +87,8 @@ SV.EmberFrost = {
   GotEnchantmentFromCheckpoint = false,
 
 
-  -- Shopkeeper item data, multiplier for items or should it me a multipication on 
-  -- "item_id" = 0 (means bought 0 times)
-  -- "item_id" = 1 (means bought 1 time)
-  -- "item_id" = 2 (means bought 2 times)
+  -- Shopkeeper item data 
+  -- Formatted like { Item = string, Amount = int, Cost = int }
   Shopkeeper = {},
 
   -- Shopkeeper dialogue progression (don't say anything if already more if it's completed)
@@ -98,8 +96,11 @@ SV.EmberFrost = {
   -- [2] = true
   -- [3] = false
   -- [4] = false
-  ShopkeeperDialogueProgression = {},
+  ShopkeeperDialogueProgression = {
 
+  },
+
+  GotMelodyBox = false,
 
   -- List of achievement IDs that are completed
   Achievements = {
@@ -124,7 +125,6 @@ SV.EmberFrost = {
   MelodyBox = {
     DungeonMusicSelection = "",
     LastDungeonMusic = ""
-
   }
 
 }

@@ -87,7 +87,7 @@ end
 
 function rocky_checkpoint.Shopkeeper_Action(obj, activator)
   DEBUG.EnableDbgCoro()
-  checkpoint.ShopkeeperDialogue()
+  checkpoint.ShopkeeperDialogue(obj, activator)
 end
 
 return rocky_checkpoint
