@@ -563,7 +563,7 @@ end
   -- UI:WaitForChoice()
   -- CalculateChoiceLength
     -- protected int CalculateChoiceLength(IEnumerable<IChoosable> choices, int minWidth)
-  -- CreateShopMenu("shop!", shop)
+    
   -- local ret = {}
   -- local choose = function(list) ret = list end
   -- local refuse = function() _MENU:RemoveMenu() end

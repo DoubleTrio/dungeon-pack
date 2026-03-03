@@ -11,7 +11,7 @@ function ItemSelectionMenu:initialize(title, item_list, generate_option_choice, 
   self.generateOptionChoice = generate_option_choice
   self.itemList = item_list
 
-  self.menuWidth = menu_width or 142
+  self.menuWidth = menu_width or 92
   self.label = label or "TEAM_ITEM_SELECTION_MENU_LUA"
   self.currentIndex = 1
 
@@ -42,7 +42,12 @@ function ItemSelectionMenu:createMenu()
   
   local origin = RogueElements.Loc(16, self.itemSummary.Bounds.Y - math.min(self.MAX_ELEMENTS, #self.itemList) * 14 - 30)
 
-  self.menu = RogueEssence.Menu.ScriptableMultiPageMenu(origin, self.menuWidth, self.title, option_array, 0, self.MAX_ELEMENTS, refuse, refuse, false)
+  
+
+  local choiceLen = M_HELPERS.CalculateChoiceLength(self.optionsList, self.minWidth)
+  print(tostring(choiceLen))
+
+  self.menu = RogueEssence.Menu.ScriptableMultiPageMenu(origin, choiceLen, self.title, option_array, 0, self.MAX_ELEMENTS, refuse, refuse, false)
   self.menu.ChoiceChangedFunction = function() self:updateSummary() end
   -- self.menu.
 end
@@ -55,8 +60,6 @@ function ItemSelectionMenu:generate_options()
   local options = {}
   for i = 1, #self.itemList, 1 do
     local item_entry = self.itemList[i]
-    print(tostring(item_entry))
-    print(Serpent.dump(item_entry))
 
     local option = self.generateOptionChoice(item_entry, i, function(idx)
       self:choose(idx)

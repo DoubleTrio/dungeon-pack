@@ -244,6 +244,30 @@ M_HELPERS = {
     UI:WaitDialog()
   end,
 
+
+
+  CalculateChoiceLength = function (choices, minWidth)
+
+    local GraphicsManager = RogueEssence.Content.GraphicsManager
+    local MathUtils = RogueElements.MathUtils
+    
+    local maxWidth = minWidth or 0
+
+    for _, choice in ipairs(choices) do
+        local textLen = choice.Elements[0]:GetTextLength()
+        local width = textLen + 16 + GraphicsManager.MenuBG.TileWidth * 2
+        if width > maxWidth then
+          maxWidth = width
+        end
+      -- end
+    end
+
+    maxWidth = MathUtils.DivUp(maxWidth, 4) * 4
+    return maxWidth
+      
+  end,
+
+
   EndConversation = function(target, changeNPCanimation)    
     if changeNPCanimation == nil then changeNPCanimation = true end --should NPC change their animation? useful for flying npcs too
 
