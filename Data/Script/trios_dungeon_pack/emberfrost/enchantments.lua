@@ -34,7 +34,7 @@ ORBS = { "orb_all_dodge", "orb_all_protect", "orb_cleanse", "orb_devolve", "orb_
   "orb_revival", "orb_rollcall", "orb_stayaway", "orb_trap_see", "orb_trapbust", "orb_trawl", "orb_weather" }
 
 EQUIPMENT = { "emberfrost_allterrain_gear", "emberfrost_weather_ward", "held_assault_vest", "held_binding_band",
-  "held_big_root", "held_black_belt", "held_black_glasses", "held_black_sludge", "held_charcoal",
+  "held_big_root", "held_black_belt", "held_black_glasses", "held_charcoal",
   "held_choice_band", "held_choice_scarf", "held_choice_specs", "held_cover_band", "held_defense_scarf",
   "held_dragon_scale", "held_expert_belt", "held_friend_bow", "held_goggle_specs", "held_grip_claw",
   "held_hard_stone", "held_heal_ribbon", "held_iron_ball", "held_life_orb", "held_magnet", "held_metal_coat",
@@ -3047,7 +3047,7 @@ TypeMaster = EnchantmentRegistry:Register({
     -- local type_count = self:get_type_progress().count
     local total_types = #self.valid_types
 
-    return string.format("When your team has recruited all %s types at the same time, gain a massive reward",
+    return string.format("When your team has recruited all %s types at the same time, gain a massive reward (including your starting character)",
       M_HELPERS.MakeColoredText(tostring(total_types), PMDColor.Cyan))
   end,
   offer_time = "beginning",

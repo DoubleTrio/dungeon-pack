@@ -1571,11 +1571,11 @@ function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context,
 		SOUND:PlayBattleSE("_UNK_DUN_Twinkle")
 		_DATA.Save.ActiveTeam:RemoveFromInv(swap_slot)
 	else
-		if (jeweled_bug_slot ~= -1) then
-			_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " couldn't find anything to eat and left!")
-			SOUND:PlayBattleSE("_UNK_EVT_002") -- DUN_Wing_Attack
-			_DATA.Save.ActiveTeam:RemoveFromInv(jeweled_bug_slot)
-		end
+		-- if (jeweled_bug_slot ~= -1) then
+		-- 	_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " couldn't find anything to eat and left!")
+		-- 	SOUND:PlayBattleSE("_UNK_EVT_002") -- DUN_Wing_Attack
+		-- 	_DATA.Save.ActiveTeam:RemoveFromInv(jeweled_bug_slot)
+		-- end
 	end
 end
 

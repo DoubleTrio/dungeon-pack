@@ -15,20 +15,12 @@
 "Sprite": "Box_Yellow",
 "Icon": 10,
 "SortCategory": 17,
-"Price": 10000,
-"Rarity": -1,
+"Price": 0,
+"Rarity": 3,
 "MaxStack": 0,
 "CannotDrop": true,
 "BagEffect": true,
-"ItemStates": [
-{
-"$type": "PMDC.Dungeon.ExclusiveState, PMDC",
-"ItemType": 0
-},
-{
-"$type": "RogueEssence.Dungeon.MaterialState, RogueEssence"
-}
-],
+"ItemStates": [],
 "GroundUseActions": [
 {
 "$type": "RogueEssence.Ground.ScriptItemEvent, RogueEssence",

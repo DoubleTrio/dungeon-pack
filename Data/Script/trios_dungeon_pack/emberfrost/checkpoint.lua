@@ -23,8 +23,67 @@ function PlayRandomBGM(tracks)
 end
 
 
+
+
+-- function base_camp_2.Init(map)
+--   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+--   PrintInfo("=>> Init_base_camp_2")
+
+--   GROUND:RefreshPlayer()
+
+--   if GAME:GetCurrentGround():GetObj("Storage") == nil then
+--     local storage = RogueEssence.Ground.GroundObject(
+--       RogueEssence.Content.ObjAnimData("Storage", 1, -1, -1, 255, RogueElements.Dir8.None), -- byte 255
+--       RogueElements.Dir8.Down,
+--       RogueElements.Rect(RogueElements.Loc(296, 536), RogueElements.Loc(24)),
+--       RogueElements.Loc(4, 8),
+--       RogueEssence.Ground.GroundEntity.EEntityTriggerTypes.Action,
+--       false,
+--       "Storage"
+--     )
+--     storage:ReloadEvents()
+--     GAME:GetCurrentGround():AddObject(storage)
+--   end
+-- end
+
+-- function base_camp_2.Storage_Action(obj, activator)
+--   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
+
+--   COMMON:ShowTeamStorageMenu()
+-- end
+
 local checkpoint = {}
 
+-- Currently does the Shopkeeper and the chest
+-- Might be good to have the spawners and exits here also...
+function checkpoint.SpawnGroundEntities()
+  if GAME:GetCurrentGround():GetObj("Enchantment_Chest") == nil then
+    local chest = RogueEssence.Ground.GroundObject(
+      RogueEssence.Content.ObjAnimData("Green_Chest_Opening", 1, -1, 0, 255, RogueElements.Dir8.None), -- byte 255
+      RogueElements.Dir8.Down,
+      RogueElements.Rect(RogueElements.Loc(212, 240), RogueElements.Loc(32, 24)),
+      RogueElements.Loc(20, 20),
+      RogueEssence.Ground.GroundEntity.EEntityTriggerTypes.Action,
+      false,
+      "Enchantment_Chest"
+    )
+    chest:ReloadEvents()
+    GAME:GetCurrentGround():AddObject(chest)
+  end
+
+  if GAME:GetCurrentGround():GetMapChar("Shopkeeper") == nil then
+    -- local char = GROUND:CreateCharacterFromCharData("test", context.User, 31, 37)
+    local monster_data = RogueEssence.Dungeon.MonsterID("pachirisu", 0, "normal",  RogueEssence.Data.Gender.Male)
+    local ground_char = RogueEssence.Ground.GroundChar(monster_data, RogueElements.Loc(268, 176), Dir8.DownLeft,
+    "Shopkeeper")
+    ground_char:ReloadEvents()
+
+    -- print(tostring(_ZONE.CurrentGround))
+    GAME:GetCurrentGround():AddMapChar(ground_char)
+  end
+
+
+end
 
 function checkpoint.ShowTitle(guest, player)
 
@@ -69,6 +128,47 @@ function checkpoint.GetGroundDialogueForGuest(guest, player)
   guest.Direction = oldDir
 end
 
+
+
+
+--roll a random index from 1 to length of category
+--add the item in that index category to the shop
+--2 essentials, always
+-- local type_count = 2
+-- for ii = 1, type_count, 1 do
+--   local base_data = COMMON.ESSENTIALS[math.random(1, #COMMON.ESSENTIALS)]
+--   table.insert(SV.base_shop, base_data)
+-- end
+
+-- --1-2 ammo, always
+-- type_count = math.random(1, 2)
+-- for ii = 1, type_count, 1 do
+--   local base_data = COMMON.AMMO[math.random(1, #COMMON.AMMO)]
+--   table.insert(SV.base_shop, base_data)
+-- end
+
+-- --2-3 utilities, always
+-- type_count = math.random(3, 4)
+-- for ii = 1, type_count, 1 do
+--   local base_data = COMMON.UTILITIES[math.random(1, #COMMON.UTILITIES)]
+--   table.insert(SV.base_shop, base_data)
+-- end
+
+-- --1-2 orbs, always
+-- type_count = math.random(1, 2)
+-- for ii = 1, type_count, 1 do
+--   local base_data = COMMON.ORBS[math.random(1, #COMMON.ORBS)]
+--   table.insert(SV.base_shop, base_data)
+-- end
+
+-- --2 special item, always
+-- type_count = 2
+-- for ii = 1, type_count, 1 do
+--   local base_data = COMMON.SPECIAL[math.random(1, #COMMON.SPECIAL)]
+--   table.insert(SV.base_shop, base_data)
+-- end
+
+
 function checkpoint.GenerateShop()
   local shop = {}
   local i = 1
@@ -79,9 +179,9 @@ function checkpoint.GenerateShop()
     i = i + 1
   end
 
-  addItem({ Item = "ammo_cacnea_spike", Amount = 1, Cost = 3 })
+  addItem({ Item = "ammo_cacnea_spike", Amount = 1, Price = 3 })
   if not SV.EmberFrost.GotMelodyBox then
-    addItem({ Item = "emberfrost_melody_box", Amount = 1, Cost = 80 })
+    addItem({ Item = "emberfrost_melody_box", Amount = 1, Price = 80 })
   end
 
   return shop
@@ -92,6 +192,7 @@ function checkpoint.OnCheckpointArrive()
   
   COMMON.RespawnAllies()
   checkpoint.RespawnGuests()
+  checkpoint.SpawnGroundEntities()
   SV.EmberFrost.Shopkeeper = checkpoint.GenerateShop()
   SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression + 1
   local active_enchants = EnchantmentRegistry:GetSelected()
@@ -169,6 +270,7 @@ function checkpoint.ChestInteraction(obj, activator)
   if (activator.Direction ~= Dir8.Up) then
     return
   end
+  
   UI:ResetSpeaker()
   print(Serpent.dump(SV.EmberFrost.Enchantments.Collection))
   -- if SV.EmberFrost.GotEnchantmentFromCheckpoint then
@@ -182,11 +284,17 @@ function checkpoint.ChestInteraction(obj, activator)
   GROUND:CharSetAnim(activator, "None", true)
 
 
-  local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Open", 10))
-  -- emitter.LocHeight = 12
-  GROUND:PlayVFX(emitter, obj.MapLoc.X + 18, obj.MapLoc.Y + 12)
 
-  local emitter2 = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Light", 4))
+  GROUND:ObjectSetDefaultAnim(obj, 'Green_Chest_Opening', 0, 0, 0, Direction.Right)
+  GROUND:ObjectSetAnim(obj, 6, 0, 7, Direction.Right, 1)
+  GROUND:ObjectSetDefaultAnim(obj, 'Green_Chest_Opening', 0, 7, 7, Direction.Right)
+
+
+  -- local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Open", 10))
+  -- emitter.LocHeight = 12
+  -- GROUND:PlayVFX(emitter, obj.MapLoc.X + 18, obj.MapLoc.Y + 12)
+
+  -- local emitter2 = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Light", 4))
 
 
   --   local startPos = obj.MapLoc * RogueEssence.Content.GraphicsManager.TileSize +
@@ -196,8 +304,12 @@ function checkpoint.ChestInteraction(obj, activator)
   -- local endPos = obj.MapLoc * RogueEssence.Content.GraphicsManager.TileSize +
   --     RogueElements.Loc(RogueEssence.Content.GraphicsManager.TileSize / 2,
   --       RogueEssence.Content.GraphicsManager.TileSize / 2) + RogueElements.Loc(-80, 52)
-  GROUND:PlayVFX(emitter2, obj.MapLoc.X - 100, obj.MapLoc.Y, Dir8.Left, -100, 100)
 
+  local emitter2 = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Light", 4))
+  GROUND:PlayVFX(emitter2, obj.MapLoc.X - 80, obj.MapLoc.Y + 90, Dir8.Left, -100, 100)
+
+  local emitter3 = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Chest_Light", 4))
+  GROUND:PlayVFX(emitter3, obj.MapLoc.X + 120, obj.MapLoc.Y + 90, Dir8.Right, 100, 100)
 
   GAME:WaitFrames(50)
 
@@ -246,10 +358,13 @@ function checkpoint.ChestInteraction(obj, activator)
   UI:WaitForChoice()
 
   RogueEssence.Menu.MenuBase.BorderStyle = old
-  _GROUND:RemoveMapStatus("crystal_moment")
-  GAME:WaitFrames(40)
+
 
   if (ret ~= nil) then
+    GROUND:ObjectSetDefaultAnim(obj, 'Chest_Open', 0, 0, 0, Direction.Right)
+
+    _GROUND:RemoveMapStatus("crystal_moment")
+    GAME:WaitFrames(40)
     GAME:WaitFrames(30)
     local enchantment_id = ret.id
     table.insert(SV.EmberFrost.Enchantments.Selected, enchantment_id)
@@ -263,6 +378,12 @@ function checkpoint.ChestInteraction(obj, activator)
       SOUND:PlayFanfare("Fanfare/Note")
       UI:WaitShowDialogue("Note: You can check your active enchantments while in-dungeon: Others -> Run Info -> Active Enchants.")
     end
+  else
+    GROUND:ObjectSetDefaultAnim(obj, 'Green_Chest_Closing', 0, 0, 0, Direction.Right)
+    GROUND:ObjectSetAnim(obj, 6, 0, 7, Direction.Right, 1)
+    GROUND:ObjectSetDefaultAnim(obj, 'Green_Chest_Closing', 0, 7, 7, Direction.Right)
+    _GROUND:RemoveMapStatus("crystal_moment")
+    GAME:WaitFrames(40)
   end
 
   GROUND:CharEndAnim(activator)
@@ -282,9 +403,9 @@ function CreateShopMenu(prompt, items)
   end
 
   local generate_option_choice = function(item_entry, i, confirm_action)
-    local cost_text = tostring(item_entry.Cost) .. PMDSpecialCharacters.YellowShard
+    local price_text = tostring(item_entry.Price) .. PMDSpecialCharacters.YellowShard
     local item_name = M_HELPERS.GetItemName(item_entry.Item, item_entry.Amount)
-    local text = cost_text .. " - " .. item_name
+    local text = price_text .. " - " .. item_name
 
     local color = Color.White
     local text_name = RogueEssence.Menu.MenuText(text, RogueElements.Loc(2, 1), color)
@@ -453,7 +574,7 @@ function checkpoint.ShopkeeperDialogue(shopkeeper, player)
           UI:SetSpeakerEmotion("Normal")
         else
           cart = result.Items
-          local total = result.Cost
+          local total = result.Price
 
           local msg
 
@@ -600,7 +721,7 @@ end
   -- Let me keep it simple, I be here to make yer life easier as I have a bunch of loot fer your wee adventure... but at a penny of course!
 
   -- The Emberfrost be more barren of resources that you need to make it there
-  -- The penny will cost ye 2 penny
+  -- The penny will Price ye 2 penny
 
   -- Then see that chest o'er there, that thing be mighty special, aye indeed. Open the chest and it shall grant untold powers
 

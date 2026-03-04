@@ -442,7 +442,6 @@ FINAL_WISH_TABLE_TIER_1 = {
       { Item = "held_big_root", Amount = 1, Weight = 2 },
       { Item = "held_black_belt", Amount = 1, Weight = 2 },
       { Item = "held_black_glasses", Amount = 1, Weight = 2 },
-      { Item = "held_black_sludge", Amount = 1, Weight = 2 },
       { Item = "held_charcoal", Amount = 1, Weight = 2 },
       { Item = "held_choice_band", Amount = 1, Weight = 2 },
       { Item = "held_choice_scarf", Amount = 1, Weight = 2 },

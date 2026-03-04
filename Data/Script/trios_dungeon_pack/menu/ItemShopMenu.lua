@@ -12,7 +12,7 @@ ItemShopMenu = Class("ItemShopMenu")
 
 --- Creates a new ``ItemShopMenu`` instance using the provided list and callbacks.
 --- @param title string the title this window will have.
---- @param items table The list of items formatted as { Item=string, "Amount"=int, "Cost"=int}
+--- @param items table The list of items formatted as { Item=string, "Amount"=int, "Price"=int}
 --- @param filter function a function that takes a ``RogueEssence.Dungeon.InvSlot`` object and returns a boolean. Any slot that does not pass this check will have its option disabled in the menu. Defaults to ``return true``.
 --- @param confirm_action function the function called when the selection is confirmed. It will have a table array of ``RogueEssence.Dungeon.InvSlot`` objects passed to it as a parameter.
 --- @param refuse_action function the function called when the player presses the cancel or menu button.
@@ -53,7 +53,7 @@ function ItemShopMenu:initialize(title, items, filter, confirm_action, refuse_ac
       if answer then
         _MENU:RemoveMenu()
         if #self.choices == 1 then
-          self.selected_total = self.choices[1].Cost
+          self.selected_total = self.choices[1].Price
         end
         self.confirmAction(self.choices, self.selected_total)
       end
@@ -85,9 +85,9 @@ function ItemShopMenu:initialize(title, items, filter, confirm_action, refuse_ac
     if option.Enabled then
 
       if option.Selected then
-        self.selected_total = self.selected_total + entry.Cost
+        self.selected_total = self.selected_total + entry.Price
       else
-        self.selected_total = self.selected_total - entry.Cost
+        self.selected_total = self.selected_total - entry.Price
       end
       self:updateShardText()
       self:updateEnabled()
@@ -209,7 +209,7 @@ function ItemShopMenu:generate_options()
   -- print(tostring(#self.itemsList))
   for i = 1, #self.itemsList, 1 do
     local entry = self.itemsList[i]
-    local enabled = entry.Cost <= (self.start_count - self.selected_total)
+    local enabled = entry.Price <= (self.start_count - self.selected_total)
     -- local enabled = false
     local color = Color.White
     if not enabled then color = Color.Red end
@@ -223,7 +223,7 @@ function ItemShopMenu:generate_options()
     local text_name = RogueEssence.Menu.MenuText(item:GetDisplayName(), RogueElements.Loc(2, 1), color)
 
 
-    local shard_text = RogueEssence.Menu.MenuText(entry.Cost .. " " .. PMDSpecialCharacters.YellowShard,
+    local shard_text = RogueEssence.Menu.MenuText(entry.Price .. " " .. PMDSpecialCharacters.YellowShard,
   
     RogueElements.Loc(176 - 8 * 4, 1), DirV.Up, DirH.Right, Color.White)
     -- new Loc(ItemMenu.ITEM_MENU_WIDTH - 8 * 4, 1), DirV.Up, DirH.Right, Color.Lim
@@ -294,9 +294,9 @@ function ItemShopMenu:updateEnabled()
     local option = self.option_array[i - 1]
 
     if not option.Selected then
-      local enabled = entry.Cost <= remaining
+      local enabled = entry.Price <= remaining
 
-      print(tostring(entry.Cost) .. "and" .. remaining)
+      print(tostring(entry.Price) .. "and" .. remaining)
       option.Enabled = enabled
 
       print(tostring(option.Enabled))
@@ -373,8 +373,8 @@ end
 --- @return table a table array containing the chosen ``RogueEssence.Dungeon.InvSlot`` objects.
 function ItemShopMenu.run(title, items, filter, confirm_text, max_choices)
   local ret = {}
-  local choose = function(list, cost)
-    ret = { Items = list, Cost = cost }
+  local choose = function(list, price)
+    ret = { Items = list, Price = price }
   end
   
   local refuse = function() _MENU:RemoveMenu() end

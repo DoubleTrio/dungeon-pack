@@ -74,12 +74,6 @@ local function achievement_update_description_summary(achievement_id, menu, orig
 
   menu.Elements:Clear()
 
-
-  menu.Bounds = RogueElements.Rect.FromPoints(
-    RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
-    RogueElements.Loc(GraphicsManager.ScreenWidth - 16, origin.Y + 106)
-  )
-
   local y_offset = 10
 
   local text = achievement.name
@@ -106,27 +100,30 @@ local function achievement_update_description_summary(achievement_id, menu, orig
 
   y_offset = y_offset + 4
 
-
   local description = M_HELPERS.MakeColoredText("???", text_color)
 
-  -- Show description if not hidden
   if seen_status ~= AchievementStatus.Hidden then
-    if achievement.getDescription ~= nil then
-      description = achievement:getDescription()
-    elseif achievement.description ~= nil then
-      description = achievement.description
-    end
+    description = achievement:getDescription()
   end
 
   local desc = RogueEssence.Menu.DialogueText(
     description,
     RogueElements.Rect(
       RogueElements.Loc(12, y_offset),
-      RogueElements.Loc(menu.Bounds.Width - 20, 60)
+      RogueElements.Loc(menu.Bounds.Width - 20, 200)
     ),
     12
   )
 
+  y_offset = y_offset + desc:GetTextSize().Y
+
+  menu.Bounds = RogueElements.Rect.FromPoints(
+    RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
+    RogueElements.Loc(
+      GraphicsManager.ScreenWidth - 16,
+      origin.Y + y_offset + 12
+    )
+  )
 
   menu.Elements:Add(name)
   menu.Elements:Add(divider)
@@ -156,27 +153,15 @@ end
      
 
 local function collection_update_description_summary(enchantment_id, menu, origin, menuWidth)
-  
   local enchantment = EnchantmentRegistry:Get(enchantment_id)
   local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
   local status_info = GetTextAndColorBasedOnStatus(enchantment_id, enchantment.name)
-
   local text_color = status_info.color
-
   local GraphicsManager = RogueEssence.Content.GraphicsManager
 
   menu.Elements:Clear()
 
-  menu.Bounds = RogueElements.Rect.FromPoints(
-    RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
-    RogueElements.Loc(
-      GraphicsManager.ScreenWidth - 16,
-      origin.Y + 106
-    )
-  )
-
   local y_offset = 10
-
 
   local text = status_info.text
 
@@ -212,12 +197,20 @@ local function collection_update_description_summary(enchantment_id, menu, origi
     description,
     RogueElements.Rect(
       RogueElements.Loc(12, y_offset),
-      RogueElements.Loc(menu.Bounds.Width - 20, 60)
+      RogueElements.Loc(menu.Bounds.Width - 20, 200)
     ),
     12
   )
 
-  y_offset = y_offset + 72
+  y_offset = y_offset + desc:GetTextSize().Y
+
+  menu.Bounds = RogueElements.Rect.FromPoints(
+    RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
+    RogueElements.Loc(
+      GraphicsManager.ScreenWidth - 16,
+      origin.Y + y_offset + 12
+    )
+  )
 
   menu.Elements:Add(name)
   menu.Elements:Add(divider)
@@ -239,13 +232,6 @@ local function selection_update_description_summary(enchantment_id, menu, origin
 
   menu.Elements:Clear()
 
-  menu.Bounds = RogueElements.Rect.FromPoints(
-    RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
-    RogueElements.Loc(
-      GraphicsManager.ScreenWidth - 16,
-      origin.Y + 106 + (additional_texts and #additional_texts or 0) * 12 + 12
-    )
-  )
 
   local y_offset = 10
 
@@ -267,16 +253,27 @@ local function selection_update_description_summary(enchantment_id, menu, origin
 
   y_offset = y_offset + 4
 
+  local finalWidth = GraphicsManager.ScreenWidth - 16 - (origin.X + menuWidth + 2)
+
   local desc = RogueEssence.Menu.DialogueText(
     enchantment:getDescription(),
     RogueElements.Rect(
       RogueElements.Loc(12, y_offset),
-      RogueElements.Loc(menu.Bounds.Width - 20, 60)
+      RogueElements.Loc(finalWidth - 20, 200)
     ),
     12
   )
 
-  y_offset = y_offset + 72
+  y_offset = y_offset + desc:GetTextSize().Y
+
+  menu.Bounds = RogueElements.Rect.FromPoints(
+    RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
+    RogueElements.Loc(
+      GraphicsManager.ScreenWidth - 16,
+      origin.Y + y_offset + (additional_texts and #additional_texts or 0) * 14 + 12
+    )
+  )
+
 
   menu.Elements:Add(name)
   menu.Elements:Add(divider)

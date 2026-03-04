@@ -7,7 +7,7 @@
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "A beautiful, jeweled bug in Emberfrost that eats an inventory item at the start of each floor. It will disappear upon reaching the end.",
+"DefaultText": "A beautiful, jeweled bug that eats an inventory item at the start of each floor. It will disappear at the end of the dungeon run",
 "LocalTexts": {}
 },
 "Released": true,

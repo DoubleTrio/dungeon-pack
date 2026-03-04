@@ -31835,7 +31835,7 @@
 "triggerType": 1,
 "ObjectAnim": {
 "$type": "RogueEssence.Content.ObjAnimData, RogueEssence",
-"AnimIndex": "Chest",
+"AnimIndex": "Green_Chest_Opening",
 "FrameTime": 1,
 "StartFrame": -1,
 "EndFrame": -1,
