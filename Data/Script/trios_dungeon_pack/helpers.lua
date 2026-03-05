@@ -14,6 +14,19 @@ AchievementStatus = {
   Achieved       = 2
 }
 
+
+PVerticalPosition = {
+  Bottom = 0,
+  Middle = 1,
+  Top = 2
+}
+
+PHorizontalPosition = {
+  Left = 0,
+  Middle = 1,
+  Right = 2
+}
+
 function Contains(tbl, value)
   for _, v in ipairs(tbl) do
     if v == value then
@@ -264,9 +277,29 @@ M_HELPERS = {
 
     maxWidth = MathUtils.DivUp(maxWidth, 4) * 4
     return maxWidth
-      
   end,
 
+  -- TODO: Should probably do the math to get the midpoint correctly...
+  SetSpeakerPosition = function(config)
+    local x = 8
+    local y = 132
+    local reverse = config.FaceLeft or false
+
+    if config.Horizontal == PHorizontalPosition.Right then
+      x = RogueEssence.Content.GraphicsManager.ScreenWidth - 56
+    elseif config.Horizontal == PHorizontalPosition.Middle then
+      x = 134
+    end
+
+    if config.Vertical == PVerticalPosition.Top then
+      y = 8
+    elseif config.Vertical == PVerticalPosition.Middle then
+      y = 80
+    end
+
+    UI:SetSpeakerReverse(reverse)
+    UI:SetSpeakerLoc(x, y)
+  end,
 
   EndConversation = function(target, changeNPCanimation)    
     if changeNPCanimation == nil then changeNPCanimation = true end --should NPC change their animation? useful for flying npcs too
