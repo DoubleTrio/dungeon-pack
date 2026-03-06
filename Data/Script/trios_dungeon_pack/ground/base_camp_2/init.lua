@@ -65,11 +65,24 @@ function base_camp_2_mod.DebugSpawnCharacters()
     -- print(tostring(_ZONE.CurrentGround))
     GAME:GetCurrentGround():AddMapChar(ground_char)
   end
+
+  
+  if GAME:GetCurrentGround():GetMapChar("Oshawott") == nil then
+    local monster_data = RogueEssence.Dungeon.MonsterID("oshawott", 0, "normal", RogueEssence.Data.Gender.Male)
+    local ground_char = RogueEssence.Ground.GroundChar(monster_data, RogueElements.Loc(108, 528), Dir8.Down,
+      "Oshawott")
+    ground_char:ReloadEvents()
+
+
+    GAME:GetCurrentGround():AddMapChar(ground_char)
+    GROUND:Hide("Oshawott")
+  end
 end
 
 function base_camp_2_mod.DebugCutscene()
   GAME:CutsceneMode(true)
   GROUND:Hide("PLAYER")
+  GAME:WaitFrames(30)
 
 
 
@@ -80,6 +93,7 @@ function base_camp_2_mod.DebugCutscene()
   local snivy = CH('Snivy')
   local snivy_name = snivy:GetDisplayName()
   local kec = CH("Shop_Owner")
+  local oshawott = CH('Oshawott')
 
 
 
@@ -151,7 +165,20 @@ function base_camp_2_mod.DebugCutscene()
 
   TASK:JoinCoroutines({ coro1, coro2, coro3, coro4, coro5, coro6 })
 
+
   GAME:WaitFrames(20)
+
+
+  -- local animId = RogueEssence.Content.GraphicsManager.GetAnimIndex("Pain")
+  
+  -- GROUND:CharSetAction(snivy,
+  -- RogueEssence.Ground.FrameGroundAction(snivy.Position, snivy.LocHeight, Direction.Down, animId, 5))
+
+  -- GROUND:CharSetAction(snivy,
+  -- RogueEssence.Ground.FrameGroundAction(snivy.Position, snivy.LocHeight, Direction.Down, animId, 5))
+
+
+  
   UI:SetSpeaker(dratini)
   UI:SetSpeakerEmotion("Happy")
   M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Right, FaceLeft = true })
@@ -159,6 +186,13 @@ function base_camp_2_mod.DebugCutscene()
   GROUND:CharSetEmote(dratini, "glowing", 4)
   UI:WaitShowTimedDialogue("[speed=1.0]Oh-ho-ho,[pause=20] you're gonna love today's adventure!", 80)
   UI:WaitShowTimedDialogue("[speed=1.0]I recently got wind that there's a dungeon that grants you wishes if you have a special...", 40)
+
+
+  local coro02 = TASK:BranchCoroutine(function()
+    GROUND:CharSetAnim(rexio, "Pain", false)
+    GAME:WaitFrames(30)
+    GROUND:CharSetAnim(rexio, "Idle", false)
+  end)
 
 
   GROUND:CharTurnToCharAnimated(farfetchd, snivy, 4)
@@ -170,7 +204,7 @@ function base_camp_2_mod.DebugCutscene()
 
 
   UI:WaitShowTimedDialogue(
-  "[speed=1.0]You mean the one that " ..
+  "[speed=1.0]You mean the place that " ..
   M_HELPERS.MakeColoredText("Lapras", PMDColor.Cyan) .. " can take us to and only two of us can go.", 120)
 
   -- SOUND:PlayBattleSE("EVT_Emote_Exclaim_2")
@@ -194,9 +228,18 @@ function base_camp_2_mod.DebugCutscene()
   UI:SetSpeakerEmotion("Normal")
   UI:WaitShowTimedDialogue("[speed=1.0]It's a dungeon that grants you wishes,[pause=40] " .. dratini_name ..  ".[pause=20] Wishes!", 60)
   UI:SetSpeakerEmotion("Happy")
+
+  GeneralFunctions.Hop(snivy)
+  GROUND:CharSetEmote(snivy, "happy", 4)
   UI:WaitShowTimedDialogue("[speed=1.0]Of course I know about it!", 100)
 
   
+
+  SOUND:PlayBattleSE("EVT_Emote_Sweatdrop")
+  GROUND:CharSetEmote(dratini, "sweatdrop", 1)
+  GAME:WaitFrames(60)
+
+
   GROUND:CharTurnToCharAnimated(farfetchd, dratini, 4)
   UI:SetSpeaker(dratini)
   UI:SetSpeakerEmotion("Stunned")
@@ -232,7 +275,7 @@ function base_camp_2_mod.DebugCutscene()
 
     GROUND:CharAnimateTurn(farfetchd, Direction.Down, 4, false)
 
-    GAME:WaitFrames(160)
+    GAME:WaitFrames(180)
     GROUND:CharSetEmote(snivy, "sweatdrop", 1)
 
 
@@ -241,17 +284,29 @@ function base_camp_2_mod.DebugCutscene()
   TASK:JoinCoroutines({ coro1, coro2 })
 
 
-  GAME:WaitFrames(20)
+  GAME:WaitFrames(50)
+  GROUND:CharTurnToCharAnimated(farfetchd, dratini, 4)
   UI:SetSpeaker(dratini)
   UI:SetSpeakerEmotion("Stunned")
   M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Right, FaceLeft = true })
   UI:WaitShowTimedDialogue("[speed=1.0]Really?[pause=20] I can't believe you two knew about the dungeon before I did.", 80)
   UI:WaitShowTimedDialogue("[speed=1.0]I guess I can scout around for any new dungeons today.", 80)
   UI:ResetSpeaker()
+
+
+
+  UI:SetSpeaker(snivy)
+  UI:SetSpeakerEmotion("Happy")
+  UI:WaitShowTimedDialogue(
+  "[speed=1.0]While you're looking for a new dungeon,[pause=20] I'll head back to bed.", 60)
+  UI:SetSpeakerEmotion("Happy")
+
+  UI:ResetSpeaker()
   SOUND:FadeOutBGM(60)
+  GAME:WaitFrames(80)
 
   UI:SetSpeaker(STRINGS:Format("\\uE040"), true, "", -1, "", RogueEssence.Data.Gender.Unknown)
-  UI:WaitShowTimedDialogue("[speed=1.0] Did somebody say...[pause=20] new dungeon?", 80)
+  UI:WaitShowTimedDialogue("[speed=1.0] Did somebody say...[pause=20]" .. M_HELPERS.MakeColoredText(" NEW DUNGEON", PMDColor.Yellow) .. "?", 80)
 
 
 
@@ -272,13 +327,178 @@ function base_camp_2_mod.DebugCutscene()
 
 
 
+  GAME:WaitFrames(20)
   UI:SetSpeaker(dratini)
   UI:SetSpeakerEmotion("Stunned")
   M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Right, FaceLeft = true })
   UI:WaitShowTimedDialogue("[speed=1.0]...Did anyone else hear that?", 80)
   
+  GROUND:CharTurnToCharAnimated(farfetchd, dratini, 4)
+
+  
+  GAME:WaitFrames(20)
+  
+  coro1 = TASK:BranchCoroutine(function()
+    GROUND:CharSetAnim(snivy, "Nod", false)
+    -- GeneralFunctions.DoAnimation(snivy, "Nod")
+    GAME:WaitFrames(10)
+    GROUND:CharSetAnim(snivy, "Nod", false)
+    -- GeneralFunctions.DoAnimation(snivy, "Nod")
+  end)
+
+  coro2 = TASK:BranchCoroutine(function()
+    GAME:WaitFrames(5)
+    -- Farfetch'd doesn't have nod yet... :( 
+    -- GeneralFunctions.DoAnimation(farfetchd, "Nod") 
+    -- GROUND:CharSetAnim(farfetchd, "Nod", false)
+    -- GAME:WaitFrames(10)
+    -- GROUND:CharSetAnim(farfetchd, "Nod", false)
+    -- GeneralFunctions.DoAnimation(farfetchd, "Nod")
+  end)
+  TASK:JoinCoroutines({ coro1, coro2 })
+
+  GAME:WaitFrames(20)
+
+  -- SOUND:FadeInSE("Raise Up Your Bat - Cut", 60)
+
+  SOUND:PlayBGM("Raise Up Your Bat - Cut.ogg", true)
+  GAME:WaitFrames(100)
+
+
+  UI:SetSpeaker(dratini)
+  UI:SetSpeakerEmotion("Stunned")
+  M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Right, FaceLeft = true })
+  UI:WaitShowTimedDialogue("[speed=1.0]...Guys,[pause=20] where did the music come from?", 80)
   UI:SetSpeaker(STRINGS:Format("\\uE040"), true, "", -1, "", RogueEssence.Data.Gender.Unknown)
-  UI:WaitShowTimedDialogue("[speed=1.0]Blasted Invisibility Orb... I shall appear dramatically in 3, 2, 1", 80)
+
+  -- GAME:WaitFrames(16)
+  -- GROUND:PlayVFX(emitter, center.X, center.Y)
+  -- SOUND:PlayBattleSE("EVT_Battle_Flash")
+  -- GAME:WaitFrames(46)
+
+  -- SOUND:PlayBattleSE('EVT_Battle_Transition')
+  -- COMMON.MakeWhoosh(center, -32, 0, false)
+  -- GAME:WaitFrames(5)
+  -- COMMON.MakeWhoosh(center, -64, 0, true)
+  -- COMMON.MakeWhoosh(center, 0, 0, true)
+  -- GAME:WaitFrames(5)
+  -- COMMON.MakeWhoosh(center, -112, 1, false)
+  -- COMMON.MakeWhoosh(center, 48, 1, false)
+  -- GAME:WaitFrames(5)
+  -- COMMON.MakeWhoosh(center, -144, 2, true)
+  -- COMMON.MakeWhoosh(center, 80, 2, true)
+  -- GAME:WaitFrames(5)
+  -- COMMON.MakeWhoosh(center, -176, 3, false)
+  -- COMMON.MakeWhoosh(center, 112, 3, false)
+  -- GAME:WaitFrames(40)
+  -- GAME:FadeOut(true, 30)
+  -- GAME:WaitFrames(80)
+
+
+  -- UI:S
+
+
+  coro1 = TASK:BranchCoroutine(function()
+    SOUND:PlayBattleSE("DUN_Trace")
+    local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Puff_Yellow", 3))
+    GROUND:PlayVFX(emitter, oshawott.MapLoc.X + 7, oshawott.MapLoc.Y + 6)
+    GROUND:Unhide("Oshawott")
+    GeneralFunctions.Hop(oshawott)
+    UI:SetSpeaker(oshawott)
+
+    UI:SetSpeakerEmotion("Happy")
+    M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = true })
+    UI:WaitShowTimedDialogue("[speed=1.0]I'm back baby!", 80)
+    local function hop()
+      GeneralFunctions.Hop(oshawott)
+    end
+
+    M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = true })
+
+    UI:WaitShowTimedDialogue(
+    "[speed=1.0]You want a new dungeon to explore,[pause=20][emote=Joyous][script=0] I've got a new dungeon for you!", 80,
+      { hop })
+  end)
+
+  coro2 = TASK:BranchCoroutine(function()
+    GAME:WaitFrames(15)
+    GROUND:CharTurnToCharAnimated(farfetchd, oshawott, 4)
+  end)
+
+  coro3 = TASK:BranchCoroutine(function()
+    GAME:WaitFrames(10)
+    GROUND:CharTurnToCharAnimated(dratini, oshawott, 4)
+    GROUND:CharSetEmote(dratini, "exclaim", 1)
+  end)
+
+  coro4 = TASK:BranchCoroutine(function()
+    GAME:WaitFrames(5)
+    GeneralFunctions.Hop(snivy)
+    GROUND:CharTurnToCharAnimated(snivy, oshawott, 4)
+  end)
+
+
+  TASK:JoinCoroutines({ coro1, coro2, coro3, coro4 })
+
+  UI:SetSpeaker(dratini)
+  UI:SetSpeakerEmotion("Stunned")
+  M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Right, FaceLeft = true })
+  UI:WaitShowTimedDialogue("[speed=0.7]...Who are you and where did you come from?", 60)
+
+
+  GeneralFunctions.Hop(oshawott)
+  UI:SetSpeaker(oshawott)
+  UI:SetSpeakerEmotion("Happy")
+  M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = true })
+  UI:WaitShowTimedDialogue("[speed=1.0]Cue the montage baby!", 60)
+
+  UI:SetSpeaker(dratini)
+  UI:SetSpeakerEmotion("Stunned")
+  M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Right, FaceLeft = true })
+  UI:WaitShowTimedDialogue("[speed=0.5]...Who are you talking to?", 40)
+
+
+  UI:SetSpeaker(farfetchd)
+  UI:SetSpeakerEmotion("Happy")
+  M_HELPERS.SetSpeakerPosition({ Vertical = PVerticalPosition.Top, Horizontal = PHorizontalPosition.Middle })
+  UI:WaitShowTimedDialogue("[speed=1.0]You know,[pause=20] I kinda like your...", 30)
+
+
+  GeneralFunctions.Hop(oshawott)
+  UI:SetSpeaker(oshawott)
+  UI:SetSpeakerEmotion("Happy")
+  M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = true })
+  UI:WaitShowTimedDialogue("[speed=1.0]I said cue the montage!", 20)
+
+  UI:SetSpeaker(dratini)
+  UI:SetSpeakerEmotion("Stunned")
+  M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Right, FaceLeft = true })
+  UI:WaitShowTimedDialogue("[speed=0.5]Wha...", 60)
+
+
+
+  -- UI:WaitShowDialogue(
+  -- "Cool desert,[script=0][pause=40] over there nya,[script=1][pause=40] my important treasure is guarded by really bad people and we nyeeeeeed it.",
+  --   { cat1turn, cat2turn })
+  -- UI:WaitShowTimedDialogue("[speed=1.0]I'm back baby, odhdhdh!", 80)
+  -- UI:WaitShowTimedDialogue("[speed=1.0]I'm back baby, odhdhdh!", 80)
+  -- UI:WaitShowTimedDialogue("[speed=1.0]I'm back baby!", 80)
+  -- UI:WaitShowTimedDialogue("[speed=1.0]I'm back baby!", 80)
+  -- UI:WaitShowTimedDialogue("[speed=1.0]I'm back baby!", 80)
+
+
+
+
+  -- local anim = RogueEssence.Dungeon.CharAbsentAnim(player.CharLoc, player.CharDir)
+  -- GeneralFunctions.RemoveCharEffects(player)
+  -- TASK:WaitTask(_DUNGEON:ProcessBattleFX(player, player, _DATA.SendHomeFX))
+  -- TASK:WaitTask(player:StartAnim(anim))
+
+
+-- [Oshawott]: I’m back baby!
+-- [Oshawott]: You want a new dungeon, I’ve got a new dungeon for you 
+
+  -- UI:WaitShowTimedDialogue("[speed=1.0]Blasted Invisibility Orb... I shall appear dramatically in 3, 2, 1", 80)
 
 
 
@@ -298,6 +518,28 @@ function base_camp_2_mod.DebugCutscene()
 
   
 
+  -- local emitter = RogueEssence.Content.FlashEmitter()
+  -- emitter.FadeInTime = 2
+  -- emitter.HoldTime = 2
+  -- emitter.FadeOutTime = 2
+  -- emitter.StartColor = Color(0, 0, 0, 0)
+  -- emitter.Layer = DrawLayer.Top
+  -- emitter.Anim = RogueEssence.Content.BGAnimData("White", 0)
+  -- GROUND:PlayVFX(emitter, center.X, center.Y)
+
+  -- function test2()
+
+  -- end
+
+  -- function test3()
+  --   SOUND:PlayBattleSE("DUN_Explosion")
+  --   emitter = RogueEssence.Content.FiniteAreaEmitter(RogueEssence.Content.AnimData("Explosion", 3))
+  --   emitter.Range = 20
+  --   emitter.Speed = 72
+  --   emitter.TotalParticles = 2
+  --   GROUND:PlayVFX(emitter, activator.MapLoc.X, activator.MapLoc.Y)
+  --   GAME:WaitFrames(60)
+  -- end
 
 
 
@@ -318,7 +560,7 @@ function base_camp_2_mod.DebugCutscene()
     -- TASK:JoinCoroutines({ coro1, coro2 })
   -- snivy
 -- 
-  GAME:FadeIn(20)
+  -- GAME:FadeIn(20)
 
   GROUND:Unhide("PLAYER")
   GAME:CutsceneMode(false)

@@ -166,32 +166,44 @@ if __name__ == "__main__":
         #     loop_length=6299179-3158390,
         # ), 
 
-        OggTrack(
-            url="https://www.youtube.com/watch?v=v--v4WnH3I0",
-            title="Striking Boss Battle!",
-            artist="Danirbu",
-            album="Original Soundtrack",
-            loop_start=3158390,
-            loop_length=6299179-3158390,
-        ), 
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=v--v4WnH3I0",
+        #     title="Striking Boss Battle!",
+        #     artist="Danirbu",
+        #     album="Original Soundtrack",
+        #     loop_start=3158390,
+        #     loop_length=6299179-3158390,
+        # ), 
+
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=PcKcNRjif-Q",
+        #     title="The Dreadful Fight!",
+        #     artist="Yash",
+        #     album="Final Fantasy IV",
+        #     loop_start=1677591,
+        #     loop_length=5715667 - 1677591,
+        # ), 
+
+        # OggTrack(
+        #     url="https://www.youtube.com/watch?v=hdZy_B2LzFw",
+        #     title="Battle! Gladion",
+        #     artist="Yash",
+        #     album="Pokemon Sun and Moon",
+        #     loop_start=4165009,
+        #     loop_length=7605466-4165009,
+        # ),
 
         OggTrack(
-            url="https://www.youtube.com/watch?v=PcKcNRjif-Q",
-            title="The Dreadful Fight!",
-            artist="Yash",
-            album="Final Fantasy IV",
-            loop_start=1677591,
-            loop_length=5715667 - 1677591,
-        ), 
-
-        OggTrack(
-            url="https://www.youtube.com/watch?v=hdZy_B2LzFw",
-            title="Battle! Gladion",
-            artist="Yash",
-            album="Pokemon Sun and Moon",
+            url="https://www.youtube.com/watch?v=qugtXLaHdGg",
+            title="Raise Up Your Bat",
+            artist="Josha~",
+            album="Deltrune",
             loop_start=4165009,
             loop_length=7605466-4165009,
         ),
+
+
+
 
         # https://www.youtube.com/watch?v=Yz0XV1bm8Yg"
 # Hollow Bastion (Kingdom Hearts)

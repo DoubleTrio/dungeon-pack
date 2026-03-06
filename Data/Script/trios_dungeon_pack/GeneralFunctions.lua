@@ -193,16 +193,21 @@ end
 --chara looks around in a rotations amount of directions, turning for turnframes frames,
 --ending facing in enddir direction. if alldirections is true, can look in all directions, otherwise can only face +-2 from original direction
 --NOTE:Skemple uses 15 for waits for this sort of generic feature.
-function GeneralFunctions.LookAround(chara, rotations, turnframes, allDirections, sound, startLeft, enddir)
+function GeneralFunctions.LookAround(chara, rotations, turnframes, emote, allDirections, sound, startLeft, enddir)
   if allDirections == nil then allDirections = true end
   if sound == nil then sound = true end
   if startLeft == nil then startLeft = true end
+  if emote == nil then emote = true end
+
+
   if enddir == nil then enddir = chara.Direction end
 
   local dir = 0
 
   --play the looking around sfx if we want a sound to be made
   if sound then SOUND:PlayBattleSE("EVT_Emote_Confused_2") end
+
+  if emote then GROUND:CharSetEmote(chara, "question", 1) end
 
   --if all directions, look in any of the 8 directions randomly (except the one we are already facing)
   --if not all directions, alternate between looking 90 degrees left and right from current direction
