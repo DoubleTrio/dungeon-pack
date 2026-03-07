@@ -284,6 +284,8 @@ M_HELPERS = {
     local x = 8
     local y = 132
     local reverse = config.FaceLeft or false
+    local y_offset = config.OffsetY or 0
+    local x_offset = config.OffsetX or 0
 
     if config.Horizontal == PHorizontalPosition.Right then
       x = RogueEssence.Content.GraphicsManager.ScreenWidth - 56
@@ -297,6 +299,9 @@ M_HELPERS = {
       y = 80
     end
 
+
+    x = x + x_offset
+    y = y + y_offset
     UI:SetSpeakerReverse(reverse)
     UI:SetSpeakerLoc(x, y)
   end,

@@ -166,7 +166,7 @@
 },
 "emberfrost_rationalize": {
 "Name": {
-"DefaultText": "Emberfrost Rationalize",
+"DefaultText": "Rationalize",
 "LocalTexts": {}
 },
 "Released": true,
@@ -208,6 +208,15 @@
 "LocalTexts": {}
 },
 "Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_pressure_cooker": {
+"Name": {
+"DefaultText": "Pressure Cooker",
+"LocalTexts": {}
+},
+"Released": true,
 "Comment": "",
 "SortOrder": 0
 }

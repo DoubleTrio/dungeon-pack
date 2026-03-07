@@ -227,6 +227,10 @@
   <data name="MSG_RAVENOUS_START" xml:space="preserve">
     <value>{0} will deal more damage the hungrier they become!</value>
     <comment></comment>  </data>
+    
+  <data name="MSG_PRESSURE_COOKER_START" xml:space="preserve">
+    <value>{0} is feeling the pressure!</value>
+    <comment></comment>  </data>
 
   <data name="MSG_DRACONIAN_DEFIENCE_START" xml:space="preserve">
     <value>{0} will deal more damage the lower their HP is!</value>

@@ -96,7 +96,7 @@ function checkpoint.ShowTitle(guest, player)
   UI:WaitHideTitle(20)
 end
 
-function checkpoint.RespawnGuests()
+function RespawnGuests()
   local count = _DATA.Save.ActiveTeam.Guests.Count
   for i = 1, count, 1
   do
@@ -179,9 +179,17 @@ function checkpoint.GenerateShop()
     i = i + 1
   end
 
-  addItem({ Item = "ammo_cacnea_spike", Amount = 1, Price = 3 })
+  addItem({ Item = "food_apple", Amount = 1, Price = 2 })
+  addItem({ Item = "seed_reviver", Amount = 1, Price = 4 })
+  addItem({ Item = "berry_oran", Amount = 1, Price = 2 })
+  addItem({ Item = "orb_cleanse", Amount = 1, Price = 3 })
+  addItem({ Item = "ammo_cacnea_spike", Amount = 9, Price = 3 })
+  addItem({ Item = "gummi_wonder", Amount = 1, Price = 6 })
+  addItem({ Item = "loot_pearl", Amount = 3, Price = 10 })
+  addItem({ Item = "loot_nugget", Amount = 1, Price = 20 })
+  
   if not SV.EmberFrost.GotMelodyBox then
-    addItem({ Item = "emberfrost_melody_box", Amount = 1, Price = 80 })
+    addItem({ Item = "emberfrost_melody_box", Amount = 1, Price = 99 })
   end
 
   return shop
@@ -191,7 +199,7 @@ function checkpoint.OnCheckpointArrive()
 
   
   COMMON.RespawnAllies()
-  checkpoint.RespawnGuests()
+  RespawnGuests()
   checkpoint.SpawnGroundEntities()
   SV.EmberFrost.Shopkeeper = checkpoint.GenerateShop()
   SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression + 1
@@ -326,8 +334,8 @@ function checkpoint.ChestInteraction(obj, activator)
   local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
-  enchantments[1][1] = EnchantmentRegistry._registry[PandorasItems.id]
-  enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]
+  enchantments[1][1] = EnchantmentRegistry._registry[PressureCooker.id]
+  -- enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]
   local ret = nil
   local choose = function(enchantment)
     SOUND:PlayBattleSE("_UNK_EVT_075")

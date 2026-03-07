@@ -80,6 +80,7 @@ function base_camp_2_mod.DebugSpawnCharacters()
 end
 
 function base_camp_2_mod.DebugCutscene()
+  local alternate = true
   GAME:CutsceneMode(true)
   GROUND:Hide("PLAYER")
   GAME:WaitFrames(30)
@@ -169,13 +170,65 @@ function base_camp_2_mod.DebugCutscene()
   GAME:WaitFrames(20)
 
 
-  -- local animId = RogueEssence.Content.GraphicsManager.GetAnimIndex("Pain")
-  
-  -- GROUND:CharSetAction(snivy,
-  -- RogueEssence.Ground.FrameGroundAction(snivy.Position, snivy.LocHeight, Direction.Down, animId, 5))
+  -- if alternate then
+  --   GAME:FadeOut(false, 20)
 
-  -- GROUND:CharSetAction(snivy,
-  -- RogueEssence.Ground.FrameGroundAction(snivy.Position, snivy.LocHeight, Direction.Down, animId, 5))
+
+  --   GAME:WaitFrames(60)
+  --   GROUND:Unhide("Oshawott")
+
+  --   GROUND:CharTurnToCharAnimated(farfetchd, oshawott, 4)
+  --   local animId = RogueEssence.Content.GraphicsManager.GetAnimIndex("Pain")
+  --   local animId2 = RogueEssence.Content.GraphicsManager.GetAnimIndex("Sleep")
+
+  --   GROUND:CharSetAction(snivy,
+  --     RogueEssence.Ground.FrameGroundAction(snivy.Position, snivy.LocHeight, Direction.Down, animId, 5))
+
+  --   GROUND:CharSetAction(dratini,
+  --     RogueEssence.Ground.FrameGroundAction(dratini.Position, dratini.LocHeight, Direction.Down, animId, 5))
+
+  --   GROUND:CharSetAction(kec,
+  --     RogueEssence.Ground.FrameGroundAction(kec.Position, kec.LocHeight, Direction.Down, animId2, 3))
+  --   GAME:FadeIn(20)
+
+  --   GAME:WaitFrames(70)
+
+  --   UI:SetSpeaker(oshawott)
+  --   UI:SetSpeakerEmotion("Stunned")
+  --   M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = true, OffsetX = 32 })
+  --   UI:WaitShowTimedDialogue("[speed=1.0]Whoops,[pause=20] I think I went a bit overboard...[pause=40] again...", 60)
+
+  --   GAME:WaitFrames(20)
+  --   UI:SetSpeaker(farfetchd)
+  --   UI:SetSpeakerEmotion("Normal")
+  --   M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = false, OffsetX = -32 })
+  --   UI:WaitShowTimedDialogue("[speed=1.0]That[pause=20].[pause=20].[pause=20].", 60)
+  --   UI:SetSpeakerEmotion("Inspired")
+  --   GeneralFunctions.Hop(farfetchd)
+  --   GROUND:CharSetEmote(farfetchd, "glowing", 4)
+  --   UI:WaitShowTimedDialogue("[speed=1.0]...was awesome!", 60)
+  --   UI:SetSpeakerEmotion("Happy")
+  --   UI:WaitShowTimedDialogue("[speed=1.0]Teach me everything you know about montages!", 60)
+
+  --   GAME:WaitFrames(20)
+
+  --   UI:SetSpeaker(oshawott)
+  --   UI:SetSpeakerEmotion("Happy")
+  --   M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = true, OffsetX = 32 })
+  --   UI:WaitShowTimedDialogue("[speed=1.0]Sure![pause=50] Make sure you take notes!", 120)
+  --   UI:SetSpeakerEmotion("Normal")
+  --   M_HELPERS.SetSpeakerPosition({ Horizontal = PHorizontalPosition.Middle, Vertical = PVerticalPosition.Top, FaceLeft = true, OffsetX = 32 })
+  --   UI:WaitShowTimedDialogue("[speed=0.3]Now,[pause=20] in order to initiate a montage,[pause=10] you just have to...", 60)
+  --   GAME:FadeOut(false, 80)
+  --   GAME:WaitFrames(20)
+
+  --   UI:WaitShowVoiceOver("[speed=0.5]And so,[pause=20] Oshawott taught Farfetch'd how\nto do an awesome montage...", 120)
+  --   UI:WaitShowVoiceOver("[speed=0.5]Dratini and Snivy would ultimately suffer\nthe consequences of this for\nthe rest of their lives...", 180)
+
+    
+  --     -- Teach me everything you know about how to be cool!
+  -- end
+
 
 
   

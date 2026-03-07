@@ -192,6 +192,27 @@ AchievementRegistry:Register({
 })
 
 AchievementRegistry:Register({
+  id = "CHALLENGER",
+  name = "Challenger",
+  defaultVis = AchievementStatus.Hidden,
+  getDescription = function(self)
+    return "Clear " .. zone_name .. "in Roguelocke"
+  end,
+  apply = function(self)
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local id
+      id = beholder.observe("OnEmberfrostClear", function()
+        SetAchievementStatusIfNeeded(self.id, AchievementStatus.Visible)
+        if GAME:InRogueMode() then
+            AddToNotifyQueue(self.id)
+            beholder.stopObserving(id)      
+        end
+      end)
+    end)
+  end,
+})
+
+AchievementRegistry:Register({
   id = "CHAOS",
   name = "Chaos",
   defaultVis = AchievementStatus.Hidden,

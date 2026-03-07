@@ -408,6 +408,25 @@ function BATTLE_SCRIPT.Ravenous(owner, ownerChar, context, args)
 end
 
 
+function BATTLE_SCRIPT.SubtractPPEvent(owner, ownerChar, context, args)
+  local amount = args.Amount or 1
+  if context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill
+      and context.UsageSlot > RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+      and context.UsageSlot < RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS then
+    if context.User.Skills[context.UsageSlot].Element.Charges > 0 then
+      if amount > 0 then
+        TASK:WaitTask(
+          context.User:DeductCharges(context.UsageSlot, amount, true, false, true)
+        )
+        if context.User.Skills[context.UsageSlot].Element.Charges == 0 then
+          context.SkillUsedUp.Skill = context.User.Skills[context.UsageSlot].Element.SkillNum
+        end
+      end
+    end
+  end
+end
+
+
 function BATTLE_SCRIPT.DraconicDefienceBeforeActions(owner, ownerChar, context, args)
   local chara = context.User
   local health_ratio = chara.HP / chara.MaxHP

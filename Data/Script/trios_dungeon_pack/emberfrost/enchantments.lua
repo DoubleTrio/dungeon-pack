@@ -811,7 +811,6 @@ TreadingThrough = EnchantmentRegistry:Register({
 
     M_HELPERS.GiveInventoryItemsToPlayer(items)
   end
-
 })
 
 ThreadsOfLife = EnchantmentRegistry:Register({
@@ -879,6 +878,26 @@ CalmTheStorm = EnchantmentRegistry:Register({
 })
 
 
+PressureCooker = EnchantmentRegistry:Register({
+  name = "Pressure Cooker",
+  id = "PRESSURE_COOKER",
+  amount = 75,
+  getDescription = function(self)
+    return string.format(
+      "Your party's moves will deal %s%% more damage, but cost an additional PP",
+      M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
+    )
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  set_active_effects = function(self, active_effect, zone_context)
+    print(":REEEOE")
+    active_effect.OnMapStarts:Add(2,
+      RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
+        Serpent.line({ StatusID = "emberfrost_pressure_cooker", EnchantmentID = self.id, ApplyToAll = true })))
+  end
+
+})
 
 TwoForOne = EnchantmentRegistry:Register({
   name = "2 for 1",
@@ -1593,7 +1612,7 @@ ATrueLeader = EnchantmentRegistry:Register({
 Tempo = EnchantmentRegistry:Register({
   name = "Tempo",
   id = "TEMPO",
-  count = 15,
+  count = 1,
   getDescription = function(self)
     return string.format("For every %s enemies defeated, your team gains a random stat boost", M_HELPERS.MakeColoredText(tostring(self.count), PMDColor.Cyan))
   end,
@@ -1892,7 +1911,6 @@ HungerStrike = EnchantmentRegistry:Register({
   name = "Hunger Strike",
   amount = 5,
   id = "HUNGER_STRIKE",
-  -- group = ENCHANTMENT_TYPES.items,
   getDescription = function(self)
     return string.format(
       "Your party will lose hunger more quickly when walking. When they inflict damage with a move, the target will lose %s hunger points",
@@ -1901,16 +1919,16 @@ HungerStrike = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
-    local char_name = char and char:GetDisplayName(true) or nil
-    if char_name then
-      return {
-        "Assigned to: " .. char_name,
-      }
-    end
-    return {}
-  end,
+  -- getProgressTexts = function(self)
+  --   local char = FindCharacterWithEnchantment(self.id)
+  --   local char_name = char and char:GetDisplayName(true) or nil
+  --   if char_name then
+  --     return {
+  --       "Assigned to: " .. char_name,
+  --     }
+  --   end
+  --   return {}
+  -- end,
 
   set_active_effects = function(self, active_effect, zone_context)
     active_effect.OnMapStarts:Add(2,
@@ -2647,7 +2665,7 @@ MoralSupport = EnchantmentRegistry:Register({
   end,
   getDescription = function(self)
     return string.format(
-      "Your team gains a %s boost for each team member in the assembly recruited during this run",
+      "Your team gains a %s boost for each team member in the assembly recruited during this run (includes starting party)",
       M_HELPERS.MakeColoredText(tostring(self.boost) .. "%", PMDColor.Cyan)
 
     )
@@ -2655,7 +2673,6 @@ MoralSupport = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   set_active_effects = function(self, active_effect, zone_context)
-    print("Setting active effects for Moral Support enchantment")
     active_effect.BeforeHits:Add(2,
       RogueEssence.Dungeon.BattleScriptEvent("MoralSupport", Serpent.line({
         EnchantmentID = self.id,
@@ -3047,7 +3064,8 @@ TypeMaster = EnchantmentRegistry:Register({
     -- local type_count = self:get_type_progress().count
     local total_types = #self.valid_types
 
-    return string.format("When your team has recruited all %s types at the same time, gain a massive reward (including your starting character)",
+    return string.format(
+    "When your team has recruited all %s types at the same time, gain a massive reward (includes starting party)",
       M_HELPERS.MakeColoredText(tostring(total_types), PMDColor.Cyan))
   end,
   offer_time = "beginning",
@@ -3296,7 +3314,7 @@ end
 
 -- Play Dead - grants immunity to normal type moves
 
--- Moves cost 2pp, but deal double damahge
+-- Moves use up an additional PP, but deal double damahge
 -- All enemies iwll have the eablity
 
 -- Power Fume - after every turn there is a chance that the opposing pokemon will be poisoned

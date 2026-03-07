@@ -3,16 +3,16 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "Rationalize",
+"DefaultText": "Pressure Cooker",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "",
+"DefaultText": "Moves will deal more damage but cost an additional PP.",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
-"MenuName": false,
+"MenuName": true,
 "CarryOver": false,
 "Emoticon": "",
 "DropEmoticon": "",
@@ -88,7 +88,22 @@
 "OnPickups": [],
 "BeforeStatusAdds": [],
 "BeforeStatusAddings": [],
-"OnStatusAdds": [],
+"OnStatusAdds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
+"Message": {
+"Key": "MSG_PRESSURE_COOKER_START"
+},
+"Delay": true
+}
+}
+],
 "OnStatusRemoves": [],
 "OnMapStatusAdds": [],
 "OnMapStatusRemoves": [],
@@ -101,48 +116,46 @@
 "OnRefresh": [],
 "BeforeTryActions": [],
 "BeforeActions": [],
-"OnActions": [],
+"OnActions": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.AttackingMoveNeededEvent, PMDC",
+"BaseEvents": [
+{
+"$type": "PMDC.Dungeon.MultiplyDamageEvent, PMDC",
+"Numerator": 175,
+"Denominator": 100,
+"Anims": []
+}
+]
+}
+}
+],
 "BeforeHittings": [],
 "BeforeBeingHits": [],
 "AfterHittings": [],
 "AfterBeingHits": [],
 "OnHitTiles": [],
-"AfterActions": [],
-"UserElementEffects": [
+"AfterActions": [
 {
 "Key": {
 "str": [
-0
+-6
 ]
 },
 "Value": {
-"$type": "PMDC.Dungeon.TypeSuperEvent, PMDC",
-"Element": "ghost"
-}
-},
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "PMDC.Dungeon.TypeSuperEvent, PMDC",
-"Element": "fairy"
-}
-},
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "PMDC.Dungeon.TypeSuperEvent, PMDC",
-"Element": "dragon"
+"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
+"Script": "SubtractPPEvent",
+"ArgTable": "{}"
 }
 }
 ],
+"UserElementEffects": [],
 "TargetElementEffects": [],
 "ModifyHPs": [],
 "RestoreHPs": []

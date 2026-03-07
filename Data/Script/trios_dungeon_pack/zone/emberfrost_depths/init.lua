@@ -25,6 +25,7 @@ end
 --Engine callback function
 function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 	InitializeAchievementListeners()
+	-- SV.EmberFrost.Enchantments.Selected = { "TEMPO" }
 	for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
 		local tbl = LTBL(member)
 		tbl.EmberfrostRun = true
