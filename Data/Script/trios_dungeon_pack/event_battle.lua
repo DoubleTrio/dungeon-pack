@@ -261,6 +261,30 @@ function BATTLE_SCRIPT.CrystalDefenseCountdownRemove(owner, ownerChar, context, 
   end
 end
 
+function BATTLE_SCRIPT.RestartCounterEvent(owner, ownerChar, context, args)
+  local status = owner.ID
+  print("HIWIWIW")
+  local stack = context.Target:GetStatusEffect(status)
+  local counter = args.Counter or 10
+  if stack ~= nil then
+    local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
+    s.Counter = counter
+  end
+end
+
+
+-- Decreases the counter by 1
+function BATTLE_SCRIPT.CountdownEvent(owner, ownerChar, context, args)
+  local status = owner.ID
+  local stack_effect = context.Target:GetStatusEffect(status)
+  if stack_effect ~= nil then
+    local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
+    s.Counter = s.Counter - 1
+    -- if s.Counter <= 0 then
+    --   TASK:WaitTask(context.Target:RemoveStatusEffect(status, true))
+    -- end
+  end
+end
 
 function BATTLE_SCRIPT.TargetStatusRequired(owner, ownerChar, context, args)
   local status = args.StatusID

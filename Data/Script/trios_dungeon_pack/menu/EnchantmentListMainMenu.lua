@@ -270,7 +270,7 @@ local function selection_update_description_summary(enchantment_id, menu, origin
     RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
     RogueElements.Loc(
       GraphicsManager.ScreenWidth - 16,
-      origin.Y + y_offset + (additional_texts and #additional_texts or 0) * 14 + 12
+      origin.Y + y_offset + (additional_texts and #additional_texts or 0) * 12 + 16
     )
   )
 

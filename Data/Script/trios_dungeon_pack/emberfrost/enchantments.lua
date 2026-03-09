@@ -891,7 +891,6 @@ PressureCooker = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   set_active_effects = function(self, active_effect, zone_context)
-    print(":REEEOE")
     active_effect.OnMapStarts:Add(2,
       RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
         Serpent.line({ StatusID = "emberfrost_pressure_cooker", EnchantmentID = self.id, ApplyToAll = true })))
@@ -937,7 +936,7 @@ TwoForOne = EnchantmentRegistry:Register({
 
       enchantment:apply()
 
-      table.insert(SV.EmberFrost.SelectedEnchantments, enchantment.id)
+      table.insert(SV.EmberFrost.Enchantments.Selected, enchantment.id)
     end
   end,
 })
@@ -4498,6 +4497,53 @@ Harvester = EnchantmentRegistry:Register({
     --   _DATA:GetElement("grass"):GetIconName()),)
   end
 })
+
+ReinforcedPlating = EnchantmentRegistry:Register({
+  name = "Reinforced Plating",
+  id = "REINFORCED_PLATING",
+  turn_amount = 20,
+  shield_percent = 75,
+
+  getDescription = function(self)
+    local steel_type = _DATA:GetElement("steel")
+    local yellow_apricron = M_HELPERS.GetItemName("apricorn_yellow")
+    return string.format("Gain a %s. Each %s in the %s gains a %s attack reduction shield every %s turns not attacked",
+      yellow_apricron, steel_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow),
+      M_HELPERS.MakeColoredText(tostring(self.shield_percent) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(self.turn_amount, PMDColor.Cyan))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local steel_type = _DATA:GetElement("steel")
+    local icon = steel_type:GetIconName()
+
+    local count = #GetCharacterOfMatchingType("steel", false)
+
+    return { "Total " .. icon .. " Members: " .. count }
+  end,
+
+
+  set_active_effects = function(self, active_effect, zone_context)
+    active_effect.OnMapStarts:Add(2,
+      RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
+        Serpent.line({ StatusID = "emberfrost_reinforced_plating", EnchantmentID = self.id, ApplyToAll = true })))
+  end,
+
+  apply = function(self)
+    local items = {
+      {
+        Item = "apricorn_yellow",
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
+
+
+
 
 -- Negative Aura - For each  At the end of each turn, enemies within 2 tiles of
 

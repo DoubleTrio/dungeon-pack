@@ -213,6 +213,65 @@ AchievementRegistry:Register({
 })
 
 AchievementRegistry:Register({
+  id = "SPEEDRUN",
+  name = "Speedrun!",
+  timeLimitMinute = 120,
+  defaultVis = AchievementStatus.Hidden,
+  getDescription = function(self)
+    return "Clear " .. zone_name .. "in Roguelocke in " .. self.timeLimitMinute .." minutes"
+  end,
+  apply = function(self)
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local id
+      id = beholder.observe("OnEmberfrostClear", function()
+        SetAchievementStatusIfNeeded(self.id, AchievementStatus.Visible)
+        if GAME:InRogueMode() then
+          AddToNotifyQueue(self.id)
+          beholder.stopObserving(id)
+        end
+      end)
+    end)
+  end,
+})
+
+AchievementRegistry:Register({
+  id = "EFFIECIENCY",
+  name = "Efficiency!",
+  total_turns = 120,
+  defaultVis = AchievementStatus.Hidden,
+  getDescription = function(self)
+    return "Clear " .. zone_name .. "in Roguelocke within " .. self.total_turns .. " turns"
+  end,
+  apply = function(self)
+    beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
+      local id
+      id = beholder.observe("OnEmberfrostClear", function()
+        -- SetAchievementStatusIfNeeded(self.id, AchievementStatus.Visible)
+        -- if GAME:InRogueMode() then
+        --   AddToNotifyQueue(self.id)
+        --   beholder.stopObserving(id)
+        -- end
+      end)
+    end)
+  end,
+})
+-- TotalTurns
+--  public string GetDungeonTimeDisplay()
+--     {
+--         TimeSpan totalSessionTime = SessionTime;
+--         //add the time elapsed since current session start, if we have a session start
+--         if (SessionStartTime.Ticks > 0)
+--             totalSessionTime += (DateTime.Now - SessionStartTime);
+
+--         string display = "99:59:59";
+--         int totalHours = totalSessionTime.Hours;
+--         if (totalHours < 100)
+--             display = String.Format("{0:D2}", totalHours) + totalSessionTime.ToString(@"\:mm\:ss");
+
+--         return display;
+--     }
+
+AchievementRegistry:Register({
   id = "CHAOS",
   name = "Chaos",
   defaultVis = AchievementStatus.Hidden,

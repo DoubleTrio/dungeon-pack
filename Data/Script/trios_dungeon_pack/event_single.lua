@@ -2445,3 +2445,37 @@ end
 --         SV.ClovenRuins.BoulderCountdown = SV.ClovenRuins.BoulderCountdown - 1
 --     end
 -- end
+
+
+
+function SINGLE_CHAR_SCRIPT.AddStatusOnCountdownFinished(owner, ownerChar, context, args)
+    local status = owner.ID
+    local status_to_add = args.Status
+    local start_counter = args.Counter
+    local curr_status = context.User:GetStatusEffect(status)
+    if curr_status ~= nil then
+        local s = curr_status.StatusStates:Get(luanet.ctype(CountDownStateType))
+        if s.Counter <= 0 then
+            local se = RogueEssence.Dungeon.StatusEffect(status_to_add)
+            se:LoadFromData()
+            TASK:WaitTask(context.User:AddStatusEffect(nil, se, false))
+            s.Counter = start_counter
+        end
+    end
+end
+
+-- Decreases the counter by 1 if the user doesn't have the arg status
+function SINGLE_CHAR_SCRIPT.CountdownEventIfNoStatus(owner, ownerChar, context, args)
+    local status = owner.ID
+    local status_to_check = args.Status
+    local has_status = context.User:GetStatusEffect(status_to_check) ~= nil
+    if not has_status then
+        local stack_effect = context.User:GetStatusEffect(status)
+        if stack_effect ~= nil then
+            local s = stack_effect.StatusStates:Get(luanet.ctype(CountDownStateType))
+            if s.Counter > 0 then
+                s.Counter = s.Counter - 1
+            end
+        end
+    end
+end

@@ -219,6 +219,24 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_reinforced_plating": {
+"Name": {
+"DefaultText": "Reinforced Plating",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_one_time_shield": {
+"Name": {
+"DefaultText": "One Time Shield",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }
