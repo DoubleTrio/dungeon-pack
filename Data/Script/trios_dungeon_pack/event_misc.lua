@@ -1,4 +1,6 @@
 require 'trios_dungeon_pack.helpers'
+require 'trios_dungeon_pack.menu.AddToTeamMenu'
+require 'origin.menu.team.TeamSelectMenu'
 
 beholder = require 'trios_dungeon_pack.beholder'
 function ITEM_SCRIPT.WishItemPickupEvent(owner, ownerChar, context, args)
@@ -777,4 +779,71 @@ function AddStat(stat, context)
     UI:WaitShowDialogue(RogueEssence.Text.FormatGrammar(RogueEssence.StringKey("MSG_STAT_BOOST"):ToLocal(),
       context.User:GetDisplayName(false), RogueEssence.Text.ToLocal(stat), tostring(new_stat - prev_stat)))
   end
+end
+
+
+
+WithdrawAssemblyContextType = luanet.import_type('PMDC.Dungeon.WithdrawAssemblyContext')
+
+function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
+  local team = _DATA.Save.ActiveTeam
+
+  local hasBench = team.Assembly.Count > 0
+  if not hasBench then
+    TASK:WaitTask(_MENU:SetDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_ASSEMBLY_EMPTY"):ToLocal())))
+    context.CancelState.Cancel = true
+    return
+  end
+
+  TASK:WaitTask(_MENU:SetDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_ASK_ASSEMBLY"):ToLocal())))
+  local menu = AddToTeamMenu:new(
+    function(slots) context.ContextStates:Set(WithdrawAssemblyContextType(slots[1])) end,
+    function() context.CancelState.Cancel = true end
+  )
+  TASK:WaitTask(_MENU:ProcessMenuCoroutine(menu.menu))
+
+  if context.CancelState.Cancel then return end
+
+  local slot = context.ContextStates:GetWithDefault(luanet.ctype(WithdrawAssemblyContextType)).WithdrawSlot
+  local char_to_add = team.Assembly[slot]
+
+  if team.Players.Count < team:GetMaxTeam(_ZONE.CurrentZone) then
+    GAME:FadeOut(false, 40)
+    team.Players:Add(char_to_add)
+    GAME:WaitFrames(20)
+    COMMON.RespawnAllies()
+    GAME:FadeIn(60)
+    UI:WaitShowDialogue(char_to_add:GetDisplayName(true) .. " was added to the party!")
+    return
+  end
+
+
+  local function can_return_home(char)
+    return not (GAME:InRogueMode() and _DATA:GetSkin(char.BaseForm.Skin).Challenge)
+  end
+
+  UI:WaitShowDialogue("Select a character to return home.")
+  local char = TeamSelectMenu.runPartyMenu(can_return_home, true)
+  if char == nil then
+    context.CancelState.Cancel = true
+    return
+  end
+
+  local party_slot = -1
+  for i = 0, team.Players.Count - 1, 1 do
+    if team.Players[i] == char then
+      party_slot = i
+      break
+    end
+  end
+
+  GAME:FadeOut(false, 40)
+  team.Assembly:RemoveAt(slot)
+  team.Assembly:Insert(slot, char)
+  team.Players:RemoveAt(party_slot)
+  team.Players:Insert(party_slot, char_to_add)
+  GAME:WaitFrames(20)
+  COMMON.RespawnAllies()
+  GAME:FadeIn(60)
+  UI:WaitShowDialogue(char_to_add:GetDisplayName(true) .. " swapped in for " .. char:GetDisplayName(true) .. "!")
 end

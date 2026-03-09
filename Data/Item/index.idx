@@ -2,6 +2,33 @@
 "Version": "0.8.11.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"machine_assembly_box": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"Icon": 12,
+"UsageType": 1,
+"States": [
+{
+"assembly": "PMDC, Version=0.8.11.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.UtilityState"
+}
+],
+"MaxStack": 0,
+"CannotDrop": false,
+"BagEffect": false,
+"Name": {
+"DefaultText": "Assembly Box",
+"LocalTexts": {
+"fr": "Boîte Rassemblement",
+"de": "Versammlungsbox",
+"it": "Tecadunanza",
+"ko": "모여라상자",
+"zh-hans": "队伍编成箱"
+}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 12
+},
 "wish_gem": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": -1,

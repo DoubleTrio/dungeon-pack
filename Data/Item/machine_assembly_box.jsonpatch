@@ -1,0 +1,20 @@
+﻿{
+  "Version": [
+    "0.0",
+    "0.8.11.0"
+  ],
+  "Object": {
+    "GroundUseActions": {
+      "_t": "a",
+      "0": [
+        {
+          "$type": "RogueEssence.Ground.ScriptItemEvent, RogueEssence",
+          "Script": "AssemblyBoxEvent",
+          "ArgTable": "{}",
+          "GroundUsageType": 1,
+          "Selection": 0
+        }
+      ]
+    }
+  }
+}
