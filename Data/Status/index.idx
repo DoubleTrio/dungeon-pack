@@ -264,6 +264,15 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_negative_aura": {
+"Name": {
+"DefaultText": "Negative Aura",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

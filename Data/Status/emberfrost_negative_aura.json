@@ -1,0 +1,148 @@
+﻿{
+"Version": "0.8.11.0",
+"Object": {
+"$type": "RogueEssence.Data.StatusData, RogueEssence",
+"Name": {
+"DefaultText": "Negative Aura",
+"LocalTexts": {}
+},
+"Desc": {
+"DefaultText": "Enemies nearby the Pokémon have a chance to receive a random stat debuff",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"MenuName": true,
+"CarryOver": false,
+"Emoticon": "Dark_Aura_Moon",
+"DropEmoticon": "",
+"FreeEmote": "",
+"DrawEffect": -1,
+"Targeted": false,
+"StatusStates": [
+{
+"$type": "PMDC.Dungeon.TransferStatusState, PMDC"
+}
+],
+"OnSkillChanges": [],
+"TargetPassive": {
+"OnEquips": [],
+"OnPickups": [],
+"BeforeStatusAdds": [],
+"BeforeStatusAddings": [],
+"OnStatusAdds": [],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [],
+"OnTurnStarts": [],
+"OnTurnEnds": [],
+"OnMapTurnEnds": [],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [],
+"BeforeBeingHits": [],
+"AfterHittings": [],
+"AfterBeingHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"UserElementEffects": [],
+"TargetElementEffects": [],
+"ModifyHPs": [],
+"RestoreHPs": []
+},
+"ProximityEvent": {
+"Radius": 3,
+"TargetAlignments": 4,
+"BeforeExplosions": [],
+"OnEquips": [],
+"OnPickups": [],
+"BeforeStatusAdds": [],
+"BeforeStatusAddings": [],
+"OnStatusAdds": [],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [],
+"OnTurnStarts": [],
+"OnTurnEnds": [],
+"OnMapTurnEnds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "RandomDebuffEvent",
+"ArgTable": "{}"
+}
+}
+],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [],
+"BeforeBeingHits": [],
+"AfterHittings": [],
+"AfterBeingHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"UserElementEffects": [],
+"TargetElementEffects": [],
+"ModifyHPs": [],
+"RestoreHPs": []
+},
+"OnEquips": [],
+"OnPickups": [],
+"BeforeStatusAdds": [],
+"BeforeStatusAddings": [],
+"OnStatusAdds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
+"Message": {
+"Key": "MSG_NEGATIVE_AURA_START"
+},
+"Delay": true
+}
+}
+],
+"OnStatusRemoves": [],
+"OnMapStatusAdds": [],
+"OnMapStatusRemoves": [],
+"OnMapStarts": [],
+"OnTurnStarts": [],
+"OnTurnEnds": [],
+"OnMapTurnEnds": [],
+"OnWalks": [],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [],
+"BeforeBeingHits": [],
+"AfterHittings": [],
+"AfterBeingHits": [],
+"OnHitTiles": [],
+"AfterActions": [],
+"UserElementEffects": [],
+"TargetElementEffects": [],
+"ModifyHPs": [],
+"RestoreHPs": []
+}
+}

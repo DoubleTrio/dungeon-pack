@@ -3404,10 +3404,6 @@ end
 
 -- Portal Creation - all damaging moves get +1 priority if the pokemon with this ability is inflicted with a major status condition
 
-
-
--- Negative Aura - Apply a random debug
-
 TarotCards = EnchantmentRegistry:Register({
   name = "Tarot Cards",
   id = "TAROT_CARDS",
@@ -4531,110 +4527,6 @@ Harvester = EnchantmentRegistry:Register({
   end
 })
 
-ReinforcedPlating = EnchantmentRegistry:Register({
-  name = "Reinforced Plating",
-  id = "REINFORCED_PLATING",
-  turn_amount = 20,
-  shield_percent = 75,
-
-  getDescription = function(self)
-    local steel_type = _DATA:GetElement("steel")
-    local yellow_apricron = M_HELPERS.GetItemName("apricorn_yellow")
-    return string.format("Gain a %s. Each %s in the %s gains a %s attack reduction shield every %s turns not attacked",
-      yellow_apricron, steel_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow),
-      M_HELPERS.MakeColoredText(tostring(self.shield_percent) .. "%", PMDColor.Cyan),
-      M_HELPERS.MakeColoredText(self.turn_amount, PMDColor.Cyan))
-  end,
-  offer_time = "beginning",
-  rarity = 1,
-  getProgressTexts = function(self)
-    local steel_type = _DATA:GetElement("steel")
-    local icon = steel_type:GetIconName()
-
-    local count = #GetCharacterOfMatchingType("steel", false)
-
-    return { "Total " .. icon .. " Members: " .. count }
-  end,
-
-
-  set_active_effects = function(self, active_effect, zone_context)
-    active_effect.OnMapStarts:Add(2,
-      RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
-        Serpent.line({ StatusID = "emberfrost_reinforced_plating", EnchantmentID = self.id, ApplyToAll = true })))
-  end,
-
-  apply = function(self)
-    local items = {
-      {
-        Item = "apricorn_yellow",
-        Amount = 1
-      }
-    }
-
-    M_HELPERS.GiveInventoryItemsToPlayer(items)
-  end
-})
-
-
-FindYourGround = EnchantmentRegistry:Register({
-  name = "Find Your Ground",
-  id = "FIND_YOUR_GROUND",
-  percent = 40,
-  turns = 4,
-  getDescription = function(self)
-    local ground_type = _DATA:GetElement("ground")
-    local brown_apricorn = M_HELPERS.GetItemName("apricorn_brown")
-    return string.format(
-      "Gain a %s. Each %s in the %s gains a %s attack boost and a %s damage reduction boost if they do not move for %s turns",
-      brown_apricorn, ground_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
-      M_HELPERS.MakeColoredText(tostring(self.turns), PMDColor.Cyan))
-  end,
-  cleanup = function(self)
-    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-      local tbl = LTBL(member)
-      tbl["X"] = nil
-      tbl["Y"] = nil
-    end
-    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-      local tbl = LTBL(member)
-      tbl["X"] = nil
-      tbl["Y"] = nil
-    end
-  end,
-
-  offer_time = "beginning",
-  rarity = 1,
-  getProgressTexts = function(self)
-    local ground_type = _DATA:GetElement("ground")
-    local icon = ground_type:GetIconName()
-
-    local count = #GetCharacterOfMatchingType("ground", false)
-
-    return { "Total " .. icon .. " Members: " .. count }
-  end,
-
-
-  set_active_effects = function(self, active_effect, zone_context)
-    active_effect.OnMapStarts:Add(2,
-      RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
-        Serpent.line({ StatusID = "emberfrost_grounded", EnchantmentID = self.id, ApplyToAll = true })))
-  end,
-
-  apply = function(self)
-    local items = {
-      {
-        Item = "apricorn_brown",
-        Amount = 1
-      }
-    }
-
-    M_HELPERS.GiveInventoryItemsToPlayer(items)
-  end
-})
-
-
 
 -- Negative Aura - For each  At the end of each turn, enemies within 2 tiles of
 -- Rationalize: This Pokémon's Normal-Type moves are Super Effective to Fairy, Ghosts, and Dragon-Types in exchange for Moves from those Types becoming Super Effective to this Pokémon.
@@ -4867,7 +4759,6 @@ Subzero = CreateTypeStatusEnchantment({
 -- Fairy -
 -- Cruel Kindness – Fairy-type moves heal allies for a portion of the damage dealt.
 -- Fairy -
--- Steel: Reinforced Plating - Impact, take 10% damage from one physical move, once. Every 50 turns - gain a shield that reduces damage by 80%
 --  Conductor- The Pokémon's Attack and Special Attack stats get boosted if hit by an Electric-Type move.
 
 -- polished metal

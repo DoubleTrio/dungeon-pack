@@ -1,6 +1,9 @@
 
 require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
+
 require 'trios_dungeon_pack.emberfrost.enchantments'
+require 'trios_dungeon_pack.emberfrost.type_enchantments'
+
 require 'trios_dungeon_pack.beholder'
 
 require 'trios_dungeon_pack.menu.ItemShopMenu'
@@ -334,8 +337,8 @@ function checkpoint.ChestInteraction(obj, activator)
   local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
-  enchantments[1][1] = EnchantmentRegistry._registry[SafeguardPlus.id]
-  enchantments[1][2] = EnchantmentRegistry._registry[TheBubble.id]
+  enchantments[1][1] = EnchantmentRegistry._registry[ReinforcedPlating.id]
+  enchantments[1][2] = EnchantmentRegistry._registry[NegativeAura.id]
   enchantments[1][3] = EnchantmentRegistry._registry[Blueprint.id]
   -- enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]
   local ret = nil
