@@ -1805,6 +1805,37 @@ Sponge = EnchantmentRegistry:Register({
   end
 })
 
+SafeguardPlus = EnchantmentRegistry:Register({
+  name = "Safeguard+",
+  id = "SAFEGUARD_PLUS",
+  getDescription = function(self)
+    return string.format("Choose a team member. That member will gains a permanent %s for the rest of the dungeon",
+      M_HELPERS.MakeColoredText("Safeguard", PMDColor.Cyan))
+  end,
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local char = FindCharacterWithEnchantment(self.id)
+    local char_name = char and char:GetDisplayName(true) or nil
+    if char_name then
+      return { "Assigned to: " .. char_name }
+    end
+    return {}
+  end,
+
+  set_active_effects = function(self, active_effect, zone_context)
+    active_effect.OnMapStarts:Add(2,
+      RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus", Serpent.line({
+        StatusID = "emberfrost_safeguard_permanent",
+        EnchantmentID = self.id
+      })))
+  end,
+
+  apply = function(self)
+    AssignEnchantmentToCharacter(self)
+  end
+})
+
 Ravenous = EnchantmentRegistry:Register({
   name = "Ravenous",
   id = "RAVENOUS",
@@ -4545,9 +4576,9 @@ ReinforcedPlating = EnchantmentRegistry:Register({
 })
 
 
-Grounded = EnchantmentRegistry:Register({
-  name = "Grounded",
-  id = "GROUNDED",
+FindYourGround = EnchantmentRegistry:Register({
+  name = "Find Your Ground",
+  id = "FIND_YOUR_GROUND",
   percent = 40,
   turns = 4,
   getDescription = function(self)
@@ -4606,9 +4637,9 @@ Grounded = EnchantmentRegistry:Register({
 
 
 -- Negative Aura - For each  At the end of each turn, enemies within 2 tiles of
-
 -- Rationalize: This Pokémon's Normal-Type moves are Super Effective to Fairy, Ghosts, and Dragon-Types in exchange for Moves from those Types becoming Super Effective to this Pokémon.
 -- https://gamefaqs.gamespot.com/boards/359435-pokemon-violet/80421481
+
 Rationalize = EnchantmentRegistry:Register({
   name = "Rationalize",
   id = "RATIONALIZE",

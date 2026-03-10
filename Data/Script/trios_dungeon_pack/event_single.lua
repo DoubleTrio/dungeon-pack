@@ -1509,7 +1509,6 @@ function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args
     local apply_to_all = args.ApplyToAll or false
     local char = FindCharacterWithEnchantment(enchantment_id)
 
-    --    print(enchantment_id)
     if apply_to_all then
         for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
             if member ~= nil then
@@ -1530,14 +1529,10 @@ function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args
     end
 
 
-    if context.User == char then
-       
-        if not char.Dead then
-             print("did it find the char?" .. enchantment_id)
-            local status = RogueEssence.Dungeon.StatusEffect(status_id)
-            status:LoadFromData()
-            TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
-        end
+    if char and not char.Dead then
+        local status = RogueEssence.Dungeon.StatusEffect(status_id)
+        status:LoadFromData()
+        TASK:WaitTask(char:AddStatusEffect(nil, status, true))
     end
 end
 

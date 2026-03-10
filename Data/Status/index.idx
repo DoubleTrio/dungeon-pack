@@ -255,6 +255,15 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_safeguard_permanent": {
+"Name": {
+"DefaultText": "Safeguard+",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }
