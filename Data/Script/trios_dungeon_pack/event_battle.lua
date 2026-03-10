@@ -263,7 +263,6 @@ end
 
 function BATTLE_SCRIPT.RestartCounterEvent(owner, ownerChar, context, args)
   local status = owner.ID
-  print("HIWIWIW")
   local stack = context.Target:GetStatusEffect(status)
   local counter = args.Counter or 10
   if stack ~= nil then

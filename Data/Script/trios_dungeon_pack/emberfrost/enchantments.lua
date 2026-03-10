@@ -24,6 +24,7 @@ FoodStateType = luanet.import_type('PMDC.Dungeon.FoodState')
 HerbStateType = luanet.import_type('PMDC.Dungeon.HerbState')
 UnrecruitableType = luanet.import_type('PMDC.LevelGen.MobSpawnUnrecruitable')
 
+ItemIDStateType = luanet.import_type('RogueEssence.Dungeon.ItemIDState')
 RedirectionType = luanet.import_type('PMDC.Dungeon.Redirected')
 
 -- https://pokemondb.net/ability/guts
@@ -1247,8 +1248,8 @@ EliteTutoring = EnchantmentRegistry:Register({
 function GetTM(tm)
   local entry = _DATA:GetItem(tm)
 
-  local ItemIDState = luanet.import_type('RogueEssence.Dungeon.ItemIDState')
-  local id_state = entry.ItemStates:Get(luanet.ctype(ItemIDState))
+
+  local id_state = entry.ItemStates:Get(luanet.ctype(ItemIDStateType))
   local id = id_state.ID
 
   return id
@@ -2481,6 +2482,7 @@ ExitStrategy = EnchantmentRegistry:Register({
     AssignEnchantmentToCharacter(self)
   end
 })
+
 TheBubble = EnchantmentRegistry:Register({
   interest = 0.10,
   start = 0,
@@ -4542,6 +4544,64 @@ ReinforcedPlating = EnchantmentRegistry:Register({
   end
 })
 
+
+Grounded = EnchantmentRegistry:Register({
+  name = "Grounded",
+  id = "GROUNDED",
+  percent = 40,
+  turns = 4,
+  getDescription = function(self)
+    local ground_type = _DATA:GetElement("ground")
+    local brown_apricorn = M_HELPERS.GetItemName("apricorn_brown")
+    return string.format(
+      "Gain a %s. Each %s in the %s gains a %s attack boost and a %s damage reduction boost if they do not move for %s turns",
+      brown_apricorn, ground_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(tostring(self.turns), PMDColor.Cyan))
+  end,
+  cleanup = function(self)
+    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+      local tbl = LTBL(member)
+      tbl["X"] = nil
+      tbl["Y"] = nil
+    end
+    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+      local tbl = LTBL(member)
+      tbl["X"] = nil
+      tbl["Y"] = nil
+    end
+  end,
+
+  offer_time = "beginning",
+  rarity = 1,
+  getProgressTexts = function(self)
+    local ground_type = _DATA:GetElement("ground")
+    local icon = ground_type:GetIconName()
+
+    local count = #GetCharacterOfMatchingType("ground", false)
+
+    return { "Total " .. icon .. " Members: " .. count }
+  end,
+
+
+  set_active_effects = function(self, active_effect, zone_context)
+    active_effect.OnMapStarts:Add(2,
+      RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
+        Serpent.line({ StatusID = "emberfrost_grounded", EnchantmentID = self.id, ApplyToAll = true })))
+  end,
+
+  apply = function(self)
+    local items = {
+      {
+        Item = "apricorn_brown",
+        Amount = 1
+      }
+    }
+
+    M_HELPERS.GiveInventoryItemsToPlayer(items)
+  end
+})
 
 
 

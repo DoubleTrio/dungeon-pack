@@ -19,8 +19,11 @@ A mod that adds more dungeons to base PMDO. Currently, 2 (one of them WIP) addit
 
 - **[Yash](https://www.youtube.com/@YashMaj1248)** - Music for Emberfrost Depths (soundfonts of the tracks below)
   - **[Choral Chamber](https://www.youtube.com/watch?v=jO4uMerMpdw)**
-  - **[Vast Poni Canyoon](https://www.youtube.com/watch?v=14_CoQWjV8I)**
+  - **[Vast Poni Canyon](https://www.youtube.com/watch?v=14_CoQWjV8I)**
   - **[Terminal Velocity (Act 1)](https://www.youtube.com/watch?v=npTdjMtlHM8)**
+
+- **[MistressNebula]** - Frostbite status + menu code
+
 
 - Enrique García Cota - **[Lua Beholder Library](https://github.com/kikito/beholder.lua/tree/master)**
 - **[Miles Farber](https://github.com/MilesFarber/)** - **[Item Assets](https://github.com/MilesFarber/ItemCollab)**

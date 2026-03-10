@@ -3,18 +3,18 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "Reinforced Plating",
+"DefaultText": "Grounded Boost",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "The Pokémon will gain a 75% attack reduction shield for every 20 turn not attacked",
+"DefaultText": "The Pokémon will deal increased damage and receive a reduction in damage from attacks. This status is removed once the Pokémon moves",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
 "MenuName": true,
-"CarryOver": true,
-"Emoticon": "",
+"CarryOver": false,
+"Emoticon": "MudArrowDown",
 "DropEmoticon": "",
 "FreeEmote": "",
 "DrawEffect": -1,
@@ -22,10 +22,6 @@
 "StatusStates": [
 {
 "$type": "PMDC.Dungeon.TransferStatusState, PMDC"
-},
-{
-"$type": "RogueEssence.Dungeon.CountDownState, RogueEssence",
-"Counter": 20
 }
 ],
 "OnSkillChanges": [],
@@ -106,13 +102,28 @@
 "Value": {
 "$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
 "Message": {
-"Key": "MSG_REINFORCED_PLATING_START"
+"Key": "MSG_GROUNDED_BOOST_START"
 },
-"Delay": true
+"Delay": false
 }
 }
 ],
-"OnStatusRemoves": [],
+"OnStatusRemoves": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
+"Message": {
+"Key": "MSG_GROUNDED_BOOST_END"
+},
+"Delay": false
+}
+}
+],
 "OnMapStatusAdds": [],
 "OnMapStatusRemoves": [],
 "OnMapStarts": [],
@@ -125,10 +136,12 @@
 },
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "CountdownEventIfNoStatus",
-"ArgTable": "{ Status = \"emberfrost_one_time_shield\"}"
+"Script": "StoreUserLocation",
+"ArgTable": "{}"
 }
-},
+}
+],
+"OnTurnEnds": [
 {
 "Key": {
 "str": [
@@ -137,23 +150,12 @@
 },
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "AddStatusOnCountdownFinished",
-"ArgTable": "{ Status = \"emberfrost_one_time_shield\", Counter = 20}"
+"Script": "RemoveStatusIfPositionChanges",
+"ArgTable": "{}"
 }
 }
 ],
-"OnTurnEnds": [],
-"OnMapTurnEnds": [],
-"OnWalks": [],
-"OnDeaths": [],
-"OnRefresh": [],
-"BeforeTryActions": [],
-"BeforeActions": [],
-"OnActions": [],
-"BeforeHittings": [],
-"BeforeBeingHits": [],
-"AfterHittings": [],
-"AfterBeingHits": [
+"OnMapTurnEnds": [
 {
 "Key": {
 "str": [
@@ -161,17 +163,63 @@
 ]
 },
 "Value": {
-"$type": "PMDC.Dungeon.AttackingMoveNeededEvent, PMDC",
-"BaseEvents": [
-{
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "RestartCounterEvent",
-"ArgTable": "{ Counter = 20 }"
-}
-]
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "RemoveStatusIfPositionChanges",
+"ArgTable": "{}"
 }
 }
 ],
+"OnWalks": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "RemoveSelfStatusEvent",
+"ArgTable": "{}"
+}
+}
+],
+"OnDeaths": [],
+"OnRefresh": [],
+"BeforeTryActions": [],
+"BeforeActions": [],
+"OnActions": [],
+"BeforeHittings": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.MultiplyDamageEvent, PMDC",
+"Numerator": 140,
+"Denominator": 100,
+"Anims": []
+}
+}
+],
+"BeforeBeingHits": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.MultiplyDamageEvent, PMDC",
+"Numerator": 60,
+"Denominator": 100,
+"Anims": []
+}
+}
+],
+"AfterHittings": [],
+"AfterBeingHits": [],
 "OnHitTiles": [],
 "AfterActions": [],
 "UserElementEffects": [],

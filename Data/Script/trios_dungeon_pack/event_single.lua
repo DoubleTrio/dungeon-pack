@@ -2458,7 +2458,7 @@ function SINGLE_CHAR_SCRIPT.AddStatusOnCountdownFinished(owner, ownerChar, conte
         if s.Counter <= 0 then
             local se = RogueEssence.Dungeon.StatusEffect(status_to_add)
             se:LoadFromData()
-            TASK:WaitTask(context.User:AddStatusEffect(nil, se, false))
+            TASK:WaitTask(context.User:AddStatusEffect(nil, se, true))
             s.Counter = start_counter
         end
     end
@@ -2477,5 +2477,85 @@ function SINGLE_CHAR_SCRIPT.CountdownEventIfNoStatus(owner, ownerChar, context, 
                 s.Counter = s.Counter - 1
             end
         end
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.CountdownEventIfPositionSame(owner, ownerChar, context, args)
+    local status = owner.ID
+    local status_to_check = args.Status
+    local has_status = context.User:GetStatusEffect(status_to_check) ~= nil
+
+    local char = context.User
+    local x = char.CharLoc.X
+    local y = char.CharLoc.Y
+    local tbl = LTBL(char)
+    local tbl_x = tbl.X
+    local tbl_y = tbl.Y
+
+    if not has_status and tbl_x == x and tbl_y == y then
+        local stack_effect = context.User:GetStatusEffect(status)
+        if stack_effect ~= nil then
+            local s = stack_effect.StatusStates:Get(luanet.ctype(CountDownStateType))
+            if s.Counter > 0 then
+                s.Counter = s.Counter - 1
+            end
+        end
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.RemoveSelfStatusEvent(owner, ownerChar, context, args)
+    TASK:WaitTask(context.User:RemoveStatusEffect(owner.ID))
+end
+
+
+function SINGLE_CHAR_SCRIPT.RestartCounterEvent(owner, ownerChar, context, args)
+    local status = owner.ID
+    local stack = context.User:GetStatusEffect(status)
+    local counter = args.Counter or 10
+    if stack ~= nil then
+        local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
+        s.Counter = counter
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.StoreUserLocation(owner, ownerChar, context, args)
+
+    local char = context.User
+    local x = char.CharLoc.X
+    local y = char.CharLoc.Y
+
+    local tbl = LTBL(char)
+    tbl.X = x
+    tbl.Y = y
+end
+
+function SINGLE_CHAR_SCRIPT.RestartCounterIfPositionChanges(owner, ownerChar, context, args)
+    local char = context.User
+    local x = char.CharLoc.X
+    local y = char.CharLoc.Y
+    local counter = args.Counter or 10
+
+    local status = owner.ID
+    local stack = context.User:GetStatusEffect(status)
+    local tbl = LTBL(char)
+    local tbl_x = tbl.X
+    local tbl_y = tbl.Y 
+    if tbl_x ~= x or tbl_y ~= y then
+        local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
+        s.Counter = counter
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.RemoveStatusIfPositionChanges(owner, ownerChar, context, args)
+    local char = context.User
+    local x = char.CharLoc.X
+    local y = char.CharLoc.Y
+
+    local tbl = LTBL(char)
+    local tbl_x = tbl.X
+    local tbl_y = tbl.Y
+    if tbl_x ~= x or tbl_y ~= y then
+        TASK:WaitTask(context.User:RemoveStatusEffect(owner.ID))
+
     end
 end

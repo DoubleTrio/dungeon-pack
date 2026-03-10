@@ -237,6 +237,24 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_grounded": {
+"Name": {
+"DefaultText": "Grounded",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_grounded_boost": {
+"Name": {
+"DefaultText": "Grounded Boost",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

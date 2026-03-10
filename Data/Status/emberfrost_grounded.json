@@ -3,11 +3,11 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "Reinforced Plating",
+"DefaultText": "Grounded",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "The Pokémon will gain a 75% attack reduction shield for every 20 turn not attacked",
+"DefaultText": "The Pokémon will deal more damage and recieve less damage if they do not move for 4 turns",
 "LocalTexts": {}
 },
 "Released": true,
@@ -25,7 +25,7 @@
 },
 {
 "$type": "RogueEssence.Dungeon.CountDownState, RogueEssence",
-"Counter": 20
+"Counter": 4
 }
 ],
 "OnSkillChanges": [],
@@ -106,7 +106,7 @@
 "Value": {
 "$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
 "Message": {
-"Key": "MSG_REINFORCED_PLATING_START"
+"Key": "MSG_GROUNDED_START"
 },
 "Delay": true
 }
@@ -125,8 +125,8 @@
 },
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
-"Script": "CountdownEventIfNoStatus",
-"ArgTable": "{ Status = \"emberfrost_one_time_shield\"}"
+"Script": "StoreUserLocation",
+"ArgTable": "{}"
 }
 },
 {
@@ -138,13 +138,64 @@
 "Value": {
 "$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
 "Script": "AddStatusOnCountdownFinished",
-"ArgTable": "{ Status = \"emberfrost_one_time_shield\", Counter = 20}"
+"ArgTable": "{ Status = \"emberfrost_grounded_boost\", Counter = 4}"
 }
 }
 ],
-"OnTurnEnds": [],
-"OnMapTurnEnds": [],
-"OnWalks": [],
+"OnTurnEnds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "RestartCounterIfPositionChanges",
+"ArgTable": "{ Counter = 4 }"
+}
+}
+],
+"OnMapTurnEnds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "RestartCounterIfPositionChanges",
+"ArgTable": "{ Counter = 4 }"
+}
+},
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "CountdownEventIfNoStatus",
+"ArgTable": "{ Status = \"emberfrost_grounded_boost\" }"
+}
+}
+],
+"OnWalks": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "RestartCounterEvent",
+"ArgTable": "{ Counter = 4 }"
+}
+}
+],
 "OnDeaths": [],
 "OnRefresh": [],
 "BeforeTryActions": [],
@@ -153,25 +204,7 @@
 "BeforeHittings": [],
 "BeforeBeingHits": [],
 "AfterHittings": [],
-"AfterBeingHits": [
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "PMDC.Dungeon.AttackingMoveNeededEvent, PMDC",
-"BaseEvents": [
-{
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "RestartCounterEvent",
-"ArgTable": "{ Counter = 20 }"
-}
-]
-}
-}
-],
+"AfterBeingHits": [],
 "OnHitTiles": [],
 "AfterActions": [],
 "UserElementEffects": [],
