@@ -11,7 +11,7 @@ local elemental_checkpoint = {}
 -- Engine callback function
 
 function elemental_checkpoint.Init(map)
-  checkpoint.OnCheckpointArrive()
+  checkpoint.OnCheckpointArrive(5)
   -- random weather!
   -- GROUND:AddMapStatus("rain")
 end

@@ -198,14 +198,14 @@ function checkpoint.GenerateShop()
   return shop
 end
 
-function checkpoint.OnCheckpointArrive()
+function checkpoint.OnCheckpointArrive(checkpoint_progression)
 
   
   COMMON.RespawnAllies()
   RespawnGuests()
   checkpoint.SpawnGroundEntities()
   SV.EmberFrost.Shopkeeper = checkpoint.GenerateShop()
-  SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression + 1
+  SV.EmberFrost.CheckpointProgression = checkpoint_progression
   local active_enchants = EnchantmentRegistry:GetSelected()
 
   if not SV.EmberFrost.CheckpointEnchantsCalled then

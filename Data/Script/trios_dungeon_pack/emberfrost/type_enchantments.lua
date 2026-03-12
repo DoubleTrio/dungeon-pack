@@ -65,9 +65,9 @@ local checkpoint1 = {
   ice = { "amaura", "cubchoo", "frigibax", "smoochum", "snorunt", "snover", "spheal", "swinub", "vanillish", "snom" },
   normal = { "bunnelby", "deerling", "doduo", "glameow", "hoothoot", "lechonk", "lillipup", "litleo", "meowth", "patrat", "pidgey", "rattata", "rufflet", "slakoth",  "spearow", "stufful", "swablu", "taillow", "tandemaus", "teddiursa", "vigoroth", "whismur", "wooloo", "zigzagoon" },
   poison = { "bellsprout", "bulbasaur", "croagunk", "ekans", "foongus", "gastly", "glimmet", "grimer", "gulpin", "koffing", "mareanie", "nidoran_m", "nidoran_f", "oddish", "salandit", "skorupi", "skrelp", "spinarak", "stunky", "tentacool", "toxel", "trubbish", "varoom", "venipede", "venonat", "zubat" },
-  psychic = { "abra", "baltoy", "beldum", "bronzor", "cosmoem", "cosmog", "dottler", "drowzee", "duosion", "elgyem", "espurr", "gothita", "hatenna", "meditite",  "mr_mime", "natu", "ralts", "slowpoke", "smoochum", "solosis", "spoink" },
+  psychic = { "abra", "baltoy", "beldum", "bronzor", "dottler", "drowzee", "duosion", "elgyem", "espurr", "gothita", "hatenna", "meditite",  "mr_mime", "natu", "ralts", "slowpoke", "smoochum", "solosis", "spoink" },
   rock = { "amaura", "anorith", "archen", "aron", "binacle", "corsola", "cranidos", "geodude", "glimmet", "kabuto", "lairon", "larvitar", "lileep", "nacli", "naclstack", "omanyte", "pupitar", "rhyhorn", "rockruff", "roggenrola", "shieldon", "tyrunt" },
-  steel = { "aron", "beldum", "bronzor", "ferroseed", "honedge", "lairon", "magnemite", "pawniard", "shieldon", "tinkatink", "varoom" },
+  steel = { "aron", "beldum", "bronzor", "ferroseed", "honedge", "magnemite", "pawniard", "shieldon", "tinkatink", "varoom" },
   water = { "arrokuda", "barboach", "binacle", "brionne", "buizel", "carvanha", "chinchou", "clauncher", "corphish", "corsola", "dewpider", "finneon", "froakie", "goldeen", "horsea", "kabuto", "krabby", "magikarp", "mareanie", "marill", "marshtomp", "mudkip", "omanyte", "oshawott", "palpitoad", "piplup", "poliwag", "popplio", "prinplup", "psyduck", "quaxly", "remoraid", "seel", "shellos", "skrelp", "slowpoke", "sobble", "spheal", "squirtle", "surskit", "tentacool", "totodile", "tympole", "wailmer", "wiglett", "wimpod", "wingull", "wooper" },
 }
 
@@ -88,7 +88,7 @@ local checkpoint2 = {
   ice = { "amaura", "arctibax", "cubchoo", "frigibax", "sealeo", "smoochum", "snorunt", "snover", "spheal", "swinub", "vanillish", "vanillite" },
   normal = { "deerling", "doduo", "glameow", "herdier", "linoone", "litleo", "loudred", "meowth", "pidgeotto", "pidove", "rufflet", "smoliv", "staravia", "stufful", "swablu", "taillow", "tandemaus", "teddiursa", "vigoroth", "wooloo" },
   poison = { "beedrill", "bellsprout", "croagunk", "dustox", "ekans", "foongus", "gastly", "glimmet", "grimer", "gulpin", "ivysaur", "koffing", "mareanie", "oddish", "salandit", "skorupi", "skrelp", "spinarak", "stunky", "tentacool", "toxel", "trubbish", "varoom", "venonat", "whirlipede", "zubat" },
-  psychic = { "baltoy", "bronzor", "cosmoem", "cosmog", "dottler", "drowzee", "duosion", "elgyem", "espurr", "gothita", "gothorita", "hatenna", "hattrem", "kirlia", "meditite", "metang", "mr_mime", "natu", "slowpoke", "smoochum", "solosis", "spoink" },
+  psychic = { "baltoy", "bronzor", "dottler", "drowzee", "duosion", "elgyem", "espurr", "gothita", "gothorita", "hatenna", "hattrem", "kirlia", "meditite", "metang", "mr_mime", "natu", "slowpoke", "smoochum", "solosis", "spoink" },
   rock = { "amaura", "anorith", "archen", "aron", "binacle", "corsola", "cranidos", "geodude", "glimmet", "kabuto", "larvitar", "lileep", "nacli", "omanyte", "rhyhorn", "rockruff", "roggenrola", "shieldon", "tyrunt" },
   steel = { "aron", "bronzor", "ferroseed", "honedge", "magnemite", "metang", "pawniard", "shieldon", "tinkatink", "varoom" },
   water = { "arrokuda", "barboach", "binacle", "brionne", "buizel", "carvanha", "chinchou", "clauncher", "corphish", "corsola", "croconaw", "dewott", "dewpider", "drizzile", "finneon", "frogadier", "goldeen", "horsea", "kabuto", "krabby", "mareanie", "marshtomp", "omanyte", "palpitoad", "poliwag", "prinplup", "psyduck", "remoraid", "seel", "shellos", "skrelp", "slowpoke", "spheal", "surskit", "tentacool", "tympole", "wailmer", "wartortle", "wiglett", "wimpod", "wingull" },
@@ -158,7 +158,7 @@ local checkpoint5 = {
   ice = { "arctibax", "dewgong", "jynx", "piloswine", "sealeo", "snorunt", "vanillish" },
   normal = { "bewear", "bibarel", "dodrio", "fearow", "furret", "maushold", "noctowl", "raticate", "rufflet", "sawsbuck", "staraptor", "stoutland", "swellow", "watchog" },
   poison = { "arbok", "ariados", "beedrill", "clodsire", "dustox", "golbat", "salazzle", "scolipede", "skrelp", "skuntank", "swalot", "tentacruel", "toxtricity", "venomoth", "venusaur" },
-  psychic = { "bronzong", "cosmoem", "cosmog", "duosion", "elgyem", "gallade", "gothorita", "grumpig", "hattrem", "hypno", "jynx", "meowstic", "metang", "mr_mime", "orbeetle", "wobbuffet", "xatu" },
+  psychic = { "bronzong", "duosion", "elgyem", "gallade", "gothorita", "grumpig", "hattrem", "hypno", "jynx", "meowstic", "metang", "mr_mime", "orbeetle", "wobbuffet", "xatu" },
   rock = { "bastiodon", "lairon", "lycanroc", "pupitar", "rampardos", "rhyhorn" },
   steel = { "bastiodon", "bronzong", "excadrill", "forretress", "lairon", "magneton", "metang", "pawniard" },
   water = { "araquanid", "azumarill", "bibarel", "crawdaunt", "dewgong", "feraligatr", "floatzel", "gastrodon", "golduck", "golisopod", "gyarados", "kingler", "lanturn", "lumineon", "octillery", "pelipper", "primarina", "seaking", "sealeo", "sharpedo", "skrelp", "tentacruel", "whiscash", "wugtrio" },
@@ -173,7 +173,7 @@ local type_checkpoints = {
 }
 
 local function CreateAlly(mon_id, form, gender, level, on_create)
-  local monster_id = RogueEssence.Dungeon.MonsterID(mon_id, form, gender, Gender.Unknown)
+  local monster_id = RogueEssence.Dungeon.MonsterID(mon_id, form, "normal", gender)
   local recruit = _DATA.Save.ActiveTeam:CreatePlayer(_DATA.Save.Rand, monster_id, level, "", 0)
   local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("AllyInteract")
   recruit.ActionEvents:Add(talk_evt)
@@ -195,14 +195,63 @@ function TypeEHelpers.MakeApply(item_id, type)
       local random_index = _DATA.Save.Rand:Next(#charas) + 1
       local random_chara = charas[random_index]
       local level = _DATA.Save.Rand:Next(checkpoint.min, checkpoint.max)
-      print(tostring(random_chara))
+
 
       local recruit = CreateAlly(random_chara, 0, Gender.Unknown, level, function(recruit)
         local player_tbl = LTBL(recruit)
         player_tbl.EmberfrostRun = true
       end)
-      print(tostring(recruit))
-      -- local level 
+
+      local team = _DATA.Save.ActiveTeam
+      team.Players:Add(recruit)
+      if team.Players.Count <= team:GetMaxTeam(_ZONE.CurrentZone) then
+        GAME:FadeOut(false, 40)
+
+        GAME:WaitFrames(20)
+        COMMON.RespawnAllies()
+        GAME:FadeIn(60)
+        UI:WaitShowDialogue(recruit:GetDisplayName(true) .. " was added to the party!")
+        return
+      end
+
+      local function can_return_home(char)
+        return not (GAME:InRogueMode() and _DATA:GetSkin(char.BaseForm.Skin).Challenge)
+      end
+
+      UI:WaitShowDialogue("Select a character to return home.")
+      local char
+      local choose = function(c)
+        char = c
+        _MENU:RemoveMenu()
+      end
+      local refuse = function() end
+      local char_list = _DATA.Save.ActiveTeam.Players
+      local menu = TeamSelectMenu:new(STRINGS:FormatKey("MENU_TEAM_TITLE"), char_list, can_return_home, choose, refuse,
+        true)
+      UI:SetCustomMenu(menu.menu)
+      UI:WaitForChoice()
+
+      GAME:FadeOut(false, 40)
+
+      local char_index
+      for i = 0, team.Players.Count - 1 do
+        if team.Players[i] == char then
+          char_index = i
+          break
+        end
+      end
+
+      local last_index = team.Players.Count - 1
+      if char_index ~= last_index then
+        team.Players[char_index] = team.Players[last_index]
+      end
+      team.Players:RemoveAt(last_index)
+
+      team.Assembly:Add(char)
+      GAME:WaitFrames(20)
+      COMMON.RespawnAllies()
+      GAME:FadeIn(60)
+      UI:WaitShowDialogue(char:GetDisplayName(true) .. " was sent home.")
     end
   end
 end
@@ -359,10 +408,10 @@ Flock = EnchantmentRegistry:Register({
   rarity = 1,
   getDescription = function(self)
     local poison_type = _DATA:GetElement("poison")
-    local br_apricorn = M_HELPERS.GetItemName("apricorn_brown")
+    local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
     return string.format(
       "Gain a %s. Attacks from %s types in your team have a %s chance to inflict a random bad status condition",
-      brown_apricorn, poison_type:GetIconName(),
+      purple_apricorn, poison_type:GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan)
     )
   end,

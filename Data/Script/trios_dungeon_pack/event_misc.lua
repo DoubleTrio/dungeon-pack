@@ -799,7 +799,11 @@ function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
   TASK:WaitTask(_MENU:SetDialogue(STRINGS:Format(RogueEssence.StringKey("MSG_ASK_ASSEMBLY"):ToLocal())))
   local menu = AddToTeamMenu:new(
     function(slots) context.ContextStates:Set(WithdrawAssemblyContextType(slots[1])) end,
-    function() context.CancelState.Cancel = true end
+    function()
+      context.CancelState.Cancel = true
+      _MENU:RemoveMenu()
+
+    end
   )
   TASK:WaitTask(_MENU:ProcessMenuCoroutine(menu.menu))
 
@@ -825,6 +829,7 @@ function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
 
 
   local function can_return_home(char)
+    -- TODO: It would be good to be able to view the summary of team member even if disabled
     return not (GAME:InRogueMode() and _DATA:GetSkin(char.BaseForm.Skin).Challenge)
   end
 
@@ -853,10 +858,9 @@ function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
   GAME:FadeOut(false, 40)
   team.Assembly:RemoveAt(slot)
   team.Assembly:Insert(slot, char)
-  team.Players:RemoveAt(team.Players.Count - 1) -- remove char_to_add from end
-  team.Players:RemoveAt(party_slot)           -- remove char from their slot
-  team.Players:Insert(party_slot, char_to_add) -- insert char_to_add into that slot
-  GAME:WaitFrames(20)
+  team.Players:RemoveAt(team.Players.Count - 1)
+  team.Players:RemoveAt(party_slot)
+  team.Players:Insert(party_slot, char_to_add)
   COMMON.RespawnAllies()
   GAME:FadeIn(60)
   UI:WaitShowDialogue(char_to_add:GetDisplayName(true) .. " swapped in for " .. char:GetDisplayName(true) .. "!")
