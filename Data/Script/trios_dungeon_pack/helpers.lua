@@ -158,6 +158,13 @@ M_HELPERS = {
     return item_name
   end,
 
+  ShiftToUnownLetters = function(str)
+    local stripped = str:gsub("%[color[^%]]*%]", "")
+    return (stripped:gsub("%a", function(c)
+      return STRINGS:ShiftString(string.upper(c), 57344)
+    end))
+  end,
+  
   AddToAssembly = function(species, level)
     local char = M_HELPERS.CreateCharacter(species, level)
     GAME:AddPlayerAssembly(char)

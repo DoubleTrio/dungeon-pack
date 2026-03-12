@@ -1,3 +1,6 @@
+
+
+
 require 'origin.menu.team.TeamSelectMenu'
 require 'trios_dungeon_pack.menu.ItemSelectionMenu'
 require 'trios_dungeon_pack.beholder'
@@ -18,7 +21,7 @@ EvoStateType = luanet.import_type('PMDC.Dungeon.EvoState')
 SeedStateType = luanet.import_type('PMDC.Dungeon.SeedState')
 
 MachineStateType = luanet.import_type('PMDC.Dungeon.MachineState')
-RecruitStateType = luanet.import_type('PMDC.Dungeon.RecruitState')
+RecruitStateType = luanet.import_type('PMDC.Duangeon.RecruitState')
 CurerStateType = luanet.import_type('PMDC.Dungeon.CurerState')
 FoodStateType = luanet.import_type('PMDC.Dungeon.FoodState')
 HerbStateType = luanet.import_type('PMDC.Dungeon.HerbState')
@@ -4642,111 +4645,15 @@ DraconianDefience = EnchantmentRegistry:Register({
   end
 })
 
-local function CreateTypeStatusEnchantment(config)
-  return EnchantmentRegistry:Register({
-    name = config.name,
-    id = config.id,
-    chance = config.chance,
-    getDescription = function(self)
-      local element_type = _DATA:GetElement(config.element)
-      local apricorn = M_HELPERS.GetItemName(config.apricorn)
-      return string.format(
-        "Gain a %s. %s types in your team will have a %s chance to have their %s moves inflict the target with the %s status",
-        apricorn,
-        element_type:GetIconName(),
-        M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
-        element_type:GetIconName(),
-        config.status_name
-      )
-    end,
-    offer_time = "beginning",
-    rarity = 1,
-    getProgressTexts = function(self)
-      local grass_type = _DATA:GetElement(config.element)
-      local icon = grass_type:GetIconName()
-
-      local count = #GetCharacterOfMatchingType(config.element, false)
-
-      return { "Total " .. icon .. " Members: " .. count }
-    end,
-    set_active_effects = function(self, active_effect, zone_context)
-      local chance = self.chance
-      beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
-        beholder.observe("OnHits", function(owner, ownerChar, context, args)
-          local user = context.User
-          local target = context.Target
-
-          if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
-              context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
-            return
-          end
-
-          if user.MemberTeam ~= _DUNGEON.ActiveTeam then
-            return
-          end
-
-          if user.Element1 ~= config.element and user.Element2 ~= config.element then
-            return
-          end
-
-          local roll = _DATA.Save.Rand:Next(100)
-          if roll >= chance then
-            return
-          end
-
-          if target == nil then
-            return
-          end
-
-          local status = RogueEssence.Dungeon.StatusEffect(config.status_id)
-          status:LoadFromData()
-          TASK:WaitTask(target:AddStatusEffect(nil, status, true))
-        end)
-      end)
-    end,
-    apply = function(self)
-      local items = {
-        {
-          Item = config.apricorn,
-          Amount = 1
-        }
-      }
-
-      M_HELPERS.GiveInventoryItemsToPlayer(items)
-      
-    end
-  })
-end
-
-SwatTeam = CreateTypeStatusEnchantment({
-  name = "Swat Team",
-  id = "SWAT_TEAM",
-  chance = 30,
-  element = "bug",
-  apricorn = "apricorn_green",
-  status_name = "infestation",
-  status_id = "infestation"
-})
-
-Subzero = CreateTypeStatusEnchantment({
-  name = "Subzero",
-  id = "SUBZERO",
-  chance = 25,
-  element = "ice",
-  apricorn = "apricorn_blue",
-  status_name = "Frostbite",
-  status_id = "emberfrost_frostbite"
-})
-
 
 -- Blaze Tile - Will burn the user, but will double their speed. (max 2 stack) 
 -- Fire Tile - Take fire damage but raise attack
 -- Ice Title - Freeze chracter, but grant, users on these tiles will be granted +2 range on thei rmoves
-
+-- Haze tile
 -- Evolved - Mons that evolved gain +5 stat boosts
 -- Targets with two tiles of the will have their attack reduced by 20% (Dark) - Malevolence - Apply a random debuff for any enemies within two tiles
 -- fired Up -- 
--- Noxious
+
 -- Electric -- Overflow/Overcharge damage will be carried over to the next target - from base elctric damage (1 transfer) - Overcharge
 -- Water Purification - Heal Passively hea teammates
 -- Combat Flow - Every third attack of fighting mons will do increased damage and critical hit

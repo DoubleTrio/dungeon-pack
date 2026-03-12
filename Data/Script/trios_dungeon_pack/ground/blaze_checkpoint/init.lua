@@ -75,6 +75,11 @@ function blaze_checkpoint.Teammate2_Action(chara, activator)
   COMMON.GroundInteract(activator, chara)
 end
 
+function blaze_checkpoint.Teammate3_Action(chara, activator)
+  DEBUG.EnableDbgCoro()
+  COMMON.GroundInteract(activator, chara)
+end
+
 function blaze_checkpoint.Guest1_Action(chara, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.GetGroundDialogueForGuest(chara, activator)

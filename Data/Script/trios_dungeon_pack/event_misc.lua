@@ -786,6 +786,7 @@ end
 WithdrawAssemblyContextType = luanet.import_type('PMDC.Dungeon.WithdrawAssemblyContext')
 
 function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
+  UI:ResetSpeaker()
   local team = _DATA.Save.ActiveTeam
 
   local hasBench = team.Assembly.Count > 0
@@ -807,9 +808,14 @@ function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
   local slot = context.ContextStates:GetWithDefault(luanet.ctype(WithdrawAssemblyContextType)).WithdrawSlot
   local char_to_add = team.Assembly[slot]
 
-  if team.Players.Count < team:GetMaxTeam(_ZONE.CurrentZone) then
+
+  team.Players:Add(char_to_add)
+
+
+
+  if team.Players.Count <= team:GetMaxTeam(_ZONE.CurrentZone) then
     GAME:FadeOut(false, 40)
-    team.Players:Add(char_to_add)
+
     GAME:WaitFrames(20)
     COMMON.RespawnAllies()
     GAME:FadeIn(60)
@@ -826,6 +832,13 @@ function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
   local char = TeamSelectMenu.runPartyMenu(can_return_home, true)
   if char == nil then
     context.CancelState.Cancel = true
+    team.Players:RemoveAt(team.Players.Count - 1)
+    return
+  end
+  if char == char_to_add then
+    UI:WaitShowDialogue("The character is already in the assembly!")
+    context.CancelState.Cancel = true
+    team.Players:RemoveAt(team.Players.Count - 1)
     return
   end
 
@@ -840,8 +853,9 @@ function GROUND_ITEM_EVENT_SCRIPT.AssemblyBoxEvent(context, args)
   GAME:FadeOut(false, 40)
   team.Assembly:RemoveAt(slot)
   team.Assembly:Insert(slot, char)
-  team.Players:RemoveAt(party_slot)
-  team.Players:Insert(party_slot, char_to_add)
+  team.Players:RemoveAt(team.Players.Count - 1) -- remove char_to_add from end
+  team.Players:RemoveAt(party_slot)           -- remove char from their slot
+  team.Players:Insert(party_slot, char_to_add) -- insert char_to_add into that slot
   GAME:WaitFrames(20)
   COMMON.RespawnAllies()
   GAME:FadeIn(60)

@@ -207,8 +207,12 @@ function checkpoint.OnCheckpointArrive()
   SV.EmberFrost.Shopkeeper = checkpoint.GenerateShop()
   SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression + 1
   local active_enchants = EnchantmentRegistry:GetSelected()
-  for _, enchant in pairs(active_enchants) do
-    enchant:on_checkpoint()
+
+  if not SV.EmberFrost.CheckpointEnchantsCalled then
+    for _, enchant in pairs(active_enchants) do
+      enchant:on_checkpoint()
+    end
+    SV.EmberFrost.CheckpointEnchantsCalled = true
   end
 end
 
@@ -218,6 +222,7 @@ function checkpoint.OnCheckpointExit()
     enchant:on_checkpoint_exit()
   end
   SV.EmberFrost.GotEnchantmentFromCheckpoint = false
+  SV.EmberFrost.CheckpointEnchantsCalled = false
 end
 
 function checkpoint.AskContinue()
@@ -338,7 +343,7 @@ function checkpoint.ChestInteraction(obj, activator)
 
 
   enchantments[1][1] = EnchantmentRegistry._registry[ReinforcedPlating.id]
-  enchantments[1][2] = EnchantmentRegistry._registry[NegativeAura.id]
+  enchantments[1][2] = EnchantmentRegistry._registry[PandorasItems.id]
   enchantments[1][3] = EnchantmentRegistry._registry[Blueprint.id]
   -- enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]
   local ret = nil

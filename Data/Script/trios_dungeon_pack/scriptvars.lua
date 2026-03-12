@@ -14,6 +14,7 @@ function ResetEmberfrostRun()
     enchant:cleanup()
   end
 
+  SV.EmberFrost.CheckpointEnchantsCalled = false
   SV.EmberFrost.Enchantments.Selected = {}
   SV.EmberFrost.Enchantments.Data = {}
   SV.EmberFrost.Enchantments.RerollCounts = {1, 1, 1}
@@ -85,6 +86,9 @@ SV.EmberFrost = {
 
   -- Whether we got an enchantment from the checkpoint
   GotEnchantmentFromCheckpoint = false,
+
+  -- Whether the checkpoint method was called on each already upon arrival (only call the checkpoint function once!)
+  CheckpointEnchantsCalled = false,
 
 
   -- Shopkeeper item data 

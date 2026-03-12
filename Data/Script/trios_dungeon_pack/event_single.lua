@@ -2565,21 +2565,15 @@ function SINGLE_CHAR_SCRIPT.RandomDebuffEvent(owner, ownerChar, context, args)
         "mod_special_defense",
         "mod_speed",
     }
-
+    if _DATA.Save.Rand:Next(100) >= 25 then return end
     local statusId = stat_debuffs[_DATA.Save.Rand:Next(#stat_debuffs) + 1]
     local stackCount = -1
-
-
     local base_loc = context.User.CharLoc
-
     local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Thief_Hit", 3), 1)
-
     DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
     SOUND:PlayBattleSE("DUN_Shadow_Sneak")
     GAME:WaitFrames(30)
-
     local entry = _DATA:GetStatus(statusId)
-
     local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(statusId, false, false, stackCount)
     local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.None)
     mock_context.User = context.User
