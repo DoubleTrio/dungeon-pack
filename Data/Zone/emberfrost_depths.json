@@ -3,7 +3,7 @@
 "Object": {
 "$type": "RogueEssence.Data.ZoneData, RogueEssence",
 "Name": {
-"DefaultText": "Emberfrost",
+"DefaultText": "The Terrasphere",
 "LocalTexts": {}
 },
 "Released": true,
@@ -13,7 +13,7 @@
 "Level": 5,
 "LevelCap": false,
 "KeepSkills": false,
-"TeamRestrict": true,
+"TeamRestrict": false,
 "TeamSize": 4,
 "MoneyRestrict": true,
 "BagRestrict": 0,
@@ -21,7 +21,7 @@
 "BagSize": 24,
 "Persistent": false,
 "Rescues": 2,
-"Rogue": 1,
+"Rogue": 3,
 "Segments": [
 {
 "$type": "RogueEssence.LevelGen.LayeredSegment, RogueEssence",
@@ -28034,7 +28034,7 @@
 ]
 },
 "Name": {
-"DefaultText": "Emberfrost Path\\n{0}F",
+"DefaultText": "The Terrasphere\\n{0}F",
 "LocalTexts": {}
 },
 "Priority": {

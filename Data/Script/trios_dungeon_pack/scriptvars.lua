@@ -78,6 +78,9 @@ SV.EmberFrost = {
   -- etc
   CheckpointProgression = 0,
 
+  -- Whether the dungeon is introduced to the player at Base Camp
+  OshawottIntroduction = false,
+
   -- Whether the dungeon was cleared
   Completed = false,
 

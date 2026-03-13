@@ -90,6 +90,8 @@ end
 
 function checkpoint.ShowTitle(guest, player)
 
+  SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression or 1
+  
   local title = "Checkpoint " .. SV.EmberFrost.CheckpointProgression
   if SV.EmberFrost.CheckpointProgression == 5 then
     title = title .. " - Final Stretch"

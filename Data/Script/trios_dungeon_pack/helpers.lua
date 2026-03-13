@@ -741,6 +741,7 @@ M_HELPERS = {
         LastFloor = 0,
         GotEnchantmentFromCheckpoint = false,
 
+        OshawottIntroduction = false,
         CheckpointProgression = 0,
         Completed = false,
         ReceivedEnchantmentReminder = true,
