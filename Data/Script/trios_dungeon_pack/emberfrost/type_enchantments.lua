@@ -231,8 +231,6 @@ function TypeEHelpers.MakeApply(item_id, type)
       UI:SetCustomMenu(menu.menu)
       UI:WaitForChoice()
 
-      GAME:FadeOut(false, 40)
-
       local char_index
       for i = 0, team.Players.Count - 1 do
         if team.Players[i] == char then
@@ -248,10 +246,17 @@ function TypeEHelpers.MakeApply(item_id, type)
       team.Players:RemoveAt(last_index)
 
       team.Assembly:Add(char)
-      GAME:WaitFrames(20)
-      COMMON.RespawnAllies()
-      GAME:FadeIn(60)
-      UI:WaitShowDialogue(char:GetDisplayName(true) .. " was sent home.")
+
+      local is_last = (char_index == last_index)
+      if not is_last then
+        GAME:FadeOut(false, 40)
+        GAME:WaitFrames(20)
+        COMMON.RespawnAllies()
+        GAME:FadeIn(60)
+        UI:WaitShowDialogue(recruit:GetDisplayName(true) .. " was swapped in for " .. char:GetDisplayName(true) .. ".")
+      else
+        UI:WaitShowDialogue(char:GetDisplayName(true) .. " was sent home.")
+      end
     end
   end
 end
@@ -283,6 +288,13 @@ function TypeEHelpers.MakeProgressTexts(element_id)
     local count = #GetCharacterOfMatchingType(element_id, false)
     return { "Total " .. icon .. " Members: " .. count }
   end
+end
+
+
+function TypeEHelpers.MakeBaseDescription(type, item_name)
+  local type = _DATA:GetElement("steel")
+  local item_name
+  
 end
 
 -- STEEL
@@ -381,18 +393,7 @@ Flock = EnchantmentRegistry:Register({
       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
       M_HELPERS.MakeColoredText(tostring(self.turns), PMDColor.Cyan))
   end,
-  cleanup = function(self)
-    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-      local tbl = LTBL(member)
-      tbl["X"] = nil
-      tbl["Y"] = nil
-    end
-    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-      local tbl = LTBL(member)
-      tbl["X"] = nil
-      tbl["Y"] = nil
-    end
-  end,
+
   getProgressTexts = TypeEHelpers.MakeProgressTexts("flying"),
   set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_flock", { "flying" }),
   apply = TypeEHelpers.MakeApply("apricorn_white", "flying"),

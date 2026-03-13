@@ -3,18 +3,18 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "Noxious",
+"DefaultText": "",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "The Pokémon's moves has a chance to inflict a random negative status condition on enemies",
+"DefaultText": "",
 "LocalTexts": {}
 },
-"Released": true,
+"Released": false,
 "Comment": "",
-"MenuName": true,
+"MenuName": false,
 "CarryOver": false,
-"Emoticon": "Skull_Laughing_Sheet",
+"Emoticon": "",
 "DropEmoticon": "",
 "FreeEmote": "",
 "DrawEffect": -1,
@@ -88,22 +88,7 @@
 "OnPickups": [],
 "BeforeStatusAdds": [],
 "BeforeStatusAddings": [],
-"OnStatusAdds": [
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
-"Message": {
-"Key": "MSG_NOXIOUS_START"
-},
-"Delay": true
-}
-}
-],
+"OnStatusAdds": [],
 "OnStatusRemoves": [],
 "OnMapStatusAdds": [],
 "OnMapStatusRemoves": [],
@@ -119,20 +104,7 @@
 "OnActions": [],
 "BeforeHittings": [],
 "BeforeBeingHits": [],
-"AfterHittings": [
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "NoxiousAfterHittings",
-"ArgTable": "{}"
-}
-}
-],
+"AfterHittings": [],
 "AfterBeingHits": [],
 "OnHitTiles": [],
 "AfterActions": [],

@@ -690,32 +690,25 @@ function PrepareNextEnchantment()
 end
 
 function FindCharacterWithEnchantment(enchant_id)
+  local function search(players, assembly)
+    for member in luanet.each(players) do
+      local tbl = LTBL(member)
+      if tbl.Enchantments and tbl.Enchantments[enchant_id] then
+        return member, false
+      end
+    end
+    for member in luanet.each(assembly) do
+      local tbl = LTBL(member)
+      if tbl.Enchantments and tbl.Enchantments[enchant_id] then
+        return member, true
+      end
+    end
+  end
+
   if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
-    for member in luanet.each(_DUNGEON.ActiveTeam.Players) do
-      local tbl = LTBL(member)
-      if tbl.Enchantments and tbl.Enchantments[enchant_id] then
-        return member
-      end
-    end
-    for member in luanet.each(_DUNGEON.ActiveTeam.Assembly) do
-      local tbl = LTBL(member)
-      if tbl.Enchantments and tbl.Enchantments[enchant_id] then
-        return member
-      end
-    end
+    return search(_DUNGEON.ActiveTeam.Players, _DUNGEON.ActiveTeam.Assembly)
   else
-    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-      local tbl = LTBL(member)
-      if tbl.Enchantments and tbl.Enchantments[enchant_id] then
-        return member
-      end
-    end
-    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-      local tbl = LTBL(member)
-      if tbl.Enchantments and tbl.Enchantments[enchant_id] then
-        return member
-      end
-    end
+    return search(_DATA.Save.ActiveTeam.Players, _DATA.Save.ActiveTeam.Assembly)
   end
 end
 
@@ -1003,7 +996,7 @@ PrimalMemory = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1041,7 +1034,7 @@ Blueprint = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1223,7 +1216,7 @@ EliteTutoring = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1719,7 +1712,7 @@ FeelTheBurn = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return {
@@ -1752,7 +1745,7 @@ GlassCannon = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1787,7 +1780,7 @@ Sponge = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1818,7 +1811,7 @@ SafeguardPlus = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1854,7 +1847,7 @@ Ravenous = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1886,7 +1879,7 @@ Avenger = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }
@@ -1922,7 +1915,7 @@ end,
 offer_time = "beginning",
 rarity = 1,
 getProgressTexts = function(self)
-  local char = FindCharacterWithEnchantment(self.id)
+  local char, in_assembly = FindCharacterWithEnchantment(self.id)
   local char_name = char and char:GetDisplayName(true) or nil
   if char_name then
     return {
@@ -1954,7 +1947,7 @@ HungerStrike = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   -- getProgressTexts = function(self)
-  --   local char = FindCharacterWithEnchantment(self.id)
+  --   local char, in_assembly = FindCharacterWithEnchantment(self.id)
   --   local char_name = char and char:GetDisplayName(true) or nil
   --   if char_name then
   --     return {
@@ -2299,7 +2292,7 @@ YourAWizard = EnchantmentRegistry:Register({
     print("Total Unique Wands: " .. tostring(total_unique))
     local boost_amount = self.percent * total_unique
 
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
 
     table.insert(str_arr, "\n")
@@ -2435,7 +2428,7 @@ ExitStrategy = EnchantmentRegistry:Register({
       M_HELPERS.MakeColoredText(tostring(self.salac_amount), PMDColor.Cyan), M_HELPERS.GetItemName("berry_salac"))
   end,
   getProgressTexts = function(self)
-    local char = FindCharacterWithEnchantment(self.id)
+    local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
       return { "Assigned to: " .. char_name }

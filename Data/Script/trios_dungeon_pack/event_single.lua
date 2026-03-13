@@ -1507,14 +1507,16 @@ function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args
     local enchantment_id = args.EnchantmentID
     local status_id = args.StatusID
     local apply_to_all = args.ApplyToAll or false
-    local char = FindCharacterWithEnchantment(enchantment_id)
+    local char, in_assembly = FindCharacterWithEnchantment(enchantment_id)
 
     if apply_to_all then
         for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
             if member ~= nil then
+
+                local show_message = not member.Dead
                 local status = RogueEssence.Dungeon.StatusEffect(status_id)
                 status:LoadFromData()
-                TASK:WaitTask(member:AddStatusEffect(nil, status, true))
+                TASK:WaitTask(member:AddStatusEffect(nil, status, show_message))
             end
         end
 
@@ -1522,17 +1524,21 @@ function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args
             if member ~= nil then
                 local status = RogueEssence.Dungeon.StatusEffect(status_id)
                 status:LoadFromData()
-                TASK:WaitTask(member:AddStatusEffect(nil, status, true))
+                TASK:WaitTask(member:AddStatusEffect(nil, status, false))
             end
         end
         return
     end
 
 
-    if char and not char.Dead then
+    if char then
         local status = RogueEssence.Dungeon.StatusEffect(status_id)
         status:LoadFromData()
-        TASK:WaitTask(char:AddStatusEffect(nil, status, true))
+
+
+        local show_message = not char.Dead and not in_assembly
+
+        TASK:WaitTask(char:AddStatusEffect(nil, status, show_message))
     end
 end
 

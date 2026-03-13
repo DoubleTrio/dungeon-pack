@@ -285,6 +285,15 @@
 },
 "emberfrost_noxious": {
 "Name": {
+"DefaultText": "Noxious",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_vampire": {
+"Name": {
 "DefaultText": "",
 "LocalTexts": {}
 },

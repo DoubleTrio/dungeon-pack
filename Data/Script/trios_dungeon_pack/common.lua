@@ -1,5 +1,31 @@
--- require 'origin.common'
+require 'origin.common'
 
+
+function COMMON.RespawnAllies()
+  GROUND:RefreshPlayer()
+  print("jithyh hyyhhte")
+
+
+  local party = GAME:GetPlayerPartyTable()
+  local playeridx = GAME:GetTeamLeaderIndex()
+
+  --Place player teammates
+  for i = 1, 3, 1
+  do
+    GROUND:RemoveCharacter("Teammate" .. tostring(i))
+  end
+  local total = 1
+  for i, p in ipairs(party) do
+    if not p.Dead then
+      if i ~= (playeridx + 1) then     --Indices in lua tables begin at 1
+        GROUND:SpawnerSetSpawn("TEAMMATE_" .. tostring(total), p)
+        local chara = GROUND:SpawnerDoSpawn("TEAMMATE_" .. tostring(total))
+        --GROUND:GiveCharIdleChatter(chara)
+        total = total + 1
+      end
+    end
+  end
+end
 -- function COMMON.ShowDestinationMenu(dungeon_entrances, ground_entrances, force_list, speaker, confirm_msg)
   
 --   local open_dests = {}

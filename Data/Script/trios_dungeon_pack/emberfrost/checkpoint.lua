@@ -91,7 +91,7 @@ end
 function checkpoint.ShowTitle(guest, player)
 
   SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression or 1
-  
+
   local title = "Checkpoint " .. SV.EmberFrost.CheckpointProgression
   if SV.EmberFrost.CheckpointProgression == 5 then
     title = title .. " - Final Stretch"
@@ -203,11 +203,13 @@ end
 function checkpoint.OnCheckpointArrive(checkpoint_progression)
 
   
+  print(tostring(checkpoint_progression) .. "aaaaa")
   COMMON.RespawnAllies()
   RespawnGuests()
   checkpoint.SpawnGroundEntities()
   SV.EmberFrost.Shopkeeper = checkpoint.GenerateShop()
   SV.EmberFrost.CheckpointProgression = checkpoint_progression
+  print(tostring(SV.EmberFrost.CheckpointProgression) .. "arrrrir")
   local active_enchants = EnchantmentRegistry:GetSelected()
 
   if not SV.EmberFrost.CheckpointEnchantsCalled then
@@ -344,7 +346,7 @@ function checkpoint.ChestInteraction(obj, activator)
   local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
-  enchantments[1][1] = EnchantmentRegistry._registry[ReinforcedPlating.id]
+  enchantments[1][1] = EnchantmentRegistry._registry[Noxious.id]
   enchantments[1][2] = EnchantmentRegistry._registry[PandorasItems.id]
   enchantments[1][3] = EnchantmentRegistry._registry[Blueprint.id]
   -- enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]

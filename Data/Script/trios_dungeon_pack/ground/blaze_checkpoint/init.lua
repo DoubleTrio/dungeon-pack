@@ -11,7 +11,7 @@ local blaze_checkpoint = {}
 -- Engine callback function
 
 function blaze_checkpoint.Init(map)
-  checkpoint.OnCheckpointArrive()
+  checkpoint.OnCheckpointArrive(4)
   GROUND:AddMapStatus("sunny")
 end
 

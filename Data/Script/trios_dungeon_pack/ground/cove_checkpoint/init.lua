@@ -12,7 +12,7 @@ local cove_checkpoint = {}
 
 function cove_checkpoint.Init(map)
   PlayRandomBGM()
-  checkpoint.OnCheckpointArrive()
+  checkpoint.OnCheckpointArrive(1)
   GROUND:AddMapStatus("rain")
 end
 

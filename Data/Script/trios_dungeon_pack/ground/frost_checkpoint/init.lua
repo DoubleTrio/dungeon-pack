@@ -12,7 +12,7 @@ local frost_checkpoint = {}
 -- Engine callback function
 
 function frost_checkpoint.Init(map)
-  checkpoint.OnCheckpointArrive()
+  checkpoint.OnCheckpointArrive(3)
   GROUND:AddMapStatus("snow")
 end
 

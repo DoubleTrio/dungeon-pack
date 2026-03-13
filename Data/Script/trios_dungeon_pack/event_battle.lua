@@ -1478,3 +1478,35 @@ function BATTLE_SCRIPT.MelodyBoxBattleEvent(owner, ownerChar, context, args)
   end
   SOUND:PlayBGM(result, true)
 end
+
+function BATTLE_SCRIPT.NoxiousAfterHittings(owner, ownerChar, context, args)
+  local random_statuses = { "confuse", "sleep", "burn", "flinch", "paralyze", "freeze", "taunted", "torment",
+    "poison", "poison_toxic" }
+  if
+      context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill and
+      context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT and
+      (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical)
+  then
+    local roll = _DATA.Save.Rand:Next(100)
+
+    if roll < 25 and not context.Target.Dead then
+      local anim_data = RogueEssence.Content.AnimData("Cross_Poison_Bubbles", 5, -1, -1, 255, Dir8.Up)
+      local particle_anim = RogueEssence.Content.ParticleAnim(anim_data, 1, 0)
+      local emitter = RogueEssence.Content.SqueezedAreaEmitter(particle_anim)
+      emitter.Bursts = 1
+      emitter.ParticlesPerBurst = 1
+      emitter.BurstTime = 6
+      emitter.HeightSpeed = 16
+      emitter.Range = 4
+      local sound = "DUN_Cross_Poison"
+      SOUND:PlayBattleSE(sound)
+      GAME:WaitFrames(10)
+      DUNGEON:PlayVFX(emitter, context.Target.MapLoc.X, context.Target.MapLoc.Y)
+
+      local rand_status = random_statuses[_DATA.Save.Rand:Next(#random_statuses) + 1] -- fix: pick a random status
+      local status = RogueEssence.Dungeon.StatusEffect(rand_status)
+      status:LoadFromData()
+      TASK:WaitTask(context.Target:AddStatusEffect(nil, status, true))
+    end
+  end
+end
