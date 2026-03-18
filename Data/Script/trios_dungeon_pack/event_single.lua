@@ -822,7 +822,7 @@ function SINGLE_CHAR_SCRIPT.LogQuests(owner, ownerChar, context, args)
 
     _DUNGEON:LogMsg("Quests:")
     for _, quest in pairs(selected) do
-        _DUNGEON:LogMsg(string.format("%s (%s)", quest:getDescription(), M_HELPERS.MakeColoredText(tostring(quest.reward), PMDColor.Cyan) .. " " ..  PMDSpecialCharacters.Money))
+        _DUNGEON:LogMsg(string.format("%s (%s)", quest:get_description(), M_HELPERS.MakeColoredText(tostring(quest.reward), PMDColor.Cyan) .. " " ..  PMDSpecialCharacters.Money))
     end
 end
 

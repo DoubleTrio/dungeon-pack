@@ -103,7 +103,7 @@ local function achievement_update_description_summary(achievement_id, menu, orig
   local description = M_HELPERS.MakeColoredText("???", text_color)
 
   if seen_status ~= AchievementStatus.Hidden then
-    description = achievement:getDescription()
+    description = achievement:get_description()
   end
 
   local desc = RogueEssence.Menu.DialogueText(
@@ -190,7 +190,7 @@ local function collection_update_description_summary(enchantment_id, menu, origi
   local description = M_HELPERS.MakeColoredText("???", text_color)
 
   if seen_status ~= EnchantmentStatus.NotSeen then
-    description = enchantment:getDescription()
+    description = enchantment:get_description()
   end
 
   local desc = RogueEssence.Menu.DialogueText(
@@ -228,7 +228,7 @@ end
 local function selection_update_description_summary(enchantment_id, menu, origin, menuWidth)
   local GraphicsManager = RogueEssence.Content.GraphicsManager
   local enchantment = EnchantmentRegistry:Get(enchantment_id)
-  local additional_texts = enchantment:getProgressTexts()
+  local additional_texts = enchantment:get_progress_texts()
 
   menu.Elements:Clear()
 
@@ -256,7 +256,7 @@ local function selection_update_description_summary(enchantment_id, menu, origin
   local finalWidth = GraphicsManager.ScreenWidth - 16 - (origin.X + menuWidth + 2)
 
   local desc = RogueEssence.Menu.DialogueText(
-    enchantment:getDescription(),
+    enchantment:get_description(),
     RogueElements.Rect(
       RogueElements.Loc(12, y_offset),
       RogueElements.Loc(finalWidth - 20, 200)

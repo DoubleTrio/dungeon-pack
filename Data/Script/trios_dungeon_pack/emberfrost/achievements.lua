@@ -44,7 +44,7 @@ function NotifyAchievements()
     print(achievement_id)
     local achievement = AchievementRegistry:Get(achievement_id)
     local name = achievement.name
-    local description = achievement:getDescription()
+    local description = achievement:get_description()
     UI:SetCenter(true)
     SOUND:PlayFanfare("Fanfare/Item")
     UI:WaitShowDialogue(string.format("Achievement Unlocked: %s\n(%s)", M_HELPERS.MakeColoredText(name, PMDColor.Cyan), description))
@@ -59,7 +59,7 @@ AchievementRegistry:Register({
   id = "FIRST_TRY",
   name = "First Try!",
   defaultVis = AchievementStatus.Visible,
-  getDescription = function(self)
+  get_description = function(self)
     -- local enchantment = EnchantmentRegistry:Get()
     return "Clear " .. zone_name .. " for the first time"
   end,
@@ -81,7 +81,7 @@ local function CreateScoreAchievement(id, name, amount, useTotalScore)
     id = id,
     name = name,
     defaultVis = AchievementStatus.Visible,
-    getDescription = function(self)
+    get_description = function(self)
       return "Clear " .. zone_name .. " with a score of " ..
           M_HELPERS.MakeColoredText(self.amount, PMDColor.Cyan)
     end,
@@ -110,7 +110,7 @@ AchievementRegistry:Register({
   id = "SOLO_MISSION",
   name = "Solo Mission",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Clear " .. zone_name .. " with only the character you entered with"
   end,
   apply = function(self)
@@ -132,7 +132,7 @@ AchievementRegistry:Register({
   id = "ENCYCLOPEDIA",
   name = "Encyclopedia",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "See all the enchants"
   end,
   apply = function(self)
@@ -153,7 +153,7 @@ AchievementRegistry:Register({
   id = "ARCANIST",
   name = "Arcanist",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Win with all the enchants"
   end,
   apply = function(self)
@@ -174,7 +174,7 @@ AchievementRegistry:Register({
   id = "PURIST",
   name = "Purist",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Clear " .. zone_name .. " with no enchants"
   end,
   apply = function(self)
@@ -195,7 +195,7 @@ AchievementRegistry:Register({
   id = "CHALLENGER",
   name = "Challenger",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Clear " .. zone_name .. "in Roguelocke"
   end,
   apply = function(self)
@@ -217,7 +217,7 @@ AchievementRegistry:Register({
   name = "Speedrun!",
   timeLimitMinute = 120,
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Clear " .. zone_name .. "in Roguelocke in " .. self.timeLimitMinute .." minutes"
   end,
   apply = function(self)
@@ -239,7 +239,7 @@ AchievementRegistry:Register({
   name = "Efficiency!",
   total_turns = 120,
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Clear " .. zone_name .. "in Roguelocke within " .. self.total_turns .. " turns"
   end,
   apply = function(self)
@@ -275,7 +275,7 @@ AchievementRegistry:Register({
   id = "CHAOS",
   name = "Chaos",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     local enchantment = EnchantmentRegistry:Get(PandorasItems.id)
     return "Clear " .. zone_name .. " with the " .. enchantment.name .. " enchantment"
   end,
@@ -309,7 +309,7 @@ AchievementRegistry:Register({
   name = "Side Quester",
   amount = 23 * 600,
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Have at least " .. M_HELPERS.MakeColoredText(self.amount .. " ", PMDSpecialCharacters.Money, PMDColor.Cyan) .. " from " .. QuestMaster.name .. " enchantment"
   end,
   apply = function(self)
@@ -332,7 +332,7 @@ AchievementRegistry:Register({
   id = "FULL_SPECTRUM",
   name = "Full Spectrum",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Receive the massive reward from " .. TypeMaster.name .. " enchantment"
   end,
   apply = function(self)
@@ -352,7 +352,7 @@ AchievementRegistry:Register({
   name = "Market Crash",
   amount = 25000,
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Lose at least" .. M_HELPERS.MakeColoredText(self.amount .. " " .. PMDSpecialCharacters.Money, PMDColor.Red) .. " from " .. TypeMaster.name .. " all at once"
   end,
   apply = function(self)
@@ -373,7 +373,7 @@ AchievementRegistry:Register({
   name = "Stonks",
   amount = 5000,
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Gain at least " ..
     M_HELPERS.MakeColoredText(self.amount .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan) ..
     " from " .. TypeMaster.name .. " all at once"
@@ -395,7 +395,7 @@ AchievementRegistry:Register({
   id = "NOT_TODAY",
   name = "Not Today!",
   defaultVis = AchievementStatus.Hidden,
-  getDescription = function(self)
+  get_description = function(self)
     return "Have a member survive the Wheel of Fortune" 
   end,
   apply = function(self)

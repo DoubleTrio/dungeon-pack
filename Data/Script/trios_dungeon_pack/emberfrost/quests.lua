@@ -62,7 +62,7 @@
 --       enchantment_data["money_earned"] = enchantment_data["money_earned"] + self.reward
 --       if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
 --         SOUND:PlayFanfare("Fanfare/Note")
---         UI:WaitShowDialogue(string.format("Completed Quest! %s (%s)", self:getDescription(),
+--         UI:WaitShowDialogue(string.format("Completed Quest! %s (%s)", self:get_description(),
 --           M_HELPERS.MakeColoredText(tostring(self.reward), PMDColor.Cyan) .. " " .. PMDSpecialCharacters.Money))
 --       end
 --     end
@@ -77,11 +77,11 @@
 --     -- print(self.name .. " activated.")
 --   end,
 
---   getDescription = function(self)
+--   get_description = function(self)
 --     return ""
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     return {}
 --   end
 -- }
@@ -90,12 +90,12 @@
 --   name = "Quest Master",
 --   id = "QUEST_MASTER",
 --   task_amount = 2,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format("At the start of each floor, receive %s quests to gain " .. PMDSpecialCharacters.Money,
 --       M_HELPERS.MakeColoredText(tostring(self.task_amount), PMDColor.Cyan))
 --   end,
 --   rarity = 1,
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = EnchantmentRegistry:GetData(self)
 --     local currents_quests = SV.EmberFrost.Quests.Active
 --     local selected = QuestRegistry:GetSelected(currents_quests)
@@ -108,8 +108,8 @@
 --         string.format("Quests (Earned %s %s): ",
 --           M_HELPERS.MakeColoredText(tostring(money_earned), PMDColor.Cyan), PMDSpecialCharacters.Money))
 --       for _, quest in ipairs(selected) do
---         local description = quest:getDescription()
---         local texts = quest:getProgressTexts()
+--         local description = quest:get_description()
+--         local texts = quest:get_progress_texts()
 --         local data = QuestRegistry:GetData(quest)
 --         local completed = data["completed"] or false
 --         local icon = completed and PMDSpecialCharacters.Check or PMDSpecialCharacters.Cross
@@ -179,7 +179,7 @@
 --       enchantment_data["money_earned"] = enchantment_data["money_earned"] + self.reward
 --       if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
 --         SOUND:PlayFanfare("Fanfare/Note")
---         UI:WaitShowDialogue(string.format("Completed Quest! %s (%s)", self:getDescription(),
+--         UI:WaitShowDialogue(string.format("Completed Quest! %s (%s)", self:get_description(),
 --           M_HELPERS.MakeColoredText(tostring(self.reward), PMDColor.Cyan) .. " " .. PMDSpecialCharacters.Money))
 --       end
 --     end
@@ -194,11 +194,11 @@
 --     -- print(self.name .. " activated.")
 --   end,
 
---   getDescription = function(self)
+--   get_description = function(self)
 --     return ""
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     return {}
 --   end
 -- }
@@ -221,7 +221,7 @@
 --     amount = config.amount,
 --     reward = config.reward,
 
---     getDescription = function(self)
+--     get_description = function(self)
 --       local data = QuestRegistry:GetData(self)
 --       local species = data["bounty_target"]
 --       local name = _DATA:GetMonster(species).Forms[0].FormName:ToLocal()
@@ -261,7 +261,7 @@
 --       end)
 --     end,
 
---     getProgressTexts = function(self)
+--     get_progress_texts = function(self)
 --       local data = QuestRegistry:GetData(self)
 --       local defeated_enemies = data["defeated_enemies"] or 0
 --       return { "Progress: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount) }
@@ -288,7 +288,7 @@
 --   pp = 5,
 --   reward = 1000,
 
---   getDescription = function(self)
+--   get_description = function(self)
 --     local member_text = self.amount == 1 and "member" or "members"
 --     return string.format(
 --       "Let %s %s with all moves at %s PP or less",
@@ -332,7 +332,7 @@
 --     end)
 --   end,
   
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = QuestRegistry:GetData(self)
 --     local status = data["completed"] and "Completed" or "Not Completed"
 --     return {
@@ -348,7 +348,7 @@
 --   id = "DEFEAT_ENEMY_WITH_PROJECTILE",
 --   amount = 1,
 --   reward = 300,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format("Defeat an enemy with a projectile")
 --   end,
 
@@ -387,7 +387,7 @@
 
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = QuestRegistry:GetData(self)
 --     local defeated_enemies = data["defeated_enemies"]
 --     return { "", "Progress: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount) }
@@ -401,7 +401,7 @@
 --     amount = config.amount,
 --     reward = config.reward,
     
---     getDescription = config.getDescription or function(self)
+--     get_description = config.get_description or function(self)
 --       local plural = self.amount == 1 and "enemy" or "enemies"
 --       return string.format(
 --         "Hit %s %s with projectiles", 
@@ -449,7 +449,7 @@
 --       end)
 --     end,
     
---     getProgressTexts = function(self)
+--     get_progress_texts = function(self)
 --       local data = QuestRegistry:GetData(self)
 --       local hits = data["hits"] or 0
 --       return { 
@@ -485,7 +485,7 @@
 --     turns = config.turns,
 --     reward = config.reward,
     
---     getDescription = config.getDescription or function(self)
+--     get_description = config.get_description or function(self)
 --       local enemy_text = self.amount == 1 and "enemy" or "enemies"
 --       local turn_text = self.turns == 1 and "turn" or "turns"
 --       return string.format(
@@ -548,7 +548,7 @@
 --       print("Registered observers for " .. self.id)
 --     end,
     
---     getProgressTexts = function(self)
+--     get_progress_texts = function(self)
 --       local data = QuestRegistry:GetData(self)
 --       local defeated_enemies = data["defeated_enemies"] or 0
 --       local turns_elapsed = data["turns_elapsed"] or 0
@@ -588,7 +588,7 @@
 --     amount = config.amount,
 --     reward = config.reward,
     
---     getDescription = config.getDescription or function(self)
+--     get_description = config.get_description or function(self)
 --       local action = config.is_dealing and "Deal" or "Take"
 --       local effectiveness = config.super_effective and "super effective" or "not super effective"
 --       local plural = self.amount == 1 and "time" or "times"
@@ -654,7 +654,7 @@
 --       end)
 --     end,
 
---     getProgressTexts = function(self)
+--     get_progress_texts = function(self)
 --       local data = QuestRegistry:GetData(self)
 --       local hits = data["hits"] or 0
 --       return {
@@ -701,7 +701,7 @@
 --   id = "FAINT",
 --   amount = 1,
 --   reward = 1000,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format("Have any member faint %s time", M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
 --   end,
 
@@ -725,7 +725,7 @@
 --     end)
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = QuestRegistry:GetData(self)
 --     local fainted = data["fainted"]
 --     return { "", "Progress: " .. math.min(fainted, self.amount) .. "/" .. tostring(self.amount) }
@@ -752,7 +752,7 @@
 --     print("Max fullness is " .. tostring(max_fullness))
 --     return max_fullness
 --   end,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format("Have %s member be above %s hunger", M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), M_HELPERS.MakeColoredText(tostring(self.threshold), PMDColor.Cyan))
 --   end,
   
@@ -776,7 +776,7 @@
 --     end)
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = QuestRegistry:GetData(self)  
 --     local best_fullness = data["best_fullness"]
 --     return { "", "Max Fullness: " .. best_fullness }
@@ -805,7 +805,7 @@
 --       return min_fullness
 --     end,
     
---     getDescription = function(self)
+--     get_description = function(self)
 --       local member_text = self.amount == 1 and "member" or "members"
 --       return string.format(
 --         "Have all %s %s be below %s hunger", 
@@ -839,7 +839,7 @@
 --       end)
 --     end,
     
---     getProgressTexts = function(self)
+--     get_progress_texts = function(self)
 --       local data = QuestRegistry:GetData(self)  
 --       local min_fullness = data["min_fullness"]
 --       if min_fullness == math.huge then
@@ -905,7 +905,7 @@
 --       return true
 --     end,
     
---     getDescription = function(self)
+--     get_description = function(self)
 --       local member_text = self.amount == 1 and "member" or "members"
 --       return string.format(
 --         "Have all %s %s be at or below %s%% HP", 
@@ -934,7 +934,7 @@
 --       end)
 --     end,
     
---     getProgressTexts = function(self)
+--     get_progress_texts = function(self)
 --       local data = QuestRegistry:GetData(self)  
 --       local status = data["completed"] and "Completed" or "Not Completed"
 --       return { 
@@ -977,7 +977,7 @@
 --   id = "STAY_ON_FLOOR",
 --   amount = 1000,
 --   reward = 500,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format(
 --       "Stay on floor for %s turns",
 --       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
@@ -1004,7 +1004,7 @@
 --     )
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = QuestRegistry:GetData(self)
 --     local turns = data["turns"]
 --     return {
@@ -1018,7 +1018,7 @@
 --   id = "STAY_ON_FLOOR",
 --   amount = 1000,
 --   reward = 500,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format("Stay on floor for %s turns",
 --       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
 --   end,
@@ -1039,7 +1039,7 @@
 --     end)
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = QuestRegistry:GetData(self)
 --     local turns = data["turns"]
 --     return { "", "Progress: " .. math.min(turns, self.amount) .. "/" .. tostring(self.amount) }
@@ -1052,7 +1052,7 @@
 --     amount = config.amount,
 --     reward = config.reward,
 
---     getDescription = config.getDescription or function(self)
+--     get_description = config.get_description or function(self)
 --       return string.format(config.description_template,
 --         M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
 --     end,
@@ -1100,7 +1100,7 @@
 --       end)
 --     end,
 
---     getProgressTexts = function(self)
+--     get_progress_texts = function(self)
 --       local data = QuestRegistry:GetData(self)
 --       local turns = data["turns"]
 --       return { "", "Progress: " .. math.min(turns, self.amount) .. "/" .. tostring(self.amount) }
@@ -1148,7 +1148,7 @@
 --     end
 --     return true
 --   end,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format("Recruit a new team member")
 --   end,
 
@@ -1176,7 +1176,7 @@
 --     end)
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local total_team_members = self:get_total_team_members()
 --     local data = QuestRegistry:GetData(self)
 --     return { "", "Progress: " .. math.min(total_team_members - data["starting_team_members"], self.amount) .. "/" ..
@@ -1188,7 +1188,7 @@
 --   id = "LEVEL_UP",
 --   amount = 1,
 --   reward = 300,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format("Level up %s time", M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
 --   end,
 
@@ -1242,7 +1242,7 @@
 --     end)
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local leveled_up = self:get_total_level_from_start()
 --     return { "Progress: " .. math.min(leveled_up, self.amount) .. "/" .. tostring(self.amount) }
 --   end
@@ -1254,7 +1254,7 @@
 --     amount = config.amount,
 --     reward = config.reward,
 
---     getDescription = config.getDescription or function(self)
+--     get_description = config.get_description or function(self)
 --       local action_verb = config.action_verb or "Use"
 --       local item_type = self.amount == 1 and config.item_type_singular or config.item_type_plural
 --       return string.format(
@@ -1289,7 +1289,7 @@
 --       end)
 --     end,
 
---     getProgressTexts = config.getProgressTexts or function(self)
+--     get_progress_texts = config.get_progress_texts or function(self)
 --       local data = QuestRegistry:GetData(self)
 --       local count = data["count"] or 0
 --       return { "Progress: " .. math.min(count, self.amount) .. "/" .. tostring(self.amount) }
@@ -1375,7 +1375,7 @@
 --   item_type_singular = "machine item",
 --   item_type_plural = "machine items",
 --   state_type = MachineStateType,
---   getDescription = function(self)
+--   get_description = function(self)
 --     local recall_box = M_HELPERS.GetItemName("machine_recall_box")
 --     local assembly_box = M_HELPERS.GetItemName("machine_assembly_box")
 --     local ability_capsule = M_HELPERS.GetItemName("machine_ability_capsule")
@@ -1384,7 +1384,7 @@
 --       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), recall_box, assembly_box, ability_capsule)
 --   end,
 
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local data = QuestRegistry:GetData(self)
 --     local count = data["count"] or 0
 --     return { "", "Progress: " .. math.min(count, self.amount) .. "/" .. tostring(self.amount) }

@@ -346,9 +346,9 @@ function checkpoint.ChestInteraction(obj, activator)
   local enchantments = EnchantmentRegistry:GetRandom(6, 2)
 
 
-  enchantments[1][1] = EnchantmentRegistry._registry[Noxious.id]
-  enchantments[1][2] = EnchantmentRegistry._registry[PandorasItems.id]
-  enchantments[1][3] = EnchantmentRegistry._registry[Blueprint.id]
+  enchantments[1][1] = EnchantmentRegistry._registry[FiredUp.id]
+  enchantments[1][2] = EnchantmentRegistry._registry[HealingWaters.id]
+  enchantments[1][3] = EnchantmentRegistry._registry[HeavyRock.id]
   -- enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]
   local ret = nil
   local choose = function(enchantment)

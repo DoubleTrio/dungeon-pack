@@ -300,6 +300,24 @@
 "Released": false,
 "Comment": "",
 "SortOrder": 0
+},
+"emberfrost_fired_up": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_heavy_rock": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

@@ -501,7 +501,7 @@ PowerupDefaults = {
   end,
 
   -- Used for getting more info about the progress through a submenu (ex. character selected, the amount of money made, the stat boosts)
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     -- return nil
     return {}
   end,
@@ -516,7 +516,7 @@ PowerupDefaults = {
     print(self.name .. " restore.")
   end,
 
-  getDescription = function(self)
+  get_description = function(self)
     return ""
   end,
 
@@ -733,7 +733,7 @@ ExpandedSatchel = EnchantmentRegistry:Register({
   name = "Expanded Satchel",
   id = "EXPANDED_SATCHEL",
   bag_increase = 8,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Increase the bag size by %s for the duration of the dungeon",
       M_HELPERS.MakeColoredText(tostring(self.bag_increase), PMDColor.Cyan))
   end,
@@ -753,7 +753,7 @@ ExpandedSatchel = EnchantmentRegistry:Register({
     UI:SetCenter(false)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return { "Current Bag Size: " .. M_HELPERS.MakeColoredText(tostring(_ZONE.CurrentZone.BagSize), PMDColor.Cyan) }
   end,
 
@@ -767,7 +767,7 @@ JeweledBug = EnchantmentRegistry:Register({
   name = "Jeweled Bug",
   id = "JEWELLED_BUG",
   amount = 50000,
-  getDescription = function(self)
+  get_description = function(self)
     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_jeweled_bug")
     return string.format("Gain a " .. entry:GetColoredName() ..
       " (eats a random item at the start of each floor and gives " .. M_HELPERS.MakeColoredText(tostring(self.amount) .. PMDSpecialCharacters.Money, PMDColor.Cyan))
@@ -788,7 +788,7 @@ JeweledBug = EnchantmentRegistry:Register({
 TreadingThrough = EnchantmentRegistry:Register({
   name = "Treading Through",
   id = "TREADING_THROUGH",
-  getDescription = function(self)
+  get_description = function(self)
     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_allterrain_gear")
     return string.format("Gain %s " .. entry:GetColoredName() ..
       " (allows the holder to traverse water, lava, and pits)",
@@ -813,7 +813,7 @@ TreadingThrough = EnchantmentRegistry:Register({
 ThreadsOfLife = EnchantmentRegistry:Register({
   name = "Threads of Life",
   id = "THREADS_OF_LIFE",
-  getDescription = function(self)
+  get_description = function(self)
     local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("evo_harmony_scarf")
     return string.format("Gain a " .. entry:GetColoredName())
   end,
@@ -835,7 +835,7 @@ ThreadsOfLife = EnchantmentRegistry:Register({
 --   id = "GAIN_6500_P",
 --   group = ENCHANTMENT_TYPES.money,
 
---   getDescription = function(self)
+--   get_description = function(self)
 --     return "Gain 6500 " .. PMDSpecialCharacters.Money
 --   end,
 --   offer_time = "beginning",
@@ -858,7 +858,7 @@ ThreadsOfLife = EnchantmentRegistry:Register({
 CalmTheStorm = EnchantmentRegistry:Register({
   name = "Calm the Storm",
   id = "CALM_THE_STORM",
-  getDescription = function(self)
+  get_description = function(self)
     local ward_entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("emberfrost_weather_ward")
     return string.format("Gain a %s (allows the holder to eliminate the weather when it is battling)", ward_entry:GetIconName())
   end,
@@ -879,7 +879,7 @@ PressureCooker = EnchantmentRegistry:Register({
   name = "Pressure Cooker",
   id = "PRESSURE_COOKER",
   amount = 75,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Your party's moves will deal %s%% more damage, but cost an additional PP",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
@@ -899,13 +899,13 @@ TwoForOne = EnchantmentRegistry:Register({
   name = "2 for 1",
   id = "TWO_FOR_ONE",
   amount = 2,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain %s random enchantments",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
     )
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local enchant_ids = data["selected_enchantments"]
     local texts = {}
@@ -942,11 +942,11 @@ MysteryEnchant = EnchantmentRegistry:Register({
   gold_amount = 4000,
   name = "Mystery Enchant",
   id = "MYSTERY_ENCHANT",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain a random enchantment and %s.", M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local enchant_id = data["selected_enchantment"]
     local enchant = EnchantmentRegistry._registry[enchant_id]
@@ -987,7 +987,7 @@ PrimalMemory = EnchantmentRegistry:Register({
   name = "Primal Memory",
   id = "PRIMAL_MEMORY",
   amount = 2,
-  getDescription = function(self)
+  get_description = function(self)
     local recall_box = M_HELPERS.GetItemName("machine_recall_box")
     return string.format("Choose a team member. That member can now remember any %s. Gain %s %s",
       M_HELPERS.MakeColoredText("egg moves", PMDColor.Yellow),
@@ -995,7 +995,7 @@ PrimalMemory = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1024,7 +1024,7 @@ Blueprint = EnchantmentRegistry:Register({
   tm_amount = 2,
   recall_amount = 1,
   total_choices = 5,
-  getDescription = function(self)
+  get_description = function(self)
     local recall_box = M_HELPERS.GetItemName("machine_recall_box")
     return string.format("Choose a team member. Gain %s random TMs that member learns and then select another one (TMs will be randomized if not possible). Gain a %s",
       M_HELPERS.MakeColoredText(self.tm_amount, PMDColor.Cyan),
@@ -1033,7 +1033,7 @@ Blueprint = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1129,7 +1129,7 @@ TeamBuilding = EnchantmentRegistry:Register({
   total_choices = 5,
   amber_tear_amount = 3,
 
-  getDescription = function(self)
+  get_description = function(self)
     local assembly_box = M_HELPERS.GetItemName("machine_assembly_box")
 
     local amber_tear = M_HELPERS.GetItemName("medicine_amber_tear", self.amber_tear_amount)
@@ -1144,7 +1144,7 @@ TeamBuilding = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local apricorns = data["apricorns"]
 
@@ -1207,7 +1207,7 @@ EliteTutoring = EnchantmentRegistry:Register({
   name = "Elite Tutoring",
   id = "ELITE_TUTORING",
   amount = 1,
-  getDescription = function(self)
+  get_description = function(self)
     local recall_box = M_HELPERS.GetItemName("machine_recall_box")
     return string.format("Choose a team member. That member can now remember any %s. Gain %s %s",
       M_HELPERS.MakeColoredText("tutoring moves", PMDColor.Yellow),
@@ -1215,7 +1215,7 @@ EliteTutoring = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1343,7 +1343,7 @@ SticksAndStones = EnchantmentRegistry:Register({
   apricorns = { "apricorn_black", "apricorn_blue", "apricorn_brown", "apricorn_green", "apricorn_purple", "apricorn_red", "apricorn_white", "apricorn_yellow", "apricorn_plain" },
   name = "Sticks & Stones",
   id = "STICKS_AND_STONES",
-  getDescription = function(self)
+  get_description = function(self)
 
     local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
     local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
@@ -1396,7 +1396,7 @@ SticksAndStones = EnchantmentRegistry:Register({
 --     return HasEnchantment(SV.EmberFrost.SelectedEnchantments, SticksAndStones.id)
 --   end,
 
---   getDescription = function(self)
+--   get_description = function(self)
 --     local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
 --     local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
 --     local gravelerock = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_gravelerock")
@@ -1454,7 +1454,7 @@ SticksAndStones = EnchantmentRegistry:Register({
 --     return HasEnchantment(SV.EmberFrost.SelectedEnchantments, MayBreakMyBones.id)
 --   end,
 
---   getDescription = function(self)
+--   get_description = function(self)
 --     local sticks = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_stick")
 --     local goldenthorn = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_golden_thorn")
 --     local gravelerock = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get("ammo_gravelerock")
@@ -1501,7 +1501,7 @@ SticksAndStones = EnchantmentRegistry:Register({
 --   name = "Buried Treasures",
 --   id = "BURIED_TREASURES",
 --   group = ENCHANTMENT_TYPES.items,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format(
 --       "At the start of each floor and every %s turns, show a compass towards to a buried treasure if any are present.",
 --       M_HELPERS.MakeColoredText(tostring(self.turn_interval), PMDColor.Cyan)
@@ -1519,7 +1519,7 @@ SticksAndStones = EnchantmentRegistry:Register({
 --   name = "Pacifist",
 --   id = "PACIFIST",
 --   group = ENCHANTMENT_TYPES.items,
---   getDescription = function(self)
+--   get_description = function(self)
 --     return string.format(
 --       "Select a character. When that character deals no damage for the floor, gain %s the following floor.",
 --       M_HELPERS.MakeColoredText(tostring(self.gold_amount) .. PMDSpecialCharacters.Money, PMDColor.Cyan)
@@ -1542,7 +1542,7 @@ HandsTied = EnchantmentRegistry:Register({
   gold_amount = 10000,
   name = "Hands Tied",
   id = "HANDS_TIED",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain %s. The team cannot use %s until the next checkpoint", M_HELPERS.MakeColoredText(
         tostring(self.gold_amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan),
       M_HELPERS.MakeColoredText("items", PMDColor.SkyBlue))
@@ -1571,7 +1571,7 @@ ATrueLeader = EnchantmentRegistry:Register({
   gold_amount = 10000,
   name = "A True Leader",
   id = "A_TRUE_LEADER",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("You cannot swap leaders until the next checkpoint. Gain %s when you do reach the next checkpoint.", M_HELPERS.MakeColoredText(
         tostring(self.gold_amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan),
       M_HELPERS.MakeColoredText("items", PMDColor.SkyBlue))
@@ -1609,11 +1609,11 @@ Tempo = EnchantmentRegistry:Register({
   name = "Tempo",
   id = "TEMPO",
   count = 1,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("For every %s enemies defeated, your team gains a random stat boost", M_HELPERS.MakeColoredText(tostring(self.count), PMDColor.Cyan))
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return {
       string.format("Enemies Defeated: %s/%s", tostring(EnchantmentRegistry:GetData(self)["defeated_enemies"]), tostring(self.count))
     }
@@ -1673,7 +1673,7 @@ Marksman = EnchantmentRegistry:Register({
   name = "Marksman",
   id = "MARKSMAN",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Choose a team member. When that member hits an enemy, that enemy is %s. %s enemies take %s more damage from all sources. Only one enemy can be %s at a time.",
       M_HELPERS.MakeColoredText("marked", PMDColor.Blue), M_HELPERS.MakeColoredText("Marked", PMDColor.Blue),
@@ -1701,7 +1701,7 @@ FeelTheBurn = EnchantmentRegistry:Register({
   chance = 15,
   id = "FEEL_THE_BURN",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     local element = _DATA:GetElement("fire")
     return string.format(
       "Choose a team member. When that member is hit by a %s move, they will take %s additional damage and gain a speed boost",
@@ -1711,7 +1711,7 @@ FeelTheBurn = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1737,14 +1737,14 @@ GlassCannon = EnchantmentRegistry:Register({
   attack_boost = 50,
   defense_drop = 50,
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Choose a team member. That member will deal %s more damage but take %s more damage",
       M_HELPERS.MakeColoredText(tostring(self.attack_boost) .. "%", PMDColor.Cyan),
       M_HELPERS.MakeColoredText(tostring(self.defense_drop) .. "%", PMDColor.Red))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1772,14 +1772,14 @@ Sponge = EnchantmentRegistry:Register({
   attack_boost = 50,
   defense_drop = 50,
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Choose a team member. That member will take %s less damage but deal %s less damage",
       M_HELPERS.MakeColoredText(tostring(self.defense_drop) .. "%", PMDColor.Cyan),
       M_HELPERS.MakeColoredText(tostring(self.attack_boost) .. "%", PMDColor.Red))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1804,13 +1804,13 @@ Sponge = EnchantmentRegistry:Register({
 SafeguardPlus = EnchantmentRegistry:Register({
   name = "Safeguard+",
   id = "SAFEGUARD_PLUS",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Choose a team member. That member will gains a permanent %s for the rest of the dungeon",
       M_HELPERS.MakeColoredText("Safeguard", PMDColor.Cyan))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1836,7 +1836,7 @@ Ravenous = EnchantmentRegistry:Register({
   name = "Ravenous",
   id = "RAVENOUS",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Choose a team member. That member deals %s the more hungrier. At very low hunger, that member has a chance to be %s",
       M_HELPERS.MakeColoredText("more damage", PMDColor.Yellow),
@@ -1846,7 +1846,7 @@ Ravenous = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1872,13 +1872,13 @@ Avenger = EnchantmentRegistry:Register({
   name = "Avenger",
   id = "AVENGER",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Choose a team member. That member deals %s the more members that are fainted in the party",
       M_HELPERS.MakeColoredText("more damage", PMDColor.Yellow))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -1904,7 +1904,7 @@ MonoMoves = EnchantmentRegistry:Register({
 name = "Mono Moves",
 id = "MONO_MOVES",
 attack_boost = 35,
-getDescription = function(self)
+get_description = function(self)
   return string.format(
     "Choose a team member. If all their moves are the %s, that member deals %s more damage.",
     M_HELPERS.MakeColoredText("same type", PMDColor.Yellow),
@@ -1914,7 +1914,7 @@ getDescription = function(self)
 end,
 offer_time = "beginning",
 rarity = 1,
-getProgressTexts = function(self)
+get_progress_texts = function(self)
   local char, in_assembly = FindCharacterWithEnchantment(self.id)
   local char_name = char and char:GetDisplayName(true) or nil
   if char_name then
@@ -1938,7 +1938,7 @@ HungerStrike = EnchantmentRegistry:Register({
   name = "Hunger Strike",
   amount = 5,
   id = "HUNGER_STRIKE",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Your party will lose hunger more quickly when walking. When they inflict damage with a move, the target will lose %s hunger points",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan)
@@ -1946,7 +1946,7 @@ HungerStrike = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  -- getProgressTexts = function(self)
+  -- get_progress_texts = function(self)
   --   local char, in_assembly = FindCharacterWithEnchantment(self.id)
   --   local char_name = char and char:GetDisplayName(true) or nil
   --   if char_name then
@@ -1978,7 +1978,7 @@ PandorasItems = EnchantmentRegistry:Register({
   name = "Pandora's Items",
   id = "PANDORAS_ITEMS",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Gain %s random %s, %s, and %s. At the start of each floor, any non-held items are randomized (except food, loots, and treasures)",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
@@ -1987,7 +1987,7 @@ PandorasItems = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return {}
     -- local data = EnchantmentRegistry:GetData(self)
     -- local equipment = data["equipment"]
@@ -2044,7 +2044,7 @@ SupplyDrop = EnchantmentRegistry:Register({
   name = "Supply Drop",
   id = "SUPPLY_DROP",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("After each checkpoint, gain a random supply drop containing %s",
       M_HELPERS.MakeColoredText("essential items", PMDColor.Yellow))
   end,
@@ -2233,7 +2233,7 @@ YourAWizard = EnchantmentRegistry:Register({
   name = "You're a Wizard!",
   id = "YOURE_A_WIZARD",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Gain %s stacks of %s random %s. Then select a party member. That member will gain %s special attack boost for each unique %s in your inventory.",
       M_HELPERS.MakeColoredText(tostring(self.stack), PMDColor.Cyan),
@@ -2245,7 +2245,7 @@ YourAWizard = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
 
     local data = EnchantmentRegistry:GetData(self)
     local wands = data["wands"]
@@ -2336,7 +2336,7 @@ PlantYourSeeds = EnchantmentRegistry:Register({
   minimum = 5,
   name = "Plant Your Seeds",
   id = "PLANT_YOUR_SEEDS",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Gain %s random %s. At the start of each floor, if you have at least non-held %s, lose all of them and gain %s for each seed",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
@@ -2346,7 +2346,7 @@ PlantYourSeeds = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local seeds = data["seeds"]
     local money_earned = data["money_earned"] or 0
@@ -2416,7 +2416,7 @@ ExitStrategy = EnchantmentRegistry:Register({
   name = "Exit Strategy",
   id = "EXIT_STRATEGY",
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     local warp_scarf = M_HELPERS.GetItemName("held_warp_scarf")
     local pure_seed = M_HELPERS.GetItemName("seed_pure")
     local warp_wand_name = M_HELPERS.GetItemName("wand_warp")
@@ -2427,7 +2427,7 @@ ExitStrategy = EnchantmentRegistry:Register({
       M_HELPERS.MakeColoredText(tostring(self.warp_wands_amount), PMDColor.Cyan), warp_wand_name,
       M_HELPERS.MakeColoredText(tostring(self.salac_amount), PMDColor.Cyan), M_HELPERS.GetItemName("berry_salac"))
   end,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local char, in_assembly = FindCharacterWithEnchantment(self.id)
     local char_name = char and char:GetDisplayName(true) or nil
     if char_name then
@@ -2437,7 +2437,7 @@ ExitStrategy = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  -- getProgressTexts = function(self)
+  -- get_progress_texts = function(self)
 
   --   local data = EnchantmentRegistry:GetData(self)
   --   local seeds = data["seeds"]
@@ -2521,7 +2521,7 @@ TheBubble = EnchantmentRegistry:Register({
     M_HELPERS.RemoveItemIDFromInventory("emberfrost_bubble")
   end,
   -- group = ENCHANTMENT_TYPES.items,
-  getDescription = function(self)
+  get_description = function(self)
     local bubble = M_HELPERS.GetItemName("emberfrost_bubble")
     return string.format(
       "Gain a %s (Gain %s interest at start of floor. If the %s pops, lose %s of your %s and it will reset. Pop chance increases by %s each floor)",
@@ -2534,7 +2534,7 @@ TheBubble = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local money_earned = data["money_earned"] or 0
     local money_lost = data["money_lost"] or 0
@@ -2566,7 +2566,7 @@ StackOfPlates = EnchantmentRegistry:Register({
   choice = 5,
   name = "Stack of Plates",
   id = "STACK_OF_PLATES",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Gain %s random type %s. Then select a %s from a choice of %s ",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
@@ -2577,7 +2577,7 @@ StackOfPlates = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
 
     local data = EnchantmentRegistry:GetData(self)
     local plates = data["plates"]
@@ -2633,7 +2633,7 @@ Protagonist = EnchantmentRegistry:Register({
   name = "Protagonist",
   id = "PROTAGONIST",
   boost = 20,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "The %s takes reduced damage from enemies and deals increased damage",
       M_HELPERS.MakeColoredText("active leader", PMDColor.Yellow)
@@ -2650,7 +2650,7 @@ Protagonist = EnchantmentRegistry:Register({
       })))
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
 
     if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
       return {
@@ -2691,7 +2691,7 @@ MoralSupport = EnchantmentRegistry:Register({
     local count = CountAssemblyWithKey(self.key)
     return count * self.boost
   end,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format(
       "Your team gains a %s boost for each team member in the assembly recruited during this run (includes starting party)",
       M_HELPERS.MakeColoredText(tostring(self.boost) .. "%", PMDColor.Cyan)
@@ -2707,7 +2707,7 @@ MoralSupport = EnchantmentRegistry:Register({
       })))
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local total_boost = self:get_total_boost()
     return {
       "Total Boost: " .. M_HELPERS.MakeColoredText(tostring(total_boost) .. "%", PMDColor.Cyan)
@@ -3088,7 +3088,7 @@ TypeMaster = EnchantmentRegistry:Register({
   end,
   name = "Type Mastery",
   id = "TYPE_MASTERY",
-  getDescription = function(self)
+  get_description = function(self)
     -- local type_count = self:get_type_progress().count
     local total_types = #self.valid_types
 
@@ -3098,7 +3098,7 @@ TypeMaster = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
 
     local progress = self:get_type_progress()
     local type_count = progress.count
@@ -3180,13 +3180,13 @@ Minimalist = EnchantmentRegistry:Register({
   amount = 50,
   name = "Minimalist",
   id = "MINIMALIST",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("At the start of each floor, gain %s for each available item slot in your inventory",
       M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local money_earned = data["money_earned"] or 0
 
@@ -3215,13 +3215,13 @@ TrapTripper = EnchantmentRegistry:Register({
   amount = 50,
   name = "Trap Tripper",
   id = "TRAP_TRIPPER",
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("For each different trap triggered on a floor, gain %s",
       M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local money_earned = data["money_earned"] or 0
 
@@ -3403,7 +3403,7 @@ end
 TarotCards = EnchantmentRegistry:Register({
   name = "Tarot Cards",
   id = "TAROT_CARDS",
-  getDescription = function(self)
+  get_description = function(self)
     local psychic_type = _DATA:GetElement("psychic")
     local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
     return string.format(
@@ -3412,7 +3412,7 @@ TarotCards = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local psychic_type = _DATA:GetElement("psychic")
     local icon = psychic_type:GetIconName()
 
@@ -3835,7 +3835,7 @@ TarotDefaults = {
 Puppeteer = EnchantmentRegistry:Register({
   name = "Puppeteer",
   id = "PUPPETEER",
-  getDescription = function(self)
+  get_description = function(self)
     local ghost_type = _DATA:GetElement("ghost")
     local black_apricorn = M_HELPERS.GetItemName("apricorn_black")
     return string.format(
@@ -3844,7 +3844,7 @@ Puppeteer = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local ghost_type = _DATA:GetElement("ghost")
     local icon = ghost_type:GetIconName()
 
@@ -3885,7 +3885,7 @@ Puppeteer = EnchantmentRegistry:Register({
 -- HideAndSeek = EnchantmentRegistry:Register({
 --   name = "Hide and Seek",
 --   id = "HIDE_AND_SEEK",
---   getDescription = function(self)
+--   get_description = function(self)
 --     local ghost_type = _DATA:GetElement("ghost")
 --     local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
 --     return string.format(
@@ -3894,7 +3894,7 @@ Puppeteer = EnchantmentRegistry:Register({
 --   end,
 --   offer_time = "beginning",
 --   rarity = 1,
---   getProgressTexts = function(self)
+--   get_progress_texts = function(self)
 --     local ghost_type = _DATA:GetElement("ghost")
 --     local icon = ghost_type:GetIconName()
 
@@ -3982,14 +3982,14 @@ TravelingMerchant = EnchantmentRegistry:Register({
   id = "TRAVELING_MERCHANT",
 
   
-  getDescription = function(self)
+  get_description = function(self)
     -- local name = 
       local species = 'kecleon'
       local name = _DATA:GetMonster(species).Forms[0].FormName:ToLocal()
     return string.format("%s will join your journey until the next checkpoint. You can buys items or sell your entire inventory while they're with you",
       M_HELPERS.MakeColoredText(name, PMDColor.Cyan))
   end,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -4156,11 +4156,11 @@ SightSeer = EnchantmentRegistry:Register({
   id = "SIGHTSEER",
 
   
-  getDescription = function(self)
+  get_description = function(self)
 
       return string.format("A traveling escort will join your party as a guest until the next checkpoint. If they make it to the next checkpoint, you'll receive a reward")
   end,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -4322,12 +4322,12 @@ Randorb = EnchantmentRegistry:Register({
   name = "Randorb",
   id = "RANDORB",
 
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain a random orb. At the start of each floor, gain a random orb")
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
   end,
 
   set_active_effects = function(self, active_effect, zone_context)
@@ -4381,14 +4381,14 @@ RainingGold = EnchantmentRegistry:Register({
   initial = 2000,
   
 
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain %s. At the start of each floor, a shower of %s falls from the sky",
     M_HELPERS.MakeColoredText(tostring(self.initial) .. PMDSpecialCharacters.Money, PMDColor.Cyan),
     PMDSpecialCharacters.Money)
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
 
   end,
 
@@ -4437,12 +4437,12 @@ BerryNutritious = EnchantmentRegistry:Register({
   id = "BERRY_NUTRITOUS",
   chance = 50,
 
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain a random berry. Whenever a team member eats a berry, there is a %s chance they get a random stat boost", M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
 
     return {}
   end,
@@ -4478,7 +4478,7 @@ Harvester = EnchantmentRegistry:Register({
   name = "Harvester",
   id = "HARVESTER",
 
-  getDescription = function(self)
+  get_description = function(self)
     local grass_type = _DATA:GetElement("grass")
     local green_apricron = M_HELPERS.GetItemName("apricorn_green")
     return string.format("Gain a %s. For each %s in the %s, gain a random berry or food at the start of each floor",
@@ -4486,7 +4486,7 @@ Harvester = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local grass_type = _DATA:GetElement("grass")
     local icon = grass_type:GetIconName()
 
@@ -4532,7 +4532,7 @@ Rationalize = EnchantmentRegistry:Register({
   name = "Rationalize",
   id = "RATIONALIZE",
 
-  getDescription = function(self)
+  get_description = function(self)
     local normal_type = _DATA:GetElement("normal")
 
     local fairy = _DATA:GetElement("fairy")
@@ -4544,7 +4544,7 @@ Rationalize = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local grass_type = _DATA:GetElement("normal")
     local icon = grass_type:GetIconName()
 
@@ -4576,7 +4576,7 @@ Rationalize = EnchantmentRegistry:Register({
 DraconianDefience = EnchantmentRegistry:Register({
   name = "Draconian Defience",
   id = "DRACONIAN_DEFICIENCE",
-  getDescription = function(self)
+  get_description = function(self)
     local dragon = _DATA:GetElement("dragon")
     local red_apricorn = M_HELPERS.GetItemName("apricorn_red")
     return string.format(
@@ -4585,7 +4585,7 @@ DraconianDefience = EnchantmentRegistry:Register({
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return {}
   end,
 
@@ -4699,13 +4699,13 @@ Shopper = EnchantmentRegistry:Register({
   id = "SHOPPER",
   amount = 1000,
 
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain %s. The likelihood of shopkeepers appearing in the dungeon is increased.", M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
     -- return "Increase the likelihood of shopkeepers appearing in the dungeon"
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return {}
   end,
 
@@ -4731,12 +4731,12 @@ TreasureHunt = EnchantmentRegistry:Register({
   id = "TREASURE_HUNT",
   amount = 1000,
 
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Gain %s. The likelihood of chests appearing in the dungeon is increased.", M_HELPERS.MakeColoredText(tostring(self.amount) .. " " .. PMDSpecialCharacters.Money, PMDColor.Cyan))
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return {}
   end,
 
@@ -4763,13 +4763,13 @@ LooseChange = EnchantmentRegistry:Register({
   name = "Loose Change",
   id = "LOOSE_CHANGE",
 
-  getDescription = function(self)
+  get_description = function(self)
     local money = PMDSpecialCharacters.Money  
     return "More " .. money .. " can be found while exploring the dungeon"
   end,
   offer_time = "beginning",
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return {}
   end,
 
@@ -4857,7 +4857,7 @@ QuestDefaults = {
       enchantment_data["money_earned"] = enchantment_data["money_earned"] + self.reward
       if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
         SOUND:PlayFanfare("Fanfare/Note")
-        UI:WaitShowDialogue(string.format("Completed Quest! %s (%s)", self:getDescription(),
+        UI:WaitShowDialogue(string.format("Completed Quest! %s (%s)", self:get_description(),
           M_HELPERS.MakeColoredText(tostring(self.reward), PMDColor.Cyan) .. " " .. PMDSpecialCharacters.Money))
       end
     end
@@ -4871,11 +4871,11 @@ QuestDefaults = {
     -- print(self.name .. " activated.")
   end,
 
-  getDescription = function(self)
+  get_description = function(self)
     return ""
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     return {}
   end
 }
@@ -4885,12 +4885,12 @@ QuestMaster = EnchantmentRegistry:Register({
   name = "Quest Master",
   id = "QUEST_MASTER",
   task_amount = 2,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("At the start of each floor, receive %s quests to gain " .. PMDSpecialCharacters.Money,
       M_HELPERS.MakeColoredText(tostring(self.task_amount), PMDColor.Cyan))
   end,
   rarity = 1,
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = EnchantmentRegistry:GetData(self)
     local currents_quests = SV.EmberFrost.Quests.Active
     local selected = QuestRegistry:GetSelected(currents_quests)
@@ -4903,8 +4903,8 @@ QuestMaster = EnchantmentRegistry:Register({
         string.format("Quests (Earned %s %s): ",
           M_HELPERS.MakeColoredText(tostring(money_earned), PMDColor.Cyan), PMDSpecialCharacters.Money))
       for _, quest in ipairs(selected) do
-        local description = quest:getDescription()
-        local texts = quest:getProgressTexts()
+        local description = quest:get_description()
+        local texts = quest:get_progress_texts()
         local data = QuestRegistry:GetData(quest)
         local completed = data["completed"] or false
         local icon = completed and PMDSpecialCharacters.Check or PMDSpecialCharacters.Cross
@@ -4978,7 +4978,7 @@ local function CreateBountyQuest(config)
     amount = config.amount,
     reward = config.reward,
 
-    getDescription = function(self)
+    get_description = function(self)
       local data = QuestRegistry:GetData(self)
       local species = data["bounty_target"]
       local name = _DATA:GetMonster(species).Forms[0].FormName:ToLocal()
@@ -5020,7 +5020,7 @@ local function CreateBountyQuest(config)
       end)
     end,
 
-    getProgressTexts = function(self)
+    get_progress_texts = function(self)
       local data = QuestRegistry:GetData(self)
       local defeated_enemies = data["defeated_enemies"] or 0
       return { "Progress: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount) }
@@ -5046,7 +5046,7 @@ QuestRegistry:Register({
   pp = 5,
   reward = 1000,
 
-  getDescription = function(self)
+  get_description = function(self)
     local member_text = self.amount == 1 and "member" or "members"
     return string.format("Let %s %s with all moves at %s PP or less",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), member_text,
@@ -5088,7 +5088,7 @@ QuestRegistry:Register({
     end)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = QuestRegistry:GetData(self)
     local status = data["completed"] and "Completed" or "Not Completed"
     return { "", status }
@@ -5099,7 +5099,7 @@ QuestRegistry:Register({
   id = "DEFEAT_ENEMY_WITH_PROJECTILE",
   amount = 1,
   reward = 300,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Defeat an enemy with a projectile")
   end,
 
@@ -5137,7 +5137,7 @@ QuestRegistry:Register({
   end)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = QuestRegistry:GetData(self)
     local defeated_enemies = data["defeated_enemies"]
     return { "", "Progress: " .. math.min(defeated_enemies, self.amount) .. "/" .. tostring(self.amount) }
@@ -5150,7 +5150,7 @@ local function CreateProjectileQuest(config)
     amount = config.amount,
     reward = config.reward,
 
-    getDescription = config.getDescription or function(self)
+    get_description = config.get_description or function(self)
       local plural = self.amount == 1 and "enemy" or "enemies"
       return string.format("Hit %s %s with projectiles",
         M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), plural)
@@ -5195,7 +5195,7 @@ local function CreateProjectileQuest(config)
       end)
     end,
 
-    getProgressTexts = function(self)
+    get_progress_texts = function(self)
       local data = QuestRegistry:GetData(self)
       local hits = data["hits"] or 0
       return { "", "Progress: " .. math.min(hits, self.amount) .. "/" .. tostring(self.amount) }
@@ -5228,7 +5228,7 @@ local function CreateTimedDefeatQuest(config)
     turns = config.turns,
     reward = config.reward,
 
-    getDescription = config.getDescription or function(self)
+    get_description = config.get_description or function(self)
       local enemy_text = self.amount == 1 and "enemy" or "enemies"
       local turn_text = self.turns == 1 and "turn" or "turns"
       return string.format("Defeat %s %s in %s %s",
@@ -5289,7 +5289,7 @@ local function CreateTimedDefeatQuest(config)
       end)
     end,
 
-    getProgressTexts = function(self)
+    get_progress_texts = function(self)
       local data = QuestRegistry:GetData(self)
       local defeated_enemies = data["defeated_enemies"] or 0
       local turns_elapsed = data["turns_elapsed"] or 0
@@ -5327,7 +5327,7 @@ local function CreateEffectivenessQuest(config)
     amount = config.amount,
     reward = config.reward,
 
-    getDescription = config.getDescription or function(self)
+    get_description = config.get_description or function(self)
       local action = config.is_dealing and "Deal" or "Take"
       local effectiveness = config.super_effective and "super effective" or "not super effective"
       local plural = self.amount == 1 and "time" or "times"
@@ -5391,7 +5391,7 @@ local function CreateEffectivenessQuest(config)
       end)
     end,
 
-    getProgressTexts = function(self)
+    get_progress_texts = function(self)
       local data = QuestRegistry:GetData(self)
       local hits = data["hits"] or 0
       return { "", "Progress: " .. math.min(hits, self.amount) .. "/" .. tostring(self.amount) }
@@ -5435,7 +5435,7 @@ QuestRegistry:Register({
   id = "FAINT",
   amount = 1,
   reward = 1000,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Have any member faint %s time",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
   end,
@@ -5462,7 +5462,7 @@ QuestRegistry:Register({
     end)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = QuestRegistry:GetData(self)
     local fainted = data["fainted"]
     return { "", "Progress: " .. math.min(fainted, self.amount) .. "/" .. tostring(self.amount) }
@@ -5486,7 +5486,7 @@ QuestRegistry:Register({
     print("Max fullness is " .. tostring(max_fullness))
     return max_fullness
   end,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Have %s member be above %s hunger",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan),
       M_HELPERS.MakeColoredText(tostring(self.threshold), PMDColor.Cyan))
@@ -5513,7 +5513,7 @@ QuestRegistry:Register({
     end)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = QuestRegistry:GetData(self)
     local best_fullness = data["best_fullness"]
     return { "", "Max Fullness: " .. best_fullness }
@@ -5542,7 +5542,7 @@ local function CreateEmptyStomachQuest(config)
       return min_fullness
     end,
 
-    getDescription = function(self)
+    get_description = function(self)
       local member_text = self.amount == 1 and "member" or "members"
       return string.format("Have all %s %s be below %s hunger",
         M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), member_text,
@@ -5575,7 +5575,7 @@ local function CreateEmptyStomachQuest(config)
       end)
     end,
 
-    getProgressTexts = function(self)
+    get_progress_texts = function(self)
       local data = QuestRegistry:GetData(self)
       local min_fullness = data["min_fullness"]
       if min_fullness == math.huge then
@@ -5637,7 +5637,7 @@ local function CreateLowHealthQuest(config)
       return true
     end,
 
-    getDescription = function(self)
+    get_description = function(self)
       local member_text = self.amount == 1 and "member" or "members"
       return string.format("Have all %s %s be at or below %s%% HP",
         M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), member_text,
@@ -5664,7 +5664,7 @@ local function CreateLowHealthQuest(config)
       end)
     end,
 
-    getProgressTexts = function(self)
+    get_progress_texts = function(self)
       local data = QuestRegistry:GetData(self)
       local status = data["completed"] and "Completed" or "Not Completed"
       return { "", status }
@@ -5704,7 +5704,7 @@ QuestRegistry:Register({
   id = "STAY_ON_FLOOR",
   amount = 1000,
   reward = 500,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Stay on floor for %s turns",
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
   end,
@@ -5726,7 +5726,7 @@ QuestRegistry:Register({
     end)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = QuestRegistry:GetData(self)
     local turns = data["turns"]
     return { "", "Progress: " .. math.min(turns, self.amount) .. "/" .. tostring(self.amount) }
@@ -5739,7 +5739,7 @@ local function CreateAvoidActionQuest(config)
     amount = config.amount,
     reward = config.reward,
 
-    getDescription = config.getDescription or function(self)
+    get_description = config.get_description or function(self)
       return string.format(config.description_template,
         M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
     end,
@@ -5789,7 +5789,7 @@ local function CreateAvoidActionQuest(config)
       end)
     end,
 
-    getProgressTexts = function(self)
+    get_progress_texts = function(self)
       local data = QuestRegistry:GetData(self)
       local turns = data["turns"]
       return { "", "Progress: " .. math.min(turns, self.amount) .. "/" .. tostring(self.amount) }
@@ -5836,7 +5836,7 @@ QuestRegistry:Register({
     end
     return true
   end,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Recruit a new team member")
   end,
 
@@ -5866,7 +5866,7 @@ QuestRegistry:Register({
     end)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local total_team_members = self:get_total_team_members()
     local data = QuestRegistry:GetData(self)
     return { "", "Progress: " .. math.min(total_team_members - data["starting_team_members"], self.amount) .. "/" ..
@@ -5878,7 +5878,7 @@ QuestRegistry:Register({
   id = "LEVEL_UP",
   amount = 1,
   reward = 300,
-  getDescription = function(self)
+  get_description = function(self)
     return string.format("Level up %s time", M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan))
   end,
 
@@ -5933,7 +5933,7 @@ QuestRegistry:Register({
     end)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local leveled_up = self:get_total_level_from_start()
     return { "Progress: " .. math.min(leveled_up, self.amount) .. "/" .. tostring(self.amount) }
   end
@@ -5945,7 +5945,7 @@ local function CreateItemUseQuest(config)
     amount = config.amount,
     reward = config.reward,
 
-    getDescription = config.getDescription or function(self)
+    get_description = config.get_description or function(self)
       local action_verb = config.action_verb or "Use"
       local item_type = self.amount == 1 and config.item_type_singular or config.item_type_plural
       return string.format(
@@ -5982,7 +5982,7 @@ local function CreateItemUseQuest(config)
       end)
     end,
 
-    getProgressTexts = config.getProgressTexts or function(self)
+    get_progress_texts = config.get_progress_texts or function(self)
       local data = QuestRegistry:GetData(self)
       local count = data["count"] or 0
       return { "Progress: " .. math.min(count, self.amount) .. "/" .. tostring(self.amount) }
@@ -6068,7 +6068,7 @@ QuestRegistry:Register(CreateItemUseQuest({
   item_type_singular = "machine item",
   item_type_plural = "machine items",
   state_type = MachineStateType,
-  getDescription = function(self)
+  get_description = function(self)
     local recall_box = M_HELPERS.GetItemName("machine_recall_box")
     local assembly_box = M_HELPERS.GetItemName("machine_assembly_box")
     local ability_capsule = M_HELPERS.GetItemName("machine_ability_capsule")
@@ -6077,7 +6077,7 @@ QuestRegistry:Register(CreateItemUseQuest({
       M_HELPERS.MakeColoredText(tostring(self.amount), PMDColor.Cyan), recall_box, assembly_box, ability_capsule)
   end,
 
-  getProgressTexts = function(self)
+  get_progress_texts = function(self)
     local data = QuestRegistry:GetData(self)
     local count = data["count"] or 0
     return { "", "Progress: " .. math.min(count, self.amount) .. "/" .. tostring(self.amount) }

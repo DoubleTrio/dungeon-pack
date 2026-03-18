@@ -182,7 +182,7 @@ local function CreateAlly(mon_id, form, gender, level, on_create)
 end
 
 local TypeEHelpers = {}
-function TypeEHelpers.MakeApply(item_id, type)
+function TypeEHelpers.MakeApply(type, item_id)
   return function(self)
     M_HELPERS.GiveInventoryItemsToPlayer({ { Item = item_id, Amount = 1 } })
 
@@ -269,18 +269,6 @@ function TypeEHelpers.MakeSetActiveEffects(status_id, _)
   end
 end
 
--- function TypeEHelpers.MakeSetActiveEffects(status_id, types)
---   return function(self, active_effect, zone_context)
---     active_effect.OnMapStarts:Add(2,
---       RogueEssence.Dungeon.SingleCharScriptEvent("ApplyStatusIfTypeMatches",
---         Serpent.line({ Types = types, StatusID = status_id })))
---   end
--- end
--- RogueEssence.Dungeon.SingleCharScriptEvent("ApplyStatusIfTypeMatches", Serpent.line({
---   Types = { "dragon" },
---   StatusID = "emberfrost_draconian_defience",
--- })))
-
 function TypeEHelpers.MakeProgressTexts(element_id)
   return function(self)
     local element = _DATA:GetElement(element_id)
@@ -291,11 +279,13 @@ function TypeEHelpers.MakeProgressTexts(element_id)
 end
 
 
-function TypeEHelpers.MakeBaseDescription(type, item_name)
-  local type = _DATA:GetElement("steel")
-  local item_name
-  
+function TypeEHelpers.MakeBaseDescription(type, item_id)
+  local type = _DATA:GetElement(type)
+  local type_name = type:GetIconName()
+  local item_name = M_HELPERS.GetItemName(item_id)
+  return string.format("Gain a %s-type and a %s", type_name, item_name)
 end
+
 
 -- STEEL
 ReinforcedPlating = EnchantmentRegistry:Register({
@@ -305,17 +295,17 @@ ReinforcedPlating = EnchantmentRegistry:Register({
   shield_percent = 75,
   offer_time = "beginning",
   rarity = 1,
-  getDescription = function(self)
+  get_description = function(self)
     local steel_type = _DATA:GetElement("steel")
-    local yellow_apricorn = M_HELPERS.GetItemName("apricorn_yellow")
-    return string.format("Gain a random %s-type and a %s. Each %s-type gains a %s attack reduction shield every %s turns not attacked",
-      steel_type:GetIconName(), yellow_apricorn, steel_type:GetIconName(),
+    return string.format("%s. Each %s-type gains a %s attack reduction shield every %s turns not attacked",
+      TypeEHelpers.MakeBaseDescription("steel", "apricorn_yellow"),
+      steel_type:GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.shield_percent) .. "%", PMDColor.Cyan),
       M_HELPERS.MakeColoredText(self.turn_amount, PMDColor.Cyan))
   end,
-  getProgressTexts = TypeEHelpers.MakeProgressTexts("steel"),
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("steel"),
   set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_reinforced_plating", { "steel" }),
-  apply = TypeEHelpers.MakeApply("apricorn_yellow", "steel"),
+  apply = TypeEHelpers.MakeApply("steel", "apricorn_yellow"),
 })
 
 -- DARK
@@ -326,18 +316,17 @@ NegativeAura = EnchantmentRegistry:Register({
   tile_range = 2,
   offer_time = "beginning",
   rarity = 1,
-  getDescription = function(self)
-    local dark_type = _DATA:GetElement("dark")
-    local apricorn_black = M_HELPERS.GetItemName("apricorn_black")
+  get_description = function(self)
     return string.format(
-      "Gain a %s. Each %s type has a %s chance to inflict enemies within %s tiles with a random stat debuff at the end of the turn",
-      apricorn_black, dark_type:GetIconName(),
+      "%s. Each %s-type has a %s chance to debuff a random stat of enemies within %s tiles at end of the turn",
+      TypeEHelpers.MakeBaseDescription("dark", "apricorn_black"),
+      _DATA:GetElement("dark"):GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
       M_HELPERS.MakeColoredText(self.tile_range, PMDColor.Cyan))
   end,
-  getProgressTexts = TypeEHelpers.MakeProgressTexts("dark"),
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("dark"),
   set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_negative_aura", {"dark"}),
-  apply = TypeEHelpers.MakeApply("apricorn_black", "dark"),
+  apply = TypeEHelpers.MakeApply("dark", "apricorn_black"),
 })
 
 -- GROUND
@@ -348,13 +337,11 @@ FindYourGround = EnchantmentRegistry:Register({
   turns = 4,
   offer_time = "beginning",
   rarity = 1,
-  getDescription = function(self)
-    local ground_type = _DATA:GetElement("ground")
-    local brown_apricorn = M_HELPERS.GetItemName("apricorn_brown")
+  get_description = function(self)
     return string.format(
-      "Gain a %s. Each %s type gains a %s attack boost and a %s damage reduction boost if they do not move for %s turns",
-      brown_apricorn, ground_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+      "%s. Each %s type gains a %s attack and defense boost if they do not move for %s turns",
+      TypeEHelpers.MakeBaseDescription("ground", "apricorn_brown"),
+      _DATA:GetElement("ground"):GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
       M_HELPERS.MakeColoredText(tostring(self.turns), PMDColor.Cyan))
   end,
@@ -370,9 +357,9 @@ FindYourGround = EnchantmentRegistry:Register({
       tbl["Y"] = nil
     end
   end,
-  getProgressTexts = TypeEHelpers.MakeProgressTexts("ground"),
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("ground"),
   set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_grounded", { "ground" }),
-  apply = TypeEHelpers.MakeApply("apricorn_brown", "ground"),
+  apply = TypeEHelpers.MakeApply("ground", "apricorn_brown"),
 })
 
 -- FLYING
@@ -383,20 +370,17 @@ Flock = EnchantmentRegistry:Register({
   turns = 4,
   offer_time = "beginning",
   rarity = 1,
-  getDescription = function(self)
-    local flying_type = _DATA:GetElement("flying")
-    local white_apricorn = M_HELPERS.GetItemName("apricorn_white")
+  get_description = function(self)
     return string.format(
-      "Gain a %s. Each %s type gains a %s defense boost. Non flying allies can traverse terrains near flock users.",
-      white_apricorn, flying_type:GetIconName(), M_HELPERS.MakeColoredText("active party", PMDColor.Yellow),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
-      M_HELPERS.MakeColoredText(tostring(self.turns), PMDColor.Cyan))
+      "%s. Each %s type gains a %s defense boost. Non-flying allies can traverse terrains near flock users.",
+      TypeEHelpers.MakeBaseDescription("flying", "apricorn_white"),
+      _DATA:GetElement("flying"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
   end,
 
-  getProgressTexts = TypeEHelpers.MakeProgressTexts("flying"),
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("flying"),
   set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_flock", { "flying" }),
-  apply = TypeEHelpers.MakeApply("apricorn_white", "flying"),
+  apply = TypeEHelpers.MakeApply("flying", "apricorn_white"),
 })
 
 
@@ -407,18 +391,229 @@ Flock = EnchantmentRegistry:Register({
   percent = 25,
   offer_time = "beginning",
   rarity = 1,
-  getDescription = function(self)
-    local poison_type = _DATA:GetElement("poison")
-    local purple_apricorn = M_HELPERS.GetItemName("apricorn_purple")
+  get_description = function(self)
     return string.format(
-      "Gain a %s. Attacks from %s types in your team have a %s chance to inflict a random bad status condition",
-      purple_apricorn, poison_type:GetIconName(),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan)
+      "%s. Attacks from %s types in your team have a %s chance to inflict a random bad status condition",
+      TypeEHelpers.MakeBaseDescription("poison", "apricorn_purple"),
+      _DATA:GetElement("poison"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("poison"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_noxious", { "poison" }),
+  apply = TypeEHelpers.MakeApply("poison", "apricorn_purple"),
+})
+
+
+-- ROCK
+HeavyRock = EnchantmentRegistry:Register({
+  type = "rock",
+  apricorn = "apricorn_brown",
+  name = "Heavy Rock",
+  id = "HEAVY_ROCK",
+  percent = 50,
+  amount = 3,
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. Rock projectiles from %s-type members deal %s more. Gain %s at the start of each floor",
+      TypeEHelpers.MakeBaseDescription("rock", "apricorn_brown"),
+      _DATA:GetElement(self.type):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(self.amount, PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("rocck"),
+  set_active_effects = function (active_effect, zone_context)
+    -- active_effect.OnMapStarts:Add(2,
+    --   RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
+    --     Serpent.line({ StatusID = status_id, EnchantmentID = self.id, ApplyToAll = true })))
+    
+  end,
+  apply = TypeEHelpers.MakeApply("rock", "apricorn_brown"),
+})
+
+-- FIRE
+FiredUp = EnchantmentRegistry:Register({
+  name = "Fired Up!",
+  id = "FIRED_UP",
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    local fire = _DATA:GetElement("fire")
+    local icon = fire:GetIconName()
+    return string.format(
+      "%s. %s-type members' %s-type moves grow stronger with each %s-type attack (resets on new floor)",
+      TypeEHelpers.MakeBaseDescription("fire", "apricorn_red"), icon, icon, icon
     )
   end,
-  getProgressTexts = TypeEHelpers.MakeProgressTexts("poison"),
-  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_noxious", { "poison" }),
-  apply = TypeEHelpers.MakeApply("apricorn_purple", "poison"),
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("fire"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_fired_up", { "fire" }),
+  apply = TypeEHelpers.MakeApply("fire", "apricorn_red"),
+})
+
+-- WATER
+HealingWaters = EnchantmentRegistry:Register({
+  name = "Healing Waters",
+  id = "HEALING",
+  percent = 25,
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. %s-type members' water moves heal nearby allies for %s of damage dealt",
+      TypeEHelpers.MakeBaseDescription("water", "apricorn_blue"),
+      _DATA:GetElement("water"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
+  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
+})
+
+-- FLOWER OR CANDY
+-- FAIRY TALE
+-- SWEET TREATS
+SweetTreats = EnchantmentRegistry:Register({
+  name = "Sweat Treats",
+  id = "SWEET_TREATS",
+  percent = 25,
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. %s-type members' water moves heal nearby allies for %s of damage dealt",
+      TypeEHelpers.MakeBaseDescription("fairy", "apricorn_white"),
+      _DATA:GetElement("f"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
+  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
+})
+
+ComboChain = EnchantmentRegistry:Register({
+  name = "Combo Chain",
+  id = "COMBO_CHAIN",
+  percent = 25,
+  offer_time = "beginning",
+  turns = 3,
+  get_description = function(self)
+    return string.format(
+      "%s. %s-type members deal %s more damage per consecutive hit. Resets after %s turns without hitting",
+      TypeEHelpers.MakeBaseDescription("fighting", "apricorn_brown"),
+      _DATA:GetElement("fighting"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
+      M_HELPERS.MakeColoredText(self.turns, PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("fighting"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_combo_chain", { "fighting" }),
+  apply = TypeEHelpers.MakeApply("fighting", "apricorn_brown"),
+})
+
+-- ELECTRIC
+ShockValue = EnchantmentRegistry:Register({
+  name = "Shock Value",
+  id = "SHOCK_VALUE",
+  percent = 25,
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. Each %s-type members. Resets after 3 turns of not hitting a target ",
+      TypeEHelpers.MakeBaseDescription("water", "apricorn_blue"),
+      _DATA:GetElement("water"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
+  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
+})
+
+-- SpecificDamageEvent
+
+  --  [Serializable]
+  --   public abstract class FixedDamageEvent : CalculatedDamageEvent
+  --   {
+  --       public override int CalculateDamage(GameEventOwner owner, BattleContext context)
+  --       {
+  --           int damage = CalculateFixedDamage(owner, context);
+
+  --           int typeMatchup = PreTypeEvent.GetDualEffectiveness(context.User, context.Target, context.Data);
+  --           if (typeMatchup <= PreTypeEvent.N_E_2)
+  --           {
+  --               DungeonScene.Instance.LogMsg(Text.FormatGrammar(PreTypeEvent.EffectivenessToPhrase(typeMatchup), context.Target.GetDisplayName(false)));
+  --               damage = -1;
+  --           }
+
+  --           return damage;
+  --       }
+
+  --       protected abstract int CalculateFixedDamage(GameEventOwner owner, BattleContext context);
+  --   }
+
+
+    --   [Serializable]
+    -- public abstract class CalculatedDamageEvent : DirectDamageEvent
+    -- {
+    --     public override IEnumerator<YieldInstruction> Apply(GameEventOwner owner, Character ownerChar, BattleContext context)
+    --     {
+    --         int damage = CalculateDamage(owner, context);
+
+    --         int prevHP = context.Target.HP;
+    --         if (damage >= 0)
+    --             yield return CoroutineManager.Instance.StartCoroutine(InflictDamage(context, damage));
+
+    --         int hpLost = prevHP - context.Target.HP;
+    --         ReportDamage(context, Math.Max(0, damage), hpLost);
+    --     }
+
+    --     public abstract int CalculateDamage(GameEventOwner owner, BattleContext context);
+    -- }
+
+    --      protected void ReportDamage(BattleContext context, int dmg, int hpLost)
+    --     {
+    --         context.ContextStates.Set(new DamageDealt(dmg));
+    --         context.AddContextStateInt<TotalDamageDealt>(true, dmg);
+    --         context.ContextStates.Set(new HPLost(hpLost));
+    --         context.AddContextStateInt<TotalHPLost>(true, hpLost);
+    --     }
+
+Overdrive = EnchantmentRegistry:Register({
+  name = "Com",
+  id = "HEALING",
+  percent = 25,
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. Each %s-type members ",
+      TypeEHelpers.MakeBaseDescription("water", "apricorn_blue"),
+      _DATA:GetElement("water"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
+  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
+})
+
+-- FLOWER
+-- FAIRY
+Overdrive = EnchantmentRegistry:Register({
+  name = "Com",
+  id = "HEALING",
+  percent = 25,
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. Each %s-type members ",
+      TypeEHelpers.MakeBaseDescription("water", "apricorn_blue"),
+      _DATA:GetElement("water"):GetIconName(),
+      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
+  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
 })
 
 local function CreateTypeStatusEnchantment(config)
@@ -426,28 +621,20 @@ local function CreateTypeStatusEnchantment(config)
     name = config.name,
     id = config.id,
     chance = config.chance,
-    getDescription = function(self)
-      local element_type = _DATA:GetElement(config.element)
-      local apricorn = M_HELPERS.GetItemName(config.apricorn)
+    get_description = function(self)
+      local type_name = _DATA:GetElement(config.type):GetIconName()
+      local status = _DATA:GetStatus(config.status_id):GetColoredName()
       return string.format(
-        "Gain a %s. %s types in your team will have a %s chance to have their %s moves inflict the target with the %s status",
-        apricorn,
-        element_type:GetIconName(),
+        "%s. %s-type members' %s-type moves have a %s chance to inflict %s on the target",
+        TypeEHelpers.MakeBaseDescription(config.type, config.apricorn),
+        type_name,
+        type_name,
         M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
-        element_type:GetIconName(),
-        config.status_name
-      )
+        status)
     end,
     offer_time = "beginning",
     rarity = 1,
-    getProgressTexts = function(self)
-      local grass_type = _DATA:GetElement(config.element)
-      local icon = grass_type:GetIconName()
-
-      local count = #GetCharacterOfMatchingType(config.element, false)
-
-      return { "Total " .. icon .. " Members: " .. count }
-    end,
+    get_progress_texts = TypeEHelpers.MakeProgressTexts(config.type),
     set_active_effects = function(self, active_effect, zone_context)
       local chance = self.chance
       beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
@@ -464,7 +651,7 @@ local function CreateTypeStatusEnchantment(config)
             return
           end
 
-          if user.Element1 ~= config.element and user.Element2 ~= config.element then
+          if user.Element1 ~= config.type and user.Element2 ~= config.type then
             return
           end
 
@@ -483,7 +670,7 @@ local function CreateTypeStatusEnchantment(config)
         end)
       end)
     end,
-    apply = TypeEHelpers.MakeApply(config.apricorn, config.element)
+    apply = TypeEHelpers.MakeApply(config.apricorn, config.type)
   })
 end
 
@@ -495,9 +682,8 @@ SwatTeam = CreateTypeStatusEnchantment({
   name = "Swat Team",
   id = "SWAT_TEAM",
   chance = 30,
-  element = "bug",
+  type = "bug",
   apricorn = "apricorn_green",
-  status_name = "infestation",
   status_id = "infestation"
 })
 
@@ -506,10 +692,14 @@ Subzero = CreateTypeStatusEnchantment({
   name = "Subzero",
   id = "SUBZERO",
   chance = 25,
-  element = "ice",
+  type = "ice",
   apricorn = "apricorn_blue",
-  status_name = "Frostbite",
   status_id = "emberfrost_frostbite"
 })
+
+
+-- TODOs
+-- Pachiritsu shops is on discount
+-- Gain 18 shards right now enchants
 
 return TypeEHelpers
