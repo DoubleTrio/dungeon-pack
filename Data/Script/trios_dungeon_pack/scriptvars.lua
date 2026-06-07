@@ -98,7 +98,7 @@ SV.EmberFrost = {
   -- Formatted like { Item = string, Amount = int, Cost = int }
   Shopkeeper = {},
 
-  -- Shopkeeper dialogue progression (don't say anything if already more if it's completed)
+  -- Shopkeeper dialogue progression (don't say anything if the flag is already set)
   -- [1] = true
   -- [2] = true
   -- [3] = false

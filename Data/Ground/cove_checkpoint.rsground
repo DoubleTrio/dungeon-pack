@@ -4,7 +4,7 @@
 "$type": "RogueEssence.Ground.GroundMap, RogueEssence",
 "TexSize": 3,
 "Name": {
-"DefaultText": "Checkpoint 1",
+"DefaultText": "Rest Point 1",
 "LocalTexts": {}
 },
 "Released": false,

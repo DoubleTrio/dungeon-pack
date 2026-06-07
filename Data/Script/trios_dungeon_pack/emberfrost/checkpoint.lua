@@ -1,8 +1,9 @@
 
 require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
 
-require 'trios_dungeon_pack.emberfrost.enchantments'
-require 'trios_dungeon_pack.emberfrost.type_enchantments'
+require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
+require 'trios_dungeon_pack.emberfrost.enchantments.type_enchantments'
+require 'trios_dungeon_pack.emberfrost.enchantments.character_enchantments'
 
 require 'trios_dungeon_pack.beholder'
 
@@ -20,7 +21,6 @@ function PlayRandomBGM(tracks)
     "Ruins of Life.ogg"
   }
 
-  -- pick a random track with equal probability
   local music = tracks[math.random(#tracks)]
   SOUND:PlayBGM(music, true)
 end
@@ -90,15 +90,22 @@ end
 
 function checkpoint.ShowTitle(guest, player)
 
-  SV.EmberFrost.CheckpointProgression = SV.EmberFrost.CheckpointProgression or 1
+  local title = "Rest Point " .. SV.EmberFrost.CheckpointProgression
+  local is_first_checkpoint = SV.EmberFrost.CheckpointProgression == 0
 
-  local title = "Checkpoint " .. SV.EmberFrost.CheckpointProgression
-  if SV.EmberFrost.CheckpointProgression == 5 then
+  local is_final_checkpoint = SV.EmberFrost.CheckpointProgression == 5
+  if is_final_checkpoint then
     title = title .. " - Final Stretch"
   end
-  UI:WaitShowTitle(title, 20)
+
+  if not is_first_checkpoint then
+    UI:WaitShowTitle(title, 20)
+  end
+
   GAME:WaitFrames(60)
-  UI:WaitHideTitle(20)
+  if not is_first_checkpoint then
+    UI:WaitHideTitle(20)
+  end
 end
 
 function RespawnGuests()
@@ -184,8 +191,19 @@ function checkpoint.GenerateShop()
     i = i + 1
   end
 
+  -- 10 from the beginning
+  -- 
+
+  -- 1-5
+  -- +5 from exploring
+
+
+
+  -- 10 each floor
+  -- Gain +10 shards from the 
+
   addItem({ Item = "food_apple", Amount = 1, Price = 2 })
-  addItem({ Item = "seed_reviver", Amount = 1, Price = 4 })
+  addItem({ Item = "berry_oran", Amount = 1, Price = 2 })
   addItem({ Item = "berry_oran", Amount = 1, Price = 2 })
   addItem({ Item = "orb_cleanse", Amount = 1, Price = 3 })
   addItem({ Item = "ammo_cacnea_spike", Amount = 9, Price = 3 })
@@ -241,7 +259,8 @@ end
 
 function checkpoint.ProceedToNextSection(segment, floor_num)
   segment = segment or 0
-  floor_num = floor_num or (SV.EmberFrost.CheckpointProgression * 5)
+  local progression = SV.EmberFrost.CheckpointProgression
+  floor_num = floor_num or (progression * 5)
   UI:ResetSpeaker(false)
   UI:SetCenter(true)
   local player = CH('PLAYER')
@@ -251,7 +270,8 @@ function checkpoint.ProceedToNextSection(segment, floor_num)
     GAME:FadeOut(false, 60)
     GROUND:CharEndAnim(player)
     checkpoint.OnCheckpointExit()
-    GAME:ContinueDungeon('emberfrost_depths', 0, floor_num, 0, RogueEssence.Data.GameProgress.DungeonStakes.Risk, true, true)
+    GAME:ContinueDungeon('emberfrost_depths', 1, floor_num, 0, RogueEssence.Data.GameProgress.DungeonStakes.Risk, true,
+    true)
   end
 
   local checkpoint = SV.EmberFrost.CheckpointProgression
@@ -348,7 +368,10 @@ function checkpoint.ChestInteraction(obj, activator)
 
   enchantments[1][1] = EnchantmentRegistry._registry[FiredUp.id]
   enchantments[1][2] = EnchantmentRegistry._registry[HealingWaters.id]
-  enchantments[1][3] = EnchantmentRegistry._registry[HeavyRock.id]
+  enchantments[1][3] = EnchantmentRegistry._registry[ShockValue.id]
+  -- enchantments[1][2] = EnchantmentRegistry._registry[DoubleUp.id]
+  -- enchantments[1][3] = EnchantmentRegistry._registry[ComboChain.id]
+  -- enchantments[2][1] = EnchantmentRegistry._registry[CriticalSuccess.id]
   -- enchantments[1][2] = EnchantmentRegistry._registry[StackOfPlates.id]
   local ret = nil
   local choose = function(enchantment)

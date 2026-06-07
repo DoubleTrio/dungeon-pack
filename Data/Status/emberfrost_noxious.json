@@ -19,7 +19,11 @@
 "FreeEmote": "",
 "DrawEffect": -1,
 "Targeted": false,
-"StatusStates": [],
+"StatusStates": [
+{
+"$type": "PMDC.Dungeon.TransferStatusState, PMDC"
+}
+],
 "OnSkillChanges": [],
 "TargetPassive": {
 "OnEquips": [],

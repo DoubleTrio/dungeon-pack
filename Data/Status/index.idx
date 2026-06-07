@@ -303,6 +303,69 @@
 },
 "emberfrost_fired_up": {
 "Name": {
+"DefaultText": "Fired Up",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_heavy_rock": {
+"Name": {
+"DefaultText": "Heavy Rock",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_combo_chain": {
+"Name": {
+"DefaultText": "Combo Chain",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_combo_chain1": {
+"Name": {
+"DefaultText": "Combo Chain - 1",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_combo_chain2": {
+"Name": {
+"DefaultText": "Combo 2!",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_combo_chain3": {
+"Name": {
+"DefaultText": "Combo 3!",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_double_up": {
+"Name": {
+"DefaultText": "Wizard",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_critical_success": {
+"Name": {
 "DefaultText": "",
 "LocalTexts": {}
 },
@@ -310,7 +373,25 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_heavy_rock": {
+"emberfrost_healing_waters": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_shock_value": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_vampiric": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}

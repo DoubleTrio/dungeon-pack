@@ -1,4 +1,5 @@
 require 'trios_dungeon_pack.helpers'
+require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
 
 StackType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
@@ -19,7 +20,6 @@ beholder = require 'trios_dungeon_pack.beholder'
 -- B19F Staryu: [emote=happy]Like a star.[pause=10].[pause=10].[pause=10]  Until the end.[pause=10].[pause=10].[pause=10]
 -- B19F Staryu: {0} more.[pause=10] Like a star.
 -- One last wish for Wishmaker powered by how many Wish Gems you have. Jirachi for 5. 0 use the original Wish Gem
-
 
 local function CountInvItemID(item_id)
   local bag_count = GAME:GetPlayerBagCount()
@@ -282,6 +282,7 @@ function BATTLE_SCRIPT.CountdownEvent(owner, ownerChar, context, args)
     -- if s.Counter <= 0 then
     --   TASK:WaitTask(context.Target:RemoveStatusEffect(status, true))
     -- end
+    print(tostring(s.Counter))
   end
 end
 
@@ -397,6 +398,65 @@ function BATTLE_SCRIPT.MonoMoves(owner, ownerChar, context, args)
 
 end
 
+
+
+
+-- function BATTLE_SCRIPT.TargetStatusRequired(owner, ownerChar, context, args)
+--   local status = args.StatusID
+--   local target = context.Target
+--   local message_key = args.MessageKey
+--   local stack = target:GetStatusEffect(status)
+--   if stack == nil then
+--     if message_key ~= nil then
+--       _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(RogueEssence.StringKey(message_key):ToLocal(),
+--         context.Target:GetDisplayName(false)))
+--     end
+
+--     context.CancelState.Cancel = true
+--   end
+-- end
+
+
+function BATTLE_SCRIPT.HeavyRock(owner, ownerChar, context, args)
+
+  if context.ActionType ~= RogueEssence.Dungeon.BattleActionType.Throw then
+    return
+  end
+
+
+  local chara = context.User
+
+  local item = GetItemFromContext(context)
+
+  if item == nil then
+    return
+  end
+
+  local rock_items = M_HELPERS.map(HEAVY_ROCK_TABLE, function (entry) return entry.Item
+    
+  end)
+
+  if not Contains(rock_items, item) then
+    return
+  end
+
+  local anim_data = RogueEssence.Content.AnimData("Rock_Climb_Back", 2, -1, -1, 255, Dir8.Up)
+
+  local emitter = RogueEssence.Content.SingleEmitter(anim_data)
+
+
+
+  GAME:WaitFrames(10)
+
+  DUNGEON:PlayVFX(emitter, chara.MapLoc.X, chara.MapLoc.Y)
+
+
+
+  local attack_boost = PMDC.Dungeon.MultiplyDamageEvent(150, 100)
+  TASK:WaitTask(attack_boost:Apply(owner, ownerChar, context))
+
+
+  end
 
 
 function BATTLE_SCRIPT.Ravenous(owner, ownerChar, context, args)
@@ -569,17 +629,14 @@ function BATTLE_SCRIPT.RavenousAfterHit(owner, ownerChar, context, args)
   end
 end
 
-require 'trios_dungeon_pack.emberfrost.enchantments'
-
-
 function BATTLE_SCRIPT.StoreItemInEnchant(owner, ownerChar, context, args)
   if context.ActionType ~= RogueEssence.Dungeon.BattleActionType.Item then
     return
   end
 
-  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
-  --   return
-  -- end
+  if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+    return
+  end
 
   local enchant_id = args.EnchantmentID
 
@@ -598,9 +655,9 @@ function BATTLE_SCRIPT.BerryNutritiousAfterActions(owner, ownerChar, context, ar
     return
   end
 
-  if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
-    return
-  end
+  -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+  --   return
+  -- end
 
 
   local enchant_id = args.EnchantmentID
@@ -937,6 +994,7 @@ function BATTLE_SCRIPT.Protagonist(owner, ownerChar, context, args)
     TASK:WaitTask(multiply_element:Apply(owner, ownerChar, context))
   end
 end
+
 function BATTLE_SCRIPT.MoralSupport(owner, ownerChar, context, args)
 
   local enchant_id = args.EnchantmentID
@@ -970,9 +1028,7 @@ function BATTLE_SCRIPT.PuppetInteract(owner, ownerChar, context, args)
 
     local tbl = LTBL(target)
 
-    print("PuppetInteract species: " .. tostring(tbl["species"]) .. " vs " .. tostring(chara.BaseForm.Species))
-
-    local same_species = tbl["species"] == chara.BaseForm.Species 
+    local same_species = tbl["species"] == chara.BaseForm.Species
     if same_species then
       UI:SetSpeakerEmotion("Joyous")
       quote = "...I'm you!"
@@ -1020,276 +1076,6 @@ function BATTLE_SCRIPT.PuppetInteract(owner, ownerChar, context, args)
 
 end
 
--- function COMMON.EndDayCycle()
---   --reshuffle items
-
---   SV.adventure.Thief = false
---   SV.adventure.Tutors = {}
---   SV.base_shop = {}
-
---   math.randomseed(GAME:GetDailySeed())
---   --roll a random index from 1 to length of category
---   --add the item in that index category to the shop
---   --2 essentials, always
---   local type_count = 2
---   for ii = 1, type_count, 1 do
---     local base_data = COMMON.ESSENTIALS[math.random(1, #COMMON.ESSENTIALS)]
---     table.insert(SV.base_shop, base_data)
---   end
-
---   --1-2 ammo, always
---   type_count = math.random(1, 2)
---   for ii = 1, type_count, 1 do
---     local base_data = COMMON.AMMO[math.random(1, #COMMON.AMMO)]
---     table.insert(SV.base_shop, base_data)
---   end
-
---   --2-3 utilities, always
---   type_count = math.random(3, 4)
---   for ii = 1, type_count, 1 do
---     local base_data = COMMON.UTILITIES[math.random(1, #COMMON.UTILITIES)]
---     table.insert(SV.base_shop, base_data)
---   end
-
---   --1-2 orbs, always
---   type_count = math.random(1, 2)
---   for ii = 1, type_count, 1 do
---     local base_data = COMMON.ORBS[math.random(1, #COMMON.ORBS)]
---     table.insert(SV.base_shop, base_data)
---   end
-
---   --1-2 special item, always
---   type_count = math.random(1, 2)
---   for ii = 1, type_count, 1 do
---     local base_data = COMMON.SPECIAL[math.random(1, #COMMON.SPECIAL)]
---     table.insert(SV.base_shop, base_data)
---   end
-
-
---   local catalog = {}
-
---   for ii = 1, #COMMON_GEN.TRADES_RANDOM, 1 do
---     local base_data = { Item = COMMON_GEN.TRADES_RANDOM[ii].Item, ReqItem = COMMON_GEN.TRADES_RANDOM[ii].ReqItem }
-
---     -- check if the item has been acquired before, or if it's a 1* item and dex has been seen
---     if SV.unlocked_trades[COMMON_GEN.TRADES_RANDOM[ii].Item] ~= nil then
---       table.insert(catalog, base_data)
---     elseif #COMMON_GEN.TRADES_RANDOM[ii].ReqItem == 2 then
---       if _DATA.Save:GetMonsterUnlock(COMMON_GEN.TRADES_RANDOM[ii].Dex) == RogueEssence.Data.GameProgress.UnlockState.Discovered then
---         table.insert(catalog, base_data)
---       end
---     end
---   end
-
---   SV.base_trades = {}
---   if #catalog < 25 then
---     type_count = 0
---   elseif #catalog < 50 then
---     type_count = 1
---   elseif #catalog < 75 then
---     type_count = 2
---   elseif #catalog < 100 then
---     type_count = 3
---   elseif #catalog < 150 then
---     type_count = 4
---   elseif #catalog < 250 then
---     type_count = 5
---   elseif #catalog < 350 then
---     type_count = 6
---   else
---     type_count = 7
---   end
-
---   for ii = 1, type_count, 1 do
---     local idx = math.random(1, #catalog)
---     local base_data = catalog[idx]
---     table.insert(SV.base_trades, base_data)
---     table.remove(catalog, idx)
---   end
-
---   COMMON.UpdateDayEndVars()
--- end
-
--- function base_camp_2.Shop_Action(obj, activator)
---   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
-
---   local state = 0
---   local repeated = false
---   local cart = {}
---   local catalog = {}
---   for ii = 1, #SV.base_shop, 1 do
---     local base_data = SV.base_shop[ii]
---     local item_data = { Item = RogueEssence.Dungeon.InvItem(base_data.Index, false, base_data.Amount), Price = base_data
---     .Price }
---     table.insert(catalog, item_data)
---   end
-
-
---   local chara = CH('Shop_Owner')
---   UI:SetSpeaker(chara)
-
---   while state > -1 do
---     if state == 0 then
---       local msg = STRINGS:Format(STRINGS.MapStrings['Shop_Intro'])
---       if repeated == true then
---         msg = STRINGS:Format(STRINGS.MapStrings['Shop_Intro_Return'])
---       end
---       local shop_choices = { STRINGS:Format(STRINGS.MapStrings['Shop_Option_Buy']), STRINGS:Format(STRINGS.MapStrings
---       ['Shop_Option_Sell']),
---         STRINGS:FormatKey("MENU_INFO"),
---         STRINGS:FormatKey("MENU_EXIT") }
---       UI:BeginChoiceMenu(msg, shop_choices, 1, 4)
---       UI:WaitForChoice()
---       local result = UI:ChoiceResult()
---       repeated = true
---       if result == 1 then
---         if #catalog > 0 then
---           --TODO: use the enum instead of a hardcoded number
---           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy'], STRINGS:LocalKeyString(26)))
---           state = 1
---         else
---           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy_Empty']))
---         end
---       elseif result == 2 then
---         local bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
---         if bag_count > 0 then
---           --TODO: use the enum instead of a hardcoded number
---           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Sell'], STRINGS:LocalKeyString(26)))
---           state = 3
---         else
---           UI:SetSpeakerEmotion("Angry")
---           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Bag_Empty']))
---           UI:SetSpeakerEmotion("Normal")
---         end
---       elseif result == 3 then
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_001']))
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_002']))
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_003']))
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_004']))
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Info_005']))
---       else
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Goodbye']))
---         state = -1
---       end
---     elseif state == 1 then
---       UI:ShopMenu(catalog)
---       UI:WaitForChoice()
---       local result = UI:ChoiceResult()
---       if #result > 0 then
---         local bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
---         local bag_cap = GAME:GetPlayerBagLimit()
---         if bag_count == bag_cap then
---           UI:SetSpeakerEmotion("Angry")
---           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Bag_Full']))
---           UI:SetSpeakerEmotion("Normal")
---         else
---           cart = result
---           state = 2
---         end
---       else
---         state = 0
---       end
---     elseif state == 2 then
---       local total = 0
---       for ii = 1, #cart, 1 do
---         total = total + catalog[cart[ii]].Price
---       end
---       local msg
---       if total > GAME:GetPlayerMoney() then
---         UI:SetSpeakerEmotion("Angry")
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy_No_Money']))
---         UI:SetSpeakerEmotion("Normal")
---         state = 1
---       else
---         if #cart == 1 then
---           local name = catalog[cart[1]].Item:GetDisplayName()
---           msg = STRINGS:Format(STRINGS.MapStrings['Shop_Buy_One'], STRINGS:FormatKey("MONEY_AMOUNT", total), name)
---         else
---           msg = STRINGS:Format(STRINGS.MapStrings['Shop_Buy_Multi'], STRINGS:FormatKey("MONEY_AMOUNT", total))
---         end
---         UI:ChoiceMenuYesNo(msg, false)
---         UI:WaitForChoice()
---         result = UI:ChoiceResult()
-
---         if result then
---           GAME:RemoveFromPlayerMoney(total)
---           for ii = 1, #cart, 1 do
---             local item = catalog[cart[ii]].Item
---             GAME:GivePlayerItem(item.ID, item.Amount, false)
---           end
---           for ii = #cart, 1, -1 do
---             table.remove(catalog, cart[ii])
---             table.remove(SV.base_shop, cart[ii])
---           end
-
---           cart = {}
---           SOUND:PlayBattleSE("DUN_Money")
---           UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Buy_Complete']))
---           state = 0
---         else
---           state = 1
---         end
---       end
---     elseif state == 3 then
---       UI:SellMenu()
---       UI:WaitForChoice()
---       local result = UI:ChoiceResult()
-
---       if #result > 0 then
---         cart = result
---         state = 4
---       else
---         state = 0
---       end
---     elseif state == 4 then
---       local total = 0
---       for ii = 1, #cart, 1 do
---         local item
---         if cart[ii].IsEquipped then
---           item = GAME:GetPlayerEquippedItem(cart[ii].Slot)
---         else
---           item = GAME:GetPlayerBagItem(cart[ii].Slot)
---         end
---         total = total + item:GetSellValue()
---       end
---       local msg
---       if #cart == 1 then
---         local item
---         if cart[1].IsEquipped then
---           item = GAME:GetPlayerEquippedItem(cart[1].Slot)
---         else
---           item = GAME:GetPlayerBagItem(cart[1].Slot)
---         end
---         msg = STRINGS:Format(STRINGS.MapStrings['Shop_Sell_One'], STRINGS:FormatKey("MONEY_AMOUNT", total),
---           item:GetDisplayName())
---       else
---         msg = STRINGS:Format(STRINGS.MapStrings['Shop_Sell_Multi'], STRINGS:FormatKey("MONEY_AMOUNT", total))
---       end
---       UI:ChoiceMenuYesNo(msg, false)
---       UI:WaitForChoice()
---       result = UI:ChoiceResult()
-
---       if result then
---         for ii = #cart, 1, -1 do
---           if cart[ii].IsEquipped then
---             GAME:TakePlayerEquippedItem(cart[ii].Slot, true)
---           else
---             GAME:TakePlayerBagItem(cart[ii].Slot, true)
---           end
---         end
---         SOUND:PlayBattleSE("DUN_Money")
---         GAME:AddToPlayerMoney(total)
---         cart = {}
---         UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Shop_Sell_Complete']))
---         state = 0
---       else
---         state = 3
---       end
---     end
---   end
--- end
-
-
 local function RunShop(item_list)
     local state = 0
     
@@ -1336,24 +1122,21 @@ local function RunShop(item_list)
                     local confirm = UI:ChoiceResult()
                     
                     if confirm then
-                        _DATA:LogUIPlay(item_result + 1) -- Log 2 for item #1, 3 for item #2, etc.
-                        SOUND:PlayBattleSE("DUN_Monwey")
+                        _DATA:LogUIPlay(item_result + 1)
+                        SOUND:PlayBattleSE("DUN_Money")
                         UI:WaitShowDialogue("Pleasure doing business with you!")
                         UI:ResetSpeaker()
-                        return item_result + 1 -- Return item_result + 1 (2 for item #1, 3 for item #2, etc.)
+                        return item_result + 1
                     else
                         _DATA:LogUIPlay(-1)
-                        -- Continue shopping (don't exit)
                     end
                 else
-                    -- Cancel
                     _DATA:LogUIPlay(-1)
-                    buy_state = 1 -- Exit buy menu
+                    buy_state = 1
                 end
             end
             
         elseif result == 2 then
-            -- Sell all items
             local inv_cost = GetInventoryCost()
             UI:ChoiceMenuYesNo(string.format("I shall give you %s for all your items. How does that sound?", M_HELPERS.FormatMoney(inv_cost)))
             UI:WaitForChoice()
@@ -1362,25 +1145,21 @@ local function RunShop(item_list)
             if sell_inv then
                 SOUND:PlayBattleSE("DUN_Money")
                 _DATA:LogUIPlay(1)
-                -- Sell inventory
-                -- M_HELPERS.RemoveAllInventory()
                 UI:WaitShowDialogue("Thank you for your business!")
                 UI:ResetSpeaker()
-                return 1 -- Return 1 for successful sell
+
             else
                 _DATA:LogUIPlay(-1)
-                -- Continue in shop (don't exit)
             end
             
         else
-            -- Cancel main menu
             _DATA:LogUIPlay(-1)
-            state = 1 -- Exit shop
+            state = 1
         end
     end
     
     UI:ResetSpeaker()
-    return -1 -- Return -1 only if exiting without any action
+    return -1
 end
 
 function BATTLE_SCRIPT.TravelingMerchantInteract(owner, ownerChar, context, args)
@@ -1479,34 +1258,221 @@ function BATTLE_SCRIPT.MelodyBoxBattleEvent(owner, ownerChar, context, args)
   SOUND:PlayBGM(result, true)
 end
 
-function BATTLE_SCRIPT.NoxiousAfterHittings(owner, ownerChar, context, args)
-  local random_statuses = { "confuse", "sleep", "burn", "flinch", "paralyze", "freeze", "taunted", "torment",
-    "poison", "poison_toxic" }
-  if
-      context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill and
-      context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT and
-      (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical)
-  then
-    local roll = _DATA.Save.Rand:Next(100)
+function BATTLE_SCRIPT.NoxiousAfterHittings(owner, owner_char, context, args)
+  local random_statuses = {
+    "confuse", "sleep", "burn", "flinch", "paralyze", "freeze",
+    "taunted", "torment", "poison", "poison_toxic"
+  }
 
-    if roll < 25 and not context.Target.Dead then
-      local anim_data = RogueEssence.Content.AnimData("Cross_Poison_Bubbles", 5, -1, -1, 255, Dir8.Up)
-      local particle_anim = RogueEssence.Content.ParticleAnim(anim_data, 1, 0)
-      local emitter = RogueEssence.Content.SqueezedAreaEmitter(particle_anim)
-      emitter.Bursts = 1
-      emitter.ParticlesPerBurst = 1
-      emitter.BurstTime = 6
-      emitter.HeightSpeed = 16
-      emitter.Range = 4
-      local sound = "DUN_Cross_Poison"
-      SOUND:PlayBattleSE(sound)
-      GAME:WaitFrames(10)
-      DUNGEON:PlayVFX(emitter, context.Target.MapLoc.X, context.Target.MapLoc.Y)
+  local is_skill_action = context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill
+  local is_non_default = context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+  local category = context.Data.Category
+  local is_offensive = category == RogueEssence.Data.BattleData.SkillCategory.Physical
+      or category == RogueEssence.Data.BattleData.SkillCategory.Magical
 
-      local rand_status = random_statuses[_DATA.Save.Rand:Next(#random_statuses) + 1] -- fix: pick a random status
-      local status = RogueEssence.Dungeon.StatusEffect(rand_status)
-      status:LoadFromData()
-      TASK:WaitTask(context.Target:AddStatusEffect(nil, status, true))
-    end
+  if not (is_skill_action and is_non_default and is_offensive) then return end
+
+  local roll = _DATA.Save.Rand:Next(100)
+  if roll >= 25 or context.Target.Dead then return end
+
+  local anim_data = RogueEssence.Content.AnimData("Cross_Poison_Bubbles", 5, -1, -1, 255, Dir8.Up)
+  local particle_anim = RogueEssence.Content.ParticleAnim(anim_data, 1, 0)
+  local emitter = RogueEssence.Content.SqueezedAreaEmitter(particle_anim)
+  emitter.Bursts = 1
+  emitter.ParticlesPerBurst = 1
+  emitter.BurstTime = 6
+  emitter.HeightSpeed = 16
+  emitter.Range = 4
+
+  SOUND:PlayBattleSE("DUN_Cross_Poison")
+  GAME:WaitFrames(10)
+  DUNGEON:PlayVFX(emitter, context.Target.MapLoc.X, context.Target.MapLoc.Y)
+
+  local rand_status = random_statuses[_DATA.Save.Rand:Next(#random_statuses) + 1]
+  local status = RogueEssence.Dungeon.StatusEffect(rand_status)
+  status:LoadFromData()
+  TASK:WaitTask(context.Target:AddStatusEffect(nil, status, true))
+end
+
+
+function BATTLE_SCRIPT.TypeAttackStackBoost(owner, owner_char, context, args)
+  local denom = args.Denom or 100
+  local boost = args.Boost or 1
+  local boost_type = args.Type
+
+  local stack_effect = context.User:GetStatusEffect(owner.ID)
+  if stack_effect == nil then return end
+
+  local stack_state = stack_effect.StatusStates:Get(luanet.ctype(StackStateType))
+  if stack_state == nil then return end
+
+  local is_skill_action = context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill
+  local is_non_default = context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+  local category = context.Data.Category
+  local is_offensive = category == RogueEssence.Data.BattleData.SkillCategory.Physical
+      or category == RogueEssence.Data.BattleData.SkillCategory.Magical
+
+  if not (is_skill_action and is_non_default and is_offensive) then return end
+
+  local skill_data = _DATA:GetSkill(GetSkillFromContext(context))
+
+  print(tostring(boost_type))
+  print(tostring(skill_data.Data.Element))
+  if skill_data.Data.Element ~= boost_type then return end
+
+  local multiplier = denom + (stack_state.Stack * boost)
+  print(tostring(multiplier))
+  -- local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(owner.ID, false, false, stack_state.Stack + 1)
+  -- TASK:WaitTask(status_stack_event:Apply(owner, owner_char, context))
+  -- print(tostring(stack_state.Stack))
+
+  local multiply_event = PMDC.Dungeon.MultiplyDamageEvent(multiplier, denom)
+  TASK:WaitTask(multiply_event:Apply(owner, owner_char, context))
+end
+
+
+function BATTLE_SCRIPT.TypeAttackStackBoostAfterActions(owner, ownerChar, context, args)
+  local boost_type = args.Type
+  local anim = args.Anim
+  local chara = context.User
+  local frame_time = args.FrameTime
+  local is_skill_action = context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill
+  local is_non_default = context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+  local category = context.Data.Category
+  local is_offensive = category == RogueEssence.Data.BattleData.SkillCategory.Physical
+      or category == RogueEssence.Data.BattleData.SkillCategory.Magical
+  if not (is_skill_action and is_non_default and is_offensive) then return end
+
+  local skill_data = _DATA:GetSkill(GetSkillFromContext(context))
+  if skill_data.Data.Element ~= boost_type then return end
+
+  local dmg = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
+  if dmg <= 0 then return end
+
+  local stack_effect = chara:GetStatusEffect(owner.ID)
+  if stack_effect == nil then return end
+
+  local stack_state = stack_effect.StatusStates:Get(luanet.ctype(StackStateType))
+  if stack_state == nil then return end
+
+  local anim_data = RogueEssence.Content.AnimData(anim, frame_time, -1, -1, 255, Dir8.Up)
+
+  local emitter = RogueEssence.Content.SingleEmitter(anim_data)
+
+
+
+  GAME:WaitFrames(10)
+
+  DUNGEON:PlayVFX(emitter, chara.MapLoc.X, chara.MapLoc.Y - 40)
+
+  local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(owner.ID, false, false, stack_state.Stack + 1)
+  TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, context))
+end
+
+
+function BATTLE_SCRIPT.OnDamageAddStatusIfNotContainStatuses(owner, ownerChar, context, args)
+  local status_to_add = args.Status
+  local status_list_check = args.StatusList
+  local is_non_default = context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+  local dmg = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
+  if dmg <= 0 then return end
+
+  if not (is_non_default) then return end
+
+  for _, status_to_check in ipairs(status_list_check) do
+    local has_status = context.User:GetStatusEffect(status_to_check) ~= nil
+    if has_status then return end
+  end
+
+  local loaded_status = RogueEssence.Dungeon.StatusEffect(status_to_add)
+  loaded_status:LoadFromData()
+
+  TASK:WaitTask(context.User:AddStatusEffect(nil, loaded_status, true))
+end
+
+function BATTLE_SCRIPT.OnDamageRestartStatusCounter(owner, ownerChar, context, args)
+  local current_status = owner.ID
+  local counter = args.Counter
+
+  local is_non_default = context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+  local dmg = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
+
+  if dmg <= 0 then return end
+
+  
+  if not (is_non_default) then return end
+
+  local status_effect = context.User:GetStatusEffect(current_status)
+  if status_effect ~= nil then
+    local s = status_effect.StatusStates:Get(luanet.ctype(CountDownStateType))
+    s.Counter = counter
   end
 end
+
+-- function SINGLE_CHAR_SCRIPT.RestartCounterEvent(owner, ownerChar, context, args)
+--   local status = owner.ID
+--   local stack = context.User:GetStatusEffect(status)
+--   local counter = args.Counter or 10
+--   if stack ~= nil then
+--     local s = stack.StatusStates:Get(luanet.ctype(CountDownStateType))
+--     s.Counter = counter
+--   end
+-- end
+
+function BATTLE_SCRIPT.OnDamageAddAndRemoveStatus(owner, ownerChar, context, args)
+  local current_status = owner.ID
+  local status_to_add = args.Status
+  local is_non_default = context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+  local dmg = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
+
+  if dmg <= 0 then return end
+  if not (is_non_default) then return end
+
+  TASK:WaitTask(context.User:RemoveStatusEffect(current_status, true))
+  local loaded_status = RogueEssence.Dungeon.StatusEffect(status_to_add)
+  loaded_status:LoadFromData()
+  TASK:WaitTask(context.User:AddStatusEffect(nil, loaded_status, true))
+end
+
+function BATTLE_SCRIPT.DoubleUp(owner, ownerChar, context, args)
+  local is_non_default = context.UsageSlot ~= RogueEssence.Dungeon.BattleContext.DEFAULT_ATTACK_SLOT
+
+  local is_skill_action = context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill
+
+  if not (is_skill_action and is_non_default) then return end
+
+  if not (is_non_default) then return end
+
+  if context.StrikesMade == 0 then
+    context.Strikes = context.Strikes * 2
+  end
+end
+
+-- function BATTLE_SCRIPT.OnDamageRestartStatusCounter(owner, ownerChar, context, args)
+--   local 
+-- end
+
+
+-- function SINGLE_CHAR_SCRIPT.CrystalStatusCheck(owner, ownerChar, context, args)
+--   local status = args.Status
+--   local max_stack = args.MaxStack
+--   -- print(tostringmax_stack)
+--   local string_key = args.StringKey
+--   local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(status, false, false, 1)
+--   local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
+--   mock_context.User = context.User
+--   local stack = context.User:GetStatusEffect(status)
+--   if stack ~= nil then
+--     local s = stack.StatusStates:Get(luanet.ctype(StackStateType))
+--     if s.Stack < max_stack then
+--       ResetEffectTile(owner)
+--       TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, mock_context))
+--     else
+--       local msg = RogueEssence.StringKey(string_key):ToLocal()
+--       _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg, context.User:GetDisplayName(true)))
+--     end
+--   else
+--     ResetEffectTile(owner)
+--     TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, mock_context))
+--   end
+-- end

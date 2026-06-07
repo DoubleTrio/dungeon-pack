@@ -7,7 +7,7 @@
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "A yellow shard that seems important to a Pokémon out there.",
+"DefaultText": "A yellow shard that seems valuable to a Pokémon in the Terrasphere",
 "LocalTexts": {}
 },
 "Released": true,
@@ -15,9 +15,9 @@
 "Sprite": "Shard_Yellow",
 "Icon": -1,
 "SortCategory": 15,
-"Price": 200,
+"Price": 100,
 "Rarity": 0,
-"MaxStack": 9,
+"MaxStack": 10,
 "CannotDrop": false,
 "BagEffect": false,
 "ItemStates": [],

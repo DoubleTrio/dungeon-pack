@@ -55,6 +55,7 @@ function base_camp.Oshawott_Action(chara, activator)
   local oshawott = CH('Oshawott')
 
   local dungeon_entrances = { 'emberfrost_depths' }
+  -- local ground_entrances = {}
   local ground_entrances = {}
 
   if not SV.EmberFrost.OshawottIntroduction then
@@ -77,7 +78,6 @@ function base_camp.Oshawott_Action(chara, activator)
   UI:SetSpeakerEmotion("Normal")
 
   local function confirm_callback(dest)
-    print(tostring(dest))
     UI:SetSpeaker(chara)
     UI:SetSpeakerEmotion("Happy")
     UI:WaitShowDialogue("You might wanna close your eyes!")

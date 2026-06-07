@@ -13498,7 +13498,18 @@
 "BestStat": -1,
 "WorstStat": -1
 }
+},
+"aaaaa": {
+"0": {
+"Family": "eevee2",
+"Stage": 2,
+"Element1": "normal",
+"Element2": "none",
+"BestStat": -1,
+"WorstStat": -1
 }
+},
+"zzzz": {}
 }
 }
 }

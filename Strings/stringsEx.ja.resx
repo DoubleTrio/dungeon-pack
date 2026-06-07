@@ -1,0 +1,3677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.NetStandard.ResXResourceReader, System.Resources.NetStandard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.NetStandard.ResXResourceWriter, System.Resources.NetStandard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </resheader>
+  <data name="DLG_ASK_FREE_REVIVE" xml:space="preserve">
+    <value>｛0｝をふっかつさせますか？</value>
+  </data>
+  <data name="DLG_ASK_REVIVE" xml:space="preserve">
+    <value>ふっかつアイテムをつかいますか？</value>
+    <comment>Keep in mind there is an option to cancel and not revive.</comment>
+  </data>
+  <data name="DLG_ASK_STORAGE" xml:space="preserve">
+    <value>なにをひきだしますか？</value>
+  </data>
+  <data name="DLG_BAG_SIZE" xml:space="preserve">
+    <value>トレジャーバックには｛0｝こまではいります！</value>
+  </data>
+  <data name="MSG_SKILL_USE" xml:space="preserve">
+    <value>{0}は {1}をくりだした!</value>
+  </data>
+  <data name="TALK_00_FULL_000" xml:space="preserve">
+    <value>いっしょに がんばろうね！</value>
+  </data>
+  <data name="TALK_00_FULL_001" xml:space="preserve">
+    <value>たすけあいながら いこうね！</value>
+  </data>
+  <data name="TALK_00_FULL_002" xml:space="preserve">
+    <value>しんちょうに いこう！</value>
+  </data>
+  <data name="TALK_00_FULL_003" xml:space="preserve">
+    <value>[item] おちてないかなー。</value>
+  </data>
+  <data name="TALK_00_FULL_004" xml:space="preserve">
+    <value>[kind]には きをつけようね！</value>
+  </data>
+  <data name="TALK_00_FULL_005" xml:space="preserve">
+    <value>[player]のうしろは まかせてね！</value>
+  </data>
+  <data name="TALK_00_FULL_006" xml:space="preserve">
+    <value>[move]で [player]を えんごするよ！</value>
+  </data>
+  <data name="TALK_00_FULL_007" xml:space="preserve">
+    <value>[player]に ついていくよ！</value>
+  </data>
+  <data name="TALK_00_FULL_008" xml:space="preserve">
+    <value>おたから たくさん みつけようね！</value>
+  </data>
+  <data name="TALK_00_FULL_009" xml:space="preserve">
+    <value>このさきには なにがあるのかな？</value>
+  </data>
+  <data name="TALK_00_FULL_010" xml:space="preserve">
+    <value>たんけんって たのしいね！</value>
+  </data>
+  <data name="TALK_00_FULL_011" xml:space="preserve">
+    <value>なんだか おたからが みつかる よかんがするよー♪</value>
+  </data>
+  <data name="TALK_00_HALF_000" xml:space="preserve">
+    <value>ちょっと つらくなってきたかな…。</value>
+  </data>
+  <data name="TALK_00_HALF_001" xml:space="preserve">
+    <value>ちょっと つらいけど… まだ だいじょうぶ！</value>
+  </data>
+  <data name="TALK_00_HALF_002" xml:space="preserve">
+    <value>しんぱいしてくれて ありがとう。 [player]って やさしいね。</value>
+  </data>
+  <data name="TALK_00_PINCH_000" xml:space="preserve">
+    <value>うう… もう だめかも…。</value>
+  </data>
+  <data name="TALK_00_PINCH_001" xml:space="preserve">
+    <value>たすけて [player]… たおれそうだよ…。</value>
+  </data>
+  <data name="TALK_00_PINCH_002" xml:space="preserve">
+    <value>うう… こんなところで たおれたくないよ…。</value>
+  </data>
+  <data name="TALK_00_WAIT_000" xml:space="preserve">
+    <value>こんどは どこへ いくの？ たんけん たんけん ワクワクするね！</value>
+  </data>
+  <data name="TALK_00_WAIT_001" xml:space="preserve">
+    <value>はやく たんけん いこーよー。</value>
+  </data>
+  <data name="TALK_00_WAIT_002" xml:space="preserve">
+    <value>よーし！ おたから たくさん みつけるぞー！</value>
+  </data>
+  <data name="TALK_00_WAIT_003" xml:space="preserve">
+    <value>こんどは どんな はっけんが あるのかな？</value>
+  </data>
+  <data name="TALK_01_FULL_000" xml:space="preserve">
+    <value>[player]さんと いっしょに たんけんできて うれしいです！</value>
+  </data>
+  <data name="TALK_01_FULL_001" xml:space="preserve">
+    <value>[player]さんの おやくに たちます！</value>
+  </data>
+  <data name="TALK_01_FULL_002" xml:space="preserve">
+    <value>がんばりましょう！ [player]さん！</value>
+  </data>
+  <data name="TALK_01_FULL_003" xml:space="preserve">
+    <value>[move]で [player]さんを おたすけします！</value>
+  </data>
+  <data name="TALK_01_FULL_004" xml:space="preserve">
+    <value>[item]を みつけましょう！</value>
+  </data>
+  <data name="TALK_01_FULL_005" xml:space="preserve">
+    <value>こんかいは どんな はっけんが あるんでしょうね！</value>
+  </data>
+  <data name="TALK_01_FULL_006" xml:space="preserve">
+    <value>[kind]は なかなか てごわいですね。</value>
+  </data>
+  <data name="TALK_01_HALF_000" xml:space="preserve">
+    <value>すこし つらくなってきました……。</value>
+  </data>
+  <data name="TALK_01_HALF_001" xml:space="preserve">
+    <value>ま…まだ だいじょうぶです。 これくらいでは へこたれません。</value>
+  </data>
+  <data name="TALK_01_HALF_002" xml:space="preserve">
+    <value>だいじょうぶです。 まだ がんばれます。 おきづかい ありがとうございます。</value>
+  </data>
+  <data name="TALK_01_PINCH_000" xml:space="preserve">
+    <value>うう… かなり くるしいです……。</value>
+  </data>
+  <data name="TALK_01_PINCH_001" xml:space="preserve">
+    <value>たすけてください… [player]さん……。</value>
+  </data>
+  <data name="TALK_01_PINCH_002" xml:space="preserve">
+    <value>いしきが もうろうとしてきました…。</value>
+  </data>
+  <data name="TALK_01_WAIT_000" xml:space="preserve">
+    <value>はりきって いきますよー！</value>
+  </data>
+  <data name="TALK_01_WAIT_001" xml:space="preserve">
+    <value>いつでも じゅんびは できてます！</value>
+  </data>
+  <data name="TALK_01_WAIT_002" xml:space="preserve">
+    <value>はやく たんけんに いきたくて うずうずしてます！</value>
+  </data>
+  <data name="TALK_02_FULL_000" xml:space="preserve">
+    <value>ちょっとコワイけど がんばって [player]に ついていくね。</value>
+  </data>
+  <data name="TALK_02_FULL_001" xml:space="preserve">
+    <value>あんまり むちゃしないでね。</value>
+  </data>
+  <data name="TALK_02_FULL_002" xml:space="preserve">
+    <value>あぶなくなったら かえろうね。</value>
+  </data>
+  <data name="TALK_02_FULL_003" xml:space="preserve">
+    <value>[kind]とか コワイかも…。</value>
+  </data>
+  <data name="TALK_02_FULL_004" xml:space="preserve">
+    <value>お…おいてかないでね。</value>
+  </data>
+  <data name="TALK_02_FULL_005" xml:space="preserve">
+    <value>みすてないでぇー！</value>
+  </data>
+  <data name="TALK_02_FULL_006" xml:space="preserve">
+    <value>[player]と いっしょなら ちょっと あんしん。</value>
+  </data>
+  <data name="TALK_02_FULL_007" xml:space="preserve">
+    <value>[item]が みつかるといいなー。</value>
+  </data>
+  <data name="TALK_02_FULL_008" xml:space="preserve">
+    <value>こわがりで ごめんね…。</value>
+  </data>
+  <data name="TALK_02_FULL_009" xml:space="preserve">
+    <value>たたかうのは ちょっと にがてだけど いっしょうけんめい がんばるね。</value>
+  </data>
+  <data name="TALK_02_HALF_000" xml:space="preserve">
+    <value>ちょっと  かえりたくなってきたかも……。</value>
+  </data>
+  <data name="TALK_02_HALF_001" xml:space="preserve">
+    <value>はぁ はぁ… すこし つらいかも……。</value>
+  </data>
+  <data name="TALK_02_HALF_002" xml:space="preserve">
+    <value>おいてかないでね。[player]…。</value>
+  </data>
+  <data name="TALK_02_HALF_003" xml:space="preserve">
+    <value>ねえ [player]… たいりょく かいふくしてくれない…かな？</value>
+  </data>
+  <data name="TALK_02_PINCH_000" xml:space="preserve">
+    <value>もうだめ…… はやく おうちへ かえりたいよ……。</value>
+  </data>
+  <data name="TALK_02_PINCH_001" xml:space="preserve">
+    <value>………… おねがい…… みすてないで……。</value>
+  </data>
+  <data name="TALK_02_PINCH_002" xml:space="preserve">
+    <value>た たすけてぇ…………。</value>
+  </data>
+  <data name="TALK_02_WAIT_000" xml:space="preserve">
+    <value>ちょっと きんちょうしてマス。</value>
+  </data>
+  <data name="TALK_02_WAIT_001" xml:space="preserve">
+    <value>ねえ こんどは どこいくの？</value>
+  </data>
+  <data name="TALK_02_WAIT_002" xml:space="preserve">
+    <value>いっしょうけんめい がんばるね！</value>
+  </data>
+  <data name="TALK_03_FULL_000" xml:space="preserve">
+    <value>ゆだんは きんもつだ。</value>
+  </data>
+  <data name="TALK_03_FULL_001" xml:space="preserve">
+    <value>めに みえるものだけを しんじるな。</value>
+  </data>
+  <data name="TALK_03_FULL_002" xml:space="preserve">
+    <value>[move]で [player]を えんごする！</value>
+  </data>
+  <data name="TALK_03_FULL_003" xml:space="preserve">
+    <value>つねに さきをよんで こうどうするのだ。</value>
+  </data>
+  <data name="TALK_03_FULL_004" xml:space="preserve">
+    <value>[player]のうしろは まかせてくれ。</value>
+  </data>
+  <data name="TALK_03_FULL_005" xml:space="preserve">
+    <value>てきの うごきを よむのだ。</value>
+  </data>
+  <data name="TALK_03_FULL_006" xml:space="preserve">
+    <value>ひきぎわも たいせつだ。</value>
+  </data>
+  <data name="TALK_03_HALF_000" xml:space="preserve">
+    <value>なかなか きびしいところだな…。</value>
+  </data>
+  <data name="TALK_03_HALF_001" xml:space="preserve">
+    <value>しんちょうに いくぞ。</value>
+  </data>
+  <data name="TALK_03_HALF_002" xml:space="preserve">
+    <value>だいじょうぶだ。まだ いける。</value>
+  </data>
+  <data name="TALK_03_PINCH_000" xml:space="preserve">
+    <value>もうダメかもしれん…。 あとは たのんだぞ… [player]…。</value>
+  </data>
+  <data name="TALK_03_PINCH_001" xml:space="preserve">
+    <value>うう…… たすけてくれ……。</value>
+  </data>
+  <data name="TALK_03_PINCH_002" xml:space="preserve">
+    <value>……………。 む…むねん… もはや ここまでか……。</value>
+  </data>
+  <data name="TALK_03_WAIT_000" xml:space="preserve">
+    <value>つぎは どこへ いくのだ？</value>
+  </data>
+  <data name="TALK_03_WAIT_001" xml:space="preserve">
+    <value>いつまで またせるのだ。</value>
+  </data>
+  <data name="TALK_03_WAIT_002" xml:space="preserve">
+    <value>じゅんびは ととのったか？</value>
+  </data>
+  <data name="TALK_04_FULL_000" xml:space="preserve">
+    <value>ムリをせず ときには ガマンすることも ひつようじゃ。</value>
+  </data>
+  <data name="TALK_04_FULL_001" xml:space="preserve">
+    <value>むやみやたらに てきに つっこんではイカンぞ。</value>
+  </data>
+  <data name="TALK_04_FULL_002" xml:space="preserve">
+    <value>[move]で [player]を えんごしてやるからの。</value>
+  </data>
+  <data name="TALK_04_FULL_003" xml:space="preserve">
+    <value>[item]を みつけるぞい！</value>
+  </data>
+  <data name="TALK_04_FULL_004" xml:space="preserve">
+    <value>[kind]には きをつけるのじゃ。</value>
+  </data>
+  <data name="TALK_04_FULL_005" xml:space="preserve">
+    <value>[player]のうしろは わしが しっかり みておるぞ。</value>
+  </data>
+  <data name="TALK_04_FULL_006" xml:space="preserve">
+    <value>なんどきても たんけんは たのしいもんじゃのぅ。</value>
+  </data>
+  <data name="TALK_04_HALF_000" xml:space="preserve">
+    <value>ちょっぴり つらくなってきたのぅ。</value>
+  </data>
+  <data name="TALK_04_HALF_001" xml:space="preserve">
+    <value>できれば かいふく してほしいのぅ。</value>
+  </data>
+  <data name="TALK_04_HALF_002" xml:space="preserve">
+    <value>こんかいの たんけんは なかなか キビシイのぅ。</value>
+  </data>
+  <data name="TALK_04_HALF_003" xml:space="preserve">
+    <value>[player]や〜。 わしを おいてかんでおくれぇ〜。</value>
+  </data>
+  <data name="TALK_04_PINCH_000" xml:space="preserve">
+    <value>…… だいぶ つらくなってきたのぅ……。</value>
+  </data>
+  <data name="TALK_04_PINCH_001" xml:space="preserve">
+    <value>……ううう…… こんなところで たおれるのは いやじゃあ〜。</value>
+  </data>
+  <data name="TALK_04_PINCH_002" xml:space="preserve">
+    <value>……ううう…… これが さいごのぼうけんに なるのかのう……。</value>
+  </data>
+  <data name="TALK_04_WAIT_000" xml:space="preserve">
+    <value>ここは ポカポカして あったかいのぅ〜。</value>
+  </data>
+  <data name="TALK_04_WAIT_001" xml:space="preserve">
+    <value>いそがんで ええぞい。 わしゃ のんびり まっとるから。</value>
+  </data>
+  <data name="TALK_04_WAIT_002" xml:space="preserve">
+    <value>おたから みつけたら どうしようかのう〜♪</value>
+  </data>
+  <data name="TALK_05_FULL_000" xml:space="preserve">
+    <value>どこまでも [player]に ついてゆこうぞ！</value>
+  </data>
+  <data name="TALK_05_FULL_001" xml:space="preserve">
+    <value>[myname]の じしょに ふかのうという もじは ない！</value>
+  </data>
+  <data name="TALK_05_FULL_002" xml:space="preserve">
+    <value>[move]の ちからを とくと みるがよい！</value>
+  </data>
+  <data name="TALK_05_FULL_003" xml:space="preserve">
+    <value>[kind]など てきではないわッ！</value>
+  </data>
+  <data name="TALK_05_FULL_004" xml:space="preserve">
+    <value>…………。 [item]が みえる…。</value>
+  </data>
+  <data name="TALK_05_HALF_000" xml:space="preserve">
+    <value>このていどのダメージは いたくも かゆくもないわッ！</value>
+  </data>
+  <data name="TALK_05_HALF_001" xml:space="preserve">
+    <value>[myname]の ちからは こんなものではない！</value>
+  </data>
+  <data name="TALK_05_HALF_002" xml:space="preserve">
+    <value>だいじょうぶだ！ しんぱいするな！</value>
+  </data>
+  <data name="TALK_05_PINCH_000" xml:space="preserve">
+    <value>………………。 こんなところで たおれるわけには いかぬッ！！</value>
+  </data>
+  <data name="TALK_05_PINCH_001" xml:space="preserve">
+    <value>ぬぬ…ぬぬぬ…… さいごまで あきらめぬぞッ！</value>
+  </data>
+  <data name="TALK_05_PINCH_002" xml:space="preserve">
+    <value>まだ…まだだ……。 うおおおおおおッ！</value>
+  </data>
+  <data name="TALK_05_WAIT_000" xml:space="preserve">
+    <value>いつでも じゅんびは できている！</value>
+  </data>
+  <data name="TALK_05_WAIT_001" xml:space="preserve">
+    <value>[hero]に ついてゆこうぞ！</value>
+  </data>
+  <data name="TALK_06_FULL_000" xml:space="preserve">
+    <value>タンケン タンケン タノシイネ♪</value>
+  </data>
+  <data name="TALK_06_FULL_001" xml:space="preserve">
+    <value>オタカラ オタカラ ミツケマス！</value>
+  </data>
+  <data name="TALK_06_FULL_002" xml:space="preserve">
+    <value>[move]デ [player]ヲ エンゴ スルヨ！</value>
+  </data>
+  <data name="TALK_06_FULL_003" xml:space="preserve">
+    <value>[kind] ヤッツケル！</value>
+  </data>
+  <data name="TALK_06_FULL_004" xml:space="preserve">
+    <value>[item]ハ ドコニ アルカナ？</value>
+  </data>
+  <data name="TALK_06_FULL_005" xml:space="preserve">
+    <value>[player]ト イッショ トテモ タノシイ！</value>
+  </data>
+  <data name="TALK_06_FULL_006" xml:space="preserve">
+    <value>コノサキ ナニガ アルノカナ？</value>
+  </data>
+  <data name="TALK_06_HALF_000" xml:space="preserve">
+    <value>チョットダケ ツライカモ…。</value>
+  </data>
+  <data name="TALK_06_HALF_001" xml:space="preserve">
+    <value>マダ ガンバレマス…。</value>
+  </data>
+  <data name="TALK_06_HALF_002" xml:space="preserve">
+    <value>タンケンッテ キビシイネ…。</value>
+  </data>
+  <data name="TALK_06_PINCH_000" xml:space="preserve">
+    <value>……ウウウ…… カナリ クルシイ デス……。</value>
+  </data>
+  <data name="TALK_06_PINCH_001" xml:space="preserve">
+    <value>タスケテクダサイ…… [player]……。</value>
+  </data>
+  <data name="TALK_06_PINCH_002" xml:space="preserve">
+    <value>…… ツイテイクノガ ヤットデス……。</value>
+  </data>
+  <data name="TALK_06_WAIT_000" xml:space="preserve">
+    <value>タンケン タンケン♪</value>
+  </data>
+  <data name="TALK_06_WAIT_001" xml:space="preserve">
+    <value>オタカラ オタカラ♪</value>
+  </data>
+  <data name="TALK_06_WAIT_002" xml:space="preserve">
+    <value>ワクワク ワクワク♪</value>
+  </data>
+  <data name="TALK_07_FULL_000" xml:space="preserve">
+    <value>[player]の うしろは オレに まかせろ！</value>
+  </data>
+  <data name="TALK_07_FULL_001" xml:space="preserve">
+    <value>ピンチのときは オレに まかせろ！</value>
+  </data>
+  <data name="TALK_07_FULL_002" xml:space="preserve">
+    <value>フフッ…オレたち… なかなか いいチームかもな。</value>
+  </data>
+  <data name="TALK_07_FULL_003" xml:space="preserve">
+    <value>[item]を みつけてやるぜ！</value>
+  </data>
+  <data name="TALK_07_FULL_004" xml:space="preserve">
+    <value>[kind]なんか ちょろいもんだぜ！</value>
+  </data>
+  <data name="TALK_07_FULL_005" xml:space="preserve">
+    <value>フフッ…オレの[move]を みて おどろくなよっ。</value>
+  </data>
+  <data name="TALK_07_FULL_006" xml:space="preserve">
+    <value>やっぱ たんけんは サイコーだぜ！</value>
+  </data>
+  <data name="TALK_07_FULL_007" xml:space="preserve">
+    <value>オマエ なかなか やるじゃないか！</value>
+  </data>
+  <data name="TALK_07_HALF_000" xml:space="preserve">
+    <value>へへっ こんなんで やられるオレじゃねえぜ！</value>
+  </data>
+  <data name="TALK_07_HALF_001" xml:space="preserve">
+    <value>まだまだまだぁ！！</value>
+  </data>
+  <data name="TALK_07_HALF_002" xml:space="preserve">
+    <value>ピンチのほうが ぎゃくに もえるぜ！</value>
+  </data>
+  <data name="TALK_07_PINCH_000" xml:space="preserve">
+    <value>くっ…… めが かすんで きやがったぜ……。</value>
+  </data>
+  <data name="TALK_07_PINCH_001" xml:space="preserve">
+    <value>ううっ… オレとも あろうものが なさけねえ………。</value>
+  </data>
+  <data name="TALK_07_PINCH_002" xml:space="preserve">
+    <value>ぜぇ…ぜぇ… オレのことは きにするな…… さきに すすんでくれ……。</value>
+  </data>
+  <data name="TALK_07_WAIT_000" xml:space="preserve">
+    <value>いつでも じゅんびはできてるぜ！</value>
+  </data>
+  <data name="TALK_07_WAIT_001" xml:space="preserve">
+    <value>いつまで またせるんだ！ はやく いこうぜ！</value>
+  </data>
+  <data name="TALK_07_WAIT_002" xml:space="preserve">
+    <value>はやくしねえと いっちまうぞ！</value>
+  </data>
+  <data name="TALK_08_FULL_000" xml:space="preserve">
+    <value>はやく さきに すすもうぜ。</value>
+  </data>
+  <data name="TALK_08_FULL_001" xml:space="preserve">
+    <value>たまには たんけんも いいもんだな。</value>
+  </data>
+  <data name="TALK_08_FULL_002" xml:space="preserve">
+    <value>オレを てきと まちがえるなよ。</value>
+  </data>
+  <data name="TALK_08_FULL_003" xml:space="preserve">
+    <value>[item]が みつかるといいな。</value>
+  </data>
+  <data name="TALK_08_FULL_004" xml:space="preserve">
+    <value>フフッ…オレたち… なかなか いいチームかもな。</value>
+  </data>
+  <data name="TALK_08_FULL_005" xml:space="preserve">
+    <value>[kind]なんか ちょろいもんだぜ！</value>
+  </data>
+  <data name="TALK_08_HALF_000" xml:space="preserve">
+    <value>なあ かいふくしてくれよ。</value>
+  </data>
+  <data name="TALK_08_HALF_001" xml:space="preserve">
+    <value>なんだか たりぃなぁ…。</value>
+  </data>
+  <data name="TALK_08_HALF_002" xml:space="preserve">
+    <value>そろそろ ひきあげないか？</value>
+  </data>
+  <data name="TALK_08_PINCH_000" xml:space="preserve">
+    <value>ううう……… なんで こんなめに あわなきゃ ならないんだよ……。</value>
+  </data>
+  <data name="TALK_08_PINCH_001" xml:space="preserve">
+    <value>はぁ…はぁ… くるしいなぁ……。</value>
+  </data>
+  <data name="TALK_08_PINCH_002" xml:space="preserve">
+    <value>ぜぇ…ぜぇ… か…かいふくしてくれよぉ……。</value>
+  </data>
+  <data name="TALK_08_WAIT_000" xml:space="preserve">
+    <value>まだぁ？</value>
+  </data>
+  <data name="TALK_08_WAIT_001" xml:space="preserve">
+    <value>はやく いこうよ。</value>
+  </data>
+  <data name="TALK_08_WAIT_002" xml:space="preserve">
+    <value>まちくたびれたな。</value>
+  </data>
+  <data name="TALK_09_FULL_000" xml:space="preserve">
+    <value>たんけんって ステキよね♪</value>
+  </data>
+  <data name="TALK_09_FULL_001" xml:space="preserve">
+    <value>つぎは どこに いくの？ [player]に ついていくね♪</value>
+  </data>
+  <data name="TALK_09_FULL_002" xml:space="preserve">
+    <value>[move]で [player]を えんごするね！</value>
+  </data>
+  <data name="TALK_09_FULL_003" xml:space="preserve">
+    <value>わたし [item]だいすき！</value>
+  </data>
+  <data name="TALK_09_FULL_004" xml:space="preserve">
+    <value>どんな おたからが みつかるかな？ ワクワクするね！</value>
+  </data>
+  <data name="TALK_09_FULL_005" xml:space="preserve">
+    <value>しんちょうに いこう！</value>
+  </data>
+  <data name="TALK_09_FULL_006" xml:space="preserve">
+    <value>[move]で [player]を えんごするよ！</value>
+  </data>
+  <data name="TALK_09_FULL_007" xml:space="preserve">
+    <value>たんけんって たのしいね！</value>
+  </data>
+  <data name="TALK_09_HALF_000" xml:space="preserve">
+    <value>うーん…ちょっぴり きついかも…。</value>
+  </data>
+  <data name="TALK_09_HALF_001" xml:space="preserve">
+    <value>まだ だいじょうぶだよ！ しんぱいしてくれて ありがとう♪</value>
+  </data>
+  <data name="TALK_09_HALF_002" xml:space="preserve">
+    <value>ちょっぴり きついけど でも だいじょうぶよ！</value>
+  </data>
+  <data name="TALK_09_PINCH_000" xml:space="preserve">
+    <value>…うう…… [player]…… わたし… もう ダメかも……。</value>
+  </data>
+  <data name="TALK_09_PINCH_001" xml:space="preserve">
+    <value>……わたしに なにかあったら… あとは よろしくね……。</value>
+  </data>
+  <data name="TALK_09_PINCH_002" xml:space="preserve">
+    <value>たすけて [player]…… もう たおれそう…。</value>
+  </data>
+  <data name="TALK_09_WAIT_000" xml:space="preserve">
+    <value>ねえねえ！ こんどは どこへ いくの？</value>
+  </data>
+  <data name="TALK_09_WAIT_001" xml:space="preserve">
+    <value>いっしょに おたから みつけようね！</value>
+  </data>
+  <data name="TALK_09_WAIT_002" xml:space="preserve">
+    <value>まちくたびれちゃったー。</value>
+  </data>
+  <data name="TALK_09_WAIT_003" xml:space="preserve">
+    <value>こんどは どこへ いくの？ たんけん たんけん ワクワクするね！</value>
+  </data>
+  <data name="TALK_09_WAIT_004" xml:space="preserve">
+    <value>こんどは どんな はっけんが あるのかな？</value>
+  </data>
+  <data name="TALK_10_FULL_000" xml:space="preserve">
+    <value>あしでまといに なるんじゃねえぞ。</value>
+  </data>
+  <data name="TALK_10_FULL_001" xml:space="preserve">
+    <value>ガンガンさきに すすもうぜ！</value>
+  </data>
+  <data name="TALK_10_FULL_002" xml:space="preserve">
+    <value>じゃまするヤツは ぶったおす！</value>
+  </data>
+  <data name="TALK_10_FULL_003" xml:space="preserve">
+    <value>[item]の においがするぜ！</value>
+  </data>
+  <data name="TALK_10_FULL_004" xml:space="preserve">
+    <value>ぐははは！ ねらった たからは のがさないぞ！</value>
+  </data>
+  <data name="TALK_10_FULL_005" xml:space="preserve">
+    <value>[move]なら だれにも まけないぜ！</value>
+  </data>
+  <data name="TALK_10_FULL_006" xml:space="preserve">
+    <value>ああん？ なにか ようか？</value>
+  </data>
+  <data name="TALK_10_HALF_000" xml:space="preserve">
+    <value>ぐははは！ まだまだまだぁ！！</value>
+  </data>
+  <data name="TALK_10_HALF_001" xml:space="preserve">
+    <value>こんなところで くたばって たまるか！</value>
+  </data>
+  <data name="TALK_10_HALF_002" xml:space="preserve">
+    <value>まだ だいじょうぶだ！ それより じぶんのしんぱいしてろ！</value>
+  </data>
+  <data name="TALK_10_PINCH_000" xml:space="preserve">
+    <value>ぜぇ…ぜぇ… ふはっ！ ふははは！ かじばの バカぢからってやつを みせてやるぜ！</value>
+  </data>
+  <data name="TALK_10_PINCH_001" xml:space="preserve">
+    <value>ぐはぁっ……！ さいごのさいごまで あきらめんぞぉ……。</value>
+  </data>
+  <data name="TALK_10_PINCH_002" xml:space="preserve">
+    <value>ぶはっ… ぶはははは！ どこからでも かかってこいッ！！</value>
+  </data>
+  <data name="TALK_10_WAIT_000" xml:space="preserve">
+    <value>ぐははは！ うでが なるぜえ！</value>
+  </data>
+  <data name="TALK_10_WAIT_001" xml:space="preserve">
+    <value>はやく じゅんびしてこい！</value>
+  </data>
+  <data name="TALK_10_WAIT_002" xml:space="preserve">
+    <value>オラァ！ とっとと いくぞ！</value>
+  </data>
+  <data name="TALK_11_FULL_000" xml:space="preserve">
+    <value>おら オマエのやくに たってるか？</value>
+  </data>
+  <data name="TALK_11_FULL_001" xml:space="preserve">
+    <value>いっしょうけんめい たんけんするどー！</value>
+  </data>
+  <data name="TALK_11_FULL_002" xml:space="preserve">
+    <value>[move]を ナメたら あかんどー！</value>
+  </data>
+  <data name="TALK_11_FULL_003" xml:space="preserve">
+    <value>[kind]には きをつけるだよ。</value>
+  </data>
+  <data name="TALK_11_FULL_004" xml:space="preserve">
+    <value>むっ！ [item]の においがするど。</value>
+  </data>
+  <data name="TALK_11_FULL_005" xml:space="preserve">
+    <value>[player]って いいやつだな。</value>
+  </data>
+  <data name="TALK_11_FULL_006" xml:space="preserve">
+    <value>おたから おたからー！</value>
+  </data>
+  <data name="TALK_11_FULL_007" xml:space="preserve">
+    <value>ぐう……ぐう……。</value>
+  </data>
+  <data name="TALK_11_FULL_008" xml:space="preserve">
+    <value>おなか へらんか？</value>
+  </data>
+  <data name="TALK_11_HALF_000" xml:space="preserve">
+    <value>なんか しんどい…。</value>
+  </data>
+  <data name="TALK_11_HALF_001" xml:space="preserve">
+    <value>オレンのみとか もってないか？</value>
+  </data>
+  <data name="TALK_11_HALF_002" xml:space="preserve">
+    <value>しんどいけど がんばるど。</value>
+  </data>
+  <data name="TALK_11_PINCH_000" xml:space="preserve">
+    <value>…ひぃ…はぁ… もうダメかもしんない…ど……。</value>
+  </data>
+  <data name="TALK_11_PINCH_001" xml:space="preserve">
+    <value>……かなり……しんどい…… かいふくして……くんろ……。</value>
+  </data>
+  <data name="TALK_11_PINCH_002" xml:space="preserve">
+    <value>……ぶじに…… おうちに… かえりたいど……。</value>
+  </data>
+  <data name="TALK_11_WAIT_000" xml:space="preserve">
+    <value>おー たんけんに いくどー！</value>
+  </data>
+  <data name="TALK_11_WAIT_001" xml:space="preserve">
+    <value>いつでも じゅんび できてるど！</value>
+  </data>
+  <data name="TALK_11_WAIT_002" xml:space="preserve">
+    <value>ぐう…… ぐう……。</value>
+  </data>
+  <data name="TALK_11_WAIT_003" xml:space="preserve">
+    <value>たべもの ちゃんと もったか？</value>
+  </data>
+  <data name="TALK_12_FULL_000" xml:space="preserve">
+    <value>いっしょうけんめい がんばるッス！</value>
+  </data>
+  <data name="TALK_12_FULL_001" xml:space="preserve">
+    <value>うおー！ なんだか もえるッス！！</value>
+  </data>
+  <data name="TALK_12_FULL_002" xml:space="preserve">
+    <value>こうみえても けっこう やるッスよ！</value>
+  </data>
+  <data name="TALK_12_FULL_003" xml:space="preserve">
+    <value>うおー！ [item] みつけるッス！</value>
+  </data>
+  <data name="TALK_12_FULL_004" xml:space="preserve">
+    <value>[kind]には きをつけるッス！</value>
+  </data>
+  <data name="TALK_12_FULL_005" xml:space="preserve">
+    <value>[player]のうしろは まかせるッス！！</value>
+  </data>
+  <data name="TALK_12_FULL_006" xml:space="preserve">
+    <value>うおー！ こんじょうで [move]！！</value>
+  </data>
+  <data name="TALK_12_FULL_007" xml:space="preserve">
+    <value>[player]と たんけんできて うれしいッス！</value>
+  </data>
+  <data name="TALK_12_FULL_008" xml:space="preserve">
+    <value>まちがえて こうげきしても ゆるしてくれッス！</value>
+  </data>
+  <data name="TALK_12_FULL_009" xml:space="preserve">
+    <value>ねむってしまったら おこしてくれッス！</value>
+  </data>
+  <data name="TALK_12_FULL_010" xml:space="preserve">
+    <value>[player]の あついきもちが つたわってくるッス！</value>
+  </data>
+  <data name="TALK_12_FULL_011" xml:space="preserve">
+    <value>[player]の ためなら なんでもするッス！</value>
+  </data>
+  <data name="TALK_12_FULL_012" xml:space="preserve">
+    <value>そんなに みつめられると はずかしいッス！</value>
+  </data>
+  <data name="TALK_12_HALF_000" xml:space="preserve">
+    <value>ウオッス！ まだまだ だいじょうぶッス！</value>
+  </data>
+  <data name="TALK_12_HALF_001" xml:space="preserve">
+    <value>こんじょうで たえるッス！</value>
+  </data>
+  <data name="TALK_12_HALF_002" xml:space="preserve">
+    <value>しんぱいしてくれて うれしッス！</value>
+  </data>
+  <data name="TALK_12_PINCH_000" xml:space="preserve">
+    <value>こ…こんじょ…う……で… ぜぇ…ぜぇ……。</value>
+  </data>
+  <data name="TALK_12_PINCH_001" xml:space="preserve">
+    <value>[player]…… かまわず…さきに すすんでくれッス……。</value>
+  </data>
+  <data name="TALK_12_PINCH_002" xml:space="preserve">
+    <value>ウォ……ス…… さいごまで……なんとか たえるッス……。</value>
+  </data>
+  <data name="TALK_12_WAIT_000" xml:space="preserve">
+    <value>うおー！ たんけん たのしみッス！！</value>
+  </data>
+  <data name="TALK_12_WAIT_001" xml:space="preserve">
+    <value>うおー！ はやく いきたいッス！！</value>
+  </data>
+  <data name="TALK_12_WAIT_002" xml:space="preserve">
+    <value>うおー！ なんだか もえるッス！！</value>
+  </data>
+  <data name="TALK_12_WAIT_003" xml:space="preserve">
+    <value>うおー！ こんじょうで たんけん！！</value>
+  </data>
+  <data name="TALK_13_FULL_000" xml:space="preserve">
+    <value>[player]の うしろは どーんと まかせなっ！</value>
+  </data>
+  <data name="TALK_13_FULL_001" xml:space="preserve">
+    <value>やっぱり たんけんは なんどきても いいもんだねぇ。</value>
+  </data>
+  <data name="TALK_13_FULL_002" xml:space="preserve">
+    <value>あたしを おこらせると こわいよっ！</value>
+  </data>
+  <data name="TALK_13_FULL_003" xml:space="preserve">
+    <value>さあさあ！ [item]を みつけるよっ。</value>
+  </data>
+  <data name="TALK_13_FULL_004" xml:space="preserve">
+    <value>まったく [kind]は やっかいだねぇ。</value>
+  </data>
+  <data name="TALK_13_FULL_005" xml:space="preserve">
+    <value>あたしの [move]で [player]を まもるよっ！</value>
+  </data>
+  <data name="TALK_13_FULL_006" xml:space="preserve">
+    <value>おたから たくさん もってかえるよっ！</value>
+  </data>
+  <data name="TALK_13_FULL_007" xml:space="preserve">
+    <value>このさきには なにが あるのかしらね。</value>
+  </data>
+  <data name="TALK_13_FULL_008" xml:space="preserve">
+    <value>もし [item]を みつけたら… あれをこーして…これを…ブツブツ……</value>
+  </data>
+  <data name="TALK_13_HALF_000" xml:space="preserve">
+    <value>ああ しんど。</value>
+  </data>
+  <data name="TALK_13_HALF_001" xml:space="preserve">
+    <value>なあに これくらいなら まだ だいじょうぶだよ！</value>
+  </data>
+  <data name="TALK_13_HALF_002" xml:space="preserve">
+    <value>あたしを しんぱいしてくれるのかい？ やさしいねぇ [player]は。</value>
+  </data>
+  <data name="TALK_13_PINCH_000" xml:space="preserve">
+    <value>…ああ……しんど……。</value>
+  </data>
+  <data name="TALK_13_PINCH_001" xml:space="preserve">
+    <value>[player]…… いざとなったら あたしに かまわず… いくんだよ…。</value>
+  </data>
+  <data name="TALK_13_PINCH_002" xml:space="preserve">
+    <value>はぁ…はぁ…… さいごまで… あきらめないよ……。</value>
+  </data>
+  <data name="TALK_13_WAIT_000" xml:space="preserve">
+    <value>さぁさぁ はりきって おたから みつけるよー！</value>
+  </data>
+  <data name="TALK_13_WAIT_001" xml:space="preserve">
+    <value>なんだか ワクワクしちゃうね！</value>
+  </data>
+  <data name="TALK_13_WAIT_002" xml:space="preserve">
+    <value>なに もたもたしてんだい。 はやく いくよっ！</value>
+  </data>
+  <data name="TALK_14_FULL_000" xml:space="preserve">
+    <value>[player]のうしろは アタイに まかせなっ！</value>
+  </data>
+  <data name="TALK_14_FULL_001" xml:space="preserve">
+    <value>さあさあ！ おつぎは どこへ いくんだい？</value>
+  </data>
+  <data name="TALK_14_FULL_002" xml:space="preserve">
+    <value>アタイの [move]を おみまいするよっ！</value>
+  </data>
+  <data name="TALK_14_FULL_003" xml:space="preserve">
+    <value>[kind]なんか ちょろいもんよ！</value>
+  </data>
+  <data name="TALK_14_FULL_004" xml:space="preserve">
+    <value>たんけんって ワクワクするね！</value>
+  </data>
+  <data name="TALK_14_FULL_005" xml:space="preserve">
+    <value>あんた なかなか やるじゃないか。 きにいったよ。</value>
+  </data>
+  <data name="TALK_14_FULL_006" xml:space="preserve">
+    <value>やっぱり たんけんは なんどきても いいもんだねぇ。</value>
+  </data>
+  <data name="TALK_14_FULL_007" xml:space="preserve">
+    <value>おたから たくさん もってかえるよっ！</value>
+  </data>
+  <data name="TALK_14_HALF_000" xml:space="preserve">
+    <value>こんなんで やられるアタイじゃないよっ！</value>
+  </data>
+  <data name="TALK_14_HALF_001" xml:space="preserve">
+    <value>きあいいれて いくよっ！</value>
+  </data>
+  <data name="TALK_14_HALF_002" xml:space="preserve">
+    <value>まだまだ これからだよっ！</value>
+  </data>
+  <data name="TALK_14_PINCH_000" xml:space="preserve">
+    <value>はぁ…はぁ… だいぶ やられちまったね……。</value>
+  </data>
+  <data name="TALK_14_PINCH_001" xml:space="preserve">
+    <value>…… こんなところで…… くたばって…たまるかい……。</value>
+  </data>
+  <data name="TALK_14_PINCH_002" xml:space="preserve">
+    <value>フフッ… アタイを しんぱいしてくれるのかい？ …… アンタ… やさしいね……。</value>
+  </data>
+  <data name="TALK_14_WAIT_000" xml:space="preserve">
+    <value>たんけんなら アタイに まかせなっ！</value>
+  </data>
+  <data name="TALK_14_WAIT_001" xml:space="preserve">
+    <value>ああ ワクワクするねぇ。</value>
+  </data>
+  <data name="TALK_14_WAIT_002" xml:space="preserve">
+    <value>いつでも じゅんびは できてるよっ！</value>
+  </data>
+  <data name="TALK_15_FULL_000" xml:space="preserve">
+    <value>てきの うごきを よみながら こうどうしましょう。</value>
+  </data>
+  <data name="TALK_15_FULL_001" xml:space="preserve">
+    <value>しんちょうに いきましょう。</value>
+  </data>
+  <data name="TALK_15_FULL_002" xml:space="preserve">
+    <value>[player]さんの うしろは まかせてください。</value>
+  </data>
+  <data name="TALK_15_FULL_003" xml:space="preserve">
+    <value>[move]で [player]さんを えんごします。</value>
+  </data>
+  <data name="TALK_15_FULL_004" xml:space="preserve">
+    <value>このさきには なにがあるのでしょう。</value>
+  </data>
+  <data name="TALK_15_FULL_005" xml:space="preserve">
+    <value>[item]が みつかる よかんがします。</value>
+  </data>
+  <data name="TALK_15_FULL_006" xml:space="preserve">
+    <value>がんばりましょう！ [player]さん！</value>
+  </data>
+  <data name="TALK_15_HALF_000" xml:space="preserve">
+    <value>ふぅ… なかなか きびしいところですね。</value>
+  </data>
+  <data name="TALK_15_HALF_001" xml:space="preserve">
+    <value>ここは しんちょうに いきましょう。</value>
+  </data>
+  <data name="TALK_15_HALF_002" xml:space="preserve">
+    <value>わたしは まだ だいじょうぶです。 おきづかい ありがとうございます。</value>
+  </data>
+  <data name="TALK_15_PINCH_000" xml:space="preserve">
+    <value>はぁ…はぁ… わたしに かまわず… さきへ……。</value>
+  </data>
+  <data name="TALK_15_PINCH_001" xml:space="preserve">
+    <value>…… わたしなら…… だいじょうぶです……。</value>
+  </data>
+  <data name="TALK_15_PINCH_002" xml:space="preserve">
+    <value>…[player]さん……。</value>
+  </data>
+  <data name="TALK_15_WAIT_000" xml:space="preserve">
+    <value>わすれものは ありませんか？</value>
+  </data>
+  <data name="TALK_15_WAIT_001" xml:space="preserve">
+    <value>[hero]さん。 たんけんの じゅんびは できましたか？</value>
+  </data>
+  <data name="TALK_15_WAIT_002" xml:space="preserve">
+    <value>たんけんに いくのが たのしみですね。</value>
+  </data>
+  <data name="TALK_16_FULL_000" xml:space="preserve">
+    <value>たんけんは いいもんですなぁ。</value>
+  </data>
+  <data name="TALK_16_FULL_001" xml:space="preserve">
+    <value>すみから すみまで くまなく おたから さがしましょうぜ。</value>
+  </data>
+  <data name="TALK_16_FULL_002" xml:space="preserve">
+    <value>[player]さんの えんごは しっかり やりますぜ。</value>
+  </data>
+  <data name="TALK_16_FULL_003" xml:space="preserve">
+    <value>じゃんじゃん おたから みつけますぜ。</value>
+  </data>
+  <data name="TALK_16_FULL_004" xml:space="preserve">
+    <value>ふむ。 [item]の においがしますな。</value>
+  </data>
+  <data name="TALK_16_FULL_005" xml:space="preserve">
+    <value>おたから みつけたら みんなで やまわけですぜ。</value>
+  </data>
+  <data name="TALK_16_FULL_006" xml:space="preserve">
+    <value>[kind] じゃまくさいわ。</value>
+  </data>
+  <data name="TALK_16_FULL_007" xml:space="preserve">
+    <value>おたからのためなら なんでもしますぜ。</value>
+  </data>
+  <data name="TALK_16_HALF_000" xml:space="preserve">
+    <value>しんどくなってきましたな。</value>
+  </data>
+  <data name="TALK_16_HALF_001" xml:space="preserve">
+    <value>おたからのためなら しんぼうしますか。</value>
+  </data>
+  <data name="TALK_16_HALF_002" xml:space="preserve">
+    <value>ああ どなたか かいふくして くれませんかねぇ…。</value>
+  </data>
+  <data name="TALK_16_PINCH_000" xml:space="preserve">
+    <value>ぜぇ…ぜぇ… かなり… しんどいですわ……。</value>
+  </data>
+  <data name="TALK_16_PINCH_001" xml:space="preserve">
+    <value>[player]さぁん…… かいふくして…くれませんか…ねぇ……。</value>
+  </data>
+  <data name="TALK_16_PINCH_002" xml:space="preserve">
+    <value>ひぃ…… ついていくのが… やっとですわ……。</value>
+  </data>
+  <data name="TALK_16_WAIT_000" xml:space="preserve">
+    <value>ああ やまのような おたからが めに うかびますなぁ〜。</value>
+  </data>
+  <data name="TALK_16_WAIT_001" xml:space="preserve">
+    <value>やまほど おたから みつけましょうぜ。</value>
+  </data>
+  <data name="TALK_16_WAIT_002" xml:space="preserve">
+    <value>ああ この きんちょうかんが たまらんねぇ〜。</value>
+  </data>
+  <data name="TALK_24_FULL_000" xml:space="preserve">
+    <value>がんばろー！ [player]！</value>
+  </data>
+  <data name="TALK_24_FULL_001" xml:space="preserve">
+    <value>ボク がんばるよ！</value>
+  </data>
+  <data name="TALK_24_FULL_002" xml:space="preserve">
+    <value>ボクなら げんきいっぱい！ だいじょぶだよー！</value>
+  </data>
+  <data name="TALK_24_FULL_003" xml:space="preserve">
+    <value>[kind]が てごわかったよー。</value>
+  </data>
+  <data name="TALK_24_FULL_004" xml:space="preserve">
+    <value>どっちにいけば いいのカナー。</value>
+  </data>
+  <data name="TALK_24_FULL_005" xml:space="preserve">
+    <value>げんき！ げんきー！</value>
+  </data>
+  <data name="TALK_24_FULL_006" xml:space="preserve">
+    <value>いっしょに がんばろー！</value>
+  </data>
+  <data name="TALK_24_FULL_007" xml:space="preserve">
+    <value>たんけん♪ たんけん♪</value>
+  </data>
+  <data name="TALK_24_FULL_008" xml:space="preserve">
+    <value>たんけんって たのしーね♪</value>
+  </data>
+  <data name="TALK_24_HALF_000" xml:space="preserve">
+    <value>……ちょっと つらいかナー。</value>
+  </data>
+  <data name="TALK_24_HALF_001" xml:space="preserve">
+    <value>はぁ はぁ……。</value>
+  </data>
+  <data name="TALK_24_HALF_002" xml:space="preserve">
+    <value>うう…… なんか げんき でないよぅ……。</value>
+  </data>
+  <data name="TALK_24_HALF_003" xml:space="preserve">
+    <value>あまり きぶんが よくないよぉ……。</value>
+  </data>
+  <data name="TALK_24_HALF_004" xml:space="preserve">
+    <value>うーん。つかれてるのかナー。 ちょっと げんき ないよぅ……。</value>
+  </data>
+  <data name="TALK_24_PINCH_000" xml:space="preserve">
+    <value>はぁ はぁ……。 ボク もうダメ……。</value>
+  </data>
+  <data name="TALK_24_PINCH_001" xml:space="preserve">
+    <value>く くるしいよぅ……。 はぁ はぁ……。</value>
+  </data>
+  <data name="TALK_24_PINCH_002" xml:space="preserve">
+    <value>すごく つらいよぅ……。 うう……。</value>
+  </data>
+  <data name="TALK_24_PINCH_003" xml:space="preserve">
+    <value>うう……。 ボク…もう……たおれちゃう……。</value>
+  </data>
+  <data name="TALK_24_PINCH_004" xml:space="preserve">
+    <value>…………………………。 もう……ダメ……。</value>
+  </data>
+  <data name="TALK_24_WAIT_000" xml:space="preserve">
+    <value>ルンルン♪</value>
+  </data>
+  <data name="TALK_24_WAIT_001" xml:space="preserve">
+    <value>たんけん たのしみー♪</value>
+  </data>
+  <data name="TALK_24_WAIT_002" xml:space="preserve">
+    <value>はやく いこ♪</value>
+  </data>
+  <data name="TALK_24_WAIT_003" xml:space="preserve">
+    <value>ボク がんばるよー♪</value>
+  </data>
+  <data name="TALK_24_WAIT_004" xml:space="preserve">
+    <value>どんな ところに いくのかナー？ たのしみ たのしみー♪</value>
+  </data>
+  <data name="TALK_26_FULL_000" xml:space="preserve">
+    <value>きをつけて いきましょう。</value>
+  </data>
+  <data name="TALK_26_FULL_001" xml:space="preserve">
+    <value>ゆだんは きんもつです。 しんちょうに いきましょう。</value>
+  </data>
+  <data name="TALK_26_FULL_002" xml:space="preserve">
+    <value>わたしなら だいじょうぶですよ。</value>
+  </data>
+  <data name="TALK_26_FULL_003" xml:space="preserve">
+    <value>[move]で えんごしますよ。</value>
+  </data>
+  <data name="TALK_26_FULL_004" xml:space="preserve">
+    <value>どこかに ワナが あるかも しれません。きをつけて。</value>
+  </data>
+  <data name="TALK_26_FULL_005" xml:space="preserve">
+    <value>[kind]には ちゅういして いきましょう。</value>
+  </data>
+  <data name="TALK_26_FULL_006" xml:space="preserve">
+    <value>がんばりましょう！ [player]！</value>
+  </data>
+  <data name="TALK_26_FULL_007" xml:space="preserve">
+    <value>ゆうきを だして いきましょう。</value>
+  </data>
+  <data name="TALK_26_HALF_000" xml:space="preserve">
+    <value>だいじょうぶです。 まだ がんばれます。</value>
+  </data>
+  <data name="TALK_26_HALF_001" xml:space="preserve">
+    <value>すこし つらいけど まだまだ だいじょうぶです。</value>
+  </data>
+  <data name="TALK_26_HALF_002" xml:space="preserve">
+    <value>ダメージは ありますが…… まだ へいきです。</value>
+  </data>
+  <data name="TALK_26_HALF_003" xml:space="preserve">
+    <value>ちょっと つらいですが がまんできます。</value>
+  </data>
+  <data name="TALK_26_HALF_004" xml:space="preserve">
+    <value>わたしなら へいきです。 しんぱいしないで ください。</value>
+  </data>
+  <data name="TALK_26_PINCH_000" xml:space="preserve">
+    <value>うう……。 かなり くるしいです……。</value>
+  </data>
+  <data name="TALK_26_PINCH_001" xml:space="preserve">
+    <value>すごく つらいです……。 たすけてください……。</value>
+  </data>
+  <data name="TALK_26_PINCH_002" xml:space="preserve">
+    <value>もう たおれそうです……。 はぁ はぁ……。</value>
+  </data>
+  <data name="TALK_26_PINCH_003" xml:space="preserve">
+    <value>はぁ はぁ……。 このままだと たおれてしまいます……。</value>
+  </data>
+  <data name="TALK_26_PINCH_004" xml:space="preserve">
+    <value>うう……もう ダメかも しれないです……。たすけて……。</value>
+  </data>
+  <data name="TALK_26_WAIT_000" xml:space="preserve">
+    <value>たんけんに いくのが たのしみです。</value>
+  </data>
+  <data name="TALK_26_WAIT_001" xml:space="preserve">
+    <value>あたらしい はっけんが あると いいですね。</value>
+  </data>
+  <data name="TALK_26_WAIT_002" xml:space="preserve">
+    <value>もう じゅんびは できています。いきましょう。</value>
+  </data>
+  <data name="TALK_26_WAIT_003" xml:space="preserve">
+    <value>ぜったい たんけんを せいこうさせて かえりましょう。</value>
+  </data>
+  <data name="TALK_26_WAIT_004" xml:space="preserve">
+    <value>わたしは いつでも しゅっぱつできますよ。</value>
+  </data>
+  <data name="TALK_29_FULL_000" xml:space="preserve">
+    <value>がんばりましょう。 [player]。</value>
+  </data>
+  <data name="TALK_29_FULL_001" xml:space="preserve">
+    <value>きをつけて。 しんちょうに いきましょう。</value>
+  </data>
+  <data name="TALK_29_FULL_002" xml:space="preserve">
+    <value>[move]で えんごします。</value>
+  </data>
+  <data name="TALK_29_FULL_003" xml:space="preserve">
+    <value>さきに すすんでみましょう。</value>
+  </data>
+  <data name="TALK_29_FULL_004" xml:space="preserve">
+    <value>わたしは だいじょうぶですよ。</value>
+  </data>
+  <data name="TALK_29_FULL_005" xml:space="preserve">
+    <value>[item]が どこかに おちているのが みえます……。</value>
+  </data>
+  <data name="TALK_29_HALF_000" xml:space="preserve">
+    <value>すこし つらくなって きました……。</value>
+  </data>
+  <data name="TALK_29_HALF_001" xml:space="preserve">
+    <value>まだ だいじょうぶです。</value>
+  </data>
+  <data name="TALK_29_HALF_002" xml:space="preserve">
+    <value>まだまだ へいきです。</value>
+  </data>
+  <data name="TALK_29_HALF_003" xml:space="preserve">
+    <value>しんぱいしなくても だいじょうぶです。</value>
+  </data>
+  <data name="TALK_29_PINCH_000" xml:space="preserve">
+    <value>はあ はあ……。 く くるしい……。</value>
+  </data>
+  <data name="TALK_29_PINCH_001" xml:space="preserve">
+    <value>もう たおれそうです……。</value>
+  </data>
+  <data name="TALK_29_PINCH_002" xml:space="preserve">
+    <value>これいじょうは きびしいです……。たすけて……。</value>
+  </data>
+  <data name="TALK_29_PINCH_003" xml:space="preserve">
+    <value>うう……かいふくして いただけると うれしいのですが……。</value>
+  </data>
+  <data name="TALK_29_WAIT_000" xml:space="preserve">
+    <value>じゅんびは できています。</value>
+  </data>
+  <data name="TALK_29_WAIT_001" xml:space="preserve">
+    <value>どんな たんけんに なるのでしょう。たのしみです。</value>
+  </data>
+  <data name="TALK_29_WAIT_002" xml:space="preserve">
+    <value>しゅっぱつは まだですか？</value>
+  </data>
+  <data name="TALK_29_WAIT_003" xml:space="preserve">
+    <value>あわてず ちゃんと じゅんびしてから いきましょう。</value>
+  </data>
+  <data name="TALK_30_FULL_000" xml:space="preserve">
+    <value>がんばろうね！</value>
+  </data>
+  <data name="TALK_30_FULL_001" xml:space="preserve">
+    <value>[player]！ ゆだんは きんもつだよ！</value>
+  </data>
+  <data name="TALK_30_FULL_002" xml:space="preserve">
+    <value>うしろから しっかり えんごするよ！</value>
+  </data>
+  <data name="TALK_30_FULL_003" xml:space="preserve">
+    <value>はやく いくよ！</value>
+  </data>
+  <data name="TALK_30_FULL_004" xml:space="preserve">
+    <value>[kind]なんて ちょろいもんだわ！</value>
+  </data>
+  <data name="TALK_30_FULL_005" xml:space="preserve">
+    <value>[item]が どこかに おちているよ……。</value>
+  </data>
+  <data name="TALK_30_HALF_000" xml:space="preserve">
+    <value>ちょっと つらくなって きたかな。</value>
+  </data>
+  <data name="TALK_30_HALF_001" xml:space="preserve">
+    <value>だいじょうぶよ。 まだまだ これからよ。</value>
+  </data>
+  <data name="TALK_30_HALF_002" xml:space="preserve">
+    <value>しんぱいしなくても わたしは だいじょうぶよ。</value>
+  </data>
+  <data name="TALK_30_HALF_003" xml:space="preserve">
+    <value>たしょうは つらいけど まだまだ へいきよ。</value>
+  </data>
+  <data name="TALK_30_PINCH_000" xml:space="preserve">
+    <value>ダ ダメ……。 たいりょくが……。</value>
+  </data>
+  <data name="TALK_30_PINCH_001" xml:space="preserve">
+    <value>うう……。 ダメージを うけすぎたよ……。</value>
+  </data>
+  <data name="TALK_30_PINCH_002" xml:space="preserve">
+    <value>うう……このままだと たおれてしまうよ……だれか……。</value>
+  </data>
+  <data name="TALK_30_PINCH_003" xml:space="preserve">
+    <value>た たおれそうだよ……。 くるしいよ……。</value>
+  </data>
+  <data name="TALK_30_WAIT_000" xml:space="preserve">
+    <value>わたしは いつでも ＯＫよ。</value>
+  </data>
+  <data name="TALK_30_WAIT_001" xml:space="preserve">
+    <value>はやく いこうよ。</value>
+  </data>
+  <data name="TALK_30_WAIT_002" xml:space="preserve">
+    <value>しゅっぱつは まだ？ まちくたびれたよ。</value>
+  </data>
+  <data name="TALK_30_WAIT_003" xml:space="preserve">
+    <value>たんけんに いくのが たのしみよ。</value>
+  </data>
+  <data name="TALK_31_FULL_000" xml:space="preserve">
+    <value>ボクが ちゃんと えんごするよ！</value>
+  </data>
+  <data name="TALK_31_FULL_001" xml:space="preserve">
+    <value>いこう！ [player]！</value>
+  </data>
+  <data name="TALK_31_FULL_002" xml:space="preserve">
+    <value>ボクなら だいじょうぶだ。</value>
+  </data>
+  <data name="TALK_31_FULL_003" xml:space="preserve">
+    <value>[kind]に きをつけて！</value>
+  </data>
+  <data name="TALK_31_FULL_004" xml:space="preserve">
+    <value>さきに すすもう。</value>
+  </data>
+  <data name="TALK_31_FULL_005" xml:space="preserve">
+    <value>[item]が みえる……。</value>
+  </data>
+  <data name="TALK_31_HALF_000" xml:space="preserve">
+    <value>すこし つらくなって きたかな。</value>
+  </data>
+  <data name="TALK_31_HALF_001" xml:space="preserve">
+    <value>ちょっと たいりょくが へってるかな……。</value>
+  </data>
+  <data name="TALK_31_HALF_002" xml:space="preserve">
+    <value>つらいけど まだ だいじょうぶだ。</value>
+  </data>
+  <data name="TALK_31_HALF_003" xml:space="preserve">
+    <value>だいじょうぶ。 がんばれば のりきれる。</value>
+  </data>
+  <data name="TALK_31_PINCH_000" xml:space="preserve">
+    <value>ダ ダメだ……。 もう たいりょくが……。</value>
+  </data>
+  <data name="TALK_31_PINCH_001" xml:space="preserve">
+    <value>もう たおれそうだ……。 だれか……。</value>
+  </data>
+  <data name="TALK_31_PINCH_002" xml:space="preserve">
+    <value>ダメージを うけすぎた……。 はやく かいふくしないと……。</value>
+  </data>
+  <data name="TALK_31_PINCH_003" xml:space="preserve">
+    <value>もう ダメだ……。 たおれてしまう……。</value>
+  </data>
+  <data name="TALK_31_WAIT_000" xml:space="preserve">
+    <value>ボクの じゅんびは できているよ。</value>
+  </data>
+  <data name="TALK_31_WAIT_002" xml:space="preserve">
+    <value>じゅんびが ととのったら しゅっぱつしよう。</value>
+  </data>
+  <data name="TALK_31_WAIT_003" xml:space="preserve">
+    <value>しゅっぱつは まだですか？</value>
+  </data>
+  <data name="TALK_32_FULL_000" xml:space="preserve">
+    <value>いくぞッ！ [player]！</value>
+  </data>
+  <data name="TALK_32_FULL_001" xml:space="preserve">
+    <value>さきを いそぐぞ！</value>
+  </data>
+  <data name="TALK_32_FULL_002" xml:space="preserve">
+    <value>[move]で けちらしてくれるッ！</value>
+  </data>
+  <data name="TALK_32_FULL_003" xml:space="preserve">
+    <value>グオオオォォォッ！</value>
+  </data>
+  <data name="TALK_32_FULL_004" xml:space="preserve">
+    <value>[kind]など わたしの てきでは ないッ！</value>
+  </data>
+  <data name="TALK_32_FULL_005" xml:space="preserve">
+    <value>わたしの ちからで オマエを まもろう。</value>
+  </data>
+  <data name="TALK_32_HALF_000" xml:space="preserve">
+    <value>かすりきずだ。 しんぱいするな。</value>
+  </data>
+  <data name="TALK_32_HALF_001" xml:space="preserve">
+    <value>だいじょうぶだ。 ダメージは あさい。</value>
+  </data>
+  <data name="TALK_32_HALF_002" xml:space="preserve">
+    <value>このていどの ダメージなら しんぱいは むようだ。</value>
+  </data>
+  <data name="TALK_32_HALF_003" xml:space="preserve">
+    <value>しんぱいするな。 それより さきを いそぐぞ。</value>
+  </data>
+  <data name="TALK_32_PINCH_000" xml:space="preserve">
+    <value>グルルル……。 かなり きついな……。</value>
+  </data>
+  <data name="TALK_32_PINCH_001" xml:space="preserve">
+    <value>グオオッ！ ここで はててなるものかッ！</value>
+  </data>
+  <data name="TALK_32_PINCH_002" xml:space="preserve">
+    <value>まだまだ…だ……。 わたしは たおれんッ！</value>
+  </data>
+  <data name="TALK_32_PINCH_003" xml:space="preserve">
+    <value>グオォォ…くるしいが たおれるわけには いかんッ！</value>
+  </data>
+  <data name="TALK_32_WAIT_000" xml:space="preserve">
+    <value>わたしの じゅんびは できている。</value>
+  </data>
+  <data name="TALK_32_WAIT_001" xml:space="preserve">
+    <value>しゅっぱつは いつでも だいじょうぶだ。</value>
+  </data>
+  <data name="TALK_32_WAIT_002" xml:space="preserve">
+    <value>はやく いくぞ！</value>
+  </data>
+  <data name="TALK_32_WAIT_003" xml:space="preserve">
+    <value>わたしを またせるきか？</value>
+  </data>
+  <data name="TALK_33_FULL_000" xml:space="preserve">
+    <value>オレが えんごしてやるッ！ あんしんして すすめッ！</value>
+  </data>
+  <data name="TALK_33_FULL_001" xml:space="preserve">
+    <value>オレに てきなど いない！</value>
+  </data>
+  <data name="TALK_33_FULL_002" xml:space="preserve">
+    <value>グオオオオオオォォォォォォォッ！！</value>
+  </data>
+  <data name="TALK_33_FULL_003" xml:space="preserve">
+    <value>ぜんりょくで いくからなッ！</value>
+  </data>
+  <data name="TALK_33_FULL_004" xml:space="preserve">
+    <value>このオレを だれが とめられようッ！</value>
+  </data>
+  <data name="TALK_33_FULL_005" xml:space="preserve">
+    <value>おのれの ちからを しんじて たたかうのだッ！</value>
+  </data>
+  <data name="TALK_33_HALF_000" xml:space="preserve">
+    <value>しんぱいなど いらん。 キズも そんなに ふかくはない。</value>
+  </data>
+  <data name="TALK_33_HALF_001" xml:space="preserve">
+    <value>まだまだ これからだ！ いくぞッ！</value>
+  </data>
+  <data name="TALK_33_HALF_002" xml:space="preserve">
+    <value>ダメージを うけたようだが だいじょうぶだ。</value>
+  </data>
+  <data name="TALK_33_HALF_003" xml:space="preserve">
+    <value>たいしたことは ない！ オレは むてきだッ！</value>
+  </data>
+  <data name="TALK_33_PINCH_000" xml:space="preserve">
+    <value>グオオォォ！ オレは いつのまに こんなにダメージを……。</value>
+  </data>
+  <data name="TALK_33_PINCH_001" xml:space="preserve">
+    <value>グォォ…… かなり きついが……まだまだだ！</value>
+  </data>
+  <data name="TALK_33_PINCH_002" xml:space="preserve">
+    <value>オレが……このていどの ダメージで……グオオオオォッ！</value>
+  </data>
+  <data name="TALK_33_PINCH_003" xml:space="preserve">
+    <value>かなり くるしいが…… オレは たおれんぞ！ ぜったいにな！</value>
+  </data>
+  <data name="TALK_33_WAIT_000" xml:space="preserve">
+    <value>このオレを またせるのか？</value>
+  </data>
+  <data name="TALK_33_WAIT_001" xml:space="preserve">
+    <value>じゅんびは できている。 いますぐにでも たたかえるぞッ！</value>
+  </data>
+  <data name="TALK_33_WAIT_002" xml:space="preserve">
+    <value>いつまで またせるのだ！</value>
+  </data>
+  <data name="TALK_33_WAIT_003" xml:space="preserve">
+    <value>はやく しゅっぱつするぞ！</value>
+  </data>
+  <data name="TALK_34_FULL_000" xml:space="preserve">
+    <value>ワレ ナンジヲ マモリ タンケン スル。</value>
+  </data>
+  <data name="TALK_34_FULL_001" xml:space="preserve">
+    <value>チカラノ スベテヲ ナンジニ ササゲヨウ。</value>
+  </data>
+  <data name="TALK_34_FULL_002" xml:space="preserve">
+    <value>グオオォォォォォオオオオオ！！</value>
+  </data>
+  <data name="TALK_34_FULL_003" xml:space="preserve">
+    <value>[kind]ニハ キヲツケロッ！</value>
+  </data>
+  <data name="TALK_34_FULL_004" xml:space="preserve">
+    <value>[item]ガ ドコカニ ミエル……。</value>
+  </data>
+  <data name="TALK_34_FULL_005" xml:space="preserve">
+    <value>サキニ ススムゾ！</value>
+  </data>
+  <data name="TALK_34_HALF_000" xml:space="preserve">
+    <value>スコシ ツラク ナッテキタ……。</value>
+  </data>
+  <data name="TALK_34_HALF_001" xml:space="preserve">
+    <value>ダイジョウブ。 シンパイハ ムヨウダ。</value>
+  </data>
+  <data name="TALK_34_HALF_002" xml:space="preserve">
+    <value>チョット クルシイカナ……。</value>
+  </data>
+  <data name="TALK_34_HALF_003" xml:space="preserve">
+    <value>ダメージヲ スコシ ウケタヨウダ……。</value>
+  </data>
+  <data name="TALK_34_PINCH_000" xml:space="preserve">
+    <value>ダ ダメダ……。 タオレソウダ……。</value>
+  </data>
+  <data name="TALK_34_PINCH_001" xml:space="preserve">
+    <value>タ タノム。 カイフク シテクレ……。</value>
+  </data>
+  <data name="TALK_34_PINCH_002" xml:space="preserve">
+    <value>カナリ ツラク ナッテキタ……。</value>
+  </data>
+  <data name="TALK_34_PINCH_003" xml:space="preserve">
+    <value>ワレハ ココデ タオレルノカ……。</value>
+  </data>
+  <data name="TALK_34_WAIT_000" xml:space="preserve">
+    <value>ジュンビ カンリョウ。</value>
+  </data>
+  <data name="TALK_34_WAIT_001" xml:space="preserve">
+    <value>ワレハ イツデモ シュッパツ デキルゾ。</value>
+  </data>
+  <data name="TALK_34_WAIT_002" xml:space="preserve">
+    <value>シュッパツハ マダナノカ？</value>
+  </data>
+  <data name="TALK_34_WAIT_003" xml:space="preserve">
+    <value>ドコマデモ ツイテイクゾ。</value>
+  </data>
+  <data name="TALK_35_FULL_000" xml:space="preserve">
+    <value>どんな あいてが こようが かんけいない。</value>
+  </data>
+  <data name="TALK_35_FULL_001" xml:space="preserve">
+    <value>やみのちからが みなぎっていく……。</value>
+  </data>
+  <data name="TALK_35_FULL_002" xml:space="preserve">
+    <value>みせてやろう！ わたしの ちからをッ！</value>
+  </data>
+  <data name="TALK_35_FULL_003" xml:space="preserve">
+    <value>……いいかんじだ。</value>
+  </data>
+  <data name="TALK_35_FULL_004" xml:space="preserve">
+    <value>[item]が みえる……。</value>
+  </data>
+  <data name="TALK_35_FULL_005" xml:space="preserve">
+    <value>わたしを たおすことは できない。ぜったいにな。</value>
+  </data>
+  <data name="TALK_35_HALF_000" xml:space="preserve">
+    <value>すこし ダメージを うけたようだ……。</value>
+  </data>
+  <data name="TALK_35_HALF_001" xml:space="preserve">
+    <value>わたしが このまま たおれると おもうのか？</value>
+  </data>
+  <data name="TALK_35_HALF_002" xml:space="preserve">
+    <value>キズは あさい。 しんぱいするな。</value>
+  </data>
+  <data name="TALK_35_HALF_003" xml:space="preserve">
+    <value>わたしなら だいじょうぶだ。 このていどの ダメージであれば。</value>
+  </data>
+  <data name="TALK_35_PINCH_000" xml:space="preserve">
+    <value>ぐぐッ……ダメージを かなり うけたな……。</value>
+  </data>
+  <data name="TALK_35_PINCH_001" xml:space="preserve">
+    <value>くるしいが…… まだ なにか やれるはずだ……。</value>
+  </data>
+  <data name="TALK_35_PINCH_002" xml:space="preserve">
+    <value>たいりょくが だいぶ へっている……。このままだと……。</value>
+  </data>
+  <data name="TALK_35_PINCH_003" xml:space="preserve">
+    <value>かなりのダメージが……。 すこし あまく みていたのか……。</value>
+  </data>
+  <data name="TALK_35_WAIT_000" xml:space="preserve">
+    <value>じゅんびは できている。</value>
+  </data>
+  <data name="TALK_35_WAIT_001" xml:space="preserve">
+    <value>わたしは どこまでも ついていく……。どこまでもな。</value>
+  </data>
+  <data name="TALK_35_WAIT_002" xml:space="preserve">
+    <value>わたしのなかに やみが ねむってるのを たまに かんじるのだ……。</value>
+  </data>
+  <data name="TALK_35_WAIT_003" xml:space="preserve">
+    <value>しゅっぱつできるのか？ はやく いこう。</value>
+  </data>
+  <data name="TALK_36_FULL_000" xml:space="preserve">
+    <value>おたから〜♪ おたから〜♪</value>
+  </data>
+  <data name="TALK_36_FULL_001" xml:space="preserve">
+    <value>ワタシ どうぐが だいすき なんですよ〜♪</value>
+  </data>
+  <data name="TALK_36_FULL_002" xml:space="preserve">
+    <value>きょうも がんばりますよ〜♪</value>
+  </data>
+  <data name="TALK_36_FULL_003" xml:space="preserve">
+    <value>[kind]に きをつけて くださいね〜♪</value>
+  </data>
+  <data name="TALK_36_FULL_004" xml:space="preserve">
+    <value>たんけんって ワクワクしますね〜♪</value>
+  </data>
+  <data name="TALK_36_FULL_005" xml:space="preserve">
+    <value>さあ つぎは どっちに いくんですか〜？</value>
+  </data>
+  <data name="TALK_36_HALF_000" xml:space="preserve">
+    <value>なんか つらくなって きましたね〜。</value>
+  </data>
+  <data name="TALK_36_HALF_001" xml:space="preserve">
+    <value>ありゃりゃ たいりょくが へってきましたよ〜。</value>
+  </data>
+  <data name="TALK_36_HALF_002" xml:space="preserve">
+    <value>ありゃぁ〜！ ワタシ ダメージを うけちゃいました〜！</value>
+  </data>
+  <data name="TALK_36_HALF_003" xml:space="preserve">
+    <value>ちょっと きついですが まだまだ がんばりますよ〜♪</value>
+  </data>
+  <data name="TALK_36_PINCH_000" xml:space="preserve">
+    <value>だいぶ つらくなって きました……。</value>
+  </data>
+  <data name="TALK_36_PINCH_001" xml:space="preserve">
+    <value>もう たおれそうです……。 た たすけてぇ〜……。</value>
+  </data>
+  <data name="TALK_36_PINCH_002" xml:space="preserve">
+    <value>そろそろ げんかいです……。</value>
+  </data>
+  <data name="TALK_36_PINCH_003" xml:space="preserve">
+    <value>もう フラフラです……。 だ だれか かいふくしてぇ〜……。</value>
+  </data>
+  <data name="TALK_36_WAIT_000" xml:space="preserve">
+    <value>たんけんに いくのって ワクワクしますよね〜♪</value>
+  </data>
+  <data name="TALK_36_WAIT_001" xml:space="preserve">
+    <value>まだ いかないんですか〜♪</value>
+  </data>
+  <data name="TALK_36_WAIT_002" xml:space="preserve">
+    <value>ワタシ はやく いきたくて ウズウズしてますよ〜♪</value>
+  </data>
+  <data name="TALK_36_WAIT_003" xml:space="preserve">
+    <value>しゅっぱつの じゅんびは できてますよ〜♪</value>
+  </data>
+  <data name="TALK_37_FULL_000" xml:space="preserve">
+    <value>よろしくね！</value>
+  </data>
+  <data name="TALK_37_HALF_000" xml:space="preserve">
+    <value>ちょっと きつくなってきたかも。</value>
+  </data>
+  <data name="TALK_37_PINCH_000" xml:space="preserve">
+    <value>もう だめかも……。</value>
+  </data>
+  <data name="TALK_37_WAIT_000" xml:space="preserve">
+    <value>よろしくね！</value>
+  </data>
+  <data name="TALK_REST_0001_VAR_00" xml:space="preserve">
+    <value>タネには えいようが いっぱい あるんだよ！</value>
+  </data>
+  <data name="TALK_REST_0002_VAR_00" xml:space="preserve">
+    <value>おおきな つぼみが しあわせを はこぶの！</value>
+  </data>
+  <data name="TALK_REST_0003_00_1_VAR_00" xml:space="preserve">
+    <value>はな！ さきほこるぜー！</value>
+  </data>
+  <data name="TALK_REST_0003_00_2_VAR_00" xml:space="preserve">
+    <value>ガンガン すすんでいくわよ！</value>
+  </data>
+  <data name="TALK_REST_0004_VAR_00" xml:space="preserve">
+    <value>シッポのほのおは げんきな しょうこ！</value>
+  </data>
+  <data name="TALK_REST_0005_VAR_00" xml:space="preserve">
+    <value>ぼうけん！ もえるぜっ！ オレの しっぽも もえるぜっ！</value>
+  </data>
+  <data name="TALK_REST_0006_VAR_00" xml:space="preserve">
+    <value>オレに ついてこい！</value>
+  </data>
+  <data name="TALK_REST_0007_VAR_00" xml:space="preserve">
+    <value>かたい こうらが じまんなんだ！</value>
+  </data>
+  <data name="TALK_REST_0008_VAR_00" xml:space="preserve">
+    <value>しっぽのおていれが ながいきの ひけつだよ！</value>
+  </data>
+  <data name="TALK_REST_0009_VAR_00" xml:space="preserve">
+    <value>ジェットすいりゅうで がんばるぜっ！</value>
+  </data>
+  <data name="TALK_REST_0010_VAR_00" xml:space="preserve">
+    <value>はっぱって さいこうに おいしいよね！</value>
+  </data>
+  <data name="TALK_REST_0011_VAR_00" xml:space="preserve">
+    <value>かたくなる！！</value>
+  </data>
+  <data name="TALK_REST_0012_VAR_00" xml:space="preserve">
+    <value>りんぷんで みずを はじくから あめのひでも とべるんです！</value>
+  </data>
+  <data name="TALK_REST_0013_VAR_00" xml:space="preserve">
+    <value>あかい おハナで おいしいはっぱを さがすですー！</value>
+  </data>
+  <data name="TALK_REST_0014_VAR_00" xml:space="preserve">
+    <value>うごかんぞ。ワシは うごかん。</value>
+  </data>
+  <data name="TALK_REST_0015_VAR_00" xml:space="preserve">
+    <value>きょうもあしたも ああいそがしい！ スピスピ！</value>
+  </data>
+  <data name="TALK_REST_0016_VAR_00" xml:space="preserve">
+    <value>はばたくぜ！ ポッポー！ ポーポポポッホーー！！</value>
+  </data>
+  <data name="TALK_REST_0017_VAR_00" xml:space="preserve">
+    <value>しりょくが とっても いいんだぜ！ じまんだぜ！</value>
+  </data>
+  <data name="TALK_REST_0018_VAR_00" xml:space="preserve">
+    <value>うつくしいはねが じまんなんですよ！</value>
+  </data>
+  <data name="TALK_REST_0019_VAR_00" xml:space="preserve">
+    <value>おれ とうちゃんみたいな りっぱな いしだいくに いつかなるんだ！</value>
+  </data>
+  <data name="TALK_REST_0020_VAR_00" xml:space="preserve">
+    <value>きょうも ひとしごとするか！</value>
+  </data>
+  <data name="TALK_REST_0021_VAR_00" xml:space="preserve">
+    <value>オレ いつも いそがしそうにしてるけど ほんとうは やっぱり いそがしいんだ。</value>
+  </data>
+  <data name="TALK_REST_0022_VAR_00" xml:space="preserve">
+    <value>ながい くちばしが じまんです！</value>
+  </data>
+  <data name="TALK_REST_0023_VAR_00" xml:space="preserve">
+    <value>オレ まるのみするのがとくいなんだぜ？ やってみようか？</value>
+  </data>
+  <data name="TALK_REST_0025_00_1_VAR_00" xml:space="preserve">
+    <value>げんきにピッカー！</value>
+  </data>
+  <data name="TALK_REST_0025_00_2_VAR_00" xml:space="preserve">
+    <value>チャームポイントは ほっぺと しっぽかな（はあと）</value>
+  </data>
+  <data name="TALK_REST_0026_00_1_VAR_00" xml:space="preserve">
+    <value>なんか たのしいぜ！ ビリビリ！</value>
+  </data>
+  <data name="TALK_REST_0026_00_2_VAR_00" xml:space="preserve">
+    <value>ほっぺのでんきぶくろが パチパチいうよ！</value>
+  </data>
+  <data name="TALK_REST_0027_VAR_00" xml:space="preserve">
+    <value>まるまるのが すきなんだ！</value>
+  </data>
+  <data name="TALK_REST_0029_VAR_00" xml:space="preserve">
+    <value>ワタシ たたかいは あまりすきじゃないけど でも がんばるっ。</value>
+  </data>
+  <data name="TALK_REST_0030_VAR_00" xml:space="preserve">
+    <value>なかまをまもるのが ワタシのやくめ！</value>
+  </data>
+  <data name="TALK_REST_0031_VAR_00" xml:space="preserve">
+    <value>おばちゃん がんじょうだからね！ どんなこうげきも へっちゃらだよ！</value>
+  </data>
+  <data name="TALK_REST_0032_VAR_00" xml:space="preserve">
+    <value>ボク みみが いいんだよ！ なんでもきこえるんだよ！</value>
+  </data>
+  <data name="TALK_REST_0033_VAR_00" xml:space="preserve">
+    <value>オレ こうみえて あらっぽいからな。 ちかづくんじゃないぞ。</value>
+  </data>
+  <data name="TALK_REST_0035_VAR_00" xml:space="preserve">
+    <value>まんげつのよるが だいすきピッピー！</value>
+  </data>
+  <data name="TALK_REST_0036_VAR_00" xml:space="preserve">
+    <value>ボク ようせいさんって よばれるの。 なんでだろ？ せいかくのもんだい？</value>
+  </data>
+  <data name="TALK_REST_0037_VAR_00" xml:space="preserve">
+    <value>ロコンだよ\u266A そだつと しっぽが ふえていくんだよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0038_VAR_00" xml:space="preserve">
+    <value>わたしの しっぽに ふれては いけない。</value>
+  </data>
+  <data name="TALK_REST_0039_VAR_00" xml:space="preserve">
+    <value>うたっていいよね\u266A ワタシ だいすき\u266A</value>
+  </data>
+  <data name="TALK_REST_0040_VAR_00" xml:space="preserve">
+    <value>ともだち！ ともだち～～～～！！ たあーーーーーーーーーーーーっ！！</value>
+  </data>
+  <data name="TALK_REST_0041_VAR_00" xml:space="preserve">
+    <value>はやくよるに ならんかなあ……。</value>
+  </data>
+  <data name="TALK_REST_0042_VAR_00" xml:space="preserve">
+    <value>……[pause=0]なんか いろいろ すいたい。[pause=0] ちゅーっとね。</value>
+  </data>
+  <data name="TALK_REST_0043_VAR_00" xml:space="preserve">
+    <value>きょうも いいてんきですね～。</value>
+  </data>
+  <data name="TALK_REST_0044_VAR_00" xml:space="preserve">
+    <value>ワタシは くさい。クサッ！……みたいな かんじでいわれると ちょっとうれしい。</value>
+  </data>
+  <data name="TALK_REST_0045_VAR_00" xml:space="preserve">
+    <value>かふん ばらまくよ！ ドカンと ばらまくよ！</value>
+  </data>
+  <data name="TALK_REST_0046_VAR_00" xml:space="preserve">
+    <value>おちかづきの しるしに せなかの キノコでも ひとつ どうでしょう？</value>
+  </data>
+  <data name="TALK_REST_0047_VAR_00" xml:space="preserve">
+    <value>ボク キノコ！ のっとりかんりょうです！</value>
+  </data>
+  <data name="TALK_REST_0048_VAR_00" xml:space="preserve">
+    <value>ボク めから ビームを はっしゃ できるんだよ！ すごいっしょ！</value>
+  </data>
+  <data name="TALK_REST_0049_VAR_00" xml:space="preserve">
+    <value>りんぷんを まきちらして はばたきます！</value>
+  </data>
+  <data name="TALK_REST_0050_VAR_00" xml:space="preserve">
+    <value>ぼうけん がんばりますっ！</value>
+  </data>
+  <data name="TALK_REST_0051_VAR_00" xml:space="preserve">
+    <value>ワタシたちは しごとをサボりたくて サボっているワケではない！ けっして！</value>
+  </data>
+  <data name="TALK_REST_0052_VAR_00" xml:space="preserve">
+    <value>ニャーは まるいものが すきなんだニャー！</value>
+  </data>
+  <data name="TALK_REST_0054_VAR_00" xml:space="preserve">
+    <value>いつもあたまが つーんとするんです。 つーんと。</value>
+  </data>
+  <data name="TALK_REST_0055_VAR_00" xml:space="preserve">
+    <value>およぐのが とくいだぜ！</value>
+  </data>
+  <data name="TALK_REST_0056_VAR_00" xml:space="preserve">
+    <value>せっしゃ きがみじかいでマンキー！ イライラでマンキー！</value>
+  </data>
+  <data name="TALK_REST_0057_VAR_00" xml:space="preserve">
+    <value>こみあげる いかりがとまらねえ！！</value>
+  </data>
+  <data name="TALK_REST_0058_VAR_00" xml:space="preserve">
+    <value>ねえ いっしょに あそぼ\u266A ウォン！ ウォン！</value>
+  </data>
+  <data name="TALK_REST_0059_VAR_00" xml:space="preserve">
+    <value>たてがみに ちかって どうどうと たたかうぜ！</value>
+  </data>
+  <data name="TALK_REST_0060_VAR_00" xml:space="preserve">
+    <value>たくさん およぎたいニョロー！ すべすべ おはだを ぬらしたいニョロー！</value>
+  </data>
+  <data name="TALK_REST_0061_VAR_00" xml:space="preserve">
+    <value>うずまき！ おなかの うずまき！！</value>
+  </data>
+  <data name="TALK_REST_0063_VAR_00" xml:space="preserve">
+    <value>ぐうぐう……。</value>
+  </data>
+  <data name="TALK_REST_0064_VAR_00" xml:space="preserve">
+    <value>からだから アルファはが でまくりです！！</value>
+  </data>
+  <data name="TALK_REST_0065_VAR_00" xml:space="preserve">
+    <value>オマエがもとめるのであれば ワシも ちからを かそう。ぜんりょくでな。</value>
+  </data>
+  <data name="TALK_REST_0066_VAR_00" xml:space="preserve">
+    <value>きんにく！ きんにく！</value>
+  </data>
+  <data name="TALK_REST_0067_VAR_00" xml:space="preserve">
+    <value>ちからじまん したいぜ！ ゴリゴリ！</value>
+  </data>
+  <data name="TALK_REST_0068_VAR_00" xml:space="preserve">
+    <value>あっというまに たくさんの パンチが くりだせるぜ！ うりゃあー！！</value>
+  </data>
+  <data name="TALK_REST_0069_VAR_00" xml:space="preserve">
+    <value>ひょろいからだしてますが こうみえて がんばりますのよ。ワタシ。</value>
+  </data>
+  <data name="TALK_REST_0070_VAR_00" xml:space="preserve">
+    <value>しんせつにされると こころをうつドン！</value>
+  </data>
+  <data name="TALK_REST_0071_VAR_00" xml:space="preserve">
+    <value>おいしいものは くちにいれて うちおとすボット！</value>
+  </data>
+  <data name="TALK_REST_0072_VAR_00" xml:space="preserve">
+    <value>あっし めからビームを はっしゃ できるんすよ！ メノー！ ってかんじで！</value>
+  </data>
+  <data name="TALK_REST_0073_VAR_00" xml:space="preserve">
+    <value>うみで ぼぉーっとしてると いいですよねぇ。 いやされますよねえ～。</value>
+  </data>
+  <data name="TALK_REST_0074_VAR_00" xml:space="preserve">
+    <value>ボクを なげるのは やめてね！</value>
+  </data>
+  <data name="TALK_REST_0075_VAR_00" xml:space="preserve">
+    <value>こうみえても ワシ たんけんかなんだぜ？ グハハハハハハハハハッ！！</value>
+  </data>
+  <data name="TALK_REST_0076_VAR_00" xml:space="preserve">
+    <value>がんじょうなのが とりえだぜ！！</value>
+  </data>
+  <data name="TALK_REST_0077_VAR_00" xml:space="preserve">
+    <value>はねるの だいすき！ いっしょに ジャンプしよ！</value>
+  </data>
+  <data name="TALK_REST_0078_VAR_00" xml:space="preserve">
+    <value>キミも いっしょに かけぬけないか！？ はしっている しゅんかんが さいこうなんだ！</value>
+  </data>
+  <data name="TALK_REST_0079_VAR_00" xml:space="preserve">
+    <value>……ぬぼーーーーっ……。</value>
+  </data>
+  <data name="TALK_REST_0080_VAR_00" xml:space="preserve">
+    <value>シェルダーくんに かみつかれましたぁ！</value>
+  </data>
+  <data name="TALK_REST_0081_VAR_00" xml:space="preserve">
+    <value>アンゼンダイイチダヨ！ ビビビッ！</value>
+  </data>
+  <data name="TALK_REST_0082_VAR_00" xml:space="preserve">
+    <value>チイキノチアンヲ マモルデス！ ビビビッ！</value>
+  </data>
+  <data name="TALK_REST_0083_VAR_00" xml:space="preserve">
+    <value>せんせいも たまにはぼうけんしないとな。</value>
+  </data>
+  <data name="TALK_REST_0084_VAR_00" xml:space="preserve">
+    <value>きょうも げんきに はしりましょう！ はあはあ……！</value>
+  </data>
+  <data name="TALK_REST_0085_VAR_00" xml:space="preserve">
+    <value>よろこび かなしみ いかり…… ３つのあたまで めいれいです！</value>
+  </data>
+  <data name="TALK_REST_0086_VAR_00" xml:space="preserve">
+    <value>ねえねえ なになにー？</value>
+  </data>
+  <data name="TALK_REST_0088_VAR_00" xml:space="preserve">
+    <value>ベトベトしてるんだよぉ～。</value>
+  </data>
+  <data name="TALK_REST_0089_VAR_00" xml:space="preserve">
+    <value>ねえ あまったれても いい～？</value>
+  </data>
+  <data name="TALK_REST_0090_VAR_00" xml:space="preserve">
+    <value>ヤドンさんを みかけたら おしえてください。かみつきます。</value>
+  </data>
+  <data name="TALK_REST_0091_VAR_00" xml:space="preserve">
+    <value>オレのカラは とてもかたい！ かたいんだぜぇ！</value>
+  </data>
+  <data name="TALK_REST_0092_VAR_00" xml:space="preserve">
+    <value>ガスのような からだでゴース！</value>
+  </data>
+  <data name="TALK_REST_0093_VAR_00" xml:space="preserve">
+    <value>クククッ オレさまは ゴースト！ ふじみの ゴーストだ！</value>
+  </data>
+  <data name="TALK_REST_0094_VAR_00" xml:space="preserve">
+    <value>オレのなは ゲンガー。 よろしくな。ケケッ！</value>
+  </data>
+  <data name="TALK_REST_0095_VAR_00" xml:space="preserve">
+    <value>じめんを ほるのが すきなんだ！ トンネルつくって あそぼうぜ！</value>
+  </data>
+  <data name="TALK_REST_0096_VAR_00" xml:space="preserve">
+    <value>オレは ゆめをたべることができるんだ。 おいしいかって？ まあな。</value>
+  </data>
+  <data name="TALK_REST_0097_VAR_00" xml:space="preserve">
+    <value>オレの さいみんじゅつで みんな ねむるがいい！</value>
+  </data>
+  <data name="TALK_REST_0098_VAR_00" xml:space="preserve">
+    <value>ジャンケンは にがてでがんす！ チョキチョキ！</value>
+  </data>
+  <data name="TALK_REST_0099_VAR_00" xml:space="preserve">
+    <value>ちょっと ハサミがおもすぎるんですよね。 はあはあ……。</value>
+  </data>
+  <data name="TALK_REST_0100_VAR_00" xml:space="preserve">
+    <value>ビリリ！ ビリビリ！</value>
+  </data>
+  <data name="TALK_REST_0101_VAR_00" xml:space="preserve">
+    <value>たまに ばくはつするから きをつけろな。</value>
+  </data>
+  <data name="TALK_REST_0102_VAR_00" xml:space="preserve">
+    <value>オレたちは たまたま いっしょに いるだけなのだ。たまたまな。</value>
+  </data>
+  <data name="TALK_REST_0103_VAR_00" xml:space="preserve">
+    <value>なんごくしゅっしん！ おおらかな せいかくだと よく いわれます！</value>
+  </data>
+  <data name="TALK_REST_0104_VAR_00" xml:space="preserve">
+    <value>かなしみを のりこえて ぼくは つよくなる。</value>
+  </data>
+  <data name="TALK_REST_0106_VAR_00" xml:space="preserve">
+    <value>オレのキックは ひとあじちがうぜ！ まいばん ストレッチしてるしな！</value>
+  </data>
+  <data name="TALK_REST_0107_VAR_00" xml:space="preserve">
+    <value>パンチ！ パンチ！ とにかく パァーーーンチッ！！</value>
+  </data>
+  <data name="TALK_REST_0108_VAR_00" xml:space="preserve">
+    <value>なんか なめたくなってきた！ ベロベロ！</value>
+  </data>
+  <data name="TALK_REST_0109_VAR_00" xml:space="preserve">
+    <value>だいぶ ガスが たまってきたぜ。</value>
+  </data>
+  <data name="TALK_REST_0110_VAR_00" xml:space="preserve">
+    <value>オレたちのじだいが はじまたドガス！！</value>
+  </data>
+  <data name="TALK_REST_0111_VAR_00" xml:space="preserve">
+    <value>ワシ ぶきようだから めいわくかけたら ゴメンな。</value>
+  </data>
+  <data name="TALK_REST_0112_VAR_00" xml:space="preserve">
+    <value>ドリルのツノで あな あけるドン！</value>
+  </data>
+  <data name="TALK_REST_0114_VAR_00" xml:space="preserve">
+    <value>ねえ このモジャモジャのなかには なにがあるとおもう？</value>
+  </data>
+  <data name="TALK_REST_0116_VAR_00" xml:space="preserve">
+    <value>みんな ボクのこと たっつぁんって よぶんだよ？</value>
+  </data>
+  <data name="TALK_REST_0117_VAR_00" xml:space="preserve">
+    <value>なあ オレ ドラむすことか みんなに よばれるんだけど……[br]そんなことはないよなあ？</value>
+  </data>
+  <data name="TALK_REST_0118_VAR_00" xml:space="preserve">
+    <value>おおきな ツノが カワイイでしょ？ トサキン！</value>
+  </data>
+  <data name="TALK_REST_0119_VAR_00" xml:space="preserve">
+    <value>ねえ からだの もようが キレイでしょ？ けっこう じまんなのよ ウッフン！</value>
+  </data>
+  <data name="TALK_REST_0120_VAR_00" xml:space="preserve">
+    <value>おたからサルベージしたいです！ しゅばっ！</value>
+  </data>
+  <data name="TALK_REST_0121_VAR_00" xml:space="preserve">
+    <value>ミーは スター！ きょうも コアがひかるぜ！ スター！</value>
+  </data>
+  <data name="TALK_REST_0122_VAR_00" xml:space="preserve">
+    <value>やあ きょうもげんきにしてるかな？</value>
+  </data>
+  <data name="TALK_REST_0124_VAR_00" xml:space="preserve">
+    <value>ねえ アナタも おどりましょ？ こしを ふって！</value>
+  </data>
+  <data name="TALK_REST_0125_VAR_00" xml:space="preserve">
+    <value>でんき だいすき！ さいこうだよな！ ガハハハッ！</value>
+  </data>
+  <data name="TALK_REST_0126_VAR_00" xml:space="preserve">
+    <value>くちから ほのおをはくでひょっとこ！ とてもあついでひょっとこ！</value>
+  </data>
+  <data name="TALK_REST_0127_VAR_00" xml:space="preserve">
+    <value>ワシの じまんはッ！ クワッ！ ２ほんのながいツノッ！ ガタッ！</value>
+  </data>
+  <data name="TALK_REST_0128_VAR_00" xml:space="preserve">
+    <value>さあ いくでうっし！ とっしんでうっし！</value>
+  </data>
+  <data name="TALK_REST_0129_VAR_00" xml:space="preserve">
+    <value>……はねる……！ はねるよ……！</value>
+  </data>
+  <data name="TALK_REST_0130_VAR_00" xml:space="preserve">
+    <value>あばれてえ！ あばれてえドーーーース！！</value>
+  </data>
+  <data name="TALK_REST_0131_VAR_00" xml:space="preserve">
+    <value>ひつようであれば せかいの どこまでも いきますよ。</value>
+  </data>
+  <data name="TALK_REST_0132_VAR_00" xml:space="preserve">
+    <value>あの えっと……あなたにへんしんしても よろしいでしょうか？[br]……あっ やっぱ やめときます。 すみません……。</value>
+  </data>
+  <data name="TALK_REST_0133_VAR_00" xml:space="preserve">
+    <value>ぼく がんばるよ！ いっしょに がんばろうね！</value>
+  </data>
+  <data name="TALK_REST_0134_VAR_00" xml:space="preserve">
+    <value>ボク ヒレとエラがあるから すいちゅうでも せいかつができるんです！[br]あ…[pause=0]そんなことはきいてないですか。 ああ そうですか……。</value>
+  </data>
+  <data name="TALK_REST_0135_VAR_00" xml:space="preserve">
+    <value>オレのけがツンツンしてるのは でんきのせいだ！[br]けっして ツッパリとか ふりょうとかじゃないから……[br]カンちがいしないでくれよな！ よろしくな！</value>
+  </data>
+  <data name="TALK_REST_0136_VAR_00" xml:space="preserve">
+    <value>からだのなかには ほのおぶくろがあるんだよ！ たいもうも あったかいんだよ！</value>
+  </data>
+  <data name="TALK_REST_0137_VAR_00" xml:space="preserve">
+    <value>デンシクウカン トビマス！ トビマス！</value>
+  </data>
+  <data name="TALK_REST_0138_VAR_00" xml:space="preserve">
+    <value>こだいのかせきから ふっかつしました！</value>
+  </data>
+  <data name="TALK_REST_0139_VAR_00" xml:space="preserve">
+    <value>せなかの カラが おおきくなりすぎて おもたいんだ……。</value>
+  </data>
+  <data name="TALK_REST_0140_VAR_00" xml:space="preserve">
+    <value>あの…ボクを ひっくりかえさないでね。 おきられないから。</value>
+  </data>
+  <data name="TALK_REST_0141_VAR_00" xml:space="preserve">
+    <value>じまんの カマで こうげきするぜ！</value>
+  </data>
+  <data name="TALK_REST_0142_VAR_00" xml:space="preserve">
+    <value>ワシは そらのおうじゃ！ おおぞらでは だれにも ジャマはさせん！</value>
+  </data>
+  <data name="TALK_REST_0143_VAR_00" xml:space="preserve">
+    <value>ねえ なんかたべものない……？</value>
+  </data>
+  <data name="TALK_REST_0144_VAR_00" xml:space="preserve">
+    <value>わたしは こおりのつかい！ こおりの ちからで オマエを サポートしよう！</value>
+  </data>
+  <data name="TALK_REST_0145_VAR_00" xml:space="preserve">
+    <value>わが いなずまは てんちの いかり！ ともに たたかおう！</value>
+  </data>
+  <data name="TALK_REST_0146_VAR_00" xml:space="preserve">
+    <value>わたしは ひのけしん！ はばたくたびに はねがごうかのごとく もえあがる！</value>
+  </data>
+  <data name="TALK_REST_0147_VAR_00" xml:space="preserve">
+    <value>こうみえて まだこどもなんだよ。 ミニなんだよ。ミニ。</value>
+  </data>
+  <data name="TALK_REST_0148_VAR_00" xml:space="preserve">
+    <value>あわてないことが たいせつです。 おちついていきましょう。</value>
+  </data>
+  <data name="TALK_REST_0149_VAR_00" xml:space="preserve">
+    <value>いっしょに ちからをあわせて がんばりましょう！</value>
+  </data>
+  <data name="TALK_REST_0150_VAR_00" xml:space="preserve">
+    <value>わたしは なんのためにうまれ…… なんのためにたたかうのか……。</value>
+  </data>
+  <data name="TALK_REST_0151_VAR_00" xml:space="preserve">
+    <value>ミュウも ちょうさのしごとがんばるよー！</value>
+  </data>
+  <data name="TALK_REST_0152_VAR_00" xml:space="preserve">
+    <value>おひさま だいすき！ ホントだいすきー！</value>
+  </data>
+  <data name="TALK_REST_0153_VAR_00" xml:space="preserve">
+    <value>げんきだしていこー！ がんばろー！</value>
+  </data>
+  <data name="TALK_REST_0154_00_1_VAR_00" xml:space="preserve">
+    <value>こころを しずめて おだやかなきもちで いきましょう。</value>
+  </data>
+  <data name="TALK_REST_0154_00_2_VAR_00" xml:space="preserve">
+    <value>はなのかおりで おだやかになってね！</value>
+  </data>
+  <data name="TALK_REST_0155_VAR_00" xml:space="preserve">
+    <value>がんばっていこうね！（ちょっと こわいけど……。）</value>
+  </data>
+  <data name="TALK_REST_0156_VAR_00" xml:space="preserve">
+    <value>マグマでてきを ビビらせてやるぜ！</value>
+  </data>
+  <data name="TALK_REST_0157_VAR_00" xml:space="preserve">
+    <value>オレの いかりは ほのおの いかり！ もえつくしてやるぜ！</value>
+  </data>
+  <data name="TALK_REST_0158_VAR_00" xml:space="preserve">
+    <value>みんなで わになろうぜ！ わにっ！</value>
+  </data>
+  <data name="TALK_REST_0159_VAR_00" xml:space="preserve">
+    <value>いっしょに ぼうけんしてくれるのか？ ありげとう！</value>
+  </data>
+  <data name="TALK_REST_0161_VAR_00" xml:space="preserve">
+    <value>きょうも がんばっていきましょう！</value>
+  </data>
+  <data name="TALK_REST_0162_VAR_00" xml:space="preserve">
+    <value>からだがほそながいですねって よく いわれます。</value>
+  </data>
+  <data name="TALK_REST_0163_VAR_00" xml:space="preserve">
+    <value>じかんは せいかくに！ まちあわせとか おくれないようにね！ ホーホー！</value>
+  </data>
+  <data name="TALK_REST_0164_VAR_00" xml:space="preserve">
+    <value>ワシは よるでも まわりがみえる。 みえるのじゃー！</value>
+  </data>
+  <data name="TALK_REST_0165_VAR_00" xml:space="preserve">
+    <value>パンチ！ パンチ！ レディバパンチ！</value>
+  </data>
+  <data name="TALK_REST_0166_VAR_00" xml:space="preserve">
+    <value>わたしは レディアン！ ほしのレディアン！</value>
+  </data>
+  <data name="TALK_REST_0167_VAR_00" xml:space="preserve">
+    <value>まず いとをはり すをつくります。</value>
+  </data>
+  <data name="TALK_REST_0168_VAR_00" xml:space="preserve">
+    <value>え？ どっちがあたまか わからないって？ そんなぁ……。</value>
+  </data>
+  <data name="TALK_REST_0169_VAR_00" xml:space="preserve">
+    <value>ハネが４つあるけど しずかに とべるのよ ワタシ。</value>
+  </data>
+  <data name="TALK_REST_0170_VAR_00" xml:space="preserve">
+    <value>２つの しょくしゅから プラスと マイナスのでんきをながすんだよ。[br]あれ？ どっちがプラスで どっちが マイナスだっけ？</value>
+  </data>
+  <data name="TALK_REST_0171_VAR_00" xml:space="preserve">
+    <value>しんかいをぼうけんするのも なかなか たのしいぞ。</value>
+  </data>
+  <data name="TALK_REST_0172_VAR_00" xml:space="preserve">
+    <value>ボク にんきものなんだよ。じぶんで いうのもナンだけど。</value>
+  </data>
+  <data name="TALK_REST_0173_VAR_00" xml:space="preserve">
+    <value>ながれぼし だいすき！ おほしさま だいすきだよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0174_VAR_00" xml:space="preserve">
+    <value>ねえ？ なにして あそぶー？</value>
+  </data>
+  <data name="TALK_REST_0175_VAR_00" xml:space="preserve">
+    <value>はやくがっこうに あがりたいよーっ\u266A</value>
+  </data>
+  <data name="TALK_REST_0176_VAR_00" xml:space="preserve">
+    <value>ボクのちかくにいると しあわせになれるって いわれてるよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0177_VAR_00" xml:space="preserve">
+    <value>……[pause=0]ヒマだ……。</value>
+  </data>
+  <data name="TALK_REST_0178_VAR_00" xml:space="preserve">
+    <value>ワタシは かことみらいを みとお…… クワーーーーーーーーーーーーーーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0179_VAR_00" xml:space="preserve">
+    <value>ワタシ フワフワして あたたかいのよ。 ちょっと ビリビリもするけど。</value>
+  </data>
+  <data name="TALK_REST_0180_VAR_00" xml:space="preserve">
+    <value>いま まちがえてなまえよぼうとしたでしょ？ モモコじゃないよ。モココだよ。</value>
+  </data>
+  <data name="TALK_REST_0181_VAR_00" xml:space="preserve">
+    <value>きょうも スタイリッシュに がんばりましょう！</value>
+  </data>
+  <data name="TALK_REST_0182_VAR_00" xml:space="preserve">
+    <value>ねえ いっしょに おどりましょ\u266A</value>
+  </data>
+  <data name="TALK_REST_0183_VAR_00" xml:space="preserve">
+    <value>ボク そんなにつよくないけど がんばるよ！</value>
+  </data>
+  <data name="TALK_REST_0184_VAR_00" xml:space="preserve">
+    <value>みみを すませば いろんなおとが きこえてくるのよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0185_VAR_00" xml:space="preserve">
+    <value>ウッソ\u266A ウソ\u266A みんな ウソ\u266A だまされないように しようね！</value>
+  </data>
+  <data name="TALK_REST_0186_VAR_00" xml:space="preserve">
+    <value>がんばるでトノッ！ やるでトノーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0187_VAR_00" xml:space="preserve">
+    <value>かぜにのって ふわふわ～\u266A ふわふわ～\u266A</value>
+  </data>
+  <data name="TALK_REST_0188_VAR_00" xml:space="preserve">
+    <value>はなが さいたよ～\u266A ポポポポポッ\u266A</value>
+  </data>
+  <data name="TALK_REST_0189_VAR_00" xml:space="preserve">
+    <value>わたになって とんでいくよ～\u266A ぽんぽん\u266A</value>
+  </data>
+  <data name="TALK_REST_0190_VAR_00" xml:space="preserve">
+    <value>ねえ しっぽジャンケンやろうよ？ ……え？ ムリ……？</value>
+  </data>
+  <data name="TALK_REST_0191_VAR_00" xml:space="preserve">
+    <value>いっしょにぼうけん がんばりましょう！ ダイエットにもなるし！</value>
+  </data>
+  <data name="TALK_REST_0192_VAR_00" xml:space="preserve">
+    <value>きゃー！ なんか ワクワクしますわー！</value>
+  </data>
+  <data name="TALK_REST_0193_VAR_00" xml:space="preserve">
+    <value>ブーンととぶでヤンマヤンマー！</value>
+  </data>
+  <data name="TALK_REST_0194_VAR_00" xml:space="preserve">
+    <value>ねえ みずあそびしよ！ イヤだったら ドロあそび！！</value>
+  </data>
+  <data name="TALK_REST_0196_VAR_00" xml:space="preserve">
+    <value>たいようのひかりが ワタシを かわいくさせるの\u266A</value>
+  </data>
+  <data name="TALK_REST_0197_VAR_00" xml:space="preserve">
+    <value>つきのひかりで おれはつよくなる！</value>
+  </data>
+  <data name="TALK_REST_0198_VAR_00" xml:space="preserve">
+    <value>あんまりいそいでいかないザマスよ？ ワタシを おいていかないザマス。</value>
+  </data>
+  <data name="TALK_REST_0199_VAR_00" xml:space="preserve">
+    <value>どんなときでも のんびりいくのが いいんじゃよ。</value>
+  </data>
+  <data name="TALK_REST_0200_VAR_00" xml:space="preserve">
+    <value>ワタシ おどろかせるのが だいだい だいすきなの。[br]こわがってる すがたを みると ゾクゾクしちゃう\u266A</value>
+  </data>
+  <data name="TALK_REST_0201_01_VAR_00" xml:space="preserve">
+    <value>Ｂデゴンス。アッ Ｂックリ！</value>
+  </data>
+  <data name="TALK_REST_0201_02_VAR_00" xml:space="preserve">
+    <value>セッシャ Ｃトモウス。 Ｃンジラレナイカモ Ｃレナイガ。</value>
+  </data>
+  <data name="TALK_REST_0201_03_VAR_00" xml:space="preserve">
+    <value>Ｄデース。ソレＤ ナニカー？</value>
+  </data>
+  <data name="TALK_REST_0201_04_VAR_00" xml:space="preserve">
+    <value>Ｅッス。ガンバッテ 生キテイクッス！</value>
+  </data>
+  <data name="TALK_REST_0201_05_VAR_00" xml:space="preserve">
+    <value>Ｆデス。[pause=0]スンマセン。 ナニモオモイツキマセン……。</value>
+  </data>
+  <data name="TALK_REST_0201_06_VAR_00" xml:space="preserve">
+    <value>Ｇジャ。ＧＧイジャ。ダカラ ナンジャ！</value>
+  </data>
+  <data name="TALK_REST_0201_07_VAR_00" xml:space="preserve">
+    <value>Ｈデス。デモ Ｈジャナイヨ？</value>
+  </data>
+  <data name="TALK_REST_0201_08_VAR_00" xml:space="preserve">
+    <value>Ｉデス！ Ｉーーーン！！</value>
+  </data>
+  <data name="TALK_REST_0201_09_VAR_00" xml:space="preserve">
+    <value>Ｊダモンネ！ ＪンＪン ゲンキダモンネ！</value>
+  </data>
+  <data name="TALK_REST_0201_10_VAR_00" xml:space="preserve">
+    <value>Ｋデース。Ｋンカハ ヤメテネ。</value>
+  </data>
+  <data name="TALK_REST_0201_11_VAR_00" xml:space="preserve">
+    <value>Ｌダ！ 見Ｌ！ 見Ｌゾ！ アソコニ Ｌフーンガ！</value>
+  </data>
+  <data name="TALK_REST_0201_12_VAR_00" xml:space="preserve">
+    <value>Ｍダヨ。[pause=0]エッ？ ダジャレ？[pause=0] Ｍリ！</value>
+  </data>
+  <data name="TALK_REST_0201_13_VAR_00" xml:space="preserve">
+    <value>Ｎジャ。ワスレＮ カコガ ワシニハ ワシニハアル……。</value>
+  </data>
+  <data name="TALK_REST_0201_14_VAR_00" xml:space="preserve">
+    <value>Ｏデス。Ｏナジ アヤマチヲ ワタシハ Ｏカシハシナイ。</value>
+  </data>
+  <data name="TALK_REST_0201_15_VAR_00" xml:space="preserve">
+    <value>Ｐチャンデース！ ＰカＰカ カガヤイテマース！</value>
+  </data>
+  <data name="TALK_REST_0201_16_VAR_00" xml:space="preserve">
+    <value>Ｑチャンダヨ！ トッテモ Ｑトナンダヨ！</value>
+  </data>
+  <data name="TALK_REST_0201_17_VAR_00" xml:space="preserve">
+    <value>ワガハイハ ＲデＲ。トＲ イセキカラ やってきたのでＲ。</value>
+  </data>
+  <data name="TALK_REST_0201_18_VAR_00" xml:space="preserve">
+    <value>ＳデーＳ。Ｓノジニ マガッタカラダガ チャームポイントデＳ。</value>
+  </data>
+  <data name="TALK_REST_0201_19_VAR_00" xml:space="preserve">
+    <value>Ｔダヨ！ ガンバッテコウゲキスルヨ！ Ｔ！ Ｔ！</value>
+  </data>
+  <data name="TALK_REST_0201_20_VAR_00" xml:space="preserve">
+    <value>Ｕダヨ！ Ｕ アンノーン？ イエス アンノーン！</value>
+  </data>
+  <data name="TALK_REST_0201_21_VAR_00" xml:space="preserve">
+    <value>Ｖデス！ ショウリノ Ｖ！</value>
+  </data>
+  <data name="TALK_REST_0201_22_VAR_00" xml:space="preserve">
+    <value>Ｗデス。[pause=0]Ｗアターック！[pause=0] ……スミマセン。 イミナク サケンデシマイマシタ……。</value>
+  </data>
+  <data name="TALK_REST_0201_23_VAR_00" xml:space="preserve">
+    <value>Ｘダヨ。[pause=0]バッテンジャナイヨ。Ｘダヨ。</value>
+  </data>
+  <data name="TALK_REST_0201_24_VAR_00" xml:space="preserve">
+    <value>ワイハ Ｙヤデ。テキニマワスト コワインヤデ Ｙ。</value>
+  </data>
+  <data name="TALK_REST_0201_25_VAR_00" xml:space="preserve">
+    <value>ボクハ Ｚ！[pause=0] アンノーン Ｚ！！</value>
+  </data>
+  <data name="TALK_REST_0201_26_VAR_00" xml:space="preserve">
+    <value>ワタシハ ビックリ アラ！ ビックリ</value>
+  </data>
+  <data name="TALK_REST_0201_27_VAR_00" xml:space="preserve">
+    <value>セッシャハ ハテナ イツモ ギモンヲカンジテイキテイマス……？</value>
+  </data>
+  <data name="TALK_REST_0201_VAR_00" xml:space="preserve">
+    <value>Ａダヨー。イチバン Ａンダヨー。</value>
+  </data>
+  <data name="TALK_REST_0202_00_1_VAR_00" xml:space="preserve">
+    <value>ソォォォォーーーナンスゥゥゥーーー！！</value>
+  </data>
+  <data name="TALK_REST_0202_00_2_VAR_00" xml:space="preserve">
+    <value>ワタシ がまんは イヤなの。もっと たのしく いきていきたい！</value>
+  </data>
+  <data name="TALK_REST_0203_VAR_00" xml:space="preserve">
+    <value>うえからよんでも キリンリキ！ したからよんでも キリンリキ！</value>
+  </data>
+  <data name="TALK_REST_0204_VAR_00" xml:space="preserve">
+    <value>きのみ みたいな ナリをしてますが じつは むしタイプなんです。[br]……はい。まぎらわしいと よく いわれます。</value>
+  </data>
+  <data name="TALK_REST_0205_VAR_00" xml:space="preserve">
+    <value>きに くっつきたい……！</value>
+  </data>
+  <data name="TALK_REST_0206_VAR_00" xml:space="preserve">
+    <value>ボク いちりゅうのぼうけんかに なりたいんだ！[br]じつりょくは まだまだたりないけど…… でも がんばるよ！</value>
+  </data>
+  <data name="TALK_REST_0207_VAR_00" xml:space="preserve">
+    <value>かぜにのって かっくうするの きもちいいんだぜ！ グハハハハッ！</value>
+  </data>
+  <data name="TALK_REST_0208_VAR_00" xml:space="preserve">
+    <value>ガンガンすすんでいこうぜ！ ハガーーーーーーーーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0210_VAR_00" xml:space="preserve">
+    <value>ぼうけんにいくブル！ でも できれば こわそうなところは やめてくれブル！</value>
+  </data>
+  <data name="TALK_REST_0211_VAR_00" xml:space="preserve">
+    <value>オレ ツンツンしてるようにみえるか？ そんなことないぜ！ ツンツン！</value>
+  </data>
+  <data name="TALK_REST_0213_VAR_00" xml:space="preserve">
+    <value>ジュース だいすき！ ツボツボ！</value>
+  </data>
+  <data name="TALK_REST_0214_VAR_00" xml:space="preserve">
+    <value>ミツあるところ ヘラクロスあり！ ミツは どこじゃー！</value>
+  </data>
+  <data name="TALK_REST_0215_VAR_00" xml:space="preserve">
+    <value>わたしを おこらせると じまんの ツメが ようしゃしないよ！</value>
+  </data>
+  <data name="TALK_REST_0216_VAR_00" xml:space="preserve">
+    <value>ワタシ もっと おっきくなりたいの！</value>
+  </data>
+  <data name="TALK_REST_0217_VAR_00" xml:space="preserve">
+    <value>ちからしごとなら まかせてくれ！</value>
+  </data>
+  <data name="TALK_REST_0218_VAR_00" xml:space="preserve">
+    <value>うごいてないと かたまるんですよ。 からだが。</value>
+  </data>
+  <data name="TALK_REST_0219_VAR_00" xml:space="preserve">
+    <value>ワシの からだは ようがんで できてるんじゃ。[br]ちなみにすきなたべものは ようかん……[pause=0]なんちって。</value>
+  </data>
+  <data name="TALK_REST_0220_VAR_00" xml:space="preserve">
+    <value>ウリはねー おんせんを ほりあてるのが とくいなんだよー。</value>
+  </data>
+  <data name="TALK_REST_0221_VAR_00" xml:space="preserve">
+    <value>ながいけのおかげで いつも ホッカホカなんじゃ。</value>
+  </data>
+  <data name="TALK_REST_0222_VAR_00" xml:space="preserve">
+    <value>あたたかいうみに あつまったワタシたち。 さてぜんぶで なんびきいたでしょうか？[br]せいかいは たくさん ダメージを うけたあとで。</value>
+  </data>
+  <data name="TALK_REST_0223_VAR_00" xml:space="preserve">
+    <value>マンタインくんがいると すぐに くっつきたくなっちゃうんだよねー。</value>
+  </data>
+  <data name="TALK_REST_0224_VAR_00" xml:space="preserve">
+    <value>アタシ つよいポケモンを みると からみつきたくなるのよん。</value>
+  </data>
+  <data name="TALK_REST_0225_VAR_00" xml:space="preserve">
+    <value>せかいじゅうの こどもたちに プレゼンツ！ それが ワタシのゆめなんです！</value>
+  </data>
+  <data name="TALK_REST_0226_VAR_00" xml:space="preserve">
+    <value>おっきなうみを およぎまくりたい！</value>
+  </data>
+  <data name="TALK_REST_0227_VAR_00" xml:space="preserve">
+    <value>まいばん あんしんして ねむりたいザマス！</value>
+  </data>
+  <data name="TALK_REST_0228_VAR_00" xml:space="preserve">
+    <value>ワオーン！ おなか すいたっ！</value>
+  </data>
+  <data name="TALK_REST_0229_VAR_00" xml:space="preserve">
+    <value>オレを おこらせるんじゃないぞ！ ほのお はくから きをつけな！</value>
+  </data>
+  <data name="TALK_REST_0230_VAR_00" xml:space="preserve">
+    <value>ワシが いくところ きょだいな うずまきが はっせいする……[pause=0]といわれているが ホント？</value>
+  </data>
+  <data name="TALK_REST_0231_VAR_00" xml:space="preserve">
+    <value>おれも とうちゃんみたいな ちからもちに なりたいな！</value>
+  </data>
+  <data name="TALK_REST_0232_VAR_00" xml:space="preserve">
+    <value>きょうは どこまで いくんだ？ ちからなら かすぞ。</value>
+  </data>
+  <data name="TALK_REST_0233_VAR_00" xml:space="preserve">
+    <value>ドコデモ イケルンダヨ！ シンクウデモ ウチュウデモ！</value>
+  </data>
+  <data name="TALK_REST_0234_VAR_00" xml:space="preserve">
+    <value>オレの ツノをみつめると ねむくなる らしい。[pause=0]なぜだかは しらん。</value>
+  </data>
+  <data name="TALK_REST_0235_VAR_00" xml:space="preserve">
+    <value>わがはいは えかきである。 げいじゅつとは……げいじゅつとは……！</value>
+  </data>
+  <data name="TALK_REST_0236_VAR_00" xml:space="preserve">
+    <value>たたかい だいすきっ！ どっかに いいあいてが いないかなあ……！</value>
+  </data>
+  <data name="TALK_REST_0237_VAR_00" xml:space="preserve">
+    <value>くるくるまわって キック！ キック！</value>
+  </data>
+  <data name="TALK_REST_0238_VAR_00" xml:space="preserve">
+    <value>げんきいっぱい！ ムッチュムチュー！</value>
+  </data>
+  <data name="TALK_REST_0239_VAR_00" xml:space="preserve">
+    <value>うでを ぶんまわして でんきを ためるよ！ それ！ ブンブン！ ブンブン！</value>
+  </data>
+  <data name="TALK_REST_0241_VAR_00" xml:space="preserve">
+    <value>まいあさ モーモーミルクのんでる？ げんきになるわよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0242_VAR_00" xml:space="preserve">
+    <value>いつもえがおで がんばるわよ！</value>
+  </data>
+  <data name="TALK_REST_0243_VAR_00" xml:space="preserve">
+    <value>いいかッ！ かってなマネは するんじゃないぞッ！</value>
+  </data>
+  <data name="TALK_REST_0244_VAR_00" xml:space="preserve">
+    <value>われにたちむかうものは すべて やきつくしてくれようッ！ グオオオッ！！</value>
+  </data>
+  <data name="TALK_REST_0245_VAR_00" xml:space="preserve">
+    <value>まえにむかいましょう！ きたかぜとともに！</value>
+  </data>
+  <data name="TALK_REST_0246_VAR_00" xml:space="preserve">
+    <value>つちって けっこう おいしいんだぜ？ ヨギヨギー！</value>
+  </data>
+  <data name="TALK_REST_0247_VAR_00" xml:space="preserve">
+    <value>さなぎでもつよいぜ！ あばれまくるぜ！</value>
+  </data>
+  <data name="TALK_REST_0249_VAR_00" xml:space="preserve">
+    <value>われは うみを つかさどるかみ！ うみがあれれば われが しずめよう！</value>
+  </data>
+  <data name="TALK_REST_0250_VAR_00" xml:space="preserve">
+    <value>なにか あれば もとめなさい！ いつでも ちからに なりましょう！</value>
+  </data>
+  <data name="TALK_REST_0251_VAR_00" xml:space="preserve">
+    <value>どこまでも いこう！ じかんをこえて！</value>
+  </data>
+  <data name="TALK_REST_0252_VAR_00" xml:space="preserve">
+    <value>がんばっていこうぜ！ もりのきと ともに！！</value>
+  </data>
+  <data name="TALK_REST_0253_VAR_00" xml:space="preserve">
+    <value>ぎゃっきょうが オレをつよくさせるッ！ あきらめずに いくぞッ！</value>
+  </data>
+  <data name="TALK_REST_0254_VAR_00" xml:space="preserve">
+    <value>ジャングルのなかでは オレのみぎに でるものはいない！ いくぞ！</value>
+  </data>
+  <data name="TALK_REST_0255_00_1_VAR_00" xml:space="preserve">
+    <value>オレ きょうもげんきにひをふくよ！</value>
+  </data>
+  <data name="TALK_REST_0255_00_2_VAR_00" xml:space="preserve">
+    <value>アタシ いつも ぽかぽかあたたかいよ。 さわってみる？</value>
+  </data>
+  <data name="TALK_REST_0256_00_1_VAR_00" xml:space="preserve">
+    <value>たたかいにそなえて いつも あしこしを きたえてるぜ！ うりゃー！</value>
+  </data>
+  <data name="TALK_REST_0256_00_2_VAR_00" xml:space="preserve">
+    <value>ワタシに さわると あついわよ！ シャーッ！！</value>
+  </data>
+  <data name="TALK_REST_0257_00_1_VAR_00" xml:space="preserve">
+    <value>あいてがつよいほど オレのほのおは もえあがる！</value>
+  </data>
+  <data name="TALK_REST_0257_00_2_VAR_00" xml:space="preserve">
+    <value>わたしの ほのおの ひざげり くらってみる？</value>
+  </data>
+  <data name="TALK_REST_0258_VAR_00" xml:space="preserve">
+    <value>ちっちゃいけど こうみえて けっこう ちからもちなんだよ！</value>
+  </data>
+  <data name="TALK_REST_0259_VAR_00" xml:space="preserve">
+    <value>なあ どろあそび やろーぜ！！</value>
+  </data>
+  <data name="TALK_REST_0260_VAR_00" xml:space="preserve">
+    <value>もうすぐ……あらしのよかん……ッ！！</value>
+  </data>
+  <data name="TALK_REST_0261_VAR_00" xml:space="preserve">
+    <value>なあ おいかけっこしようぜ！</value>
+  </data>
+  <data name="TALK_REST_0262_VAR_00" xml:space="preserve">
+    <value>チームワークがたいせつなんだ！ コンビネーションでたたかおうぜ！</value>
+  </data>
+  <data name="TALK_REST_0263_VAR_00" xml:space="preserve">
+    <value>みんなも ちょっかくに まがろうぜ！ それ！ ジグザグ！ ジグザグ！</value>
+  </data>
+  <data name="TALK_REST_0264_VAR_00" xml:space="preserve">
+    <value>オレは ムダがキライなんだ！ なんで みちとか まがりくねってんだよ！？</value>
+  </data>
+  <data name="TALK_REST_0265_VAR_00" xml:space="preserve">
+    <value>これからも リーダーをしんじて ついていきます！</value>
+  </data>
+  <data name="TALK_REST_0266_VAR_00" xml:space="preserve">
+    <value>しんかなんてしなくても できるっ！[pause=0] やれば できるさっ！</value>
+  </data>
+  <data name="TALK_REST_0267_VAR_00" xml:space="preserve">
+    <value>ハネが カラフルで キレイでしょ？ じまんじゃないけど じまんなの\u266A</value>
+  </data>
+  <data name="TALK_REST_0268_VAR_00" xml:space="preserve">
+    <value>しんか……？ うーん……このまま こもっているのも イヤじゃないんだよね。</value>
+  </data>
+  <data name="TALK_REST_0269_VAR_00" xml:space="preserve">
+    <value>きょうもこなを ふりまくよー\u266A それ！</value>
+  </data>
+  <data name="TALK_REST_0270_VAR_00" xml:space="preserve">
+    <value>わたし やるきない……[pause=0]はっぱ おもいし みずに うかんで くらすです。</value>
+  </data>
+  <data name="TALK_REST_0271_VAR_00" xml:space="preserve">
+    <value>オレ からだが ヌルヌルしてるから たまにおよぐと きもちがいいんだ！</value>
+  </data>
+  <data name="TALK_REST_0272_VAR_00" xml:space="preserve">
+    <value>オゥーイエーー！！ ダンス！ ダンス！ ルンパッパダンス！ オゥーイエーー！！</value>
+  </data>
+  <data name="TALK_REST_0273_VAR_00" xml:space="preserve">
+    <value>オレでよけりゃ ちょうさのしごと つきあうぜ。</value>
+  </data>
+  <data name="TALK_REST_0274_VAR_00" xml:space="preserve">
+    <value>オラ なるべく フォローする！ がんばっていくだど！</value>
+  </data>
+  <data name="TALK_REST_0275_VAR_00" xml:space="preserve">
+    <value>オレの うちわは きょうふうをおこせるんだ。 あつかったりしたら いつでも いってくれ。</value>
+  </data>
+  <data name="TALK_REST_0276_VAR_00" xml:space="preserve">
+    <value>オレ がんばる！ おとなにも まけないぜ！</value>
+  </data>
+  <data name="TALK_REST_0278_VAR_00" xml:space="preserve">
+    <value>なにげに カワイイおみみが チャームポイントよ\u266A モメー！</value>
+  </data>
+  <data name="TALK_REST_0279_VAR_00" xml:space="preserve">
+    <value>オレは さすらいの ゆうびんやさん ペリッパー！ ていねいに はこぶぜ！</value>
+  </data>
+  <data name="TALK_REST_0280_VAR_00" xml:space="preserve">
+    <value>ぼく がんばります！ きもちをいれて！</value>
+  </data>
+  <data name="TALK_REST_0281_VAR_00" xml:space="preserve">
+    <value>いっしょにたのしく がんばりましょう！</value>
+  </data>
+  <data name="TALK_REST_0283_VAR_00" xml:space="preserve">
+    <value>みずたまりを スイスイすべるよ！ アメタン！ アメタン！</value>
+  </data>
+  <data name="TALK_REST_0284_VAR_00" xml:space="preserve">
+    <value>おいどんは あめがキライでモース！ とにかく キライでモース！</value>
+  </data>
+  <data name="TALK_REST_0285_VAR_00" xml:space="preserve">
+    <value>キノノコじゃないよ キノココだよ。 ……え？ よくわからない？</value>
+  </data>
+  <data name="TALK_REST_0286_VAR_00" xml:space="preserve">
+    <value>ぐーんと うでが のびて パンチが うてるよ！ ガッサパァーンチ！</value>
+  </data>
+  <data name="TALK_REST_0287_VAR_00" xml:space="preserve">
+    <value>なまけもののように みえて じつは ほんとうに なまけているんだ。</value>
+  </data>
+  <data name="TALK_REST_0288_VAR_00" xml:space="preserve">
+    <value>ねえねえ なんだか すげーおちつきが ないんだけど どうしたらいい？</value>
+  </data>
+  <data name="TALK_REST_0289_VAR_00" xml:space="preserve">
+    <value>はっきしいって……[pause=0]やるきがない……。</value>
+  </data>
+  <data name="TALK_REST_0290_VAR_00" xml:space="preserve">
+    <value>つちにんじゃ！ ツチニンさんじょうでござる！ ツチニーン！</value>
+  </data>
+  <data name="TALK_REST_0291_VAR_00" xml:space="preserve">
+    <value>こうそくにんじゃ！ テッカニンさんじょう！ ワタシのうごきに ついてこれるか！？</value>
+  </data>
+  <data name="TALK_REST_0292_VAR_00" xml:space="preserve">
+    <value>ぬけがらにんじゃ！ ヌケニンさんじょう！ すきなことばは オール・オア・ナッシング！</value>
+  </data>
+  <data name="TALK_REST_0293_VAR_00" xml:space="preserve">
+    <value>ボ…ボク！ がんばりま…ゴニョニョ……。</value>
+  </data>
+  <data name="TALK_REST_0295_VAR_00" xml:space="preserve">
+    <value>わしは こえが でかいっ！[pause=0] でも それは しかたないんだああぁぁぁーーーーっ！！</value>
+  </data>
+  <data name="TALK_REST_0297_VAR_00" xml:space="preserve">
+    <value>はあはあ……！ ごっつぁんでーす！ どすこいっ！ どすこいっ！</value>
+  </data>
+  <data name="TALK_REST_0298_VAR_00" xml:space="preserve">
+    <value>ぽうけん いきたい\u266A わーい！</value>
+  </data>
+  <data name="TALK_REST_0299_VAR_00" xml:space="preserve">
+    <value>がんばって ぼうけんしますか。[pause=0]ついでに ぎょうしょうもできると うれしいなあ。</value>
+  </data>
+  <data name="TALK_REST_0300_VAR_00" xml:space="preserve">
+    <value>ねえ どっかに ネコじゃらし ない？ キャーッて とびつきたいっ\u266A</value>
+  </data>
+  <data name="TALK_REST_0301_VAR_00" xml:space="preserve">
+    <value>ワタシの みりょくで どんなポケモンも イチコロよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0303_VAR_00" xml:space="preserve">
+    <value>ぼうけんって いつでも ワクワクするよ！ がんばろうな！</value>
+  </data>
+  <data name="TALK_REST_0304_VAR_00" xml:space="preserve">
+    <value>てつって おいしいよね\u266A[pause=0] えっ？ ふつう たべないって！？ ええっ！？</value>
+  </data>
+  <data name="TALK_REST_0305_VAR_00" xml:space="preserve">
+    <value>ぶつかりあいって たのしいよな！ なあ おもいっきり ぶつかろうぜ！</value>
+  </data>
+  <data name="TALK_REST_0306_VAR_00" xml:space="preserve">
+    <value>おおきなやまが オレのナワバリだ！ ぬっ？ どこのやまだと？ ……えと どこだっけ？</value>
+  </data>
+  <data name="TALK_REST_0307_VAR_00" xml:space="preserve">
+    <value>ねえ いっしょに めいそうしよ！ せいしんが きたえられるわよ！</value>
+  </data>
+  <data name="TALK_REST_0310_VAR_00" xml:space="preserve">
+    <value>オレは いつも たてがみからほうでんする。[pause=0] きをつけてくれ。</value>
+  </data>
+  <data name="TALK_REST_0311_VAR_00" xml:space="preserve">
+    <value>ワタシと マイナンで おうえん するからね！ がんばって！</value>
+  </data>
+  <data name="TALK_REST_0312_VAR_00" xml:space="preserve">
+    <value>がんばれ！ がんばれ！ きあいだ！ こんじょーだ！ ボクも がんばるっ！</value>
+  </data>
+  <data name="TALK_REST_0313_VAR_00" xml:space="preserve">
+    <value>イルミーゼ だいすき！[pause=0] みつけるだけで おしりのひかりが かがやくんだ！</value>
+  </data>
+  <data name="TALK_REST_0314_VAR_00" xml:space="preserve">
+    <value>バルビートといっしょに きれいなやけいを つくるのが しゅみなのよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0315_VAR_00" xml:space="preserve">
+    <value>たまには むらをでて うんどうしなきゃね。 ぼうけん がんばろうね！</value>
+  </data>
+  <data name="TALK_REST_0316_VAR_00" xml:space="preserve">
+    <value>きょうも やるきがあるような ないような つまりは よくわからないような……。</value>
+  </data>
+  <data name="TALK_REST_0317_VAR_00" xml:space="preserve">
+    <value>おおきなくちで マルノーム！！</value>
+  </data>
+  <data name="TALK_REST_0318_VAR_00" xml:space="preserve">
+    <value>きょうも なんだか キバーなかんじ！ キバーーーーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0319_VAR_00" xml:space="preserve">
+    <value>オレは うみのギャングと よばれている。[pause=0] ほんとうに ギャングなのかどうかはしらん。</value>
+  </data>
+  <data name="TALK_REST_0320_VAR_00" xml:space="preserve">
+    <value>ねえ みてみて！ ボールみたいに とびはねるよ！！</value>
+  </data>
+  <data name="TALK_REST_0321_VAR_00" xml:space="preserve">
+    <value>みずしぶきをあげるオオオオーーーーーッ！</value>
+  </data>
+  <data name="TALK_REST_0322_VAR_00" xml:space="preserve">
+    <value>みんなから にぶいって よく いわれるどん。ホントかどん？</value>
+  </data>
+  <data name="TALK_REST_0323_VAR_00" xml:space="preserve">
+    <value>バクーーゥッ！ だいふんかあぁぁーー！！</value>
+  </data>
+  <data name="TALK_REST_0324_VAR_00" xml:space="preserve">
+    <value>ワシャ おんせんに つかれないから がんばんよくを よくするんじゃ。ほっほっ。</value>
+  </data>
+  <data name="TALK_REST_0325_VAR_00" xml:space="preserve">
+    <value>ダンジョンでも がんばって しんじゅを うりたいです[pause=0]……が うれるでしょうか？</value>
+  </data>
+  <data name="TALK_REST_0326_VAR_00" xml:space="preserve">
+    <value>くろしんじゅで サイコパワーを あやつるの！ いくわよ！</value>
+  </data>
+  <data name="TALK_REST_0327_VAR_00" xml:space="preserve">
+    <value>てまえ たびをするのがすきなんですぅ～。</value>
+  </data>
+  <data name="TALK_REST_0328_VAR_00" xml:space="preserve">
+    <value>ねえ ボクがつくった さばくのすあなに ちょっと あしを ふみいれてみてよ？</value>
+  </data>
+  <data name="TALK_REST_0329_VAR_00" xml:space="preserve">
+    <value>いつも ハネを はげしく しんどう させるでヤンス。[br]けっして びんぼうゆすりとかでは ないでヤンス。</value>
+  </data>
+  <data name="TALK_REST_0330_VAR_00" xml:space="preserve">
+    <value>オレが はばたけば すなあらしを よぶぜ！</value>
+  </data>
+  <data name="TALK_REST_0331_VAR_00" xml:space="preserve">
+    <value>さばくしゅっしん！[pause=0] するどいトゲが チャーム ポイントです！[pause=0] よろしく！ サボサボーッ！</value>
+  </data>
+  <data name="TALK_REST_0332_VAR_00" xml:space="preserve">
+    <value>ひはしずみ ひはまた のぼる…… あらたなるひかりにつつまれて……。</value>
+  </data>
+  <data name="TALK_REST_0333_VAR_00" xml:space="preserve">
+    <value>わたどりだよ\u266A ハネが わたのように フワフワしてるんだよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0334_VAR_00" xml:space="preserve">
+    <value>ワタシ もふもふしてるでしょ\u266A ちょっと さわってみる？</value>
+  </data>
+  <data name="TALK_REST_0336_VAR_00" xml:space="preserve">
+    <value>ザングースは オレの ライバルなんだ！ こんどあったら……[pause=0]どうしよう……。</value>
+  </data>
+  <data name="TALK_REST_0337_VAR_00" xml:space="preserve">
+    <value>けっして しゃくれてないんだからね？ かおじゃなくて からだだよ。からだ。</value>
+  </data>
+  <data name="TALK_REST_0338_VAR_00" xml:space="preserve">
+    <value>おひさまと よくにていると いわれます。 じぶんでも そうおもいます。</value>
+  </data>
+  <data name="TALK_REST_0339_VAR_00" xml:space="preserve">
+    <value>おいら ドジョッチだっち。 からだが ヌメヌメするだっち。</value>
+  </data>
+  <data name="TALK_REST_0340_VAR_00" xml:space="preserve">
+    <value>ワシは ナマズン。とあるいけのぬしじゃ。 ほっほっほっ むかしばなしをききたいか？</value>
+  </data>
+  <data name="TALK_REST_0341_VAR_00" xml:space="preserve">
+    <value>そういえば おやかたさまは いま どこに いるんだろうなあ ヘイヘイ。</value>
+  </data>
+  <data name="TALK_REST_0342_VAR_00" xml:space="preserve">
+    <value>あたまに かがやく ひとつぼし！ シザーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0343_VAR_00" xml:space="preserve">
+    <value>いせきから やってきたべえ～。 ほうれ かいてんするべえ～。</value>
+  </data>
+  <data name="TALK_REST_0344_VAR_00" xml:space="preserve">
+    <value>こんにちは。ボク ナゾのポケモンです。 ねんどで できている[pause=0]……かもしれません。</value>
+  </data>
+  <data name="TALK_REST_0345_VAR_00" xml:space="preserve">
+    <value>ぼく うみにゆれる かいそうのフリをして てきを だますんです。[pause=0]え？ だまされない？</value>
+  </data>
+  <data name="TALK_REST_0346_VAR_00" xml:space="preserve">
+    <value>いつも うみのそこで ゆらゆら ゆれて いますぅ。[pause=0]いっしょに ゆれいドル？</value>
+  </data>
+  <data name="TALK_REST_0347_VAR_00" xml:space="preserve">
+    <value>ボク もともとはかせきなんだって。なんか ちょっとカッコイイかも……[pause=0]ぽっ……。</value>
+  </data>
+  <data name="TALK_REST_0349_VAR_00" xml:space="preserve">
+    <value>はやく きれいになりたーい。[pause=0] ヒーンバスバス……。</value>
+  </data>
+  <data name="TALK_REST_0350_VAR_00" xml:space="preserve">
+    <value>いきましょう。ふかい あいじょうをもって あなたをつつんでさしあげます。</value>
+  </data>
+  <data name="TALK_REST_0351_VAR_00" xml:space="preserve">
+    <value>ボク てんきによって すがたがかわるんだ\u266A てんき！ てんき！ ノーてんきー！</value>
+  </data>
+  <data name="TALK_REST_0352_VAR_00" xml:space="preserve">
+    <value>いらっしゃ～い\u266A ぼうけんも がんばり ますよ～！ いつもおせわになってますし\u266A</value>
+  </data>
+  <data name="TALK_REST_0353_VAR_00" xml:space="preserve">
+    <value>あたまのツノで きもちを キャッチ！[pause=0] ささいなことまでかんじちゃうんだ！</value>
+  </data>
+  <data name="TALK_REST_0354_VAR_00" xml:space="preserve">
+    <value>オレは のろいを エネルギーに うごいているんだ。[br]どっさりと。たくさん。 たいりょうにな。</value>
+  </data>
+  <data name="TALK_REST_0356_VAR_00" xml:space="preserve">
+    <value>いろんなところを サマヨール！ じんせいも サマヨール！</value>
+  </data>
+  <data name="TALK_REST_0357_VAR_00" xml:space="preserve">
+    <value>ねえ ワタシのくびについている フサを たべてみる？ おいしいのよ！</value>
+  </data>
+  <data name="TALK_REST_0359_VAR_00" xml:space="preserve">
+    <value>そらやだいちが ワタシを よんでいる…… なにかの よちょうをかんじる……。</value>
+  </data>
+  <data name="TALK_REST_0360_VAR_00" xml:space="preserve">
+    <value>いつも ニコニコ えがおナノ！</value>
+  </data>
+  <data name="TALK_REST_0361_00_1_VAR_00" xml:space="preserve">
+    <value>ユキ ダイスキダゼ。ギーギー。</value>
+  </data>
+  <data name="TALK_REST_0361_00_2_VAR_00" xml:space="preserve">
+    <value>ユキガフルト オモワズ トビハネタクナルノ\u266A</value>
+  </data>
+  <data name="TALK_REST_0362_VAR_00" xml:space="preserve">
+    <value>ゴーリ！ ゴーリ！ なんでも こおらせちゃうゴーリ！</value>
+  </data>
+  <data name="TALK_REST_0363_VAR_00" xml:space="preserve">
+    <value>ザラシ！ ザラシ！ ゴロゴロころがる たのしザラシ！</value>
+  </data>
+  <data name="TALK_REST_0364_VAR_00" xml:space="preserve">
+    <value>まわしたい！ ハナのさきで クルクル まわしたいんだよ！ オレは！</value>
+  </data>
+  <data name="TALK_REST_0365_VAR_00" xml:space="preserve">
+    <value>さむさには まだまだ まけん！ わかいものにも まだまだ まけん！</value>
+  </data>
+  <data name="TALK_REST_0366_VAR_00" xml:space="preserve">
+    <value>ねえ みてみて！ しんじゅが できたよ！ バネブーさんにも はやく みせないと！</value>
+  </data>
+  <data name="TALK_REST_0367_VAR_00" xml:space="preserve">
+    <value>なんと！ きょうも ちょうさのしごとを してるのか！？ あっぱれ！ あっぱれじゃ！</value>
+  </data>
+  <data name="TALK_REST_0368_VAR_00" xml:space="preserve">
+    <value>ワタシ キレイでしょ？ ピンクの からだが じまんなの\u266A</value>
+  </data>
+  <data name="TALK_REST_0369_VAR_00" xml:space="preserve">
+    <value>ワシらは １おくねんまえから こんなかんじ だったらしい……って どんなかんじ？</value>
+  </data>
+  <data name="TALK_REST_0370_VAR_00" xml:space="preserve">
+    <value>え？ ワタシに あいにきたですか？[pause=0] ……あい…ですか……[pause=0]ぽっ……。</value>
+  </data>
+  <data name="TALK_REST_0371_VAR_00" xml:space="preserve">
+    <value>オレは そらをとびたい！ いつかおおぞらを とぶことが オレのゆめなんだー！</value>
+  </data>
+  <data name="TALK_REST_0372_VAR_00" xml:space="preserve">
+    <value>がまんがたいせつ！ カラにコモルー！ こもってこもって こもりマクルー！</value>
+  </data>
+  <data name="TALK_REST_0373_VAR_00" xml:space="preserve">
+    <value>オレに さからうものは ぜんぶ やきはらってやる[pause=0]……かもしれない！</value>
+  </data>
+  <data name="TALK_REST_0374_VAR_00" xml:space="preserve">
+    <value>ぼくね じしゃくで できてるんだって。[pause=0] じしゃくって なんだろうね？</value>
+  </data>
+  <data name="TALK_REST_0375_VAR_00" xml:space="preserve">
+    <value>ツメが じまんでガンス！[pause=0] でも なにげに とんがった おハナも すきでガンス！</value>
+  </data>
+  <data name="TALK_REST_0376_VAR_00" xml:space="preserve">
+    <value>かおに バッテン！ どうして バッテン！？</value>
+  </data>
+  <data name="TALK_REST_0377_VAR_00" xml:space="preserve">
+    <value>あたらしいいわを さがしてるでロック。 どこかに いいいわないでロック？</value>
+  </data>
+  <data name="TALK_REST_0378_VAR_00" xml:space="preserve">
+    <value>ワタシのこおりは おおむかしのものなんだって。 じぶん ぜんぜん おぼえてないんだけど。</value>
+  </data>
+  <data name="TALK_REST_0379_VAR_00" xml:space="preserve">
+    <value>ワタシ からだをこすると すごく イヤな きんぞくおんがするんです。きいてみます？</value>
+  </data>
+  <data name="TALK_REST_0382_VAR_00" xml:space="preserve">
+    <value>われは うみのけしんッ！ あらしを よび うみをひろげようッ！</value>
+  </data>
+  <data name="TALK_REST_0383_VAR_00" xml:space="preserve">
+    <value>われは グラードン！ りくちを もりあげ あまぐもを ふりはらう だいちのけしんだッ！</value>
+  </data>
+  <data name="TALK_REST_0384_VAR_00" xml:space="preserve">
+    <value>われは はるかじょうくうにすむもの！ オゾンそうを なんおくねんもとびつづけている！</value>
+  </data>
+  <data name="TALK_REST_0385_VAR_00" xml:space="preserve">
+    <value>たまには ぼうけんにいくのもいいよね！</value>
+  </data>
+  <data name="TALK_REST_0386_VAR_00" xml:space="preserve">
+    <value>むねのすいしょうたいに せいしんをしゅうちゅうすると うちゅうのパワーをかんじるのだ……ッ！</value>
+  </data>
+  <data name="TALK_REST_0387_VAR_00" xml:space="preserve">
+    <value>あたまのはっぱが おひさまを いっぱい あびると きもちイイんだ……。</value>
+  </data>
+  <data name="TALK_REST_0388_VAR_00" xml:space="preserve">
+    <value>もりのなかで ひっそりと くらしたい。[pause=0] きれいなみずべのあるもりで。</value>
+  </data>
+  <data name="TALK_REST_0389_VAR_00" xml:space="preserve">
+    <value>わしらは もりとともにいき もりとともに すすむのだ。</value>
+  </data>
+  <data name="TALK_REST_0390_VAR_00" xml:space="preserve">
+    <value>ほのおは げんきのあかし！ きょうも がんばっていこっ！</value>
+  </data>
+  <data name="TALK_REST_0392_VAR_00" xml:space="preserve">
+    <value>オレは ほのおの かくとうか！ はやく はげしく てきにほのおを ぶちこむ！</value>
+  </data>
+  <data name="TALK_REST_0393_VAR_00" xml:space="preserve">
+    <value>うっとうしくされるのは やなんだよね。 でも あまったれたい……。</value>
+  </data>
+  <data name="TALK_REST_0394_VAR_00" xml:space="preserve">
+    <value>ワタシは ポケモンのなかで いちばん えらい。[br]なぜ そうおもえるのか わからないが とにかく そうおもってしまうのだ。</value>
+  </data>
+  <data name="TALK_REST_0395_VAR_00" xml:space="preserve">
+    <value>３ぼんのツノが つよさのあかし！ なかまを おびやかすものは ワタシがあいてだ！</value>
+  </data>
+  <data name="TALK_REST_0397_VAR_00" xml:space="preserve">
+    <value>たびも ぼうけんも ちょうさも みんな おなじようなものだな。ワクワクする。</value>
+  </data>
+  <data name="TALK_REST_0398_VAR_00" xml:space="preserve">
+    <value>とさかの かたちに こだわってるんだ！ どうだ？ カッコイイだろう？</value>
+  </data>
+  <data name="TALK_REST_0399_VAR_00" xml:space="preserve">
+    <value>はい～っ！ あっしは どんくさいでゲスが まじめに がんばるでゲスよ～！</value>
+  </data>
+  <data name="TALK_REST_0401_VAR_00" xml:space="preserve">
+    <value>うつくしいねいろは こころをなごませます。 おんがくって やっぱり すばらしいですよね。</value>
+  </data>
+  <data name="TALK_REST_0402_VAR_00" xml:space="preserve">
+    <value>おんがくは ばくはつだあ～～～～～～っ！！</value>
+  </data>
+  <data name="TALK_REST_0403_VAR_00" xml:space="preserve">
+    <value>でんきぐらい オレだって つくれるぜ！？</value>
+  </data>
+  <data name="TALK_REST_0404_VAR_00" xml:space="preserve">
+    <value>ツメのさきから でんきをながせるんだ。 ためしてみるかい？</value>
+  </data>
+  <data name="TALK_REST_0405_VAR_00" xml:space="preserve">
+    <value>ものかげに かくれても むだだ。 オレは あらゆるものを とうしする。[br]……といっても いっておくが……[br]ヘンなものは みないように しているからな。ウソじゃないからな。</value>
+  </data>
+  <data name="TALK_REST_0406_VAR_00" xml:space="preserve">
+    <value>かえったら おやつ いっぱい たべたいなー\u266A</value>
+  </data>
+  <data name="TALK_REST_0408_VAR_00" xml:space="preserve">
+    <value>ボク いしあたまなんだよ。でも ナデナデされると よわいんだよ。</value>
+  </data>
+  <data name="TALK_REST_0410_VAR_00" xml:space="preserve">
+    <value>あらそいごとは あまりすきじゃないんだよね。 みんな なかよくしよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0411_VAR_00" xml:space="preserve">
+    <value>じんせいは まもりだ！ せめては イカンのだ！</value>
+  </data>
+  <data name="TALK_REST_0412_01_VAR_00" xml:space="preserve">
+    <value>すなをあつめて ミノにしたのよ。 どうお？ キレイかしら？</value>
+  </data>
+  <data name="TALK_REST_0412_02_VAR_00" xml:space="preserve">
+    <value>ゴミをあつめて ミノに……。しかたないのよ。 そこらへん ゴミしかなかったんだもん。</value>
+  </data>
+  <data name="TALK_REST_0412_VAR_00" xml:space="preserve">
+    <value>そこらへんのくさきをあつめて ミノを まとってみたよ。イイかんじかな？</value>
+  </data>
+  <data name="TALK_REST_0413_01_VAR_00" xml:space="preserve">
+    <value>ちょっときいてよ。からだに ついた すなが とれないの。やんなっちゃう。</value>
+  </data>
+  <data name="TALK_REST_0413_02_VAR_00" xml:space="preserve">
+    <value>なんと！ ミノにしていた ゴミが とれないのよ！ どーすんのよ！ これ！</value>
+  </data>
+  <data name="TALK_REST_0413_VAR_00" xml:space="preserve">
+    <value>ねえきいて。くさきのミノが ぬげないの。 もしかして ふとったからかしら……？</value>
+  </data>
+  <data name="TALK_REST_0415_00_1_VAR_00" xml:space="preserve">
+    <value>みっつの ちからで ミツハニー！ きょうも がんばるでハニー！</value>
+  </data>
+  <data name="TALK_REST_0415_00_2_VAR_00" xml:space="preserve">
+    <value>はやく ハチミツづくりしないと！ きゃーせわしい！</value>
+  </data>
+  <data name="TALK_REST_0417_VAR_00" xml:space="preserve">
+    <value>ほっぺと しっぽが いつも パチパチ いうんだよ。</value>
+  </data>
+  <data name="TALK_REST_0418_00_1_VAR_00" xml:space="preserve">
+    <value>ん？ いっしょにちょうさするか？ がんばろうぜ！</value>
+  </data>
+  <data name="TALK_REST_0418_00_2_VAR_00" xml:space="preserve">
+    <value>すいちゅうでは しっぽをスクリューみたいにして およぐの。カッコイイでしょ？</value>
+  </data>
+  <data name="TALK_REST_0419_00_1_VAR_00" xml:space="preserve">
+    <value>うきぶくろが じまんだが……[pause=0]もしかして それがないと オレ およげないかも！？</value>
+  </data>
+  <data name="TALK_REST_0419_00_2_VAR_00" xml:space="preserve">
+    <value>おぼれている ポケモンがいたらおしえて！ すぐに たすけにいくわよ！</value>
+  </data>
+  <data name="TALK_REST_0420_VAR_00" xml:space="preserve">
+    <value>おひさま いっぱい あびて まっかっか\u266A</value>
+  </data>
+  <data name="TALK_REST_0421_VAR_00" xml:space="preserve">
+    <value>いないない……[pause=0]バアッ！[pause=0] ……ってやりたい\u266A</value>
+  </data>
+  <data name="TALK_REST_0422_01_VAR_00" xml:space="preserve">
+    <value>そだちのわるさを かんきょうのせいにするのを よくきくけど……[pause=0]そんなの じぶんしだいよね？</value>
+  </data>
+  <data name="TALK_REST_0422_VAR_00" xml:space="preserve">
+    <value>ぼくたちは かんきょうによって かわるらしいんだ。そだちってたいせつだよね？</value>
+  </data>
+  <data name="TALK_REST_0424_VAR_00" xml:space="preserve">
+    <value>オレ しっぽで なんでも できちゃうから てはつかわないんだ。いいんだかわるいんだか。</value>
+  </data>
+  <data name="TALK_REST_0425_VAR_00" xml:space="preserve">
+    <value>ふわふわ ふわわわ～～～～～んっ\u266A</value>
+  </data>
+  <data name="TALK_REST_0426_VAR_00" xml:space="preserve">
+    <value>ぼわっ ぼわわわ～～～～～んっ\u266A</value>
+  </data>
+  <data name="TALK_REST_0427_VAR_00" xml:space="preserve">
+    <value>おみみの ポンポンが じまんなの\u266A カワイイでしょ（はあと）</value>
+  </data>
+  <data name="TALK_REST_0429_VAR_00" xml:space="preserve">
+    <value>ねえ じゅもんを となえてもいい？ みんなをしあわせにする あやしい じゅもん\u266A</value>
+  </data>
+  <data name="TALK_REST_0430_VAR_00" xml:space="preserve">
+    <value>わがはいは ドンカラス！ ヤミカラスのドン！ おやぶんだ！</value>
+  </data>
+  <data name="TALK_REST_0431_VAR_00" xml:space="preserve">
+    <value>わたし ワガママで あまえたがりで ツンデレなの。どうお？ こんなの？</value>
+  </data>
+  <data name="TALK_REST_0432_VAR_00" xml:space="preserve">
+    <value>え？ ワタシ ふとってないわよ？ しつれいしちゃうわね。</value>
+  </data>
+  <data name="TALK_REST_0433_VAR_00" xml:space="preserve">
+    <value>とびはねると おとがするの\u266A リーン\u266A リリーーン\u266A</value>
+  </data>
+  <data name="TALK_REST_0434_VAR_00" xml:space="preserve">
+    <value>おいら おしりから きょうれつな……[pause=0] え？ やらなくていい？ あっそう。</value>
+  </data>
+  <data name="TALK_REST_0437_VAR_00" xml:space="preserve">
+    <value>２０００ねんいじょうも ねむってたんですか？ ワタシ？[pause=0] ちょっと ねすぎ！？</value>
+  </data>
+  <data name="TALK_REST_0438_VAR_00" xml:space="preserve">
+    <value>な…ないてなんか いないんだからねっ！ たいないのみずをそとにだしてるだけだからねっ！</value>
+  </data>
+  <data name="TALK_REST_0439_VAR_00" xml:space="preserve">
+    <value>モノマネ だいすき！ では さっそく うたってみましょう！ さいしょのきょくは……</value>
+  </data>
+  <data name="TALK_REST_0440_VAR_00" xml:space="preserve">
+    <value>ねえ しろくてまるいものって かわいいよね\u266A なんか すいよせられちゃう\u266A</value>
+  </data>
+  <data name="TALK_REST_0442_VAR_00" xml:space="preserve">
+    <value>ヒッヒッヒッ！ ワレハ ミカルゲ！ １０８コノ タマシイカラウマレシモノ！</value>
+  </data>
+  <data name="TALK_REST_0443_VAR_00" xml:space="preserve">
+    <value>オレ くちがデカイんだよな。 あたまもだけど。</value>
+  </data>
+  <data name="TALK_REST_0445_VAR_00" xml:space="preserve">
+    <value>オレは はやくッ！ そしてつよいッ！！</value>
+  </data>
+  <data name="TALK_REST_0446_VAR_00" xml:space="preserve">
+    <value>ゴンベ おなか すいた…… なんか くいもん あるー？</value>
+  </data>
+  <data name="TALK_REST_0447_VAR_00" xml:space="preserve">
+    <value>まよったときは はどうを かんじて それに したがうんだ。</value>
+  </data>
+  <data name="TALK_REST_0448_VAR_00" xml:space="preserve">
+    <value>すべては はどうが みちをきりひらく！ いかなるときも！</value>
+  </data>
+  <data name="TALK_REST_0449_00_1_VAR_00" xml:space="preserve">
+    <value>スナブシューデ ガンバロウネ！！</value>
+  </data>
+  <data name="TALK_REST_0449_00_2_VAR_00" xml:space="preserve">
+    <value>カンソウハ オハダニ ヨクナインダケド ワタシ カンソウシタトコロガスキデ！</value>
+  </data>
+  <data name="TALK_REST_0450_00_1_VAR_00" xml:space="preserve">
+    <value>スナヲ マキアゲ スナドゥバァーッ！ スナアラシ ドゥバァーッ！</value>
+  </data>
+  <data name="TALK_REST_0450_00_2_VAR_00" xml:space="preserve">
+    <value>スナノ シャワーデ ウツクシクナルノヨ～\u266A</value>
+  </data>
+  <data name="TALK_REST_0451_VAR_00" xml:space="preserve">
+    <value>まちぶせしたところから ちくって さすのが しゅみなんだ。</value>
+  </data>
+  <data name="TALK_REST_0454_VAR_00" xml:space="preserve">
+    <value>ドクドクドクッ！ どくの ひとさしが とくいでロッグ！</value>
+  </data>
+  <data name="TALK_REST_0455_VAR_00" xml:space="preserve">
+    <value>あまいニオイで おびきよせるの。あとは ワタシの みりょくで イチコロよん\u266A</value>
+  </data>
+  <data name="TALK_REST_0456_VAR_00" xml:space="preserve">
+    <value>うつくしいだろ？ ボ・ク\u266A よく いわれるんだ\u266A</value>
+  </data>
+  <data name="TALK_REST_0457_VAR_00" xml:space="preserve">
+    <value>ふかいうみのなかだと ぼく ひかるんだ\u266A みたいでしょ？</value>
+  </data>
+  <data name="TALK_REST_0458_VAR_00" xml:space="preserve">
+    <value>え？ せなかの もようが かおみたいに みえるって？ またまたまたマンター！</value>
+  </data>
+  <data name="TALK_REST_0459_VAR_00" xml:space="preserve">
+    <value>わたし ゆきがだいすきで ゆきやまで くらしているの。キレイなところよ。</value>
+  </data>
+  <data name="TALK_REST_0460_VAR_00" xml:space="preserve">
+    <value>ワシは しろがすきでな みんな しろく そめてやろう！ ブリザード！ ブリザード！</value>
+  </data>
+  <data name="TALK_REST_0463_VAR_00" xml:space="preserve">
+    <value>ねえ ベロベロなめたいんだけど いい～？[pause=0] え？ ヤダって？ しゅーん……。</value>
+  </data>
+  <data name="TALK_REST_0465_VAR_00" xml:space="preserve">
+    <value>いいかげん カットしてきなさいよって みんなから よく いわれます。[br]でも それじゃモジャじゃないんです。 モジャじゃ。</value>
+  </data>
+  <data name="TALK_REST_0468_VAR_00" xml:space="preserve">
+    <value>キッス！ キッス！ トゲキッス！[pause=0] キスのなかにもトゲは……[pause=0]ないよ！</value>
+  </data>
+  <data name="TALK_REST_0469_VAR_00" xml:space="preserve">
+    <value>ぶ～～～～～ん！！[pause=0] ……え？ うるさい？[pause=0] すんません。</value>
+  </data>
+  <data name="TALK_REST_0470_VAR_00" xml:space="preserve">
+    <value>あたし こうごうせいで きれいなくうきを つくれるの！ なかなか エコでしょ！？</value>
+  </data>
+  <data name="TALK_REST_0471_VAR_00" xml:space="preserve">
+    <value>ワタクシ まわりのくうきを こおらせることが できますの。[br]くうきがよめないとか そういういみでは ないですわ。</value>
+  </data>
+  <data name="TALK_REST_0472_VAR_00" xml:space="preserve">
+    <value>かぜにのって このほしを いっしゅうしたいオーン！</value>
+  </data>
+  <data name="TALK_REST_0473_VAR_00" xml:space="preserve">
+    <value>じっとしてると こおりづけになるんだな。 だから うごかないといけないんだな。</value>
+  </data>
+  <data name="TALK_REST_0474_VAR_00" xml:space="preserve">
+    <value>ボクニツイカサレタ プログラムニ ナンカ ミスガ アルヨウナンダ。[br]チャントナオシテクレヨウ～。</value>
+  </data>
+  <data name="TALK_REST_0476_VAR_00" xml:space="preserve">
+    <value>さて もんだいです。ワタシのハナのしたのものは ハナゲでしょうか？ それともヒゲ？[br]せいかいは ダメージをうけたあとで。</value>
+  </data>
+  <data name="TALK_REST_0477_VAR_00" xml:space="preserve">
+    <value>このせかいも またべつのせかいも おなじだ。[pause=0] あけないよるはない。</value>
+  </data>
+  <data name="TALK_REST_0478_VAR_00" xml:space="preserve">
+    <value>そのひえきった からだを わたしが もっと こごえさせてあげる！ ウフフ！</value>
+  </data>
+  <data name="TALK_REST_0479_01_VAR_00" xml:space="preserve">
+    <value>テキトウニ トリツイタラ コンナノニ ナッチャッタ！ ヒート！ ヒート！</value>
+  </data>
+  <data name="TALK_REST_0479_02_VAR_00" xml:space="preserve">
+    <value>ハコノナカデミズガ グルグルマワルンダヨ！ ナニカガ アラエソウダヨ！</value>
+  </data>
+  <data name="TALK_REST_0479_03_VAR_00" xml:space="preserve">
+    <value>ハコニ ナッチャッタ！ ナカガ ヒエルンダヨ！ コオリモツクレルヨ！</value>
+  </data>
+  <data name="TALK_REST_0479_04_VAR_00" xml:space="preserve">
+    <value>トリツイタラ カゼヲオコセルヨウニ ナッチャッタ！ ブーーーーーーーン！</value>
+  </data>
+  <data name="TALK_REST_0479_05_VAR_00" xml:space="preserve">
+    <value>タイリョウニ クサガ カレソウナカンジガスルヨ！ オニワガアレバ ガンバルヨ！</value>
+  </data>
+  <data name="TALK_REST_0479_VAR_00" xml:space="preserve">
+    <value>イタズラ ダイスキー！ ワーイ！</value>
+  </data>
+  <data name="TALK_REST_0480_VAR_00" xml:space="preserve">
+    <value>わたしは ユクシー。[pause=0] ちしきのかみと よばれています。</value>
+  </data>
+  <data name="TALK_REST_0481_VAR_00" xml:space="preserve">
+    <value>よろこびや かなしみをかんじるのは いきているって あかしだよね！</value>
+  </data>
+  <data name="TALK_REST_0482_VAR_00" xml:space="preserve">
+    <value>なにかをするためにけついする……[pause=0]その こころざしは とうといものだとおもっている。</value>
+  </data>
+  <data name="TALK_REST_0483_VAR_00" xml:space="preserve">
+    <value>われは じかんを つかさどるかみッ！ ときのきざみをうごかしまもるものだッ！</value>
+  </data>
+  <data name="TALK_REST_0484_VAR_00" xml:space="preserve">
+    <value>オレは パルキア！ くうかんを つかさどる かみだッ！ グオオオオオオォォッ！</value>
+  </data>
+  <data name="TALK_REST_0485_VAR_00" xml:space="preserve">
+    <value>ゴボゴボッ！ マグマで からだが とけちまう……ゴボゴボッ！</value>
+  </data>
+  <data name="TALK_REST_0486_VAR_00" xml:space="preserve">
+    <value>うごきが おそいと よくいわれル……。</value>
+  </data>
+  <data name="TALK_REST_0487_VAR_00" xml:space="preserve">
+    <value>われは こことはべつのせかいにすんでいる。 このよの うらがわにあるせかいだ。</value>
+  </data>
+  <data name="TALK_REST_0488_VAR_00" xml:space="preserve">
+    <value>わたしは みかづきのけしん クレセリア。 あくむは わたしが ふりはらいます。</value>
+  </data>
+  <data name="TALK_REST_0489_VAR_00" xml:space="preserve">
+    <value>ふわふわ～ ふわわぁ～～～～ん\u266A</value>
+  </data>
+  <data name="TALK_REST_0490_VAR_00" xml:space="preserve">
+    <value>げんき げんきー！ いつも げんきー！</value>
+  </data>
+  <data name="TALK_REST_0491_VAR_00" xml:space="preserve">
+    <value>しんげつのよるに あくむをみたことがあるか？ あるなら それは わたしのせいだ。</value>
+  </data>
+  <data name="TALK_REST_0492_VAR_00" xml:space="preserve">
+    <value>わたしは シェイミ。[pause=0]かんしゃのきもちを かんじると わたしのはなも ひらきます！</value>
+  </data>
+  <data name="TALK_REST_0493_VAR_00" xml:space="preserve">
+    <value>わたしは アルセウス。むのなかのゆう。[br]わたしたちも うちゅうも ゆうでありむ……[pause=0] すべては ひょうりいったいなのです。</value>
+  </data>
+  <data name="TALK_REST_0495_VAR_00" xml:space="preserve">
+    <value>ワタシがだいすきなのは たいようのひかり！ おひさまあびて げんきいっぱいになれるの！</value>
+  </data>
+  <data name="TALK_REST_0496_VAR_00" xml:space="preserve">
+    <value>ワタシの ムチさばき みてみたい？ でもはやすぎて みえないかも！</value>
+  </data>
+  <data name="TALK_REST_0497_VAR_00" xml:space="preserve">
+    <value>あしをひっぱるようなマネはしないでください。 ジャマになるから。</value>
+  </data>
+  <data name="TALK_REST_0498_VAR_00" xml:space="preserve">
+    <value>きのみをやいてたべるのが すきなんだ\u266A ホント おいしいよね\u266A</value>
+  </data>
+  <data name="TALK_REST_0499_VAR_00" xml:space="preserve">
+    <value>からだのなかの ほのおが……！ もえている……！</value>
+  </data>
+  <data name="TALK_REST_0500_VAR_00" xml:space="preserve">
+    <value>ほのおの あごひげは はげしさの あかし！ ワシのごうかで やきつくしてやろう！！</value>
+  </data>
+  <data name="TALK_REST_0501_VAR_00" xml:space="preserve">
+    <value>おなかのホタチは いろんなことにつかえて べんりだよ！ これないと やっていけない！</value>
+  </data>
+  <data name="TALK_REST_0502_VAR_00" xml:space="preserve">
+    <value>２まいのホタチで！ にとうりゅうで たたかうんだ！</value>
+  </data>
+  <data name="TALK_REST_0503_VAR_00" xml:space="preserve">
+    <value>つるぎの ひとふりで！ いっしゅんの うちに！ てきを たおしてみせよう！</value>
+  </data>
+  <data name="TALK_REST_0504_VAR_00" xml:space="preserve">
+    <value>ワタシの ほほぶくろには エサがたくさん はいるんです。でも みなさんのぶんはごじぶんで。</value>
+  </data>
+  <data name="TALK_REST_0506_VAR_00" xml:space="preserve">
+    <value>ぼうけんいくなら ぼくも がんばるよ！</value>
+  </data>
+  <data name="TALK_REST_0507_VAR_00" xml:space="preserve">
+    <value>まごと いっしょにいるだけで わしは たのしい。げんきに なるんじゃよ。</value>
+  </data>
+  <data name="TALK_REST_0508_VAR_00" xml:space="preserve">
+    <value>わしゃ どんな さむさでもへいきなんじゃ。 そのかわり なつは たいへんじゃが……。</value>
+  </data>
+  <data name="TALK_REST_0509_VAR_00" xml:space="preserve">
+    <value>アラッ？ アナタ みためのセンス いいわね。ワタシほどでは ないけれど。</value>
+  </data>
+  <data name="TALK_REST_0510_VAR_00" xml:space="preserve">
+    <value>どんなポケモンも ワタシにかかれば メロメロ\u266A ほねぬきよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0511_VAR_00" xml:space="preserve">
+    <value>あたまのはっぱをたべれば げんきいっぱい！ ビタミンも ほうふだよ！</value>
+  </data>
+  <data name="TALK_REST_0512_VAR_00" xml:space="preserve">
+    <value>オレは ワルく！ ワイルドに！ いきぬくぜ！</value>
+  </data>
+  <data name="TALK_REST_0513_VAR_00" xml:space="preserve">
+    <value>ねえ たべたいものあったら だして。 ばおっとほのおで おいしくやくから\u266A</value>
+  </data>
+  <data name="TALK_REST_0514_VAR_00" xml:space="preserve">
+    <value>やるきないようにみえます？[pause=0] そうです。ホントに やるきないんです。</value>
+  </data>
+  <data name="TALK_REST_0515_VAR_00" xml:space="preserve">
+    <value>みてて！ いっぱつげい やるよ！ それっ！ あたまから ふんすいっ！！</value>
+  </data>
+  <data name="TALK_REST_0516_VAR_00" xml:space="preserve">
+    <value>じぶんでかんがえ じぶんで はんだんし そしてたのしく ぼうけんしましょう！</value>
+  </data>
+  <data name="TALK_REST_0518_VAR_00" xml:space="preserve">
+    <value>おでこの けむりは ゆめがつまってるのよ\u266A なにそれ コワッ！ とか いわないでね。</value>
+  </data>
+  <data name="TALK_REST_0519_VAR_00" xml:space="preserve">
+    <value>なんかさいきん わすれっぽくなったような きがするんだよな。これって ヤバイ！？</value>
+  </data>
+  <data name="TALK_REST_0520_VAR_00" xml:space="preserve">
+    <value>ほうこうオンチとかしんじられない！ でも まよったりするのも たのしいかもね\u266A</value>
+  </data>
+  <data name="TALK_REST_0521_00_1_VAR_00" xml:space="preserve">
+    <value>あたまの かざりが じまんだが みかけだおし とも いわれている！ だから なんだ！</value>
+  </data>
+  <data name="TALK_REST_0521_00_2_VAR_00" xml:space="preserve">
+    <value>みためはじみでも じつりょくはピカイチよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0522_VAR_00" xml:space="preserve">
+    <value>おれ でんきで たてがみがひかるんだぜ！ カッコイイだろ！？</value>
+  </data>
+  <data name="TALK_REST_0523_VAR_00" xml:space="preserve">
+    <value>オレがはしるところ らいめいが ひびきわたる！！[br]……だからなんだと いわれれば かえす ことばも ないが……。</value>
+  </data>
+  <data name="TALK_REST_0524_VAR_00" xml:space="preserve">
+    <value>めずらしい こうぶつがあったら とってきたいな！</value>
+  </data>
+  <data name="TALK_REST_0525_VAR_00" xml:space="preserve">
+    <value>みなぎる オレンジエネルギー！ ガントルーーーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0526_VAR_00" xml:space="preserve">
+    <value>おいどんは こうみえて しょうしんものなんで ゴワス！ ギガガガガガガ……！</value>
+  </data>
+  <data name="TALK_REST_0527_VAR_00" xml:space="preserve">
+    <value>ハナの あなからだす ちょうおんぱは ハートがた！ くらえ！ このあい！（はあと）</value>
+  </data>
+  <data name="TALK_REST_0528_VAR_00" xml:space="preserve">
+    <value>ハナからおんぱをだすよ！ ハートがただよ！ つまりは あいのささやきなんだよ！（ぽっ）</value>
+  </data>
+  <data name="TALK_REST_0529_VAR_00" xml:space="preserve">
+    <value>ぼうけんか……なんか ワクワクするな。 （ドキドキ……！）</value>
+  </data>
+  <data name="TALK_REST_0530_VAR_00" xml:space="preserve">
+    <value>ん？ うでの ドリルが カッコイイ？[pause=0] んだ。うでドリルは みんなの あこがれだ。</value>
+  </data>
+  <data name="TALK_REST_0531_VAR_00" xml:space="preserve">
+    <value>ぐあいがわるくなったら いってね。 わたし おいしゃさんだから。</value>
+  </data>
+  <data name="TALK_REST_0533_VAR_00" xml:space="preserve">
+    <value>ぶっこわすのは とくいだぜ！？ ドテッコーーーーーーーーーーーーツ！！</value>
+  </data>
+  <data name="TALK_REST_0534_VAR_00" xml:space="preserve">
+    <value>はしらを ふりまわすのに ちからはいらん。 コツがあるんじゃよ。コツが。</value>
+  </data>
+  <data name="TALK_REST_0535_VAR_00" xml:space="preserve">
+    <value>ぴょこた～ん\u266A ぴょこた～ん\u266A</value>
+  </data>
+  <data name="TALK_REST_0536_VAR_00" xml:space="preserve">
+    <value>ガマガルが まがる。[pause=0] ん？ ガマガルガマがる……？</value>
+  </data>
+  <data name="TALK_REST_0537_VAR_00" xml:space="preserve">
+    <value>あたまのコブを しんどうさせるゲ～ロゲ～！ バイブレーションだゲ～ロゲ～！</value>
+  </data>
+  <data name="TALK_REST_0538_VAR_00" xml:space="preserve">
+    <value>じゅうよく ごうを せいす！[pause=0] ワシは やわらのみちを きわめますどん！</value>
+  </data>
+  <data name="TALK_REST_0539_VAR_00" xml:space="preserve">
+    <value>いちげきひっさつ！ それが オレのめざすところだ！ チェストーーーーーーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0540_VAR_00" xml:space="preserve">
+    <value>このはっぱのふくはね おかあさんがつくって くれたんだよー。いいでしょー\u266A</value>
+  </data>
+  <data name="TALK_REST_0541_VAR_00" xml:space="preserve">
+    <value>ボク さむがりなんだ。ああ さむい さむい……。</value>
+  </data>
+  <data name="TALK_REST_0542_VAR_00" xml:space="preserve">
+    <value>もうすぐゆうはんのしたくが ひかえてますが ぼうけんも がんばりますよ！</value>
+  </data>
+  <data name="TALK_REST_0543_VAR_00" xml:space="preserve">
+    <value>オラ！ みんな！ かかってこいや！</value>
+  </data>
+  <data name="TALK_REST_0544_VAR_00" xml:space="preserve">
+    <value>タイヤみたいに ころがるよ！ でも ぶつかると イタイんだよ！？</value>
+  </data>
+  <data name="TALK_REST_0545_VAR_00" xml:space="preserve">
+    <value>オレは どんなあいてだろうが ようしゃしねえ！ ツノで ツノツノだ！！</value>
+  </data>
+  <data name="TALK_REST_0546_VAR_00" xml:space="preserve">
+    <value>ボク ビックリすると からだから わたが とぶんだ。だから おどかさないでね。</value>
+  </data>
+  <data name="TALK_REST_0547_VAR_00" xml:space="preserve">
+    <value>つむじかぜにのっていくよ！ どこまでも！</value>
+  </data>
+  <data name="TALK_REST_0548_VAR_00" xml:space="preserve">
+    <value>あたまのはっぱを かじると げんきになるの\u266A でも すごくにがくて イヤなんだけど……。</value>
+  </data>
+  <data name="TALK_REST_0549_VAR_00" xml:space="preserve">
+    <value>ワタクシ おはなにかこまれたせいかつに あこがれてるの\u266A いいなあ～ おはな\u266A</value>
+  </data>
+  <data name="TALK_REST_0550_01_VAR_00" xml:space="preserve">
+    <value>オレは あかいバスラオが どうしても ゆるせんのだ。[pause=0]なぜか？[pause=0] なんだっけ？</value>
+  </data>
+  <data name="TALK_REST_0550_VAR_00" xml:space="preserve">
+    <value>あおいバスラオが とてもムカつく。どうしてか わからないが なぜか ムカつくんだ。</value>
+  </data>
+  <data name="TALK_REST_0551_VAR_00" xml:space="preserve">
+    <value>ダンジョンの てきポケモンなんて オラァ こわくないからな！ オラァ！</value>
+  </data>
+  <data name="TALK_REST_0552_VAR_00" xml:space="preserve">
+    <value>ああん？ オレになんのようだ？ きょうのところは みのがしてやるぜ！</value>
+  </data>
+  <data name="TALK_REST_0553_VAR_00" xml:space="preserve">
+    <value>きょうも アルバイト サボ…… いや！ がんばるぜ！</value>
+  </data>
+  <data name="TALK_REST_0554_VAR_00" xml:space="preserve">
+    <value>からだンなかは ほのおでマッカッカー！</value>
+  </data>
+  <data name="TALK_REST_0555_VAR_00" xml:space="preserve">
+    <value>ワシのパンチいっぱつで あいては ヒヒヒー！</value>
+  </data>
+  <data name="TALK_REST_0556_VAR_00" xml:space="preserve">
+    <value>アップテンポで リズミカル\u266A さあ キミも いっしょに おどらない？</value>
+  </data>
+  <data name="TALK_REST_0557_VAR_00" xml:space="preserve">
+    <value>ワタクシ りそうのマイホームを さがしてます！ オー！ イエー！</value>
+  </data>
+  <data name="TALK_REST_0558_VAR_00" xml:space="preserve">
+    <value>オイラ おいしそうじゃないから。[pause=0] たべられないから。[pause=0]わかってる？</value>
+  </data>
+  <data name="TALK_REST_0560_VAR_00" xml:space="preserve">
+    <value>オレは ズルいからな あんま たよるんじゃないぞ！</value>
+  </data>
+  <data name="TALK_REST_0562_VAR_00" xml:space="preserve">
+    <value>ねえ ワタシがもっている マスクはなに？[pause=0] なんかコワイんだけど！ コワッ！</value>
+  </data>
+  <data name="TALK_REST_0563_VAR_00" xml:space="preserve">
+    <value>[emote=special2]ぼうけん いいですね～！ ごいっしょ しましょう！ ヒェッヒェッヒェッ！</value>
+  </data>
+  <data name="TALK_REST_0564_VAR_00" xml:space="preserve">
+    <value>ねえ ボク すごい ふかいところまで もぐれるんだよ！</value>
+  </data>
+  <data name="TALK_REST_0565_VAR_00" xml:space="preserve">
+    <value>ワシも まだまだ うごけるぞ。 さてと がんばるとするかの。</value>
+  </data>
+  <data name="TALK_REST_0567_VAR_00" xml:space="preserve">
+    <value>とんでるヒマがあるなら はしろうぜ！</value>
+  </data>
+  <data name="TALK_REST_0568_VAR_00" xml:space="preserve">
+    <value>ふえいせいなばしょは どこクロン？ ワシ それもとめてたびしてるクロン。</value>
+  </data>
+  <data name="TALK_REST_0569_VAR_00" xml:space="preserve">
+    <value>わて ゴミがだいすきダス。 どこかにゴミは ないダスか？</value>
+  </data>
+  <data name="TALK_REST_0570_VAR_00" xml:space="preserve">
+    <value>オレ いろんなポケモンに ばけられるんだぜ？ すごいだろ！</value>
+  </data>
+  <data name="TALK_REST_0571_VAR_00" xml:space="preserve">
+    <value>まぼろしのけしき……イリューーージョン！[pause=0] ……を おみせしよう！</value>
+  </data>
+  <data name="TALK_REST_0572_VAR_00" xml:space="preserve">
+    <value>みだしなみは ちゃんと しなくちゃね\u266A</value>
+  </data>
+  <data name="TALK_REST_0577_VAR_00" xml:space="preserve">
+    <value>ねえ ボクに さわってごらん？ ぷにぷにしているよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0578_VAR_00" xml:space="preserve">
+    <value>ボク のうみそが ２つあるんだって。 どういうことだろうね？</value>
+  </data>
+  <data name="TALK_REST_0579_VAR_00" xml:space="preserve">
+    <value>え？ からだの ぷにぷには なあにって？[pause=0] ……なんだろうね……。</value>
+  </data>
+  <data name="TALK_REST_0580_VAR_00" xml:space="preserve">
+    <value>オレは いろんなところをたびしてんだ。 ヒーヒーいいながらな。でもたのしいぜ？</value>
+  </data>
+  <data name="TALK_REST_0582_VAR_00" xml:space="preserve">
+    <value>ボクのいきは すごくつめたいんだよ。なつだと みんな とても よろこんでくれるんだよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0583_VAR_00" xml:space="preserve">
+    <value>おいしそうだと よく いわれます。[pause=0] ……たべないでね。</value>
+  </data>
+  <data name="TALK_REST_0584_VAR_00" xml:space="preserve">
+    <value>バニラがばい！ ダブルだよ！ とっても おいしそうでしょ？ でもたべられないよ！</value>
+  </data>
+  <data name="TALK_REST_0585_VAR_00" xml:space="preserve">
+    <value>ぼうけん がんばろうね！ たのしもうね！</value>
+  </data>
+  <data name="TALK_REST_0586_VAR_00" xml:space="preserve">
+    <value>ツノのおおきさは リーダーの あかし。 がんばって みんなを ひっぱるわ。</value>
+  </data>
+  <data name="TALK_REST_0587_VAR_00" xml:space="preserve">
+    <value>さてと。じゃきょうも いっちょう がんばるかな！</value>
+  </data>
+  <data name="TALK_REST_0588_VAR_00" xml:space="preserve">
+    <value>ぼうしは かぶるもの。[pause=0]ヘルメットも かぶるもの。[pause=0]かつらも……</value>
+  </data>
+  <data name="TALK_REST_0589_VAR_00" xml:space="preserve">
+    <value>うでのヤリで シュバゴッ！[pause=0] つついて つついて シュバゴッ！</value>
+  </data>
+  <data name="TALK_REST_0590_VAR_00" xml:space="preserve">
+    <value>なにかに にていると よくいわれます。 なんでしょう？ その なにかとは……。</value>
+  </data>
+  <data name="TALK_REST_0591_VAR_00" xml:space="preserve">
+    <value>こうみえて ダンス おどれるんだぜ？[pause=0] マジすか？ とか いわんでくれ！</value>
+  </data>
+  <data name="TALK_REST_0592_00_1_VAR_00" xml:space="preserve">
+    <value>しばりつけるのがとくいですが あまりしばる のも なんだかなあと さいきんはんせいしてます。</value>
+  </data>
+  <data name="TALK_REST_0592_00_2_VAR_00" xml:space="preserve">
+    <value>フフフッ いちど だきついたら もう はなさないわよ。</value>
+  </data>
+  <data name="TALK_REST_0593_00_1_VAR_00" xml:space="preserve">
+    <value>しずむの だいすき！ ぶくぶくぶくっ！</value>
+  </data>
+  <data name="TALK_REST_0593_00_2_VAR_00" xml:space="preserve">
+    <value>うみのそこは とってもしずかだから おちつくのよね。</value>
+  </data>
+  <data name="TALK_REST_0594_VAR_00" xml:space="preserve">
+    <value>うみを ただようの。ながれにまかせて その ままね。[pause=0]ん？ そのまま？[pause=0] そのママンボウ！</value>
+  </data>
+  <data name="TALK_REST_0595_VAR_00" xml:space="preserve">
+    <value>ボク じぶんじゃ でんきを つくれないんだ。 だれか でんきを おくれよう。</value>
+  </data>
+  <data name="TALK_REST_0596_VAR_00" xml:space="preserve">
+    <value>オレがはくいとは でんきいりだぜ！ しびれるぜぇ！</value>
+  </data>
+  <data name="TALK_REST_0599_VAR_00" xml:space="preserve">
+    <value>きょうも ギアの かみあわせがスムーズで イイかんじです\u266A</value>
+  </data>
+  <data name="TALK_REST_0600_VAR_00" xml:space="preserve">
+    <value>ワシ でかギアと そして ちびギアの コンビネーションで わざを くりだすたい！</value>
+  </data>
+  <data name="TALK_REST_0601_VAR_00" xml:space="preserve">
+    <value>でかギア「それ！ エネルギーチャージだ！ ちびギア「オッケー！ でかギア！</value>
+  </data>
+  <data name="TALK_REST_0602_VAR_00" xml:space="preserve">
+    <value>ボク よわい でんきしか だせないんだけど がんばるから よろしくね！</value>
+  </data>
+  <data name="TALK_REST_0603_VAR_00" xml:space="preserve">
+    <value>あいてに まきついて シビビール！[pause=0] かんぱーーーーいっ！！</value>
+  </data>
+  <data name="TALK_REST_0604_VAR_00" xml:space="preserve">
+    <value>くちから すいつき シビルドン！[pause=0] ドーーーーーーーーン！！</value>
+  </data>
+  <data name="TALK_REST_0605_VAR_00" xml:space="preserve">
+    <value>あ…あたまが おもたいのでス……。</value>
+  </data>
+  <data name="TALK_REST_0606_VAR_00" xml:space="preserve">
+    <value>さてと。どこにいこうが がんばるぜ！ ベムムムム……！</value>
+  </data>
+  <data name="TALK_REST_0607_VAR_00" xml:space="preserve">
+    <value>ポケモンがきょうふに ふるえる ところを みたりしたら……[pause=0]ああもう たまりません\u266A</value>
+  </data>
+  <data name="TALK_REST_0608_VAR_00" xml:space="preserve">
+    <value>ワタシのほのおは あっちのせかいの たましいだと いわれています……。[br]こわいですか？ こわいですよね？[pause=0] もっと こわがってくださいよ！ ねえ！</value>
+  </data>
+  <data name="TALK_REST_0609_VAR_00" xml:space="preserve">
+    <value>[emote=normal]……[pause=0]そのとき……！[pause=0] ふと はいごを ふりかえると……[br][emote=pain]そこには たくさんのほのおが……！[br][emote=surprised]ギャーーーーーーーーーーーーーッ！！</value>
+  </data>
+  <data name="TALK_REST_0610_VAR_00" xml:space="preserve">
+    <value>オレのキバは なんかいでも はえかわって つよくなるんだ！ よくかんでたべるぜ！</value>
+  </data>
+  <data name="TALK_REST_0611_VAR_00" xml:space="preserve">
+    <value>オレのキバ スゴイだろ？ ヒコーキみたいだろ？[pause=0] でもとべない。</value>
+  </data>
+  <data name="TALK_REST_0612_VAR_00" xml:space="preserve">
+    <value>キバが じまん！[pause=0] オレのキバには どんな ポケモンも きょうふにオノノクスッ！！</value>
+  </data>
+  <data name="TALK_REST_0613_VAR_00" xml:space="preserve">
+    <value>みんなから かぜ ひいてるの？ って しんぱいされるけど そうじゃないんだよね。</value>
+  </data>
+  <data name="TALK_REST_0614_VAR_00" xml:space="preserve">
+    <value>あごがツンツン！ ツンベアー！！</value>
+  </data>
+  <data name="TALK_REST_0615_VAR_00" xml:space="preserve">
+    <value>ワ…ワタシ たいおんがあがると すいじょうきに なって きえちゃうんです……！</value>
+  </data>
+  <data name="TALK_REST_0616_VAR_00" xml:space="preserve">
+    <value>ぼうけんかぁ……まあ せっかく さそって くれたんだし がんばるよ！</value>
+  </data>
+  <data name="TALK_REST_0617_VAR_00" xml:space="preserve">
+    <value>せいぎのみかた！ アギルダーさんじょう！[pause=0] よいこの みんな！ はみがいてるかー！？</value>
+  </data>
+  <data name="TALK_REST_0618_VAR_00" xml:space="preserve">
+    <value>みんなに よく ふまれるんだよね。 うすすぎるからなんだけど。</value>
+  </data>
+  <data name="TALK_REST_0619_VAR_00" xml:space="preserve">
+    <value>さあ いこっか！ かくとうわざで がんばるよ！</value>
+  </data>
+  <data name="TALK_REST_0620_VAR_00" xml:space="preserve">
+    <value>ワタシは ぶじゅつを きわめしもの！ ウフフッ わざをみてみたい？</value>
+  </data>
+  <data name="TALK_REST_0621_VAR_00" xml:space="preserve">
+    <value>オレ トゲトゲしてるって いわれるけど そうじゃないんだよな ゴツゴツなんだよな。</value>
+  </data>
+  <data name="TALK_REST_0622_VAR_00" xml:space="preserve">
+    <value>ゴーゴーゴビット！ がんばって はたらくでありまーす！</value>
+  </data>
+  <data name="TALK_REST_0623_VAR_00" xml:space="preserve">
+    <value>かっこいい？ でも スーパーロボットとか じゃないからね！ ガシーン！ ガシーン！</value>
+  </data>
+  <data name="TALK_REST_0624_VAR_00" xml:space="preserve">
+    <value>キ…キリキザンのめいれいは ぜったいだ！ もし さからったりしたら キリキザン！</value>
+  </data>
+  <data name="TALK_REST_0625_VAR_00" xml:space="preserve">
+    <value>やあ よいこの みんな！ げんきかー！[pause=0] みんなで よぼう！ キリキザン！ それっ！</value>
+  </data>
+  <data name="TALK_REST_0626_VAR_00" xml:space="preserve">
+    <value>[emote=normal]アフロヘアーで フワフワだから ずつき しても いたくないんだぜ！[br][emote=happy]ホントに ぜんぜん いたくないんだぜ！？[br][emote=pain]はははっ！[pause=0] はははははーーーーーっ！！</value>
+  </data>
+  <data name="TALK_REST_0627_VAR_00" xml:space="preserve">
+    <value>オレは ゆうかんだ！ どんなあいてでも たちむかう！[pause=0] どんなあいてでも…[pause=0]な……。</value>
+  </data>
+  <data name="TALK_REST_0628_VAR_00" xml:space="preserve">
+    <value>オレは せんし！ なかまのために たたかう おおぞらの ゆうしゃだ！</value>
+  </data>
+  <data name="TALK_REST_0629_VAR_00" xml:space="preserve">
+    <value>まだ おむつが とれないのよね。 いつになったら とれるのかしら……。</value>
+  </data>
+  <data name="TALK_REST_0630_VAR_00" xml:space="preserve">
+    <value>どうお？ ワタシの ホネファッション いかがかしら？</value>
+  </data>
+  <data name="TALK_REST_0631_VAR_00" xml:space="preserve">
+    <value>アイアント いねぇーかー！ おーい！ どこだー！ アイアントー！</value>
+  </data>
+  <data name="TALK_REST_0632_VAR_00" xml:space="preserve">
+    <value>あの～ そこらへんに クイタランは いないですよね……こわいんです……。</value>
+  </data>
+  <data name="TALK_REST_0633_VAR_00" xml:space="preserve">
+    <value>あの～ めが かくれて まわりのようすが よくわからないんですが……。</value>
+  </data>
+  <data name="TALK_REST_0634_VAR_00" xml:space="preserve">
+    <value>ヤメロ！ そっちいくんじゃねえよ！ じゃあ どっちいけばいいんだよ！</value>
+  </data>
+  <data name="TALK_REST_0636_VAR_00" xml:space="preserve">
+    <value>なんか むしなのにデカイと よく いわれます。[pause=0]ほっといてください。</value>
+  </data>
+  <data name="TALK_REST_0637_VAR_00" xml:space="preserve">
+    <value>ワタシは たいようのけしん！[pause=0] みんな あたたまってねー。</value>
+  </data>
+  <data name="TALK_REST_0638_VAR_00" xml:space="preserve">
+    <value>はがねの からだと こころで わたしは なかまを まもってみせる！</value>
+  </data>
+  <data name="TALK_REST_0639_VAR_00" xml:space="preserve">
+    <value>なかまは なんとしてでもまもる！ オレの きょうじんなパワーでな！！</value>
+  </data>
+  <data name="TALK_REST_0640_VAR_00" xml:space="preserve">
+    <value>フフッ ぼうけんにいくのはたのしいわよね！ はやく いきましょ！</value>
+  </data>
+  <data name="TALK_REST_0641_VAR_00" xml:space="preserve">
+    <value>ワシは あらしをよぶふうじんじゃ！[pause=0] ふけよ！ あらし！ うなれ！ あらし！！</value>
+  </data>
+  <data name="TALK_REST_0642_VAR_00" xml:space="preserve">
+    <value>ワシは らいじん ボルトロス！[pause=0] とおるところすべてに カミナリをおとす！！</value>
+  </data>
+  <data name="TALK_REST_0643_VAR_00" xml:space="preserve">
+    <value>わたしは ほのおのけしん！ じゅんぱくのほのおで すべてのものをやきつくす！</value>
+  </data>
+  <data name="TALK_REST_0644_VAR_00" xml:space="preserve">
+    <value>われは いかずちのけしん！ しっこくの イナズマで せかいをやきつくす！</value>
+  </data>
+  <data name="TALK_REST_0645_VAR_00" xml:space="preserve">
+    <value>ワシは ほうじょうのかみ！ だいちに めぐみを あたえるものじゃ！</value>
+  </data>
+  <data name="TALK_REST_0646_VAR_00" xml:space="preserve">
+    <value>われは みらいをみとおす！ そして そのみらいに はんしたものは ようしゃなくはかいするッ！</value>
+  </data>
+  <data name="TALK_REST_0647_VAR_00" xml:space="preserve">
+    <value>やっぱりぼうけんは たのしいよね！[pause=0] いろんなものがみられて ワクワクするよ！</value>
+  </data>
+  <data name="TALK_REST_0648_VAR_00" xml:space="preserve">
+    <value>そう！ おんがくのチカラは むげんだい！！ さあ ワタシと いっしょに うたいましょ！</value>
+  </data>
+  <data name="TALK_REST_0649_VAR_00" xml:space="preserve">
+    <value>え？ せなかに たいほうが ついてるって？[pause=0] だいじょうぶだよ～！ うたないよ～！</value>
+  </data>
+  <data name="TALK_REST_0650_VAR_00" xml:space="preserve">
+    <value>あたまのとげは いたくないよ！ ふだんは やわらかいんだよ！</value>
+  </data>
+  <data name="TALK_REST_0651_VAR_00" xml:space="preserve">
+    <value>ふとってないです。ガッチリしてるんです。</value>
+  </data>
+  <data name="TALK_REST_0652_VAR_00" xml:space="preserve">
+    <value>てきのこうげきが きびしければ オレが たてになる！ がんばっていこうぜ！</value>
+  </data>
+  <data name="TALK_REST_0653_VAR_00" xml:space="preserve">
+    <value>わたし みみからひがでるんだよ。 からいものたべたワケじゃないからね。</value>
+  </data>
+  <data name="TALK_REST_0654_VAR_00" xml:space="preserve">
+    <value>え？ なんで しっぽに えだが ささって いるのかって？[pause=0] アナタにはかんけいないでしょ。</value>
+  </data>
+  <data name="TALK_REST_0655_VAR_00" xml:space="preserve">
+    <value>わたしは ほのおを あやつるもの。[pause=0] うつくしく あやしくね。</value>
+  </data>
+  <data name="TALK_REST_0656_VAR_00" xml:space="preserve">
+    <value>むねと せなかから あわをだすよ。 シャンプーしてるワケじゃないんだよ？</value>
+  </data>
+  <data name="TALK_REST_0657_VAR_00" xml:space="preserve">
+    <value>あわでつつんだこいしを なげるヨ。 ひきょーものとか いわないでヨ。</value>
+  </data>
+  <data name="TALK_REST_0658_VAR_00" xml:space="preserve">
+    <value>すべてはひかりがうみだすかげにいきる…… それがニンジャのしゅくめいなのだ！</value>
+  </data>
+  <data name="TALK_REST_0659_VAR_00" xml:space="preserve">
+    <value>オイラ ぼうけん がんばるよ！ あなを ほるのがとくいだけど やくにたつかなあ。</value>
+  </data>
+  <data name="TALK_REST_0660_VAR_00" xml:space="preserve">
+    <value>オラ どぼくこうじは だいとくいだ！ ほって ほって ほりまくるだ！</value>
+  </data>
+  <data name="TALK_REST_0662_VAR_00" xml:space="preserve">
+    <value>オレに さからうヤツァ クチバシから ひィとばすぜい！</value>
+  </data>
+  <data name="TALK_REST_0663_VAR_00" xml:space="preserve">
+    <value>ワタシを コーフンさせないで！ からだじゅうから ひがでちゃう！</value>
+  </data>
+  <data name="TALK_REST_0664_VAR_00" xml:space="preserve">
+    <value>みんな ぼくのこと おそわないでね～～！ くろいこな まきちらすよ～～～～！</value>
+  </data>
+  <data name="TALK_REST_0665_VAR_00" xml:space="preserve">
+    <value>なぜだかしらないが……[pause=0]ぜんしんのけが さかだつ！</value>
+  </data>
+  <data name="TALK_REST_0666_01_VAR_00" xml:space="preserve">
+    <value>ワタクシを こえるぐらい うつくしくおなりなさい。</value>
+  </data>
+  <data name="TALK_REST_0666_VAR_00" xml:space="preserve">
+    <value>はねの もようが キレイでしょ\u266A[pause=0] キレイっていわないと こなまくわよ！</value>
+  </data>
+  <data name="TALK_REST_0667_VAR_00" xml:space="preserve">
+    <value>オレは ケンカっぱやいんだ！ ん？ なんだ？ やるのか コノ！？</value>
+  </data>
+  <data name="TALK_REST_0668_00_1_VAR_00" xml:space="preserve">
+    <value>ほのおの たてがみは おうじゃのしるし！ むれは オレがまもる！</value>
+  </data>
+  <data name="TALK_REST_0668_00_2_VAR_00" xml:space="preserve">
+    <value>かりをするは わたしのしごと。 オスなんかに まかせておけないわ。</value>
+  </data>
+  <data name="TALK_REST_0669_VAR_00" xml:space="preserve">
+    <value>ひろがれ！ はなの ちから\u266A</value>
+  </data>
+  <data name="TALK_REST_0670_VAR_00" xml:space="preserve">
+    <value>おはなの おせわが わたしのしごとなの。 たいへんなところもあるけど たのしいわよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0671_VAR_00" xml:space="preserve">
+    <value>ワタクシ りっぱなはなぞのを もって いますのよ。こんどいらして。オホホホッ！</value>
+  </data>
+  <data name="TALK_REST_0672_VAR_00" xml:space="preserve">
+    <value>ねえねえ どこに あそびにいくの？</value>
+  </data>
+  <data name="TALK_REST_0674_VAR_00" xml:space="preserve">
+    <value>オレと いっしょに ぼうけんするのか？ まあ がんばるぜ。</value>
+  </data>
+  <data name="TALK_REST_0675_VAR_00" xml:space="preserve">
+    <value>うられたケンカは かう！ にげるワケには いかんのじゃあ！！</value>
+  </data>
+  <data name="TALK_REST_0676_VAR_00" xml:space="preserve">
+    <value>まえですか？ ちゃんとみえてますよ？ ボサボサがいいんです。ほっといてください。</value>
+  </data>
+  <data name="TALK_REST_0677_VAR_00" xml:space="preserve">
+    <value>あまりきおうと いいことないから。 おちついて いこうね。</value>
+  </data>
+  <data name="TALK_REST_0678_01_VAR_00" xml:space="preserve">
+    <value>ねえ ワタシのこと カワイイと おもってるでしょ？ まあ そのとおりよね。</value>
+  </data>
+  <data name="TALK_REST_0678_VAR_00" xml:space="preserve">
+    <value>さてと。きょうは どんな いたずらを しようかな？</value>
+  </data>
+  <data name="TALK_REST_0679_VAR_00" xml:space="preserve">
+    <value>あの～ ひとつきいてもいいですか？[pause=0] ……[pause=0]おもしろくない？[pause=0] すみません……。</value>
+  </data>
+  <data name="TALK_REST_0680_VAR_00" xml:space="preserve">
+    <value>むかってくるヤツは ようしゃしないよ！ オラッ！ にだんぎりしちゃうよ！</value>
+  </data>
+  <data name="TALK_REST_0681_VAR_00" xml:space="preserve">
+    <value>ボク ケンタくんって よばれてるんです。 けんと たてで ケンタくん。</value>
+  </data>
+  <data name="TALK_REST_0682_VAR_00" xml:space="preserve">
+    <value>さあ ワタシのにおいで うっとり しなさい。</value>
+  </data>
+  <data name="TALK_REST_0683_VAR_00" xml:space="preserve">
+    <value>え？ くさいって？[pause=0] ありがと。 それさいこうの ほめことばよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0684_VAR_00" xml:space="preserve">
+    <value>ば…ばんごはんまでには かえりましょう！</value>
+  </data>
+  <data name="TALK_REST_0685_VAR_00" xml:space="preserve">
+    <value>あっちに おいしそうな においが…… クンクン\u266A</value>
+  </data>
+  <data name="TALK_REST_0686_VAR_00" xml:space="preserve">
+    <value>あっ！ わすれもの しちゃった！[pause=0] ……まーいーか。</value>
+  </data>
+  <data name="TALK_REST_0687_VAR_00" xml:space="preserve">
+    <value>からんでくるヤツは きらいだよ！ スミはくよー！</value>
+  </data>
+  <data name="TALK_REST_0688_VAR_00" xml:space="preserve">
+    <value>キモッ！[pause=0] とか いきなり いわないで くださいね。キモくないですから。</value>
+  </data>
+  <data name="TALK_REST_0689_VAR_00" xml:space="preserve">
+    <value>みためのインパクトで はんだんしないで くださいね。</value>
+  </data>
+  <data name="TALK_REST_0690_VAR_00" xml:space="preserve">
+    <value>タッツーとは きょうだいじゃないよ。 おともだちだよ\u266A</value>
+  </data>
+  <data name="TALK_REST_0691_VAR_00" xml:space="preserve">
+    <value>どくどくしい……！ じつに どくどくしい！</value>
+  </data>
+  <data name="TALK_REST_0692_VAR_00" xml:space="preserve">
+    <value>うでから みずビーム！ カッコイイだろ？ こどもたちの あこがれ ロマンだぜ！</value>
+  </data>
+  <data name="TALK_REST_0693_VAR_00" xml:space="preserve">
+    <value>うでから ほうだんはっしゃ！ イカスよな！[pause=0] ちなみに イカじゃないからな！</value>
+  </data>
+  <data name="TALK_REST_0694_VAR_00" xml:space="preserve">
+    <value>おひさまをあびて はつでんするんだよ。[pause=0] たいようこうはつでんって いうんだ。</value>
+  </data>
+  <data name="TALK_REST_0695_VAR_00" xml:space="preserve">
+    <value>エリマキで はつでん！ ちからが わいてくるでザード！</value>
+  </data>
+  <data name="TALK_REST_0696_VAR_00" xml:space="preserve">
+    <value>ぼく まだ おさないけど こうみえて つおいんだお。</value>
+  </data>
+  <data name="TALK_REST_0697_VAR_00" xml:space="preserve">
+    <value>オレさまは ガチで つえーんだぜッ！ あばれまくるぜッ！！</value>
+  </data>
+  <data name="TALK_REST_0698_VAR_00" xml:space="preserve">
+    <value>あついのはにがてなんですよね。 はやく さむいひが こないかしら……。</value>
+  </data>
+  <data name="TALK_REST_0699_VAR_00" xml:space="preserve">
+    <value>あつかったら いってくださいね？ わたしの れいきで すずしくしてさしあげます。</value>
+  </data>
+  <data name="TALK_REST_0700_VAR_00" xml:space="preserve">
+    <value>ケンカしそうになったら いつでも よんでくださいね！[br]リボンのような しょっかくで きもちを なごませますから！</value>
+  </data>
+  <data name="TALK_REST_0701_VAR_00" xml:space="preserve">
+    <value>オレをみて さんこうにしろ！ くうちゅうさっぽうで たたかうトウッ！ トウーッ！</value>
+  </data>
+  <data name="TALK_REST_0702_VAR_00" xml:space="preserve">
+    <value>ぼうけんは ちょっとにがてだけど おいしいものたべられるなら がんばります！</value>
+  </data>
+  <data name="TALK_REST_0703_VAR_00" xml:space="preserve">
+    <value>おはようございます。 ずっとちていで ねむってました。</value>
+  </data>
+  <data name="TALK_REST_0704_VAR_00" xml:space="preserve">
+    <value>ぼうけん！ ドキドキしちゃうね！ ボク がんばるよ！</value>
+  </data>
+  <data name="TALK_REST_0705_VAR_00" xml:space="preserve">
+    <value>ねえアナタ きょうも いいかんじに ヌメヌメしてますかー？</value>
+  </data>
+  <data name="TALK_REST_0706_VAR_00" xml:space="preserve">
+    <value>どこからでも かかってこい！ ヌルヌルにしてやんよ！</value>
+  </data>
+  <data name="TALK_REST_0708_VAR_00" xml:space="preserve">
+    <value>こうみえて オバケじゃないですからね？ おどろかないでくださいね？</value>
+  </data>
+  <data name="TALK_REST_0709_VAR_00" xml:space="preserve">
+    <value>ワタシは もりのきぎを あやつれる。[pause=0] え？ やってみろって？[pause=0] いやあ……。</value>
+  </data>
+  <data name="TALK_REST_0710_VAR_00" xml:space="preserve">
+    <value>なにかに にていると よく いわれます。[pause=0] ええ ほんとうによく いわれます……。</value>
+  </data>
+  <data name="TALK_REST_0711_VAR_00" xml:space="preserve">
+    <value>いっしょに うたをうたいましょ。 ぶきみなこえでね ケタケタケタッ\u266A</value>
+  </data>
+  <data name="TALK_REST_0712_VAR_00" xml:space="preserve">
+    <value>こおりで からだを おおってるんだよ。 いがいと さむくないよ。</value>
+  </data>
+  <data name="TALK_REST_0713_VAR_00" xml:space="preserve">
+    <value>わしゃ ものすごく ひらべったいんじゃ。 のってみるかの？</value>
+  </data>
+  <data name="TALK_REST_0714_VAR_00" xml:space="preserve">
+    <value>おおきなみみから ちょうおんぱだすよ。 ねえ やってみていい？</value>
+  </data>
+  <data name="TALK_REST_0715_VAR_00" xml:space="preserve">
+    <value>オレは くらやみのおうじゃ！ くらやみなら だれにもまけない！</value>
+  </data>
+  <data name="TALK_REST_0716_VAR_00" xml:space="preserve">
+    <value>あたえましょう！ せいめいのきとともに！ ダンジョンへのぼうけんへ！</value>
+  </data>
+  <data name="TALK_REST_0717_VAR_00" xml:space="preserve">
+    <value>われは せいめいを うばいしもの！ だが いまはいこう！ ともにぼうけんへ！</value>
+  </data>
+  <data name="TALK_REST_0718_VAR_00" xml:space="preserve">
+    <value>ジガガガガ……！ ワレハ コノホシノ セイタイケイヲ カンシスルモノダ……！</value>
+  </data>
+  <data name="TALK_REST_0719_VAR_00" xml:space="preserve">
+    <value>ワタシのうつくしさは ほうせきそのもの！ しっとしないでね\u266A</value>
+  </data>
+</root>

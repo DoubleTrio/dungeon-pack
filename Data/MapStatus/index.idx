@@ -81,6 +81,15 @@
 "Released": true,
 "Comment": "Stat drops",
 "SortOrder": 0
+},
+"blowing_wind": {
+"Name": {
+"DefaultText": "Blowing Wind",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

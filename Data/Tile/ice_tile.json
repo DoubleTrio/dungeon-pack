@@ -63,7 +63,7 @@
 "HitTiles": false,
 "BurstTiles": 0,
 "HitArea": 0,
-"Range": 0,
+"Range": 1,
 "Speed": 0,
 "CharAnimData": {
 "$type": "RogueEssence.Dungeon.CharAnimProcess, RogueEssence",

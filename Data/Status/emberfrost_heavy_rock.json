@@ -3,23 +3,27 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "",
+"DefaultText": "Heavy Rock",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "",
+"DefaultText": "The Pokémon will deal 50% more damage for rock projectiles",
 "LocalTexts": {}
 },
-"Released": false,
+"Released": true,
 "Comment": "",
-"MenuName": false,
+"MenuName": true,
 "CarryOver": false,
 "Emoticon": "",
 "DropEmoticon": "",
 "FreeEmote": "",
 "DrawEffect": -1,
 "Targeted": false,
-"StatusStates": [],
+"StatusStates": [
+{
+"$type": "PMDC.Dungeon.TransferStatusState, PMDC"
+}
+],
 "OnSkillChanges": [],
 "TargetPassive": {
 "OnEquips": [],
@@ -88,7 +92,22 @@
 "OnPickups": [],
 "BeforeStatusAdds": [],
 "BeforeStatusAddings": [],
-"OnStatusAdds": [],
+"OnStatusAdds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
+"Message": {
+"Key": "MSG_HEAVY_ROCK_START"
+},
+"Delay": true
+}
+}
+],
 "OnStatusRemoves": [],
 "OnMapStatusAdds": [],
 "OnMapStatusRemoves": [],
@@ -100,7 +119,20 @@
 "OnDeaths": [],
 "OnRefresh": [],
 "BeforeTryActions": [],
-"BeforeActions": [],
+"BeforeActions": [
+{
+"Key": {
+"str": [
+-6
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
+"Script": "HeavyRock",
+"ArgTable": "{}"
+}
+}
+],
 "OnActions": [],
 "BeforeHittings": [],
 "BeforeBeingHits": [],

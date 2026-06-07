@@ -11,7 +11,7 @@ local rocky_checkpoint = {}
 -- Engine callback function
 
 function rocky_checkpoint.Init(map)
-  checkpoint.OnCheckpointArrive()
+  checkpoint.OnCheckpointArrive(2)
   GROUND:AddMapStatus("sandstorm")
 end
 

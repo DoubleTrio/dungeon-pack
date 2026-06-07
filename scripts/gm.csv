@@ -1,0 +1,134 @@
+﻿Segment,Floor Start,Floor End,Species,Form,Level,Moves,Rate
+0,1,2,rattata,0,3,tackle,10
+0,1,3,cleffa,0,3,pound,10
+0,1,3,buneary,0,3,"pound, splash",10
+0,2,3,pidgey,0,3,"gust, sand_attack",10
+0,2,3,togepi,0,5,charm,10
+0,2,4,slakoth,0,6,scratch,10
+0,2,3,wurmple,0,5,"string_shot, tackle",10=
+0,2,3,shinx,0,4,"leer, tackle",10
+0,3,4,cherubi,0,6,"leech_seed, tackle",10
+0,3,4,nincada,0,9,"bide, scratch, harden",10
+0,3,4,budew,0,6,"absorb, stun_spore, water_sport",10
+0,3,4,chingling,0,8,"astonish, wrap",10
+0,4,5,eevee,0,8,"helping_hand, quick_attack",10
+0,4,5,houndour,0,7,"ember, smog, roar",10
+0,5,5,pichu,0,5,"thunder_shock, charm",10
+0,4,5,treecko,0,10,"absorb, quick_attack",10
+0,4,5,torchic,0,10,"growl, ember",10
+0,4,5,mudkip,0,10,"mud_slap, water_gun",10
+0,5,6,silcoon,0,8,"harden, bug_bite",10
+0,5,6,cascoon,0,8,"harden, bug_bite",10
+0,5,6,riolu,0,11,"counter, quick_attack",10
+0,5,5,shellder,0,10,"aurora_beam, water_gun",10
+0,6,7,exeggcute,0,10,"barrage, reflect",100
+0,6,7,aipom,0,10,"astonish, tickle, scratch",10
+0,6,7,paras,0,9,"poison_powder, leech_life",10
+0,6,7,finneon,0,13,"water_gun, gust",10
+0,6,7,poochyena,0,10,"howl, bite",100
+0,7,8,shuppet,0,11,night_shade,10
+0,7,8,swinub,0,13,mud_bomb,10
+0,7,8,lickitung,0,14,"wrap, lick",10
+0,7,8,kecleon,0,11,thief,10
+0,7,8,pachirisu,0,13,"nuzzle, quick_attack",10
+0,8,9,mankey,0,14,"leer, low_kick",10
+0,8,9,meowth,0,14,"pay_day, scratch",10
+0,8,9,gulpin,0,14,"sludge, yawn",10
+0,8,9,clefairy,0,15,"bestow, pound",10
+0,8,9,carnivine,0,16,"ingrain, sweet_scent, bite",10
+0,8,9,scyther,0,11,"vacuum_wave, false_swipe",10
+0,8,9,vulpix,0,18,ember,10
+0,9,10,pinsir,0,15,"vice_grip, seismic_toss",10
+0,9,10,drowzee,0,16,"hypnosis, disable, meditate",10
+0,9,10,bonsly,0,15,"mimic, low_kick, rock_throw",10
+0,9,10,chatot,0,18,"echoed_voice, feather_dance",10
+0,9,10,mime_jr,0,18,"copycat, substitute",10
+0,9,10,tyrogue,0,16,"tackle, fake_out",10
+0,9,10,vigoroth,0,18,"yawn, slack_off, slash",10
+0,10,11,trapinch,0,18,"sand_tomb, dig",10
+0,10,11,munchlax,0,20,"tackle, amnesia, chip_away",10
+0,10,11,larvitar,0,18,"screech, rock_slide",10
+0,10,11,voltorb,0,20,"charge_beam, self_destruct",10
+0,10,11,bronzor,0,20,"psywave, imprison",10
+0,11,12,makuhita,0,18,"knock_off, arm_thrust",10
+0,11,12,cubone,0,23,"rage, bone_club",10
+0,11,12,murkrow,0,18,"pursuit, wing_attack, assurance",10
+0,12,13,baltoy,0,19,"cosmic_power, heal_block, mud_slap",10
+0,12,13,magikarp,0,14,"splash, tackle",10
+0,12,13,bagon,0,20,"focus_energy, rage, headbutt",10
+0,12,13,phanpy,0,22,"rollout, slam",10
+0,12,13,absol,0,20,razor_wind,10
+0,12,13,clefairy,0,22,"follow_me, pound, minimize",10
+0,12,13,dunsparce,0,22,"spite, screech, ancient_power",10
+0,12,13,wooper,0,24,"mud_shot, slam, amnesia",10
+0,12,13,sudowoodo,0,24,"block, rock_slide, mimic",10
+0,13,14,spinarak,0,25,"night_shade, spider_web",10
+0,13,14,luxio,0,22,"spark, charge",10
+0,13,14,natu,0,25,"teleport, future_sight",10
+0,13,14,numel,0,22,flame_burst,10
+0,13,14,onix,0,24,"rock_tomb, rock_slide",10
+0,13,14,smoochum,0,23,"sweet_kiss, powder_snow",10
+0,14,15,kecleon,0,25,"thief, shadow_sneak",10
+0,14,15,misdreavus,0,25,"spite, astonish, pain_split",10
+0,13,14,hitmonchan,0,23,"focus_punch, foresight",10
+0,13,14,vulpix,1,25,icy_wind,10
+0,15,16,vulpix,0,28,"ember, hex",10
+0,15,16,nosepass,0,21,"power_gem, discharge",10
+0,15,16,slugma,0,23,"incinerate, harden",10
+0,15,16,flareon,0,23,fire_fang,10
+0,16,17,lickilicky,0,24,"rollout, power_whip, wring_out, wrap",10
+0,16,17,probopass,0,26,"magnet_bomb, magnet_rise, earth_power",10
+0,16,17,shuppet,0,25,"curse, night_shade",10
+0,16,17,flareon,0,26,"fire_spin, last_resort",10
+0,16,17,claydol,0,28,"psybeam, ancient_power, teleport",10
+0,17,18,hitmonlee,0,27,"wide_guard, high_jump_kick",10
+0,17,18,koffing,0,27,"clear_smog, self_destruct",10
+0,17,18,magcargo,0,25,"lava_plume, earth_power",10
+0,18,19,absol,0,28,"swords_dance, night_slash, psycho_cut",10
+0,18,19,mawile,0,27,"crunch, iron_head, fake_tears",10
+0,18,19,charizard,0,45,"fire_blast, wing_attack",10
+0,18,19,hariyama,0,30,"force_palm, brine",10
+0,19,20,swalot,0,32,"sludge_bomb, acid_armor",10
+0,20,21,chimecho,0,30,"heal_bell, yawn, confusion",10
+0,20,21,shedinja,0,35,"spite, fury_cutter, phantom_force",10
+0,20,21,jigglypuff,0,35,"sing, rest",10
+0,20,21,banette,0,32,"grudge, shadow_sneak",10
+0,20,24,hypno,0,33,"nightmare, confusion, switcheroo",10
+0,20,22,spiritomb,0,32,"hypnosis, dream_eater",10
+0,21,22,pidgeotto,0,34,"mirror_move, wing_attack",10
+0,21,22,snorunt,0,33,"icy_wind, powder_snow",10
+0,21,22,sneasel,0,35,"agility, icy_wind, feint_attack",10
+0,20,21,mismagius,0,33,"mystical_fire, lucky_chant",10
+0,20,21,kecleon,0,33,"thief, shadow_sneak, synchronoise",10
+0,21,22,persian,0,33,"switcheroo, feint_attack, swift",10
+0,22,23,jolteon,0,35,"thunder_wave, agility, pin_missile",10
+0,22,23,dustox,0,34,"toxic, moonlight, bug_buzz",10
+0,22,23,beautifly,0,34,"attract, quiver_dance, giga_drain, silver_wind",10
+0,22,23,ninjask,0,38,"swords_dance, slash",10
+0,23,24,umbreon,0,36,"mean_look, feint_attack",10
+0,23,24,mightyena,0,37,"roar, thief, embargo",10
+0,23,24,piloswine,0,38,"ice_fang, fury_attack, take_down",10
+0,23,24,electrode,0,38,"rollout, self_destruct, light_screen",10
+0,23,25,delibird,0,39,present,10
+0,23,24,marowak,0,37,"bonemerang, bone_rush, retaliate",10
+0,24,25,cloyster,0,36,"protect, spike_cannon, spikes",10
+0,24,25,froslass,0,36,"destiny_bond, ice_beam",10
+0,23,25,weezing,0,50,"destiny_bond, explosion",10
+0,24,26,parasect,0,38,"rage_powder, spore",10
+0,25,26,lumineon,0,38,"silver_wind, u_turn, captivate",10
+0,25,26,espeon,0,35,"psychic, morning_sun",10
+0,25,27,blastoise,0,40,hydro_pump,10
+0,25,27,gallade,0,40,"wide_guard, psycho_cut, teleport, swords_dance",10
+0,25,27,gardevoir,0,40,"psychic, wish, moonblast",10
+0,25,28,bronzong,0,42,"sunny_day, rain_dance, imprison, gyro_ball",10
+0,25,27,chimecho,0,40,"healing_wish, yawn, wrap",10
+0,25,26,slaking,0,45,"hammer_arm, encore, slack_off",10
+0,25,27,weavile,0,38,"beat_up, snatch, night_slash, ice_punch",10
+0,27,30,raichu,0,41,thunder,10
+0,27,30,vaporeon,0,39,"aqua_ring, water_gun, rain_dance",10
+0,27,30,roserade,0,43,"weather_ball, aromatherapy, magical_leaf",10
+0,28,30,pidgeot,0,42,"sky_attack, air_slash, hurricane",10
+0,28,30,ninetales,0,46,"safeguard, flamethrower, imprison",10
+0,29,30,venusaur,0,48,"solar_beam, sleep_powder",10
+0,29,30,cherrim,0,47,"petal_dance, helping_hand, sunny_day",10
+0,29,30,flygon,0,50,"earthquake, dragon_tail",10

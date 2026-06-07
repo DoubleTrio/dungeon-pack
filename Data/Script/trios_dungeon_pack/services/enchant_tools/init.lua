@@ -44,11 +44,30 @@ function EnchantTools:OnAddMenu(menu)
         menu:ImportChoices(choices)
     end
 
+
+    local function disable_save()
+        local choices = menu:ExportChoices()
+        local index = menu:GetChoiceIndexByLabel(labels.MAIN_SAVE)
+        choices[index].Enabled = false
+        choices[index].Text.Color = Color.Red
+        menu:ImportChoices(choices)
+    end
     if menu.Label == labels.MAIN_MENU and not in_dungeon then
         add_enchants_choice(labels.MAIN_OTHERS, 72)
     elseif menu.Label == labels.OTHERS_MENU and in_dungeon then
         add_enchants_choice(labels.OTH_SETTINGS, 60)
     end
+
+
+    -- disable
+    if not in_dungeon then
+        disable_save()
+
+    end
+
+
+
+    
 end
 
 --[[---------------------------------------------------------------

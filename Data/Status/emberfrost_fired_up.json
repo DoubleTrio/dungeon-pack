@@ -3,23 +3,31 @@
 "Object": {
 "$type": "RogueEssence.Data.StatusData, RogueEssence",
 "Name": {
-"DefaultText": "",
+"DefaultText": "Fired Up",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "",
+"DefaultText": "The Pokémon's Fire-type moves will grow slightly stronger with each Fire-type attack.",
 "LocalTexts": {}
 },
-"Released": false,
+"Released": true,
 "Comment": "",
-"MenuName": false,
-"CarryOver": false,
-"Emoticon": "",
+"MenuName": true,
+"CarryOver": true,
+"Emoticon": "FiredUp",
 "DropEmoticon": "",
 "FreeEmote": "",
 "DrawEffect": -1,
 "Targeted": false,
-"StatusStates": [],
+"StatusStates": [
+{
+"$type": "RogueEssence.Dungeon.StackState, RogueEssence",
+"Stack": 0
+},
+{
+"$type": "PMDC.Dungeon.TransferStatusState, PMDC"
+}
+],
 "OnSkillChanges": [],
 "TargetPassive": {
 "OnEquips": [],
@@ -88,7 +96,22 @@
 "OnPickups": [],
 "BeforeStatusAdds": [],
 "BeforeStatusAddings": [],
-"OnStatusAdds": [],
+"OnStatusAdds": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "PMDC.Dungeon.StatusBattleLogEvent, PMDC",
+"Message": {
+"Key": "MSG_FIRED_UP_START"
+},
+"Delay": true
+}
+}
+],
 "OnStatusRemoves": [],
 "OnMapStatusAdds": [],
 "OnMapStatusRemoves": [],
@@ -100,14 +123,40 @@
 "OnDeaths": [],
 "OnRefresh": [],
 "BeforeTryActions": [],
-"BeforeActions": [],
+"BeforeActions": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
+"Script": "TypeAttackStackBoost",
+"ArgTable": "{ Denom=100, Boost=3, Type=\"fire\"  }"
+}
+}
+],
 "OnActions": [],
 "BeforeHittings": [],
 "BeforeBeingHits": [],
 "AfterHittings": [],
 "AfterBeingHits": [],
 "OnHitTiles": [],
-"AfterActions": [],
+"AfterActions": [
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
+"Script": "TypeAttackStackBoostAfterActions",
+"ArgTable": "{ Anim=\"Fire_Spin_Front\", FrameTime=1, Type=\"fire\"  }"
+}
+}
+],
 "UserElementEffects": [],
 "TargetElementEffects": [],
 "ModifyHPs": [],

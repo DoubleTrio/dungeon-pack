@@ -1,5 +1,5 @@
 require 'origin.common'
-require 'trios_dungeon_pack.emberfrost.enchantments'
+require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
 require 'trios_dungeon_pack.wish_table.wish_table'
 require 'trios_dungeon_pack.helpers'
 
@@ -723,863 +723,6 @@ function ResetEffectTile(owner)
     end
 end
 
-function SINGLE_CHAR_SCRIPT.EmberFrostSwapEvent(owner, ownerChar, context, args)
-	-- print("HI THEREEEEE")
-	GAME:RemovePlayerTeam(0)
-	print("EMBER FROST SWAP EVENT TRIGGERED")
-end
-
-
-function SINGLE_CHAR_SCRIPT.AddStatusToLeader(owner, ownerChar, context, args)
-    if context.User ~= _DUNGEON.ActiveTeam.Leader then
-        return
-    end
-	local status = RogueEssence.Dungeon.StatusEffect(args.StatusID)
-    status:LoadFromData()
-    TASK:WaitTask(_DUNGEON.ActiveTeam.Leader:AddStatusEffect(nil, status, true))
-end
-
--- function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
---     local enchantment_id = args.EnchantmentID
---     local status_id = args.StatusID
---     local char = FindCharacterWithEnchantment(enchantment_id)
---     if context.User == char then
---         local status = RogueEssence.Dungeon.StatusEffect(status_id)
---         TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
---     end
--- end
-
-local function RandomDifferent(tbl, current_id)
-    if #tbl <= 1 then
-        return current_id
-    end
-    local idx = _DATA.Save.Rand:Next(#tbl - 1) + 1
-    local chosen = tbl[idx]
-    if chosen == current_id then
-        chosen = tbl[#tbl]
-        if chosen == current_id then
-            chosen = tbl[1]
-        end
-    end
-    return chosen
-end
-
-function SINGLE_CHAR_SCRIPT.PandorasItemsModified(owner, ownerChar, context, args)
-
-    
-    if context.User ~= nil then
-        return
-    end
-
-
-    local ITEM_POOLS = {
-        GUMMIS = GUMMIS,
-        ORBS = ORBS,
-        EQUIPMENT = EQUIPMENT,
-        SEED = SEED,
-        WANDS = WANDS,
-        TMS = TMS,
-        BERRIES = BERRIES,
-        AMMOS = AMMOS,
-        APRICORNS = APRICORNS,
-        BOOSTS = BOOSTS,
-        EVOS = EVOS,
-        MACHINES = MACHINES,
-        MEDICINE = MEDICINE
-    }
-    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
-
-    if inv_count <= 0 then
-        return
-    end
-
-    for i = 0, inv_count - 1 do
-        local item = _DATA.Save.ActiveTeam:GetInv(i)
-        local item_id = item.ID
-
-        for _, pool in pairs(ITEM_POOLS) do
-            if Contains(pool, item_id) then
-                item.ID = RandomDifferent(pool, item_id)
-                break
-            end
-        end
-    end
-    _DUNGEON:LogMsg("Your items were rerolled!")
-end
-
-function SINGLE_CHAR_SCRIPT.EmberfrostOnDeath(owner, ownerChar, context, args)
-    print("DEATH TRIGGERED")
-    beholder.trigger("OnDeath", owner, ownerChar, context, args)
-end
-
-function SINGLE_CHAR_SCRIPT.LogQuests(owner, ownerChar, context, args)
-
-    if context.User ~= nil then
-        return
-    end
-
-    local selected = QuestRegistry:GetSelected()
-
-    _DUNGEON:LogMsg("Quests:")
-    for _, quest in pairs(selected) do
-        _DUNGEON:LogMsg(string.format("%s (%s)", quest:get_description(), M_HELPERS.MakeColoredText(tostring(quest.reward), PMDColor.Cyan) .. " " ..  PMDSpecialCharacters.Money))
-    end
-end
-
-function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStarts(owner, ownerChar, context, args)
-    if context.User ~= nil then
-        return
-    end
-    beholder.trigger("OnMapStarts", owner, ownerChar, context, args)
-    SV.EmberFrost.LastFloor = _ZONE.CurrentMapID.ID
-end
-
-function SINGLE_CHAR_SCRIPT.EmberfrostOnMapTurnEnds(owner, ownerChar, context, args)
-    beholder.trigger("OnMapTurnEnds", owner, ownerChar, context, args)
-end
-
-function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnEnds(owner, ownerChar, context, args)
-
-    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
-        return
-    end
-
-    beholder.trigger("OnTurnEnds", owner, ownerChar, context, args)
-end
-
-
-
-function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnStarts(owner, ownerChar, context, args)
-
-    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
-        return
-    end
-
-    beholder.trigger("OnTurnStarts", owner, ownerChar, context, args)
-end
-
-
-
-function SINGLE_CHAR_SCRIPT.EmberfrostOnWalks(owner, ownerChar, context, args)
-
-    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
-        return
-    end
-
-    beholder.trigger("OnWalks", owner, ownerChar, context, args)
-end
-
-function SINGLE_CHAR_SCRIPT.SupplyDrop(owner, ownerChar, context, args)
-
-    local drop_table = args.DropTable
-    local enchant_id = args.EnchantmentID
-    
-    if context.User ~= _DUNGEON.ActiveTeam.Leader then
-        return
-    end
-
-     
-    local data = EnchantmentRegistry:GetData(enchant_id)
-
-    if not data["can_receive_supply_drop"] then
-        return
-    end
-
-    data["can_receive_supply_drop"] = false
-    local arguments = {}
-    arguments.MinAmount = drop_table.Min
-    arguments.MaxAmount = drop_table.Max
-    arguments.Guaranteed = drop_table.Guaranteed
-    arguments.Items = drop_table.Items
-    arguments.UseUserCharLoc = true
-    _DUNGEON:LogMsg(STRINGS:Format("A supply drop arrived!"))
-
-    SOUND:PlayBattleSE("_UNK_EVT_124")
-     GAME:WaitFrames(10)
-    SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
-  
-    GAME:WaitFrames(60)
-end
-
-function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
-    if context.User ~= nil then
-        return
-    end
-
-    local min_seed = args.MinimumSeeds
-    local amt_per_seed = args.MoneyPerSeed
-    local enchant_id = args.EnchantmentID
-    
-
-    local seed_index_arr = {}
-
-    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
-    for i = inv_count, 0, -1 do
-        local item = _DATA.Save.ActiveTeam:GetInv(i)
-        local item_id = item.ID
-        if Contains(SEED, item_id) then
-            table.insert(seed_index_arr, i)
-        end        
-    end
-
-
-    if (#seed_index_arr >= min_seed) then
-        local total_money = #seed_index_arr * amt_per_seed
-        for _, index in ipairs(seed_index_arr) do
-            _DATA.Save.ActiveTeam:RemoveFromInv(index)
-        end
-        local team_name = _DATA.Save.ActiveTeam.Name
-        GAME:AddToPlayerMoney(total_money)
-        local data = EnchantmentRegistry:GetData(enchant_id)
-        data["money_earned"] = data["money_earned"] + total_money
-        SOUND:PlayBattleSE("DUN_Money")
-        _DUNGEON:LogMsg(
-            string.format(
-                "%s planted %s seed(s) and gained %s!", 
-                team_name, 
-                M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan),
-                M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
-            )
-        )
-    
-    end
-end
-
-function SINGLE_CHAR_SCRIPT.Minimalist(owner, ownerChar, context, args)
-
-    if context.User ~= nil then
-        return
-    end
-
-    local enchant_id = args.EnchantmentID
-    local slot_amt = args.AmountPerSlot
-    local data = EnchantmentRegistry:GetData(enchant_id)
-    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
-    local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
-
-    local available_slots = max_inv_slots - inv_count
-
-    local total_money = available_slots * slot_amt
-    data["money_earned"] = data["money_earned"] + total_money
-    GAME:AddToPlayerMoney(total_money)
-    SOUND:PlayBattleSE("DUN_Money")
-    _DUNGEON:LogMsg(
-        string.format(
-            "Gained %s from Minimalist!", 
-            M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
-        )
-    )
-end
-
-
-function GetSpawnCandidates(origin, radius)
-    local top_left = RogueElements.Loc(origin.X - radius, origin.Y - radius)
-    local bottom_right = RogueElements.Loc(origin.X + radius, origin.Y + radius)
-
-    local near_candidates = {}
-    local far_candidates = {}
-
-    for x = top_left.X, bottom_right.X do
-        for y = top_left.Y, bottom_right.Y do
-            local testLoc = RogueElements.Loc(x, y)
-
-            if not _ZONE.CurrentMap:TileBlocked(testLoc)
-                and _ZONE.CurrentMap:GetCharAtLoc(testLoc) == nil then
-                local min_dist = math.huge
-
-                -- check party
-                for i = 0, GAME:GetPlayerPartyCount() - 1 do
-                    local member = GAME:GetPlayerPartyMember(i)
-                    local dx = math.abs(member.CharLoc.X - x)
-                    local dy = math.abs(member.CharLoc.Y - y)
-                    min_dist = math.min(min_dist, math.max(dx, dy))
-                end
-
-                -- check guests
-                for i = 0, GAME:GetPlayerGuestCount() - 1 do
-                    local member = GAME:GetPlayerGuestMember(i)
-                    local dx = math.abs(member.CharLoc.X - x)
-                    local dy = math.abs(member.CharLoc.Y - y)
-                    min_dist = math.min(min_dist, math.max(dx, dy))
-                end
-
-                if min_dist == 1 then
-                    table.insert(near_candidates, testLoc)
-                elseif min_dist == 2 then
-                    table.insert(far_candidates, testLoc)
-                end
-            end
-        end
-    end
-
-   
-    if #near_candidates > 0 then
-        return near_candidates
-    end
-
-    return far_candidates
-end
-
-
-
-function CloneCharacter(chara)
-    local character = RogueEssence.Dungeon.CharData()
-
-    character.BaseForm = chara.BaseForm
-    character.Nickname = chara.Nickname
-    character.Level = chara.Level
-    character.MaxHPBonus = chara.MaxHPBonus
-    character.AtkBonus = chara.AtkBonus
-    character.DefBonus = chara.DefBonus
-    character.MAtkBonus = chara.MAtkBonus
-    character.MDefBonus = chara.MDefBonus
-    character.SpeedBonus = chara.SpeedBonus
-    character.Unrecruitable = chara.Unrecruitable
-
-    for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
-        character.BaseSkills[ii] = RogueEssence.Dungeon.SlotSkill(chara.BaseSkills[ii])
-    end
-
-    for ii = 0, RogueEssence.Dungeon.CharData.MAX_INTRINSIC_SLOTS - 1 do
-        character.BaseIntrinsics[ii] = chara.BaseIntrinsics[ii]
-    end
-    character.FormIntrinsicSlot = chara.FormIntrinsicSlot
-
-    local new_mob = RogueEssence.Dungeon.Character(chara)
-
-    new_mob.IdleOverride = chara.IdleOverride
-    local idleAction = RogueEssence.Dungeon.CharAnimIdle(chara.CharLoc, chara.CharDir)
-    if chara.IdleOverride > -1 then
-        idleAction.Override = chara.IdleOverride
-    end
-    -- new_mob.currentCharAction = RogueEssence.Dungeon.EmptyCharAction(idleAction)
-
-    new_mob.Tactic = RogueEssence.Data.AITactic(chara.Tactic)
-    -- new_mob.EquippedItem = RogueEssence.Dungeon.InvItem(chara.EquippedItem)
-
-    for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
-        new_mob.Skills[ii].Element.Enabled = chara.Skills[ii].Element.Enabled
-    end
-
-    -- for key, status in pairs(chara.StatusEffects) do
-    --     new_mob.StatusEffects:Add(key, status:Clone())
-    -- end
-
-    return new_mob
-end
-
-function SINGLE_CHAR_SCRIPT.RemoveGuestWithIDBackground(owner, ownerChar, context, args)
-    if context.User ~= nil then
-        return
-    end
-
-    local id = args.ID
-    RemoveGuestsWithValue(id)
-end
-
-function SINGLE_CHAR_SCRIPT.Puppeteer(owner, ownerChar, context, args)
-    if context.User ~= nil then
-        return
-    end
-
-    local type = args.Type
-    local enchant_id = args.EnchantmentID
-    local include_assembly = args.IncludeAssembly or false
-    RemoveGuestsWithValue(enchant_id)
-
-    local members = GetCharacterOfMatchingType(type, include_assembly)
-
-    for i, member in ipairs(members) do
-
-        local spawn_candidates = GetSpawnCandidates(member.CharLoc, 2)
-        local clone = CloneCharacter(member)
-        local tbl = LTBL(clone)
-        clone.CharLoc = spawn_candidates[_DATA.Save.Rand:Next(#spawn_candidates) + 1]
-        tbl[enchant_id] = true
-        local tactic = _DATA:GetAITactic("go_after_foes")
-        clone.Tactic = tactic
-        clone.Nickname = "Puppet"
-        for ii = 0, 3 do
-            local skill = clone.Skills[ii].Element
-            if skill.SkillNum ~= nil and skill.SkillNum ~= "" then
-                clone:SetSkillCharges(ii, 5)
-            end
-
-            skill.Enabled = true
-        end
-
-        -- Debating whether to keep the abilities or not
-        -- clone.BaseIntrinsics[0] = ""
-        -- clone.Intrinsics[0].Element.ID = ""
-        clone.Element1 = "ghost"
-        clone.Element2 = _DATA.DefaultElement
-
-        clone.ActionEvents:Clear()
-        local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("PuppetInteract")
-        clone.ActionEvents:Add(talk_evt)
-        local tbl = LTBL(clone)
-        tbl["species"] = member.BaseForm.Species
-        tbl[enchant_id] = true
-        
-        
-        
-        local status = RogueEssence.Dungeon.StatusEffect("emberfrost_appearance_proxy")
-        status:LoadFromData()
-        TASK:WaitTask(clone:AddStatusEffect(nil, status, true))
-        -- for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
-        --     clone.BaseSkills[ii].Charges = 5
-        -- end
-
-            --         for (int ii = 0; ii < target.Skills.Count; ii++)
-            -- {
-            --     if (!String.IsNullOrEmpty(target.Skills[ii].Element.SkillNum))
-            --         target.SetSkillCharges(ii, 1);
-            -- }
-
-      
-
-        -- local monster = RogueEssence.Dungeon.MonsterID("missingno",
-        --     1,
-        --     "normal",
-        --     Gender.Genderless)
-        -- clone.ProxySprite = monster
-        -- clone
-
-       
-        _DATA.Save.ActiveTeam.Guests:Add(clone)
-        -- Dark_Void_Front
-
-
-        local anim = RogueEssence.Dungeon.CharAbsentAnim(clone.CharLoc, clone.CharDir)
-
-        -- COMMON.RemoveCharEffects(player)
-        -- TASK:WaitTask(_DUNGEON:ProcessBattleFX(player, player, _DATA.SendHomeFX))
-
-
-        TASK:WaitTask(clone:StartAnim(anim))
-
-        local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dark_Void_Front", 1))
-
-        -- emitter.DrawLayer = DrawLayer.Front
-        emitter.Layer = DrawLayer.Front
-
-        DUNGEON:PlayVFX(emitter, clone.CharLoc.X * 24 + 12, clone.CharLoc.Y * 24 + 12)
-        SOUND:PlayBattleSE("DUN_Night_Shade_3")
-        GAME:WaitFrames(30)
-
-        local anim = RogueEssence.Dungeon.CharAbsentAnim(clone.CharLoc, clone.CharDir)
-        
-
-        -- COMMON.RemoveCharEffects(player)
-        -- TASK:WaitTask(_DUNGEON:ProcessBattleFX(player, player, _DATA.SendHomeFX))
-
-
-        -- for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-        --     if member.Dead == false then
-  
-        --     end
-        -- end
-        TASK:WaitTask(clone:StartAnim(anim))
-
-
-        local stand_anim = RogueEssence.Dungeon.CharAnimNone(clone.CharLoc, clone.CharDir)
-        stand_anim.MajorAnim = true
-        TASK:WaitTask(clone:StartAnim(stand_anim))
-
-        -- DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
-        -- GROUND:Hide("Apple")
-        -- GROUND:PlayVFX(emitter, apple.Bounds.Center.X, apple.Bounds.Center.Y)
-
-
-    end
-end
-
-function SINGLE_CHAR_SCRIPT.TarotCards(owner, ownerChar, context, args)
-    -- print("PUPPET MASTER TRIGGERED")
-    if context.User ~= nil then
-        return
-    end
-
-
-    local type = args.Type
-    local enchant_id = args.EnchantmentID
-    local include_assembly = args.IncludeAssembly or false
-
-
-    local members = GetCharacterOfMatchingType(type, include_assembly)
-    for i, member in ipairs(members) do
-
-
-        SOUND:PlayBattleSE('_UNK_DUN_TWINKLE')
-
-        -- if 
-
-
-        -- GAME:
-
-	-- 		--print("Set crit health!")
-	-- 	elseif player.HP > player.MaxHP / 4 and player:GetStatusEffect("critical_health") ~= nil then
-	-- 		TASK:WaitTask(player:RemoveStatusEffect("critical_health"))
-
-
-        -- local arriveAnim = RogueEssence.Content.StaticAnim(RogueEssence.Content.AnimData("Card", 3))
-        -- arriveAnim:SetupEmitted(RogueElements.Loc(member.CharLoc.X * 24 + 12, member.CharLoc.Y * 24 + 12), 32,
-        --     RogueElements.Dir8.Down)
-        -- DUNGEON:PlayVFXAnim(arriveAnim, RogueEssence.Content.DrawLayer.Front)
-
-
-        -- local arriveAnim = RogueEssence.Content.StaticAnim(RogueEssence.Content.AnimData("Card", 3))
-        -- arriveAnim:SetupEmitted(RogueElements.Loc(member.CharLoc.X * 24 + 12, member.CharLoc.Y * 24 + 12))
-        -- DUNGEON:PlayVFXAnim(arriveAnim, RogueEssence.Content.DrawLayer.Front)
-
-
-        local card = TarotRegistry:GetRandom(1, 1)[1][1]
-
-        --initialize status data before adding it to anything
-
-        -- if card.add_as_status then
-        local card_status = RogueEssence.Dungeon.StatusEffect("emberfrost_card")
-        card_status:LoadFromData()
-        TASK:WaitTask(member:AddStatusEffect(nil, card_status, false))
-        -- end
-        -- else
-        --     local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Card", 3), 1)
-        --     emitter.Layer = DrawLayer.Front
-        --     DUNGEON:PlayVFX(emitter, member.CharLoc.X * 24 + 12, member.CharLoc.Y * 24 - 6)
-        --     -- GraphicsManager.GetChara(Appearance).TileHeight
-        -- end
-        card:apply(owner, ownerChar, context, args, member)
-
-
-        -- if card.add_as_status then
-        GAME:WaitFrames(20)
-        TASK:WaitTask(member:RemoveStatusEffect("emberfrost_card"))
-        -- end
-
-    end
-end
-
-        -- local enchant_id = args.EnchantmentID
-        -- local slot_amt = args.AmountPerSlot
-        -- local data = EnchantmentRegistry:GetData(enchant_id)
-        -- local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
-        -- local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
-
-        -- local available_slots = max_inv_slots - inv_count
-
-        -- local total_money = available_slots * slot_amt
-        -- data["money_earned"] = data["money_earned"] + total_money
-        -- GAME:AddToPlayerMoney(total_money)
-        -- SOUND:PlayBattleSE("DUN_Money")
-        -- _DUNGEON:LogMsg(
-        --     string.format(
-        --         "Gained %s from Minimalist for %s!", 
-        --         M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
-        --         member:GetDisplayName(true)
-        --     )
-        -- )
-
-
-    -- local enchant_id = args.EnchantmentID
-    -- local slot_amt = args.AmountPerSlot
-    -- local data = EnchantmentRegistry:GetData(enchant_id)
-    -- local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
-    -- local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
-
-    -- local available_slots = max_inv_slots - inv_count
-
-    -- local total_money = available_slots * slot_amt
-    -- data["money_earned"] = data["money_earned"] + total_money
-    -- GAME:AddToPlayerMoney(total_money)
-    -- SOUND:PlayBattleSE("DUN_Money")
-    -- _DUNGEON:LogMsg(
-    --     string.format(
-    --         "Gained %s from Minimalist!",
-    --         M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
-    --     )
-    -- )
-
-
-function SINGLE_CHAR_SCRIPT.GiveRandomForEachType(owner, ownerChar, context, args)
-    if context.User ~= nil then
-        return
-    end
-
-
-    local type = args.Type
-    local item_tbl = args.ItemTable
-    local include_assembly = args.IncludeAssembly or false
-    local sound = args.Sound or "DUN_Me_First_2"
-    local anim_name = args.AnimName or "Circle_Green_Out"
-
-    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
-    local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
-    local available_slots = max_inv_slots - inv_count
-    local members = GetCharacterOfMatchingType(type, include_assembly)
-    local count = #members
-
-    local give_count = math.min(count, available_slots)
-
-    -- Sound\      SOUND:PlayBattleSE("DUN_Ice_Shard")
-    -- TODO: Play a visual effect for each party member that matches that type
-
-    --     },
-    -- "Value": {
-    -- "$type": "PMDC.Dungeon.BerryAoEEvent, PMDC",
-    -- "Msg": {
-    -- "Key": "MSG_HARVEST"
-    -- },
-    -- "Emitter": {
-    -- "$type": "RogueEssence.Content.RepeatEmitter, RogueEssence",
-    -- "LocHeight": 0,
-    -- "Anim": {
-    -- "$type": "RogueEssence.Content.StaticAnim, RogueEssence",
-    -- "Anim": {
-    -- "AnimIndex": "Circle_Green_Out",
-    -- "FrameTime": 2,
-    -- "StartFrame": -1,
-    -- "EndFrame": -1,
-    -- "AnimDir": -1,
-    -- "Alpha": 255,
-    -- "AnimFlip": 0
-    -- },
-    -- "TotalTime": 0,
-    -- "Cycles": 1,
-    -- "FrameOffset": 0
-    -- },
-    -- "Bursts": 3,
-    -- "BurstTime": 8,
-    -- "Layer": 2,
-    -- "Offset": 0
-    -- },
-    -- "Sound": "DUN_Me_First_2"
-    -- }
-    -- }
-    if give_count == 0 then
-        return
-    end
-
-
-
-    for i, member in ipairs(members) do
-
-        SOUND:PlayBattleSE(sound)
-
-        -- public AnimData(string animIndex, int frameTime, int startFrame, int endFrame)
-
-        local anim_data = RogueEssence.Content.AnimData(anim_name, 2, -1, -1, 255)
-
-        -- AnimData(string animIndex, int frameTime, int startFrame, int endFrame, byte alpha, Dir8 dir)
-        -- public ParticleAnim(AnimData anim, int cycles, int totalTime)
-        local emitter = RogueEssence.Content.RepeatEmitter(anim_data)
-        -- local emitter = RogueEssence.Content.SqueezedAreaEmitter(repeat_anim)
-        emitter.Bursts = 3
-        emitter.BurstTime = 8
-
-        -- print(tostring(emitter) .. " emitter")
-
-        -- SOUND:PlayBattleSE("DUN_Tri_Attack_2")
-        -- SOUND:PlayBattleSE("_UNK_EVT_085")
-
-        -- SOUND:PlayBattleSE("_UNK_EVT_043")
-        DUNGEON:PlayVFX(emitter, member.MapLoc.X, member.MapLoc.Y)
-        GAME:WaitFrames(10)
-        
-
-    end
-
-        --     public override IEnumerator<YieldInstruction> Apply(GameEventOwner owner, Character ownerChar, BattleContext context)
-        -- {
-        --     if (context.ActionType == BattleActionType.Item)
-        --     {
-        --         ItemData itemData = DataManager.Instance.GetItem(context.Item.ID);
-        --         if (itemData.ItemStates.Contains<BerryState>())
-        --         {
-        --             AreaAction newAction = new AreaAction();
-        --             newAction.TargetAlignments = (Alignment.Self | Alignment.Friend);
-        --             newAction.Range = 1;
-        --             newAction.ActionFX.Emitter = Emitter;
-        --             newAction.Speed = 10;
-        --             newAction.ActionFX.Sound = Sound;
-        --             newAction.ActionFX.Delay = 30;
-        --             context.HitboxAction = newAction;
-        --             context.Explosion.TargetAlignments = (Alignment.Self | Alignment.Friend);
-
-        --             DungeonScene.Instance.LogMsg(Text.FormatGrammar(Msg.ToLocal(), ownerChar.GetDisplayName(false), owner.GetDisplayName()));
-        --         }
-        --     }
-        --     yield break;
-        -- }
-    
-    for i = 1, give_count do
-        print("GIVE RANDOM FOR EACH TYPE TRIGGERED3")
-        local rand_index = _DATA.Save.Rand:Next(#item_tbl) + 1
-        local item = item_tbl[rand_index]
-        print("Giving item: " .. item)
-        GAME:GivePlayerItem(item)
-    end
-end
-
-function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
-
-    if context.User ~= _DUNGEON.ActiveTeam.Leader then
-        return
-    end
-
-    local enchantment_id = args.EnchantmentID
-    local data = EnchantmentRegistry:GetData(enchantment_id)
-    -- local money_lost = data["money_lost"]
-    local pop_chance = data["pop_chance"]
-    local enchantment = EnchantmentRegistry:Get(enchantment_id)
-    local interest = enchantment.interest
-    local pop_increase = enchantment.pop_increase
-    local loss = enchantment.loss
-    local item_name = M_HELPERS.GetItemName("emberfrost_bubble")
-
-    local total_money = _DATA.Save.ActiveTeam.Money
-
-    if (_DATA.Save.Rand:NextDouble() * 100 < pop_chance) then
-        SOUND:PlayBattleSE("DUN_Ice_Shard")
-        local total_money = _DATA.Save.ActiveTeam.Money
-
-        local lost_amount = math.round(total_money * loss)
-        GAME:RemoveFromPlayerMoney(lost_amount)
-        data["money_lost"] = data["money_lost"] + lost_amount
-        beholder.trigger("TheBubbleLost", lost_amount, data["money_lost"], data["pop_chance"])
-        data["pop_chance"] = 0
-        
-
-
-        _DUNGEON:LogMsg(
-            string.format(
-                "Oh no! The %s popped! %s was lost...", 
-                item_name,
-                M_HELPERS.MakeColoredText(tostring(lost_amount) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Red)
-            )
-        )
-    else
-        
-
-        local gained = math.round(total_money * interest)
-
-        if (gained > 0) then
-
-            SOUND:PlayBattleSE("DUN_Money")
-            data["pop_chance"] = data["pop_chance"] + pop_increase
-            GAME:AddToPlayerMoney(gained)
-            data["money_earned"] = data["money_earned"] + gained
-            beholder.trigger("TheBubbleGained", gained, data["money_earned"], data["pop_chance"])
-            _DUNGEON:LogMsg(
-            string.format(
-                "%s was gained from the %s", 
-                M_HELPERS.MakeColoredText(tostring(gained) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
-                item_name
-            )
-        )
-            
-        end
-
-    end
-
-    -- if _DATA.Save.Rand:Next(100) < pop_chance then
-    --     SOUND:PlayBattleSE("DUN_Money_Loss")
-    --     local team_name = _DATA.Save.ActiveTeam.Name
-    --     local lost_amount = math.min(money_earned, money_lost)
-    --     GAME:TakeFromPlayerMoney(lost_amount)
-    --     data["money_earned"] = money_earned - lost_amount
-    --     _DUNGEON:LogMsg(
-    --         string.format(
-    --             "%s's bubble popped! Lost %s!", 
-    --             team_name, 
-    --             M_HELPERS.MakeColoredText(tostring(lost_amount) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Red)
-    --         )
-    --     )
-    -- end
-    print("BUBBLE EVENT")
-end
-
-function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
-
-    if context.User ~= nil then
-        return
-    end
-
-    local enchantment_id = args.EnchantmentID
-    local status_id = args.StatusID
-    local apply_to_all = args.ApplyToAll or false
-    local char, in_assembly = FindCharacterWithEnchantment(enchantment_id)
-
-    if apply_to_all then
-        for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-            if member ~= nil then
-
-                local show_message = not member.Dead
-                local status = RogueEssence.Dungeon.StatusEffect(status_id)
-                status:LoadFromData()
-                TASK:WaitTask(member:AddStatusEffect(nil, status, show_message))
-            end
-        end
-
-        for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-            if member ~= nil then
-                local status = RogueEssence.Dungeon.StatusEffect(status_id)
-                status:LoadFromData()
-                TASK:WaitTask(member:AddStatusEffect(nil, status, false))
-            end
-        end
-        return
-    end
-
-
-    if char then
-        local status = RogueEssence.Dungeon.StatusEffect(status_id)
-        status:LoadFromData()
-
-
-        local show_message = not char.Dead and not in_assembly
-
-        TASK:WaitTask(char:AddStatusEffect(nil, status, show_message))
-    end
-end
-
-
-function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context, args)
-	if context.User == _DUNGEON.ActiveTeam.Leader then
-		return
-	end
-
-	local valid_slots = {}
-	
-	local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
-	local jeweled_bug_slot = -1
-	for i = 0, inv_count - 1 do
-		local item = _DATA.Save.ActiveTeam:GetInv(i)
-		local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(item.ID)
-		if item.ID == "emberfrost_jeweled_bug" then
-			jeweled_bug_slot = i
-		end
-		if not entry.CannotDrop then
-			table.insert(valid_slots, i)
-		end
-	end
-
-	local jeweled_bug_item = _DATA.Save.ActiveTeam:GetInv(jeweled_bug_slot)
-	if (#valid_slots > 0) then
-		local rand_index = _DATA.Save.Rand:Next(#valid_slots)
-		local swap_slot = valid_slots[(rand_index + 1)]
-		local item = _DATA.Save.ActiveTeam:GetInv(swap_slot)
-		_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " has eaten the " .. item:GetDisplayName() .. "!")
-		SOUND:PlayBattleSE("_UNK_DUN_Twinkle")
-		_DATA.Save.ActiveTeam:RemoveFromInv(swap_slot)
-	else
-		-- if (jeweled_bug_slot ~= -1) then
-		-- 	_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " couldn't find anything to eat and left!")
-		-- 	SOUND:PlayBattleSE("_UNK_EVT_002") -- DUN_Wing_Attack
-		-- 	_DATA.Save.ActiveTeam:RemoveFromInv(jeweled_bug_slot)
-		-- end
-	end
-end
-
 function SINGLE_CHAR_SCRIPT.RevealGems(owner, ownerChar, context, args)
     local count = 0
     if _DATA.CurrentReplay ~= nil then
@@ -1635,133 +778,6 @@ function SINGLE_CHAR_SCRIPT.LogShimmeringEvent(owner, ownerChar, context, args)
     _DUNGEON:LogMsg(RogueEssence.Text.FormatGrammar(msg))
 end
 
-
-
-function SINGLE_CHAR_SCRIPT.ApplyStatusIfTypeMatches(owner, ownerChar, context, args)
-
-    if context.User ~= nil then
-        return
-    end
-    
-    local status_id = args.StatusID
-    local types = args.Types
-
-    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
-        for _, t in ipairs(types) do
-            if member.Element1 == t or member.Element2 == t then
-                print("Applying status to " .. member:GetDisplayName(true))
-                print("Status ID: " .. status_id)
-                local status = RogueEssence.Dungeon.StatusEffect(status_id)
-                status:LoadFromData()
-                TASK:WaitTask(member:AddStatusEffect(nil, status, true))
-                break
-            end
-        end
-    end
-
-    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-        local tbl = LTBL(member)
-        if tbl.EmberfrostRun then
-            for _, t in ipairs(types) do
-                if member.Element1 == t or member.Element2 == t then
-                    print("Applying status to " .. member:GetDisplayName(true))
-                    print("Status ID: " .. status_id)
-                    local status = RogueEssence.Dungeon.StatusEffect(status_id)
-                    TASK:WaitTask(member:AddStatusEffect(nil, status, true))
-                    break
-                end
-            end
-        end
-    end
-
-    
-
-    -- if context.User == char then
-    --     if not char.Dead then
-    --         print("did it find the char?" .. enchantment_id)
-    --         local status = RogueEssence.Dungeon.StatusEffect(status_id)
-    --         TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
-    --     end
-    -- end
-end
--- function SINGLE_CHAR_SCRIPT.EmberfrostSwitchSegment(owner, ownerChar, context, args)
--- 	print("Emberfrost Switch Segment Triggered")
---   if context.User ~= nil then
---     return
---   end
-
---   -- local msg = RogueEssence.StringKey(args.StringKey):ToLocal()
---   _DUNGEON:LogMsg("HI THERE")
--- end
-
-function SINGLE_CHAR_SCRIPT.EmberFrostTest(owner, ownerChar, context, args)
-
-	--  print("EMBER FROST TEST TRIGGERED GRRR")
-    if context.User == GAME:GetPlayerPartyMember(1) then
-        -- print("EMBER FROST TEST TRIGGERED HIHI")
-					-- local powerup = Bag
-
-					-- if powerup:can_apply() then
-					-- 	powerup:apply()
-					-- end
-        -- GAME:RemovePlayerTeam(0)
-    end
-
-    -- print("HHIHIHHIHI")
-
-end
-
-function SINGLE_CHAR_SCRIPT.EmberFrostTest2(owner, ownerChar, context, args)
-
-    if context.User ~= nil then
-        return
-    end
-    UI:WaitShowDialogue("The elemental energies shift again why...")
-    -- print("EMBER FROST TEST TRIGGERED")
-    -- print("HHIHIHHIHI")
-    -- GAME:RemovePlayerTeam(0)
-end
-
-function SINGLE_CHAR_SCRIPT.EmberFrostSwitchParties(owner, ownerChar, context, args)
-
-    if context.User ~= nil then
-        return
-    end
-		
-    UI:WaitShowDialogue("The elemental energies shift...")
-
-    GAME:RemovePlayerTeam(0)
-    local player_count = GAME:GetPlayerPartyCount()
-    print(tostring(player_count) .. " players in party")
-
-end
-
-function SINGLE_CHAR_SCRIPT.AddSwitchSegmentStairs(owner, ownerChar, context, args)
-    if context.User ~= nil then
-        return
-    end
-    print("eeeememem")
-
-    local map = _ZONE.CurrentMap
-    for xx = 0, map.Width - 1, 1 do
-        for yy = 0, map.Height - 1, 1 do
-            local loc = RogueElements.Loc(xx, yy)
-            local tl = map:GetTile(loc)
-
-            if tl.Effect.ID == "stairs_go_up" or tl.Effect.ID == "stairs_go_down" or tl.Effect.ID == "stairs_back_down" or
-                tl.Effect.ID == "stairs_back_up" then
-                print("Found stairs at " .. xx .. ", " .. yy)
-                local sec_loc = RogueEssence.Dungeon.SegLoc(-1, args.NextID)
-                local dest_state = PMDC.Dungeon.DestState(sec_loc, false)
-                dest_state.PreserveMusic = false
-                tl.Effect.TileStates:Set(dest_state)
-            end
-        end
-    end
-end
--- local new_context = RogueEssence.Dungeon.SingleCharContext(target)
--- TASK:WaitTask(monster_event:Apply(owner, ownerChar, new_context))
--- PMDC.Dungeon.StatusStackBattleEvent(string statusID, bool affectTarget, bool silentCheck, int stack)
 
 function SINGLE_CHAR_SCRIPT.CrystalGlowEvent(owner, ownerChar, context, args)
     if context.User.MemberTeam ~= _DUNGEON.ActiveTeam.Leader.MemberTeam then
@@ -2122,8 +1138,7 @@ function SINGLE_CHAR_SCRIPT.SwapTileEvent(owner, ownerChar, context, args)
 
     local se = args.SoundEffect
     local tile = args.Tile
-    PrintInfo("YEP")
-    PrintInfo(tostring(se))
+
 
     SOUND:PlaySE(se)
     GAME:WaitFrames(20)
@@ -2158,38 +1173,21 @@ function PickByWeights(entries)
     end
 end
 
-function SINGLE_CHAR_SCRIPT.MelodyBoxOnMapStarts(owner, ownerChar, context, args)
-    
-    -- print("HI THEHREHEHEEHE")
-    -- if context.User ~= nil then
-    --     return
+function SINGLE_CHAR_SCRIPT.MelodyBoxOnMapStartsAfter(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local main_dungeon_music = _ZONE.CurrentMap.Music
+
+    -- if SV.EmberFrost.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
+    --     SV.EmberFrost.MelodyBox.DungeonMusicSelection = ""
+    -- else
+    --     if SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= nil and SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= "" then
+    --         SOUND:PlayBGM(SV.EmberFrost.MelodyBox.DungeonMusicSelection, true)
+    --     end
     -- end
-
-    -- print("AKAKAAKAAKAKAKAK")
-    -- local main_dungeon_music = _ZONE.CurrentMap.Music
-
- 
-    -- print("JAJAJAJAAA")
 end
-
-
--- function SINGLE_CHAR_SCRIPT.MelodyBoxOnMapStartsAfter(owner, ownerChar, context, args)
---     -- print("HI THEHREHEHEEHE")
---     -- if context.User ~= nil then
---     --     return
---     -- end
-
---     -- print("AKAKAAKAAKAKAKAK")
---     local main_dungeon_music = _ZONE.CurrentMap.Music
-
---     if SV.EmberFrost.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
---         SV.EmberFrost.MelodyBox.DungeonMusicSelection = ""
---     else
---         if SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= nil and SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= "" then
---             SOUND:PlayBGM(SV.EmberFrost.MelodyBox.DungeonMusicSelection, true)
---         end
---     end
--- end
 
 -- --For use in the Terrakion Fight and his dungeon after the midway point.
 -- function SINGLE_CHAR_SCRIPT.QueueRockFall(owner, ownerChar, context, args)
@@ -2465,6 +1463,32 @@ function SINGLE_CHAR_SCRIPT.AddStatusOnCountdownFinished(owner, ownerChar, conte
     end
 end
 
+function SINGLE_CHAR_SCRIPT.CountdownEvent(owner, ownerChar, context, args)
+    local status = owner.ID
+
+    local status_effect = context.User:GetStatusEffect(status)
+    if status_effect ~= nil then
+        local s = status_effect.StatusStates:Get(luanet.ctype(CountDownStateType))
+        if s.Counter > 0 then
+            s.Counter = s.Counter - 1
+        end
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.ComboChainEndMessage(owner, ownerChar, context, args)
+    local status = owner.ID
+    local status_effect = context.User:GetStatusEffect(status)
+    if status_effect ~= nil then
+        local s = status_effect.StatusStates:Get(luanet.ctype(CountDownStateType))
+        if s.Counter <= 0 then
+            local name = context.User:GetDisplayName(true)
+            local combo_number = string.sub(status, -1)
+            TASK:WaitTask(context.User:RemoveStatusEffect(owner.ID))
+            _DUNGEON:LogMsg(string.format("%s's combo of %s ended!", name, combo_number))
+        end
+    end
+end
+
 -- Decreases the counter by 1 if the user doesn't have the arg status
 function SINGLE_CHAR_SCRIPT.CountdownEventIfNoStatus(owner, ownerChar, context, args)
     local status = owner.ID
@@ -2557,7 +1581,6 @@ function SINGLE_CHAR_SCRIPT.RemoveStatusIfPositionChanges(owner, ownerChar, cont
     local tbl_y = tbl.Y
     if tbl_x ~= x or tbl_y ~= y then
         TASK:WaitTask(context.User:RemoveStatusEffect(owner.ID))
-
     end
 end
 
@@ -2572,16 +1595,727 @@ function SINGLE_CHAR_SCRIPT.RandomDebuffEvent(owner, ownerChar, context, args)
         "mod_speed",
     }
     if _DATA.Save.Rand:Next(100) >= 25 then return end
-    local statusId = stat_debuffs[_DATA.Save.Rand:Next(#stat_debuffs) + 1]
-    local stackCount = -1
+    local status_id = stat_debuffs[_DATA.Save.Rand:Next(#stat_debuffs) + 1]
+    local stack_count = -1
     local base_loc = context.User.CharLoc
     local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Thief_Hit", 3), 1)
     DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
     SOUND:PlayBattleSE("DUN_Shadow_Sneak")
     GAME:WaitFrames(30)
-    local entry = _DATA:GetStatus(statusId)
-    local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(statusId, false, false, stackCount)
+    local status_stack_event = PMDC.Dungeon.StatusStackBattleEvent(status_id, false, false, stack_count)
     local mock_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.None)
     mock_context.User = context.User
     TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, mock_context))
+end
+
+function SINGLE_CHAR_SCRIPT.AddSwitchSegmentStairs(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local map = _ZONE.CurrentMap
+    for xx = 0, map.Width - 1, 1 do
+        for yy = 0, map.Height - 1, 1 do
+            local loc = RogueElements.Loc(xx, yy)
+            local tl = map:GetTile(loc)
+
+            if tl.Effect.ID == "stairs_go_up" or tl.Effect.ID == "stairs_go_down" or tl.Effect.ID == "stairs_back_down" or
+                tl.Effect.ID == "stairs_back_up" then
+                print("Found stairs at " .. xx .. ", " .. yy)
+                local sec_loc = RogueEssence.Dungeon.SegLoc(-1, args.NextID)
+                local dest_state = PMDC.Dungeon.DestState(sec_loc, false)
+                dest_state.PreserveMusic = false
+                tl.Effect.TileStates:Set(dest_state)
+            end
+        end
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.EmberFrostSwapEvent(owner, ownerChar, context, args)
+    GAME:RemovePlayerTeam(0)
+    print("EMBER FROST SWAP EVENT TRIGGERED")
+end
+
+function SINGLE_CHAR_SCRIPT.AddStatusToLeader(owner, ownerChar, context, args)
+    if context.User ~= _DUNGEON.ActiveTeam.Leader then
+        return
+    end
+    local status = RogueEssence.Dungeon.StatusEffect(args.StatusID)
+    status:LoadFromData()
+    TASK:WaitTask(_DUNGEON.ActiveTeam.Leader:AddStatusEffect(nil, status, true))
+end
+
+-- function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
+--     local enchantment_id = args.EnchantmentID
+--     local status_id = args.StatusID
+--     local char = FindCharacterWithEnchantment(enchantment_id)
+--     if context.User == char then
+--         local status = RogueEssence.Dungeon.StatusEffect(status_id)
+--         TASK:WaitTask(context.User:AddStatusEffect(nil, status, true))
+--     end
+-- end
+
+local function RandomDifferent(tbl, current_id)
+    if #tbl <= 1 then
+        return current_id
+    end
+    local idx = _DATA.Save.Rand:Next(#tbl - 1) + 1
+    local chosen = tbl[idx]
+    if chosen == current_id then
+        chosen = tbl[#tbl]
+        if chosen == current_id then
+            chosen = tbl[1]
+        end
+    end
+    return chosen
+end
+
+function SINGLE_CHAR_SCRIPT.PandorasItemsModified(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+
+    local ITEM_POOLS = {
+        GUMMIS = GUMMIS,
+        ORBS = ORBS,
+        EQUIPMENT = EQUIPMENT,
+        SEED = SEED,
+        WANDS = WANDS,
+        TMS = TMS,
+        BERRIES = BERRIES,
+        AMMOS = AMMOS,
+        APRICORNS = APRICORNS,
+        BOOSTS = BOOSTS,
+        EVOS = EVOS,
+        MACHINES = MACHINES,
+        MEDICINE = MEDICINE
+    }
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+
+    if inv_count <= 0 then
+        return
+    end
+
+    for i = 0, inv_count - 1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+
+        for _, pool in pairs(ITEM_POOLS) do
+            if Contains(pool, item_id) then
+                item.ID = RandomDifferent(pool, item_id)
+                break
+            end
+        end
+    end
+    _DUNGEON:LogMsg("Your items were rerolled!")
+end
+
+function SINGLE_CHAR_SCRIPT.LogQuests(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local selected = QuestRegistry:GetSelected()
+
+    _DUNGEON:LogMsg("Quests:")
+    for _, quest in pairs(selected) do
+        _DUNGEON:LogMsg(string.format("%s (%s)", quest:get_description(),
+            M_HELPERS.MakeColoredText(tostring(quest.reward), PMDColor.Cyan) .. " " .. PMDSpecialCharacters.Money))
+    end
+end
+
+
+function SINGLE_CHAR_SCRIPT.SupplyDrop(owner, ownerChar, context, args)
+    local drop_table = args.DropTable
+    local enchant_id = args.EnchantmentID
+
+    if context.User ~= _DUNGEON.ActiveTeam.Leader then
+        return
+    end
+
+    local data = EnchantmentRegistry:GetData(enchant_id)
+
+    if not data["can_receive_supply_drop"] then
+        return
+    end
+
+    data["can_receive_supply_drop"] = false
+    local arguments = {}
+    arguments.MinAmount = drop_table.Min
+    arguments.MaxAmount = drop_table.Max
+    arguments.Guaranteed = drop_table.Guaranteed
+    arguments.Items = drop_table.Items
+    arguments.UseUserCharLoc = true
+    _DUNGEON:LogMsg(STRINGS:Format("A supply drop arrived!"))
+
+    SOUND:PlayBattleSE("_UNK_EVT_124")
+    GAME:WaitFrames(10)
+    SINGLE_CHAR_SCRIPT.WishSpawnItemsEvent(owner, ownerChar, context, arguments)
+
+    GAME:WaitFrames(60)
+end
+
+function SINGLE_CHAR_SCRIPT.PlantYourSeeds(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local min_seed = args.MinimumSeeds
+    local amt_per_seed = args.MoneyPerSeed
+    local enchant_id = args.EnchantmentID
+
+
+    local seed_index_arr = {}
+
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount() - 1
+    for i = inv_count, 0, -1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local item_id = item.ID
+        if Contains(SEED, item_id) then
+            table.insert(seed_index_arr, i)
+        end
+    end
+
+
+    if (#seed_index_arr >= min_seed) then
+        local total_money = #seed_index_arr * amt_per_seed
+        for _, index in ipairs(seed_index_arr) do
+            _DATA.Save.ActiveTeam:RemoveFromInv(index)
+        end
+        local team_name = _DATA.Save.ActiveTeam.Name
+        GAME:AddToPlayerMoney(total_money)
+        local data = EnchantmentRegistry:GetData(enchant_id)
+        data["money_earned"] = data["money_earned"] + total_money
+        SOUND:PlayBattleSE("DUN_Money")
+        _DUNGEON:LogMsg(
+            string.format(
+                "%s planted %s seed(s) and gained %s!",
+                team_name,
+                M_HELPERS.MakeColoredText(tostring(#seed_index_arr), PMDColor.Cyan),
+                M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+            )
+        )
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.Minimalist(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local enchant_id = args.EnchantmentID
+    local slot_amt = args.AmountPerSlot
+    local data = EnchantmentRegistry:GetData(enchant_id)
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+    local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
+
+    local available_slots = max_inv_slots - inv_count
+
+    local total_money = available_slots * slot_amt
+    data["money_earned"] = data["money_earned"] + total_money
+    GAME:AddToPlayerMoney(total_money)
+    SOUND:PlayBattleSE("DUN_Money")
+    _DUNGEON:LogMsg(
+        string.format(
+            "Gained %s from Minimalist!",
+            M_HELPERS.MakeColoredText(tostring(total_money) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan)
+        )
+    )
+end
+
+function GetSpawnCandidates(origin, radius)
+    local top_left = RogueElements.Loc(origin.X - radius, origin.Y - radius)
+    local bottom_right = RogueElements.Loc(origin.X + radius, origin.Y + radius)
+
+    local near_candidates = {}
+    local far_candidates = {}
+
+    for x = top_left.X, bottom_right.X do
+        for y = top_left.Y, bottom_right.Y do
+            local testLoc = RogueElements.Loc(x, y)
+
+            if not _ZONE.CurrentMap:TileBlocked(testLoc)
+                and _ZONE.CurrentMap:GetCharAtLoc(testLoc) == nil then
+                local min_dist = math.huge
+
+                -- check party
+                for i = 0, GAME:GetPlayerPartyCount() - 1 do
+                    local member = GAME:GetPlayerPartyMember(i)
+                    local dx = math.abs(member.CharLoc.X - x)
+                    local dy = math.abs(member.CharLoc.Y - y)
+                    min_dist = math.min(min_dist, math.max(dx, dy))
+                end
+
+                -- check guests
+                for i = 0, GAME:GetPlayerGuestCount() - 1 do
+                    local member = GAME:GetPlayerGuestMember(i)
+                    local dx = math.abs(member.CharLoc.X - x)
+                    local dy = math.abs(member.CharLoc.Y - y)
+                    min_dist = math.min(min_dist, math.max(dx, dy))
+                end
+
+                if min_dist == 1 then
+                    table.insert(near_candidates, testLoc)
+                elseif min_dist == 2 then
+                    table.insert(far_candidates, testLoc)
+                end
+            end
+        end
+    end
+
+
+    if #near_candidates > 0 then
+        return near_candidates
+    end
+
+    return far_candidates
+end
+
+function CloneCharacter(chara)
+    local character = RogueEssence.Dungeon.CharData()
+
+    character.BaseForm = chara.BaseForm
+    character.Nickname = chara.Nickname
+    character.Level = chara.Level
+    character.MaxHPBonus = chara.MaxHPBonus
+    character.AtkBonus = chara.AtkBonus
+    character.DefBonus = chara.DefBonus
+    character.MAtkBonus = chara.MAtkBonus
+    character.MDefBonus = chara.MDefBonus
+    character.SpeedBonus = chara.SpeedBonus
+    character.Unrecruitable = chara.Unrecruitable
+
+    for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+        character.BaseSkills[ii] = RogueEssence.Dungeon.SlotSkill(chara.BaseSkills[ii])
+    end
+
+    for ii = 0, RogueEssence.Dungeon.CharData.MAX_INTRINSIC_SLOTS - 1 do
+        character.BaseIntrinsics[ii] = chara.BaseIntrinsics[ii]
+    end
+    character.FormIntrinsicSlot = chara.FormIntrinsicSlot
+
+    local new_mob = RogueEssence.Dungeon.Character(chara)
+
+    new_mob.IdleOverride = chara.IdleOverride
+    local idleAction = RogueEssence.Dungeon.CharAnimIdle(chara.CharLoc, chara.CharDir)
+    if chara.IdleOverride > -1 then
+        idleAction.Override = chara.IdleOverride
+    end
+    -- new_mob.currentCharAction = RogueEssence.Dungeon.EmptyCharAction(idleAction)
+
+    new_mob.Tactic = RogueEssence.Data.AITactic(chara.Tactic)
+    -- new_mob.EquippedItem = RogueEssence.Dungeon.InvItem(chara.EquippedItem)
+
+    for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+        new_mob.Skills[ii].Element.Enabled = chara.Skills[ii].Element.Enabled
+    end
+
+    -- for key, status in pairs(chara.StatusEffects) do
+    --     new_mob.StatusEffects:Add(key, status:Clone())
+    -- end
+
+    return new_mob
+end
+
+function SINGLE_CHAR_SCRIPT.RemoveGuestWithIDBackground(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local id = args.ID
+    RemoveGuestsWithValue(id)
+end
+
+function SINGLE_CHAR_SCRIPT.Puppeteer(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local type = args.Type
+    local enchant_id = args.EnchantmentID
+    local include_assembly = args.IncludeAssembly or false
+    RemoveGuestsWithValue(enchant_id)
+
+    local members = GetCharacterOfMatchingType(type, include_assembly)
+
+    for i, member in ipairs(members) do
+        if member.Dead then return end
+        local spawn_candidates = GetSpawnCandidates(member.CharLoc, 2)
+        local clone = CloneCharacter(member)
+        local tbl = LTBL(clone)
+        clone.CharLoc = spawn_candidates[_DATA.Save.Rand:Next(#spawn_candidates) + 1]
+        tbl[enchant_id] = true
+        local tactic = _DATA:GetAITactic("go_after_foes")
+        clone.Tactic = tactic
+        clone.Nickname = "Puppet"
+        for ii = 0, 3 do
+            local skill = clone.Skills[ii].Element
+            if skill.SkillNum ~= nil and skill.SkillNum ~= "" then
+                clone:SetSkillCharges(ii, 5)
+            end
+
+            skill.Enabled = true
+        end
+
+        -- Debating whether to keep the abilities or not...
+        -- clone.BaseIntrinsics[0] = ""
+        -- clone.Intrinsics[0].Element.ID = ""
+        clone.Element1 = "ghost"
+        clone.Element2 = _DATA.DefaultElement
+
+        clone.ActionEvents:Clear()
+        local talk_evt = RogueEssence.Dungeon.BattleScriptEvent("PuppetInteract")
+        clone.ActionEvents:Add(talk_evt)
+        local tbl = LTBL(clone)
+        tbl["species"] = member.BaseForm.Species
+        tbl[enchant_id] = true
+
+
+
+        local status = RogueEssence.Dungeon.StatusEffect("emberfrost_appearance_proxy")
+        status:LoadFromData()
+        TASK:WaitTask(clone:AddStatusEffect(nil, status, true))
+        for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
+            clone.BaseSkills[ii].Charges = 5
+        end
+
+  
+
+
+        _DATA.Save.ActiveTeam.Guests:Add(clone)
+        -- Dark_Void_Front
+
+
+        local anim = RogueEssence.Dungeon.CharAbsentAnim(clone.CharLoc, clone.CharDir)
+
+
+
+        TASK:WaitTask(clone:StartAnim(anim))
+
+        local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData("Dark_Void_Front", 1))
+
+        emitter.Layer = DrawLayer.Front
+
+        DUNGEON:PlayVFX(emitter, clone.CharLoc.X * 24 + 12, clone.CharLoc.Y * 24 + 12)
+        SOUND:PlayBattleSE("DUN_Night_Shade_3")
+        GAME:WaitFrames(30)
+
+        local anim = RogueEssence.Dungeon.CharAbsentAnim(clone.CharLoc, clone.CharDir)
+
+        TASK:WaitTask(clone:StartAnim(anim))
+
+
+        local stand_anim = RogueEssence.Dungeon.CharAnimNone(clone.CharLoc, clone.CharDir)
+        stand_anim.MajorAnim = true
+        TASK:WaitTask(clone:StartAnim(stand_anim))
+
+        -- DUNGEON:PlayVFX(emitter, base_loc.X * 24 + 12, base_loc.Y * 24)
+        -- GROUND:Hide("Apple")
+        -- GROUND:PlayVFX(emitter, apple.Bounds.Center.X, apple.Bounds.Center.Y)
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.TarotCards(owner, ownerChar, context, args)
+
+    if context.User ~= nil then
+        return
+    end
+
+
+    local type = args.Type
+    local enchant_id = args.EnchantmentID
+    local include_assembly = args.IncludeAssembly or false
+
+
+    local members = GetCharacterOfMatchingType(type, include_assembly)
+    for i, member in ipairs(members) do
+        SOUND:PlayBattleSE('_UNK_DUN_TWINKLE')
+
+
+
+        local card = TarotRegistry:GetRandom(1, 1)[1][1]
+
+        -- Card visual
+        local card_status = RogueEssence.Dungeon.StatusEffect("emberfrost_card")
+        card_status:LoadFromData()
+        TASK:WaitTask(member:AddStatusEffect(nil, card_status, false))
+
+        card:apply(owner, ownerChar, context, args, member)
+        GAME:WaitFrames(20)
+        TASK:WaitTask(member:RemoveStatusEffect("emberfrost_card"))
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.GiveRandomForEachType(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+
+    local type = args.Type
+    local item_tbl = args.ItemTable
+    local include_assembly = args.IncludeAssembly or false
+    local sound = args.Sound or "DUN_Me_First_2"
+    local anim_name = args.AnimName or "Circle_Green_Out"
+
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+    local max_inv_slots = _DATA.Save.ActiveTeam:GetMaxInvSlots(_ZONE.CurrentZone)
+    local available_slots = max_inv_slots - inv_count
+    local members = GetCharacterOfMatchingType(type, include_assembly)
+    local count = #members
+
+    local give_count = math.min(count, available_slots)
+    if give_count == 0 then
+        return
+    end
+
+
+
+    for i, member in ipairs(members) do
+        SOUND:PlayBattleSE(sound)
+
+
+        local anim_data = RogueEssence.Content.AnimData(anim_name, 2, -1, -1, 255)
+        local emitter = RogueEssence.Content.RepeatEmitter(anim_data)
+        emitter.Bursts = 3
+        emitter.BurstTime = 8
+
+        -- SOUND:PlayBattleSE("DUN_Tri_Attack_2")
+        -- SOUND:PlayBattleSE("_UNK_EVT_085")
+
+        SOUND:PlayBattleSE(args.Sound)
+        DUNGEON:PlayVFX(emitter, member.MapLoc.X, member.MapLoc.Y)
+        GAME:WaitFrames(10)
+    end
+    for i = 1, give_count do
+        local entry = PickByWeights(item_tbl)
+
+        local inv_item = RogueEssence.Dungeon.InvItem(entry.Item, false, entry.Amount)
+        GAME:GivePlayerItem(inv_item)
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
+    if context.User ~= _DUNGEON.ActiveTeam.Leader then
+        return
+    end
+
+    local enchantment_id = args.EnchantmentID
+    local data = EnchantmentRegistry:GetData(enchantment_id)
+    -- local money_lost = data["money_lost"]
+    local pop_chance = data["pop_chance"]
+    local enchantment = EnchantmentRegistry:Get(enchantment_id)
+    local interest = enchantment.interest
+    local pop_increase = enchantment.pop_increase
+    local loss = enchantment.loss
+    local item_name = M_HELPERS.GetItemName("emberfrost_bubble")
+
+    local total_money = _DATA.Save.ActiveTeam.Money
+
+    if (_DATA.Save.Rand:NextDouble() * 100 < pop_chance) then
+        SOUND:PlayBattleSE("DUN_Ice_Shard")
+        local total_money = _DATA.Save.ActiveTeam.Money
+
+        local lost_amount = math.round(total_money * loss)
+        GAME:RemoveFromPlayerMoney(lost_amount)
+        data["money_lost"] = data["money_lost"] + lost_amount
+        beholder.trigger("TheBubbleLost", lost_amount, data["money_lost"], data["pop_chance"])
+        data["pop_chance"] = 0
+
+
+
+        _DUNGEON:LogMsg(
+            string.format(
+                "Oh no! The %s popped! %s was lost...",
+                item_name,
+                M_HELPERS.MakeColoredText(tostring(lost_amount) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Red)
+            )
+        )
+    else
+        local gained = math.round(total_money * interest)
+
+        if (gained > 0) then
+            SOUND:PlayBattleSE("DUN_Money")
+            data["pop_chance"] = data["pop_chance"] + pop_increase
+            GAME:AddToPlayerMoney(gained)
+            data["money_earned"] = data["money_earned"] + gained
+            beholder.trigger("TheBubbleGained", gained, data["money_earned"], data["pop_chance"])
+            _DUNGEON:LogMsg(
+                string.format(
+                    "%s was gained from the %s",
+                    M_HELPERS.MakeColoredText(tostring(gained) .. " " .. STRINGS:Format("\\uE024"), PMDColor.Cyan),
+                    item_name
+                )
+            )
+        end
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+
+    local enchantment_id = args.EnchantmentID
+    local status_id = args.StatusID
+    local apply_to_all = args.ApplyToAll or false
+    local char, in_assembly = FindCharacterWithEnchantment(enchantment_id)
+
+    if apply_to_all then
+        for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+            if member ~= nil then
+                local show_message = not member.Dead
+                local status = RogueEssence.Dungeon.StatusEffect(status_id)
+                status:LoadFromData()
+                TASK:WaitTask(member:AddStatusEffect(nil, status, show_message))
+            end
+        end
+
+        for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+            if member ~= nil then
+                local status = RogueEssence.Dungeon.StatusEffect(status_id)
+                status:LoadFromData()
+                TASK:WaitTask(member:AddStatusEffect(nil, status, false))
+            end
+        end
+        return
+    end
+
+
+    if char then
+        local status = RogueEssence.Dungeon.StatusEffect(status_id)
+        status:LoadFromData()
+
+
+        local show_message = not char.Dead and not in_assembly
+
+        TASK:WaitTask(char:AddStatusEffect(nil, status, show_message))
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context, args)
+    if context.User == _DUNGEON.ActiveTeam.Leader then
+        return
+    end
+
+    local valid_slots = {}
+
+    local inv_count = _DATA.Save.ActiveTeam:GetInvCount()
+    local jeweled_bug_slot = -1
+    for i = 0, inv_count - 1 do
+        local item = _DATA.Save.ActiveTeam:GetInv(i)
+        local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(item.ID)
+        if item.ID == "emberfrost_jeweled_bug" then
+            jeweled_bug_slot = i
+        end
+        if not entry.CannotDrop then
+            table.insert(valid_slots, i)
+        end
+    end
+
+    local jeweled_bug_item = _DATA.Save.ActiveTeam:GetInv(jeweled_bug_slot)
+    if (#valid_slots > 0) then
+        local rand_index = _DATA.Save.Rand:Next(#valid_slots)
+        local swap_slot = valid_slots[(rand_index + 1)]
+        local item = _DATA.Save.ActiveTeam:GetInv(swap_slot)
+        _DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " has eaten the " .. item:GetDisplayName() .. "!")
+        SOUND:PlayBattleSE("_UNK_DUN_Twinkle")
+        _DATA.Save.ActiveTeam:RemoveFromInv(swap_slot)
+    else
+        -- if (jeweled_bug_slot ~= -1) then
+        -- 	_DUNGEON:LogMsg("The " .. jeweled_bug_item:GetDisplayName() .. " couldn't find anything to eat and left!")
+        -- 	SOUND:PlayBattleSE("_UNK_EVT_002") -- DUN_Wing_Attack
+        -- 	_DATA.Save.ActiveTeam:RemoveFromInv(jeweled_bug_slot)
+        -- end
+    end
+end
+
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnDeath(owner, ownerChar, context, args)
+    print("DEATH TRIGGERED")
+    beholder.trigger("OnDeath", owner, ownerChar, context, args)
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStarts(owner, ownerChar, context, args)
+    if context.User ~= nil then
+        return
+    end
+    beholder.trigger("OnMapStarts", owner, ownerChar, context, args)
+    SV.EmberFrost.LastFloor = _ZONE.CurrentMapID.ID
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnMapTurnEnds(owner, ownerChar, context, args)
+    beholder.trigger("OnMapTurnEnds", owner, ownerChar, context, args)
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnEnds(owner, ownerChar, context, args)
+    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+        return
+    end
+
+    beholder.trigger("OnTurnEnds", owner, ownerChar, context, args)
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnStarts(owner, ownerChar, context, args)
+    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+        return
+    end
+
+    beholder.trigger("OnTurnStarts", owner, ownerChar, context, args)
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostOnWalks(owner, ownerChar, context, args)
+    if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
+        return
+    end
+
+    beholder.trigger("OnWalks", owner, ownerChar, context, args)
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostMoveToCheckpoint(owner, ownerChar, context, args)
+    -- if context.User ~= nil then
+    --     return
+    -- end
+
+    -- GAME:EnterGroundMap("forest_checkpoint", "Main_Entrance_Marker", true)
+
+    print("GRRRR")
+
+end
+
+function SINGLE_CHAR_SCRIPT.ApplyStatusIfTypeMatches(owner, ownerChar, context, args)
+    if context.User ~= nil then return end
+
+    local status_id = args.StatusID
+    local types = args.Types
+
+    local function matches_type(member)
+        for _, t in ipairs(types) do
+            if member.Element1 == t or member.Element2 == t then
+                return true
+            end
+        end
+        return false
+    end
+
+    local function apply_status(member)
+        print("Applying status to " .. member:GetDisplayName(true))
+        print("Status ID: " .. status_id)
+        local status = RogueEssence.Dungeon.StatusEffect(status_id)
+        status:LoadFromData()
+        TASK:WaitTask(member:AddStatusEffect(nil, status, true))
+    end
+
+    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+        if matches_type(member) then
+            apply_status(member)
+        end
+    end
+
+    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+        if LTBL(member).EmberfrostRun and matches_type(member) then
+            apply_status(member)
+        end
+    end
 end

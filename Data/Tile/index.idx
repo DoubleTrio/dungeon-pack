@@ -179,6 +179,33 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 0
+},
+"trap_haze": {
+"Name": {
+"DefaultText": "Haze Trap",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"sealed_green_door": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"sealed_green_block": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

@@ -1,10 +1,10 @@
 -- TODO: Finish adding all the mons below that have sprites and are non-leggies
 -- -- Checkpoint: item_evo
 -- {
---   bug = { "frosmoth", "kleavor", "scyther", "snom" },
---   dark = { "honchkrow", "murkrow", "nuzleaf", "shiftry", "sneasel" },
---   dragon = { "appletun", "applin", "kingdra" },
---   electric = { "bellibolt", "eelektrik", "eelektross", "electabuzz", "electivire", "heliolisk", "helioptile", "pikachu", "raichu", "tadbulb" },
+--   bug = { "snom" },
+--   dark = {,  },
+--   dragon = {   " },
+--   electric = { "eelektrik", "eelektross", "", "", "pikachu", "",  },
 --   fairy = { "clefable", "clefairy", "cottonee", "floette", "florges", "jigglypuff", "slurpuff", "spritzee", "swirlix", "sylveon", "togekiss", "togetic", "wigglytuff" },
 --   fighting = { "conkeldurr", "crabominable", "crabrawler", "gurdurr", "lucario", "machamp", "machoke", "riolu", "sneasler" },
 --   fire = { "arcanine", "ceruledge", "chandelure", "charcadet", "growlithe", "lampent", "magmar", "magmortar", "ninetales", "pansear", "scovillain", "vulpix" },
@@ -17,8 +17,8 @@
 --   poison = { "gengar", "gloom", "haunter", "nidoking", "nidoqueen", "nidorina", "nidorino", "roselia", "roserade", "sneasler", "victreebel", "weepinbell" },
 --   psychic = { "alakazam", "exeggcute", "exeggutor", "kadabra", "munna", "musharna", "starmie" },
 --   rock = { "boldore", "gigalith", "golem", "graveler", "kleavor", "onix", "rhydon", "rhyperior" },
---   steel = { "aegislash", "doublade", "lucario", "melmetal", "meltan", "steelix" },
---   water = { "cloyster", "feebas", "kingdra", "lombre", "ludicolo", "milotic", "panpour", "politoed", "poliwhirl", "seadra", "shellder", "starmie", "staryu" },
+--   steel = { "aegislash", "doublade", "lucario", "steelix" },
+--   water = { "cloyster", "feebas", "lombre", "ludicolo", "milotic", "panpour", "politoed", "poliwhirl", "seadra", "shellder", "starmie", "staryu" },
 -- }
 
 -- -- Checkpoint: can_evolve
@@ -48,45 +48,69 @@
 -- }
 
 
-local checkpoint1 = {
-  min = 15,
-  max = 16,
+local checkpoint0 = {
+  min = 5,
+  max = 6,
   bug = { "anorith", "burmy", "combee", "cutiefly", "dewpider", "dottler", "grubbin", "larvesta", "ledyba", "nincada", "nymble", "paras", "pineco", "sewaddle", "sizzlipede", "skorupi", "spinarak", "surskit", "venonat", "whirlipede", "wimpod", "snom" },
   dark = { "carvanha", "deino", "houndour", "impidimp", "krokorok", "morgrem", "nickit", "pawniard", "poochyena", "purrloin", "sandile", "scraggy", "stunky", "vullaby", "zorua" },
-  dragon = { "arctibax", "axew", "bagon", "deino", "drakloak", "dratini", "dreepy", "frigibax", "gabite", "gible", "goomy", "jangmo_o", "noibat", "shelgon", "tyrunt" },
-  electric = { "chinchou", "electrike", "elekid", "luxio", "magnemite", "pawmi", "toxel", "tynamo", "voltorb", "wattrel", "yamper", 'mareep', 'pikachu' },
+  dragon = { "arctibax", "axew", "bagon", "deino", "drakloak", "dratini", "dreepy", "frigibax", "gabite", "gible", "goomy", "jangmo_o", "noibat", "shelgon", "tyrunt", "applin" },
+  electric = { "chinchou", "electrike", "elekid", "luxio", "magnemite", "pawmi", "toxel", "tynamo", "voltorb", "wattrel", "yamper", 'mareep', 'pikachu', "helioptile" },
   fairy = { "cutiefly", "fidough", "flabebe", "impidimp", "azurill", "mr_mime", "ralts", "snubbull", "tinkatink" },
   fighting = { "croagunk", "machop", "makuhita", "mankey", "meditite", "mienfoo", "scraggy", "stufful", "timburr", "tyrogue" },
   fire = { "charmander", "darumaka", "fennekin", "fuecoco", "houndour", "larvesta", "litleo", "litwick", "magby", "numel", "pignite", "ponyta", "salandit", "scorbunny", "sizzlipede", "slugma", "tepig", "torchic" },
   flying = { "archen", "combee", "corvisquire", "doduo", "drifloon", "fletchling", "hoothoot", "hoppip", "ledyba", "natu", "noibat", "pidgey", "rookidee", "rowlet", "rufflet", "skiploom", "spearow", "swablu", "taillow", "vullaby", "wattrel", "wingull", "zubat" },
   ghost = { "dreepy", "drifloon", "duskull", "gastly", "golett", "greavard", "honedge", "litwick", "sandygast", "shuppet", "yamask" },
-  grass = { "bellsprout", "bounsweet", "bulbasaur", "cacnea", "cherubi", "chespin", "chikorita", "deerling", "ferroseed", "fomantis", "foongus", "grookey", "grotle", "hoppip", "lileep", "oddish", "paras", "rowlet", "sewaddle", "shroomish", "skiddo", "snivy", "snover", "treecko", "turtwig" },
+  grass = { "bellsprout", "bounsweet", "bulbasaur", "cacnea", "cherubi", "chespin", "chikorita", "deerling", "ferroseed", "fomantis", "foongus", "grookey", "grotle", "hoppip", "lileep", "oddish", "paras", "rowlet", "sewaddle", "shroomish", "skiddo", "snivy", "snover", "treecko", "turtwig", "applin" },
   ground = { "baltoy", "barboach", "cubone", "diglett", "drilbur", "geodude", "gible", "golett", "hippopotas", "larvitar", "mudbray", "nincada", "numel", "phanpy", "rhyhorn", "sandile", "sandshrew", "sandygast", "silicobra", "swinub", "trapinch", "wooper" },
   ice = { "amaura", "cubchoo", "frigibax", "smoochum", "snorunt", "snover", "spheal", "swinub", "vanillish", "snom" },
-  normal = { "bunnelby", "deerling", "doduo", "glameow", "hoothoot", "lechonk", "lillipup", "litleo", "meowth", "patrat", "pidgey", "rattata", "rufflet", "slakoth",  "spearow", "stufful", "swablu", "taillow", "tandemaus", "teddiursa", "vigoroth", "whismur", "wooloo", "zigzagoon" },
+  normal = { "bunnelby", "deerling", "doduo", "glameow", "hoothoot", "lechonk", "lillipup", "litleo", "meowth", "patrat", "pidgey", "rattata", "rufflet", "slakoth", "spearow", "stufful", "swablu", "taillow", "tandemaus", "teddiursa", "vigoroth", "whismur", "wooloo", "zigzagoon", "helioptile" },
+  poison = { "bellsprout", "bulbasaur", "croagunk", "ekans", "foongus", "gastly", "glimmet", "grimer", "gulpin", "koffing", "mareanie", "nidoran_m", "nidoran_f", "oddish", "salandit", "skorupi", "skrelp", "spinarak", "stunky", "tentacool", "toxel", "trubbish", "varoom", "venipede", "venonat", "zubat" },
+  psychic = { "abra", "baltoy", "beldum", "bronzor", "dottler", "drowzee", "duosion", "elgyem", "espurr", "gothita", "hatenna", "meditite", "mr_mime", "natu", "ralts", "slowpoke", "smoochum", "solosis", "spoink" },
+  rock = { "amaura", "anorith", "archen", "aron", "binacle", "corsola", "cranidos", "geodude", "glimmet", "kabuto", "lairon", "larvitar", "lileep", "nacli", "naclstack", "omanyte", "pupitar", "rhyhorn", "rockruff", "roggenrola", "shieldon", "tyrunt" },
+  steel = { "aron", "beldum", "bronzor", "ferroseed", "honedge", "magnemite", "pawniard", "shieldon", "tinkatink", "varoom" },
+  water = { "arrokuda", "barboach", "binacle", "brionne", "buizel", "carvanha", "chinchou", "clauncher", "corphish", "corsola", "dewpider", "finneon", "froakie", "goldeen", "horsea", "kabuto", "krabby", "magikarp", "mareanie", "marill", "marshtomp", "mudkip", "omanyte", "oshawott", "palpitoad", "piplup", "poliwag", "popplio", "prinplup", "psyduck", "quaxly", "remoraid", "seel", "shellos", "skrelp", "slowpoke", "sobble", "spheal", "squirtle", "surskit", "tentacool", "totodile", "tympole", "wailmer", "wiglett", "wimpod", "wingull", "wooper" },
+}
+
+local checkpoint1 = {
+  min = 15,
+  max = 16,
+  bug = { "anorith", "burmy", "combee", "cutiefly", "dewpider", "dottler", "grubbin", "larvesta", "ledyba", "nincada", "nymble", "paras", "pineco", "sewaddle", "sizzlipede", "skorupi", "spinarak", "surskit", "venonat", "whirlipede", "wimpod", "snom" },
+  dark = { "carvanha", "deino", "houndour", "impidimp", "krokorok", "morgrem", "nickit", "pawniard", "poochyena", "purrloin", "sandile", "scraggy", "stunky", "vullaby", "zorua", "murkrow", "nuzleaf", "sneasel" },
+  dragon = { "arctibax", "axew", "bagon", "deino", "drakloak", "dratini", "dreepy", "frigibax", "gabite", "gible", "goomy", "jangmo_o", "noibat", "shelgon", "tyrunt", "applin" },
+  electric = { "chinchou", "electrike", "elekid", "luxio", "magnemite", "pawmi", "toxel", "tynamo", "voltorb", "wattrel", "yamper", 'mareep', 'pikachu', "helioptile" },
+  fairy = { "cutiefly", "fidough", "flabebe", "impidimp", "azurill", "mr_mime", "ralts", "snubbull", "tinkatink" },
+  fighting = { "croagunk", "machop", "makuhita", "mankey", "meditite", "mienfoo", "scraggy", "stufful", "timburr", "tyrogue" },
+  fire = { "charmander", "darumaka", "fennekin", "fuecoco", "houndour", "larvesta", "litleo", "litwick", "magby", "numel", "pignite", "ponyta", "salandit", "scorbunny", "sizzlipede", "slugma", "tepig", "torchic" },
+  flying = { "archen", "combee", "corvisquire", "doduo", "drifloon", "fletchling", "hoothoot", "hoppip", "ledyba", "natu", "noibat", "pidgey", "rookidee", "rowlet", "rufflet", "skiploom", "spearow", "swablu", "taillow", "vullaby", "wattrel", "wingull", "zubat", "murkrow" },
+  ghost = { "dreepy", "drifloon", "duskull", "gastly", "golett", "greavard", "honedge", "litwick", "sandygast", "shuppet", "yamask" },
+  grass = { "bellsprout", "bounsweet", "bulbasaur", "cacnea", "cherubi", "chespin", "chikorita", "deerling", "ferroseed", "fomantis", "foongus", "grookey", "grotle", "hoppip", "lileep", "oddish", "paras", "rowlet", "sewaddle", "shroomish", "skiddo", "snivy", "snover", "treecko", "turtwig", "nuzleaf", "applin" },
+  ground = { "baltoy", "barboach", "cubone", "diglett", "drilbur", "geodude", "gible", "golett", "hippopotas", "larvitar", "mudbray", "nincada", "numel", "phanpy", "rhyhorn", "sandile", "sandshrew", "sandygast", "silicobra", "swinub", "trapinch", "wooper" },
+  ice = { "amaura", "cubchoo", "frigibax", "smoochum", "snorunt", "snover", "spheal", "swinub", "vanillish", "snom", "sneasel" },
+  normal = { "bunnelby", "deerling", "doduo", "glameow", "hoothoot", "lechonk", "lillipup", "litleo", "meowth", "patrat", "pidgey", "rattata", "rufflet", "slakoth", "spearow", "stufful", "swablu", "taillow", "tandemaus", "teddiursa", "vigoroth", "whismur", "wooloo", "zigzagoon", "helioptile" },
   poison = { "bellsprout", "bulbasaur", "croagunk", "ekans", "foongus", "gastly", "glimmet", "grimer", "gulpin", "koffing", "mareanie", "nidoran_m", "nidoran_f", "oddish", "salandit", "skorupi", "skrelp", "spinarak", "stunky", "tentacool", "toxel", "trubbish", "varoom", "venipede", "venonat", "zubat" },
   psychic = { "abra", "baltoy", "beldum", "bronzor", "dottler", "drowzee", "duosion", "elgyem", "espurr", "gothita", "hatenna", "meditite",  "mr_mime", "natu", "ralts", "slowpoke", "smoochum", "solosis", "spoink" },
   rock = { "amaura", "anorith", "archen", "aron", "binacle", "corsola", "cranidos", "geodude", "glimmet", "kabuto", "lairon", "larvitar", "lileep", "nacli", "naclstack", "omanyte", "pupitar", "rhyhorn", "rockruff", "roggenrola", "shieldon", "tyrunt" },
   steel = { "aron", "beldum", "bronzor", "ferroseed", "honedge", "magnemite", "pawniard", "shieldon", "tinkatink", "varoom" },
   water = { "arrokuda", "barboach", "binacle", "brionne", "buizel", "carvanha", "chinchou", "clauncher", "corphish", "corsola", "dewpider", "finneon", "froakie", "goldeen", "horsea", "kabuto", "krabby", "magikarp", "mareanie", "marill", "marshtomp", "mudkip", "omanyte", "oshawott", "palpitoad", "piplup", "poliwag", "popplio", "prinplup", "psyduck", "quaxly", "remoraid", "seel", "shellos", "skrelp", "slowpoke", "sobble", "spheal", "squirtle", "surskit", "tentacool", "totodile", "tympole", "wailmer", "wiglett", "wimpod", "wingull", "wooper" },
 }
+-- , "electivire"
 
 local checkpoint2 = {
   min = 21,
   max = 24,
-  bug = { "anorith", "beautifly", "beedrill", "butterfree", "combee", "cutiefly", "dewpider", "dottler", "dustox", "kricketune", "larvesta", "nymble", "paras", "pineco", "sizzlipede", "skorupi", "spinarak", "surskit", "venipede", "venonat", "whirlipede", "wimpod",  },
-  dark = { "carvanha", "deino", "houndour", "impidimp", "krokorok", "morgrem", "pawniard", "sandile", "scraggy", "stunky", "vullaby", "zorua", "zweilous" },
+  bug = { "anorith", "beautifly", "beedrill", "butterfree", "combee", "cutiefly", "dewpider", "dottler", "dustox", "kricketune", "larvesta", "nymble", "paras", "pineco", "sizzlipede", "skorupi", "spinarak", "surskit", "venipede", "venonat", "whirlipede", "wimpod", "scyther" },
+  dark = { "carvanha", "deino", "houndour", "impidimp", "krokorok", "morgrem", "pawniard", "sandile", "scraggy", "stunky", "vullaby", "zorua", "murkrow", "nuzleaf", "sneasel" },
   dragon = { "arctibax", "axew", "bagon", "deino", "dragonair", "drakloak", "dratini", "dreepy", "fraxure", "frigibax", "gabite", "gible", "goomy", "jangmo_o", "noibat", "shelgon", "tyrunt", "vibrava", "zweilous" },
-  electric = { "chinchou", "electrike", "elekid", "flaaffy", "luxio", "magnemite", "toxel", "tynamo", "voltorb", "wattrel", "yamper" },
-  fairy = { "cutiefly", "fidough", "impidimp", "kirlia", "morelull", "morgrem", "mr_mime", "snubbull", "tinkatink", "tinkatuff" },
+  electric = { "chinchou", "electrike", "electabuzz", "flaaffy", "luxio", "magnemite", "toxel", "tynamo", "voltorb", "wattrel", "yamper", "heliolisk", "raichu" },
+  fairy = { "cutiefly", "fidough", "impidimp", "kirlia", "morelull", "morgrem", "mr_mime", "snubbull", "tinkatuff" },
   fighting = { "combusken", "croagunk", "machop", "makuhita", "mankey", "meditite", "mienfoo", "monferno", "pignite", "scraggy", "stufful", "timburr" },
   fire = { "braixen", "charmeleon", "combusken", "crocalor", "darumaka", "fletchinder", "houndour", "larvesta", "litleo", "litwick", "magby", "monferno", "numel", "pignite", "ponyta", "quilava", "raboot", "salandit", "sizzlipede", "slugma", "torracat" },
-  flying = { "archen", "beautifly", "butterfree", "combee", "corvisquire", "dartrix", "doduo", "drifloon", "fletchinder", "natu", "noibat", "pidgeotto", "pidove", "rufflet", "skiploom", "staravia", "swablu", "taillow", "vullaby", "wattrel", "wingull", "zubat" },
+  flying = { "archen", "beautifly", "butterfree", "combee", "corvisquire", "dartrix", "doduo", "drifloon", "fletchinder", "natu", "noibat", "pidgeotto", "pidove", "rufflet", "skiploom", "staravia", "swablu", "taillow", "vullaby", "wattrel", "wingull", "zubat", "scyther", "murkrow" },
   ghost = { "dreepy", "drifloon", "duskull", "gastly", "golett", "greavard", "honedge", "litwick", "sandygast", "shuppet", "yamask" },
-  grass = { "bayleef", "bellsprout", "cacnea", "cherubi", "dartrix", "deerling", "ferroseed", "floragato", "fomantis", "foongus", "grotle", "grovyle", "ivysaur", "lileep", "oddish", "paras", "quilladin", "servine", "shroomish", "skiddo", "skiploom", "smoliv", "snover", "thwackey" },
+  grass = { "bayleef", "bellsprout", "cacnea", "cherubi", "dartrix", "deerling", "ferroseed", "floragato", "fomantis", "foongus", "grotle", "grovyle", "ivysaur", "lileep", "oddish", "paras", "quilladin", "servine", "shroomish", "skiddo", "skiploom", "smoliv", "snover", "thwackey", "nuzleaf", "sneasel" },
   ground = { "baltoy", "barboach", "cubone", "diglett", "drilbur", "gabite", "geodude", "gible", "golett", "hippopotas", "krokorok", "larvitar", "marshtomp", "mudbray", "numel", "palpitoad", "phanpy", "pupitar", "rhyhorn", "sandile", "sandshrew", "sandygast", "silicobra", "swinub", "trapinch", "vibrava" },
-  ice = { "amaura", "arctibax", "cubchoo", "frigibax", "sealeo", "smoochum", "snorunt", "snover", "spheal", "swinub", "vanillish", "vanillite" },
-  normal = { "deerling", "doduo", "glameow", "herdier", "linoone", "litleo", "loudred", "meowth", "pidgeotto", "pidove", "rufflet", "smoliv", "staravia", "stufful", "swablu", "taillow", "tandemaus", "teddiursa", "vigoroth", "wooloo" },
+  ice = { "amaura", "arctibax", "cubchoo", "frigibax", "sealeo", "smoochum", "snorunt", "snover", "spheal", "swinub", "vanillite" },
+  normal = { "deerling", "doduo", "glameow", "herdier", "linoone", "litleo", "loudred", "meowth", "pidgeotto", "pidove", "rufflet", "smoliv", "staravia", "stufful", "swablu", "taillow", "tandemaus", "teddiursa", "vigoroth", "wooloo", "heliolisk" },
   poison = { "beedrill", "bellsprout", "croagunk", "dustox", "ekans", "foongus", "gastly", "glimmet", "grimer", "gulpin", "ivysaur", "koffing", "mareanie", "oddish", "salandit", "skorupi", "skrelp", "spinarak", "stunky", "tentacool", "toxel", "trubbish", "varoom", "venonat", "whirlipede", "zubat" },
   psychic = { "baltoy", "bronzor", "dottler", "drowzee", "duosion", "elgyem", "espurr", "gothita", "gothorita", "hatenna", "hattrem", "kirlia", "meditite", "metang", "mr_mime", "natu", "slowpoke", "smoochum", "solosis", "spoink" },
   rock = { "amaura", "anorith", "archen", "aron", "binacle", "corsola", "cranidos", "geodude", "glimmet", "kabuto", "larvitar", "lileep", "nacli", "omanyte", "rhyhorn", "rockruff", "roggenrola", "shieldon", "tyrunt" },
@@ -97,19 +121,19 @@ local checkpoint2 = {
 local checkpoint3 = {
   min = 27,
   max = 30,
-  bug = { "anorith", "araquanid", "ariados", "charjabug", "larvesta", "lokix", "masquerain", "mothim", "ninjask", "parasect", "pineco", "skorupi", "swadloon", "venonat", "vespiquen" },
-  dark = { "deino", "houndoom", "impidimp", "krokorok", "liepard", "lokix", "morgrem", "pawniard", "scraggy", "stunky", "vullaby" },
+  bug = { "anorith", "araquanid", "ariados", "charjabug", "larvesta", "lokix", "masquerain", "mothim", "ninjask", "parasect", "pineco", "skorupi", "swadloon", "venonat", "vespiquen", "scyther" },
+  dark = { "deino", "houndoom", "impidimp", "krokorok", "liepard", "lokix", "morgrem", "pawniard", "scraggy", "stunky", "vullaby", "nuzleaf" },
   dragon = { "arctibax", "axew", "deino", "dreepy", "fraxure", "frigibax", "gabite", "goomy", "jangmo_o", "noibat", "shelgon", "tyrunt", "vibrava", "zweilous" },
-  electric = { "charjabug", "tynamo" },
-  fairy = { "granbull", "impidimp", "morgrem", "mr_mime", "tinkatuff" },
+  electric = { "charjabug", "tynamo", "electabuzz", "heliolisk", "flaaffy", "luxio", "raichu" },
+  fairy = { "granbull", "impidimp", "morgrem", "mr_mime", "tinkatuff", "cutiefly", "fidough", "kirlia", },
   fighting = { "breloom", "combusken", "croagunk", "hakamo-o", "hariyama", "hitmontop", "meditite", "mienfoo", "monferno", "pignite", "scraggy" },
   fire = { "braixen", "charmeleon", "combusken", "crocalor", "darumaka", "fletchinder", "houndoom", "larvesta", "litleo", "litwick", "monferno", "numel", "pignite", "ponyta", "quilava", "raboot", "salandit", "slugma", "torracat" },
-  flying = { "archen", "corvisquire", "dartrix", "doduo", "fearow", "fletchinder", "golbat", "gyarados", "masquerain", "mothim", "ninjask", "noctowl", "noibat", "pidgeotto", "rufflet", "staravia", "swablu", "swellow", "vespiquen", "vullaby" },
+  flying = { "archen", "corvisquire", "dartrix", "doduo", "fearow", "fletchinder", "golbat", "gyarados", "masquerain", "mothim", "ninjask", "noctowl", "noibat", "pidgeotto", "rufflet", "staravia", "swablu", "swellow", "vespiquen", "vullaby", "scyther" },
   ghost = { "dreepy", "duskull", "golett", "honedge", "litwick", "sandygast", "shuppet", "yamask" },
-  grass = { "bayleef", "breloom", "cacnea", "dartrix", "deerling", "eldegoss", "ferroseed", "floragato", "fomantis", "foongus", "grotle", "grovyle", "ivysaur", "lileep", "parasect", "quilladin", "servine", "skiddo", "snover", "swadloon", "thwackey" },
+  grass = { "bayleef", "breloom", "cacnea", "dartrix", "deerling", "eldegoss", "ferroseed", "floragato", "fomantis", "foongus", "grotle", "grovyle", "ivysaur", "lileep", "parasect", "quilladin", "servine", "skiddo", "snover", "swadloon", "thwackey", "nuzleaf" },
   ground = { "baltoy", "clodsire", "drilbur", "gabite", "golett", "hippopotas", "krokorok", "marshtomp", "numel", "palpitoad", "pupitar", "rhyhorn", "sandslash", "sandygast", "silicobra", "swinub", "trapinch", "vibrava" },
-  ice = { "amaura", "arctibax", "cubchoo", "frigibax", "sealeo", "snorunt", "snover", "spheal", "swinub", "vanillish", "vanillite" },
-  normal = { "deerling", "doduo", "fearow", "glameow", "herdier", "linoone", "litleo", "loudred", "noctowl", "pidgeotto", "raticate", "rufflet", "staravia", "swablu", "swellow", "vigoroth", "watchog" },
+  ice = { "amaura", "arctibax", "cubchoo", "frigibax", "sealeo", "snorunt", "snover", "spheal", "swinub", "vanillite" },
+  normal = { "deerling", "doduo", "fearow", "glameow", "herdier", "linoone", "litleo", "loudred", "noctowl", "pidgeotto", "raticate", "rufflet", "staravia", "swablu", "swellow", "vigoroth", "watchog", "heliolisk" },
   poison = { "arbok", "ariados", "clodsire", "croagunk", "foongus", "glimmet", "golbat", "grimer", "ivysaur", "koffing", "mareanie", "salandit", "skorupi", "skrelp", "stunky", "trubbish", "varoom", "venonat" },
   psychic = { "baltoy", "bronzor", "duosion", "elgyem", "gothorita", "hatenna", "hattrem", "meditite", "metang", "mr_mime", "slowpoke", "spoink" },
   rock = { "amaura", "anorith", "archen", "aron", "binacle", "corsola", "glimmet", "kabuto", "lairon", "lileep", "naclstack", "omanyte", "pupitar", "rhyhorn", "tyrunt" },
@@ -121,50 +145,52 @@ local checkpoint3 = {
 local checkpoint4 = {
   min = 33,
   max = 36,
-  bug = { "anorith", "araquanid", "ariados", "beautifly", "beedrill", "butterfree", "centiskorch", "charjabug", "dustox", "kricketune", "larvesta", "ledian", "lokix", "masquerain", "mothim", "ninjask", "parasect", "ribombee", "leavanny", "vespiquen" },
-  dark = { "deino", "houndoom", "krokorok", "liepard", "lokix", "mightyena", "morgrem", "pawniard", "scraggy", "thievul", "vullaby" },
-  dragon = { "arctibax", "axew", "deino", "dragonair", "drakloak", "dreepy", "fraxure", "gabite", "goomy", "hakamo_o", "noibat", "shelgon", "tyrunt", "vibrava", "zweilous" },
-  electric = { "charjabug", "kilowattrel", "lanturn", "manectric", "pawmo", "tynamo" },
+  bug = { "anorith", "araquanid", "ariados", "beautifly", "beedrill", "butterfree", "centiskorch", "charjabug", "dustox", "kricketune", "larvesta", "ledian", "lokix", "masquerain", "mothim", "ninjask", "parasect", "ribombee", "leavanny", "vespiquen", "frosmoth", "kleavor", "scyther" },
+  dark = { "deino", "houndoom", "krokorok", "liepard", "lokix", "mightyena", "morgrem", "pawniard", "scraggy", "thievul", "vullaby", "honchkrow", "shiftry" },
+  dragon = { "arctibax", "deino", "dragonair", "drakloak", "dreepy", "fraxure", "gabite", "goomy", "hakamo_o", "noibat", "shelgon", "tyrunt", "vibrava", "zweilous", "appletun" },
+  electric = { "charjabug", "kilowattrel", "lanturn", "manectric", "pawmo", "tynamo", "electivire", "raichu" },
   fairy = { "azumarill", "dachsbun", "granbull", "morgrem", "mr_mime", "ribombee", "tinkatuff" },
   fighting = { "bewear", "breloom", "combusken", "croagunk", "hakamo-o", "hariyama", "hitmontop", "meditite", "mienfoo", "monferno", "pawmo", "pignite", "primeape", "scraggy" },
   fire = { "braixen", "centiskorch", "charmeleon", "combusken", "crocalor", "houndoom", "larvesta", "litwick", "monferno", "pignite", "ponyta", "quilava", "slugma" },
-  flying = { "archen", "beautifly", "butterfree", "corvisquire", "drifblim", "fearow", "golbat", "gyarados", "jumpluff", "kilowattrel", "ledian", "masquerain", "mothim", "ninjask", "noctowl", "noibat", "pelipper", "pidgeotto", "rufflet", "swellow", "vespiquen", "vullaby", "xatu" },
+  flying = { "archen", "beautifly", "butterfree", "corvisquire", "drifblim", "fearow", "golbat", "gyarados", "jumpluff", "kilowattrel", "ledian", "masquerain", "mothim", "ninjask", "noctowl", "noibat", "pelipper", "pidgeotto", "rufflet", "swellow", "vespiquen", "vullaby", "xatu", "scyther", "honchkrow", },
   ghost = { "dreepy", "drifblim", "duskull", "golett", "litwick", "sandygast", "shuppet" },
-  grass = { "breloom", "cherrim", "eldegoss", "ferroseed", "floragato", "foongus", "grovyle", "jumpluff", "lileep", "parasect", "quilladin", "servine", "snover", "steenee", "swadloon" },
+  grass = { "breloom", "cherrim", "eldegoss", "ferroseed", "floragato", "foongus", "grovyle", "jumpluff", "lileep", "parasect", "quilladin", "servine", "snover", "steenee", "leavanny", "shiftry", "appletun" },
   ground = { "baltoy", "clodsire", "donphan", "dugtrio", "gabite", "golett", "krokorok", "marowak", "marshtomp", "palpitoad", "pupitar", "rhyhorn", "sandslash", "sandygast", "silicobra", "vibrava" },
-  ice = { "amaura", "arctibax", "cubchoo", "sealeo", "snorunt", "snover", "vanillish" },
+  ice = { "amaura", "arctibax", "cubchoo", "sealeo", "snorunt", "snover", "vanillish", "frosmoth" },
   normal = { "bewear", "bibarel", "fearow", "furret", "glameow", "loudred", "maushold", "noctowl", "pidgeotto", "raticate", "rufflet", "swellow", "vigoroth", "watchog" },
   poison = { "arbok", "ariados", "beedrill", "clodsire", "croagunk", "dustox", "foongus", "golbat", "grimer", "mareanie", "skorupi", "skrelp", "swalot", "trubbish", "varoom" },
   psychic = { "baltoy", "duosion", "elgyem", "gothorita", "hattrem", "hypno", "meditite", "meowstic", "metang", "mr_mime", "slowpoke", "wobbuffet", "xatu" },
-  rock = { "amaura", "anorith", "archen", "binacle", "corsola", "kabuto", "lairon", "lileep", "lycanroc", "naclstack", "omanyte", "pupitar", "rhyhorn", "tyrunt" },
+  rock = { "amaura", "anorith", "archen", "binacle", "corsola", "kabuto", "lairon", "lileep", "lycanroc", "naclstack", "omanyte", "pupitar", "rhyhorn", "tyrunt", "kleavor" },
   steel = { "ferroseed", "lairon", "metang", "pawniard", "tinkatuff", "varoom" },
-  water = { "araquanid", "azumarill", "bibarel", "binacle", "clauncher", "corsola", "dewott", "floatzel", "frogadier", "gyarados", "kabuto", "kingler", "lanturn", "mareanie", "marshtomp", "octillery", "omanyte", "palpitoad", "pelipper", "prinplup", "sealeo", "skrelp", "slowpoke", "wailmer", "wartortle", "wugtrio" },
+  water = { "araquanid", "azumarill", "bibarel", "binacle", "clauncher", "corsola", "dewott", "floatzel", "frogadier", "gyarados", "kabuto", "kingler", "lanturn", "mareanie", "marshtomp", "octillery", "omanyte", "palpitoad", "pelipper", "prinplup", "sealeo", "skrelp", "slowpoke", "wailmer", "wartortle", "wugtrio", "seadra" },
 }
+
 
 local checkpoint5 = {
   min = 40,
   max = 43,
-  bug = { "araquanid", "ariados", "beautifly", "beedrill", "butterfree", "centiskorch", "charjabug", "dustox", "forretress", "golisopod", "kricketune", "larvesta", "ledian", "lokix", "masquerain", "mothim", "ninjask", "orbeetle", "parasect", "ribombee", "scolipede", "swadloon", "venomoth", "vespiquen" },
-  dark = { "cacturne", "crawdaunt", "deino", "houndoom", "incineroar", "liepard", "lokix", "mightyena", "morgrem", "pawniard", "sharpedo", "skuntank", "thievul", "vullaby", "zoroark", "zweilous" },
-  dragon = { "arctibax", "deino", "dragonair", "drakloak", "dreepy", "fraxure", "gabite", "hakamo-o", "noibat", "shelgon", "vibrava", "zweilous" },
-  electric = { "ampharos", "charjabug", "electrode", "kilowattrel", "lanturn", "luxray", "magneton", "manectric", "pawmo", "toxtricity" },
+  bug = { "araquanid", "ariados", "beautifly", "beedrill", "butterfree", "centiskorch", "charjabug", "dustox", "forretress", "golisopod", "kricketune", "larvesta", "ledian", "lokix", "masquerain", "mothim", "ninjask", "orbeetle", "parasect", "ribombee", "scolipede", "venomoth", "vespiquen", "frosmoth", "leavanny", "kleavor", "scyther" },
+  dark = { "cacturne", "crawdaunt", "deino", "houndoom", "incineroar", "liepard", "lokix", "mightyena", "morgrem", "pawniard", "sharpedo", "skuntank", "thievul", "vullaby", "zoroark", "zweilous", "honchkrow", "shiftry" },
+  dragon = { "arctibax", "deino", "dragonair", "drakloak", "dreepy", "fraxure", "gabite", "hakamo-o", "noibat", "shelgon", "vibrava", "zweilous", "kingdra", "appletun" },
+  electric = { "ampharos", "charjabug", "electrode", "kilowattrel", "lanturn", "luxray", "magneton", "manectric", "pawmo", "toxtricity", "electivire" },
   fairy = { "azumarill", "dachsbun", "granbull", "morgrem", "mr_mime", "primarina", "ribombee" },
   fighting = { "bewear", "breloom", "gallade", "hakamo_o", "hariyama", "hitmontop", "mienfoo", "pawmo", "primeape" },
   fire = { "camerupt", "centiskorch", "houndoom", "incineroar", "larvesta", "lampent", "salazzle" },
-  flying = { "beautifly", "butterfree", "dodrio", "drifblim", "fearow", "golbat", "gyarados", "jumpluff", "kilowattrel", "ledian", "masquerain", "mothim", "ninjask", "noctowl", "noibat", "pelipper", "rufflet", "staraptor", "swellow", "vespiquen", "vullaby", "xatu" },
+  flying = { "beautifly", "butterfree", "dodrio", "drifblim", "fearow", "golbat", "gyarados", "jumpluff", "kilowattrel", "ledian", "masquerain", "mothim", "ninjask", "noctowl", "noibat", "pelipper", "rufflet", "staraptor", "swellow", "vespiquen", "vullaby", "xatu", "scyther", "honchkrow" },
   ghost = { "decidueye", "drakloak", "dreepy", "drifblim", "golett", "houndstone", "lampent", "runerigus", "sandygast" },
-  grass = { "breloom", "cacturne", "cherrim", "decidueye", "eldegoss", "gogoat", "jumpluff", "lurantis", "meganium", "parasect", "sawsbuck", "steenee", "swadloon", "torterra", "venusaur" },
+  grass = { "breloom", "cacturne", "cherrim", "decidueye", "eldegoss", "gogoat", "jumpluff", "lurantis", "meganium", "parasect", "sawsbuck", "steenee", "torterra", "venusaur", "leavanny", "shiftry", "appletun" },
   ground = { "camerupt", "clodsire", "donphan", "dugtrio", "excadrill", "gabite", "gastrodon", "golett", "hippowdon", "marowak", "piloswine", "pupitar", "rhyhorn", "runerigus", "sandslash", "sandygast", "torterra", "vibrava", "whiscash" },
-  ice = { "arctibax", "dewgong", "jynx", "piloswine", "sealeo", "snorunt", "vanillish" },
+  ice = { "arctibax", "dewgong", "jynx", "piloswine", "sealeo", "snorunt", "vanillish", "frosmoth" },
   normal = { "bewear", "bibarel", "dodrio", "fearow", "furret", "maushold", "noctowl", "raticate", "rufflet", "sawsbuck", "staraptor", "stoutland", "swellow", "watchog" },
   poison = { "arbok", "ariados", "beedrill", "clodsire", "dustox", "golbat", "salazzle", "scolipede", "skrelp", "skuntank", "swalot", "tentacruel", "toxtricity", "venomoth", "venusaur" },
   psychic = { "bronzong", "duosion", "elgyem", "gallade", "gothorita", "grumpig", "hattrem", "hypno", "jynx", "meowstic", "metang", "mr_mime", "orbeetle", "wobbuffet", "xatu" },
-  rock = { "bastiodon", "lairon", "lycanroc", "pupitar", "rampardos", "rhyhorn" },
+  rock = { "bastiodon", "lairon", "lycanroc", "pupitar", "rampardos", "rhydon", "kleavor" },
   steel = { "bastiodon", "bronzong", "excadrill", "forretress", "lairon", "magneton", "metang", "pawniard" },
-  water = { "araquanid", "azumarill", "bibarel", "crawdaunt", "dewgong", "feraligatr", "floatzel", "gastrodon", "golduck", "golisopod", "gyarados", "kingler", "lanturn", "lumineon", "octillery", "pelipper", "primarina", "seaking", "sealeo", "sharpedo", "skrelp", "tentacruel", "whiscash", "wugtrio" },
+  water = { "araquanid", "azumarill", "bibarel", "crawdaunt", "dewgong", "feraligatr", "floatzel", "gastrodon", "golduck", "golisopod", "gyarados", "kingler", "lanturn", "lumineon", "octillery", "pelipper", "primarina", "seaking", "sealeo", "sharpedo", "skrelp", "tentacruel", "whiscash", "wugtrio", "kingdra" },
 }
 
 local type_checkpoints = {
+  checkpoint0,
   checkpoint1,
   checkpoint2,
   checkpoint3,
@@ -187,8 +213,7 @@ function TypeEHelpers.MakeApply(type, item_id)
     M_HELPERS.GiveInventoryItemsToPlayer({ { Item = item_id, Amount = 1 } })
 
     if type_checkpoints ~= nil then
-      -- local checkpoint = SV.EmberFrost.CheckpointProgression
-      local checkpoint = 1
+      local checkpoint = SV.EmberFrost.CheckpointProgression + 1
       local index = math.min(checkpoint, 5)
       local checkpoint = type_checkpoints[index]
       local charas = checkpoint[type]
@@ -261,11 +286,18 @@ function TypeEHelpers.MakeApply(type, item_id)
   end
 end
 
-function TypeEHelpers.MakeSetActiveEffects(status_id, _)
+
+-- function SINGLE_CHAR_SCRIPT.ApplyStatusIfTypeMatches(owner, ownerChar, context, args)
+--     if context.User ~= nil then return end
+
+--     local status_id = args.StatusID
+--     local types = args.Types
+
+function TypeEHelpers.MakeSetActiveEffects(status_id, types)
   return function(self, active_effect, zone_context)
     active_effect.OnMapStarts:Add(2,
       RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
-        Serpent.line({ StatusID = status_id, EnchantmentID = self.id, ApplyToAll = true })))
+        Serpent.line({ StatusID = status_id, EnchantmentID = self.id, ApplyToAll = true, Types = types })))
   end
 end
 
@@ -278,14 +310,12 @@ function TypeEHelpers.MakeProgressTexts(element_id)
   end
 end
 
-
-function TypeEHelpers.MakeBaseDescription(type, item_id)
-  local type = _DATA:GetElement(type)
-  local type_name = type:GetIconName()
+function TypeEHelpers.MakeBaseDescription(type_id, item_id)
+  local element = _DATA:GetElement(type_id)
+  local type_name = element:GetIconName()
   local item_name = M_HELPERS.GetItemName(item_id)
   return string.format("Gain a %s-type and a %s", type_name, item_name)
 end
-
 
 -- STEEL
 ReinforcedPlating = EnchantmentRegistry:Register({
@@ -325,7 +355,7 @@ NegativeAura = EnchantmentRegistry:Register({
       M_HELPERS.MakeColoredText(self.tile_range, PMDColor.Cyan))
   end,
   get_progress_texts = TypeEHelpers.MakeProgressTexts("dark"),
-  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_negative_aura", {"dark"}),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_negative_aura", { "dark" }),
   apply = TypeEHelpers.MakeApply("dark", "apricorn_black"),
 })
 
@@ -367,7 +397,6 @@ Flock = EnchantmentRegistry:Register({
   name = "Flock",
   id = "FLOCK",
   percent = 40,
-  turns = 4,
   offer_time = "beginning",
   rarity = 1,
   get_description = function(self)
@@ -377,15 +406,13 @@ Flock = EnchantmentRegistry:Register({
       _DATA:GetElement("flying"):GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
   end,
-
   get_progress_texts = TypeEHelpers.MakeProgressTexts("flying"),
   set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_flock", { "flying" }),
   apply = TypeEHelpers.MakeApply("flying", "apricorn_white"),
 })
 
-
 -- POISON
- Noxious = EnchantmentRegistry:Register({
+Noxious = EnchantmentRegistry:Register({
   name = "Noxious",
   id = "NOXIOUS",
   percent = 25,
@@ -393,7 +420,7 @@ Flock = EnchantmentRegistry:Register({
   rarity = 1,
   get_description = function(self)
     return string.format(
-      "%s. Attacks from %s types in your team have a %s chance to inflict a random bad status condition",
+      "%s. Attacks from %s-types in your team have a %s chance to inflict a random bad status condition",
       TypeEHelpers.MakeBaseDescription("poison", "apricorn_purple"),
       _DATA:GetElement("poison"):GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
@@ -403,35 +430,6 @@ Flock = EnchantmentRegistry:Register({
   apply = TypeEHelpers.MakeApply("poison", "apricorn_purple"),
 })
 
-
--- ROCK
-HeavyRock = EnchantmentRegistry:Register({
-  type = "rock",
-  apricorn = "apricorn_brown",
-  name = "Heavy Rock",
-  id = "HEAVY_ROCK",
-  percent = 50,
-  amount = 3,
-  offer_time = "beginning",
-  rarity = 1,
-  get_description = function(self)
-    return string.format(
-      "%s. Rock projectiles from %s-type members deal %s more. Gain %s at the start of each floor",
-      TypeEHelpers.MakeBaseDescription("rock", "apricorn_brown"),
-      _DATA:GetElement(self.type):GetIconName(),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
-      M_HELPERS.MakeColoredText(self.amount, PMDColor.Cyan))
-  end,
-  get_progress_texts = TypeEHelpers.MakeProgressTexts("rocck"),
-  set_active_effects = function (active_effect, zone_context)
-    -- active_effect.OnMapStarts:Add(2,
-    --   RogueEssence.Dungeon.SingleCharScriptEvent("AddEnchantmentStatus",
-    --     Serpent.line({ StatusID = status_id, EnchantmentID = self.id, ApplyToAll = true })))
-    
-  end,
-  apply = TypeEHelpers.MakeApply("rock", "apricorn_brown"),
-})
-
 -- FIRE
 FiredUp = EnchantmentRegistry:Register({
   name = "Fired Up!",
@@ -439,12 +437,10 @@ FiredUp = EnchantmentRegistry:Register({
   offer_time = "beginning",
   rarity = 1,
   get_description = function(self)
-    local fire = _DATA:GetElement("fire")
-    local icon = fire:GetIconName()
+    local icon = _DATA:GetElement("fire"):GetIconName()
     return string.format(
       "%s. %s-type members' %s-type moves grow stronger with each %s-type attack (resets on new floor)",
-      TypeEHelpers.MakeBaseDescription("fire", "apricorn_red"), icon, icon, icon
-    )
+      TypeEHelpers.MakeBaseDescription("fire", "apricorn_red"), icon, icon, icon)
   end,
   get_progress_texts = TypeEHelpers.MakeProgressTexts("fire"),
   set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_fired_up", { "fire" }),
@@ -454,7 +450,7 @@ FiredUp = EnchantmentRegistry:Register({
 -- WATER
 HealingWaters = EnchantmentRegistry:Register({
   name = "Healing Waters",
-  id = "HEALING",
+  id = "HEALING_WATERS",
   percent = 25,
   offer_time = "beginning",
   rarity = 1,
@@ -470,39 +466,39 @@ HealingWaters = EnchantmentRegistry:Register({
   apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
 })
 
--- FLOWER OR CANDY
--- FAIRY TALE
--- SWEET TREATS
+-- FAIRY
 SweetTreats = EnchantmentRegistry:Register({
-  name = "Sweat Treats",
+  name = "Sweet Treats",
   id = "SWEET_TREATS",
   percent = 25,
   offer_time = "beginning",
   rarity = 1,
   get_description = function(self)
     return string.format(
-      "%s. %s-type members' water moves heal nearby allies for %s of damage dealt",
+      "%s. %s-type members' moves heal nearby allies for %s of damage dealt",
       TypeEHelpers.MakeBaseDescription("fairy", "apricorn_white"),
-      _DATA:GetElement("f"):GetIconName(),
+      _DATA:GetElement("fairy"):GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
   end,
-  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
-  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
-  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("fairy"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_sweet_treats", { "fairy" }),
+  apply = TypeEHelpers.MakeApply("fairy", "apricorn_white"),
 })
+-- Defeating enemies have a chance to give a member a random treat!
 
+-- FIGHTING
 ComboChain = EnchantmentRegistry:Register({
   name = "Combo Chain",
   id = "COMBO_CHAIN",
   percent = 25,
-  offer_time = "beginning",
   turns = 3,
+  offer_time = "beginning",
+  rarity = 1,
   get_description = function(self)
     return string.format(
-      "%s. %s-type members deal %s more damage per consecutive hit. Resets after %s turns without hitting",
+      "%s. %s-type members gain boosts per hit streak. Resets after %s turns without hitting",
       TypeEHelpers.MakeBaseDescription("fighting", "apricorn_brown"),
       _DATA:GetElement("fighting"):GetIconName(),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan),
       M_HELPERS.MakeColoredText(self.turns, PMDColor.Cyan))
   end,
   get_progress_texts = TypeEHelpers.MakeProgressTexts("fighting"),
@@ -519,108 +515,26 @@ ShockValue = EnchantmentRegistry:Register({
   rarity = 1,
   get_description = function(self)
     return string.format(
-      "%s. Each %s-type members. Resets after 3 turns of not hitting a target ",
-      TypeEHelpers.MakeBaseDescription("water", "apricorn_blue"),
-      _DATA:GetElement("water"):GetIconName(),
+      "%s. Each %s-type member. Resets after 3 turns of not hitting a target",
+      TypeEHelpers.MakeBaseDescription("electric", "apricorn_yellow"),
+      _DATA:GetElement("electric"):GetIconName(),
       M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
   end,
-  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
-  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
-  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("electric"),
+  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_shock_value", { "electric" }),
+  apply = TypeEHelpers.MakeApply("electric", "apricorn_yellow"),
 })
-
--- SpecificDamageEvent
-
-  --  [Serializable]
-  --   public abstract class FixedDamageEvent : CalculatedDamageEvent
-  --   {
-  --       public override int CalculateDamage(GameEventOwner owner, BattleContext context)
-  --       {
-  --           int damage = CalculateFixedDamage(owner, context);
-
-  --           int typeMatchup = PreTypeEvent.GetDualEffectiveness(context.User, context.Target, context.Data);
-  --           if (typeMatchup <= PreTypeEvent.N_E_2)
-  --           {
-  --               DungeonScene.Instance.LogMsg(Text.FormatGrammar(PreTypeEvent.EffectivenessToPhrase(typeMatchup), context.Target.GetDisplayName(false)));
-  --               damage = -1;
-  --           }
-
-  --           return damage;
-  --       }
-
-  --       protected abstract int CalculateFixedDamage(GameEventOwner owner, BattleContext context);
-  --   }
-
-
-    --   [Serializable]
-    -- public abstract class CalculatedDamageEvent : DirectDamageEvent
-    -- {
-    --     public override IEnumerator<YieldInstruction> Apply(GameEventOwner owner, Character ownerChar, BattleContext context)
-    --     {
-    --         int damage = CalculateDamage(owner, context);
-
-    --         int prevHP = context.Target.HP;
-    --         if (damage >= 0)
-    --             yield return CoroutineManager.Instance.StartCoroutine(InflictDamage(context, damage));
-
-    --         int hpLost = prevHP - context.Target.HP;
-    --         ReportDamage(context, Math.Max(0, damage), hpLost);
-    --     }
-
-    --     public abstract int CalculateDamage(GameEventOwner owner, BattleContext context);
-    -- }
-
-    --      protected void ReportDamage(BattleContext context, int dmg, int hpLost)
-    --     {
-    --         context.ContextStates.Set(new DamageDealt(dmg));
-    --         context.AddContextStateInt<TotalDamageDealt>(true, dmg);
-    --         context.ContextStates.Set(new HPLost(hpLost));
-    --         context.AddContextStateInt<TotalHPLost>(true, hpLost);
-    --     }
-
-Overdrive = EnchantmentRegistry:Register({
-  name = "Com",
-  id = "HEALING",
-  percent = 25,
-  offer_time = "beginning",
-  rarity = 1,
-  get_description = function(self)
-    return string.format(
-      "%s. Each %s-type members ",
-      TypeEHelpers.MakeBaseDescription("water", "apricorn_blue"),
-      _DATA:GetElement("water"):GetIconName(),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
-  end,
-  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
-  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
-  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
-})
-
--- FLOWER
--- FAIRY
-Overdrive = EnchantmentRegistry:Register({
-  name = "Com",
-  id = "HEALING",
-  percent = 25,
-  offer_time = "beginning",
-  rarity = 1,
-  get_description = function(self)
-    return string.format(
-      "%s. Each %s-type members ",
-      TypeEHelpers.MakeBaseDescription("water", "apricorn_blue"),
-      _DATA:GetElement("water"):GetIconName(),
-      M_HELPERS.MakeColoredText(tostring(self.percent) .. "%", PMDColor.Cyan))
-  end,
-  get_progress_texts = TypeEHelpers.MakeProgressTexts("water"),
-  set_active_effects = TypeEHelpers.MakeSetActiveEffects("emberfrost_healing_waters", { "water" }),
-  apply = TypeEHelpers.MakeApply("water", "apricorn_blue"),
-})
+-- context.Explosion = new
+-- add a fixed damage...
+-- ExplosionData(Explosion);
 
 local function CreateTypeStatusEnchantment(config)
   return EnchantmentRegistry:Register({
     name = config.name,
     id = config.id,
     chance = config.chance,
+    offer_time = "beginning",
+    rarity = 1,
     get_description = function(self)
       local type_name = _DATA:GetElement(config.type):GetIconName()
       local status = _DATA:GetStatus(config.status_id):GetColoredName()
@@ -632,37 +546,23 @@ local function CreateTypeStatusEnchantment(config)
         M_HELPERS.MakeColoredText(tostring(self.chance) .. "%", PMDColor.Cyan),
         status)
     end,
-    offer_time = "beginning",
-    rarity = 1,
     get_progress_texts = TypeEHelpers.MakeProgressTexts(config.type),
     set_active_effects = function(self, active_effect, zone_context)
       local chance = self.chance
       beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
         beholder.observe("OnHits", function(owner, ownerChar, context, args)
-          local user = context.User
-          local target = context.Target
-
           if context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Physical and
               context.Data.Category ~= RogueEssence.Data.BattleData.SkillCategory.Magical then
             return
           end
 
-          if user.MemberTeam ~= _DUNGEON.ActiveTeam then
-            return
-          end
+          local user = context.User
+          if user.MemberTeam ~= _DUNGEON.ActiveTeam then return end
+          if user.Element1 ~= config.type and user.Element2 ~= config.type then return end
+          if _DATA.Save.Rand:Next(100) >= chance then return end
 
-          if user.Element1 ~= config.type and user.Element2 ~= config.type then
-            return
-          end
-
-          local roll = _DATA.Save.Rand:Next(100)
-          if roll >= chance then
-            return
-          end
-
-          if target == nil then
-            return
-          end
+          local target = context.Target
+          if target == nil then return end
 
           local status = RogueEssence.Dungeon.StatusEffect(config.status_id)
           status:LoadFromData()
@@ -670,12 +570,9 @@ local function CreateTypeStatusEnchantment(config)
         end)
       end)
     end,
-    apply = TypeEHelpers.MakeApply(config.apricorn, config.type)
+    apply = TypeEHelpers.MakeApply(config.type, config.apricorn),
   })
 end
-
--- Kindling – Every Fire-type move used increases the power of the next Fire move by 10% (stacks up to 3 times).
--- Noxious
 
 -- BUG
 SwatTeam = CreateTypeStatusEnchantment({
@@ -684,7 +581,7 @@ SwatTeam = CreateTypeStatusEnchantment({
   chance = 30,
   type = "bug",
   apricorn = "apricorn_green",
-  status_id = "infestation"
+  status_id = "infestation",
 })
 
 -- ICE
@@ -694,12 +591,111 @@ Subzero = CreateTypeStatusEnchantment({
   chance = 25,
   type = "ice",
   apricorn = "apricorn_blue",
-  status_id = "emberfrost_frostbite"
+  status_id = "emberfrost_frostbite",
 })
 
+HEAVY_ROCK_TABLE = {
+  { Item = "ammo_geo_pebble", Amount = 3, Weight = 10 },
+  { Item = "ammo_gravelerock", Amount = 3, Weight = 10 },
+  { Item = "ammo_rare_fossil", Amount = 3, Weight = 10 }, 
+}
 
--- TODOs
--- Pachiritsu shops is on discount
--- Gain 18 shards right now enchants
+HARVEST_TABLE = {
+  { Item = "berry_apicot",       Amount = 1, Weight = 10 },
+  { Item = "berry_babiri",       Amount = 1, Weight = 10 },
+  { Item = "berry_charti",       Amount = 1, Weight = 10 },
+  { Item = "berry_chilan",       Amount = 1, Weight = 10 },
+  { Item = "berry_chople",       Amount = 1, Weight = 10 },
+  { Item = "berry_coba",         Amount = 1, Weight = 10 },
+  { Item = "berry_colbur",       Amount = 1, Weight = 10 },
+  { Item = "berry_enigma",       Amount = 1, Weight = 10 },
+  { Item = "berry_ganlon",       Amount = 1, Weight = 10 },
+  { Item = "berry_haban",        Amount = 1, Weight = 10 },
+  { Item = "berry_jaboca",       Amount = 1, Weight = 10 },
+  { Item = "berry_kasib",        Amount = 1, Weight = 10 },
+  { Item = "berry_kebia",        Amount = 1, Weight = 10 },
+  { Item = "berry_leppa",        Amount = 1, Weight = 10 },
+  { Item = "berry_liechi",       Amount = 1, Weight = 10 },
+  { Item = "berry_lum",          Amount = 1, Weight = 10 },
+  { Item = "berry_micle",        Amount = 1, Weight = 10 },
+  { Item = "berry_occa",         Amount = 1, Weight = 10 },
+  { Item = "berry_oran",         Amount = 1, Weight = 10 },
+  { Item = "berry_passho",       Amount = 1, Weight = 10 },
+  { Item = "berry_payapa",       Amount = 1, Weight = 10 },
+  { Item = "berry_petaya",       Amount = 1, Weight = 10 },
+  { Item = "berry_rindo",        Amount = 1, Weight = 10 },
+  { Item = "berry_roseli",       Amount = 1, Weight = 10 },
+  { Item = "berry_rowap",        Amount = 1, Weight = 10 },
+  { Item = "berry_salac",        Amount = 1, Weight = 10 },
+  { Item = "berry_shuca",        Amount = 1, Weight = 10 },
+  { Item = "berry_sitrus",       Amount = 1, Weight = 10 },
+  { Item = "berry_starf",        Amount = 1, Weight = 10 },
+  { Item = "berry_tanga",        Amount = 1, Weight = 10 },
+  { Item = "berry_wacan",        Amount = 1, Weight = 10 },
+  { Item = "berry_yache",        Amount = 1, Weight = 10 },
+  { Item = "food_apple",         Amount = 1, Weight = 10 },
+  { Item = "food_apple_big",     Amount = 1, Weight = 10 },
+  { Item = "food_apple_huge",    Amount = 1, Weight = 10 },
+  { Item = "food_apple_perfect", Amount = 1, Weight = 10 },
+  { Item = "food_banana",        Amount = 1, Weight = 10 },
+  { Item = "food_banana_big",    Amount = 1, Weight = 10 },
+}
+-- grass
+Harvester = EnchantmentRegistry:Register({
+  name = "Harvester",
+  id = "HARVESTER",
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. For each %s, gain a random berry or food at the start of each floor",
+      TypeEHelpers.MakeBaseDescription("grass", "apricorn_green"),
+      _DATA:GetElement("grass"):GetIconName())
+  end,
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("grass"),
+  set_active_effects = function(self, active_effect, zone_context)
+    active_effect.OnMapStarts:Add(5,
+      RogueEssence.Dungeon.SingleCharScriptEvent("GiveRandomForEachType",
+        Serpent.line({
+          Type = "grass",
+          ItemTable = HARVEST_TABLE,
+          AnimName = "Circle_Green_Out",
+        })))
+  end,
+  apply = TypeEHelpers.MakeApply("grass", "apricorn_green"),
+})
 
+-- ROCK
+HeavyRock = EnchantmentRegistry:Register({
+  name = "Heavy Rock",
+  id = "HEAVY_ROCK",
+  percent = 50,
+  amount = 3,
+  offer_time = "beginning",
+  rarity = 1,
+  get_description = function(self)
+    return string.format(
+      "%s. %s-type member deals %s increased rock projectile damage and gives %s of a rock projectile each floor.",
+      TypeEHelpers.MakeBaseDescription("rock", "apricorn_brown"),
+      _DATA:GetElement("rock"):GetIconName(),
+      M_HELPERS.FormatPercent(self.percent),
+      M_HELPERS.MakeColoredText(self.amount, PMDColor.Cyan))
+  end,
+
+
+
+  get_progress_texts = TypeEHelpers.MakeProgressTexts("rock"),
+  set_active_effects = function(self, active_effect, zone_context)
+    TypeEHelpers.MakeSetActiveEffects("emberfrost_heavy_rock", { "rock" })(self, active_effect, zone_context)
+    active_effect.OnMapStarts:Add(5,
+      RogueEssence.Dungeon.SingleCharScriptEvent("GiveRandomForEachType",
+        Serpent.line({
+          Type = "rock",
+          ItemTable = HEAVY_ROCK_TABLE,
+          AnimName = "Circle_Green_Out",
+          Sound = "_UNK_EVT_008",
+        })))
+  end,
+  apply = TypeEHelpers.MakeApply("rock", "apricorn_brown"),
+})
 return TypeEHelpers

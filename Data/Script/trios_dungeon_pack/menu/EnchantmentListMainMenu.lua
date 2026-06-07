@@ -121,7 +121,7 @@ local function achievement_update_description_summary(achievement_id, menu, orig
     RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
     RogueElements.Loc(
       GraphicsManager.ScreenWidth - 16,
-      origin.Y + y_offset + 12
+      origin.Y + y_offset + 6
     )
   )
 
@@ -208,7 +208,7 @@ local function collection_update_description_summary(enchantment_id, menu, origi
     RogueElements.Loc(origin.X + menuWidth + 2, origin.Y),
     RogueElements.Loc(
       GraphicsManager.ScreenWidth - 16,
-      origin.Y + y_offset + 12
+      origin.Y + y_offset + 6
     )
   )
 

@@ -7,7 +7,7 @@
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "Moves will deal more damage but cost an additional PP.",
+"DefaultText": "Moves will deal 75% more damage but cost an additional PP.",
 "LocalTexts": {}
 },
 "Released": true,

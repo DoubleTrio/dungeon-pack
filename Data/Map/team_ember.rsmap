@@ -276,7 +276,7 @@
 "Gender": -1
 },
 "CurrentForm": {
-"Species": "charmeleon",
+"Species": "charmander",
 "Form": 0,
 "Skin": "normal",
 "Gender": 2
@@ -298,8 +298,8 @@
 },
 {
 "Element": {
-"SkillNum": "flamethrower",
-"Charges": 8,
+"SkillNum": "ember",
+"Charges": 15,
 "Enabled": true,
 "Sealed": false
 },
@@ -431,7 +431,7 @@
 "OriginalUUID": "",
 "OriginalTeam": "",
 "BaseForm": {
-"Species": "charmeleon",
+"Species": "charmander",
 "Form": 0,
 "Skin": "normal",
 "Gender": 2
@@ -451,8 +451,8 @@
 "CanForget": true
 },
 {
-"SkillNum": "flamethrower",
-"Charges": 8,
+"SkillNum": "ember",
+"Charges": 15,
 "CanForget": true
 },
 {
@@ -518,7 +518,7 @@
 "Gender": -1
 },
 "CurrentForm": {
-"Species": "ivysaur",
+"Species": "bulbasaur",
 "Form": 0,
 "Skin": "normal",
 "Gender": 2
@@ -531,8 +531,8 @@
 "Skills": [
 {
 "Element": {
-"SkillNum": "energy_ball",
-"Charges": 9,
+"SkillNum": "tackle",
+"Charges": 22,
 "Enabled": true,
 "Sealed": false
 },
@@ -549,8 +549,8 @@
 },
 {
 "Element": {
-"SkillNum": "night_slash",
-"Charges": 15,
+"SkillNum": "razor_leaf",
+"Charges": 14,
 "Enabled": true,
 "Sealed": false
 },
@@ -558,8 +558,8 @@
 },
 {
 "Element": {
-"SkillNum": "poison_fang",
-"Charges": 20,
+"SkillNum": "growl",
+"Charges": 15,
 "Enabled": true,
 "Sealed": false
 },
@@ -673,7 +673,7 @@
 "OriginalUUID": "",
 "OriginalTeam": "",
 "BaseForm": {
-"Species": "ivysaur",
+"Species": "bulbasaur",
 "Form": 0,
 "Skin": "normal",
 "Gender": 2
@@ -688,8 +688,8 @@
 "SpeedBonus": 0,
 "BaseSkills": [
 {
-"SkillNum": "energy_ball",
-"Charges": 9,
+"SkillNum": "tackle",
+"Charges": 22,
 "CanForget": true
 },
 {
@@ -698,13 +698,13 @@
 "CanForget": true
 },
 {
-"SkillNum": "night_slash",
-"Charges": 15,
+"SkillNum": "razor_leaf",
+"Charges": 14,
 "CanForget": true
 },
 {
-"SkillNum": "poison_fang",
-"Charges": 20,
+"SkillNum": "growl",
+"Charges": 15,
 "CanForget": true
 }
 ],
@@ -770,7 +770,7 @@
 "Gender": -1
 },
 "CurrentForm": {
-"Species": "pidgeotto",
+"Species": "pidgey",
 "Form": 0,
 "Skin": "normal",
 "Gender": 2
@@ -925,7 +925,7 @@
 "OriginalUUID": "",
 "OriginalTeam": "",
 "BaseForm": {
-"Species": "pidgeotto",
+"Species": "pidgey",
 "Form": 0,
 "Skin": "normal",
 "Gender": 2
@@ -3913,7 +3913,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 55
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -3935,7 +3935,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 55
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -3957,7 +3957,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 55
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -3979,7 +3979,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 55
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4353,7 +4353,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 110
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4370,12 +4370,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4392,12 +4392,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4414,12 +4414,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4436,12 +4436,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4463,7 +4463,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 155
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4811,7 +4811,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 110
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4828,12 +4828,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4850,12 +4850,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4872,12 +4872,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4894,12 +4894,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -4921,7 +4921,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 155
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5267,7 +5267,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 110
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5284,12 +5284,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5306,12 +5306,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5328,12 +5328,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5350,12 +5350,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5377,7 +5377,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 155
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5717,7 +5717,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 110
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5734,12 +5734,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5756,12 +5756,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5778,12 +5778,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5800,12 +5800,12 @@
 },
 {
 "Data": {
-"ID": "grass",
+"ID": "floor",
 "TileTex": {
-"AutoTileset": "",
+"AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": -1
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -5827,7 +5827,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 155
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -6189,7 +6189,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 205
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -6211,7 +6211,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 205
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -6233,7 +6233,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 205
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -6255,7 +6255,7 @@
 "AutoTileset": "test_dungeon_floor",
 "Associates": [],
 "Layers": [],
-"NeighborCode": 205
+"NeighborCode": 255
 },
 "StableTex": false
 },
@@ -7276,10 +7276,10 @@
 "EntryPoints": [
 {
 "Loc": {
-"X": 6,
+"X": 4,
 "Y": 14
 },
-"Dir": 4
+"Dir": 0
 }
 ],
 "Items": []

@@ -212,8 +212,9 @@ M_HELPERS = {
     return M_HELPERS.MakeColoredText(string.format("%d", amount) .. PMDSpecialCharacters.Money, PMDColor.Cyan)
     
   end,
-  FormatPercent = function (percent)
-    return M_HELPERS.MakeColoredText(string.format("%d%%", percent), PMDColor.Yellow)
+  FormatPercent = function (percent, color)
+    local text_color = color or PMDColor.Cyan
+    return M_HELPERS.MakeColoredText(string.format("%d%%", percent), text_color)
   end,
 
   RemoveAllInventory = function(include_cannot_drop)

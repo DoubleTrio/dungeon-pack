@@ -160,6 +160,11 @@ function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue
   local destNote = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { activeEffect })
   local priority = RogueElements.Priority(-6)
   queue:Enqueue(priority, destNote)
+
+  -- local blowing_wind = LUA_ENGINE:MakeGenericType(DefaultMapStatusStepType, { MapGenContextType },
+  --   { "default_weather", "blowing_wind" })
+  -- local priority = RogueElements.Priority(-6)
+  -- queue:Enqueue(priority, blowing_wind)
   
 end
 
@@ -171,9 +176,9 @@ function ZONE_GEN_SCRIPT.EmberfrostSwitchUp(zoneContext, context, queue, seed, a
   local destNote = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { active_effect })
   local priority = RogueElements.Priority(-6)
 
-  if ((zoneContext.CurrentID + 1) % interval) == 0 and zoneContext.CurrentID ~= 0  and zoneContext.CurrentID ~= 29 then
+  if ((zoneContext.CurrentID + 1) % interval) == 0 and zoneContext.CurrentID ~= 0 and zoneContext.CurrentID ~= 29 then
     print(tostring(SV.EmberFrost.CheckpointProgression) .. "GRRRRRRRR")
-    active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = -1, NextID = SV.EmberFrost.CheckpointProgression })))
+    active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = -1, NextID = SV.EmberFrost.CheckpointProgression + 1 })))
   end
   queue:Enqueue(priority, destNote)
 end

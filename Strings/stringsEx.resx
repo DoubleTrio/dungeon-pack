@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
@@ -53,232 +53,237 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.NetStandard.ResXResourceReader, System.Resources.NetStandard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.NetStandard.ResXResourceWriter, System.Resources.NetStandard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </resheader>
   <data name="MSG_SHIMMERING_START" xml:space="preserve">
     <value>Shimmmering light flooded the dungeon!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_END" xml:space="preserve">
     <value>The shimmering stopped.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_EFFECT_CLEAR_BODY" xml:space="preserve">
     <value>All Pokémon are protected from stat drops!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_EFFECT_CRITICAL" xml:space="preserve">
     <value>All moves have a higher critical rate chance!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_EFFECT_RANGE" xml:space="preserve">
     <value>All moves have increased range!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_EFFECT_PERFECT_ACCURACY" xml:space="preserve">
     <value>All moves are guaranteed to hit!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_EFFECT_SERENE" xml:space="preserve">
     <value>All moves have their additional effect chance boosted!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_EFFECT_STATUS" xml:space="preserve">
     <value>All Pokémon are protected from status conditions!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_CRYSTAL_PROTECT" xml:space="preserve">
     <value>{0} was protected by a mysterious power!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SHIMMERING_CRYSTAL_STAT_DROP" xml:space="preserve">
     <value>A mysterious power prevented {0}'s {2} from dropping!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_DEFENSE_NO_MORE" xml:space="preserve">
     <value>{0} can't use any more Defense Crystals!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_ATTACK_NO_MORE" xml:space="preserve">
     <value>{0} can't use any more Attack Crystals!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_HEAL_NO_MORE" xml:space="preserve">
     <value>{0} can't use any more Drain Crystals!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_DEFENSE_END" xml:space="preserve">
     <value>{0}'s Defense Crystal's power wore off!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_ATTACK_END" xml:space="preserve">
     <value>{0}'s Attack Crystal's power wore off!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_HEAL_END" xml:space="preserve">
     <value>{0}'s Drain Crystal's power wore off!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_ATTACK" xml:space="preserve">
     <value>{0}'s Attack Crystal power rose to {1}!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_DEFENSE" xml:space="preserve">
     <value>{0}'s Defense Crystal power rose to {1}!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_CRYSTAL_HEAL" xml:space="preserve">
     <value>{0}'s Drain Crystal power rose to {1}!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_GLOW_FOUND_ITEM" xml:space="preserve">
     <value>{0} found a {1}!</value>
-    <comment></comment>  
   </data>
   <data name="MSG_GLOW_FOUND_NO_ITEM" xml:space="preserve">
     <value>{0} didn't find an item!</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK1" xml:space="preserve">
     <value>[emote=Inspired]Wow![pause=20] [color=#FFC663]Wishmaker Cave[color] is so beautiful![br][emote=Normal]Sometimes, I feel something stirring in me when I look at the crystals.</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK2" xml:space="preserve">
     <value>I could have sworn I saw something shiny in the ground earlier.[br][emote=Worried]I wish I could remember where I last saw it...</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK3" xml:space="preserve">
     <value>Heh.[pause=0] These crystals can't hide from old [color=#00F8F8]Zangoose[color].[br][emote=Normal]Hidden from the plain eye, I know they're hidden.... </value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK4" xml:space="preserve">
     <value>[emote=Pain]Ughh, those [color=#00F8F8]Tentacools[color] are nasty, [pause=20]very nasty.[br][emote=Pain]I don't know why,[pause=20] but I feel absolutely horrible after fighting one.</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK5" xml:space="preserve">
     <value>Huh,[pause=20] I noticed some Pokémon here actively seek crystals to become more powerful.[br]I think it's best to use their power immediately the moment you find them.</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK6" xml:space="preserve">
     <value>Rumor has it,[pause=10] something rests within the depths of this cave.[br]...Waiting to be awaken by explorers who hold their wishes until the very end. </value>
-    <comment></comment> 
-  </data> 
+  </data>
   <data name="WISHMAKER_NPC_TALK7.0" xml:space="preserve">
     <value>{0} more[pause=10].[pause=10].[pause=10].[pause=10] Like a star[pause=10].[pause=10].[pause=10].[pause=10]\nFor [color=#F8F800]Wishmaker[color].</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK7.1" xml:space="preserve">
     <value>[emote=Happy]Like a star[pause=10].[pause=10].[pause=10].[pause=10] Hold until the end.[pause=10].[pause=10].[pause=20]\nFor [color=#F8F800]Wishmaker[color].</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK8" xml:space="preserve">
     <value>One arduous journey.[pause=0] The collective star power of gems.[pause=0] And one single wish.[br][emote=Happy]My masterpiece will soon be finished!</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK9" xml:space="preserve">
     <value>[pause=10].[pause=10].[pause=10].[pause=10].[pause=10].[pause=10]Explorers,[pause=30] when you reach the depths,[pause=30] place your gems in a formation of a star[pause=10].[pause=10].[pause=10].[pause=10].[pause=10].[br]The more gems,[pause=30] the greater you shall reap the reward.</value>
-    <comment></comment>  
   </data>
   <data name="WISHMAKER_NPC_TALK10" xml:space="preserve">
     <value>[pause=10].[pause=10].[pause=10].[pause=10]Hold your wishes until the end.[pause=0]\nFor [color=#F8F800]Wishmaker[color].</value>
-    <comment></comment>  
   </data>
   <data name="TALK_SHOP_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=happy]</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_END_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=happy]Best wishes.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_PAY_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10]Total is {0}.[pause=10]\nDeal?</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_PAY_DONE_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=happy]Thank you.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_PAY_REFUSE_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10]</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_PAY_SHORT_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10]Need more money.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_SELL_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10]I give {0}.[pause=10]\nAgree?</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_SELL_DONE_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=happy]Thank you. [pause=10]Best wishes.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_START_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=happy]Welcome.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_SUSPECT_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=sad]Sorry.[pause=10] Thieves are bad.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_THIEF_0003" xml:space="preserve">
     <value>Disappointing.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="TALK_SHOP_THIEF_RETURN_0003" xml:space="preserve">
     <value>.[pause=10].[pause=10].[pause=10][emote=sad]Not again.</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_WEATHER_WARD" xml:space="preserve">
     <value>{0}'s [color=#F8C8C8]Weather Ward[color] made the weather disappear!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_FEEL_THE_BURN_START" xml:space="preserve">
     <value>{0} is feeling the burn!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_FREEZE_TAG_START" xml:space="preserve">
     <value>{0} can freeze tag targets!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_FREEZE_TAG_WAS_NOT_TAGGED" xml:space="preserve">
     <value>{0} was not tagged!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_FREEZE_TAGGER_START" xml:space="preserve">
     <value>{0} can freeze tag targets and cannot be frozen!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_FREEZE_TAGGER_END" xml:space="preserve">
     <value>{0} can no longer freeze tag targets and can be frozen again!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_FREEZE_TAGGER_FREEZE_ATTEMPT" xml:space="preserve">
     <value>{0} cannot be frozen again until they tag another target!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_RAVENOUS_START" xml:space="preserve">
     <value>{0} will deal more damage the hungrier they become!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_NEGATIVE_AURA_START" xml:space="preserve">
     <value>{0} is eminating a dark aura!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_NOXIOUS_START" xml:space="preserve">
     <value>{0}'s moves are noxious!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_GROUNDED_START" xml:space="preserve">
     <value>{0} can ground themselves!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_GROUNDED_BOOST_START" xml:space="preserve">
     <value>{0} is now fully grounded!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_GROUNDED_BOOST_END" xml:space="preserve">
     <value>{0} is no longer grounded!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_PRESSURE_COOKER_START" xml:space="preserve">
     <value>{0} is feeling the pressure!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_REINFORCED_PLATING_START" xml:space="preserve">
     <value>{0} is heavily plated!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_ONE_TIME_SHIELD_START" xml:space="preserve">
     <value>{0} will take less damage from the next attack!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_DRACONIAN_DEFIENCE_START" xml:space="preserve">
     <value>{0} will deal more damage the lower their HP is!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_AVENGER_START" xml:space="preserve">
     <value>{0} will avenge their allies!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_HUNGER_STRIKE_START" xml:space="preserve">
     <value>{0} can strike at hunger!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_GLASS_CANNON_START" xml:space="preserve">
     <value>{0} both deals and receives more damage!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_SPONGE_START" xml:space="preserve">
     <value>{0} both receives and deals reduced damage!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_MONO_MOVES_START" xml:space="preserve">
     <value>{0} deals increased damage if all moves are of the same type!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_HANDS_TIED" xml:space="preserve">
     <value>{0} has their hands tied!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_HANDS_TIED_ALREADY" xml:space="preserve">
     <value>{0} already cannot use items!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_HANDS_TIED_END" xml:space="preserve">
     <value>{0} can use items again!</value>
-    <comment></comment>  </data>
+  </data>
   <data name="MSG_HANDS_TIED_START" xml:space="preserve">
     <value>{0} was prevented from using items!</value>
-    <comment></comment>  </data>
+  </data>
+  <data name="MSG_HEAVY_ROCK_START" xml:space="preserve">
+    <value>{0}'s rock projectiles will do increased damage!</value>
+  </data>
+  <data name="MSG_FIRED_UP_START" xml:space="preserve">
+    <value>{0}'s is feeling fired up!</value>
+  </data>
+  <data name="MSG_COMBO_CHAIN_START" xml:space="preserve">
+    <value>{0} can chain attacks!</value>
+  </data>
+  <data name="MSG_COMBO_CHAIN_END" xml:space="preserve">
+    <value>{0} combo of {1} ended!</value>
+  </data>
+  <data name="MSG_DOUBLE_UP_START" xml:space="preserve">
+    <value>{0} can double up on moves!</value>
+  </data>
+  <data name="MSG_CRITICAL_SUCCESS_START" xml:space="preserve">
+    <value>{0} is feeling lucky!</value>
+  </data>
 </root>
