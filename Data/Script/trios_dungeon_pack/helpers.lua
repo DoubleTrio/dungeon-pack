@@ -746,6 +746,7 @@ M_HELPERS = {
         CheckpointProgression = 0,
         Completed = false,
         ReceivedEnchantmentReminder = true,
+        ReceivedCannotSaveOnGroundModeReminder = true,
       }
 
 

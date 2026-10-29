@@ -236,7 +236,8 @@ roles_arr = ["Normal", "Support", "Leader", "Loner"]
 
 # ["Name", "Tactic", "Ablity", "Move 1", "Move 2",
 #                             "Move 3", "Move 4", "Min Lev", "Max Lev", "Min Floor", "Max Floor", "Role", "Rate"]
-if __name__ == "__main__":
+
+
 
 
     # cynda - ember
@@ -264,12 +265,6 @@ if __name__ == "__main__":
 # eevee, crobat, burmy, wormadam, golem, snorlax, parasect, raichu, infernape (personal one), golduck, combee, vespiquen, scizor, heracross, aipom, ambipom, shellos, gastrodon, blissey, togepi, togetic, togekiss, machamp 
 # bidoof, starly, shinx, drifloon, kirketo, stantler, geodude, chimca, lopunny, munchlax, scyther, ponyta, rapiddash, metamod, eevee
 # ice, floatzel
-
-
-
-
-    mons = [
-
         # PikachuPikachu
         # RaichuRaichu
         # ZubatZubat
@@ -362,7 +357,18 @@ if __name__ == "__main__":
         # SylveonSylveon
         # WyrdeerWyrdeer
         # KleavorKleavor
-        #1
+
+
+
+
+if __name__ == "__main__":
+
+
+
+    mons = [
+
+
+        #1 (Holy Legends of Arceus)
         ('buneary', 0, 'wander_normal', '', ['double_hit', 'foresight'], 4, 5, 0, 3, 0, 10),
         ('shinx', 0, 'wander_normal', '', ['howl', 'tackle'], 4, 5, 0, 3, LONER, 10),
         ('starly', 0, 'wander_dumb', '', ['tackle', 'sand_attack'], 4, 5, 0, 3, 0, 10),
@@ -397,7 +403,7 @@ if __name__ == "__main__":
 
 
         # Add like path wands + pounce wands on island
-        # 6
+        # 6 (Ahoy!)
         ('pancham', 0, 'wander_normal', 'mold_breaker', ['taunt', 'circle_throw'], 12, 13, 5, 7, 0, 10),
         ('meowth', 1, 'thief', '', ['pay_day', 'fury_swipes'], 11, 12, 5, 7, 0, 10),
         ('diglett', 1, 'wander_normal', 'tangling_hair', ['bulldoze', 'sucker_punch'], 10, 11, 5, 8, 0, 10),
@@ -434,11 +440,10 @@ if __name__ == "__main__":
         ('bruxish', 0, 'wander_normal', 'dazzling', ['aqua_jet', 'psychic_fangs'], 19, 20, 9, 10, SUPPORT, 10),
 
       
-        # 11
+        # 11 (Dune)
         ('geodude', 0, 'patrol', '', ['wide_guard', 'rock_blast'], 20, 21, 10, 13, NORMAL, 10),
         ('aron', 0, 'wander_normal', '', ['protect', 'rock_tomb', 'screech'], 20, 21, 10, 12, NORMAL, 10),
         ('sandile', 0, 'wander_normal', 'intimidate', ['dig', 'scary_face'], 20, 21, 10, 12, NORMAL, 10),
-
         ('cubone', 0, 'wander_normal', '', ['bonemerang', 'smack_down'], 20, 21, 10, 12, NORMAL, 10),
         ('nacli', 0, 'wait_attack', 'purifying_salt', ['salt_cure'], 22, 23, 10, 12, NORMAL, 10),
         # ('naclstack', 0, 'wait_attack', 'purifying_salt', ['salt_cure'], 25, 26, 9, 10, NORMAL, 10),
@@ -450,15 +455,12 @@ if __name__ == "__main__":
         ('natu', 0, 'wander_normal', 'magic_guard', ['future_sight', 'teleport'], 21, 22, 11, 13, NORMAL, 10),
         ('sigilyph', 0, 'wander_normal', 'magic_guard', ['ancient_power', 'psybeam', 'roost'], 21, 22, 11, 14, NORMAL, 10),
 
-
         # 13
         ('audino', 0, 'wander_normal', 'healer', ['heal_pulse', 'baton_pass', 'amnesia'], 21, 22, 12, 15, SUPPORT, 10),
         ('loudred', 0, 'wander_normal', 'soundproof', ['screech', 'round', 'supersonic'], 20, 21, 12, 14, NORMAL, 10),
         ('joltik', 0, 'wander_normal', 'unnerve', ['electroweb', 'gastro_acid', 'struggle_bug'], 23, 24, 12, 14, SUPPORT, 10),  
         ('golett', 0, 'wander_normal', 'iron_fist', ['shadow_punch', 'thunder_punch', 'ice_punch'], 22, 23, 12, 14, NORMAL, 10),
         ('binacle', 0, 'wander_normal', 'tough_claws', ['fling', 'razor_shell', 'x_scissor'], 22, 23, 12, 14, NORMAL, 10),
-
-
 
         #14
         ('druddigon', 0, 'wander_normal', 'rough_skin', ['glare', 'dragon_claw'], 22, 23, 13, 15, LONER, 10),
@@ -467,24 +469,295 @@ if __name__ == "__main__":
         ('relicanth', 0, 'wander_normal', '', ['aqua_tail', 'rock_blast'], 23, 24, 9, 10, NORMAL, 10),
 
 
-
-
         #15
         ('donphan', 0, 'wander_normal', 'sand_veil', ['rollout', 'bulldoze'], 25, 26, 14, 15, LONER, 10),
         ('lycanroc', 0, 'wander_normal', 'sand_rush', ['quick_guard', 'accelerock', 'rock_throw'], 25, 26, 14, 15, LONER, 10),
         ('heliolisk', 0, 'wander_normal', 'sand_veil', ['parabola_charge'], 25, 26, 14, 15, NORMAL, 10),
         ('parasect', 0, 'wander_normal', '', ['spore', 'leech_life', 'leech_seed'], 24, 25, 14, 15, NORMAL, 10),
         ('lokix', 0, 'wander_normal', 'tinted_lens', ['first_impression', 'knock_off'], 25, 26, 9, 10, LONER, 10),
-
-
-
-
-
-
       
         # ('lopunny', 0, 'wander_normal', 'guts', ['cross_chop'], 19, 20, 9, 10, NORMAL, 10),
-        # 16
-        # ('snorunt', 0, 'wander_normal', 'snow_cloak', ['powder_snow'], 25, 20, 9, 10, NORMAL, 10),
+        ## Alternate between snow and hail
+
+
+        # 16 Snow (Can't Trust What You See...)
+
+
+        # In walls?
+        # ('cursola', 0, 'wander_normal', 'weak_armor', ['future_sight', 'nasty_plot'], 28, 29, 9, 10, NORMAL, 10),
+        # ('cursola', 0, 'wander_normal', 'forewarn', ['ice_beam', 'psyshock'], 28, 29, 9, 10, NORMAL, 10),
+        ('shuppet', 0, 'wander_normal', 'frisk', ['spite', 'disable'], 26, 27, 15, 16, NORMAL, 10),
+        ('shuppet', 0, 'wander_normal', 'frisk', ['night_shade', 'grudge'], 27, 28, 15, 16, NORMAL, 10),
+
+        ('spiritomb', 0, 'wander_normal', 'pressure', ['pain_split', 'shadow_sneak', 'will_o_wisp'], 26, 27, 15, 16, NORMAL, 10),
+        ('spiritomb', 0, 'wander_normal', 'pressure', ['hypnosis', 'dream_eater'], 26, 27, 15, 16, NORMAL, 10),
+
+        ('sandslash', 0, 'retreater', 'snow_cloak', ['iron_head', 'spikes'], 30, 31, 9, 10, NORMAL, 10),
+        ('sandslash', 0, 'retreater', 'snow_cloak', ['ice_ball', 'agility'], 30, 31, 9, 10, NORMAL, 10),
+
+
+        ('castform', 0, 'retreater', 'forecast', ['weather_ball', 'powder_snow'], 28, 29, 9, 10, NORMAL, 10),
+        ('castform', 0, 'retreater', 'forecast', ['icy_wind', 'scald', 'thunder_wave'], 28, 29, 9, 10, NORMAL, 10),
+
+        ('noctowl', 0, 'retreater', 'tinted_lens', ['acrobatics', 'aerial_ace', 'haze'], 28, 29, 9, 10, NORMAL, 10),
+        ('noctowl', 0, 'retreater', 'tinted_lens', ['pluck', 'air_slash', 'hypnosis'], 28, 29, 9, 10, NORMAL, 10),
+
+
+
+
+    ]
+
+    def create_monster_house(mon_name, form):
+        base = {
+            "Spawn": {
+                "BaseForm": {
+                    "Species": mon_name,
+                    "Form": form,
+                    "Skin": "",
+                    "Gender": -1
+                },
+                "Level": {
+                    "Min": 1,
+                    "Max": 1
+                },
+                "SpecifiedSkills": [],
+                "Intrinsic": "",
+                "Tactic": "wander_smart",
+                "SpawnConditions": [],
+                "SpawnFeatures": [
+                    {
+                        "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+                    },
+                    {
+                        "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
+                        "StartFromID": 0,
+                        "AddNumerator": 4,
+                        "AddDenominator": 3
+                    },
+                    {
+                        "$type": "PMDC.LevelGen.MobSpawnLuaTable, PMDC",
+                        "LuaTable": "{ EmberfrostRun = true }"
+                    }
+                ]
+            },
+            "Rate": 10,
+            "Range": {
+                "Min": 0,
+                "Max": 27
+            }
+        }
+        return base
+
+    monster_house_mons = [
+        "cleffa", "clefairy", "clefable",
+        "hatenna", "hattrem", "hatterene",
+        "zubat", "golbat", "crobat",
+        "meowth", "persian", 
+        "vulpix", "ninetales",
+        "tinkatink", "tinkatuff", "tinkaton",
+        "ledian",
+        "audino",
+        "beldum", "metang",
+        "pichu", "pikachu", "raichu",
+        "togepi", "togetic", "togekiss",
+        "mawile",
+        "baltoy", "claydol",
+        "gulpin", "swalot",
+        "swinub", "piloswine",
+        "minun", "plusle",
+        "ralts", "kirlia", "gardevoir", "gallade",
+        "azurill", "marill", "azumarill",
+        "baltoy", "claydol",
+        "woobat", "swoobat",
+        "illumise", "volbeat",
+        "bagon", "shelgon",
+        "jigglypuff", "wigglytuff",
+        "mime_jr", "mr_mime",
+        "aron", "lairon", "aggron",
+        "elekid", "electabuzz", "electivire",
+        "sneasel", "weavile",
+        "nickit", "thievul",
+        "eevee",
+        "morelull",
+        "girafarig",
+        "tentacool", "tentacruel",
+        "dunsparce",
+        "skitty", "delcatty",
+        "houndour", "houndoom",
+        "whismur", "loudred", "exploud",
+        "solosis", "duosion", "reuniclus",
+        "luvdisc",
+        "clauncher", "clawitzer",
+        "meditite", "medicham",
+        "bronzor",  "bronzong",
+        "rhyhorn", "rhydon",
+        "nosepass", "probopass",
+        "chingling", "chimecho",
+        "chinchou", "lanturn"
+    ]
+
+    monster_house_result = []
+    for mon_name in monster_house_mons:
+        struct = create_monster_house(mon_name, 0)
+        monster_house_result.append(struct)
+
+    def create_mon(mon):
+        name, form, tactic, ability, moves, min_lev, max_lev, min_floor, max_floor, role, rate = mon[0], mon[1], mon[2], mon[3], mon[4], mon[5], mon[6], mon[7], mon[8], mon[9], mon[10]
+        item_name = mon[11] if len(mon) > 11 else None
+        status_id = mon[12] if len(mon) > 12 else None
+
+        spawn_features = [
+            {
+                "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
+                "StartAt": len(moves),
+                "Remove": False
+            },
+            {
+                "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
+            },
+            {
+                "$type": "PMDC.LevelGen.MobSpawnLuaTable, PMDC",
+                "LuaTable": "{ EmberfrostRun = true }"
+            }
+        ]
+
+        if item_name:
+            items = item_name if isinstance(item_name, list) else [item_name]
+            item_entries = [
+                {
+                    "Spawn": {
+                        "ID": item,
+                        "Cursed": False,
+                        "HiddenValue": "",
+                        "Amount": 1,
+                        "Price": 0
+                    },
+                    "Rate": 10
+                }
+                for item in items
+            ]
+            spawn_features.append({
+                "$type": "PMDC.LevelGen.MobSpawnItem, PMDC",
+                "Items": item_entries
+            })
+
+        if status_id:
+            statuses = status_id if isinstance(status_id, list) else [status_id]
+            status_entries = [
+                {
+                    "Spawn": {
+                        "ID": status,
+                        "StatusStates": [
+                            {
+                                "$type": "RogueEssence.Dungeon.CountDownState, RogueEssence",
+                                "Counter": -1
+                            }
+                        ]
+                    },
+                    "Rate": 10
+                }
+                for status in statuses
+            ]
+            spawn_features.append({
+                "$type": "RogueEssence.LevelGen.MobSpawnStatus, RogueEssence",
+                "Statuses": status_entries
+            })
+
+        base_structure = {
+            "Spawn": {
+                "Spawn": {
+                    "BaseForm": {
+                        "Species": name,
+                        "Form": form,
+                        "Skin": "",
+                        "Gender": -1
+                    },
+                    "Level": {
+                        "Min": min_lev,
+                        "Max": max_lev
+                    },
+                    "SpecifiedSkills": moves,
+                    "Intrinsic": ability,
+                    "Tactic": tactic,
+                    "SpawnConditions": [],
+                    "SpawnFeatures": spawn_features
+                },
+                "Role": role
+            },
+            "Rate": rate,
+            "Range": {
+                "Min": min_floor,
+                "Max": max_floor
+            }
+        }
+        return base_structure
+
+    mons.sort(key=lambda item: (item[-4], item[0]))
+    result = []
+    for mon in mons:
+        name = mon[0]
+        min_lev = mon[5]
+        if (min_lev < 60):
+            result.append(create_mon(mon))
+
+    with open('../Data/Zone/emberfrost_depths.json', 'r', encoding='utf-8-sig') as file:
+        data = json.load(file)
+
+    data['Object']['Segments'][1]["ZoneSteps"][4]["Spawns"] = result
+
+    # data['Object']['Segments'][0]["ZoneSteps"][5]["Mobs"] = monster_house_result
+
+    # data['Object']['Segments'][0]["ZoneSteps"][6]["Mobs"] = monster_house_result
+
+    # data['Object']['Segments'][0]["ZoneSteps"][7]["Mobs"] = monster_house_result
+
+    with open('../Data/Zone/emberfrost_depths.json', 'w') as file:
+        json.dump(data, file, indent=2)
+
+    csv_filename = 'emberfrost_encounters.csv'
+    with open(csv_filename, mode='w', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow([
+            "Name", "Form", "Tactic", "Ability",
+            "Move 1", "Move 2", "Move 3", "Move 4",
+            "Min Lev", "Max Lev", "Min Floor", "Max Floor",
+            "Role", "Rate", "Item", "Status"
+        ])
+        for row in mons:
+            # pad moves (row[4]) to exactly 4 entries
+            while len(row[4]) != 4:
+                row[4].append("")
+
+            # normalize optional item_name / status_id (row[11] / row[12])
+            item_name = row[11] if len(row) > 11 and row[11] else ""
+            status_id = row[12] if len(row) > 12 and row[12] else ""
+
+            item_str = ",".join(item_name) if isinstance(item_name, list) else item_name
+            status_str = ",".join(status_id) if isinstance(status_id, list) else status_id
+
+            csv_writer.writerow([
+                row[0], row[1], row[2], row[3],
+                *row[4],
+                row[5], row[6] + 1, row[7] + 1, row[8] + 1,
+                roles_arr[row[9]], row[10],
+                item_str, status_str
+            ])
+
+
+
+
+
+
+
+        
+
+        # Cinccino
+        # "weavile"
+        # delibird
+        # beartic
+        # s
+        # froslass
+
         # ('castform', 0, 'retreater', 'forecast', ['weather_ball', 'double_team'], 25, 20, 9, 10, NORMAL, 10),
         # ('glalie', 0, 'wander_normal', 'ice_body', ['protect', 'explosion', 'icicle_crash'], 25, 20, 9, 10, LONER, 10),
         # ('froslass', 0, 'wander_normal', 'cursed_body', ['ice_beam', 'spite', 'destiny_bond'], 25, 20, 9, 10, NORMAL, 10),
@@ -494,6 +767,7 @@ if __name__ == "__main__":
         # ('piloswine', 0, 'wander_normal', 'snow_cloak', ['bulldoze', 'take_down', 'ice_fang'], 25, 20, 9, 10, NORMAL, 10),
         # ('azumarill', 0, 'wander_normal', 'thick_fat', ['belly_drum', 'aqua_jet'], 25, 20, 9, 10, NORMAL, 10),
         
+        # glalie
         # ('snorlax', 0, 'slow_wander_normal', 'gluttony', ['body_slam', 'yawn'], 25, 20, 9, 10, NORMAL, 10),
         # ('grumpig', 0, 'wander_normal', 'gluttony', ['body_slam', 'yawn'], 25, 20, 9, 10, NORMAL, 10),
         # ('miltank', 0, 'wander_normal', 'thick_fat', ['psybeam', 'charge_beam'], 25, 20, 9, 10, NORMAL, 10),
@@ -529,6 +803,7 @@ if __name__ == "__main__":
 
 
         #16
+        # 20 (Fire Squad + Chaos)
 
         # ('skarmory', 0, 'wander_normal', '', ['pluck'], 25, 26, 9, 10, NORMAL, 10),
         # ('foongus', 0, 'wait_attack', 'overcoat', ['spore', 'toxic', 'clear_smog'], 25, 26, 9, 10, NORMAL, 10),
@@ -976,176 +1251,76 @@ if __name__ == "__main__":
         # Chinchou 
         #6
        
-    ]
 
-    def create_monster_house(mon_name, form):
-        base = {
-            "Spawn": {
-                "BaseForm": {
-                    "Species": mon_name,
-                    "Form": form,
-                    "Skin": "",
-                    "Gender": -1
-                },
-                "Level": {
-                    "Min": 1,
-                    "Max": 1
-                },
-                "SpecifiedSkills": [],
-                "Intrinsic": "",
-                "Tactic": "wander_smart",
-                "SpawnConditions": [],
-                "SpawnFeatures": [
-                    {
-                        "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-                    },
-                    {
-                        "$type": "PMDC.LevelGen.MobSpawnLevelScale, PMDC",
-                        "StartFromID": 0,
-                        "AddNumerator": 4,
-                        "AddDenominator": 3
-                    },
-                    {
-                        "$type": "PMDC.LevelGen.MobSpawnLuaTable, PMDC",
-                        "LuaTable": "{ EmberfrostRun = true }"
-                    }
-                ]
-            },
-            "Rate": 10,
-            "Range": {
-                "Min": 0,
-                "Max": 27
-            }
-        }
-        return base
 
-    monster_house_mons = [
-        "cleffa", "clefairy", "clefable",
-        "hatenna", "hattrem", "hatterene",
-        "zubat", "golbat", "crobat",
-        "meowth", "persian", 
-        "vulpix", "ninetales",
-        "tinkatink", "tinkatuff", "tinkaton",
-        "ledian",
-        "audino",
-        "beldum", "metang",
-        "pichu", "pikachu", "raichu",
-        "togepi", "togetic", "togekiss",
-        "mawile",
-        "baltoy", "claydol",
-        "gulpin", "swalot",
-        "swinub", "piloswine",
-        "minun", "plusle",
-        "ralts", "kirlia", "gardevoir", "gallade",
-        "azurill", "marill", "azumarill",
-        "baltoy", "claydol",
-        "woobat", "swoobat",
-        "illumise", "volbeat",
-        "bagon", "shelgon",
-        "jigglypuff", "wigglytuff",
-        "mime_jr", "mr_mime",
-        "aron", "lairon", "aggron",
-        "elekid", "electabuzz", "electivire",
-        "sneasel", "weavile",
-        "nickit", "thievul",
-        "eevee",
-        "morelull",
-        "girafarig",
-        "tentacool", "tentacruel",
-        "dunsparce",
-        "skitty", "delcatty",
-        "houndour", "houndoom",
-        "whismur", "loudred", "exploud",
-        "solosis", "duosion", "reuniclus",
-        "luvdisc",
-        "clauncher", "clawitzer",
-        "meditite", "medicham",
-        "bronzor",  "bronzong",
-        "rhyhorn", "rhydon",
-        "nosepass", "probopass",
-        "chingling", "chimecho",
-        "chinchou", "lanturn"
-    ]
+           
+        # ('snorunt', 0, 'wander_normal', 'snow_cloak', ['powder_snow'], 25, 20, 9, 10, NORMAL, 10),
 
-    monster_house_result = []
-    for mon_name in monster_house_mons:
-        struct = create_monster_house(mon_name, 0)
-        monster_house_result.append(struct)
 
-    def create_mon(mon):
-        name, form, tactic, ability, moves, min_lev, max_lev, min_floor, max_floor, role, rate = mon[0], mon[1], mon[2], mon[3], mon[4], mon[5], mon[6], mon[7], mon[8], mon[9], mon[10]
-        
-        base_structure = {
-            "Spawn": {
-                "Spawn": {
-                    "BaseForm": {
-                        "Species": name,
-                        "Form": form,
-                        "Skin": "",
-                        "Gender": -1
-                    },
-                    "Level": {
-                        "Min": min_lev,
-                        "Max": max_lev
-                    },
-                    "SpecifiedSkills": moves,
-                    "Intrinsic": ability,
-                    "Tactic": tactic,
-                    "SpawnConditions": [],
-                    "SpawnFeatures": [
-                        {
-                            "$type": "PMDC.LevelGen.MobSpawnMovesOff, PMDC",
-                            "StartAt": len(moves),
-                            "Remove": False
-                        },
-                        {
-                            "$type": "PMDC.LevelGen.MobSpawnWeak, PMDC"
-                        },
-                        {
-                            "$type": "PMDC.LevelGen.MobSpawnLuaTable, PMDC",
-                            "LuaTable": "{ EmberfrostRun = true }"
-                        }
-                    ]
-                },
-                "Role": role
-            },
-            "Rate": rate,
-            "Range": {
-                "Min": min_floor,
-                "Max": max_floor
-            }
-        }
-        return base_structure
+        # 17 Hail
+        # ('snover', 0, 'retreater', 'snow_warning', ['leech_seed', 'energy_ball', 'powder_snow'], 28, 29, 9, 10, NORMAL, 10),
+        # ('piloswine', 0, 'retreater', 'thick_fat', ['ancient_power', 'freeze_dry', 'haze'], 28, 29, 9, 10, NORMAL, 10),
+        # ('weavile', 0, 'retreater', 'pressure', ['nasty_plot', 'freeze_dry', 'chilling_water'], 28, 29, 9, 10, NORMAL, 10),
 
-    mons.sort(key=lambda item: (item[-4], item[0]))
-    result = []
-    for mon in mons:
-        name = mon[0]
-        min_lev = mon[5]
-        if (min_lev < 60):
-            result.append(create_mon(mon))
+        # ('jynx', 0, 'retreater', 'forewarn', ['future_sight', 'nasty_plot'], 28, 29, 9, 10, NORMAL, 10),
+        # ('jynx', 0, 'retreater', 'forewarn', ['ice_beam', 'psyshock'], 28, 29, 9, 10, NORMAL, 10),
 
-    with open('../Data/Zone/emberfrost_depths.json', 'r', encoding='utf-8-sig') as file:
-        data = json.load(file)
 
-    data['Object']['Segments'][1]["ZoneSteps"][4]["Spawns"] = result
 
-    # data['Object']['Segments'][0]["ZoneSteps"][5]["Mobs"] = monster_house_result
 
-    # data['Object']['Segments'][0]["ZoneSteps"][6]["Mobs"] = monster_house_result
 
-    # data['Object']['Segments'][0]["ZoneSteps"][7]["Mobs"] = monster_house_result
+        # # 18 Snow
+        # ('misdreavus', 0, 'wander_normal', '', ['curse', 'hex', 'will_o_wisp'], 27, 28, 14, 15, NORMAL, 10),
+        # ('misdreavus', 0, 'wander_normal', '', ['taunt', 'memento'], 27, 28, 14, 15, NORMAL, 10),
 
-    with open('../Data/Zone/emberfrost_depths.json', 'w') as file:
-        json.dump(data, file, indent=2)
 
-    csv_filename = 'emberfrost_encounters.csv'
-    with open(csv_filename, mode='w', newline='') as csv_file:
-        csv_writer = csv.writer(csv_file)
-        csv_writer.writerow(["Name", "Form", "Tactic", "Ablity", "Move 1", "Move 2",
-                            "Move 3", "Move 4", "Min Lev", "Max Lev", "Min Floor", "Max Floor", "Role", "Rate"])
-        for row in mons:
-            while len(row[4]) != 4:
-                row[4].append("")
-            csv_writer.writerow(
-                [row[0], row[1], row[2], *row[3], row[4], row[5], row[6] + 1, row[7] + 1, row[8], roles_arr[row[9]], row[10]])
+        # ('ursaring', 0, 'retreater', 'forecast', ['hammer_arm', 'thrash', 'taunt'], 28, 29, 9, 10, NORMAL, 10),
+        # ('ursaring', 0, 'retreater', 'forecast', ['rock_slide', 'body_slam', 'taunt'], 28, 29, 9, 10, NORMAL, 10),
+
+        # ('stantler', 0, 'retreater', 'intimidate', ['take_down', 'jump_kick'], 27, 28, 14, 15, NORMAL, 10),
+        # ('stantler', 0, 'retreater', 'intimidate', ['hypnosis', 'nightmare'], 27, 28, 14, 15, NORMAL, 10),
+
+        # ('snorunt', 0, 'retreater', 'ice_body', ['powder_snow'], 27, 28, 14, 15, NORMAL, 10),
+        # ('snorunt', 0, 'retreater', 'ice_body', ['sing', 'protect', 'hex'], 27, 28, 14, 15, NORMAL, 10),
+
+        # ('zoroark', 0, 'retreater', 'illusion', ['icy_wind', 'taunt', 'hex','will_o_wisp'], 30, 31, 9, 10, NORMAL, 10),
+        # ('zoroark', 0, 'retreater', 'illusion', ['shadow_ball', 'memento'], 30, 31, 9, 10, NORMAL, 10),
+
+        # ('mightyena', 0, 'retreater', 'intimidate', ['foul_play', 'snarl', 'taunt'], 28, 29, 9, 10, NORMAL, 10),
+        # ('mightyena', 0, 'retreater', 'intimidate', ['yawn', 'embargo', 'taunt', 'sucker_punch'], 28, 29, 9, 10, NORMAL, 10),
+
+
+        # # Hold berry?
+        # ('greedent', 0, 'retreater', 'cheek_pouch', ['curse', 'body_press', 'seed_bomb'], 28, 29, 9, 10, NORMAL, 10, ["sitrus_berry", "oran_berry"]),
+        # ('greedent', 0, 'retreater', 'cheek_pouch', ['double_edge', 'fire_fang'], 28, 29, 9, 10, NORMAL, 10, ["sitrus_berry"]),
+
+
+
+
+        # # 19 Hail
+
+
+        # ('frosmoth', 0, 'retreater', '', ['bug_buzz', 'quiver_dance'], 28, 29, 9, 10, NORMAL, 10),
+        # ('frosmoth', 0, 'retreater', '', ['ice_beam', 'leech_life'], 28, 29, 9, 10, NORMAL, 10),
+
+
+        # # 20 Snow
+
+        # ('greedent', 0, 'retreater', 'cheek_pouch', ['curse', 'body_press', 'seed_bomb'], 28, 29, 9, 10, NORMAL, 10),
+        # ('greedent', 0, 'retreater', 'cheek_pouch', ['double_edge', 'fire_fang'], 28, 29, 9, 10, NORMAL, 10),
+        # ('glaceon', 0, 'retreater', 'snow_cloak', ['double_team', 'ice_beam', 'mirror_coat'], 28, 29, 9, 10, NORMAL, 10),
+        # ('glaceon', 0, 'retreater', 'ice_body', ['aurora_veil', 'ice_beam', 'calm_mind'], 28, 29, 9, 10, NORMAL, 10),
+
+        # ('furret', 0, 'retreater', 'frisk', ['blizzard', 'coil'], 28, 29, 9, 10, NORMAL, 10),
+
+        # ('glalie', 0, 'retreater', 'snow_cloak', ['double_team', 'ice_beam', 'mirror_coat'], 28, 29, 9, 10, NORMAL, 10),
+
+
+        # # sleeping
+
+
+        # ('cinccino', 0, 'wander_normal', 'cute_charm', ['uproar', 'tail_slap'], 28, 29, 9, 10, SUPPORT, 10),
+        # ('greedent', 0, 'retreater', 'cheek_pouch', ['double_edge', 'fire_fang'], 28, 29, 9, 10, NORMAL, 10),
+        # ('sneasler', 0, 'retreater', 'poison_touch', ['fake_out', 'poison_jab', 'u_turn'], 28, 29, 9, 10, NORMAL, 10),
+
+        # ('basculegion', 0, 'wander_normal', 'adaptability', ['flip_turn', 'crunch', 'agility'], 28, 29, 9, 10, LONER, 10),

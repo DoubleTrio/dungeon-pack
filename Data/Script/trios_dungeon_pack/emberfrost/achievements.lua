@@ -30,7 +30,7 @@ end
 local function AllEnchantsEqualOrGreater(value)
   for i, enchantment in ipairs(EnchantmentRegistry._registry) do
     local id = enchantment.id
-    if (SV.EmberFrost.Enchantments.Collection[id] or 0 < value) then
+    if (SV.EmberFrost.Enchantments.Collection[id] or 0 >= value) then
       return false
     end
   end
@@ -191,12 +191,12 @@ AchievementRegistry:Register({
   end,
 })
 
-AchievementRegistry:Register({
+CHALLENGER = AchievementRegistry:Register({
   id = "CHALLENGER",
   name = "Challenger",
   defaultVis = AchievementStatus.Hidden,
   get_description = function(self)
-    return "Clear " .. zone_name .. "in Roguelocke"
+    return "Clear " .. zone_name .. " in Roguelocke (Must transfer a character)"
   end,
   apply = function(self)
     beholder.group(EMBERFROST_BEHOLDER_GROUPS, function()
@@ -205,7 +205,7 @@ AchievementRegistry:Register({
         SetAchievementStatusIfNeeded(self.id, AchievementStatus.Visible)
         if GAME:InRogueMode() then
             AddToNotifyQueue(self.id)
-            beholder.stopObserving(id)      
+            beholder.stopObserving(id)
         end
       end)
     end)

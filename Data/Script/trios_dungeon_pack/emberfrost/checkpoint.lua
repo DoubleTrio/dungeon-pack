@@ -235,6 +235,16 @@ function checkpoint.OnCheckpointArrive(checkpoint_progression)
       enchant:on_checkpoint()
     end
     SV.EmberFrost.CheckpointEnchantsCalled = true
+
+    if not (SV.EmberFrost.ReceivedCannotSaveOnGroundModeReminder or GAME:InRogueMode()) then
+      SV.EmberFrost.ReceivedCannotSaveOnGroundModeReminder = true
+      UI:ResetSpeaker()
+      UI:SetCenter(true)
+      SOUND:PlayFanfare("Fanfare/Note")
+      UI:WaitShowDialogue(string.format("Note: To prevent some bugs, you can only save during dungeon mode."))
+      UI:WaitShowDialogue(string.format("Also, please do not also close the game while in ground mode too as your progress will be lost too!"))
+      UI:SetCenter(false)
+    end
   end
 end
 

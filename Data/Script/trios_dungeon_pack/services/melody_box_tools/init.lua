@@ -40,15 +40,11 @@ function MelodyBoxTools:DungeonSegmentEnd()
   SV.EmberFrost.DungeonMusicSelection = ""
 end
 
-function MelodyBoxTools:OnMenuButtonPressed()
-  print("KSKSSKSK")
-end
 
 ---Summary
 -- Subscribe to all channels this service wants callbacks from
 function MelodyBoxTools:Subscribe(med)
   med:Subscribe("MelodyBoxTools", EngineServiceEvents.DungeonSegmentEnd, function() self.DungeonSegmentEnd("A") end)
-  med:Subscribe("MelodyBoxTools", EngineServiceEvents.MenuButtonPressed, function() self.OnMenuButtonPressed("a") end)
 end
 
 ---Summary

@@ -93,6 +93,9 @@ SV.EmberFrost = {
   -- Whether the checkpoint method was called on each already upon arrival (only call the checkpoint function once!)
   CheckpointEnchantsCalled = false,
 
+  -- Used to remind the player that they cannot save during ground because of bug
+  ReceivedCannotSaveOnGroundModeReminder = false,
+
 
   -- Shopkeeper item data 
   -- Formatted like { Item = string, Amount = int, Cost = int }

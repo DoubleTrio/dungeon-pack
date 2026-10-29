@@ -30,14 +30,6 @@ function emberfrost_depths.EnterSegment(zone, rescuing, segmentID, mapID)
 		local tbl = LTBL(member)
 		tbl.EmberfrostRun = true
 	end
-
-	-- _DATA.Save.ActiveTeam.Guests:Clear()
-	-- print(tostring(Puppeteer.id) .. "ANEMEEMEMEMEM")
-	-- RemoveGuestsWithValue(Puppeteer.id)
-	-- RemoveGuestsWithValue(TravelingMerchant.id)
-
-	
-
 	if segmentID == 0 and mapID == 0 then
 
 		-- local first_member = GAME:GetPlayerPartyMember(0)
@@ -179,7 +171,6 @@ end
 function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
   DEBUG.EnableDbgCoro() --Enable debugging this coroutine
 
-	-- print("Exitiing segment!!!!")
 	print(tostring(result))
   PrintInfo("=>> ExitSegment_emberfrost_depths result "..tostring(result).." segment "..tostring(segmentID))
 
@@ -209,8 +200,16 @@ function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 
 
 	if result == RogueEssence.Data.GameProgress.ResultType.Cleared then
-		print("CLEARED")
+
 		beholder.trigger("OnEmberfrostClear")
+
+		
+		if GAME:InRogueMode() then
+			for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+				local tbl = LTBL(member)
+				tbl.EmberFrostRoguelockeRunWon = true;
+			end
+		end
 	end
 	ResetEmberfrostRun()
 end

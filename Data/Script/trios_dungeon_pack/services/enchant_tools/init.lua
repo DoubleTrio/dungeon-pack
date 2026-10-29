@@ -1,10 +1,8 @@
 require 'origin.common'
 require 'origin.services.baseservice'
 require 'trios_dungeon_pack.menu.EnchantmentListMainMenu'
-
 -- Declare class RecruitTools
 local EnchantTools = Class('EnchantTools', BaseService)
-
 --[[---------------------------------------------------------------
     EnchantTools:initialize()
       EnchantTools class constructor
@@ -18,7 +16,23 @@ end
     EnchantTools:OnSaveLoad()
       When the Continue button is pressed this is called!
 ---------------------------------------------------------------]]
-function EnchantTools:OnSaveLoad() end
+function EnchantTools:OnSaveLoad()
+
+    
+    local has_won = false;
+    for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
+        local tbl = LTBL(member)
+
+        if tbl.EmberFrostRoguelockeRunWon then
+            -- remove the flag from the member
+            tbl.EmberFrostRoguelockeRunWon = false;
+            has_won = true;
+        end
+    end
+    if has_won then
+        SetAchievementStatusIfNeeded(CHALLENGER.id, AchievementStatus.Achieved)
+    end
+end
 
 --[[---------------------------------------------------------------
     EnchantTools:OnAddMenu(menu)
@@ -27,16 +41,15 @@ function EnchantTools:OnSaveLoad() end
 function EnchantTools:OnAddMenu(menu)
     local labels = RogueEssence.Menu.MenuLabel
     if _ZONE.CurrentZoneID ~= "emberfrost_depths" then return end
-
     local in_dungeon = RogueEssence.GameManager.Instance.CurrentScene ==
-                           RogueEssence.Dungeon.DungeonScene.Instance
+        RogueEssence.Dungeon.DungeonScene.Instance
     if not menu:HasLabel() then return end
 
     local function add_enchants_choice(target_label, y_offset)
         local choice = RogueEssence.Menu.MenuTextChoice("Run Info", function()
             _MENU:AddMenu(EnchantmentListMainMenu:new(
-                              menu.Bounds.Width + menu.Bounds.X, y_offset).menu,
-                          true)
+                    menu.Bounds.Width + menu.Bounds.X, y_offset).menu,
+                true)
         end, true, Color.White)
         local choices = menu:ExportChoices()
         local index = menu:GetChoiceIndexByLabel(target_label)
@@ -44,30 +57,24 @@ function EnchantTools:OnAddMenu(menu)
         menu:ImportChoices(choices)
     end
 
-
     local function disable_save()
         local choices = menu:ExportChoices()
         local index = menu:GetChoiceIndexByLabel(labels.MAIN_SAVE)
-        choices[index].Enabled = false
-        choices[index].Text.Color = Color.Red
-        menu:ImportChoices(choices)
+        -- guard: only touch the choice if the label was actually found
+        if index >= 0 then
+            choices[index].Enabled = false
+            choices[index].Text.Color = Color.Red
+            menu:ImportChoices(choices)
+        end
     end
+
     if menu.Label == labels.MAIN_MENU and not in_dungeon then
         add_enchants_choice(labels.MAIN_OTHERS, 72)
+        -- moved inside this branch: only disable save on the actual main menu
+        disable_save()
     elseif menu.Label == labels.OTHERS_MENU and in_dungeon then
         add_enchants_choice(labels.OTH_SETTINGS, 60)
     end
-
-
-    -- disable
-    if not in_dungeon then
-        disable_save()
-
-    end
-
-
-
-    
 end
 
 --[[---------------------------------------------------------------
@@ -80,11 +87,11 @@ function EnchantTools:OnUpgrade() end
 -- Subscribe to all channels this service wants callbacks from
 function EnchantTools:Subscribe(med)
     med:Subscribe("EnchantTools", EngineServiceEvents.LoadSavedData,
-                  function() self.OnSaveLoad(self) end)
+        function() self.OnSaveLoad(self) end)
     med:Subscribe("EnchantTools", EngineServiceEvents.AddMenu,
-                  function(_, args) self.OnAddMenu(self, args[0]) end)
+        function(_, args) self.OnAddMenu(self, args[0]) end)
     med:Subscribe("EnchantTools", EngineServiceEvents.UpgradeSave,
-                  function(_) self.OnUpgrade(self) end)
+        function(_) self.OnUpgrade(self) end)
 end
 
 ---Summary
@@ -101,6 +108,4 @@ end
 
 -- Add our service
 SCRIPT:AddService("EnchantTools", EnchantTools:new())
-
-
 return EnchantTools

@@ -74,6 +74,7 @@ function base_camp.Oshawott_Action(chara, activator)
 
     UI:SetSpeakerEmotion("Happy")
     UI:WaitShowDialogue("You don't really have a choice!")
+    
   end
   UI:SetSpeakerEmotion("Normal")
 

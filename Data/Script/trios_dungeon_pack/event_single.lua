@@ -2238,11 +2238,14 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnDeath(owner, ownerChar, context, args)
 end
 
 function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStarts(owner, ownerChar, context, args)
+
     if context.User ~= nil then
         return
     end
     beholder.trigger("OnMapStarts", owner, ownerChar, context, args)
+    
     SV.EmberFrost.LastFloor = _ZONE.CurrentMapID.ID
+
 end
 
 function SINGLE_CHAR_SCRIPT.EmberfrostOnMapTurnEnds(owner, ownerChar, context, args)
