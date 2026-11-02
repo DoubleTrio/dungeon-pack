@@ -174,6 +174,11 @@ function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 	print(tostring(result))
   PrintInfo("=>> ExitSegment_emberfrost_depths result "..tostring(result).." segment "..tostring(segmentID))
 
+  -- Award before end-of-run helpers can transition zones or load another save.
+  if result == RogueEssence.Data.GameProgress.ResultType.Cleared then
+    beholder.trigger("OnEmberfrostClear")
+  end
+
   --first check for rescue flag; if we're in rescue mode then take a different path
   local exited = COMMON.ExitDungeonMissionCheck(result, rescue, zone.ID, segmentID)
   if exited == true then
@@ -200,8 +205,6 @@ function emberfrost_depths.ExitSegment(zone, result, rescue, segmentID, mapID)
 
 
 	if result == RogueEssence.Data.GameProgress.ResultType.Cleared then
-
-		beholder.trigger("OnEmberfrostClear")
 
 		
 		if GAME:InRogueMode() then

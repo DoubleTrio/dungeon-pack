@@ -1,5 +1,6 @@
 
 require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
+local enchantment_offers = require 'trios_dungeon_pack.emberfrost.enchantments.offers'
 
 require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
 require 'trios_dungeon_pack.emberfrost.enchantments.type_enchantments'
@@ -56,6 +57,59 @@ end
 -- end
 
 local checkpoint = {}
+
+function checkpoint.EnsureGroundObject(name, x, y, width, height, options)
+  options = options or {}
+  local map = GAME:GetCurrentGround()
+  local obj = map:GetObj(name)
+  if obj == nil then
+    obj = RogueEssence.Ground.GroundObject(
+      RogueEssence.Content.ObjAnimData(options.animation or "", 1, -1, -1, 255, RogueElements.Dir8.None),
+      RogueElements.Dir8.Down,
+      RogueElements.Rect(RogueElements.Loc(x, y), RogueElements.Loc(width, height)),
+      RogueElements.Loc(0, 0),
+      options.trigger or RogueEssence.Ground.GroundEntity.EEntityTriggerTypes.None,
+      options.passable == true,
+      name
+    )
+    map:AddObject(obj)
+  end
+  obj:ReloadEvents()
+  return obj
+end
+
+function checkpoint.SpawnCheckpointWalls()
+  checkpoint.EnsureGroundObject("BlackWall", 192, 110, 24, 24,
+    {animation = "Block_Blank_Black", passable = true})
+  checkpoint.EnsureGroundObject("BlackWall_1", 240, 110, 24, 24,
+    {animation = "Block_Blank_Black", passable = true})
+  checkpoint.EnsureGroundObject("BlackVaultWall", 216, 110, 24, 24,
+    {animation = "Block_Vault_Black", passable = true})
+  checkpoint.EnsureGroundObject("EnemyInvisWall", 192, 123, 72, 10,
+    {passable = false, trigger = RogueEssence.Ground.GroundEntity.EEntityTriggerTypes.Action})
+end
+
+function checkpoint.InvisibleWallInteraction(obj, activator)
+  local triggers = RogueEssence.Ground.GroundEntity.EEntityTriggerTypes
+  if not obj.EntEnabled or obj:GetTriggerType() ~= triggers.Action then return end
+  obj:SetTriggerType(triggers.None)
+  SOUND:PlayBattleSE("DUN_Open_Chamber")
+  local map = GAME:GetCurrentGround()
+  for _, name in ipairs({"BlackWall", "BlackVaultWall", "BlackWall_1"}) do
+    local wall = map:GetObj(name)
+    if wall and wall.EntEnabled then
+      local animation = name == "BlackVaultWall" and "Block_Vault_Black_Open" or "Block_Blank_Black_Open"
+      local emitter = RogueEssence.Content.SingleEmitter(RogueEssence.Content.AnimData(animation, 3))
+      local bounds = wall.Collider
+      wall.EntEnabled = false
+      GROUND:PlayVFX(emitter, bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2,
+        RogueElements.Dir8.Down)
+    end
+  end
+  GAME:WaitFrames(30)
+  obj.Passable = true
+  obj.EntEnabled = false
+end
 
 -- Currently does the Shopkeeper and the chest
 -- Might be good to have the spawners and exits here also...
@@ -373,9 +427,19 @@ function checkpoint.ChestInteraction(obj, activator)
   GAME:WaitFrames(60)
 
   ResetSeenEnchantments()
-  local enchantments = EnchantmentRegistry:GetRandom(6, 2)
-
-
+  local picked = enchantment_offers.GetRandom(6)
+  if #picked < 3 then
+    _GROUND:RemoveMapStatus("crystal_moment")
+    UI:WaitShowDialogue("There are not enough eligible enchantments available right now.")
+    return
+  end
+  local enchantments = {}
+  for i, enchantment in ipairs(picked) do
+    local row = math.floor((i - 1) / 3) + 1
+    enchantments[row] = enchantments[row] or {}
+    table.insert(enchantments[row], enchantment)
+  end
+  -- Fixed initial offers for testing.
   enchantments[1][1] = EnchantmentRegistry._registry[FiredUp.id]
   enchantments[1][2] = EnchantmentRegistry._registry[HealingWaters.id]
   enchantments[1][3] = EnchantmentRegistry._registry[ShockValue.id]
@@ -403,7 +467,7 @@ function checkpoint.ChestInteraction(obj, activator)
 
   local on_enchantment_seen = function(enchantment_id)
     SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Seen)
-    table.insert(SV.EmberFrost.Enchantments.Seen, enchantment_id)
+    EnchantmentRegistry:MarkSeen(enchantment_id)
     beholder.trigger("OnEnchantmentSeen", enchantment_id)
   end
 

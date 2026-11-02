@@ -13,6 +13,7 @@ local frost_checkpoint = {}
 
 function frost_checkpoint.Init(map)
   checkpoint.OnCheckpointArrive(3)
+  checkpoint.SpawnCheckpointWalls()
   GROUND:AddMapStatus("snow")
 end
 
@@ -94,6 +95,10 @@ end
 function frost_checkpoint.Shopkeeper_Action(obj, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.ShopkeeperDialogue(obj, activator)
+end
+
+function frost_checkpoint.EnemyInvisWall_Action(obj, activator)
+  checkpoint.InvisibleWallInteraction(obj, activator)
 end
 
 return frost_checkpoint

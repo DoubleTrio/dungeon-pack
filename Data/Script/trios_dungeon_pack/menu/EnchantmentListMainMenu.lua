@@ -1,4 +1,5 @@
 require 'trios_dungeon_pack.menu.ItemViewMenu'
+local keywords = require 'trios_dungeon_pack.emberfrost.keywords'
 -- -----------------------------------------------
 -- Enchantment List Main Menu
 -- -----------------------------------------------
@@ -190,7 +191,7 @@ local function collection_update_description_summary(enchantment_id, menu, origi
   local description = M_HELPERS.MakeColoredText("???", text_color)
 
   if seen_status ~= EnchantmentStatus.NotSeen then
-    description = enchantment:get_description()
+    description = keywords.GetDescription(enchantment)
   end
 
   local desc = RogueEssence.Menu.DialogueText(
@@ -256,7 +257,7 @@ local function selection_update_description_summary(enchantment_id, menu, origin
   local finalWidth = GraphicsManager.ScreenWidth - 16 - (origin.X + menuWidth + 2)
 
   local desc = RogueEssence.Menu.DialogueText(
-    enchantment:get_description(),
+    keywords.GetDescription(enchantment),
     RogueElements.Rect(
       RogueElements.Loc(12, y_offset),
       RogueElements.Loc(finalWidth - 20, 200)

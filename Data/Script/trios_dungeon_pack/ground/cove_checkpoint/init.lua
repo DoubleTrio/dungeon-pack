@@ -13,6 +13,7 @@ local cove_checkpoint = {}
 function cove_checkpoint.Init(map)
   PlayRandomBGM()
   checkpoint.OnCheckpointArrive(1)
+  checkpoint.SpawnCheckpointWalls()
   GROUND:AddMapStatus("rain")
 end
 
@@ -94,6 +95,10 @@ end
 function cove_checkpoint.Shopkeeper_Action(obj, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.ShopkeeperDialogue(obj, activator)
+end
+
+function cove_checkpoint.EnemyInvisWall_Action(obj, activator)
+  checkpoint.InvisibleWallInteraction(obj, activator)
 end
 
 return cove_checkpoint

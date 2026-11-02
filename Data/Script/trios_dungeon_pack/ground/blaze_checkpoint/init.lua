@@ -12,6 +12,7 @@ local blaze_checkpoint = {}
 
 function blaze_checkpoint.Init(map)
   checkpoint.OnCheckpointArrive(4)
+  checkpoint.SpawnCheckpointWalls()
   GROUND:AddMapStatus("sunny")
 end
 
@@ -93,6 +94,10 @@ end
 function blaze_checkpoint.Shopkeeper_Action(obj, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.ShopkeeperDialogue(obj, activator)
+end
+
+function blaze_checkpoint.EnemyInvisWall_Action(obj, activator)
+  checkpoint.InvisibleWallInteraction(obj, activator)
 end
 
 return blaze_checkpoint

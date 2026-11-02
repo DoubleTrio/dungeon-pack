@@ -12,6 +12,7 @@ local elemental_checkpoint = {}
 
 function elemental_checkpoint.Init(map)
   checkpoint.OnCheckpointArrive(5)
+  checkpoint.SpawnCheckpointWalls()
   -- random weather!
   -- GROUND:AddMapStatus("rain")
 end
@@ -94,6 +95,10 @@ end
 function elemental_checkpoint.Shopkeeper_Action(obj, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.ShopkeeperDialogue(obj, activator)
+end
+
+function elemental_checkpoint.EnemyInvisWall_Action(obj, activator)
+  checkpoint.InvisibleWallInteraction(obj, activator)
 end
 
 return elemental_checkpoint

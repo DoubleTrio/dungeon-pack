@@ -17,6 +17,7 @@ local forest_checkpoint = {}
 
 function forest_checkpoint.Init(map)
   checkpoint.OnCheckpointArrive(0)
+  checkpoint.SpawnCheckpointWalls()
   GROUND:AddMapStatus("fog")
 end
 
@@ -98,6 +99,10 @@ end
 function forest_checkpoint.Shopkeeper_Action(obj, activator)
   DEBUG.EnableDbgCoro()
   checkpoint.ShopkeeperDialogue(obj, activator)
+end
+
+function forest_checkpoint.EnemyInvisWall_Action(obj, activator)
+  checkpoint.InvisibleWallInteraction(obj, activator)
 end
 
 return forest_checkpoint

@@ -325,7 +325,8 @@ function EnchantmentSelectionMenu:moveFromGroundToggle(targetIndex)
 end
 
 function EnchantmentSelectionMenu:handleReroll(oldIndex)
-  if self.rerollCountTotals[self.selectionIndex] < self.maxRerollCount then
+  local next_row = self.enchantmentList[self.rerollCountTotals[self.selectionIndex] + 1]
+  if next_row and next_row[self.selectionIndex] then
     SOUND:PlayBattleSE("_UNK_EVT_118")
     self.rerollCountTotals[self.selectionIndex] = self.rerollCountTotals[self.selectionIndex] + 1
     local newEnchantment = self.enchantmentList[self.rerollCountTotals[self.selectionIndex]][self.selectionIndex]

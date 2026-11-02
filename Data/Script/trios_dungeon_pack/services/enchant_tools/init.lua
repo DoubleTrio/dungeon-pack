@@ -32,6 +32,11 @@ function EnchantTools:OnSaveLoad()
     if has_won then
         SetAchievementStatusIfNeeded(CHALLENGER.id, AchievementStatus.Achieved)
     end
+    if _ZONE.CurrentZoneID == "emberfrost_depths" then
+        InitializeAchievementListeners()
+    else
+        StopAchievementListeners()
+    end
 end
 
 --[[---------------------------------------------------------------
