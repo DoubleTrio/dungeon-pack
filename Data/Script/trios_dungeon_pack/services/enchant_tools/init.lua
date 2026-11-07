@@ -23,16 +23,16 @@ function EnchantTools:OnSaveLoad()
     for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
         local tbl = LTBL(member)
 
-        if tbl.EmberFrostRoguelockeRunWon then
+        if tbl.TerrasphereRoguelockeRunWon then
             -- remove the flag from the member
-            tbl.EmberFrostRoguelockeRunWon = false;
+            tbl.TerrasphereRoguelockeRunWon = false;
             has_won = true;
         end
     end
     if has_won then
         SetAchievementStatusIfNeeded(CHALLENGER.id, AchievementStatus.Achieved)
     end
-    if _ZONE.CurrentZoneID == "emberfrost_depths" then
+    if _ZONE.CurrentZoneID == "the_terrasphere" then
         InitializeAchievementListeners()
     else
         StopAchievementListeners()
@@ -45,7 +45,7 @@ end
 ---------------------------------------------------------------]]
 function EnchantTools:OnAddMenu(menu)
     local labels = RogueEssence.Menu.MenuLabel
-    if _ZONE.CurrentZoneID ~= "emberfrost_depths" then return end
+    if _ZONE.CurrentZoneID ~= "the_terrasphere" then return end
     local in_dungeon = RogueEssence.GameManager.Instance.CurrentScene ==
         RogueEssence.Dungeon.DungeonScene.Instance
     if not menu:HasLabel() then return end

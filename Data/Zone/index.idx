@@ -58,7 +58,7 @@ null
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_depths": {
+"the_terrasphere": {
 "$type": "RogueEssence.Data.ZoneEntrySummary, RogueEssence",
 "ExpPercent": 100,
 "Level": 5,

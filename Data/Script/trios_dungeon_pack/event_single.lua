@@ -1,6 +1,6 @@
 require 'origin.common'
-require 'trios_dungeon_pack.emberfrost.enemy_enchantments.enchants'
-require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
+require 'trios_dungeon_pack.terrasphere.enemy_enchantments.enchants'
+require 'trios_dungeon_pack.terrasphere.enchantments.enchants'
 require 'trios_dungeon_pack.wish_table.wish_table'
 require 'trios_dungeon_pack.helpers'
 
@@ -1181,11 +1181,11 @@ function SINGLE_CHAR_SCRIPT.MelodyBoxOnMapStartsAfter(owner, ownerChar, context,
 
     local main_dungeon_music = _ZONE.CurrentMap.Music
 
-    -- if SV.EmberFrost.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
-    --     SV.EmberFrost.MelodyBox.DungeonMusicSelection = ""
+    -- if SV.Terrasphere.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
+    --     SV.Terrasphere.MelodyBox.DungeonMusicSelection = ""
     -- else
-    --     if SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= nil and SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= "" then
-    --         SOUND:PlayBGM(SV.EmberFrost.MelodyBox.DungeonMusicSelection, true)
+    --     if SV.Terrasphere.MelodyBox.DungeonMusicSelection ~= nil and SV.Terrasphere.MelodyBox.DungeonMusicSelection ~= "" then
+    --         SOUND:PlayBGM(SV.Terrasphere.MelodyBox.DungeonMusicSelection, true)
     --     end
     -- end
 end
@@ -1632,7 +1632,7 @@ function SINGLE_CHAR_SCRIPT.AddSwitchSegmentStairs(owner, ownerChar, context, ar
     end
 end
 
-function SINGLE_CHAR_SCRIPT.EmberFrostSwapEvent(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereSwapEvent(owner, ownerChar, context, args)
     GAME:RemovePlayerTeam(0)
     print("EMBER FROST SWAP EVENT TRIGGERED")
 end
@@ -1974,7 +1974,7 @@ function SINGLE_CHAR_SCRIPT.Puppeteer(owner, ownerChar, context, args)
 
 
 
-        local status = RogueEssence.Dungeon.StatusEffect("emberfrost_appearance_proxy")
+        local status = RogueEssence.Dungeon.StatusEffect("terrasphere_appearance_proxy")
         status:LoadFromData()
         TASK:WaitTask(clone:AddStatusEffect(nil, status, true))
         for ii = 0, RogueEssence.Dungeon.CharData.MAX_SKILL_SLOTS - 1 do
@@ -2038,13 +2038,13 @@ function SINGLE_CHAR_SCRIPT.TarotCards(owner, ownerChar, context, args)
         local card = TarotRegistry:GetRandom(1, 1)[1][1]
 
         -- Card visual
-        local card_status = RogueEssence.Dungeon.StatusEffect("emberfrost_card")
+        local card_status = RogueEssence.Dungeon.StatusEffect("terrasphere_card")
         card_status:LoadFromData()
         TASK:WaitTask(member:AddStatusEffect(nil, card_status, false))
 
         card:apply(owner, ownerChar, context, args, member)
         GAME:WaitFrames(20)
-        TASK:WaitTask(member:RemoveStatusEffect("emberfrost_card"))
+        TASK:WaitTask(member:RemoveStatusEffect("terrasphere_card"))
     end
 end
 
@@ -2110,7 +2110,7 @@ function SINGLE_CHAR_SCRIPT.TheBubble(owner, ownerChar, context, args)
     local interest = enchantment.interest
     local pop_increase = enchantment.pop_increase
     local loss = enchantment.loss
-    local item_name = M_HELPERS.GetItemName("emberfrost_bubble")
+    local item_name = M_HELPERS.GetItemName("terrasphere_bubble")
 
     local total_money = _DATA.Save.ActiveTeam.Money
 
@@ -2195,7 +2195,7 @@ function SINGLE_CHAR_SCRIPT.AddEnchantmentStatus(owner, ownerChar, context, args
     end
 end
 
-function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereJeweledBugEvent(owner, ownerChar, context, args)
     if context.User == _DUNGEON.ActiveTeam.Leader then
         return
     end
@@ -2207,7 +2207,7 @@ function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context,
     for i = 0, inv_count - 1 do
         local item = _DATA.Save.ActiveTeam:GetInv(i)
         local entry = _DATA.DataIndices[RogueEssence.Data.DataManager.DataType.Item]:Get(item.ID)
-        if item.ID == "emberfrost_jeweled_bug" then
+        if item.ID == "terrasphere_jeweled_bug" then
             jeweled_bug_slot = i
         end
         if not entry.CannotDrop then
@@ -2233,27 +2233,27 @@ function SINGLE_CHAR_SCRIPT.EmberFrostJeweledBugEvent(owner, ownerChar, context,
 end
 
 
-function SINGLE_CHAR_SCRIPT.EmberfrostOnDeath(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereOnDeath(owner, ownerChar, context, args)
     print("DEATH TRIGGERED")
     beholder.trigger("OnDeath", owner, ownerChar, context, args)
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostOnMapStarts(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereOnMapStarts(owner, ownerChar, context, args)
 
     if context.User ~= nil then
         return
     end
     beholder.trigger("OnMapStarts", owner, ownerChar, context, args)
     
-    SV.EmberFrost.LastFloor = _ZONE.CurrentMapID.ID
+    SV.Terrasphere.LastFloor = _ZONE.CurrentMapID.ID
 
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostOnMapTurnEnds(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereOnMapTurnEnds(owner, ownerChar, context, args)
     beholder.trigger("OnMapTurnEnds", owner, ownerChar, context, args)
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnEnds(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereOnTurnEnds(owner, ownerChar, context, args)
     if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
         return
     end
@@ -2261,7 +2261,7 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnEnds(owner, ownerChar, context, args
     beholder.trigger("OnTurnEnds", owner, ownerChar, context, args)
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnStarts(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereOnTurnStarts(owner, ownerChar, context, args)
     if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
         return
     end
@@ -2269,7 +2269,7 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnTurnStarts(owner, ownerChar, context, ar
     beholder.trigger("OnTurnStarts", owner, ownerChar, context, args)
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostOnWalks(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereOnWalks(owner, ownerChar, context, args)
     if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
         return
     end
@@ -2277,7 +2277,7 @@ function SINGLE_CHAR_SCRIPT.EmberfrostOnWalks(owner, ownerChar, context, args)
     beholder.trigger("OnWalks", owner, ownerChar, context, args)
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostMoveToCheckpoint(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereMoveToCheckpoint(owner, ownerChar, context, args)
     -- if context.User ~= nil then
     --     return
     -- end
@@ -2318,21 +2318,21 @@ function SINGLE_CHAR_SCRIPT.ApplyStatusIfTypeMatches(owner, ownerChar, context, 
     end
 
     for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
-        if LTBL(member).EmberfrostRun and matches_type(member) then
+        if LTBL(member).TerrasphereRun and matches_type(member) then
             apply_status(member)
         end
     end
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostApplyEnemyEnchantments(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereApplyEnemyEnchantments(owner, ownerChar, context, args)
     local enemy = context.User
     local enchantment_id = args.EnchantmentID
     local status_id = args.StatusID
     if not enemy or enemy.Dead or not enemy.MemberTeam
         or enemy.MemberTeam.MapFaction ~= RogueEssence.Dungeon.Faction.Foe then return end
     local data = LTBL(enemy)
-    data.EmberfrostEnemyEnchantments = data.EmberfrostEnemyEnchantments or {}
-    local applied = data.EmberfrostEnemyEnchantments
+    data.TerrasphereEnemyEnchantments = data.TerrasphereEnemyEnchantments or {}
+    local applied = data.TerrasphereEnemyEnchantments
     if applied[enchantment_id] then return end
     if not enemy:GetStatusEffect(status_id) then
       local status = RogueEssence.Dungeon.StatusEffect(status_id)
@@ -2342,7 +2342,7 @@ function SINGLE_CHAR_SCRIPT.EmberfrostApplyEnemyEnchantments(owner, ownerChar, c
     applied[enchantment_id] = true
 end
 
-function SINGLE_CHAR_SCRIPT.EmberfrostHazer(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.TerrasphereHazer(owner, ownerChar, context, args)
     if context.User ~= nil then return end
     local data = EnemyEnchantmentRegistry:GetData(args.EnchantmentID)
     if args.Reset then

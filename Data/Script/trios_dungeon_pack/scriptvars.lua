@@ -7,23 +7,23 @@ SV.Wishmaker = {
 }
 
 
-function ResetEmberfrostRun()
+function ResetTerrasphereRun()
 
   local active_enchants = EnchantmentRegistry:GetSelected()
   for _, enchant in pairs(active_enchants) do
     enchant:cleanup()
   end
 
-  SV.EmberFrost.CheckpointEnchantmentOffers = {Checkpoint = -1, Player = {}, Enemy = {}}
-  SV.EmberFrost.CheckpointEnchantsCalled = false
-  SV.EmberFrost.Enchantments.Selected = {}
-  SV.EmberFrost.Enchantments.Data = {}
-  SV.EmberFrost.Enchantments.RerollCounts = {1, 1, 1}
+  SV.Terrasphere.CheckpointEnchantmentOffers = {Checkpoint = -1, Player = {}, Enemy = {}}
+  SV.Terrasphere.CheckpointEnchantsCalled = false
+  SV.Terrasphere.Enchantments.Selected = {}
+  SV.Terrasphere.Enchantments.Data = {}
+  SV.Terrasphere.Enchantments.RerollCounts = {1, 1, 1}
   if EnemyEnchantmentRegistry then
     for _, enchant in ipairs(EnemyEnchantmentRegistry:GetSelected()) do enchant:cleanup() end
   end
-  SV.EmberFrost.EnemyEnchantments = {
-    Collection = SV.EmberFrost.EnemyEnchantments.Collection,
+  SV.Terrasphere.EnemyEnchantments = {
+    Collection = SV.Terrasphere.EnemyEnchantments.Collection,
     Seen = {},
     Selected = {},
     Data = {},
@@ -32,30 +32,30 @@ function ResetEmberfrostRun()
     OfferCheckpoint = -1,
     SelectedCheckpoints = {},
   }
-  SV.EmberFrost.Quests = {
+  SV.Terrasphere.Quests = {
     Active = {},
     Data = {},
   }
-  SV.EmberFrost.LastFloor = 0
-  SV.EmberFrost.CheckpointProgression = 0
-  SV.EmberFrost.ReceivedEnchantmentReminder = false
-  SV.EmberFrost.GotEnchantmentFromCheckpoint = false
-  SV.EmberFrost.Shopkeeper = {}
+  SV.Terrasphere.LastFloor = 0
+  SV.Terrasphere.CheckpointProgression = 0
+  SV.Terrasphere.ReceivedEnchantmentReminder = false
+  SV.Terrasphere.GotEnchantmentFromCheckpoint = false
+  SV.Terrasphere.Shopkeeper = {}
 
-  beholder.stopObserving(EMBERFROST_BEHOLDER_GROUPS)
+  beholder.stopObserving(TERRASPHERE_BEHOLDER_GROUPS)
   StopAchievementListeners()
   for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
     local tbl = LTBL(member)
-    tbl.EmberfrostRun = false
+    tbl.TerrasphereRun = false
   end
 
   for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
     local tbl = LTBL(member)
-    tbl.EmberfrostRun = false
+    tbl.TerrasphereRun = false
   end
 end
 
-SV.EmberFrost = {
+SV.Terrasphere = {
   CheckpointEnchantmentOffers = {Checkpoint = -1, Player = {}, Enemy = {}},
   EnemyEnchantments = {
     Collection = {},
@@ -93,10 +93,10 @@ SV.EmberFrost = {
     Data = {},
   },
 
-  -- The last floor we were at in Emberfrost
+  -- The last floor we were at in Terrasphere
   LastFloor = 0,
 
-  -- The checkpoint progression we were at in Emberfrost
+  -- The checkpoint progression we were at in Terrasphere
   -- 1 corresponds to the one after completing 5F
   -- 2 corresponds to the one after completing 10F
   -- 3 corresponds to the one after completing 15F

@@ -38,7 +38,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_fire_speed_boost": {
+"terrasphere_fire_speed_boost": {
 "Name": {
 "DefaultText": "Feel the Burn",
 "LocalTexts": {}
@@ -47,7 +47,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_freeze_tag": {
+"terrasphere_freeze_tag": {
 "Name": {
 "DefaultText": "Freeze Tagger",
 "LocalTexts": {}
@@ -56,7 +56,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_tagged": {
+"terrasphere_tagged": {
 "Name": {
 "DefaultText": "Tagged",
 "LocalTexts": {}
@@ -65,7 +65,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_hunger_strike": {
+"terrasphere_hunger_strike": {
 "Name": {
 "DefaultText": "Hunger Strike",
 "LocalTexts": {}
@@ -74,7 +74,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_wizard": {
+"terrasphere_wizard": {
 "Name": {
 "DefaultText": "Wizard",
 "LocalTexts": {}
@@ -83,7 +83,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_glass_cannon": {
+"terrasphere_glass_cannon": {
 "Name": {
 "DefaultText": "Glass Cannon",
 "LocalTexts": {}
@@ -92,7 +92,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_sponge": {
+"terrasphere_sponge": {
 "Name": {
 "DefaultText": "Sponge",
 "LocalTexts": {}
@@ -101,7 +101,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_embargo": {
+"terrasphere_embargo": {
 "Name": {
 "DefaultText": "Hands Tied",
 "LocalTexts": {}
@@ -110,7 +110,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_marksmen": {
+"terrasphere_marksmen": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}
@@ -119,7 +119,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_marked": {
+"terrasphere_marked": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}
@@ -128,7 +128,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_stairs_sensor": {
+"terrasphere_stairs_sensor": {
 "Name": {
 "DefaultText": "Stairs Sensor",
 "LocalTexts": {}
@@ -137,7 +137,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_mono_moves": {
+"terrasphere_mono_moves": {
 "Name": {
 "DefaultText": "Mono Moves",
 "LocalTexts": {}
@@ -146,7 +146,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_ravenous": {
+"terrasphere_ravenous": {
 "Name": {
 "DefaultText": "Ravenous",
 "LocalTexts": {}
@@ -155,7 +155,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_avenger": {
+"terrasphere_avenger": {
 "Name": {
 "DefaultText": "Avenger",
 "LocalTexts": {}
@@ -164,7 +164,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_rationalize": {
+"terrasphere_rationalize": {
 "Name": {
 "DefaultText": "Rationalize",
 "LocalTexts": {}
@@ -173,7 +173,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_frostbite": {
+"terrasphere_frostbite": {
 "Name": {
 "DefaultText": "Frostbitten",
 "LocalTexts": {
@@ -184,7 +184,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_draconian_defience": {
+"terrasphere_draconian_defience": {
 "Name": {
 "DefaultText": "Draconian Defience",
 "LocalTexts": {}
@@ -193,7 +193,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_appearance_proxy": {
+"terrasphere_appearance_proxy": {
 "Name": {
 "DefaultText": "Appearance Proxy",
 "LocalTexts": {}
@@ -202,16 +202,16 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_card": {
+"terrasphere_card": {
 "Name": {
-"DefaultText": "Emberfrost Card",
+"DefaultText": "Terrasphere Card",
 "LocalTexts": {}
 },
 "Released": false,
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_pressure_cooker": {
+"terrasphere_pressure_cooker": {
 "Name": {
 "DefaultText": "Pressure Cooker",
 "LocalTexts": {}
@@ -220,7 +220,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_reinforced_plating": {
+"terrasphere_reinforced_plating": {
 "Name": {
 "DefaultText": "Reinforced Plating",
 "LocalTexts": {}
@@ -229,7 +229,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_one_time_shield": {
+"terrasphere_one_time_shield": {
 "Name": {
 "DefaultText": "One Time Shield",
 "LocalTexts": {}
@@ -238,7 +238,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_grounded": {
+"terrasphere_grounded": {
 "Name": {
 "DefaultText": "Grounded",
 "LocalTexts": {}
@@ -247,7 +247,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_grounded_boost": {
+"terrasphere_grounded_boost": {
 "Name": {
 "DefaultText": "Grounded Boost",
 "LocalTexts": {}
@@ -256,7 +256,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_safeguard_permanent": {
+"terrasphere_safeguard_permanent": {
 "Name": {
 "DefaultText": "Safeguard+",
 "LocalTexts": {}
@@ -265,7 +265,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_negative_aura": {
+"terrasphere_negative_aura": {
 "Name": {
 "DefaultText": "Negative Aura",
 "LocalTexts": {}
@@ -274,7 +274,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_flock": {
+"terrasphere_flock": {
 "Name": {
 "DefaultText": "Flock",
 "LocalTexts": {}
@@ -283,7 +283,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_noxious": {
+"terrasphere_noxious": {
 "Name": {
 "DefaultText": "Noxious",
 "LocalTexts": {}
@@ -292,7 +292,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_vampire": {
+"terrasphere_vampire": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}
@@ -301,7 +301,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_fired_up": {
+"terrasphere_fired_up": {
 "Name": {
 "DefaultText": "Fired Up",
 "LocalTexts": {}
@@ -310,7 +310,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_heavy_rock": {
+"terrasphere_heavy_rock": {
 "Name": {
 "DefaultText": "Heavy Rock",
 "LocalTexts": {}
@@ -319,7 +319,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_combo_chain": {
+"terrasphere_combo_chain": {
 "Name": {
 "DefaultText": "Combo Chain",
 "LocalTexts": {}
@@ -328,7 +328,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_combo_chain1": {
+"terrasphere_combo_chain1": {
 "Name": {
 "DefaultText": "Combo Chain - 1",
 "LocalTexts": {}
@@ -337,7 +337,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_combo_chain2": {
+"terrasphere_combo_chain2": {
 "Name": {
 "DefaultText": "Combo 2!",
 "LocalTexts": {}
@@ -346,7 +346,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_combo_chain3": {
+"terrasphere_combo_chain3": {
 "Name": {
 "DefaultText": "Combo 3!",
 "LocalTexts": {}
@@ -355,7 +355,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_double_up": {
+"terrasphere_double_up": {
 "Name": {
 "DefaultText": "Wizard",
 "LocalTexts": {}
@@ -364,7 +364,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_critical_success": {
+"terrasphere_critical_success": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}
@@ -373,7 +373,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_healing_waters": {
+"terrasphere_healing_waters": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}
@@ -382,7 +382,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_shock_value": {
+"terrasphere_shock_value": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}
@@ -391,7 +391,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_vampiric": {
+"terrasphere_vampiric": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}
@@ -400,7 +400,7 @@
 "Comment": "",
 "SortOrder": 0
 },
-"emberfrost_hunger_strike_enemy": {
+"terrasphere_hunger_strike_enemy": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}

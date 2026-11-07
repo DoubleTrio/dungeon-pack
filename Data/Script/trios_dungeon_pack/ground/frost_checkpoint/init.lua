@@ -1,6 +1,6 @@
 require 'origin.common'
 
-local checkpoint = require 'trios_dungeon_pack.emberfrost.checkpoint'
+local checkpoint = require 'trios_dungeon_pack.terrasphere.checkpoint'
 
 -- Package name
 local frost_checkpoint = {}

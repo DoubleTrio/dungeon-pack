@@ -8,7 +8,7 @@
 require 'origin.common'
 require 'origin.services.baseservice'
 -- require 'trios_dungeon_pack.helpers'
-require 'trios_dungeon_pack.emberfrost.achievements'
+require 'trios_dungeon_pack.terrasphere.achievements'
 
 --Declare class CustomUpgrade
 local CustomUpgrade = Class('CustomUpgrade', BaseService)

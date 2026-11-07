@@ -46,20 +46,20 @@ function base_camp.Ferry_Action(obj, activator)
   ferry,
   STRINGS:Format(STRINGS.MapStrings['Ferry_Line_003']))
 
-  -- UI:WaitShowDialogue("You need exactly two team members to enter Emberfrost Depths.")
+  -- UI:WaitShowDialogue("You need exactly two team members to enter Terrasphere Depths.")
 end
 
 
 function base_camp.Oshawott_Action(chara, activator)
-  GAME:UnlockDungeon('emberfrost_depths')
+  GAME:UnlockDungeon('the_terrasphere')
   local oshawott = CH('Oshawott')
 
-  local dungeon_entrances = { 'emberfrost_depths' }
+  local dungeon_entrances = { 'the_terrasphere' }
   -- local ground_entrances = {}
   local ground_entrances = {}
 
-  if not SV.EmberFrost.OshawottIntroduction then
-    local name = _DATA:GetZone('emberfrost_depths'):GetColoredName()
+  if not SV.Terrasphere.OshawottIntroduction then
+    local name = _DATA:GetZone('the_terrasphere'):GetColoredName()
     M_HELPERS.StartConversation(chara, "Oh,[pause=20] you must be here for " .. name .. "!", "Happy")
     UI:SetSpeakerEmotion("Normal")
     UI:WaitShowDialogue("Now,[pause=20] please be sure to provide feedback on the dungeon and report any bugs to the developer.")
@@ -67,7 +67,7 @@ function base_camp.Oshawott_Action(chara, activator)
     UI:WaitShowDialogue("It would mean a lot since it took many months to develop!")
     UI:SetSpeakerEmotion("Normal")
     UI:WaitShowDialogue("Now then...")
-    SV.EmberFrost.OshawottIntroduction = true
+    SV.Terrasphere.OshawottIntroduction = true
   else
     UI:SetSpeakerEmotion("Normal")
     M_HELPERS.StartConversation(chara, "Alright,[pause=20] where would you like to travel to?")

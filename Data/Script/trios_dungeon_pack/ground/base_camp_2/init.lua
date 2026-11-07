@@ -819,9 +819,9 @@ end
 
 --   GAME:UnlockDungeon('wishmaker_cave')
 --   GAME:UnlockDungeon('adventurers_peak')
---   GAME:UnlockDungeon('emberfrost_depths')
+--   GAME:UnlockDungeon('the_terrasphere')
 --   local dungeon_entrances = { 'lava_floe_island', 'castaway_cave', 'wishmaker_cave', 'adventurers_peak',
---     'emberfrost_depths', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
+--     'the_terrasphere', 'eon_island', 'lost_seas', 'inscribed_cave', 'prism_isles' }
 --   local ground_entrances = {}
 
 --   UI:WaitShowDialogue(STRINGS:Format(STRINGS.MapStrings['Ferry_Line_002']))
@@ -830,7 +830,7 @@ end
 --     ferry,
 --     STRINGS:Format(STRINGS.MapStrings['Ferry_Line_003']))
 
---   -- UI:WaitShowDialogue("You need exactly two team members to enter Emberfrost Depths.")
+--   -- UI:WaitShowDialogue("You need exactly two team members to enter Terrasphere Depths.")
 -- end
 
 --TASK:BranchCoroutine(guild_guildmasters_room_ch_1.MeetGuildmaster)

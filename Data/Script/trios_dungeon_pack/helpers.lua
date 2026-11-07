@@ -37,8 +37,8 @@ function Contains(tbl, value)
 end
 
 function SetEnchantmentStatusIfNeeded(enchantment_id, status)
-  local seen_value = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
-  SV.EmberFrost.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
+  local seen_value = SV.Terrasphere.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
+  SV.Terrasphere.Enchantments.Collection[enchantment_id] = math.max(seen_value, status)
 end
 
 
@@ -722,8 +722,8 @@ M_HELPERS = {
 
     
 
-    if SV.EmberFrost == nil then
-      SV.EmberFrost = {
+    if SV.Terrasphere == nil then
+      SV.Terrasphere = {
         Enchantments = {
           Seen = {},
           Selected = {},
@@ -756,10 +756,10 @@ M_HELPERS = {
 
 
     -- end
-    SV.EmberFrost.CheckpointEnchantmentOffers = SV.EmberFrost.CheckpointEnchantmentOffers
+    SV.Terrasphere.CheckpointEnchantmentOffers = SV.Terrasphere.CheckpointEnchantmentOffers
       or {Checkpoint = -1, Player = {}, Enemy = {}}
-    SV.EmberFrost.EnemyEnchantments = SV.EmberFrost.EnemyEnchantments or {}
-    local enemy = SV.EmberFrost.EnemyEnchantments
+    SV.Terrasphere.EnemyEnchantments = SV.Terrasphere.EnemyEnchantments or {}
+    local enemy = SV.Terrasphere.EnemyEnchantments
     enemy.Collection = enemy.Collection or {}
     enemy.Seen = enemy.Seen or {}
     enemy.Selected = enemy.Selected or {}
@@ -790,15 +790,15 @@ M_HELPERS = {
       enemy.Collection[old_id] = nil
     end
 
-    -- if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
-    -- if SV.EmberFrost.SelectedEnchantments == nil then SV.EmberFrost.SelectedEnchantments = {} end
-    -- if SV.EmberFrost.RerollCounts == nil then SV.EmberFrost.RerollCounts = { 1, 1, 1 } end
-    -- if SV.EmberFrost.SeenEnchantments == nil then SV.EmberFrost.SeenEnchantments = {} end
+    -- if SV.Terrasphere.ShouldSwap == nil then SV.Terrasphere.ShouldSwap = false end
+    -- if SV.Terrasphere.SelectedEnchantments == nil then SV.Terrasphere.SelectedEnchantments = {} end
+    -- if SV.Terrasphere.RerollCounts == nil then SV.Terrasphere.RerollCounts = { 1, 1, 1 } end
+    -- if SV.Terrasphere.SeenEnchantments == nil then SV.Terrasphere.SeenEnchantments = {} end
 
-    -- if SV.EmberFrost.EnchantmentData == nil then
-    --   SV.EmberFrost.EnchantmentData = {}
+    -- if SV.Terrasphere.EnchantmentData == nil then
+    --   SV.Terrasphere.EnchantmentData = {}
     -- end
-    -- if SV.EmberFrost.GotEnchantmentFromCheckpoint == nil then SV.EmberFrost.GotEnchantmentFromCheckpoint = false end
+    -- if SV.Terrasphere.GotEnchantmentFromCheckpoint == nil then SV.Terrasphere.GotEnchantmentFromCheckpoint = false end
 
     if SV.TemporaryFlags == nil then
       SV.TemporaryFlags = {

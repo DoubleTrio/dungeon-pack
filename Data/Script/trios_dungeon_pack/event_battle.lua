@@ -1,5 +1,5 @@
 require 'trios_dungeon_pack.helpers'
-require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
+require 'trios_dungeon_pack.terrasphere.enchantments.enchants'
 
 StackType = luanet.import_type('RogueEssence.Dungeon.StackState')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
@@ -898,14 +898,14 @@ end
 --   end
 -- end
 
-function BATTLE_SCRIPT.EmberfrostAfterActions(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereAfterActions(owner, ownerChar, context, args)
   if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
     return
   end
   beholder.trigger("AfterActions", owner, ownerChar, context, args)
 end
 
-function BATTLE_SCRIPT.EmberfrostOnActions(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereOnActions(owner, ownerChar, context, args)
   if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
     return
   end
@@ -914,7 +914,7 @@ function BATTLE_SCRIPT.EmberfrostOnActions(owner, ownerChar, context, args)
 end
 
 
-function BATTLE_SCRIPT.EmberfrostBeforeActions(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereBeforeActions(owner, ownerChar, context, args)
   if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
     return
   end
@@ -922,7 +922,7 @@ function BATTLE_SCRIPT.EmberfrostBeforeActions(owner, ownerChar, context, args)
   beholder.trigger("BeforeActions", owner, ownerChar, context, args)
 end
 
-function BATTLE_SCRIPT.EmberfrostBeforeHits(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereBeforeHits(owner, ownerChar, context, args)
   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
   --   return
   -- end
@@ -931,17 +931,17 @@ function BATTLE_SCRIPT.EmberfrostBeforeHits(owner, ownerChar, context, args)
 end
 
 
-function BATTLE_SCRIPT.EmberfrostOnHits(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereOnHits(owner, ownerChar, context, args)
   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
   --   return
   -- end
   
-  -- print("EmberfrostOnHits triggered")
+  -- print("TerrasphereOnHits triggered")
   beholder.trigger("OnHits", owner, ownerChar, context, args)
 end
 
 
-function BATTLE_SCRIPT.EmberfrostBeforeExplosions(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereBeforeExplosions(owner, ownerChar, context, args)
   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
   --   return
   -- end
@@ -949,7 +949,7 @@ function BATTLE_SCRIPT.EmberfrostBeforeExplosions(owner, ownerChar, context, arg
   beholder.trigger("BeforeExplosions", owner, ownerChar, context, args)
 end
 
-function BATTLE_SCRIPT.EmberfrostBeforeTryActions(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereBeforeTryActions(owner, ownerChar, context, args)
   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
   --   return
   -- end
@@ -958,7 +958,7 @@ function BATTLE_SCRIPT.EmberfrostBeforeTryActions(owner, ownerChar, context, arg
 end
 
 
-function BATTLE_SCRIPT.EmberfrostOnHitTiles(owner, ownerChar, context, args)
+function BATTLE_SCRIPT.TerrasphereOnHitTiles(owner, ownerChar, context, args)
   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
   --   return
   -- end
@@ -967,7 +967,7 @@ function BATTLE_SCRIPT.EmberfrostOnHitTiles(owner, ownerChar, context, args)
 end
 
 
--- function BATTLE_SCRIPT.EmberfrostBeforeBeingHits(owner, ownerChar, context, args)
+-- function BATTLE_SCRIPT.TerrasphereBeforeBeingHits(owner, ownerChar, context, args)
 --   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
 --   --   return
 --   -- end
@@ -975,7 +975,7 @@ end
 --   beholder.trigger("OnBeforeBeingHits", owner, ownerChar, context, args)
 -- end
 
--- function BATTLE_SCRIPT.EmberfrostBeforeHittings(owner, ownerChar, context, args)
+-- function BATTLE_SCRIPT.TerrasphereBeforeHittings(owner, ownerChar, context, args)
 --   -- if context.User.MemberTeam ~= _DUNGEON.ActiveTeam then
 --   --   return
 --   -- end
@@ -1249,11 +1249,11 @@ function BATTLE_SCRIPT.MelodyBoxBattleEvent(owner, ownerChar, context, args)
   local result = GetMusicSelection()
 
   if result ~= nil and result ~= "" then
-    SV.EmberFrost.MelodyBox.LastDungeonMusic = _ZONE.CurrentMap.Music
-    SV.EmberFrost.MelodyBox.DungeonMusicSelection = result
+    SV.Terrasphere.MelodyBox.LastDungeonMusic = _ZONE.CurrentMap.Music
+    SV.Terrasphere.MelodyBox.DungeonMusicSelection = result
   else
     result = _ZONE.CurrentMap.Music
-    SV.EmberFrost.MelodyBox.DungeonMusicSelection = nil
+    SV.Terrasphere.MelodyBox.DungeonMusicSelection = nil
   end
   SOUND:PlayBGM(result, true)
 end

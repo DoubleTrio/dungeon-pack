@@ -1,6 +1,6 @@
 require 'trios_dungeon_pack.menu.ItemViewMenu'
-require 'trios_dungeon_pack.emberfrost.enemy_enchantments.enchants'
-local keywords = require 'trios_dungeon_pack.emberfrost.keywords'
+require 'trios_dungeon_pack.terrasphere.enemy_enchantments.enchants'
+local keywords = require 'trios_dungeon_pack.terrasphere.keywords'
 -- -----------------------------------------------
 -- Enchantment List Main Menu
 -- -----------------------------------------------
@@ -8,7 +8,7 @@ local keywords = require 'trios_dungeon_pack.emberfrost.keywords'
 
 
 local function collection_status(id, collection)
-  local status = (collection or SV.EmberFrost.Enchantments.Collection)[id] or EnchantmentStatus.NotSeen
+  local status = (collection or SV.Terrasphere.Enchantments.Collection)[id] or EnchantmentStatus.NotSeen
   if GAME:InRogueMode() then return math.max(status, EnchantmentStatus.Seen) end
   return status
 end
@@ -35,7 +35,7 @@ end
 local function GetTextAndColorBasedOnStatusAchievement(achievement_id, seen_text)
   local text_color = PMDColor.Gray
 
-  local achievement_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
+  local achievement_status = SV.Terrasphere.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
 
   if achievement_status == AchievementStatus.Visible then
   elseif achievement_status == AchievementStatus.Achieved then
@@ -50,7 +50,7 @@ end
 local function achievement_generate_menu_text(achievement_id)
   local achievement = AchievementRegistry:Get(achievement_id)
 
-  local achievement_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
+  local achievement_status = SV.Terrasphere.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
 
   local status_info = GetTextAndColorBasedOnStatusAchievement(achievement_id, achievement.name)
 
@@ -73,7 +73,7 @@ end
 
 local function achievement_update_description_summary(achievement_id, menu, origin, menuWidth)
   local achievement = AchievementRegistry:Get(achievement_id)
-  local seen_status = SV.EmberFrost.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
+  local seen_status = SV.Terrasphere.Achievements.Statuses[achievement_id] or AchievementStatus.Visible
   local status_info = GetTextAndColorBasedOnStatusAchievement(achievement_id, achievement.name)
 
   local text_color = status_info.color
@@ -321,7 +321,7 @@ end
 
 function EnchantmentListMainMenu:openEnchantmentCategory(collection)
   local function openPlayer()
-    local ids = SV.EmberFrost.Enchantments.Selected
+    local ids = SV.Terrasphere.Enchantments.Selected
     local generate = function(id) return selection_generate_menu_text(id) end
     local summary = selection_update_description_summary
     if collection then
@@ -336,15 +336,15 @@ function EnchantmentListMainMenu:openEnchantmentCategory(collection)
 
   local function openEnemy()
     local ids = collection and EnemyEnchantmentRegistry:GetIDOrdered()
-      or SV.EmberFrost.EnemyEnchantments.Selected
+      or SV.Terrasphere.EnemyEnchantments.Selected
     _MENU:AddMenu(ItemViewMenu:new("Enemy Enchants", ids,
       function(id)
-        if collection then return collection_generate_menu_text(id, EnemyEnchantmentRegistry, SV.EmberFrost.EnemyEnchantments.Collection) end
+        if collection then return collection_generate_menu_text(id, EnemyEnchantmentRegistry, SV.Terrasphere.EnemyEnchantments.Collection) end
         return selection_generate_menu_text(id, EnemyEnchantmentRegistry)
       end,
       function(id, menu, origin, width)
         if collection then
-          collection_update_description_summary(id, menu, origin, width, EnemyEnchantmentRegistry, SV.EmberFrost.EnemyEnchantments.Collection)
+          collection_update_description_summary(id, menu, origin, width, EnemyEnchantmentRegistry, SV.Terrasphere.EnemyEnchantments.Collection)
         else
           selection_update_description_summary(id, menu, origin, width, EnemyEnchantmentRegistry)
         end
@@ -352,8 +352,8 @@ function EnchantmentListMainMenu:openEnchantmentCategory(collection)
   end
 
   local choices = {
-    {"Player", collection or #SV.EmberFrost.Enchantments.Selected > 0, openPlayer},
-    {"Enemy", collection or #SV.EmberFrost.EnemyEnchantments.Selected > 0, openEnemy},
+    {"Player", collection or #SV.Terrasphere.Enchantments.Selected > 0, openPlayer},
+    {"Enemy", collection or #SV.Terrasphere.EnemyEnchantments.Selected > 0, openEnemy},
   }
   local bounds = self.menu.Bounds
   local x = bounds.X + bounds.Width
@@ -366,7 +366,7 @@ end
 function EnchantmentListMainMenu:generate_options()
   M_HELPERS.UpgradeVariables()
   return {
-    {"Active Enchants", #SV.EmberFrost.Enchantments.Selected > 0 or #SV.EmberFrost.EnemyEnchantments.Selected > 0, function() self:openEnchantmentCategory(false) end},
+    {"Active Enchants", #SV.Terrasphere.Enchantments.Selected > 0 or #SV.Terrasphere.EnemyEnchantments.Selected > 0, function() self:openEnchantmentCategory(false) end},
     {"Enchant Collection", true, function() self:openEnchantmentCategory(true) end},
     {"Achievements", true, function()
       _MENU:AddMenu(ItemViewMenu:new("Achievements", AchievementRegistry:GetIDOrdered(),
@@ -439,10 +439,10 @@ end
   
 --   MenuTools.MainMenu:SetupChoices()
   
---   if _ZONE.CurrentZoneID == "emberfrost_depths" then
+--   if _ZONE.CurrentZoneID == "the_terrasphere" then
 
 
---     local enchant_count = #SV.EmberFrost.Enchantments.Selected
+--     local enchant_count = #SV.Terrasphere.Enchantments.Selected
 --     local has_enchants = enchant_count > 0
 
 --     local enchant_color = Color.Red
@@ -455,7 +455,7 @@ end
 --       MenuTools.MainMenu.Choices:Insert(5, RogueEssence.Menu.MenuTextChoice("Others", function () _MENU:AddMenu(MenuTools:CustomDungeonOthersMenu(), false) end))
 --     else
 
---       MenuTools.MainMenu.Choices:Insert(4, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
+--       MenuTools.MainMenu.Choices:Insert(4, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.Terrasphere.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
 
 --       local collection = {}
 
@@ -483,7 +483,7 @@ end
 --     local menu = RogueEssence.Menu.OthersMenu()
 --     menu:SetupChoices();
 
---     local enchant_count = #SV.EmberFrost.Enchantments.Selected
+--     local enchant_count = #SV.Terrasphere.Enchantments.Selected
 --     local has_enchants = enchant_count > 0
 
 --     local enchant_color = Color.Red
@@ -492,7 +492,7 @@ end
 --     end 
     
 -- 	if RogueEssence.GameManager.Instance.CurrentScene == RogueEssence.Dungeon.DungeonScene.Instance then
--- 		menu.Choices:Insert(1, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
+-- 		menu.Choices:Insert(1, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.Terrasphere.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
 
 --     local collection = {}
 

@@ -37,7 +37,7 @@ end
       This is called as a coroutine.
 ---------------------------------------------------------------]]
 function MelodyBoxTools:DungeonSegmentEnd()
-  SV.EmberFrost.DungeonMusicSelection = ""
+  SV.Terrasphere.DungeonMusicSelection = ""
 end
 
 

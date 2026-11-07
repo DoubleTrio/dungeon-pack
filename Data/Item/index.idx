@@ -1767,7 +1767,7 @@
 "Comment": "",
 "SortOrder": 13
 },
-"emberfrost_eviolite": {
+"terrasphere_eviolite": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": -1,
 "UsageType": 0,
@@ -2002,7 +2002,7 @@
 "Comment": "",
 "SortOrder": 13
 },
-"emberfrost_weather_ward": {
+"terrasphere_weather_ward": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": -1,
 "UsageType": 0,
@@ -2400,7 +2400,7 @@
 "Comment": "",
 "SortOrder": 13
 },
-"emberfrost_allterrain_gear": {
+"terrasphere_allterrain_gear": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": -1,
 "UsageType": 0,
@@ -2446,7 +2446,7 @@
 "Comment": "",
 "SortOrder": 13
 },
-"emberfrost_melody_box": {
+"terrasphere_melody_box": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": 10,
 "UsageType": 1,
@@ -2814,7 +2814,7 @@
 "Comment": "",
 "SortOrder": 13
 },
-"emberfrost_bubble": {
+"terrasphere_bubble": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": 10,
 "UsageType": 8,
@@ -3145,7 +3145,7 @@
 "Comment": "",
 "SortOrder": 13
 },
-"emberfrost_jeweled_bug": {
+"terrasphere_jeweled_bug": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "Icon": 10,
 "UsageType": 8,

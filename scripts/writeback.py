@@ -76,7 +76,7 @@ def mandatory_spawn_features(num_moves: int) -> list:
         },
         {
             "$type": "PMDC.LevelGen.MobSpawnLuaTable, PMDC",
-            "LuaTable": "{ EmberfrostRun = true }"
+            "LuaTable": "{ TerrasphereRun = true }"
         }
     ]
 

@@ -33,13 +33,13 @@ end
 
 
 
-function ITEM_SCRIPT.EmberfrostOnPickups(owner, ownerChar, context, args)
-  print("EmberfrostOnPickups triggered")
+function ITEM_SCRIPT.TerrasphereOnPickups(owner, ownerChar, context, args)
+  print("TerrasphereOnPickups triggered")
   beholder.trigger("OnPickups", owner, ownerChar, context, args)
 end
 
-function SPAWN_SCRIPT.EmberfrostWaterTraveler(owner, ownerChar, context, a, av)
-  print("EmberfrostWaterTraveler triggered")
+function SPAWN_SCRIPT.TerrasphereWaterTraveler(owner, ownerChar, context, a, av)
+  print("TerrasphereWaterTraveler triggered")
   print(tostring(context))
     print(tostring(owner))
 

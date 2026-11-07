@@ -1,6 +1,6 @@
 require 'trios_dungeon_pack.helpers'
 require 'trios_dungeon_pack.beholder'
-require 'trios_dungeon_pack.emberfrost.enemy_enchantments.enchants'
+require 'trios_dungeon_pack.terrasphere.enemy_enchantments.enchants'
 PresetMultiTeamSpawnerType = luanet.import_type('RogueEssence.LevelGen.PresetMultiTeamSpawner`1')
 PlaceRandomMobsStepType = luanet.import_type('RogueEssence.LevelGen.PlaceRandomMobsStep`1')
 MonsterHouseStepType = luanet.import_type('RogueEssence.LevelGen.MonsterHouseStep`1')
@@ -106,12 +106,12 @@ function ZONE_GEN_SCRIPT.MelodyBoxZoneScript(zoneContext, context, queue, seed, 
 
   local main_dungeon_music = map_data_step.Music
 
-  if SV.EmberFrost.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
-    SV.EmberFrost.MelodyBox.DungeonMusicSelection = ""
+  if SV.Terrasphere.MelodyBox.LastDungeonMusic ~= main_dungeon_music then
+    SV.Terrasphere.MelodyBox.DungeonMusicSelection = ""
   else
-    if SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= nil and SV.EmberFrost.MelodyBox.DungeonMusicSelection ~= "" then
-      -- SOUND:PlayBGM(SV.EmberFrost.MelodyBox.DungeonMusicSelection, true)
-      map_data_step.Music = SV.EmberFrost.MelodyBox.DungeonMusicSelection
+    if SV.Terrasphere.MelodyBox.DungeonMusicSelection ~= nil and SV.Terrasphere.MelodyBox.DungeonMusicSelection ~= "" then
+      -- SOUND:PlayBGM(SV.Terrasphere.MelodyBox.DungeonMusicSelection, true)
+      map_data_step.Music = SV.Terrasphere.MelodyBox.DungeonMusicSelection
     end
   end
 end
@@ -119,7 +119,7 @@ end
 function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue, seed, args)
   local activeEffect = RogueEssence.Data.ActiveEffect()
 
-  beholder.stopObserving(EMBERFROST_BEHOLDER_GROUPS)
+  beholder.stopObserving(TERRASPHERE_BEHOLDER_GROUPS)
 
   local active_enchants = EnchantmentRegistry:GetSelected()
   for _, enchant in pairs(active_enchants) do
@@ -132,37 +132,37 @@ function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue
     enchant:set_active_effects(activeEffect, zoneContext)
   end
 
-  activeEffect.OnDeaths:Add(6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnDeath"))
-  activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnMapStarts"))
-  activeEffect.OnMapTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnMapTurnEnds"))
-  activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnTurnEnds"))
-  activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("EmberfrostOnPickups"))
-  activeEffect.BeforeActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeActions"))
-  activeEffect.AfterActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostAfterActions"))
-  activeEffect.OnActions:Add(6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnActions"))
-  activeEffect.BeforeExplosions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeExplosions"))
-  activeEffect.BeforeTryActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeTryActions"))
-  activeEffect.OnHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnHits"))
-  -- activeEffect.BeforeBeingHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeBeingHits"))
-  activeEffect.BeforeHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostBeforeHits"))
-  activeEffect.BeforeStatusAdds:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("EmberfrostBeforeStatusAdds"))
-  activeEffect.OnHitTiles:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("EmberfrostOnHitTiles"))
+  activeEffect.OnDeaths:Add(6, RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereOnDeath"))
+  activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereOnMapStarts"))
+  activeEffect.OnMapTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereOnMapTurnEnds"))
+  activeEffect.OnTurnEnds:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereOnTurnEnds"))
+  activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("TerrasphereOnPickups"))
+  activeEffect.BeforeActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereBeforeActions"))
+  activeEffect.AfterActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereAfterActions"))
+  activeEffect.OnActions:Add(6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereOnActions"))
+  activeEffect.BeforeExplosions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereBeforeExplosions"))
+  activeEffect.BeforeTryActions:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereBeforeTryActions"))
+  activeEffect.OnHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereOnHits"))
+  -- activeEffect.BeforeBeingHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereBeforeBeingHits"))
+  activeEffect.BeforeHits:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereBeforeHits"))
+  activeEffect.BeforeStatusAdds:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("TerrasphereBeforeStatusAdds"))
+  activeEffect.OnHitTiles:Add(-6, RogueEssence.Dungeon.BattleScriptEvent("TerrasphereOnHitTiles"))
 
-  activeEffect.OnStatusAdds:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("EmberfrostOnStatusAdds"))
-  activeEffect.OnStatusRemoves:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("EmberfrostOnStatusRemoves"))
-  activeEffect.OnTurnStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnTurnStarts"))
-  activeEffect.OnWalks:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnWalks"))
+  activeEffect.OnStatusAdds:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("TerrasphereOnStatusAdds"))
+  activeEffect.OnStatusRemoves:Add(-6, RogueEssence.Dungeon.StatusScriptEvent("TerrasphereOnStatusRemoves"))
+  activeEffect.OnTurnStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereOnTurnStarts"))
+  activeEffect.OnWalks:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereOnWalks"))
 
   -- BeforeHits
-  -- activeEffect.OnAfterActions:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("EmberfrostOnAfterActions"))
+  -- activeEffect.OnAfterActions:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("TerrasphereOnAfterActions"))
   
   -- activeEffect.OnPickups:Add(-6, RogueEssence.Dungeon.ItemScriptEvent("MissionItemPickup", '{ Mission = '..missionNum..' }'))
 
-  -- activeEffect.OnDeath:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("EmberfrostOnDeath"))
+  -- activeEffect.OnDeath:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereOnDeath"))
 
 
-  -- for SV.EmberFrost.
-  -- local status = args.StatusID or "emberfrost_fire_speed_boost"
+  -- for SV.Terrasphere.
+  -- local status = args.StatusID or "terrasphere_fire_speed_boost"
   -- activeEffect.OnMapStarts:Add(-6, RogueEssence.Dungeon.SingleCharScriptEvent("AddStatusToLeader", Serpent.line({ StatusID = status })))
   local destNote = LUA_ENGINE:MakeGenericType( MapEffectStepType, { MapGenContextType }, { activeEffect })
   local priority = RogueElements.Priority(-6)
@@ -176,7 +176,7 @@ function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue
 end
 
 
-function ZONE_GEN_SCRIPT.EmberfrostSwitchUp(zoneContext, context, queue, seed, args)
+function ZONE_GEN_SCRIPT.TerrasphereSwitchUp(zoneContext, context, queue, seed, args)
 
   local interval = 5
   local active_effect = RogueEssence.Data.ActiveEffect()
@@ -184,8 +184,8 @@ function ZONE_GEN_SCRIPT.EmberfrostSwitchUp(zoneContext, context, queue, seed, a
   local priority = RogueElements.Priority(-6)
 
   if ((zoneContext.CurrentID + 1) % interval) == 0 and zoneContext.CurrentID ~= 0 and zoneContext.CurrentID ~= 29 then
-    print(tostring(SV.EmberFrost.CheckpointProgression) .. "GRRRRRRRR")
-    active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = -1, NextID = SV.EmberFrost.CheckpointProgression + 1 })))
+    print(tostring(SV.Terrasphere.CheckpointProgression) .. "GRRRRRRRR")
+    active_effect.OnMapStarts:Add(-5, RogueEssence.Dungeon.SingleCharScriptEvent("AddSwitchSegmentStairs", Serpent.line({ NextSegment = -1, NextID = SV.Terrasphere.CheckpointProgression + 1 })))
   end
   queue:Enqueue(priority, destNote)
 end
