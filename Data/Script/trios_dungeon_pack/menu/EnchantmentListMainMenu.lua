@@ -1,4 +1,5 @@
 require 'trios_dungeon_pack.menu.ItemViewMenu'
+require 'trios_dungeon_pack.emberfrost.enemy_enchantments.enchants'
 local keywords = require 'trios_dungeon_pack.emberfrost.keywords'
 -- -----------------------------------------------
 -- Enchantment List Main Menu
@@ -6,11 +7,17 @@ local keywords = require 'trios_dungeon_pack.emberfrost.keywords'
 
 
 
-local function GetTextAndColorBasedOnStatus(enchantment_id, seen_text)
+local function collection_status(id, collection)
+  local status = (collection or SV.EmberFrost.Enchantments.Collection)[id] or EnchantmentStatus.NotSeen
+  if GAME:InRogueMode() then return math.max(status, EnchantmentStatus.Seen) end
+  return status
+end
+
+local function GetTextAndColorBasedOnStatus(enchantment_id, seen_text, collection)
   local text_color = PMDColor.Gray
   local text = "???"
 
-  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
+  local seen_status = collection_status(enchantment_id, collection)
 
   if seen_status == EnchantmentStatus.Seen then
     text = seen_text
@@ -132,12 +139,12 @@ local function achievement_update_description_summary(achievement_id, menu, orig
 end
 
 
-local function collection_generate_menu_text(enchantment_id)
-  local enchantment = EnchantmentRegistry:Get(enchantment_id)
-  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
+local function collection_generate_menu_text(enchantment_id, registry, collection)
+  local enchantment = (registry or EnchantmentRegistry):Get(enchantment_id)
+  local seen_status = collection_status(enchantment_id, collection)
 
 
-  local status_info = GetTextAndColorBasedOnStatus(enchantment_id, enchantment.name)
+  local status_info = GetTextAndColorBasedOnStatus(enchantment_id, enchantment.name, collection)
 
   local text_color = status_info.color
   local text = status_info.text
@@ -153,10 +160,10 @@ local function collection_generate_menu_text(enchantment_id)
 end
      
 
-local function collection_update_description_summary(enchantment_id, menu, origin, menuWidth)
-  local enchantment = EnchantmentRegistry:Get(enchantment_id)
-  local seen_status = SV.EmberFrost.Enchantments.Collection[enchantment_id] or EnchantmentStatus.NotSeen
-  local status_info = GetTextAndColorBasedOnStatus(enchantment_id, enchantment.name)
+local function collection_update_description_summary(enchantment_id, menu, origin, menuWidth, registry, collection)
+  local enchantment = (registry or EnchantmentRegistry):Get(enchantment_id)
+  local seen_status = collection_status(enchantment_id, collection)
+  local status_info = GetTextAndColorBasedOnStatus(enchantment_id, enchantment.name, collection)
   local text_color = status_info.color
   local GraphicsManager = RogueEssence.Content.GraphicsManager
 
@@ -218,17 +225,17 @@ local function collection_update_description_summary(enchantment_id, menu, origi
   menu.Elements:Add(desc)
 end
 
-local function selection_generate_menu_text(enchantment_id)
-  local enchantment = EnchantmentRegistry:Get(enchantment_id)
+local function selection_generate_menu_text(enchantment_id, registry)
+  local enchantment = (registry or EnchantmentRegistry):Get(enchantment_id)
   local color = Color.White
   local text_name = RogueEssence.Menu.MenuText(M_HELPERS.MakeColoredText(enchantment.name, PMDColor.White), RogueElements.Loc(2, 1), color)
 
   return text_name
 end
 
-local function selection_update_description_summary(enchantment_id, menu, origin, menuWidth)
+local function selection_update_description_summary(enchantment_id, menu, origin, menuWidth, registry)
   local GraphicsManager = RogueEssence.Content.GraphicsManager
-  local enchantment = EnchantmentRegistry:Get(enchantment_id)
+  local enchantment = (registry or EnchantmentRegistry):Get(enchantment_id)
   local additional_texts = enchantment:get_progress_texts()
 
   menu.Elements:Clear()
@@ -312,56 +319,60 @@ function EnchantmentListMainMenu:initialize(x, y)
     self.menu = RogueEssence.Menu.ScriptableSingleStripMenu(x, y, self.static.width, self.optionsList, 0, function() _GAME:SE("Menu/Cancel"); _MENU:RemoveMenu() end)
 end
 
-function EnchantmentListMainMenu:generate_options()
-  
-    local list = {}
-
-
-
-    local enchant_count = #SV.EmberFrost.Enchantments.Selected
-    local has_enchants = enchant_count > 0
-
-
-    table.insert(list, { "Active Enchants", has_enchants, function() _MENU:AddMenu(ItemViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end } )
-
-
-
-
-    local collection = {}
-
-    local data = EnchantmentRegistry._registry
-    for k, v in pairs(data) do
-      -- local hidden = v.hidden_for_story or false
-      -- if not hidden then
-        table.insert(collection, k)
-      -- end
+function EnchantmentListMainMenu:openEnchantmentCategory(collection)
+  local function openPlayer()
+    local ids = SV.EmberFrost.Enchantments.Selected
+    local generate = function(id) return selection_generate_menu_text(id) end
+    local summary = selection_update_description_summary
+    if collection then
+      ids = {}
+      for id in pairs(EnchantmentRegistry._registry) do table.insert(ids, id) end
+      table.sort(ids)
+      generate = function(id) return collection_generate_menu_text(id) end
+      summary = collection_update_description_summary
     end
+    _MENU:AddMenu(ItemViewMenu:new("Player Enchants", ids, generate, summary).menu, false)
+  end
 
-    table.sort(collection)
+  local function openEnemy()
+    local ids = collection and EnemyEnchantmentRegistry:GetIDOrdered()
+      or SV.EmberFrost.EnemyEnchantments.Selected
+    _MENU:AddMenu(ItemViewMenu:new("Enemy Enchants", ids,
+      function(id)
+        if collection then return collection_generate_menu_text(id, EnemyEnchantmentRegistry, SV.EmberFrost.EnemyEnchantments.Collection) end
+        return selection_generate_menu_text(id, EnemyEnchantmentRegistry)
+      end,
+      function(id, menu, origin, width)
+        if collection then
+          collection_update_description_summary(id, menu, origin, width, EnemyEnchantmentRegistry, SV.EmberFrost.EnemyEnchantments.Collection)
+        else
+          selection_update_description_summary(id, menu, origin, width, EnemyEnchantmentRegistry)
+        end
+      end).menu, false)
+  end
 
-    table.insert(list, { "Enchant Collection", true, function() _MENU:AddMenu(ItemViewMenu:new("All Enchants", collection, collection_generate_menu_text, collection_update_description_summary).menu, false) end } )
+  local choices = {
+    {"Player", collection or #SV.EmberFrost.Enchantments.Selected > 0, openPlayer},
+    {"Enemy", collection or #SV.EmberFrost.EnemyEnchantments.Selected > 0, openEnemy},
+  }
+  local bounds = self.menu.Bounds
+  local x = bounds.X + bounds.Width
+  local width = RogueEssence.Content.GraphicsManager.ScreenWidth - x
+  local submenu = RogueEssence.Menu.ScriptableSingleStripMenu(x, bounds.Y, width, choices, 0,
+    function() _GAME:SE("Menu/Cancel"); _MENU:RemoveMenu() end)
+  _MENU:AddMenu(submenu, true)
+end
 
-
-    -- local achievements_collection = {}
-    -- for k, v in pairs(SV.EmberFrost.Achievements.Statuses) do
-    --   table.insert(achievements_collection, k)
-    -- end
-
-    local achievements_collection = AchievementRegistry:GetIDOrdered()
-
-
-
-    table.insert(list,
-      { "Achievements", true, function() _MENU:AddMenu(
-        ItemViewMenu:new("Achievements", achievements_collection, achievement_generate_menu_text, achievement_update_description_summary)
-        .menu, false) end })
-            -- MenuTools.MainMenu.Choices:Insert(4, RogueEssence.Menu.MenuTextChoice("Enchants", function () _MENU:AddMenu(EnchantmentViewMenu:new("Enchantments", SV.EmberFrost.Enchantments.Selected, selection_generate_menu_text, selection_update_description_summary).menu, false) end, has_enchants, enchant_color))
-        
-    -- local text = self.static.options
-    -- for i = 1, 2, 1 do
-    --     list[i] = {text[i], true, function() self:choose(i) end}
-    -- end
-    return list
+function EnchantmentListMainMenu:generate_options()
+  M_HELPERS.UpgradeVariables()
+  return {
+    {"Active Enchants", #SV.EmberFrost.Enchantments.Selected > 0 or #SV.EmberFrost.EnemyEnchantments.Selected > 0, function() self:openEnchantmentCategory(false) end},
+    {"Enchant Collection", true, function() self:openEnchantmentCategory(true) end},
+    {"Achievements", true, function()
+      _MENU:AddMenu(ItemViewMenu:new("Achievements", AchievementRegistry:GetIDOrdered(),
+        achievement_generate_menu_text, achievement_update_description_summary).menu, false)
+    end},
+  }
 end
 
 function EnchantmentListMainMenu:choose(index)

@@ -1,5 +1,5 @@
 ﻿{
-"Version": "0.8.11.0",
+"Version": "0.8.12.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
 "no_heal": {
@@ -392,6 +392,15 @@
 "SortOrder": 0
 },
 "emberfrost_vampiric": {
+"Name": {
+"DefaultText": "",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 0
+},
+"emberfrost_hunger_strike_enemy": {
 "Name": {
 "DefaultText": "",
 "LocalTexts": {}

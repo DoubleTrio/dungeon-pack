@@ -1,4 +1,5 @@
 require 'origin.common'
+require 'trios_dungeon_pack.emberfrost.enemy_enchantments.enchants'
 require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
 require 'trios_dungeon_pack.wish_table.wish_table'
 require 'trios_dungeon_pack.helpers'
@@ -2319,6 +2320,60 @@ function SINGLE_CHAR_SCRIPT.ApplyStatusIfTypeMatches(owner, ownerChar, context, 
     for member in luanet.each(_DATA.Save.ActiveTeam.Assembly) do
         if LTBL(member).EmberfrostRun and matches_type(member) then
             apply_status(member)
+        end
+    end
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostApplyEnemyEnchantments(owner, ownerChar, context, args)
+    local enemy = context.User
+    local enchantment_id = args.EnchantmentID
+    local status_id = args.StatusID
+    if not enemy or enemy.Dead or not enemy.MemberTeam
+        or enemy.MemberTeam.MapFaction ~= RogueEssence.Dungeon.Faction.Foe then return end
+    local data = LTBL(enemy)
+    data.EmberfrostEnemyEnchantments = data.EmberfrostEnemyEnchantments or {}
+    local applied = data.EmberfrostEnemyEnchantments
+    if applied[enchantment_id] then return end
+    if not enemy:GetStatusEffect(status_id) then
+      local status = RogueEssence.Dungeon.StatusEffect(status_id)
+      status:LoadFromData()
+      TASK:WaitTask(enemy:AddStatusEffect(nil, status, false))
+    end
+    applied[enchantment_id] = true
+end
+
+function SINGLE_CHAR_SCRIPT.EmberfrostHazer(owner, ownerChar, context, args)
+    if context.User ~= nil then return end
+    local data = EnemyEnchantmentRegistry:GetData(args.EnchantmentID)
+    if args.Reset then
+        data.Turns = 0
+        data.LastMapTurn = nil
+        return
+    end
+    local turn = _ZONE.CurrentMap.MapTurns
+    if data.LastMapTurn == turn then return end
+    data.LastMapTurn = turn
+    data.Turns = (data.Turns or 0) + 1
+    if data.Turns < args.Turns then return end
+    data.Turns = 0
+
+    local haze = _DATA:GetSkill("haze")
+    local hit_effects = LUA_ENGINE:MakeList(haze.Data.OnHits:EnumerateInOrder())
+    local played = false
+    for member in luanet.each(_DATA.Save.ActiveTeam.Players) do
+        if not member.Dead then
+            if not played then
+                TASK:WaitTask(_DUNGEON:ProcessBattleFX(member, member, haze.HitboxAction.ActionFX))
+                TASK:WaitTask(_DUNGEON:ProcessBattleFX(member, member, haze.Data.HitFX))
+                played = true
+            end
+            local battle_context = RogueEssence.Dungeon.BattleContext(RogueEssence.Dungeon.BattleActionType.Trap)
+            battle_context.User = member
+            battle_context.Target = member
+            battle_context.Data = RogueEssence.Data.BattleData(haze.Data)
+            for effect in luanet.each(hit_effects) do
+                TASK:WaitTask(effect:Apply(owner, ownerChar, battle_context))
+            end
         end
     end
 end

@@ -318,7 +318,7 @@ MoralSupport = add({
 
 -- })
 --
--- Can't touch 
+-- Can't touch this
 -- Vampiric - Select a character, that character heals for 30% of damage dealt.
 -- An exclusive item for the Salamence family. When kept in the bag, it allows Dragon-type moves to hit Fairy-type Pokémon.
 -- Dazzled - Choose a team member. For each equipment, lower the accuracy of the target

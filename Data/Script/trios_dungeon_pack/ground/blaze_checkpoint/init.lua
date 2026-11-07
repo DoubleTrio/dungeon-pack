@@ -44,6 +44,7 @@ end
 ---blaze_checkpoint.GameLoad(map)
 -- Engine callback function
 function blaze_checkpoint.GameLoad(map)
+  checkpoint.SpawnCheckpointWalls()
   GAME:FadeIn(20)
 end
 

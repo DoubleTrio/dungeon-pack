@@ -1,5 +1,6 @@
 require 'trios_dungeon_pack.helpers'
 require 'trios_dungeon_pack.beholder'
+require 'trios_dungeon_pack.emberfrost.enemy_enchantments.enchants'
 PresetMultiTeamSpawnerType = luanet.import_type('RogueEssence.LevelGen.PresetMultiTeamSpawner`1')
 PlaceRandomMobsStepType = luanet.import_type('RogueEssence.LevelGen.PlaceRandomMobsStep`1')
 MonsterHouseStepType = luanet.import_type('RogueEssence.LevelGen.MonsterHouseStep`1')
@@ -122,6 +123,12 @@ function ZONE_GEN_SCRIPT.AddEnchantmentActiveEffects(zoneContext, context, queue
 
   local active_enchants = EnchantmentRegistry:GetSelected()
   for _, enchant in pairs(active_enchants) do
+    enchant:set_active_effects(activeEffect, zoneContext)
+  end
+  
+
+  local enemy_enchants = EnemyEnchantmentRegistry:GetSelected()
+  for _, enchant in ipairs(enemy_enchants) do
     enchant:set_active_effects(activeEffect, zoneContext)
   end
 

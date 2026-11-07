@@ -86,6 +86,7 @@ PMDColor = {
   LimeGreen2 = "#40F840",
   Orange = "#F8C060",
   Blue = "#8080F8", -- Q
+  BrightBlue = "#0080F8",
   SlateBlue  = "#6080E0", -- S
   Magenta = "#F8A0F8",      -- X
   SkyBlue = "#8098F8",      -- Y
@@ -755,6 +756,40 @@ M_HELPERS = {
 
 
     -- end
+    SV.EmberFrost.CheckpointEnchantmentOffers = SV.EmberFrost.CheckpointEnchantmentOffers
+      or {Checkpoint = -1, Player = {}, Enemy = {}}
+    SV.EmberFrost.EnemyEnchantments = SV.EmberFrost.EnemyEnchantments or {}
+    local enemy = SV.EmberFrost.EnemyEnchantments
+    enemy.Collection = enemy.Collection or {}
+    enemy.Seen = enemy.Seen or {}
+    enemy.Selected = enemy.Selected or {}
+    for _, id in ipairs(enemy.Seen) do
+      enemy.Collection[id] = math.max(enemy.Collection[id] or EnchantmentStatus.NotSeen, EnchantmentStatus.Seen)
+    end
+    for _, id in ipairs(enemy.Selected) do
+      enemy.Collection[id] = math.max(enemy.Collection[id] or EnchantmentStatus.NotSeen, EnchantmentStatus.Selected)
+    end
+    enemy.Data = enemy.Data or {}
+    enemy.RerollCounts = enemy.RerollCounts or {1, 1, 1}
+    enemy.Offers = enemy.Offers or {}
+    if enemy.OfferCheckpoint == nil then enemy.OfferCheckpoint = -1 end
+    enemy.SelectedCheckpoints = enemy.SelectedCheckpoints or {}
+    -- test 1 became Hunger Strike; preserve existing selections and discovery.
+    local old_id, new_id = "ENEMY_TEST_1", "HUNGER_STRIKE_ENEMY"
+    for _, ids in ipairs({enemy.Seen, enemy.Selected}) do
+      for i, id in ipairs(ids) do if id == old_id then ids[i] = new_id end end
+    end
+    for _, row in ipairs(enemy.Offers) do
+      for i, id in ipairs(row) do if id == old_id then row[i] = new_id end end
+    end
+    for key, id in pairs(enemy.SelectedCheckpoints) do
+      if id == old_id then enemy.SelectedCheckpoints[key] = new_id end
+    end
+    if enemy.Collection[old_id] then
+      enemy.Collection[new_id] = math.max(enemy.Collection[new_id] or 0, enemy.Collection[old_id])
+      enemy.Collection[old_id] = nil
+    end
+
     -- if SV.EmberFrost.ShouldSwap == nil then SV.EmberFrost.ShouldSwap = false end
     -- if SV.EmberFrost.SelectedEnchantments == nil then SV.EmberFrost.SelectedEnchantments = {} end
     -- if SV.EmberFrost.RerollCounts == nil then SV.EmberFrost.RerollCounts = { 1, 1, 1 } end

@@ -45,6 +45,7 @@ end
 ---frost_checkpoint.GameLoad(map)
 -- Engine callback function
 function frost_checkpoint.GameLoad(map)
+  checkpoint.SpawnCheckpointWalls()
   GAME:FadeIn(20)
 end
 

@@ -45,6 +45,7 @@ end
 ---elemental_checkpoint.GameLoad(map)
 -- Engine callback function
 function elemental_checkpoint.GameLoad(map)
+  checkpoint.SpawnCheckpointWalls()
   GAME:FadeIn(20)
 end
 

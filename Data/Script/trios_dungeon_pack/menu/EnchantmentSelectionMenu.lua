@@ -8,13 +8,14 @@ require 'trios_dungeon_pack.beholder'
 
 EnchantmentSelectionMenu = Class("EnchantmentSelectionMenu")
 
-function EnchantmentSelectionMenu:initialize(title, enchantment_list, on_enchantment_seen, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action, enchantment_width)
+function EnchantmentSelectionMenu:initialize(title, enchantment_list, on_enchantment_seen, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action, enchantment_width, title_color)
    local len = type(enchantment_list) == 'table' and #enchantment_list or 0
   if len < 1 then
     error("parameter 'enchantment_list' cannot be an empty collection")
   end
   
   self:initializeConstants()
+  self.titleColor = title_color or PMDColor.Yellow
   self:initializeState(title, enchantment_list, on_enchantment_seen, on_reroll, can_reroll, current_rerolls, confirm_action, refuse_action)
   self:createMenu()
 end
@@ -78,7 +79,7 @@ end
 
 function EnchantmentSelectionMenu:addTitleText(titleRect)
   local titleText = RogueEssence.Menu.DialogueText(
-    M_HELPERS.MakeColoredText(self.title, PMDColor.Yellow),
+    M_HELPERS.MakeColoredText(self.title, self.titleColor),
     RogueElements.Rect(
       RogueElements.Loc(0, 0),
       RogueElements.Loc(titleRect.Width, titleRect.Height)

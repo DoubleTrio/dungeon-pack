@@ -1,6 +1,7 @@
 
 require 'trios_dungeon_pack.menu.EnchantmentSelectionMenu'
-local enchantment_offers = require 'trios_dungeon_pack.emberfrost.enchantments.offers'
+local checkpoint_offers = require 'trios_dungeon_pack.emberfrost.checkpoint_offers'
+local enemy_enchantment_offers = require 'trios_dungeon_pack.emberfrost.enemy_enchantments.offers'
 
 require 'trios_dungeon_pack.emberfrost.enchantments.enchants'
 require 'trios_dungeon_pack.emberfrost.enchantments.type_enchantments'
@@ -58,6 +59,9 @@ end
 
 local checkpoint = {}
 
+-- Disable after testing to restore random enemy offers and one selection per checkpoint.
+local ENEMY_ENCHANTMENT_TESTING = true
+
 function checkpoint.EnsureGroundObject(name, x, y, width, height, options)
   options = options or {}
   local map = GAME:GetCurrentGround()
@@ -87,13 +91,96 @@ function checkpoint.SpawnCheckpointWalls()
     {animation = "Block_Vault_Black", passable = true})
   checkpoint.EnsureGroundObject("EnemyInvisWall", 192, 123, 72, 10,
     {passable = false, trigger = RogueEssence.Ground.GroundEntity.EEntityTriggerTypes.Action})
+
+  if ENEMY_ENCHANTMENT_TESTING then
+    local map = GAME:GetCurrentGround()
+    for _, name in ipairs({"BlackWall", "BlackWall_1", "BlackVaultWall", "EnemyInvisWall"}) do
+      map:GetObj(name).EntEnabled = true
+    end
+    local blocker = map:GetObj("EnemyInvisWall")
+    blocker.Passable = false
+    blocker:SetTriggerType(RogueEssence.Ground.GroundEntity.EEntityTriggerTypes.Action)
+    local state = SV.EmberFrost.EnemyEnchantments
+    state.Seen = {}
+    state.RerollCounts = {1, 1, 1}
+    state.Offers = {}
+    state.OfferCheckpoint = -1
+    state.SelectedCheckpoints[tostring(SV.EmberFrost.CheckpointProgression)] = nil
+  end
+end
+
+function checkpoint.SelectEnemyEnchantment()
+  M_HELPERS.UpgradeVariables()
+  local state = SV.EmberFrost.EnemyEnchantments
+  local key = tostring(SV.EmberFrost.CheckpointProgression)
+  if state.SelectedCheckpoints[key] then return true end
+  local rows
+  if ENEMY_ENCHANTMENT_TESTING then
+    rows = {
+      {EnemyEnchantmentRegistry:Get("HUNGER_STRIKE_ENEMY"), EnemyEnchantmentRegistry:Get("HAZER_ENEMY"), EnemyEnchantmentRegistry:Get("ENEMY_TEST_3")},
+      {EnemyEnchantmentRegistry:Get("ENEMY_TEST_4"), EnemyEnchantmentRegistry:Get("ENEMY_TEST_5"), EnemyEnchantmentRegistry:Get("ENEMY_TEST_6")},
+    }
+  else
+    rows = enemy_enchantment_offers.GetForCheckpoint()
+  end
+  if not rows then
+    UI:WaitShowDialogue("There are not enough eligible enemy enchantments available right now.")
+    return false
+  end
+  local selected
+  local choose = function(enchantment)
+    selected = enchantment
+    _MENU:RemoveMenu()
+  end
+  local refuse = function() _MENU:RemoveMenu() end
+  local old = RogueEssence.Menu.MenuBase.BorderStyle
+  RogueEssence.Menu.MenuBase.BorderStyle = 17
+  local menu = EnchantmentSelectionMenu:new("Select enemy enchantment...", rows,
+    function(id)
+      EnemyEnchantmentRegistry:MarkSeen(id)
+      state.Collection[id] = math.max(state.Collection[id] or EnchantmentStatus.NotSeen, EnchantmentStatus.Seen)
+    end, nil, nil,
+    state.RerollCounts, choose, refuse, nil, PMDColor.BrightBlue)
+  UI:SetCustomMenu(menu.menu)
+  UI:WaitForChoice()
+  RogueEssence.Menu.MenuBase.BorderStyle = old
+  if not selected then return false end
+  selected:apply()
+  table.insert(state.Selected, selected.id)
+  state.Collection[selected.id] = math.max(state.Collection[selected.id] or EnchantmentStatus.NotSeen, EnchantmentStatus.Selected)
+  state.SelectedCheckpoints[key] = selected.id
+  return true
 end
 
 function checkpoint.InvisibleWallInteraction(obj, activator)
   local triggers = RogueEssence.Ground.GroundEntity.EEntityTriggerTypes
   if not obj.EntEnabled or obj:GetTriggerType() ~= triggers.Action then return end
-  obj:SetTriggerType(triggers.None)
+  
+  local crystal_moment_status = RogueEssence.Dungeon.MapStatus("crystal_moment")
+
+  crystal_moment_status:LoadFromData()
+  crystal_moment_status.Emitter.Layer = DrawLayer.Top
+
+  _GROUND:AddMapStatus(crystal_moment_status)
+
+  GAME:WaitFrames(50)
+  if not checkpoint.SelectEnemyEnchantment() 
+  then
+    
+    _GROUND:RemoveMapStatus("crystal_moment")
+    GAME:WaitFrames(20)
+
+    
+    return
+
+  end
+
+  _GROUND:RemoveMapStatus("crystal_moment")
+  GAME:WaitFrames(20)
+
   SOUND:PlayBattleSE("DUN_Open_Chamber")
+  obj:SetTriggerType(triggers.None)
+
   local map = GAME:GetCurrentGround()
   for _, name in ipairs({"BlackWall", "BlackVaultWall", "BlackWall_1"}) do
     local wall = map:GetObj(name)
@@ -427,7 +514,7 @@ function checkpoint.ChestInteraction(obj, activator)
   GAME:WaitFrames(60)
 
   ResetSeenEnchantments()
-  local picked = enchantment_offers.GetRandom(6)
+  local picked = checkpoint_offers.Get("Player")
   if #picked < 3 then
     _GROUND:RemoveMapStatus("crystal_moment")
     UI:WaitShowDialogue("There are not enough eligible enchantments available right now.")
@@ -483,8 +570,7 @@ function checkpoint.ChestInteraction(obj, activator)
     GROUND:ObjectSetDefaultAnim(obj, 'Chest_Open', 0, 0, 0, Direction.Right)
 
     _GROUND:RemoveMapStatus("crystal_moment")
-    GAME:WaitFrames(40)
-    GAME:WaitFrames(30)
+    GAME:WaitFrames(70)
     local enchantment_id = ret.id
     table.insert(SV.EmberFrost.Enchantments.Selected, enchantment_id)
     SetEnchantmentStatusIfNeeded(enchantment_id, EnchantmentStatus.Selected)
@@ -631,8 +717,9 @@ function checkpoint.ShopkeeperDialogue(shopkeeper, player)
 
   while state > -1 do
     if state == 0 then
-      local msg = repeated and "What else will it be?" or
-      "Welcome! I trade in Yellow Shards. Buy, sell, or just browse?"
+      UI:SetSpeakerEmotion("Normal")
+      local msg = repeated and "Hehe.. anything else?" or
+      "Hehe... what business do ya got with me today?"
       local choices = { "Buy", "Sell", "Info", "Section Info", "Leave" }
       UI:BeginChoiceMenu(msg, choices, 1, 5)
       UI:WaitForChoice()
@@ -645,33 +732,43 @@ function checkpoint.ShopkeeperDialogue(shopkeeper, player)
           table.insert(shop_array, item)
         end
         if #shop_array > 0 then
-          UI:WaitShowDialogue("Take a look at what I've got. Payment in Yellow Shards only!")
+          UI:SetSpeakerEmotion("Happy")
+          UI:WaitShowDialogue("Lookie here... See anything the catches your twinkling eye?")
           state = 1
         else
-          UI:WaitShowDialogue("...Hm. Looks like I'm all sold out. Check back later.")
+          UI:SetSpeakerEmotion("Happy")
+          UI:WaitShowDialogue("Well, well... You made me very happy today...")
+          UI:WaitShowDialogue("Come back again if ya got the shards...")
         end
       elseif result == 2 then
         local bag_count = GAME:GetPlayerBagCount() + GAME:GetPlayerEquippedCount()
         if bag_count > 0 then
-          UI:WaitShowDialogue("Got something to offload? I'll give you a fair cut.")
+          UI:WaitShowDialogue("Wanna sell something do ya? I ain't a rich merchant like Kecleon... but I'll payout just a little.")
           state = 3
         else
-          UI:SetSpeakerEmotion("Sad")
-          UI:WaitShowDialogue("You've got nothing on you. Come back when you've got something to sell.")
+          UI:SetSpeakerEmotion("Worried")
+          UI:WaitShowDialogue("You've got nothing on ya...")
           UI:SetSpeakerEmotion("Normal")
         end
       elseif result == 3 then
-        UI:WaitShowDialogue("INFO PLACEHOLDER 1: This shop accepts Yellow Shards as currency.")
-        UI:WaitShowDialogue("INFO PLACEHOLDER 2: Items purchased here are gone for good — no restocks mid-run.")
-        UI:WaitShowDialogue("INFO PLACEHOLDER 3: Selling items returns 60% of their value in Poke.")
-        UI:WaitShowDialogue("INFO PLACEHOLDER 4: [Additional lore/info here]")
-        
+        UI:WaitShowDialogue("Yellow Shards are my life... ya know.")
+        UI:WaitShowDialogue("They're yellow and shiny... just like me.")
+        UI:WaitShowDialogue("I'll take them off your hands in exchange for some... desirable items.")
+        UI:WaitShowDialogue("I also ain't rich like them Kecleon... but I'll still complensate ya just a little.")
       elseif result == 4 then
       
         UI:WaitShowDialogue("Water section!")
 
       else
-        UI:WaitShowDialogue("Safe travels. Don't spend those shards all in one place.")
+        local shards = ItemShopMenu:count_item("yellow_shard")
+        if shards == 0 then
+          UI:WaitShowDialogue("Good luck... keep your twinkling eye for those shards will ya.")
+        elseif shards < 3 then
+          UI:WaitShowDialogue("Good luck... keep those shards safe will ya?")
+        else
+        end
+    
+        -- end
         state = -1
       end
     elseif state == 1 then
@@ -719,12 +816,12 @@ function checkpoint.ShopkeeperDialogue(shopkeeper, player)
             cart = {}
             SOUND:PlayBattleSE("DUN_Money")
             if bought_count == 1 then
-              UI:WaitShowDialogue("Good pick. Take care of it.")
+              UI:WaitShowDialogue("Here ya go... enjoy your item.")
             else
-              UI:WaitShowDialogue("Nice haul. Pleasure doing business.")
+              UI:WaitShowDialogue("Here ya go... these shards do be looking mighty beautiful.")
             end
           else
-            UI:WaitShowDialogue("Aww unfortunate. Come back next time!")
+            UI:WaitShowDialogue("Unfortunate... Do come back soon...")
           end
         end
       end

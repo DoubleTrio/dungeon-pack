@@ -44,6 +44,7 @@ end
 ---rocky_checkpoint.GameLoad(map)
 -- Engine callback function
 function rocky_checkpoint.GameLoad(map)
+  checkpoint.SpawnCheckpointWalls()
   GAME:FadeIn(20)
 end
 

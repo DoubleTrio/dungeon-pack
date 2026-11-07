@@ -45,6 +45,7 @@ end
 ---cove_checkpoint.GameLoad(map)
 -- Engine callback function
 function cove_checkpoint.GameLoad(map)
+  checkpoint.SpawnCheckpointWalls()
   GAME:FadeIn(20)
 end
 

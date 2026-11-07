@@ -14,10 +14,24 @@ function ResetEmberfrostRun()
     enchant:cleanup()
   end
 
+  SV.EmberFrost.CheckpointEnchantmentOffers = {Checkpoint = -1, Player = {}, Enemy = {}}
   SV.EmberFrost.CheckpointEnchantsCalled = false
   SV.EmberFrost.Enchantments.Selected = {}
   SV.EmberFrost.Enchantments.Data = {}
   SV.EmberFrost.Enchantments.RerollCounts = {1, 1, 1}
+  if EnemyEnchantmentRegistry then
+    for _, enchant in ipairs(EnemyEnchantmentRegistry:GetSelected()) do enchant:cleanup() end
+  end
+  SV.EmberFrost.EnemyEnchantments = {
+    Collection = SV.EmberFrost.EnemyEnchantments.Collection,
+    Seen = {},
+    Selected = {},
+    Data = {},
+    RerollCounts = {1, 1, 1},
+    Offers = {},
+    OfferCheckpoint = -1,
+    SelectedCheckpoints = {},
+  }
   SV.EmberFrost.Quests = {
     Active = {},
     Data = {},
@@ -42,6 +56,17 @@ function ResetEmberfrostRun()
 end
 
 SV.EmberFrost = {
+  CheckpointEnchantmentOffers = {Checkpoint = -1, Player = {}, Enemy = {}},
+  EnemyEnchantments = {
+    Collection = {},
+    Seen = {},
+    Selected = {},
+    Data = {},
+    RerollCounts = {1, 1, 1},
+    Offers = {},
+    OfferCheckpoint = -1,
+    SelectedCheckpoints = {},
+  },
   Enchantments = {
     -- List of seen enchantment IDs during the run
     Seen = {},

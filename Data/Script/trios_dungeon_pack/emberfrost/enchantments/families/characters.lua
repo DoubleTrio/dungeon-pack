@@ -512,6 +512,7 @@ Sponge = add({
   end
 })
 
+-- Cannot heal from other sources
 -- Vampiric = add({
 --   name = "Vampiric",
 --   id = "VAMPIRIC",
