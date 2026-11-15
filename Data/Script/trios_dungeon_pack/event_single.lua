@@ -2377,3 +2377,43 @@ function SINGLE_CHAR_SCRIPT.TerrasphereHazer(owner, ownerChar, context, args)
         end
     end
 end
+
+function SINGLE_CHAR_SCRIPT.UpgradeTactics(owner, ownerChar, context, args)
+    local enemy = context.User
+    if not enemy or enemy.Dead or not enemy.MemberTeam
+        or enemy.MemberTeam.MapFaction ~= RogueEssence.Dungeon.Faction.Foe then
+        return
+    end
+
+    local data = LTBL(enemy)
+    data.TerrasphereEnemyEnchantments = data.TerrasphereEnemyEnchantments or {}
+    if data.TerrasphereEnemyEnchantments[args.EnchantmentID] then return end
+
+    -- Record failed rolls too, so each enemy only gets one chance.
+    data.TerrasphereEnemyEnchantments[args.EnchantmentID] = true
+    local chance = args.Chance or 30
+    if chance <= 0 or (chance < 100 and _DATA.Save.Rand:Next(100) >= chance) then return end
+
+    local hard_mode = require 'trios_dungeon_pack.terrasphere.enemy_enchantments.hard_mode'
+    hard_mode.upgradeAI(enemy)
+end
+
+function SINGLE_CHAR_SCRIPT.BoostEnemyStats(owner, ownerChar, context, args)
+    local enemy = context.User
+    if not enemy or enemy.Dead or not enemy.MemberTeam
+        or enemy.MemberTeam.MapFaction ~= RogueEssence.Dungeon.Faction.Foe then
+        return
+    end
+
+    local data = LTBL(enemy)
+    data.TerrasphereEnemyEnchantments = data.TerrasphereEnemyEnchantments or {}
+    if data.TerrasphereEnemyEnchantments[args.EnchantmentID] then return end
+
+    -- Record failed rolls too, so each enemy only gets one chance.
+    data.TerrasphereEnemyEnchantments[args.EnchantmentID] = true
+    local chance = args.Chance or 100
+    if chance <= 0 or (chance < 100 and _DATA.Save.Rand:Next(100) >= chance) then return end
+
+    local hard_mode = require 'trios_dungeon_pack.terrasphere.enemy_enchantments.hard_mode'
+    hard_mode.boostStats(enemy)
+end

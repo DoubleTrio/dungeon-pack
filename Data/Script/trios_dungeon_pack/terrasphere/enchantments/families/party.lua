@@ -187,7 +187,7 @@ ATrueLeader = add({
   gold_amount = 10000,
   name = "A True Leader",
   id = "A_TRUE_LEADER",
-  description = "You cannot swap leaders until the next checkpoint. Gain {gold_amount} when you do reach the next checkpoint.",
+  description = "You cannot swap leaders until the next checkpoint. Gain {gold_amount} when you do reach the next checkpoint",
   description_vars = {
     gold_amount = { field = "gold_amount", format = "money", space = true },
   },

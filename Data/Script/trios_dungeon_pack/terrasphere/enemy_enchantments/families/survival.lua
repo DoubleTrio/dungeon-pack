@@ -1,4 +1,5 @@
 local EnchantmentRarity = require 'trios_dungeon_pack.terrasphere.enchantments.rarities'
+local helpers = require 'trios_dungeon_pack.terrasphere.enemy_enchantments.helpers'
 local group = {}
 
 function group.HungerStrike(add)
@@ -6,13 +7,9 @@ function group.HungerStrike(add)
     rarity = EnchantmentRarity.Common,
     id = "HUNGER_STRIKE_ENEMY",
     name = "Hunger Strike",
-    description = "When enemies inflict damage with a move, the target loses 3 hunger points.",
+    description = "When enemies inflict damage with a move, the target loses 3 hunger points",
     set_active_effects = function(self, active_effect, zone_context)
-      local args = Serpent.line({ EnchantmentID = self.id, StatusID = "terrasphere_hunger_strike_enemy" })
-      active_effect.OnMapStarts:Add(2,
-        RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereApplyEnemyEnchantments", args))
-      active_effect.OnTurnStarts:Add(2,
-        RogueEssence.Dungeon.SingleCharScriptEvent("TerrasphereApplyEnemyEnchantments", args))
+      helpers.AddStatusHooks(active_effect, self.id, "terrasphere_hunger_strike_enemy")
     end,
   })
 end

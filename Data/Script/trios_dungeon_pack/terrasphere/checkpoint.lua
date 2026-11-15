@@ -117,8 +117,8 @@ function checkpoint.SelectEnemyEnchantment()
   local rows
   if ENEMY_ENCHANTMENT_TESTING then
     rows = {
-      {EnemyEnchantmentRegistry:Get("HUNGER_STRIKE_ENEMY"), EnemyEnchantmentRegistry:Get("HAZER_ENEMY"), EnemyEnchantmentRegistry:Get("ENEMY_TEST_3")},
-      {EnemyEnchantmentRegistry:Get("ENEMY_TEST_4"), EnemyEnchantmentRegistry:Get("ENEMY_TEST_5"), EnemyEnchantmentRegistry:Get("ENEMY_TEST_6")},
+      {EnemyEnchantmentRegistry:Get("HUNGER_STRIKE_ENEMY"), EnemyEnchantmentRegistry:Get("HAX_ENEMY"), EnemyEnchantmentRegistry:Get("TACTICAL_ENEMY")},
+      { EnemyEnchantmentRegistry:Get("STATS_PADDING_ENEMY"), EnemyEnchantmentRegistry:Get("SHORTSIGHTED_ENEMY"), EnemyEnchantmentRegistry:Get("LONGSIGHTED_ENEMY") },
     }
   else
     rows = enemy_enchantment_offers.GetForCheckpoint()

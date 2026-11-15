@@ -55,7 +55,7 @@ MysteryEnchant = add({
   gold_amount = 4000,
   name = "Mystery Enchant",
   id = "MYSTERY_ENCHANT",
-  description = "Gain a random enchantment and {gold_amount}.",
+  description = "Gain a random enchantment and {gold_amount}",
   description_vars = {
     gold_amount = { field = "gold_amount", format = "money", space = true },
   },

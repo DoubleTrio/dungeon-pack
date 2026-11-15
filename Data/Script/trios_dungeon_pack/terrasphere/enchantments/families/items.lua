@@ -527,7 +527,7 @@ YourAWizard = add({
   name = "You're a Wizard!",
   id = "YOURE_A_WIZARD",
   -- group = ENCHANTMENT_TYPES.items,
-  description = "Gain {stack} {stack:plural:stack:stacks} of {amount} random {Wands}. Then select a party member. That member will gain {percent} special attack boost for each unique {Wand} in your inventory.",
+  description = "Gain {stack} {stack:plural:stack:stacks} of {amount} random {Wands}. Then select a party member. That member will gain {percent} special attack boost for each unique {Wand} in your inventory",
   description_vars = {
     percent = { field = "percent", format = "percent" },
     Wands = { get = function(self) return self.amount == 1 and "wand" or "wands" end, format = "text", color = "Pink" },

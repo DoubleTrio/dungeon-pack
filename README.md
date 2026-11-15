@@ -28,10 +28,12 @@ A mod that adds more dungeons to base PMDO. Currently, 2 (one of them WIP) addit
   - **[Vast Poni Canyon](https://www.youtube.com/watch?v=14_CoQWjV8I)**
   - **[Terminal Velocity (Act 1)](https://www.youtube.com/watch?v=npTdjMtlHM8)**
 
+- **[Josha~!](https://www.youtube.com/@lerealjoshawott)** - Music for the Terrasphere trailer
+  - **[Raise Up Your Bat (PMD Soundfont Remix)](https://www.youtube.com/watch?v=qugtXLaHdGg)** 
 ## Code Resources
 
 
-- **[MistressNebula](github.com/435THz)** - Frostbite status + menu sample code
+- **[MistressNebula](github.com/435THz)** - Frostbite status + menu sample code + PMDO hard mode modifiers integrated into this priject.
 
 
 - **[Enrique García Cota](https://github.com/kikito)** - **[Lua Beholder Library](https://github.com/kikito/beholder.lua/tree/master)**

@@ -174,7 +174,7 @@ DoubleUp = add({
   name = "Double Up!",
   id = "DOUBLE_UP",
   damage_reduction = 60,
-  description = "Choose a team member. Their moves will strike twice as much but deal {damage_reduction} less damage per hit.",
+  description = "Choose a team member. Their moves will strike twice as much but deal {damage_reduction} less damage per hit",
   description_vars = {
     damage_reduction = { field = "damage_reduction", format = "percent", color = "Red" },
   },
@@ -384,7 +384,7 @@ Marksman = add({
   name = "Marksman",
   id = "MARKSMAN",
   -- group = ENCHANTMENT_TYPES.items,
-  description = "Choose a team member. When that member hits an enemy, that enemy is {Marked}. {CapitalMarked} enemies take {increased_damage_percent} more damage from all sources. Only one enemy can be {ExistingLimitText} at a time.",
+  description = "Choose a team member. When that member hits an enemy, that enemy is {Marked}. {CapitalMarked} enemies take {increased_damage_percent} more damage from all sources. Only one enemy can be {ExistingLimitText} at a time",
   description_vars = {
     Marked = { value = "marked", format = "text", color = "Blue" },
     CapitalMarked = { value = "Marked", format = "text", color = "Blue" },
@@ -553,7 +553,7 @@ MonoMoves = add({
   name = "Mono Moves",
   id = "MONO_MOVES",
   attack_boost = 35,
-  description = "Choose a team member. If all their moves are the {SameType}, that member deals {attack_boost} more damage.",
+  description = "Choose a team member. If all their moves are the {SameType}, that member deals {attack_boost} more damage",
   description_vars = {
     SameType = { value = "same type", format = "text", color = "Yellow" },
     attack_boost = { field = "attack_boost", format = "percent" },
@@ -590,7 +590,7 @@ ExitStrategy = add({
   name = "Exit Strategy",
   id = "EXIT_STRATEGY",
   -- group = ENCHANTMENT_TYPES.items,
-  description = "Choose a team member. They will see the direction of the stairs at the start of each floor. Gain a {Scarf}, {pure_seed_amount} {Seed}, {warp_wands_amount} {Wand}, and {salac_amount} {Berry}.",
+  description = "Choose a team member. They will see the direction of the stairs at the start of each floor. Gain a {Scarf}, {pure_seed_amount} {Seed}, {warp_wands_amount} {Wand}, and {salac_amount} {Berry}",
   description_vars = {
     Scarf = { get = function(self) return M_HELPERS.GetItemName("held_warp_scarf") end, format = "text" },
     Seed = { get = function(self) return M_HELPERS.GetItemName("seed_pure") end, format = "text" },

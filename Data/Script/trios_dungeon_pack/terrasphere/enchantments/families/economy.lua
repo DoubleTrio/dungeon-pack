@@ -298,7 +298,7 @@ Shopper = add({
   id = "SHOPPER",
   amount = 1000,
 
-  description = "Gain {amount}. The likelihood of shopkeepers appearing in the dungeon is increased.",
+  description = "Gain {amount}. The likelihood of shopkeepers appearing in the dungeon is increased",
   description_vars = {
     amount = { field = "amount", format = "money", space = true },
   },
@@ -334,7 +334,7 @@ TreasureHunt = add({
   id = "TREASURE_HUNT",
   amount = 1000,
 
-  description = "Gain {amount}. The likelihood of chests appearing in the dungeon is increased.",
+  description = "Gain {amount}. The likelihood of chests appearing in the dungeon is increased",
   description_vars = {
     amount = { field = "amount", format = "money", space = true },
   },

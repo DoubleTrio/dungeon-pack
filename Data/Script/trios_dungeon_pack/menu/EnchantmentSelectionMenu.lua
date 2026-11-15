@@ -137,7 +137,7 @@ function EnchantmentSelectionMenu:createEnchantmentMenu(index, x, y)
     showCursor = function() enchantment.Elements:Add(cursor) end,
     hideCursor = function() enchantment.Elements:Remove(cursor) end,
     updateNewEnchantment = function(newEnchantment)
-      name:SetAndFormatText(M_HELPERS.MakeColoredText(newEnchantment.name, PMDColor.White))
+      name:SetAndFormatText(M_HELPERS.MakeColoredText(newEnchantment.name, self.titleColor))
       desc:SetAndFormatText(newEnchantment:get_description())
     end
   }
@@ -145,7 +145,7 @@ end
 
 function EnchantmentSelectionMenu:createNameText(index, y_offset)
   local name = RogueEssence.Menu.DialogueText(
-    M_HELPERS.MakeColoredText(self.currentEnchantments[index].name, PMDColor.White),
+    M_HELPERS.MakeColoredText(self.currentEnchantments[index].name, self.titleColor),
     RogueElements.Rect(
       RogueElements.Loc(0, y_offset),
       RogueElements.Loc(self.ENCHANTMENT_WIDTH, y_offset + 12)

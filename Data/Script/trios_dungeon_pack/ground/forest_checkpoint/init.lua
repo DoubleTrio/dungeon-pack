@@ -16,9 +16,10 @@ local forest_checkpoint = {}
 -- Engine callback function
 
 function forest_checkpoint.Init(map)
+  GROUND:AddMapStatus("fog")
   checkpoint.OnCheckpointArrive(0)
   checkpoint.SpawnCheckpointWalls()
-  GROUND:AddMapStatus("fog")
+
 end
 
 ---forest_checkpoint.Enter(map)

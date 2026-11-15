@@ -408,6 +408,42 @@
 "Released": false,
 "Comment": "",
 "SortOrder": 0
+},
+"terrasphere_shortsighted": {
+"Name": {
+"DefaultText": "Shortsighted",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"terrasphere_longsighted": {
+"Name": {
+"DefaultText": "Longsighted",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"terrasphere_hax": {
+"Name": {
+"DefaultText": "HAX",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
+},
+"terrasphere_vampirism": {
+"Name": {
+"DefaultText": "Vampirism",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 0
 }
 }
 }

@@ -1476,3 +1476,16 @@ end
 --     TASK:WaitTask(status_stack_event:Apply(owner, ownerChar, mock_context))
 --   end
 -- end
+
+function BATTLE_SCRIPT.EnemyVampirism(owner, ownerChar, context, args)
+  local enchantment = EnemyEnchantmentRegistry:Get("VAMPIRISM_ENEMY")
+  local percent = enchantment:get_healing_percent()
+  if percent <= 0 or context.User.Dead then return end
+  local damage = context:GetContextStateInt(luanet.ctype(TotalDamageDealtType), true, 0)
+  if damage <= 0 then return end
+
+  SOUND:PlayBattleSE("DUN_Absorb")
+  local HPDrainEvent = luanet.import_type('PMDC.Dungeon.HPDrainEvent')
+  local drain = HPDrainEvent(100 / percent)
+  TASK:WaitTask(drain:Apply(owner, ownerChar, context))
+end

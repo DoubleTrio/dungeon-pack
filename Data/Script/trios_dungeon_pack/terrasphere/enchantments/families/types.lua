@@ -402,7 +402,7 @@ Flock = add({
   id = "FLOCK",
   percent = 40,
   offer_time = "beginning",
-  description = "{Base}. Each {Type} type gains a {percent} defense boost. Non-flying allies can traverse terrains near flock users.",
+  description = "{Base}. Each {Type} type gains a {percent} defense boost. Non-flying allies can traverse terrains near flock users",
   description_vars = {
     Base = { get = function(self) return TypeEHelpers.MakeBaseDescription("flying", "apricorn_white") end, format = "text" },
     Type = { get = function(self) return _DATA:GetElement("flying"):GetIconName() end, format = "text" },
@@ -672,7 +672,7 @@ HeavyRock = add({
   percent = 50,
   amount = 3,
   offer_time = "beginning",
-  description = "{Base}. {Type}-type member deals {percent} increased rock projectile damage and gives {amount} of a rock projectile each floor.",
+  description = "{Base}. {Type}-type member deals {percent} increased rock projectile damage and gives {amount} of a rock projectile each floor",
   description_vars = {
     Base = { get = function(self) return TypeEHelpers.MakeBaseDescription("rock", "apricorn_brown") end, format = "text" },
     Type = { get = function(self) return _DATA:GetElement("rock"):GetIconName() end, format = "text" },
